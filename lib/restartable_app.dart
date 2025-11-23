@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:mobile_core/application/network_time/network_time_provider.dart';
-import 'package:mobile_core/common_dependencies.dart';
+import 'package:mobile_boilerplate/application/network_time/network_time_provider.dart';
+import 'package:mobile_boilerplate/common_dependencies.dart';
 
 class RestartableApp extends StatefulWidget {
   const RestartableApp({super.key, required this.child});

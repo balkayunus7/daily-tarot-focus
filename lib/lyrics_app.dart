@@ -2,17 +2,17 @@ import 'package:daily_tarot_focus/presentation/core/constants/lyrics_app_colors.
 import 'package:daily_tarot_focus/presentation/home/home_page.dart';
 import 'package:daily_tarot_focus/presentation/splash/splash_page.dart';
 import 'package:flutter/material.dart';
-import 'package:mobile_core/application/analytics/analytics_cubit.dart';
-import 'package:mobile_core/application/auth/auth_cubit.dart';
-import 'package:mobile_core/application/color_theme/color_theme_bloc.dart';
-import 'package:mobile_core/application/launcher/launcher.dart';
-import 'package:mobile_core/application/native_permissions/native_permissions_bloc.dart';
-import 'package:mobile_core/application/network_time/network_time_provider.dart';
-import 'package:mobile_core/application/purchases/purchases_bloc.dart';
-import 'package:mobile_core/application/remote_notification/remote_notification_cubit.dart';
-import 'package:mobile_core/application/remote_notification/remote_notification_token_cubit.dart';
-import 'package:mobile_core/common_dependencies.dart';
-import 'package:mobile_core/core_app.dart';
+import 'package:mobile_boilerplate/application/analytics/analytics_cubit.dart';
+import 'package:mobile_boilerplate/application/auth/auth_cubit.dart';
+import 'package:mobile_boilerplate/application/color_theme/color_theme_bloc.dart';
+import 'package:mobile_boilerplate/application/launcher/launcher.dart';
+import 'package:mobile_boilerplate/application/native_permissions/native_permissions_bloc.dart';
+import 'package:mobile_boilerplate/application/network_time/network_time_provider.dart';
+import 'package:mobile_boilerplate/application/purchases/purchases_bloc.dart';
+import 'package:mobile_boilerplate/application/remote_notification/remote_notification_cubit.dart';
+import 'package:mobile_boilerplate/application/remote_notification/remote_notification_token_cubit.dart';
+import 'package:mobile_boilerplate/common_dependencies.dart';
+import 'package:mobile_boilerplate/core_app.dart';
 
 class LyricsApp extends StatelessWidget {
   const LyricsApp({super.key});

@@ -1,13 +1,13 @@
 import 'package:daily_tarot_focus/domain/remote_notification/remote_notification_message.dart';
 import 'package:daily_tarot_focus/restartable_app.dart';
 import 'package:flutter/material.dart';
-import 'package:mobile_core/application/auth/auth_cubit.dart';
-import 'package:mobile_core/application/remote_notification/remote_notification_cubit.dart';
-import 'package:mobile_core/application/remote_notification/remote_notification_token_cubit.dart';
-import 'package:mobile_core/common_dependencies.dart';
-import 'package:mobile_core/domain/remote_notification/remote_notification.dart';
-import 'package:mobile_core/presentation/routing/route_arguments.dart';
-import 'package:mobile_core/presentation/routing/route_aware_analytics_mixin.dart';
+import 'package:mobile_boilerplate/application/auth/auth_cubit.dart';
+import 'package:mobile_boilerplate/application/remote_notification/remote_notification_cubit.dart';
+import 'package:mobile_boilerplate/application/remote_notification/remote_notification_token_cubit.dart';
+import 'package:mobile_boilerplate/common_dependencies.dart';
+import 'package:mobile_boilerplate/domain/remote_notification/remote_notification.dart';
+import 'package:mobile_boilerplate/presentation/routing/route_arguments.dart';
+import 'package:mobile_boilerplate/presentation/routing/route_aware_analytics_mixin.dart';
 
 class HomePageArguments extends RouteArguments {
   const HomePageArguments(super.context, {this.initialTabIndex = 0});

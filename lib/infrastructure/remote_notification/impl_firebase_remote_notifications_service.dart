@@ -1,7 +1,7 @@
 import 'package:daily_tarot_focus/domain/remote_notification/remote_notification_message.dart';
-import 'package:mobile_core/domain/remote_notification/remote_notification.dart';
-import 'package:mobile_core/infrastructure/remote_notification/firebase_notifications_service.dart';
-import 'package:mobile_core/infrastructure_dependencies.dart' as fm;
+import 'package:mobile_boilerplate/domain/remote_notification/remote_notification.dart';
+import 'package:mobile_boilerplate/infrastructure/remote_notification/firebase_notifications_service.dart';
+import 'package:mobile_boilerplate/infrastructure_dependencies.dart' as fm;
 
 class ImplFirebaseRemoteNotificationsService
     extends FirebaseNotificationsService {

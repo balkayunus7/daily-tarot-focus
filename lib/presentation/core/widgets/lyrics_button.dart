@@ -1,9 +1,9 @@
 
 import 'package:daily_tarot_focus/presentation/core/widgets/fancy_button.dart';
 import 'package:flutter/material.dart';
-import 'package:mobile_core/common_dependencies.dart';
-import 'package:mobile_core/presentation/extensions/build_context_theme_ext.dart';
-import 'package:mobile_core/presentation/widgets/scaling_container.dart';
+import 'package:mobile_boilerplate/common_dependencies.dart';
+import 'package:mobile_boilerplate/presentation/extensions/build_context_theme_ext.dart';
+import 'package:mobile_boilerplate/presentation/widgets/scaling_container.dart';
 
 class LyricsButton extends StatelessWidget {
   const LyricsButton({

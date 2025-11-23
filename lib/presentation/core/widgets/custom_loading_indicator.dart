@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:mobile_core/presentation/extensions/build_context_theme_ext.dart';
+import 'package:mobile_boilerplate/presentation/extensions/build_context_theme_ext.dart';
 
 class CustomLoadingIndicator extends StatelessWidget {
   const CustomLoadingIndicator({super.key, this.indicatorSize, this.color});

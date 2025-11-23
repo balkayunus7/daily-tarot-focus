@@ -7,11 +7,11 @@ import 'package:daily_tarot_focus/presentation/settings/settings_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:liquid_glass_renderer/liquid_glass_renderer.dart';
-import 'package:mobile_core/application/auth/auth_cubit.dart';
-import 'package:mobile_core/common_dependencies.dart';
-import 'package:mobile_core/presentation/extensions/build_context_theme_ext.dart';
-import 'package:mobile_core/presentation/extensions/build_context_time_ext.dart';
-import 'package:mobile_core/presentation/widgets/scaling_container.dart';
+import 'package:mobile_boilerplate/application/auth/auth_cubit.dart';
+import 'package:mobile_boilerplate/common_dependencies.dart';
+import 'package:mobile_boilerplate/presentation/extensions/build_context_theme_ext.dart';
+import 'package:mobile_boilerplate/presentation/extensions/build_context_time_ext.dart';
+import 'package:mobile_boilerplate/presentation/widgets/scaling_container.dart';
 
 class LyricsProAppBar extends StatelessWidget implements PreferredSizeWidget {
   const LyricsProAppBar({super.key, required this.title});

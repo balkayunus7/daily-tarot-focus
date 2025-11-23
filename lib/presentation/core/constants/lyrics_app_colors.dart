@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mobile_core/presentation/app_colors.dart';
+import 'package:mobile_boilerplate/presentation/app_colors.dart';
 
 abstract class LyricsAppColors extends AppColors {
   const LyricsAppColors({

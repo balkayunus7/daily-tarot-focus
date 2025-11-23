@@ -1,4 +1,4 @@
-import 'package:mobile_core/domain/remote_notification/remote_notification.dart';
+import 'package:mobile_boilerplate/domain/remote_notification/remote_notification.dart';
 
 class RemoteNotificationDefault extends RemoteNotification {
   const RemoteNotificationDefault({

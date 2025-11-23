@@ -3,10 +3,10 @@ import 'package:daily_tarot_focus/presentation/core/helper/text_style_helper.dar
 import 'package:daily_tarot_focus/presentation/core/widgets/lyrics_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:liquid_glass_renderer/liquid_glass_renderer.dart';
-import 'package:mobile_core/application/auth/auth_cubit.dart';
-import 'package:mobile_core/common_dependencies.dart';
-import 'package:mobile_core/presentation/extensions/build_context_theme_ext.dart';
-import 'package:mobile_core/presentation/popups/core_popup.dart';
+import 'package:mobile_boilerplate/application/auth/auth_cubit.dart';
+import 'package:mobile_boilerplate/common_dependencies.dart';
+import 'package:mobile_boilerplate/presentation/extensions/build_context_theme_ext.dart';
+import 'package:mobile_boilerplate/presentation/popups/core_popup.dart';
 import 'package:daily_tarot_focus/config/app_config.dart';
 import 'package:daily_tarot_focus/presentation/settings/widgets/paywall_card.dart';
 

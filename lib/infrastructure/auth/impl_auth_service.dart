@@ -2,26 +2,23 @@ import 'dart:convert';
 
 import 'package:daily_tarot_focus/domain/auth/lyrics_session.dart';
 import 'package:flutter/services.dart';
-import 'package:mobile_core/common_dependencies.dart';
-import 'package:mobile_core/core_app.dart';
-import 'package:mobile_core/domain/auth/auth_provider.dart' as domain;
-import 'package:mobile_core/domain/auth/i_auth_service.dart';
-import 'package:mobile_core/domain/auth/session.dart';
-import 'package:mobile_core/domain/common/failure.dart';
-import 'package:mobile_core/domain/common/http_utilities.dart';
-import 'package:mobile_core/extensions.dart';
-import 'package:mobile_core/infrastructure/auth/device_id_mixin.dart';
-import 'package:mobile_core/infrastructure/http/http_failure_handler.dart';
-import 'package:mobile_core/infrastructure/http/metric_http_client.dart';
+import 'package:mobile_boilerplate/common_dependencies.dart';
+import 'package:mobile_boilerplate/domain/auth/auth_provider.dart' as domain;
+import 'package:mobile_boilerplate/domain/auth/i_auth_service.dart';
+import 'package:mobile_boilerplate/domain/auth/session.dart';
+import 'package:mobile_boilerplate/domain/common/failure.dart';
+import 'package:mobile_boilerplate/infrastructure/auth/device_id_mixin.dart';
+import 'package:mobile_boilerplate/infrastructure/http/http_failure_handler.dart';
+import 'package:supabase/supabase.dart' hide Session;
 
 class ImplAuthService extends IAuthService
     with HttpFailureHandlerMixin, DeviceIdMixin {
   ImplAuthService(
-    this._client,
+    this._supabaseClient,
     this._sharedPreferences,
     this._httpFailureHandler,
   );
-  final MetricHttpClient _client;
+  final SupabaseClient _supabaseClient;
   static const _sessionKey = 'session';
 
   @override
@@ -64,42 +61,60 @@ class ImplAuthService extends IAuthService
   @override
   Future<FailureOr<Session>> signInAnonymously() async {
     try {
-      final deviceId = await getDeviceId();
+      // Önce mevcut session'ı kontrol et
+      final existingSession = await getCurrentSession();
+      if (existingSession.isRight()) {
+        print('✅ Mevcut session bulundu, geri döndürülüyor');
+        return existingSession;
+      }
 
-      final hostUri = Uri.parse(appConfig.apiHost);
-      final uri = hostUri.resolveUri(Uri(path: '/lyrics/anonymous_login'));
+      print('❌ Mevcut session bulunamadı, yeni login yapılıyor');
 
-      final response = await _client.post(
-        uri,
-        headers: {'Content-Type': 'application/json'},
-        body: jsonEncode({'platform_device_id': deviceId.getRightOrNull()}),
+      // Mevcut session yoksa yeni login yap
+      final deviceIdResult = await getDeviceId();
+      final deviceId = deviceIdResult.fold((l) => null, (r) => r);
+
+      print('📱 Device ID: $deviceId');
+
+      final response = await _supabaseClient.auth.signInAnonymously(
+        data: {'platform_device_id': deviceId},
       );
 
-      final result = decodeResponseBody(response.bodyBytes);
-      final statusCode = response.statusCode;
+      final user = response.user;
+      if (user == null) {
+        print('❌ User null döndü');
+        return left(const UnknownFailure());
+      }
 
-      final generalFailure = handleResult(statusCode, result);
-      if (generalFailure != null) return left(generalFailure);
+      print('✅ Anon login başarılı: ${user.id}');
 
-      final session = LyricsSession.fromMap({
-        ...result,
-        'provider': domain.AuthProvider.anonymous.key,
-      });
+      final session = LyricsSession(
+        userId: user.id,
+        idToken: response.session?.accessToken ?? '',
+        isNewUser: true,
+        provider: domain.AuthProvider.anonymous,
+      );
 
       final saved = await _sharedPreferences.setString(
         _sessionKey,
         jsonEncode(session.toMap()),
       );
 
-      if (saved == false) return left(const UnknownFailure());
+      if (saved == false) {
+        print('❌ SharedPreferences kaydetme başarısız');
+        return left(const UnknownFailure());
+      }
+
+      print('✅ Session kaydedildi');
       return right(session);
     } on PlatformException catch (e) {
+      print('❌ PlatformException: ${e.code} - ${e.message}');
       if (e.code == 'sign_in_canceled') {
         return left(const CancelledFailure());
       }
-
       return left(UnknownFailure());
     } catch (e) {
+      print('❌ Exception: $e');
       return left(UnknownFailure());
     }
   }
@@ -139,4 +154,5 @@ class ImplAuthService extends IAuthService
 
   final HttpFailureHandler _httpFailureHandler;
   final SharedPreferences _sharedPreferences;
+  SupabaseClient get supabaseClient => _supabaseClient;
 }

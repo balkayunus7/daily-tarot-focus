@@ -1,6 +1,6 @@
 import 'package:daily_tarot_focus/presentation/core/helper/text_style_helper.dart';
 import 'package:flutter/material.dart';
-import 'package:mobile_core/presentation/extensions/build_context_theme_ext.dart';
+import 'package:mobile_boilerplate/presentation/extensions/build_context_theme_ext.dart';
 
 void showErrorSnackBar(BuildContext context, {required String? errorMessage}) {
   ScaffoldMessenger.of(context).showSnackBar(

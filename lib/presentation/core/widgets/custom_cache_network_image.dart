@@ -1,7 +1,7 @@
 import 'package:daily_tarot_focus/presentation/core/widgets/custom_loading_indicator.dart';
 import 'package:flutter/material.dart';
-import 'package:mobile_core/common_dependencies.dart';
-import 'package:mobile_core/presentation/extensions/build_context_theme_ext.dart';
+import 'package:mobile_boilerplate/common_dependencies.dart';
+import 'package:mobile_boilerplate/presentation/extensions/build_context_theme_ext.dart';
 
 class CustomCacheNetworkImage extends StatelessWidget {
   const CustomCacheNetworkImage({

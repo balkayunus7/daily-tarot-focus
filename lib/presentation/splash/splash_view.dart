@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:mobile_core/presentation/extensions/build_context_theme_ext.dart';
+import 'package:mobile_boilerplate/presentation/extensions/build_context_theme_ext.dart';
 
 class LyricsSplashView extends StatefulWidget {
   const LyricsSplashView({super.key, required this.logo});

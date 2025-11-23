@@ -1,6 +1,6 @@
 import 'package:daily_tarot_focus/presentation/core/constants/lyrics_app_sizes.dart';
 import 'package:flutter/material.dart';
-import 'package:mobile_core/presentation/extensions/build_context_theme_ext.dart';
+import 'package:mobile_boilerplate/presentation/extensions/build_context_theme_ext.dart';
 
 class PaddedContainer extends StatelessWidget {
   const PaddedContainer({

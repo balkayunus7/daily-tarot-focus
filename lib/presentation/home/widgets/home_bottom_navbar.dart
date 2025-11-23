@@ -2,7 +2,7 @@ import 'package:daily_tarot_focus/presentation/core/constants/lyrics_mock_datas.
 import 'package:daily_tarot_focus/presentation/core/helper/text_style_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:mobile_core/presentation/extensions/build_context_theme_ext.dart';
+import 'package:mobile_boilerplate/presentation/extensions/build_context_theme_ext.dart';
 
 class HomeBottomNavbar extends StatelessWidget {
   const HomeBottomNavbar({

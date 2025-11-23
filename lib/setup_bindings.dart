@@ -6,10 +6,9 @@ void setupBindings() {
   for (final renderView in binding.renderViews) {
     renderView.automaticSystemUiAdjustment = false;
   }
-  SystemChrome.setPreferredOrientations([
-    DeviceOrientation.portraitUp,
-  ]);
-  SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge, overlays: [
-    SystemUiOverlay.top,
-  ]);
+  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+  SystemChrome.setEnabledSystemUIMode(
+    SystemUiMode.edgeToEdge,
+    overlays: [SystemUiOverlay.top],
+  );
 }

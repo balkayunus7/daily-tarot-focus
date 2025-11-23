@@ -12,8 +12,8 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_svg: ^2.2.0
-  mobile_core:
-    path: ../mobile-core
+  mobile_boilerplate:
+    path: ../mobile-boilerplate
   shared_preferences: ^2.5.3
   path_provider: ^2.1.5
   image: ^4.5.4
@@ -29,6 +29,7 @@ dependencies:
   liquid_glass_renderer: ^0.2.0-dev.2
   flutter_switch: ^0.3.2
   flutter_dotenv: ^6.0.0
+  supabase: ^2.10.0
 
 dev_dependencies:
   flutter_lints: ^5.0.0

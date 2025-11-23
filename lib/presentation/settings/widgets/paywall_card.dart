@@ -2,13 +2,13 @@ import 'package:daily_tarot_focus/presentation/core/helper/text_style_helper.dar
 import 'package:daily_tarot_focus/presentation/core/widgets/lyrics_button.dart';
 import 'package:flutter/material.dart';
 import 'package:liquid_glass_renderer/liquid_glass_renderer.dart';
-import 'package:mobile_core/common_dependencies.dart';
-import 'package:mobile_core/presentation/app_text_styles.dart';
-import 'package:mobile_core/presentation/extensions/build_context_theme_ext.dart';
-import 'package:mobile_core/application/auth/auth_cubit.dart';
-import 'package:mobile_core/domain/purchases/subscription_period.dart';
-import 'package:mobile_core/presentation/extensions/build_context_time_ext.dart';
-import 'package:mobile_core/presentation/extensions/date_time_ext.dart';
+import 'package:mobile_boilerplate/common_dependencies.dart';
+import 'package:mobile_boilerplate/presentation/app_text_styles.dart';
+import 'package:mobile_boilerplate/presentation/extensions/build_context_theme_ext.dart';
+import 'package:mobile_boilerplate/application/auth/auth_cubit.dart';
+import 'package:mobile_boilerplate/domain/purchases/subscription_period.dart';
+import 'package:mobile_boilerplate/presentation/extensions/build_context_time_ext.dart';
+import 'package:mobile_boilerplate/presentation/extensions/date_time_ext.dart';
 import 'package:daily_tarot_focus/presentation/core/constants/lyrics_app_sizes.dart';
 
 class PaywallCard extends StatefulWidget {

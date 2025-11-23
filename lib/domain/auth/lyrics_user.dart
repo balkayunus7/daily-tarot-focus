@@ -1,8 +1,8 @@
-import 'package:mobile_core/common_dependencies.dart';
-import 'package:mobile_core/domain/auth/purchaser.dart';
-import 'package:mobile_core/domain/auth/user.dart';
-import 'package:mobile_core/domain/purchases/subscription.dart';
-import 'package:mobile_core/domain/purchases/subscription_plan.dart';
+import 'package:mobile_boilerplate/common_dependencies.dart';
+import 'package:mobile_boilerplate/domain/auth/purchaser.dart';
+import 'package:mobile_boilerplate/domain/auth/user.dart';
+import 'package:mobile_boilerplate/domain/purchases/subscription.dart';
+import 'package:mobile_boilerplate/domain/purchases/subscription_plan.dart';
 
 class LyricsUser extends User {
   const LyricsUser({

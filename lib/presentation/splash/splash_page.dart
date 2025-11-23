@@ -1,11 +1,12 @@
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:daily_tarot_focus/presentation/core/constants/lyrics_app_assets.dart';
 import 'package:daily_tarot_focus/presentation/core/constants/lyrics_app_sizes.dart';
 import 'package:flutter/material.dart';
-import 'package:mobile_core/application/auth/auth_cubit.dart';
-import 'package:mobile_core/common_dependencies.dart';
-import 'package:mobile_core/presentation/routing/route_aware_analytics_mixin.dart';
+import 'package:mobile_boilerplate/application/auth/auth_cubit.dart';
+import 'package:mobile_boilerplate/common_dependencies.dart';
+import 'package:mobile_boilerplate/presentation/routing/route_aware_analytics_mixin.dart';
 import 'package:daily_tarot_focus/presentation/home/home_page.dart';
 import 'package:daily_tarot_focus/presentation/splash/splash_view.dart';
 
@@ -58,9 +59,14 @@ class _SplashPageState extends State<SplashPage>
                   previous.isInitial &&
                   !current.isAuthenticated &&
                   !current.isInitial;
+                  log('shouldListen: $shouldListen');
+                  log('previous: ${previous.isInitial}');
+                  log('current: ${current.isAuthenticated}');
+                  log('current: ${current.isInitial}');
               return shouldListen;
             },
             listener: (context, state) {
+              log('signInAnonymously');
               final authCubit = context.read<AuthCubit>();
               authCubit.signInAnonymously();
             },

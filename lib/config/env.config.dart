@@ -20,4 +20,6 @@ class EnvConfig {
 
   String get revenuecatApiKey => get('REVENUECAT_API_KEY');
   String get adjustSdkKey => get('ADJUST_SDK_KEY');
+  String get supabaseUrl => get('SUPABASE_URL');
+  String get supabaseAnonKey => get('SUPABASE_ANON_KEY');
 }

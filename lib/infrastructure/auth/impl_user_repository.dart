@@ -1,40 +1,33 @@
-import 'dart:convert';
-
 import 'package:daily_tarot_focus/domain/auth/lyrics_user.dart';
-import 'package:mobile_core/common_dependencies.dart';
-import 'package:mobile_core/core_app.dart';
-import 'package:mobile_core/domain/auth/i_user_repository.dart';
-import 'package:mobile_core/domain/auth/session.dart';
-import 'package:mobile_core/domain/auth/user.dart';
-import 'package:mobile_core/domain/common/failure.dart';
-import 'package:mobile_core/domain/common/http_utilities.dart';
-import 'package:mobile_core/infrastructure/http/http_failure_handler.dart';
-import 'package:mobile_core/infrastructure/http/metric_http_client.dart';
+import 'package:mobile_boilerplate/common_dependencies.dart';
+import 'package:mobile_boilerplate/domain/auth/i_user_repository.dart';
+import 'package:mobile_boilerplate/domain/auth/session.dart';
+import 'package:mobile_boilerplate/domain/auth/user.dart';
+import 'package:mobile_boilerplate/domain/common/failure.dart';
+import 'package:mobile_boilerplate/infrastructure/http/http_failure_handler.dart';
+import 'package:supabase/supabase.dart' hide User, Session;
 
 class ImplUserRepository extends IUserRepository with HttpFailureHandlerMixin {
-  ImplUserRepository(this._client, this._httpFailureHandler);
+  ImplUserRepository(this._supabaseClient, this._httpFailureHandler);
 
   @override
   Future<FailureOr<User>> getUser({required Session session}) async {
     try {
-      final hostUri = Uri.parse(appConfig.apiHost);
-      final uri = hostUri.resolveUri(Uri(path: '/lyrics/user-info'));
+      final response =
+          await supabaseClient
+              .from('users')
+              .select()
+              .eq('user_id', session.userId)
+              .single();
 
-      final response = await _client.get(
-        uri,
-        headers: {
-          'Content-Type': 'application/json',
-          'user-id': session.userId,
-          'user-session': session.idToken,
-        },
-      );
-
-      final result = decodeResponseBody(response.bodyBytes);
-      final generalFailure = handleResult(response.statusCode, result);
-      if (generalFailure != null) return left(generalFailure);
-      return right(LyricsUser.fromMap(result));
+      return right(LyricsUser.fromMap(response));
+    } on PostgrestException catch (e) {
+      if (e.code == 'PGRST116') {
+        return left(const NotFoundFailure());
+      }
+      return left(UnknownFailure());
     } catch (e) {
-      return left(handleErrorsAndExceptions(e));
+      return left(UnknownFailure());
     }
   }
 
@@ -43,7 +36,7 @@ class ImplUserRepository extends IUserRepository with HttpFailureHandlerMixin {
     try {
       return right(unit);
     } catch (e) {
-      return left(handleErrorsAndExceptions(e));
+      return left(UnknownFailure());
     }
   }
 
@@ -53,40 +46,21 @@ class ImplUserRepository extends IUserRepository with HttpFailureHandlerMixin {
     required String fcmToken,
   }) async {
     try {
-      final hostUri = Uri.parse(appConfig.apiHost);
-      final uri = hostUri.resolveUri(Uri(path: '/lyrics/update_firebase_token'));
-
-      final response = await _client.post(
-        uri,
-        headers: {
-          'Content-Type': 'application/json',
-          'user-id': session.userId,
-          'user-session': session.idToken,
-        },
-        body: jsonEncode({'firebase_token': fcmToken}),
-      );
-
-      final result = decodeResponseBody(response.bodyBytes);
-      final generalFailure = handleResult(response.statusCode, result);
-      if (generalFailure != null) return left(generalFailure);
+      await supabaseClient
+          .from('users')
+          .update({'firebase_token': fcmToken})
+          .eq('user_id', session.userId);
 
       return right(unit);
     } catch (e) {
-      return left(handleErrorsAndExceptions(e));
+      return left(UnknownFailure());
     }
   }
 
-  final MetricHttpClient _client;
   final HttpFailureHandler _httpFailureHandler;
+  final SupabaseClient _supabaseClient;
 
   @override
   HttpFailureHandler get httpFailureHandler => _httpFailureHandler;
-
-  @override
-  Future<FailureOr<Unit>> updateLocation({
-    required Session session,
-    required String city,
-  }) {
-    throw UnimplementedError();
-  }
+  SupabaseClient get supabaseClient => _supabaseClient;
 }

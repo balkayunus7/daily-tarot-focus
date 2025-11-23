@@ -1,7 +1,7 @@
 import 'dart:convert';
 
-import 'package:mobile_core/domain/remote_notification/remote_notification.dart';
-import 'package:mobile_core/infrastructure/remote_notification/local_notifications_index.dart';
+import 'package:mobile_boilerplate/domain/remote_notification/remote_notification.dart';
+import 'package:mobile_boilerplate/infrastructure/remote_notification/local_notifications_index.dart';
 
 class ImplAndroidLocalNotificationsService
     extends AndroidLocalNotificationsService {

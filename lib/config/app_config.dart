@@ -1,5 +1,5 @@
 import 'package:daily_tarot_focus/config/env.config.dart';
-import 'package:mobile_core/app_config.dart';
+import 'package:mobile_boilerplate/app_config.dart';
 
 final envConfig = EnvConfig();
 

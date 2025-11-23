@@ -1,5 +1,5 @@
-import 'package:mobile_core/domain/auth/auth_provider.dart';
-import 'package:mobile_core/domain/auth/session.dart';
+import 'package:mobile_boilerplate/domain/auth/auth_provider.dart';
+import 'package:mobile_boilerplate/domain/auth/session.dart';
 
 class LyricsSession extends Session {
   const LyricsSession({

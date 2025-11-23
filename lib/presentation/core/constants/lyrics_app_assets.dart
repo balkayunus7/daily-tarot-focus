@@ -1,0 +1,37 @@
+enum LyricsAppAssets {
+  appLogo._('assets/png/app_logo.png'),
+  onboardingStep1._('assets/gif/onboarding_step_1.gif'),
+  onboardingStep2._('assets/gif/onboarding_step_2.gif'),
+  paywall._('assets/gif/paywall.gif'),
+  fishman1._('assets/png/fishman_1.png'),
+  fishman2._('assets/png/fishman_2.png'),
+  identify._('assets/png/identify.png'),
+  popular._('assets/png/populer.png'),
+  loading._('assets/png/loading.png'),
+  crown._('assets/svg/crown.svg'),
+  fish._('assets/svg/fish.svg'),
+  explore._('assets/svg/explore.svg'),
+  close._('assets/svg/close.svg'),
+  delete._('assets/svg/delete.svg'),
+  edible._('assets/svg/edibility.svg'),
+  size._('assets/svg/size.svg'),
+  type._('assets/svg/type.svg'),
+  colors._('assets/svg/colors.svg'),
+  whatItEats._('assets/svg/eats.svg'),
+  habitat._('assets/svg/habitat.svg'),
+  camera._('assets/svg/camera.svg'),
+  settings._('assets/svg/settings.svg'),
+  doubleArrow._('assets/svg/double_arrow.svg'),
+  pause._('assets/svg/pause.svg'),
+  play._('assets/svg/play.svg'),
+  nextSong._('assets/svg/next_song.svg'),
+  spotify._('assets/svg/spotify.svg'),
+  previousSong._('assets/svg/previous_song.svg'),
+  sample._('assets/srt/sample.srt'),
+  sample2._('assets/srt/sample2.srt'),
+  gurbetMp3._('assets/srt/gurbet.mp3'),
+  gurbetSrt._('assets/srt/gurbet.srt');
+
+  const LyricsAppAssets._(this.path);
+  final String path;
+}

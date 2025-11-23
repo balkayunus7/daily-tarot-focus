@@ -1,0 +1,62 @@
+{
+    "app_name": "Mind Check: Anxiety Tracker",
+    "settings_page": {
+        "app_bar": "Settings",
+        "account": "Account",
+        "profile": "Profile",
+        "language": "Language",
+        "rate_us": "Rate Us",
+        "restore_purchases": "Restore Purchases",
+        "terms_of_service": "Terms of Service",
+        "privacy_policy": "Privacy Policy",
+        "signout": "Sign Out",
+        "delete_account": "Delete Account"
+    },
+    "delete_account_popup": {
+        "title": "Delete Account",
+        "desc": "Are you sure you want to delete your account? This action is irreversible.",
+        "delete_button": "Delete"
+    },
+    "popup": {
+        "cancel_button": "Cancel",
+        "confirm_button": "Okay"
+    },
+    "image_selection_bottom_sheet": {
+        "title": "Upload Photo",
+        "gallery_button": "Gallery",
+        "camera_button": "Take Photo",
+        "back_button": "Go Back",
+        "save_button": "Save"
+    },
+    "camera_page": {
+        "image_large_failure": "Image is too large"
+    },
+    "camera_permission_popup": {
+        "title": "Enable Camera Access",
+        "desc": "To share photos, you need to go to Settings and enable camera access."
+    },
+    "camera_photo_edit_page": {
+        "success_toast_message": "Photo Saved",
+        "failure_toast_message": "Photo Could Not Be Saved"
+    },
+    "mockup_page": {
+        "saved_to_gallery": "Image saved to gallery"
+    },
+    "image_crop_page": {
+        "crop_button": "Crop",
+        "cancel_button": "Cancel"
+    },
+    "gallery_permission_popup": {
+        "title": "Access Photos",
+        "desc": "Manage permissions from Settings to access photos."
+    },
+    "failure": {
+        "connection_message": "Connection error",
+        "forbidden_message": "You are not allowed to perform this action",
+        "rate_limit_message": "You need to wait a bit to perform more actions",
+        "unexpected_message": "An unexpected error occurred",
+        "active_subs_not_found_message": "No active subscription found",
+        "image_upload_forbidden": "Unable to upload image. Please try signing in again.",
+        "user_not_found": "User session expired. Please sign in again."
+    }
+}

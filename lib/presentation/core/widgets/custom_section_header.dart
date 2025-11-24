@@ -1,4 +1,4 @@
-import 'package:daily_tarot_focus/presentation/core/constants/lyrics_app_sizes.dart';
+import 'package:daily_tarot_focus/presentation/core/constants/tarot_app_sizes.dart';
 import 'package:daily_tarot_focus/presentation/core/helper/text_style_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_switch/flutter_switch.dart';

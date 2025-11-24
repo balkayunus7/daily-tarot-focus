@@ -13,7 +13,7 @@ class ImplAndroidLocalNotificationsService
   );
 
   @override
-  String get channelName => 'lyrics_local_notifications';
+  String get channelName => 'Tarots_local_notifications';
 
   @override
   String jsonFromNotification(RemoteNotification notification) {

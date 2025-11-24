@@ -1,7 +1,7 @@
 import 'dart:io';
 
-import 'package:daily_tarot_focus/presentation/core/constants/lyrics_app_assets.dart';
-import 'package:daily_tarot_focus/presentation/core/constants/lyrics_app_sizes.dart';
+import 'package:daily_tarot_focus/presentation/core/constants/tarot_app_assets.dart';
+import 'package:daily_tarot_focus/presentation/core/constants/tarot_app_sizes.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile_boilerplate/application/auth/auth_cubit.dart';
 import 'package:mobile_boilerplate/common_dependencies.dart';
@@ -74,11 +74,11 @@ class _SplashPageState extends State<SplashPage>
           },
         ),
         ],
-        child: LyricsSplashView(
+        child: TarotsSplashView(
           logo: ClipRRect(
             borderRadius: Spacing.circularBorderRadius,
             child: Image.asset(
-              LyricsAppAssets.appLogo.path,
+              TarotAppAssets.appLogo.path,
               width: 120,
               height: 120,
             ),

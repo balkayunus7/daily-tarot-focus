@@ -5,8 +5,8 @@ import 'package:mobile_boilerplate/common_dependencies.dart';
 import 'package:mobile_boilerplate/presentation/extensions/build_context_theme_ext.dart';
 import 'package:mobile_boilerplate/presentation/widgets/scaling_container.dart';
 
-class LyricsButton extends StatelessWidget {
-  const LyricsButton({
+class TarotButton extends StatelessWidget {
+  const TarotButton({
     super.key,
     this.width = double.infinity,
     this.paddingHorizontal = 0,

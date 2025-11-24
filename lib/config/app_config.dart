@@ -3,14 +3,14 @@ import 'package:mobile_boilerplate/app_config.dart';
 
 final envConfig = EnvConfig();
 
-class LyricsAppConfig extends AppConfig {
-  LyricsAppConfig()
+class TarotsAppConfig extends AppConfig {
+  TarotsAppConfig()
     : super(
         appVersion: 1,
         meta: '123',
         apiHost: 'https://yilmaz-2.aiplaylist.co',
         wsHost: 'random',
-        appName: 'Dynamic Lyrics',
+        appName: 'Daily Tarot Focus',
         adjustSDK: envConfig.adjustSdkKey,
         androidRevenuecatKey: envConfig.revenuecatApiKey,
         mailToUrl: 'https://sites.google.com/view/contactinfoside/',

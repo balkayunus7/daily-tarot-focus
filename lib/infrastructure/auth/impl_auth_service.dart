@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:daily_tarot_focus/domain/auth/lyrics_session.dart';
+import 'package:daily_tarot_focus/domain/auth/tarot_session.dart';
 import 'package:flutter/services.dart';
 import 'package:mobile_boilerplate/common_dependencies.dart';
 import 'package:mobile_boilerplate/domain/auth/auth_provider.dart' as domain;
@@ -26,7 +26,7 @@ class ImplAuthService extends IAuthService
     try {
       final session = _sharedPreferences.getString(_sessionKey);
       if (session == null) return left(const NotFoundFailure());
-      return right(LyricsSession.fromMap(jsonDecode(session)));
+      return right(TarotSession.fromMap(jsonDecode(session)));
     } catch (e) {
       return left(UnknownFailure());
     }
@@ -35,7 +35,7 @@ class ImplAuthService extends IAuthService
   @override
   Future<FailureOr<Session>> updateSession(Session session) async {
     try {
-      session as LyricsSession;
+      session as TarotSession;
       var map = session.toMap();
       final saved = await _sharedPreferences.setString(
         _sessionKey,
@@ -74,7 +74,7 @@ class ImplAuthService extends IAuthService
       final user = response.user;
       if (user == null) return left(const UnknownFailure());
 
-      final session = LyricsSession(
+      final session = TarotSession(
         userId: user.id,
         idToken: response.session?.accessToken ?? '',
         isNewUser: true,

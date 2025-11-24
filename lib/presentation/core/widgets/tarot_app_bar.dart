@@ -1,8 +1,8 @@
-import 'package:daily_tarot_focus/domain/auth/lyrics_user.dart';
-import 'package:daily_tarot_focus/presentation/core/constants/lyrics_app_assets.dart';
-import 'package:daily_tarot_focus/presentation/core/constants/lyrics_app_sizes.dart';
+import 'package:daily_tarot_focus/domain/auth/tarot_user.dart';
+import 'package:daily_tarot_focus/presentation/core/constants/tarot_app_assets.dart';
+import 'package:daily_tarot_focus/presentation/core/constants/tarot_app_sizes.dart';
 import 'package:daily_tarot_focus/presentation/core/helper/text_style_helper.dart';
-import 'package:daily_tarot_focus/presentation/core/widgets/lyrics_button.dart';
+import 'package:daily_tarot_focus/presentation/core/widgets/tarot_button.dart';
 import 'package:daily_tarot_focus/presentation/settings/settings_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -13,18 +13,18 @@ import 'package:mobile_boilerplate/presentation/extensions/build_context_theme_e
 import 'package:mobile_boilerplate/presentation/extensions/build_context_time_ext.dart';
 import 'package:mobile_boilerplate/presentation/widgets/scaling_container.dart';
 
-class LyricsProAppBar extends StatelessWidget implements PreferredSizeWidget {
-  const LyricsProAppBar({super.key, required this.title});
+class TarotsProAppBar extends StatelessWidget implements PreferredSizeWidget {
+  const TarotsProAppBar({super.key, required this.title});
   final String title;
 
   @override
   Widget build(BuildContext context) {
     final authState = context.read<AuthCubit>().state;
-    final user = authState.userOrCrash as LyricsUser;
+    final user = authState.userOrCrash as TarotUser;
     final now = context.networkNow();
     final isPremium = user.isSubscribed(networkTime: now);
 
-    return LyricsAppBar(
+    return TarotAppBar(
       title: title,
       centerTitle: false,
       showBackIcon: false,
@@ -33,7 +33,7 @@ class LyricsProAppBar extends StatelessWidget implements PreferredSizeWidget {
               ? null
               : Row(
                 children: [
-                  LyricsButton(
+                  TarotButton(
                     width: 84,
                     height: 38,
                     bgColor: context.colors.primary,
@@ -63,7 +63,7 @@ class LyricsProAppBar extends StatelessWidget implements PreferredSizeWidget {
                           ),
                           child: Center(
                             child: SvgPicture.asset(
-                              LyricsAppAssets.settings.path,
+                              TarotAppAssets.settings.path,
                             ),
                           ),
                         ),
@@ -79,8 +79,8 @@ class LyricsProAppBar extends StatelessWidget implements PreferredSizeWidget {
   Size get preferredSize => const Size.fromHeight(kToolbarHeight);
 }
 
-class LyricsAppBar extends StatelessWidget implements PreferredSizeWidget {
-  const LyricsAppBar({
+class TarotAppBar extends StatelessWidget implements PreferredSizeWidget {
+  const TarotAppBar({
     super.key,
     this.showBackIcon = true,
     this.onIconTap,

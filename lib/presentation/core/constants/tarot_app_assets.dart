@@ -1,4 +1,4 @@
-enum LyricsAppAssets {
+enum TarotAppAssets {
   appLogo._('assets/png/app_logo.png'),
   onboardingStep1._('assets/gif/onboarding_step_1.gif'),
   onboardingStep2._('assets/gif/onboarding_step_2.gif'),
@@ -32,6 +32,6 @@ enum LyricsAppAssets {
   gurbetMp3._('assets/srt/gurbet.mp3'),
   gurbetSrt._('assets/srt/gurbet.srt');
 
-  const LyricsAppAssets._(this.path);
+  const TarotAppAssets._(this.path);
   final String path;
 }

@@ -1,16 +1,16 @@
 import 'package:mobile_boilerplate/domain/auth/auth_provider.dart';
 import 'package:mobile_boilerplate/domain/auth/session.dart';
 
-class LyricsSession extends Session {
-  const LyricsSession({
+class TarotSession extends Session {
+  const TarotSession({
     required super.userId,
     required super.idToken,
     required super.isNewUser,
     required super.provider,
   });
 
-  factory LyricsSession.fromMap(Map<String, dynamic> map) {
-    return LyricsSession(
+  factory TarotSession.fromMap(Map<String, dynamic> map) {
+    return TarotSession(
       userId: map['id'],
       idToken: map['session'],
       isNewUser: map['is_new_user'],
@@ -19,8 +19,8 @@ class LyricsSession extends Session {
   }
 
   @override
-  LyricsSession copyWith({bool? isNewUser}) {
-    return LyricsSession(
+  TarotSession copyWith({bool? isNewUser}) {
+    return TarotSession(
       userId: userId,
       idToken: idToken,
       isNewUser: isNewUser ?? this.isNewUser,

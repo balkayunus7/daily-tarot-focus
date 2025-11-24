@@ -1,5 +1,6 @@
+import 'package:daily_tarot_focus/presentation/core/constants/tarot_app_sizes.dart';
 import 'package:daily_tarot_focus/presentation/core/helper/text_style_helper.dart';
-import 'package:daily_tarot_focus/presentation/core/widgets/lyrics_button.dart';
+import 'package:daily_tarot_focus/presentation/core/widgets/tarot_button.dart';
 import 'package:flutter/material.dart';
 import 'package:liquid_glass_renderer/liquid_glass_renderer.dart';
 import 'package:mobile_boilerplate/common_dependencies.dart';
@@ -9,7 +10,6 @@ import 'package:mobile_boilerplate/application/auth/auth_cubit.dart';
 import 'package:mobile_boilerplate/domain/purchases/subscription_period.dart';
 import 'package:mobile_boilerplate/presentation/extensions/build_context_time_ext.dart';
 import 'package:mobile_boilerplate/presentation/extensions/date_time_ext.dart';
-import 'package:daily_tarot_focus/presentation/core/constants/lyrics_app_sizes.dart';
 
 class PaywallCard extends StatefulWidget {
   const PaywallCard({super.key, required this.onTap});
@@ -73,7 +73,7 @@ class _PaywallCardState extends State<PaywallCard> {
                       ],
                     ),
                     Spacing.xlargeH,
-                    LyricsButton(
+                    TarotButton(
                       onTap: widget.onTap,
                       buttonText: 'Upgrade to Premium',
                       bgColor: context.colors.primary,

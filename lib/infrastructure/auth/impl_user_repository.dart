@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:daily_tarot_focus/domain/auth/lyrics_user.dart';
+import 'package:daily_tarot_focus/domain/auth/tarot_user.dart';
 import 'package:mobile_boilerplate/common_dependencies.dart';
 import 'package:mobile_boilerplate/domain/auth/i_user_repository.dart';
 import 'package:mobile_boilerplate/domain/auth/session.dart';
@@ -24,7 +24,7 @@ class ImplUserRepository extends IUserRepository with HttpFailureHandlerMixin {
           response.data is Map<String, dynamic>
               ? response.data as Map<String, dynamic>
               : jsonDecode(response.data.toString()) as Map<String, dynamic>;
-      return right(LyricsUser.fromMap(data));
+      return right(TarotUser.fromMap(data));
     } catch (e) {
       return left(UnknownFailure());
     }

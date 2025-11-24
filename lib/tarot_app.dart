@@ -1,4 +1,4 @@
-import 'package:daily_tarot_focus/presentation/core/constants/lyrics_app_colors.dart';
+import 'package:daily_tarot_focus/presentation/core/constants/tarot_app_colors.dart';
 import 'package:daily_tarot_focus/presentation/home/home_page.dart';
 import 'package:daily_tarot_focus/presentation/splash/splash_page.dart';
 import 'package:flutter/material.dart';
@@ -14,8 +14,8 @@ import 'package:mobile_boilerplate/application/remote_notification/remote_notifi
 import 'package:mobile_boilerplate/common_dependencies.dart';
 import 'package:mobile_boilerplate/core_app.dart';
 
-class LyricsApp extends StatelessWidget {
-  const LyricsApp({super.key});
+class TarotApp extends StatelessWidget {
+  const TarotApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -35,8 +35,8 @@ class LyricsApp extends StatelessWidget {
         ),
       ],
       child: CoreApp(
-        darkColors: LyricsAppColorsDark(),
-        lightColors: LyricsAppColorsLight(),
+        darkColors: TarotAppColorsDark(),
+        lightColors: TarotAppColorsLight(),
         onGenerateRoute: onGenerateRoute,
         initialRoute: SplashPage.route,
         fontFamily: 'Geist',
@@ -53,9 +53,9 @@ Route<dynamic>? onGenerateRoute(RouteSettings settings) {
     case HomePage.route:
       final args = settings.arguments as HomePageArguments?;
       return MaterialPageRoute(
-        builder: (context) => HomePage(
-          arguments: args ?? HomePageArguments(context),
-        ),
+        builder:
+            (context) =>
+                HomePage(arguments: args ?? HomePageArguments(context)),
       );
     default:
       return null;

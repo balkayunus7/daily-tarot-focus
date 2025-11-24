@@ -2,15 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:mobile_boilerplate/presentation/extensions/build_context_theme_ext.dart';
 
-class LyricsSplashView extends StatefulWidget {
-  const LyricsSplashView({super.key, required this.logo});
+class TarotsSplashView extends StatefulWidget {
+  const TarotsSplashView({super.key, required this.logo});
   final Widget? logo;
 
   @override
-  State<LyricsSplashView> createState() => _LyricsSplashViewState();
+  State<TarotsSplashView> createState() => _TarotsSplashViewState();
 }
 
-class _LyricsSplashViewState extends State<LyricsSplashView>
+class _TarotsSplashViewState extends State<TarotsSplashView>
     with TickerProviderStateMixin {
   late AnimationController _controller;
   @override

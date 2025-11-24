@@ -1,4 +1,4 @@
-import 'package:daily_tarot_focus/presentation/core/constants/lyrics_app_assets.dart';
+import 'package:daily_tarot_focus/presentation/core/constants/tarot_app_assets.dart';
 import 'package:flutter/material.dart';
 
 class AnimatedCircleLoading extends StatefulWidget {
@@ -55,7 +55,7 @@ class _AnimatedLoadingImageState extends State<AnimatedCircleLoading>
             ),
           );
         },
-        child: Image.asset(LyricsAppAssets.loading.path),
+        child: Image.asset(TarotAppAssets.loading.path),
       ),
     );
   }

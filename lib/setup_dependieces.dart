@@ -146,7 +146,7 @@ Future<void> setupDependencies() async {
   );
 
   getIt.registerSingleton<Launcher>(Launcher(getIt<ImplLauncherService>()));
-  getIt.registerSingleton<LyricsAppConfig>(LyricsAppConfig());
+  getIt.registerSingleton<TarotsAppConfig>(TarotsAppConfig());
   getIt.registerSingleton<ImplIOSLocalNotificationsService>(
     ImplIOSLocalNotificationsService(
       getIt<FlutterLocalNotificationsPlugin>(),

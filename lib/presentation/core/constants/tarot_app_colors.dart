@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:mobile_boilerplate/presentation/app_colors.dart';
 
-abstract class LyricsAppColors extends AppColors {
-  const LyricsAppColors({
+abstract class TarotAppColors extends AppColors {
+  const TarotAppColors({
     required super.background,
     required super.border,
     required super.primary,
@@ -16,8 +16,8 @@ abstract class LyricsAppColors extends AppColors {
   });
 }
 
-class LyricsAppColorsDark extends LyricsAppColors implements AppColorsDark {
-  LyricsAppColorsDark()
+class TarotAppColorsDark extends TarotAppColors implements AppColorsDark {
+  TarotAppColorsDark()
     : super(
         background: Color(0xFF121212),
         border: Color(0xFF121212).withValues(alpha: 0.1),
@@ -32,8 +32,8 @@ class LyricsAppColorsDark extends LyricsAppColors implements AppColorsDark {
       );
 }
 
-class LyricsAppColorsLight extends LyricsAppColors implements AppColorsLight {
-  LyricsAppColorsLight()
+class TarotAppColorsLight extends TarotAppColors implements AppColorsLight {
+  TarotAppColorsLight()
     : super(
         background: Color(0xFF121212),
         border: Color(0xFF121212).withValues(alpha: 0.1),

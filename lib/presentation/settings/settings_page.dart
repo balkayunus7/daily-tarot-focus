@@ -1,6 +1,6 @@
-import 'package:daily_tarot_focus/presentation/core/constants/lyrics_app_sizes.dart';
+import 'package:daily_tarot_focus/presentation/core/constants/tarot_app_sizes.dart';
 import 'package:daily_tarot_focus/presentation/core/helper/text_style_helper.dart';
-import 'package:daily_tarot_focus/presentation/core/widgets/lyrics_app_bar.dart';
+import 'package:daily_tarot_focus/presentation/core/widgets/tarot_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:liquid_glass_renderer/liquid_glass_renderer.dart';
 import 'package:mobile_boilerplate/application/auth/auth_cubit.dart';
@@ -24,7 +24,7 @@ class SettingsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: context.colors.background,
-      appBar: LyricsAppBar(
+      appBar: TarotAppBar(
         title: 'Settings',
         showBackIcon: true,
         backIcon: Icons.arrow_back_ios,
@@ -45,7 +45,7 @@ class SettingsPage extends StatelessWidget {
               icon: Icons.star_border_outlined,
               title: 'Rate the App',
               onTap: () {
-                launchUrl(Uri.parse(LyricsAppConfig().appStoreUrl));
+                launchUrl(Uri.parse(TarotsAppConfig().appStoreUrl));
               },
             ),
             Spacing.xsmallH,
@@ -53,7 +53,7 @@ class SettingsPage extends StatelessWidget {
               icon: Icons.book_outlined,
               title: 'Terms of Use',
               onTap: () {
-                launchUrl(Uri.parse(LyricsAppConfig().termsOfServiceUrl));
+                launchUrl(Uri.parse(TarotsAppConfig().termsOfServiceUrl));
               },
             ),
             Spacing.xsmallH,
@@ -61,7 +61,7 @@ class SettingsPage extends StatelessWidget {
               icon: Icons.privacy_tip_outlined,
               title: 'Privacy Policy',
               onTap: () {
-                launchUrl(Uri.parse(LyricsAppConfig().privacyPolicyUrl));
+                launchUrl(Uri.parse(TarotsAppConfig().privacyPolicyUrl));
               },
             ),
             Spacing.xsmallH,

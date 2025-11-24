@@ -1,4 +1,4 @@
-import 'package:daily_tarot_focus/presentation/core/constants/lyrics_mock_datas.dart';
+import 'package:daily_tarot_focus/presentation/core/constants/tarot_mock_datas.dart';
 import 'package:daily_tarot_focus/presentation/core/helper/text_style_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -16,7 +16,7 @@ class HomeBottomNavbar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final items = LyricsMockDatas.navbarItems;
+    final items = TarotMockDatas.navbarItems;
 
     return Container(
       height: 56,

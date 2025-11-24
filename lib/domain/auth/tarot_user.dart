@@ -4,15 +4,15 @@ import 'package:mobile_boilerplate/domain/auth/user.dart';
 import 'package:mobile_boilerplate/domain/purchases/subscription.dart';
 import 'package:mobile_boilerplate/domain/purchases/subscription_plan.dart';
 
-class LyricsUser extends User {
-  const LyricsUser({
+class TarotUser extends User {
+  const TarotUser({
     required super.purchaser,
     required super.userId,
     required super.subscription,
   });
 
-  factory LyricsUser.fromMap(Map<String, dynamic> map) {
-    return LyricsUser(
+  factory TarotUser.fromMap(Map<String, dynamic> map) {
+    return TarotUser(
       userId: map['user_id'] as String,
       subscription:
           map['premium_info'] == null
@@ -31,8 +31,8 @@ class LyricsUser extends User {
     );
   }
 
-  LyricsUser copyWith({Purchaser? purchaser}) {
-    return LyricsUser(
+  TarotUser copyWith({Purchaser? purchaser}) {
+    return TarotUser(
       userId: userId,
       purchaser: purchaser ?? this.purchaser,
       subscription: subscription,

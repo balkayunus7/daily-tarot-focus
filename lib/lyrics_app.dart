@@ -51,10 +51,11 @@ Route<dynamic>? onGenerateRoute(RouteSettings settings) {
     case SplashPage.route:
       return MaterialPageRoute(builder: (context) => SplashPage());
     case HomePage.route:
+      final args = settings.arguments as HomePageArguments?;
       return MaterialPageRoute(
-        builder:
-            (context) =>
-                HomePage(arguments: settings.arguments as HomePageArguments),
+        builder: (context) => HomePage(
+          arguments: args ?? HomePageArguments(context),
+        ),
       );
     default:
       return null;

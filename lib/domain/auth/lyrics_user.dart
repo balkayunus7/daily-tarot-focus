@@ -21,7 +21,7 @@ class LyricsUser extends User {
                 map['premium_info'] as Map<String, dynamic>,
               ),
       purchaser: Purchaser(
-        id: map['revenuecat_id'] as String,
+        id: map['revenuecat_id'] as String? ?? 'unknown',
         offerings: PurchaseOfferings(
           subscriptionOfferingIds: KtMap.from({
             SubscriptionPlan.premium: 'premium',

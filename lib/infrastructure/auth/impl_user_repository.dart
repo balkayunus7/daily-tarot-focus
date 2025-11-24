@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:daily_tarot_focus/domain/auth/lyrics_user.dart';
 import 'package:mobile_boilerplate/common_dependencies.dart';
 import 'package:mobile_boilerplate/domain/auth/i_user_repository.dart';
@@ -13,19 +15,16 @@ class ImplUserRepository extends IUserRepository with HttpFailureHandlerMixin {
   @override
   Future<FailureOr<User>> getUser({required Session session}) async {
     try {
-      final response =
-          await supabaseClient
-              .from('users')
-              .select()
-              .eq('user_id', session.userId)
-              .single();
+      final response = await supabaseClient.functions.invoke(
+        'get-user',
+        headers: {'authorization': 'Bearer ${session.idToken}'},
+      );
 
-      return right(LyricsUser.fromMap(response));
-    } on PostgrestException catch (e) {
-      if (e.code == 'PGRST116') {
-        return left(const NotFoundFailure());
-      }
-      return left(UnknownFailure());
+      final data =
+          response.data is Map<String, dynamic>
+              ? response.data as Map<String, dynamic>
+              : jsonDecode(response.data.toString()) as Map<String, dynamic>;
+      return right(LyricsUser.fromMap(data));
     } catch (e) {
       return left(UnknownFailure());
     }

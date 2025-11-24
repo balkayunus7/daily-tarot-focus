@@ -61,32 +61,18 @@ class ImplAuthService extends IAuthService
   @override
   Future<FailureOr<Session>> signInAnonymously() async {
     try {
-      // Önce mevcut session'ı kontrol et
       final existingSession = await getCurrentSession();
-      if (existingSession.isRight()) {
-        print('✅ Mevcut session bulundu, geri döndürülüyor');
-        return existingSession;
-      }
+      if (existingSession.isRight()) return existingSession;
 
-      print('❌ Mevcut session bulunamadı, yeni login yapılıyor');
-
-      // Mevcut session yoksa yeni login yap
       final deviceIdResult = await getDeviceId();
       final deviceId = deviceIdResult.fold((l) => null, (r) => r);
-
-      print('📱 Device ID: $deviceId');
 
       final response = await _supabaseClient.auth.signInAnonymously(
         data: {'platform_device_id': deviceId},
       );
 
       final user = response.user;
-      if (user == null) {
-        print('❌ User null döndü');
-        return left(const UnknownFailure());
-      }
-
-      print('✅ Anon login başarılı: ${user.id}');
+      if (user == null) return left(const UnknownFailure());
 
       final session = LyricsSession(
         userId: user.id,
@@ -101,20 +87,16 @@ class ImplAuthService extends IAuthService
       );
 
       if (saved == false) {
-        print('❌ SharedPreferences kaydetme başarısız');
         return left(const UnknownFailure());
       }
 
-      print('✅ Session kaydedildi');
       return right(session);
     } on PlatformException catch (e) {
-      print('❌ PlatformException: ${e.code} - ${e.message}');
       if (e.code == 'sign_in_canceled') {
         return left(const CancelledFailure());
       }
       return left(UnknownFailure());
     } catch (e) {
-      print('❌ Exception: $e');
       return left(UnknownFailure());
     }
   }

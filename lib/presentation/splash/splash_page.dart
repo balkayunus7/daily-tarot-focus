@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'dart:io';
 
 import 'package:daily_tarot_focus/presentation/core/constants/lyrics_app_assets.dart';
@@ -53,24 +52,27 @@ class _SplashPageState extends State<SplashPage>
               routeHomePageOrOnboarding();
             },
           ),
-          BlocListener<AuthCubit, AuthState>(
-            listenWhen: (previous, current) {
-              final shouldListen =
-                  previous.isInitial &&
-                  !current.isAuthenticated &&
-                  !current.isInitial;
-                  log('shouldListen: $shouldListen');
-                  log('previous: ${previous.isInitial}');
-                  log('current: ${current.isAuthenticated}');
-                  log('current: ${current.isInitial}');
-              return shouldListen;
-            },
-            listener: (context, state) {
-              log('signInAnonymously');
-              final authCubit = context.read<AuthCubit>();
-              authCubit.signInAnonymously();
-            },
-          ),
+        BlocListener<AuthCubit, AuthState>(
+          listenWhen: (previous, current) {
+            final shouldSignIn =
+                previous.isInitial &&
+                !current.isAuthenticated &&
+                !current.isInitial &&
+                current.failOrUserOption.isNone();
+            return shouldSignIn;
+          },
+          listener: (context, state) {
+            context.read<AuthCubit>().signInAnonymously();
+          },
+        ),
+        BlocListener<AuthCubit, AuthState>(
+          listenWhen: (previous, current) {
+            return !previous.isAuthenticated && current.isAuthenticated;
+          },
+          listener: (context, state) {
+            Navigator.of(context).pushReplacementNamed('home');
+          },
+        ),
         ],
         child: LyricsSplashView(
           logo: ClipRRect(

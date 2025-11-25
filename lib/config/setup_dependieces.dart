@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:daily_tarot_focus/config/app_config.dart';
+import 'package:daily_tarot_focus/features/auth/application/register_cubit.dart';
 import 'package:daily_tarot_focus/features/auth/infrastructure/repository/impl_auth_service.dart';
 import 'package:daily_tarot_focus/features/auth/infrastructure/repository/impl_user_repository.dart';
 import 'package:daily_tarot_focus/features/auth/infrastructure/repository/impl_android_local_notifications_service.dart';
@@ -107,13 +108,9 @@ Future<void> setupDependencies() async {
     IosCommunicationNotification(),
   );
 
-  getIt.registerSingleton<ImplAppTrackingService>(
-    ImplAppTrackingService(),
-  );
+  getIt.registerSingleton<ImplAppTrackingService>(ImplAppTrackingService());
 
-  getIt.registerSingleton<ImplAnalyticsService>(
-    const ImplAnalyticsService(),
-  );
+  getIt.registerSingleton<ImplAnalyticsService>(const ImplAnalyticsService());
 
   // Setup permission dependencies
   getIt.registerSingleton<RevenuecatPurchasesService>(
@@ -226,5 +223,9 @@ Future<void> setupDependencies() async {
           ? getIt<ImplIOSLocalNotificationsService>()
           : getIt<ImplAndroidLocalNotificationsService>(),
     ),
+  );
+
+  getIt.registerFactory<RegisterCubit>(
+    () => RegisterCubit(getIt<ImplUserRepository>()),
   );
 }

@@ -3,10 +3,8 @@ import 'package:daily_tarot_focus/core/util/tarot_app_assets.dart';
 import 'package:daily_tarot_focus/core/util/tarot_app_sizes.dart';
 import 'package:daily_tarot_focus/core/util/font_style_helper.dart';
 import 'package:daily_tarot_focus/core/widgets/tarot_button.dart';
-import 'package:daily_tarot_focus/features/settings/presentation/pages/settings_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:liquid_glass_renderer/liquid_glass_renderer.dart';
 import 'package:mobile_boilerplate/application/auth/auth_cubit.dart';
 import 'package:mobile_boilerplate/common_dependencies.dart';
 import 'package:mobile_boilerplate/presentation/extensions/build_context_theme_ext.dart';
@@ -44,29 +42,17 @@ class TarotsProAppBar extends StatelessWidget implements PreferredSizeWidget {
                     buttonTextStyle: n14w600(context),
                   ),
                   Spacing.xsmallW,
-                  LiquidGlassLayer(
-                    settings: const LiquidGlassSettings(lightAngle: 0.3),
-                    child: ScalingContainer(
-                      onTap: () {
-                        SettingsPage.push(context);
-                      },
-                      child: LiquidGlass(
-                        shape: LiquidRoundedRectangle(borderRadius: 100),
-                        child: Container(
-                          width: 38,
-                          height: 38,
-                          decoration: BoxDecoration(
-                            color: context.colors.surface.withValues(
-                              alpha: 0.04,
-                            ),
-                            borderRadius: BorderRadius.circular(100),
-                          ),
-                          child: Center(
-                            child: SvgPicture.asset(
-                              TarotAppAssets.settings.path,
-                            ),
-                          ),
-                        ),
+                  ScalingContainer(
+                    onTap: () {},
+                    child: Container(
+                      width: 38,
+                      height: 38,
+                      decoration: BoxDecoration(
+                        color: context.colors.surface.withValues(alpha: 0.04),
+                        borderRadius: BorderRadius.circular(100),
+                      ),
+                      child: Center(
+                        child: SvgPicture.asset(TarotAppAssets.settings.path),
                       ),
                     ),
                   ),

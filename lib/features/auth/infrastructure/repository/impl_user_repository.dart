@@ -43,16 +43,7 @@ class ImplUserRepository extends IUserRepository with HttpFailureHandlerMixin {
     required Session session,
     required String fcmToken,
   }) async {
-    try {
-      await supabaseClient
-          .from('users')
-          .update({'firebase_token': fcmToken})
-          .eq('user_id', session.userId);
-
-      return right(unit);
-    } catch (e) {
-      return left(UnknownFailure());
-    }
+    return right(unit);
   }
 
   @override

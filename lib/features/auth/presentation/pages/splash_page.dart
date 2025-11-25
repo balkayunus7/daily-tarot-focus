@@ -2,11 +2,13 @@ import 'dart:io';
 
 import 'package:daily_tarot_focus/core/util/tarot_app_assets.dart';
 import 'package:daily_tarot_focus/core/util/tarot_app_sizes.dart';
+import 'package:daily_tarot_focus/features/auth/domain/entities/tarot_user.dart';
+import 'package:daily_tarot_focus/features/auth/presentation/pages/register_step_zodiac_page.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:mobile_boilerplate/application/auth/auth_cubit.dart';
 import 'package:mobile_boilerplate/common_dependencies.dart';
 import 'package:mobile_boilerplate/presentation/routing/route_aware_analytics_mixin.dart';
-import 'package:daily_tarot_focus/features/home/presentation/pages/home_page.dart';
 import 'package:daily_tarot_focus/features/auth/presentation/pages/splash_view.dart';
 
 class SplashPage extends StatefulWidget {
@@ -31,8 +33,11 @@ class _SplashPageState extends State<SplashPage>
     super.initState();
   }
 
-  void routeHomePageOrOnboarding() {
-    HomePage.pushReplacement(context);
+  void routeToRegisterSteps() {
+    final authState = context.read<AuthCubit>().state;
+    final user = authState.userOrCrash;
+    if (user is! TarotUser) return;
+    context.goNamed(RegisterStep1ZodiacPage.route);
   }
 
   @override
@@ -45,7 +50,7 @@ class _SplashPageState extends State<SplashPage>
               return previous.isInitial && current.isAuthenticated;
             },
             listener: (context, state) {
-              routeHomePageOrOnboarding();
+              routeToRegisterSteps();
             },
           ),
           BlocListener<AuthCubit, AuthState>(

@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:mobile_boilerplate/application/auth/auth_cubit.dart';
+import 'package:mobile_boilerplate/common_dependencies.dart';
 import 'package:mobile_boilerplate/presentation/routing/route_arguments.dart';
 import 'package:mobile_boilerplate/presentation/routing/route_aware_analytics_mixin.dart';
 
@@ -17,15 +20,10 @@ class HomePage extends StatefulWidget {
   static const route = 'home';
   final HomePageArguments arguments;
 
-  static Future<dynamic> pushReplacement(
-    BuildContext context, {
-    int initialTabIndex = 0,
-  }) {
-    return Navigator.pushNamedAndRemoveUntil(
-      context,
+  static void go(BuildContext context, {int initialTabIndex = 0}) {
+    context.goNamed(
       route,
-      (route) => false,
-      arguments: HomePageArguments(context, initialTabIndex: initialTabIndex),
+      extra: HomePageArguments(context, initialTabIndex: initialTabIndex),
     );
   }
 
@@ -50,11 +48,16 @@ class _HomePageState extends State<HomePage>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Home'),
-      ),
-      body: const Center(
-        child: Text('Home Page'),
+      appBar: AppBar(title: const Text('Home')),
+      body: Center(
+        child: BlocBuilder<AuthCubit, AuthState>(
+          builder: (context, state) {
+            return Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [Text('Home Page'), Text(state.userOrCrash.toString())],
+            );
+          },
+        ),
       ),
     );
   }

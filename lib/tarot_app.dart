@@ -1,6 +1,6 @@
+import 'package:daily_tarot_focus/config/app_router.dart';
 import 'package:daily_tarot_focus/core/util/tarot_app_colors.dart';
-import 'package:daily_tarot_focus/features/home/presentation/pages/home_page.dart';
-import 'package:daily_tarot_focus/features/auth/presentation/pages/splash_page.dart';
+import 'package:daily_tarot_focus/features/auth/application/register_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile_boilerplate/application/analytics/analytics_cubit.dart';
 import 'package:mobile_boilerplate/application/auth/auth_cubit.dart';
@@ -28,7 +28,7 @@ class TarotApp extends StatelessWidget {
         BlocProvider(create: (_) => getIt<NativePermissionBloc>()),
         BlocProvider(create: (_) => getIt<AuthCubit>()),
         BlocProvider(create: (_) => getIt<PurchasesBloc>()),
-        BlocProvider(create: (_) => getIt<AnalyticsCubit>()),
+        BlocProvider(create: (_) => getIt<RegisterCubit>()),
         Provider<Launcher>(create: (_) => getIt<Launcher>()),
         Provider<NetworkTimeProvider>(
           create: (_) => getIt<NetworkTimeProvider>(),
@@ -37,27 +37,10 @@ class TarotApp extends StatelessWidget {
       child: CoreApp(
         darkColors: TarotAppColorsDark(),
         lightColors: TarotAppColorsLight(),
-        onGenerateRoute: onGenerateRoute,
-        initialRoute: SplashPage.route,
+        routerConfig: appRouter,
         fontFamily: 'Geist',
         supportedLocales: [const Locale('en')],
       ),
     );
-  }
-}
-
-Route<dynamic>? onGenerateRoute(RouteSettings settings) {
-  switch (settings.name) {
-    case SplashPage.route:
-      return MaterialPageRoute(builder: (context) => SplashPage());
-    case HomePage.route:
-      final args = settings.arguments as HomePageArguments?;
-      return MaterialPageRoute(
-        builder:
-            (context) =>
-                HomePage(arguments: args ?? HomePageArguments(context)),
-      );
-    default:
-      return null;
   }
 }

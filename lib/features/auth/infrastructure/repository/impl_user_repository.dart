@@ -1,5 +1,6 @@
-import 'package:daily_tarot_focus/features/auth/domain/entities/tarot_user.dart';
 import 'package:daily_tarot_focus/features/auth/domain/entities/tarot_user_properties.dart';
+import 'package:daily_tarot_focus/features/auth/infrastructure/models/tarot_user_model.dart';
+import 'package:daily_tarot_focus/features/auth/infrastructure/models/tarot_user_properties_model.dart';
 import 'package:mobile_boilerplate/common_dependencies.dart';
 import 'package:mobile_boilerplate/domain/auth/i_user_repository.dart';
 import 'package:mobile_boilerplate/domain/auth/session.dart';
@@ -21,7 +22,8 @@ class ImplUserRepository extends IUserRepository with HttpFailureHandlerMixin {
       );
 
       final data = decodeSupabaseResponse(response.data);
-      return right(TarotUser.fromMap(data));
+      final model = TarotUserModel.fromMap(data);
+      return right(model.toEntity());
     } catch (e) {
       return left(UnknownFailure());
     }
@@ -59,11 +61,12 @@ class ImplUserRepository extends IUserRepository with HttpFailureHandlerMixin {
     required covariant TarotUserProperties properties,
   }) async {
     try {
-
+      final model = TarotUserPropertiesModel.fromEntity(properties);
+      
       final response = await supabaseClient.functions.invoke(
         'update-user',
         headers: {'authorization': 'Bearer ${session.idToken}'},
-        body: properties.toMap(),
+        body: model.toMap(),
       );
 
       final data = decodeSupabaseResponse(response.data);

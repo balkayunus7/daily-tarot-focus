@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:daily_tarot_focus/features/auth/domain/entities/tarot_session.dart';
+import 'package:daily_tarot_focus/features/auth/infrastructure/models/tarot_session_model.dart';
 import 'package:flutter/services.dart';
 import 'package:mobile_boilerplate/common_dependencies.dart';
 import 'package:mobile_boilerplate/domain/auth/auth_provider.dart' as domain;
@@ -24,9 +25,11 @@ class ImplAuthService extends IAuthService
   @override
   Future<FailureOr<Session>> getCurrentSession() async {
     try {
-      final session = _sharedPreferences.getString(_sessionKey);
-      if (session == null) return left(const NotFoundFailure());
-      return right(TarotSession.fromMap(jsonDecode(session)) as Session);
+      final sessionJson = _sharedPreferences.getString(_sessionKey);
+      if (sessionJson == null) return left(const NotFoundFailure());
+      
+      final model = TarotSessionModel.fromMap(jsonDecode(sessionJson));
+      return right(model.toEntity());
     } catch (e) {
       return left(UnknownFailure());
     }
@@ -36,16 +39,10 @@ class ImplAuthService extends IAuthService
   Future<FailureOr<Session>> updateSession(Session session) async {
     try {
       session as TarotSession;
-      final model = TarotSession(
-        userId: session.userId,
-        idToken: session.idToken,
-        isNewUser: session.isNewUser,
-        provider: session.provider,
-      );
-      final map = model.toMap();
+      final model = TarotSessionModel.fromEntity(session);
       final saved = await _sharedPreferences.setString(
         _sessionKey,
-        jsonEncode(map),
+        jsonEncode(model.toMap()),
       );
       if (saved == false) return left(const UnknownFailure());
       return right(session);
@@ -84,9 +81,10 @@ class ImplAuthService extends IAuthService
         provider: domain.AuthProvider.anonymous,
       );
 
+      final model = TarotSessionModel.fromEntity(session);
       final saved = await _sharedPreferences.setString(
         _sessionKey,
-        jsonEncode(session.toMap()),
+        jsonEncode(model.toMap()),
       );
 
       if (saved == false) {

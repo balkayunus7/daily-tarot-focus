@@ -1,6 +1,6 @@
-import 'package:daily_tarot_focus/presentation/core/constants/tarot_app_colors.dart';
-import 'package:daily_tarot_focus/presentation/home/home_page.dart';
-import 'package:daily_tarot_focus/presentation/splash/splash_page.dart';
+import 'package:daily_tarot_focus/core/util/tarot_app_colors.dart';
+import 'package:daily_tarot_focus/features/home/presentation/pages/home_page.dart';
+import 'package:daily_tarot_focus/features/auth/presentation/pages/splash_page.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile_boilerplate/application/analytics/analytics_cubit.dart';
 import 'package:mobile_boilerplate/application/auth/auth_cubit.dart';

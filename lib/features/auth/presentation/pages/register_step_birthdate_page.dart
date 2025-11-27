@@ -31,8 +31,10 @@ class _RegisterStepBirthdatePageState extends State<RegisterStepBirthdatePage>
     return Scaffold(
       backgroundColor: colors.background,
       body: BlocListener<RegisterCubit, RegisterState>(
-        listener: (context, state) {
+        listener: (context, state) async {
           if (state.registerStatus.isSuccess) {
+            await context.read<AuthCubit>().refetchUser();
+            if (!context.mounted) return;
             context.go(AppRoutes.home);
           } else if (state.registerStatus.isFailure) {
             showErrorSnackBar(context);

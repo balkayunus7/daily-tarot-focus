@@ -5,7 +5,7 @@ enum TarotAppAssets {
   paywall._('assets/gif/paywall.gif'),
   loading._('assets/png/loading.png'),
   cardDesign._('assets/png/card_design.png'),
-  yesNoCard._('assets/png/yes_or_no.png'),
+  yesNoCard._('assets/png/yes_or_no.jpg'),
   guide._('assets/png/guide.png'),
   crown._('assets/svg/crown.svg'),
   fish._('assets/svg/fish.svg'),

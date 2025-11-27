@@ -36,7 +36,7 @@ class _SplashPageState extends State<SplashPage>
     final authState = context.read<AuthCubit>().state;
     final user = authState.userOrCrash;
     if (user is! TarotUser) return;
-    context.go(AppRoutes.home);
+    context.go(AppRoutes.registerStepZodiac);
   }
 
   @override

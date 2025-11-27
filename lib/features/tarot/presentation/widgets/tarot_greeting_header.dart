@@ -12,7 +12,7 @@ class TarotGreetingHeader extends StatelessWidget {
     final timeGreeting =
         !isNight
             ? 'Günün enerjisi seninle.'
-            : "Ay'ın gizemli enerjisi bizi sarmalıyor.";
+            : "Ay'ın gizemli enerjisi seninle.";
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -33,7 +33,7 @@ class TarotGreetingHeader extends StatelessWidget {
         ),
         Spacing.smallH,
         Text(
-          'Sevgili  ${userZodiac?.value}, sezgilerinin sesi yol göstersin.',
+          'Sevgili ${userZodiac?.value}, sezgilerinin sesi yol göstersin.',
           style: m16w600(context).copyWith(
             color: colors.textSecondary,
           ),

@@ -1,9 +1,9 @@
 import 'dart:io';
 
+import 'package:daily_tarot_focus/config/app_routes.dart';
 import 'package:daily_tarot_focus/core/util/tarot_app_assets.dart';
 import 'package:daily_tarot_focus/core/util/tarot_app_sizes.dart';
 import 'package:daily_tarot_focus/features/auth/domain/entities/tarot_user.dart';
-import 'package:daily_tarot_focus/features/auth/presentation/pages/register_step_zodiac_page.dart';
 import 'package:daily_tarot_focus/features/auth/presentation/widgets/splash_view.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -13,7 +13,6 @@ import 'package:mobile_boilerplate/presentation/routing/route_aware_analytics_mi
 
 class SplashPage extends StatefulWidget {
   const SplashPage({super.key});
-  static const route = 'splash_page';
   @override
   State<SplashPage> createState() => _SplashPageState();
 }
@@ -37,7 +36,7 @@ class _SplashPageState extends State<SplashPage>
     final authState = context.read<AuthCubit>().state;
     final user = authState.userOrCrash;
     if (user is! TarotUser) return;
-    context.goNamed(RegisterStep1ZodiacPage.route);
+    context.go(AppRoutes.registerStepZodiac);
   }
 
   @override

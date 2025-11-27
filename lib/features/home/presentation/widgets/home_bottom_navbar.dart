@@ -71,7 +71,7 @@ class HomeBottomNavbar extends StatelessWidget {
                     const SizedBox(height: 4),
                     Text(
                       label,
-                      style: n10w600(context).copyWith(
+                      style: m10w600(context).copyWith(
                         color:
                             isSelected
                                 ? context.colors.primary

@@ -1,57 +1,29 @@
+import 'package:daily_tarot_focus/config/app_routes.dart';
 import 'package:daily_tarot_focus/core/util/font_style_helper.dart';
+import 'package:daily_tarot_focus/core/util/tarot_app_sizes.dart';
 import 'package:daily_tarot_focus/core/widgets/tarot_button.dart';
 import 'package:daily_tarot_focus/features/auth/application/register_cubit.dart';
-import 'package:daily_tarot_focus/features/home/presentation/pages/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mobile_boilerplate/application/auth/auth_cubit.dart';
 import 'package:mobile_boilerplate/common_dependencies.dart';
 import 'package:mobile_boilerplate/presentation/extensions/build_context_theme_ext.dart';
+import 'package:mobile_boilerplate/presentation/extensions/date_time_ext.dart';
+import 'package:mobile_boilerplate/presentation/widgets/scaling_container.dart';
 
-class RegisterStep3BirthdatePage extends StatefulWidget {
-  const RegisterStep3BirthdatePage({super.key});
-  static const route = '/register-step-3-birthdate';
+part '../widgets/birthday_circle.dart';
+part '../mixins/birthday_mixin.dart';
+
+class RegisterStepBirthdatePage extends StatefulWidget {
+  const RegisterStepBirthdatePage({super.key});
 
   @override
-  State<RegisterStep3BirthdatePage> createState() =>
-      _RegisterStep3BirthdatePageState();
+  State<RegisterStepBirthdatePage> createState() =>
+      _RegisterStepBirthdatePageState();
 }
 
-class _RegisterStep3BirthdatePageState
-    extends State<RegisterStep3BirthdatePage> {
-  DateTime? _selectedDate;
-
-  Future<void> _selectDate(BuildContext context) async {
-    final colors = context.colors;
-    final picked = await showDatePicker(
-      context: context,
-      initialDate: DateTime.now().subtract(const Duration(days: 365 * 25)),
-      firstDate: DateTime(1900),
-      lastDate: DateTime.now(),
-      builder: (context, child) {
-        return Theme(
-          data: Theme.of(context).copyWith(
-            colorScheme: ColorScheme.dark(
-              primary: colors.primary,
-              onPrimary: Colors.white,
-              surface: colors.surface,
-              onSurface: colors.textPrimary,
-            ),
-          ),
-          child: child!,
-        );
-      },
-    );
-
-    if (picked != null && picked != _selectedDate) {
-      setState(() {
-        _selectedDate = picked;
-      });
-      if (!context.mounted) return;
-      context.read<RegisterCubit>().selectBirthDate(picked);
-    }
-  }
-
+class _RegisterStepBirthdatePageState extends State<RegisterStepBirthdatePage>
+    with BirthdayMixin {
   @override
   Widget build(BuildContext context) {
     final colors = context.colors;
@@ -61,23 +33,17 @@ class _RegisterStep3BirthdatePageState
       body: BlocListener<RegisterCubit, RegisterState>(
         listener: (context, state) {
           if (state.registerStatus.isSuccess) {
-            context.goNamed(HomePage.route);
+            context.go(AppRoutes.home);
           } else if (state.registerStatus.isFailure) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(
-                content: Text('Failed to complete registration'),
-                backgroundColor: Colors.red,
-              ),
-            );
+            showErrorSnackBar(context);
           }
         },
         child: SafeArea(
           child: Padding(
-            padding: const EdgeInsets.all(24),
+            padding: Spacing.screenPadding,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const SizedBox(height: 20),
                 Text(
                   'Step 3 of 3',
                   style: TextStyle(
@@ -86,7 +52,7 @@ class _RegisterStep3BirthdatePageState
                     fontWeight: FontWeight.w400,
                   ),
                 ),
-                const SizedBox(height: 8),
+                Spacing.xsmallH,
                 Text(
                   'When were you born?',
                   style: TextStyle(
@@ -95,7 +61,7 @@ class _RegisterStep3BirthdatePageState
                     fontWeight: FontWeight.w700,
                   ),
                 ),
-                const SizedBox(height: 8),
+                Spacing.xsmallH,
                 Text(
                   'Your birth date helps us calculate your cosmic path',
                   style: TextStyle(
@@ -104,100 +70,30 @@ class _RegisterStep3BirthdatePageState
                     fontWeight: FontWeight.w400,
                   ),
                 ),
-                const SizedBox(height: 8),
+                Spacing.smallH,
                 LinearProgressIndicator(
                   value: 1,
                   backgroundColor: colors.surface,
                   valueColor: AlwaysStoppedAnimation<Color>(colors.primary),
                 ),
-                const SizedBox(height: 60),
-                Center(
-                  child: Column(
-                    children: [
-                      GestureDetector(
-                        onTap: () => _selectDate(context),
-                        child: Container(
-                          width: 200,
-                          height: 200,
-                          decoration: BoxDecoration(
-                            color: colors.surface,
-                            shape: BoxShape.circle,
-                            border: Border.all(
-                              color:
-                                  _selectedDate != null
-                                      ? colors.primary
-                                      : colors.border,
-                              width: 3,
-                            ),
-                          ),
-                          child: Center(
-                            child:
-                                _selectedDate == null
-                                    ? Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        Icon(
-                                          Icons.calendar_today,
-                                          color: colors.textSecondary,
-                                          size: 48,
-                                        ),
-                                        const SizedBox(height: 16),
-                                        Text(
-                                          'Select Date',
-                                          style: TextStyle(
-                                            color: colors.textSecondary,
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.w600,
-                                          ),
-                                        ),
-                                      ],
-                                    )
-                                    : Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        Text(
-                                          '${_selectedDate!.day}',
-                                          style: TextStyle(
-                                            color: colors.primary,
-                                            fontSize: 64,
-                                            fontWeight: FontWeight.w700,
-                                          ),
-                                        ),
-                                        Text(
-                                          _getMonthName(_selectedDate!.month),
-                                          style: TextStyle(
-                                            color: colors.textPrimary,
-                                            fontSize: 20,
-                                            fontWeight: FontWeight.w600,
-                                          ),
-                                        ),
-                                        Text(
-                                          '${_selectedDate!.year}',
-                                          style: TextStyle(
-                                            color: colors.textSecondary,
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.w500,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                          ),
-                        ),
+                Spacing.hugeH,
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    BirthDayCircle(
+                      selectedDate: _selectedDate,
+                      selectDate: () => _selectDate(context),
+                    ),
+                    Spacing.xxlargeH,
+                    if (isSelected) ...[
+                      Text(
+                        _selectedDate!.ageText(context),
+                        style: m20w600(
+                          context,
+                        ).copyWith(color: colors.textSecondary),
                       ),
-                      const SizedBox(height: 40),
-                      if (_selectedDate != null)
-                        Text(
-                          _getAgeText(_selectedDate!),
-                          style: TextStyle(
-                            color: colors.textSecondary,
-                            fontSize: 14,
-                            fontWeight: FontWeight.w400,
-                          ),
-                        ),
                     ],
-                  ),
+                  ],
                 ),
                 const Spacer(),
                 BlocBuilder<RegisterCubit, RegisterState>(
@@ -210,7 +106,9 @@ class _RegisterStep3BirthdatePageState
                           authState.sessionOrCrash,
                         );
                       },
-                      buttonTextStyle: n16w700(context),
+                      buttonTextStyle: m16w700(context),
+                      isLoading: state.registerStatus.isLoading,
+                      isDisabled: !state.isBirthDateSelected,
                     );
                   },
                 ),
@@ -220,33 +118,5 @@ class _RegisterStep3BirthdatePageState
         ),
       ),
     );
-  }
-
-  String _getMonthName(int month) {
-    const months = [
-      'January',
-      'February',
-      'March',
-      'April',
-      'May',
-      'June',
-      'July',
-      'August',
-      'September',
-      'October',
-      'November',
-      'December',
-    ];
-    return months[month - 1];
-  }
-
-  String _getAgeText(DateTime birthDate) {
-    final now = DateTime.now();
-    var age = now.year - birthDate.year;
-    if (now.month < birthDate.month ||
-        (now.month == birthDate.month && now.day < birthDate.day)) {
-      age--;
-    }
-    return 'You are $age years old';
   }
 }

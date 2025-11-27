@@ -63,6 +63,10 @@ class Spacing {
   static const EdgeInsets screenPadding = EdgeInsets.all(
     SpacingConsts.screenPadding,
   );
+
+  static const EdgeInsets circlePadding = EdgeInsets.all(
+    SpacingConsts.huge,
+  );
   static const EdgeInsets cardPadding = EdgeInsets.all(
     SpacingConsts.cardPadding,
   );

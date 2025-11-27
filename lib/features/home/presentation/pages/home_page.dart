@@ -1,3 +1,4 @@
+import 'package:daily_tarot_focus/config/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mobile_boilerplate/application/auth/auth_cubit.dart';
@@ -17,12 +18,11 @@ class HomePageArguments extends RouteArguments {
 
 class HomePage extends StatefulWidget {
   const HomePage({required this.arguments, super.key});
-  static const route = 'home';
   final HomePageArguments arguments;
 
   static void go(BuildContext context, {int initialTabIndex = 0}) {
-    context.goNamed(
-      route,
+    context.go(
+      AppRoutes.home,
       extra: HomePageArguments(context, initialTabIndex: initialTabIndex),
     );
   }

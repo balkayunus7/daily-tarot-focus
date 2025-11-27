@@ -44,7 +44,7 @@ Future<void> showSheetBase(
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(title, style: n16w700(context)),
+                      Text(title, style: m16w700(context)),
                       IconButton(
                         onPressed: () async {
                           FocusScope.of(context).unfocus();

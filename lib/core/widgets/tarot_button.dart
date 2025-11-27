@@ -10,7 +10,7 @@ class TarotButton extends StatelessWidget {
     required this.onTap, required this.buttonText, super.key,
     this.width = double.infinity,
     this.paddingHorizontal = 0,
-    this.height = 48,
+    this.height = 54,
     this.bgColor,
     this.isLoading = false,
     this.isDisabled = false,
@@ -40,7 +40,7 @@ class TarotButton extends StatelessWidget {
         child: ScalingContainer(
           onTap: isLoading || isDisabled ? null : onTap,
           child: Opacity(
-            opacity: isLoading || isDisabled ? 0.5 : 1,
+            opacity: isLoading || isDisabled ? 0.7 : 1,
             child: FancyButton(
               width: width,
               height: height,

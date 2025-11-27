@@ -37,7 +37,7 @@ class TarotsProAppBar extends StatelessWidget implements PreferredSizeWidget {
                     bgColor: context.colors.primary,
                     onTap: () {},
                     buttonText: 'Get Pro',
-                    buttonTextStyle: n14w600(context),
+                    buttonTextStyle: m14w600(context),
                   ),
                   Spacing.xsmallW,
                   ScalingContainer(
@@ -152,7 +152,7 @@ class TarotAppBar extends StatelessWidget implements PreferredSizeWidget {
         ],
         Spacing.mediumW,
       ],
-      title: Text(title ?? '', style: titleStyle ?? n18w700(context)),
+      title: Text(title ?? '', style: titleStyle ?? m18w700(context)),
     );
   }
 

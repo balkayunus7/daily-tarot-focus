@@ -7,7 +7,7 @@ void showErrorSnackBar(BuildContext context, {required String? errorMessage}) {
     SnackBar(
       content: Text(
         errorMessage ?? '',
-        style: n14w500(context).copyWith(color: context.colors.surface),
+        style: m14w500(context).copyWith(color: context.colors.surface),
       ),
       backgroundColor: context.colors.primary,
       behavior: SnackBarBehavior.floating,
@@ -20,7 +20,7 @@ void showSuccessSnackBar(BuildContext context, {required String message}) {
     SnackBar(
       content: Text(
         message,
-        style: n14w500(context).copyWith(color: context.colors.surface),
+        style: m14w500(context).copyWith(color: context.colors.surface),
       ),
       backgroundColor: Colors.green,
       duration: const Duration(seconds: 2),

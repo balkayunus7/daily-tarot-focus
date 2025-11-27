@@ -1,16 +1,20 @@
+import 'package:daily_tarot_focus/config/app_routes.dart';
 import 'package:daily_tarot_focus/core/util/font_style_helper.dart';
+import 'package:daily_tarot_focus/core/util/tarot_app_sizes.dart';
 import 'package:daily_tarot_focus/core/widgets/tarot_button.dart';
 import 'package:daily_tarot_focus/features/auth/application/register_cubit.dart';
 import 'package:daily_tarot_focus/features/auth/domain/enums/tarot_user_zodiac_enum.dart';
-import 'package:daily_tarot_focus/features/auth/presentation/pages/register_step_relationship_page.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mobile_boilerplate/common_dependencies.dart';
 import 'package:mobile_boilerplate/presentation/extensions/build_context_theme_ext.dart';
+import 'package:mobile_boilerplate/presentation/widgets/scaling_container.dart';
 
-class RegisterStep1ZodiacPage extends StatelessWidget {
-  const RegisterStep1ZodiacPage({super.key});
-  static const route = '/register-step-1-zodiac';
+part '../widgets/zodiac_card.dart';
+part '../widgets/zodiac_grid.dart';
+
+class RegisterStepZodiacPage extends StatelessWidget {
+  const RegisterStepZodiacPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -20,164 +24,46 @@ class RegisterStep1ZodiacPage extends StatelessWidget {
       backgroundColor: colors.background,
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+          padding: Spacing.screenPadding,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
                 'Step 1 of 3',
-                style: TextStyle(
-                  color: colors.textSecondary,
-                  fontSize: 14,
-                  fontWeight: FontWeight.w400,
-                ),
+                style: m14w400(context).copyWith(color: colors.textSecondary),
               ),
-              const SizedBox(height: 8),
+              Spacing.xsmallH,
               Text(
                 "What's your zodiac sign?",
-                style: TextStyle(
-                  color: colors.textPrimary,
-                  fontSize: 32,
-                  fontWeight: FontWeight.w700,
-                ),
+                style: m32w600(context),
               ),
-              const SizedBox(height: 8),
+              Spacing.xsmallH,
               Text(
                 'Help us personalize your tarot experience',
-                style: TextStyle(
-                  color: colors.textSecondary,
-                  fontSize: 16,
-                  fontWeight: FontWeight.w400,
-                ),
+                style: m16w400(context).copyWith(color: colors.textSecondary),
               ),
-              const SizedBox(height: 8),
+              Spacing.smallH,
               LinearProgressIndicator(
                 value: 0.33,
                 backgroundColor: colors.surface,
                 valueColor: AlwaysStoppedAnimation<Color>(colors.primary),
               ),
-              const SizedBox(height: 40),
-              Expanded(
-                child: BlocBuilder<RegisterCubit, RegisterState>(
-                  builder: (context, state) {
-                    return GridView.builder(
-                      gridDelegate:
-                          const SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 3,
-                            crossAxisSpacing: 12,
-                            mainAxisSpacing: 12,
-                          ),
-                      itemCount: ZodiacSign.values.length,
-                      itemBuilder: (context, index) {
-                        final zodiac = ZodiacSign.values[index];
-                        final isSelected = state.zodiac == zodiac;
-
-                        return _ZodiacCard(
-                          zodiac: zodiac,
-                          isSelected: isSelected,
-                          onTap: () {
-                            context.read<RegisterCubit>().selectZodiac(zodiac);
-                          },
-                        );
-                      },
-                    );
-                  },
-                ),
-              ),
+              Spacing.xxlargeH,
+              const Expanded(child: ZodiacGrid()),
               BlocBuilder<RegisterCubit, RegisterState>(
                 builder: (context, state) {
                   return TarotButton(
                     buttonText: 'Continue',
                     onTap: () {
-                      context.goNamed(RegisterStep2RelationshipPage.route);
+                      context.go(AppRoutes.registerStepRelationship);
                     },
-                    buttonTextStyle: n16w700(context),
+                    buttonTextStyle: m16w700(context),
+                    isDisabled: !state.isZodiacSelected,
                   );
                 },
               ),
             ],
           ),
-        ),
-      ),
-    );
-  }
-}
-
-class _ZodiacCard extends StatelessWidget {
-  const _ZodiacCard({
-    required this.zodiac,
-    required this.isSelected,
-    required this.onTap,
-  });
-  final ZodiacSign zodiac;
-  final bool isSelected;
-  final VoidCallback onTap;
-
-  String _getZodiacEmoji(ZodiacSign zodiac) {
-    switch (zodiac) {
-      case ZodiacSign.aries:
-        return '♈';
-      case ZodiacSign.taurus:
-        return '♉';
-      case ZodiacSign.gemini:
-        return '♊';
-      case ZodiacSign.cancer:
-        return '♋';
-      case ZodiacSign.leo:
-        return '♌';
-      case ZodiacSign.virgo:
-        return '♍';
-      case ZodiacSign.libra:
-        return '♎';
-      case ZodiacSign.scorpio:
-        return '♏';
-      case ZodiacSign.sagittarius:
-        return '♐';
-      case ZodiacSign.capricorn:
-        return '♑';
-      case ZodiacSign.aquarius:
-        return '♒';
-      case ZodiacSign.pisces:
-        return '♓';
-    }
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    final colors = context.colors;
-
-    return GestureDetector(
-      onTap: onTap,
-      child: Container(
-        decoration: BoxDecoration(
-          color:
-              isSelected
-                  ? colors.primary.withValues(alpha: 0.15)
-                  : colors.surface,
-          borderRadius: BorderRadius.circular(16),
-          border: Border.all(
-            color: isSelected ? colors.primary : colors.border,
-            width: 2,
-          ),
-        ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(_getZodiacEmoji(zodiac), style: const TextStyle(fontSize: 32)),
-            const SizedBox(height: 8),
-            Text(
-              zodiac.value,
-              style: TextStyle(
-                color:
-                    isSelected
-                        ? colors.textPrimary.withValues(alpha: 0.8)
-                        : colors.textPrimary,
-                fontSize: 12,
-                fontWeight: FontWeight.w600,
-              ),
-              textAlign: TextAlign.center,
-            ),
-          ],
         ),
       ),
     );

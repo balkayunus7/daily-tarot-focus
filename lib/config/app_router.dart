@@ -1,3 +1,4 @@
+import 'package:daily_tarot_focus/config/app_routes.dart';
 import 'package:daily_tarot_focus/features/auth/presentation/pages/register_step_birthdate_page.dart';
 import 'package:daily_tarot_focus/features/auth/presentation/pages/register_step_relationship_page.dart';
 import 'package:daily_tarot_focus/features/auth/presentation/pages/register_step_zodiac_page.dart';
@@ -10,32 +11,32 @@ final GlobalKey<NavigatorState> rootNavigatorKey = GlobalKey<NavigatorState>();
 
 final appRouter = GoRouter(
   navigatorKey: rootNavigatorKey,
-  initialLocation: '/',
+  initialLocation: AppRoutes.splash,
   debugLogDiagnostics: true,
   routes: [
     GoRoute(
-      path: '/',
-      name: SplashPage.route,
+      path: AppRoutes.splash,
+      name: AppRoutes.splash,
       builder: (context, state) => const SplashPage(),
     ),
     GoRoute(
-      path: RegisterStep1ZodiacPage.route,
-      name: RegisterStep1ZodiacPage.route,
-      builder: (context, state) => const RegisterStep1ZodiacPage(),
+      path: AppRoutes.registerStepZodiac,
+      name: AppRoutes.registerStepZodiac,
+      builder: (context, state) => const RegisterStepZodiacPage(),
     ),
     GoRoute(
-      path: RegisterStep2RelationshipPage.route,
-      name: RegisterStep2RelationshipPage.route,
-      builder: (context, state) => const RegisterStep2RelationshipPage(),
+      path: AppRoutes.registerStepRelationship,
+      name: AppRoutes.registerStepRelationship,
+      builder: (context, state) => const RegisterStepRelationshipPage(),
     ),
     GoRoute(
-      path: RegisterStep3BirthdatePage.route,
-      name: RegisterStep3BirthdatePage.route,
-      builder: (context, state) => const RegisterStep3BirthdatePage(),
+      path: AppRoutes.registerStepBirthdate,
+      name: AppRoutes.registerStepBirthdate,
+      builder: (context, state) => const RegisterStepBirthdatePage(),
     ),
     GoRoute(
-      path: '/home',
-      name: HomePage.route,
+      path: AppRoutes.home,
+      name: AppRoutes.home,
       builder: (context, state) {
         final args = state.extra as HomePageArguments?;
         return HomePage(arguments: args ?? HomePageArguments(context));

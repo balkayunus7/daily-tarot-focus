@@ -9,7 +9,8 @@ import 'package:mobile_boilerplate/presentation/widgets/scaling_container.dart';
 
 class FancyButton extends StatelessWidget {
   const FancyButton({
-    required this.onPressed, super.key,
+    required this.onPressed,
+    super.key,
     this.text,
     this.icon,
     this.textColor,
@@ -20,9 +21,9 @@ class FancyButton extends StatelessWidget {
     this.textStyle,
     this.isLoading = false,
   }) : assert(
-        textColor == null || textStyle == null,
-        'Cannot provide both textColor and textStyle',
-      );
+         textColor == null || textStyle == null,
+         'Cannot provide both textColor and textStyle',
+       );
 
   final String? text;
   final VoidCallback onPressed;
@@ -46,7 +47,7 @@ class FancyButton extends StatelessWidget {
       },
       child: FancyContainer(
         color: buttonColor,
-        borderRadius: BorderRadius.circular(100),
+        borderRadius: BorderRadius.circular(16),
         padding:
             padding ?? const EdgeInsets.symmetric(horizontal: 12, vertical: 7),
         width: width,
@@ -68,7 +69,7 @@ class FancyButton extends StatelessWidget {
                   overflow: TextOverflow.ellipsis,
                   style:
                       textStyle ??
-                      n16w700(
+                      m16w700(
                         context,
                       ).copyWith(color: context.colors.background),
                 ),

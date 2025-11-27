@@ -23,6 +23,10 @@ class RegisterState extends Equatable {
     return zodiac == null || relationshipStatus == null || birthDate == null;
   }
 
+  bool get isZodiacSelected => zodiac != null;
+  bool get isRelationshipStatusSelected => relationshipStatus != null;
+  bool get isBirthDateSelected => birthDate != null;
+
   RegisterState copyWith({
     ZodiacSign? zodiac,
     RelationshipStatus? relationshipStatus,

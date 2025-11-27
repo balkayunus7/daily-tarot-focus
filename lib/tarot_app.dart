@@ -38,7 +38,7 @@ class TarotApp extends StatelessWidget {
         darkColors: TarotAppColorsDark(),
         lightColors: TarotAppColorsLight(),
         routerConfig: appRouter,
-        fontFamily: 'Geist',
+        fontFamily: 'Montserrat',
         supportedLocales: const [Locale('en')],
       ),
     );

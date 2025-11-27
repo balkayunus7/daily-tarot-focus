@@ -4,11 +4,12 @@ enum RegisterStatus {
   success('Success'),
   failure('Failure');
 
-  final String value;
   const RegisterStatus(this.value);
 
   factory RegisterStatus.fromString(String value) =>
       RegisterStatus.values.firstWhere((e) => e.value == value);
+
+  final String value;
 
   bool get isInitial => this == RegisterStatus.initial;
   bool get isLoading => this == RegisterStatus.loading;

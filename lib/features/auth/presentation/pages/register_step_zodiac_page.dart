@@ -9,9 +9,8 @@ import 'package:mobile_boilerplate/common_dependencies.dart';
 import 'package:mobile_boilerplate/presentation/extensions/build_context_theme_ext.dart';
 
 class RegisterStep1ZodiacPage extends StatelessWidget {
-  static const route = '/register-step-1-zodiac';
-
   const RegisterStep1ZodiacPage({super.key});
+  static const route = '/register-step-1-zodiac';
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +20,7 @@ class RegisterStep1ZodiacPage extends StatelessWidget {
       backgroundColor: colors.background,
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 16.0),
+          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -35,7 +34,7 @@ class RegisterStep1ZodiacPage extends StatelessWidget {
               ),
               const SizedBox(height: 8),
               Text(
-                'What\'s your zodiac sign?',
+                "What's your zodiac sign?",
                 style: TextStyle(
                   color: colors.textPrimary,
                   fontSize: 32,
@@ -67,7 +66,6 @@ class RegisterStep1ZodiacPage extends StatelessWidget {
                             crossAxisCount: 3,
                             crossAxisSpacing: 12,
                             mainAxisSpacing: 12,
-                            childAspectRatio: 1,
                           ),
                       itemCount: ZodiacSign.values.length,
                       itemBuilder: (context, index) {
@@ -106,15 +104,14 @@ class RegisterStep1ZodiacPage extends StatelessWidget {
 }
 
 class _ZodiacCard extends StatelessWidget {
-  final ZodiacSign zodiac;
-  final bool isSelected;
-  final VoidCallback onTap;
-
   const _ZodiacCard({
     required this.zodiac,
     required this.isSelected,
     required this.onTap,
   });
+  final ZodiacSign zodiac;
+  final bool isSelected;
+  final VoidCallback onTap;
 
   String _getZodiacEmoji(ZodiacSign zodiac) {
     switch (zodiac) {

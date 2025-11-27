@@ -7,13 +7,11 @@ import 'package:mobile_boilerplate/presentation/widgets/scaling_container.dart';
 
 class TarotButton extends StatelessWidget {
   const TarotButton({
-    super.key,
+    required this.onTap, required this.buttonText, super.key,
     this.width = double.infinity,
     this.paddingHorizontal = 0,
     this.height = 48,
     this.bgColor,
-    required this.onTap,
-    required this.buttonText,
     this.isLoading = false,
     this.isDisabled = false,
     this.svgIcon,

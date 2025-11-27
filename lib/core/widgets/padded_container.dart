@@ -4,8 +4,8 @@ import 'package:mobile_boilerplate/presentation/extensions/build_context_theme_e
 
 class PaddedContainer extends StatelessWidget {
   const PaddedContainer({
-    super.key,
     required this.child,
+    super.key,
     this.padding = Spacing.tinyPadding,
     this.width,
     this.height,

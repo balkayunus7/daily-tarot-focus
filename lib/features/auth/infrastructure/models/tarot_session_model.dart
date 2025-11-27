@@ -2,17 +2,21 @@ import 'package:daily_tarot_focus/features/auth/domain/entities/tarot_session.da
 import 'package:mobile_boilerplate/domain/auth/auth_provider.dart';
 
 class TarotSessionModel {
-  final String id;
-  final String session;
-  final bool isNewUser;
-  final String provider;
-
   const TarotSessionModel({
     required this.id,
     required this.session,
     required this.isNewUser,
     required this.provider,
   });
+
+  factory TarotSessionModel.fromEntity(TarotSession entity) {
+    return TarotSessionModel(
+      id: entity.userId,
+      session: entity.idToken,
+      isNewUser: entity.isNewUser,
+      provider: entity.provider.name,
+    );
+  }
 
   factory TarotSessionModel.fromMap(Map<String, dynamic> map) {
     return TarotSessionModel(
@@ -22,6 +26,11 @@ class TarotSessionModel {
       provider: map['provider'] as String,
     );
   }
+
+  final String id;
+  final String session;
+  final bool isNewUser;
+  final String provider;
 
   Map<String, dynamic> toMap() {
     return {
@@ -40,14 +49,4 @@ class TarotSessionModel {
       provider: AuthProvider.fromKey(provider),
     );
   }
-
-  factory TarotSessionModel.fromEntity(TarotSession entity) {
-    return TarotSessionModel(
-      id: entity.userId,
-      session: entity.idToken,
-      isNewUser: entity.isNewUser,
-      provider: entity.provider.name,
-    );
-  }
 }
-

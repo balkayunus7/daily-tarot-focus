@@ -4,12 +4,12 @@ import 'package:daily_tarot_focus/core/util/tarot_app_assets.dart';
 import 'package:daily_tarot_focus/core/util/tarot_app_sizes.dart';
 import 'package:daily_tarot_focus/features/auth/domain/entities/tarot_user.dart';
 import 'package:daily_tarot_focus/features/auth/presentation/pages/register_step_zodiac_page.dart';
+import 'package:daily_tarot_focus/features/auth/presentation/widgets/splash_view.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mobile_boilerplate/application/auth/auth_cubit.dart';
 import 'package:mobile_boilerplate/common_dependencies.dart';
 import 'package:mobile_boilerplate/presentation/routing/route_aware_analytics_mixin.dart';
-import 'package:daily_tarot_focus/features/auth/presentation/pages/splash_view.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({super.key});
@@ -24,9 +24,9 @@ class _SplashPageState extends State<SplashPage>
   void initState() {
     final authCubit = context.read<AuthCubit>();
     WidgetsBinding.instance.addPostFrameCallback((_) async {
-      Future.delayed(const Duration(seconds: 1), () {
+      Future.delayed(const Duration(seconds: 1), () async {
         if (!mounted) return;
-        authCubit.initialize(requestAttAuth: Platform.isIOS);
+        await authCubit.initialize(requestAttAuth: Platform.isIOS);
       });
     });
 
@@ -59,12 +59,12 @@ class _SplashPageState extends State<SplashPage>
                   !current.isInitial &&
                   !current.isAuthenticated;
             },
-            listener: (context, state) {
-              context.read<AuthCubit>().signInAnonymously();
+            listener: (context, state) async {
+              await context.read<AuthCubit>().signInAnonymously();
             },
           ),
         ],
-        child: TarotsSplashView(
+        child: TarotSplashView(
           logo: ClipRRect(
             borderRadius: Spacing.circularBorderRadius,
             child: Image.asset(

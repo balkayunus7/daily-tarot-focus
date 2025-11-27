@@ -1,19 +1,19 @@
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class EnvConfig {
-  static final EnvConfig _instance = EnvConfig._internal();
   factory EnvConfig() => _instance;
 
   EnvConfig._internal();
+  static final EnvConfig _instance = EnvConfig._internal();
 
   static Future<void> load() async {
-    await dotenv.load(fileName: ".env.keys");
+    await dotenv.load(fileName: '.env.keys');
   }
 
   String get(String key) {
     final value = dotenv.env[key];
     if (value == null || value.isEmpty) {
-      throw Exception("Missing environment variable: $key");
+      throw Exception('Missing environment variable: $key');
     }
     return value;
   }

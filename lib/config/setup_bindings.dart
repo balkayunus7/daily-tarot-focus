@@ -1,13 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 
-void setupBindings() {
+Future<void> setupBindings() async {
   final binding = WidgetsFlutterBinding.ensureInitialized();
   for (final renderView in binding.renderViews) {
     renderView.automaticSystemUiAdjustment = false;
   }
-  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
-  SystemChrome.setEnabledSystemUIMode(
+  await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+  await SystemChrome.setEnabledSystemUIMode(
     SystemUiMode.edgeToEdge,
     overlays: [SystemUiOverlay.top],
   );

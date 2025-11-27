@@ -7,13 +7,6 @@ import 'package:mobile_boilerplate/domain/purchases/subscription.dart';
 import 'package:mobile_boilerplate/domain/purchases/subscription_plan.dart';
 
 class TarotUserModel {
-  final String userId;
-  final String? revenuecatId;
-  final Map<String, dynamic>? premiumInfo;
-  final String? zodiacSign;
-  final String? relationshipStatus;
-  final String? birthDate;
-
   const TarotUserModel({
     required this.userId,
     this.revenuecatId,
@@ -22,6 +15,16 @@ class TarotUserModel {
     this.relationshipStatus,
     this.birthDate,
   });
+  factory TarotUserModel.fromEntity(TarotUser entity) {
+    return TarotUserModel(
+      userId: entity.userId,
+      revenuecatId: entity.purchaser.id,
+      premiumInfo: entity.subscription?.toMap(),
+      zodiacSign: entity.zodiac?.value,
+      relationshipStatus: entity.relationshipStatus?.value,
+      birthDate: entity.birthDate?.toIso8601String(),
+    );
+  }
 
   factory TarotUserModel.fromMap(Map<String, dynamic> map) {
     return TarotUserModel(
@@ -33,6 +36,12 @@ class TarotUserModel {
       birthDate: map['birth_date'] as String?,
     );
   }
+  final String userId;
+  final String? revenuecatId;
+  final Map<String, dynamic>? premiumInfo;
+  final String? zodiacSign;
+  final String? relationshipStatus;
+  final String? birthDate;
 
   Map<String, dynamic> toMap() {
     return {
@@ -48,9 +57,8 @@ class TarotUserModel {
   TarotUser toEntity() {
     return TarotUser(
       userId: userId,
-      subscription: premiumInfo == null
-          ? null
-          : Subscription.fromMap(premiumInfo!),
+      subscription:
+          premiumInfo == null ? null : Subscription.fromMap(premiumInfo!),
       purchaser: Purchaser(
         id: revenuecatId ?? 'unknown',
         offerings: PurchaseOfferings(
@@ -59,27 +67,12 @@ class TarotUserModel {
           }),
         ),
       ),
-      zodiac: zodiacSign != null
-          ? ZodiacSign.fromString(zodiacSign!)
-          : null,
-      relationshipStatus: relationshipStatus != null
-          ? RelationshipStatus.fromString(relationshipStatus!)
-          : null,
-      birthDate: birthDate != null
-          ? DateTime.parse(birthDate!)
-          : null,
-    );
-  }
-
-  factory TarotUserModel.fromEntity(TarotUser entity) {
-    return TarotUserModel(
-      userId: entity.userId,
-      revenuecatId: entity.purchaser.id,
-      premiumInfo: entity.subscription?.toMap(),
-      zodiacSign: entity.zodiac?.value,
-      relationshipStatus: entity.relationshipStatus?.value,
-      birthDate: entity.birthDate?.toIso8601String(),
+      zodiac: zodiacSign != null ? ZodiacSign.fromString(zodiacSign!) : null,
+      relationshipStatus:
+          relationshipStatus != null
+              ? RelationshipStatus.fromString(relationshipStatus!)
+              : null,
+      birthDate: birthDate != null ? DateTime.parse(birthDate!) : null,
     );
   }
 }
-

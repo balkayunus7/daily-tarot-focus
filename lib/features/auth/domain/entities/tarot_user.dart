@@ -4,10 +4,6 @@ import 'package:mobile_boilerplate/domain/auth/purchaser.dart';
 import 'package:mobile_boilerplate/domain/auth/user.dart';
 
 class TarotUser extends User {
-  final ZodiacSign? zodiac;
-  final RelationshipStatus? relationshipStatus;
-  final DateTime? birthDate;
-
   const TarotUser({
     required super.purchaser,
     required super.userId,
@@ -16,6 +12,9 @@ class TarotUser extends User {
     this.relationshipStatus,
     this.birthDate,
   });
+  final ZodiacSign? zodiac;
+  final RelationshipStatus? relationshipStatus;
+  final DateTime? birthDate;
 
   bool get isProfileComplete =>
       zodiac != null && relationshipStatus != null && birthDate != null;
@@ -23,7 +22,7 @@ class TarotUser extends User {
   int? get age {
     if (birthDate == null) return null;
     final today = DateTime.now();
-    int age = today.year - birthDate!.year;
+    var age = today.year - birthDate!.year;
     if (today.month < birthDate!.month ||
         (today.month == birthDate!.month && today.day < birthDate!.day)) {
       age--;
@@ -48,6 +47,12 @@ class TarotUser extends User {
   }
 
   @override
-  List<Object?> get props =>
-      [userId, purchaser, subscription, zodiac, relationshipStatus, birthDate];
+  List<Object?> get props => [
+    userId,
+    purchaser,
+    subscription,
+    zodiac,
+    relationshipStatus,
+    birthDate,
+  ];
 }

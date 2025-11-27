@@ -3,7 +3,7 @@ import 'package:mobile_boilerplate/application/network_time/network_time_provide
 import 'package:mobile_boilerplate/common_dependencies.dart';
 
 class RestartableApp extends StatefulWidget {
-  const RestartableApp({super.key, required this.child});
+  const RestartableApp({required this.child, super.key});
 
   final Widget child;
 
@@ -12,8 +12,7 @@ class RestartableApp extends StatefulWidget {
   }
 
   @override
-  // ignore: library_private_types_in_public_api
-  _RestartableAppState createState() => _RestartableAppState();
+  State<RestartableApp> createState() => _RestartableAppState();
 }
 
 class _RestartableAppState extends State<RestartableApp> {

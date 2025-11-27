@@ -5,8 +5,8 @@ import 'package:mobile_boilerplate/presentation/extensions/build_context_theme_e
 
 class CustomCacheNetworkImage extends StatelessWidget {
   const CustomCacheNetworkImage({
-    super.key,
     required this.imageUrl,
+    super.key,
     this.width,
     this.height,
     this.fit,

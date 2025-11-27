@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:daily_tarot_focus/core/util/tarot_app_assets.dart';
 import 'package:flutter/material.dart';
 
@@ -21,7 +23,8 @@ class _AnimatedLoadingImageState extends State<AnimatedCircleLoading>
     _controller = AnimationController(
       vsync: this,
       duration: const Duration(seconds: 3),
-    )..repeat(reverse: true);
+    );
+    unawaited(_controller.repeat(reverse: true));
 
     _scaleAnimation = Tween<double>(
       begin: 0.9,

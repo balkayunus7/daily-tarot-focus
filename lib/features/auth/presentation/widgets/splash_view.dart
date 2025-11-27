@@ -1,31 +1,30 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:mobile_boilerplate/presentation/extensions/build_context_theme_ext.dart';
 
-class TarotsSplashView extends StatefulWidget {
-  const TarotsSplashView({super.key, required this.logo});
+class TarotSplashView extends StatefulWidget {
+  const TarotSplashView({required this.logo, super.key});
   final Widget? logo;
 
   @override
-  State<TarotsSplashView> createState() => _TarotsSplashViewState();
+  State<TarotSplashView> createState() => _TarotSplashViewState();
 }
 
-class _TarotsSplashViewState extends State<TarotsSplashView>
+class _TarotSplashViewState extends State<TarotSplashView>
     with TickerProviderStateMixin {
   late AnimationController _controller;
   @override
   void initState() {
-    _controller =
-        AnimationController(
-            vsync: this,
-            lowerBound: 0.75,
-            upperBound: 1.0,
-            duration: const Duration(seconds: 1),
-          )
-          ..forward()
-          ..repeat(reverse: true, min: 0.85);
-
     super.initState();
+    _controller = AnimationController(
+      vsync: this,
+      lowerBound: 0.75,
+      duration: const Duration(seconds: 1),
+    );
+    unawaited(_controller.forward());
+    unawaited(_controller.repeat(reverse: true, min: 0.85));
   }
 
   @override
@@ -42,7 +41,7 @@ class _TarotsSplashViewState extends State<TarotsSplashView>
       ),
       child: Scaffold(
         body: Container(
-          decoration: BoxDecoration(color: Color(0xfffefdfc)),
+          decoration: const BoxDecoration(color: Color(0xfffefdfc)),
           child: Center(
             child: AnimatedBuilder(
               animation: _controller,

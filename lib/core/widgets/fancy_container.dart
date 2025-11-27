@@ -38,11 +38,11 @@ class FancyContainer extends StatelessWidget {
         borderRadius: borderRadius,
         border: Border.all(
           color: Colors.black.withValues(alpha: 0.1),
-          width: 1,
         ),
-        image: image != null
-            ? DecorationImage(image: image!, fit: BoxFit.cover)
-            : null,
+        image:
+            image != null
+                ? DecorationImage(image: image!, fit: BoxFit.cover)
+                : null,
       ),
       child: Container(
         decoration: BoxDecoration(
@@ -55,7 +55,6 @@ class FancyContainer extends StatelessWidget {
               blurRadius: 10,
               spreadRadius: 2,
               inset: true,
-              offset: const Offset(0, 0),
             ),
           ],
           border: GradientBoxBorder(
@@ -69,9 +68,8 @@ class FancyContainer extends StatelessWidget {
                 Colors.white.withValues(alpha: 0.05),
                 Colors.white.withValues(alpha: 0),
               ],
-              stops: [0.0, 0.1, 0.5, 0.8, 1.0],
+              stops: const [0.0, 0.1, 0.5, 0.8, 1.0],
             ),
-            width: 1,
           ),
         ),
         padding: padding,

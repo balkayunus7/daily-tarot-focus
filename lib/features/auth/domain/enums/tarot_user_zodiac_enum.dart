@@ -12,9 +12,9 @@ enum ZodiacSign {
   aquarius('Aquarius'),
   pisces('Pisces');
 
-  final String value;
   const ZodiacSign(this.value);
-
   factory ZodiacSign.fromString(String value) =>
       ZodiacSign.values.firstWhere((e) => e.value == value);
+      
+  final String value;
 }

@@ -1,26 +1,26 @@
 part of 'register_cubit.dart';
 
 class RegisterState extends Equatable {
-  final ZodiacSign? zodiac;
-  final RelationshipStatus? relationshipStatus;
-  final DateTime? birthDate;
-  final Failure? failure;
-  final RegisterStatus registerStatus;
-
   const RegisterState({
+    required this.registerStatus,
     this.zodiac,
     this.relationshipStatus,
     this.birthDate,
     this.failure,
-    required this.registerStatus,
   });
 
   factory RegisterState.initial() {
     return const RegisterState(registerStatus: RegisterStatus.initial);
   }
 
+  final ZodiacSign? zodiac;
+  final RelationshipStatus? relationshipStatus;
+  final DateTime? birthDate;
+  final Failure? failure;
+  final RegisterStatus registerStatus;
+
   bool get isRegisterNotCompleted {
-    return (zodiac == null || relationshipStatus == null || birthDate == null);
+    return zodiac == null || relationshipStatus == null || birthDate == null;
   }
 
   RegisterState copyWith({

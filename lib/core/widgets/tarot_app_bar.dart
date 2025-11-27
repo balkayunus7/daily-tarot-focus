@@ -1,8 +1,8 @@
-import 'package:daily_tarot_focus/features/auth/domain/entities/tarot_user.dart';
+import 'package:daily_tarot_focus/core/util/font_style_helper.dart';
 import 'package:daily_tarot_focus/core/util/tarot_app_assets.dart';
 import 'package:daily_tarot_focus/core/util/tarot_app_sizes.dart';
-import 'package:daily_tarot_focus/core/util/font_style_helper.dart';
 import 'package:daily_tarot_focus/core/widgets/tarot_button.dart';
+import 'package:daily_tarot_focus/features/auth/domain/entities/tarot_user.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:mobile_boilerplate/application/auth/auth_cubit.dart';
@@ -12,7 +12,7 @@ import 'package:mobile_boilerplate/presentation/extensions/build_context_time_ex
 import 'package:mobile_boilerplate/presentation/widgets/scaling_container.dart';
 
 class TarotsProAppBar extends StatelessWidget implements PreferredSizeWidget {
-  const TarotsProAppBar({super.key, required this.title});
+  const TarotsProAppBar({required this.title, super.key});
   final String title;
 
   @override
@@ -35,9 +35,7 @@ class TarotsProAppBar extends StatelessWidget implements PreferredSizeWidget {
                     width: 84,
                     height: 38,
                     bgColor: context.colors.primary,
-                    onTap: () {
-                      // TODO: Implement paywall
-                    },
+                    onTap: () {},
                     buttonText: 'Get Pro',
                     buttonTextStyle: n14w600(context),
                   ),
@@ -94,7 +92,7 @@ class TarotAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      systemOverlayStyle: SystemUiOverlayStyle(
+      systemOverlayStyle: const SystemUiOverlayStyle(
         systemNavigationBarColor: Colors.transparent,
         statusBarColor: Colors.transparent,
       ),

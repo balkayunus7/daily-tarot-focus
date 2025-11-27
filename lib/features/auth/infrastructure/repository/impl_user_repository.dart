@@ -8,7 +8,7 @@ import 'package:mobile_boilerplate/domain/auth/user.dart';
 import 'package:mobile_boilerplate/domain/common/failure.dart';
 import 'package:mobile_boilerplate/domain/common/http_utilities.dart';
 import 'package:mobile_boilerplate/infrastructure/http/http_failure_handler.dart';
-import 'package:supabase/supabase.dart' hide User, Session;
+import 'package:supabase/supabase.dart' hide Session, User;
 
 class ImplUserRepository extends IUserRepository with HttpFailureHandlerMixin {
   ImplUserRepository(this._supabaseClient, this._httpFailureHandler);
@@ -24,8 +24,8 @@ class ImplUserRepository extends IUserRepository with HttpFailureHandlerMixin {
       final data = decodeSupabaseResponse(response.data);
       final model = TarotUserModel.fromMap(data);
       return right(model.toEntity());
-    } catch (e) {
-      return left(UnknownFailure());
+    } on Exception {
+      return left(const UnknownFailure());
     }
   }
 
@@ -33,8 +33,8 @@ class ImplUserRepository extends IUserRepository with HttpFailureHandlerMixin {
   Future<FailureOr<Unit>> deleteUser({required Session session}) async {
     try {
       return right(unit);
-    } catch (e) {
-      return left(UnknownFailure());
+    } on Exception {
+      return left(const UnknownFailure());
     }
   }
 
@@ -65,8 +65,8 @@ class ImplUserRepository extends IUserRepository with HttpFailureHandlerMixin {
       if (generalFailure != null) return left(generalFailure);
       
       return right(unit);
-    } catch (e) {
-      return left(UnknownFailure());
+    } on Exception {
+      return left(const UnknownFailure());
     }
   }
 

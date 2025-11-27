@@ -1,5 +1,7 @@
-import 'package:daily_tarot_focus/core/util/tarot_app_sizes.dart';
+import 'dart:async';
+
 import 'package:daily_tarot_focus/core/util/font_style_helper.dart';
+import 'package:daily_tarot_focus/core/util/tarot_app_sizes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:mobile_boilerplate/presentation/extensions/build_context_theme_ext.dart';
@@ -18,12 +20,12 @@ Future<void> showSheetBase(
     shape: RoundedRectangleBorder(borderRadius: Spacing.largeBorderRadius),
     builder: (BuildContext context) {
       return GestureDetector(
-        onTap: () {
+        onTap: () async {
           FocusScope.of(context).unfocus();
-          SystemChannels.textInput.invokeMethod('TextInput.hide');
+          await SystemChannels.textInput.invokeMethod('TextInput.hide');
         },
         child: AnimatedContainer(
-          duration: Duration(milliseconds: 100),
+          duration: const Duration(milliseconds: 100),
           padding: EdgeInsets.only(
             bottom: MediaQuery.of(context).viewInsets.bottom,
           ),
@@ -44,9 +46,12 @@ Future<void> showSheetBase(
                     children: [
                       Text(title, style: n16w700(context)),
                       IconButton(
-                        onPressed: () {
+                        onPressed: () async {
                           FocusScope.of(context).unfocus();
-                          SystemChannels.textInput.invokeMethod('TextInput.hide');
+                          await SystemChannels.textInput.invokeMethod(
+                            'TextInput.hide',
+                          );
+                          if (!context.mounted) return;
                           Navigator.pop(context);
                         },
                         icon: Icon(
@@ -58,7 +63,11 @@ Future<void> showSheetBase(
                     ],
                   ),
                 ),
-                hasBodyPadding ? Spacing.mediumH : SizedBox.shrink(),
+                if (hasBodyPadding) ...[
+                  Spacing.mediumH,
+                ] else ...[
+                  const SizedBox.shrink(),
+                ],
                 ...body,
                 Spacing.smallH,
               ],

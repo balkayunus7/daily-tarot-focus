@@ -1,14 +1,14 @@
-import 'package:daily_tarot_focus/core/util/tarot_mock_datas.dart';
 import 'package:daily_tarot_focus/core/util/font_style_helper.dart';
+import 'package:daily_tarot_focus/core/util/tarot_mock_datas.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:mobile_boilerplate/presentation/extensions/build_context_theme_ext.dart';
 
 class HomeBottomNavbar extends StatelessWidget {
   const HomeBottomNavbar({
-    super.key,
     required this.currentIndex,
     required this.onTap,
+    super.key,
   });
 
   final int currentIndex;
@@ -37,14 +37,14 @@ class HomeBottomNavbar extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: List.generate(items.length, (index) {
           final isSelected = currentIndex == index;
-          final path = items[index]['path'] as String;
-          final label = items[index]['label'] as String;
+          final path = items[index]['path']!;
+          final label = items[index]['label']!;
 
           return Expanded(
             child: GestureDetector(
               onTap: () => onTap(index),
               child: Container(
-                margin: const EdgeInsets.symmetric(horizontal: 0),
+                margin: EdgeInsets.zero,
                 padding: const EdgeInsets.symmetric(vertical: 4),
                 decoration: BoxDecoration(
                   color:

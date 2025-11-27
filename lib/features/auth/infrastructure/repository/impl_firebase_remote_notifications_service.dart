@@ -6,26 +6,22 @@ import 'package:mobile_boilerplate/infrastructure_dependencies.dart' as fm;
 class ImplFirebaseRemoteNotificationsService
     extends FirebaseNotificationsService {
   ImplFirebaseRemoteNotificationsService(
-    super.firebaseMessaging,
-    super.firebaseMessagingOnNotification,
-    super.firebaseMessagingOnNotificationOpenedApp,
+    super._firebaseMessaging,
+    super._firebaseMessagingOnNotification,
+    super._firebaseMessagingOnNotificationOpenedApp,
   );
 
   @override
   RemoteNotification fromRemoteMessage(fm.RemoteMessage message) {
-    final type = message.data['type'];
     final id = message.messageId ?? '';
     final title = message.notification?.title ?? '';
     final body = message.notification?.body ?? '';
 
-    switch (type) {
-      default:
-        return RemoteNotificationDefault(
-          id: id,
-          body: body,
-          title: title,
-        );
-    }
+    return RemoteNotificationDefault(
+      id: id,
+      body: body,
+      title: title,
+    );
   }
 
   @override

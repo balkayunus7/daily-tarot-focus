@@ -19,31 +19,31 @@ abstract class TarotAppColors extends AppColors {
 class TarotAppColorsDark extends TarotAppColors implements AppColorsDark {
   TarotAppColorsDark()
     : super(
-        background: Color(0xFF121212),
-        border: Color(0xFF121212).withValues(alpha: 0.1),
-        primary: Color(0xFFE12457),
-        secondary: Color(0xFF00A6C3).withValues(alpha: 0.08),
+        background: const Color(0xFF121212),
+        border: const Color(0xFF121212).withValues(alpha: 0.1),
+        primary: const Color(0xFFE12457),
+        secondary: const Color(0xFF00A6C3).withValues(alpha: 0.08),
         surface: Colors.white10,
-        textPrimary: Color(0xFFFFFFFF),
-        surfaceSecondary: Color(0xFF00A6C3).withValues(alpha: 0.08),
-        textSecondary: Color(0xFF5C5C5C),
-        borderSecondary: Color(0xFFA3A3A3),
-        accent: Color(0xFFA2ABBA),
+        textPrimary: const Color(0xFFFFFFFF),
+        surfaceSecondary: const Color(0xFF00A6C3).withValues(alpha: 0.08),
+        textSecondary: const Color(0xFF5C5C5C),
+        borderSecondary: const Color(0xFFA3A3A3),
+        accent: const Color(0xFFA2ABBA),
       );
 }
 
 class TarotAppColorsLight extends TarotAppColors implements AppColorsLight {
   TarotAppColorsLight()
     : super(
-        background: Color(0xFF121212),
-        border: Color(0xFF121212).withValues(alpha: 0.1),
-        primary: Color(0xFFE12457),
-        secondary: Color(0xFF00A6C3).withValues(alpha: 0.08),
+        background: const Color(0xFF121212),
+        border: const Color(0xFF121212).withValues(alpha: 0.1),
+        primary: const Color(0xFFE12457),
+        secondary: const Color(0xFF00A6C3).withValues(alpha: 0.08),
         surface: Colors.white10,
-        textPrimary: Color(0xFFFFFFFF),
-        surfaceSecondary: Color(0xFF00A6C3).withValues(alpha: 0.08),
-        textSecondary: Color(0xFF5C5C5C),
-        borderSecondary: Color(0xFFA3A3A3),
-        accent: Color(0xFFA2ABBA),
+        textPrimary: const Color(0xFFFFFFFF),
+        surfaceSecondary: const Color(0xFF00A6C3).withValues(alpha: 0.08),
+        textSecondary: const Color(0xFF5C5C5C),
+        borderSecondary: const Color(0xFFA3A3A3),
+        accent: const Color(0xFFA2ABBA),
       );
 }

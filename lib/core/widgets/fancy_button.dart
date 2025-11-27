@@ -1,5 +1,5 @@
-import 'package:daily_tarot_focus/core/util/tarot_app_sizes.dart';
 import 'package:daily_tarot_focus/core/util/font_style_helper.dart';
+import 'package:daily_tarot_focus/core/util/tarot_app_sizes.dart';
 import 'package:daily_tarot_focus/core/widgets/custom_loading_indicator.dart';
 import 'package:daily_tarot_focus/core/widgets/fancy_container.dart';
 import 'package:flutter/material.dart';
@@ -8,6 +8,22 @@ import 'package:mobile_boilerplate/presentation/extensions/build_context_theme_e
 import 'package:mobile_boilerplate/presentation/widgets/scaling_container.dart';
 
 class FancyButton extends StatelessWidget {
+  const FancyButton({
+    required this.onPressed, super.key,
+    this.text,
+    this.icon,
+    this.textColor,
+    this.backgroundColor,
+    this.padding,
+    this.width,
+    this.height,
+    this.textStyle,
+    this.isLoading = false,
+  }) : assert(
+        textColor == null || textStyle == null,
+        'Cannot provide both textColor and textStyle',
+      );
+
   final String? text;
   final VoidCallback onPressed;
   final Widget? icon;
@@ -19,28 +35,13 @@ class FancyButton extends StatelessWidget {
   final double? width;
   final bool isLoading;
 
-  // Either textColor or textStyle must be provided, or none of them
-  const FancyButton({
-    super.key,
-    this.text,
-    required this.onPressed,
-    this.icon,
-    this.textColor,
-    this.backgroundColor,
-    this.padding,
-    this.width,
-    this.height,
-    this.textStyle,
-    this.isLoading = false,
-  }) : assert(textColor == null || textStyle == null);
-
   @override
   Widget build(BuildContext context) {
     final buttonColor = backgroundColor ?? context.colors.primary;
 
     return ScalingContainer(
-      onTap: () {
-        HapticFeedback.lightImpact();
+      onTap: () async {
+        await HapticFeedback.lightImpact();
         onPressed();
       },
       child: FancyContainer(

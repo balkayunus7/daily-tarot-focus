@@ -16,7 +16,7 @@ class HomePageArguments extends RouteArguments {
 }
 
 class HomePage extends StatefulWidget {
-  const HomePage({super.key, required this.arguments});
+  const HomePage({required this.arguments, super.key});
   static const route = 'home';
   final HomePageArguments arguments;
 
@@ -54,7 +54,10 @@ class _HomePageState extends State<HomePage>
           builder: (context, state) {
             return Column(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: [Text('Home Page'), Text(state.userOrCrash.toString())],
+              children: [
+                const Text('Home Page'),
+                Text(state.userOrCrash.toString()),
+              ],
             );
           },
         ),

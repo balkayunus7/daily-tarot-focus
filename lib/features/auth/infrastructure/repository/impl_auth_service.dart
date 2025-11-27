@@ -28,10 +28,12 @@ class ImplAuthService extends IAuthService
       final sessionJson = _sharedPreferences.getString(_sessionKey);
       if (sessionJson == null) return left(const NotFoundFailure());
       
-      final model = TarotSessionModel.fromMap(jsonDecode(sessionJson));
+      final model = TarotSessionModel.fromMap(
+        jsonDecode(sessionJson) as Map<String, dynamic>,
+      );
       return right(model.toEntity());
-    } catch (e) {
-      return left(UnknownFailure());
+    } on Exception {
+      return left(const UnknownFailure());
     }
   }
 
@@ -44,10 +46,10 @@ class ImplAuthService extends IAuthService
         _sessionKey,
         jsonEncode(model.toMap()),
       );
-      if (saved == false) return left(const UnknownFailure());
+      if (!saved) return left(const UnknownFailure());
       return right(session);
-    } catch (e) {
-      return left(UnknownFailure());
+    } on Exception {
+      return left(const UnknownFailure());
     }
   }
 
@@ -56,8 +58,8 @@ class ImplAuthService extends IAuthService
     try {
       await _sharedPreferences.remove(_sessionKey);
       return clearDeviceId();
-    } catch (e) {
-      return left(UnknownFailure());
+    } on Exception {
+      return left(const UnknownFailure());
     }
   }
 
@@ -87,7 +89,7 @@ class ImplAuthService extends IAuthService
         jsonEncode(model.toMap()),
       );
 
-      if (saved == false) {
+      if (!saved) {
         return left(const UnknownFailure());
       }
 
@@ -96,9 +98,9 @@ class ImplAuthService extends IAuthService
       if (e.code == 'sign_in_canceled') {
         return left(const CancelledFailure());
       }
-      return left(UnknownFailure());
-    } catch (e) {
-      return left(UnknownFailure());
+      return left(const UnknownFailure());
+    } on Exception {
+      return left(const UnknownFailure());
     }
   }
 
@@ -107,8 +109,8 @@ class ImplAuthService extends IAuthService
     try {
       await _sharedPreferences.remove(_sessionKey);
       return right(unit);
-    } catch (e) {
-      return left(UnknownFailure());
+    } on Exception {
+      return left(const UnknownFailure());
     }
   }
 

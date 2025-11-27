@@ -9,9 +9,8 @@ import 'package:mobile_boilerplate/common_dependencies.dart';
 import 'package:mobile_boilerplate/presentation/extensions/build_context_theme_ext.dart';
 
 class RegisterStep3BirthdatePage extends StatefulWidget {
-  static const route = '/register-step-3-birthdate';
-
   const RegisterStep3BirthdatePage({super.key});
+  static const route = '/register-step-3-birthdate';
 
   @override
   State<RegisterStep3BirthdatePage> createState() =>
@@ -24,7 +23,7 @@ class _RegisterStep3BirthdatePageState
 
   Future<void> _selectDate(BuildContext context) async {
     final colors = context.colors;
-    final DateTime? picked = await showDatePicker(
+    final picked = await showDatePicker(
       context: context,
       initialDate: DateTime.now().subtract(const Duration(days: 365 * 25)),
       firstDate: DateTime(1900),
@@ -48,6 +47,7 @@ class _RegisterStep3BirthdatePageState
       setState(() {
         _selectedDate = picked;
       });
+      if (!context.mounted) return;
       context.read<RegisterCubit>().selectBirthDate(picked);
     }
   }
@@ -73,7 +73,7 @@ class _RegisterStep3BirthdatePageState
         },
         child: SafeArea(
           child: Padding(
-            padding: const EdgeInsets.all(24.0),
+            padding: const EdgeInsets.all(24),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -106,7 +106,7 @@ class _RegisterStep3BirthdatePageState
                 ),
                 const SizedBox(height: 8),
                 LinearProgressIndicator(
-                  value: 1.0,
+                  value: 1,
                   backgroundColor: colors.surface,
                   valueColor: AlwaysStoppedAnimation<Color>(colors.primary),
                 ),
@@ -242,7 +242,7 @@ class _RegisterStep3BirthdatePageState
 
   String _getAgeText(DateTime birthDate) {
     final now = DateTime.now();
-    int age = now.year - birthDate.year;
+    var age = now.year - birthDate.year;
     if (now.month < birthDate.month ||
         (now.month == birthDate.month && now.day < birthDate.day)) {
       age--;

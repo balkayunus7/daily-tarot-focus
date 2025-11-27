@@ -20,7 +20,7 @@ class RegisterStep2RelationshipPage extends StatelessWidget {
       backgroundColor: colors.background,
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 16.0),
+          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -35,7 +35,7 @@ class RegisterStep2RelationshipPage extends StatelessWidget {
               ),
               const SizedBox(height: 8),
               Text(
-                'What\'s your relationship status?',
+                "What's your relationship status?",
                 style: TextStyle(
                   color: colors.textPrimary,
                   fontSize: 32,
@@ -63,7 +63,7 @@ class RegisterStep2RelationshipPage extends StatelessWidget {
                   builder: (context, state) {
                     return ListView.separated(
                       itemCount: RelationshipStatus.values.length,
-                      separatorBuilder: (_, __) => const SizedBox(height: 12),
+                      separatorBuilder: (_, _) => const SizedBox(height: 12),
                       itemBuilder: (context, index) {
                         final status = RelationshipStatus.values[index];
                         final isSelected = state.relationshipStatus == status;
@@ -87,8 +87,8 @@ class RegisterStep2RelationshipPage extends StatelessWidget {
                 builder: (context, state) {
                   return TarotButton(
                     buttonText: 'Continue',
-                    onTap: () {
-                      context.pushNamed(RegisterStep3BirthdatePage.route);
+                    onTap: () async {
+                      await context.pushNamed(RegisterStep3BirthdatePage.route);
                     },
                     buttonTextStyle: n16w700(context),
                   );
@@ -103,32 +103,15 @@ class RegisterStep2RelationshipPage extends StatelessWidget {
 }
 
 class _RelationshipCard extends StatelessWidget {
-  final RelationshipStatus status;
-  final bool isSelected;
-  final VoidCallback onTap;
-
   const _RelationshipCard({
     required this.status,
     required this.isSelected,
     required this.onTap,
   });
-
-  String _getStatusEmoji(RelationshipStatus status) {
-    switch (status) {
-      case RelationshipStatus.single:
-        return '💫';
-      case RelationshipStatus.inARelationship:
-        return '💑';
-      case RelationshipStatus.engaged:
-        return '💍';
-      case RelationshipStatus.married:
-        return '💒';
-      case RelationshipStatus.itsComplicated:
-        return '🤔';
-      case RelationshipStatus.preferNotToSay:
-        return '🤐';
-    }
-  }
+  
+  final RelationshipStatus status;
+  final bool isSelected;
+  final VoidCallback onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -151,7 +134,7 @@ class _RelationshipCard extends StatelessWidget {
         ),
         child: Row(
           children: [
-            Text(_getStatusEmoji(status), style: const TextStyle(fontSize: 28)),
+            Text(status.emoji, style: const TextStyle(fontSize: 28)),
             const SizedBox(width: 16),
             Expanded(
               child: Text(

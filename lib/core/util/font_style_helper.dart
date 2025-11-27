@@ -52,7 +52,7 @@ TextStyle n14w700(BuildContext context) =>
 
 TextStyle n15w400(BuildContext context) =>
     geistFontTextStyle(context, fontSize: 15, fontWeight: FontWeight.w400);
-    
+
 TextStyle n15w500(BuildContext context) =>
     geistFontTextStyle(context, fontSize: 15, fontWeight: FontWeight.w500);
 

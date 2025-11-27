@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 
 class SpacingConsts {
-  static const double none = 0.0;
-  static const double tiny = 4.0;
-  static const double xsmall = 8.0;
-  static const double small = 12.0;
-  static const double medium = 16.0;
-  static const double large = 20.0;
-  static const double xlarge = 24.0;
-  static const double xxlarge = 32.0;
-  static const double xxxlarge = 48.0;
-  static const double huge = 64.0;
+  static const double none = 0;
+  static const double tiny = 4;
+  static const double xsmall = 8;
+  static const double small = 12;
+  static const double medium = 16;
+  static const double large = 20;
+  static const double xlarge = 24;
+  static const double xxlarge = 32;
+  static const double xxxlarge = 48;
+  static const double huge = 64;
 
   static const double defaultPadding = medium;
   static const double cardPadding = large;

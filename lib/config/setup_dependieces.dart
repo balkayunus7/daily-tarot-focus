@@ -1,12 +1,13 @@
 import 'dart:io';
 
 import 'package:daily_tarot_focus/config/app_config.dart';
+import 'package:daily_tarot_focus/config/env.config.dart';
 import 'package:daily_tarot_focus/features/auth/application/register_cubit.dart';
-import 'package:daily_tarot_focus/features/auth/infrastructure/repository/impl_auth_service.dart';
-import 'package:daily_tarot_focus/features/auth/infrastructure/repository/impl_user_repository.dart';
 import 'package:daily_tarot_focus/features/auth/infrastructure/repository/impl_android_local_notifications_service.dart';
+import 'package:daily_tarot_focus/features/auth/infrastructure/repository/impl_auth_service.dart';
 import 'package:daily_tarot_focus/features/auth/infrastructure/repository/impl_firebase_remote_notifications_service.dart';
 import 'package:daily_tarot_focus/features/auth/infrastructure/repository/impl_ios_local_notifications_service.dart';
+import 'package:daily_tarot_focus/features/auth/infrastructure/repository/impl_user_repository.dart';
 import 'package:mobile_boilerplate/application/analytics/analytics_cubit.dart';
 import 'package:mobile_boilerplate/application/auth/auth_cubit.dart';
 import 'package:mobile_boilerplate/application/color_theme/color_theme_bloc.dart';
@@ -46,186 +47,162 @@ import 'package:mobile_boilerplate/wrapper/sign_in_with_apple_wrapper.dart';
 import 'package:mobile_boilerplate/wrapper/social_share_wrapper.dart';
 import 'package:mobile_boilerplate/wrapper/url_launcher_wrapper.dart';
 import 'package:supabase/supabase.dart';
-import 'package:daily_tarot_focus/config/env.config.dart';
 
 Future<void> setupDependencies() async {
   final sharedPreferences = await SharedPreferences.getInstance();
   final envConfig = EnvConfig();
-  getIt.registerSingleton<SupabaseClient>(
-    SupabaseClient(envConfig.supabaseUrl, envConfig.supabaseAnonKey),
-  );
-
-  getIt.registerSingleton<SharedPreferences>(sharedPreferences);
-  getIt.registerSingleton<Uuid>(Uuid());
-  getIt.registerSingleton<NtpWrapper>(NtpWrapper());
-  getIt.registerSingleton<AppLinks>(AppLinks());
-  getIt.registerSingleton<DeviceInfoPlugin>(DeviceInfoPlugin());
-  getIt.registerSingleton<PackageInfo>(await PackageInfo.fromPlatform());
-  getIt.registerSingleton<PurchasesWrapper>(PurchasesWrapper());
-  getIt.registerSingleton<HttpFailureHandler>(HttpFailureHandler());
-  getIt.registerSingleton<GoogleSignIn>(GoogleSignIn());
-  getIt.registerSingleton<SignInWithAppleWrapper>(SignInWithAppleWrapper());
-  getIt.registerSingleton<UrlLauncherWrapper>(UrlLauncherWrapper());
-  getIt.registerSingleton<AppSettingsWrapper>(AppSettingsWrapper());
-
-  // Setup infrastructure dependencies
-  getIt.registerSingleton<ImplLauncherService>(
-    ImplLauncherService(
-      getIt<UrlLauncherWrapper>(),
-      getIt<AppSettingsWrapper>(),
-    ),
-  );
-
-  getIt.registerSingleton<ImplAuthService>(
-    ImplAuthService(
-      getIt<SupabaseClient>(),
-      getIt<SharedPreferences>(),
-      getIt<HttpFailureHandler>(),
-    ),
-  );
-
-  getIt.registerSingleton<ImplUserRepository>(
-    ImplUserRepository(getIt<SupabaseClient>(), getIt<HttpFailureHandler>()),
-  );
-  getIt.registerSingleton<NtpNetworkTimeService>(
-    NtpNetworkTimeService(getIt<SharedPreferences>(), getIt<NtpWrapper>()),
-  );
-  getIt.registerSingleton<SharedPrefColorThemeCache>(
-    SharedPrefColorThemeCache(getIt<SharedPreferences>()),
-  );
-
-  getIt.registerSingleton<FlutterLocalNotificationsPlugin>(
-    FlutterLocalNotificationsPlugin(),
-  );
-  getIt.registerSingleton<FlutterAppBadgerWrapper>(FlutterAppBadgerWrapper());
-  getIt.registerSingleton<LocalNotificationsDetailsFactory>(
-    LocalNotificationsDetailsFactory(),
-  );
-  getIt.registerSingleton<LocalNotificationsServiceInitializer>(
-    LocalNotificationsServiceInitializer(),
-  );
-  getIt.registerSingleton<IosCommunicationNotification>(
-    IosCommunicationNotification(),
-  );
-
-  getIt.registerSingleton<ImplAppTrackingService>(ImplAppTrackingService());
-
-  getIt.registerSingleton<ImplAnalyticsService>(const ImplAnalyticsService());
-
-  // Setup permission dependencies
-  getIt.registerSingleton<RevenuecatPurchasesService>(
-    RevenuecatPurchasesService(getIt<PurchasesWrapper>()),
-  );
-  getIt.registerSingleton<MicrophonePermissionService>(
-    MicrophonePermissionService(Permission.microphone),
-  );
-
-  getIt.registerSingleton<NotificationPermissionService>(
-    NotificationPermissionService(Permission.notification),
-  );
-
-  getIt.registerSingleton<CameraPermissionService>(
-    CameraPermissionService(Permission.camera),
-  );
-
-  getIt.registerSingleton<GalleryPermissionService>(
-    GalleryPermissionService(Permission.photos),
-  );
-
-  getIt.registerSingleton<FakePermissionService>(FakePermissionService());
-
-  getIt.registerFactory<FirebaseNotificationsService>(
-    () => ImplFirebaseRemoteNotificationsService(
-      FirebaseMessaging.instance,
-      FirebaseMessaging.onMessage,
-      FirebaseMessaging.onMessageOpenedApp,
-    ),
-  );
-
-  getIt.registerSingleton<Launcher>(Launcher(getIt<ImplLauncherService>()));
-  getIt.registerSingleton<TarotsAppConfig>(TarotsAppConfig());
-  getIt.registerSingleton<ImplIOSLocalNotificationsService>(
-    ImplIOSLocalNotificationsService(
-      getIt<FlutterLocalNotificationsPlugin>(),
-      getIt<FlutterAppBadgerWrapper>(),
-      getIt<LocalNotificationsDetailsFactory>(),
-      getIt<LocalNotificationsServiceInitializer>(),
-      getIt<IosCommunicationNotification>(),
-    ),
-  );
-  getIt.registerSingleton<ImplAndroidLocalNotificationsService>(
-    ImplAndroidLocalNotificationsService(
-      getIt<FlutterLocalNotificationsPlugin>(),
-      getIt<FlutterAppBadgerWrapper>(),
-      getIt<LocalNotificationsDetailsFactory>(),
-      getIt<LocalNotificationsServiceInitializer>(),
-    ),
-  );
-
-  getIt.registerSingleton<ClipboardWrapper>(ClipboardWrapper());
-  getIt.registerSingleton<ShareWrapper>(ShareWrapper());
-  getIt.registerSingleton<SocialShareWrapper>(SocialShareWrapper());
-
-  getIt.registerSingleton<ImplSharingService>(
-    ImplSharingService(
-      getIt<ClipboardWrapper>(),
-      getIt<ShareWrapper>(),
-      getIt<SocialShareWrapper>(),
-    ),
-  );
-  getIt.registerSingleton<StoreCheckerService>(StoreCheckerService());
-
-  // Setup application dependencies
-  getIt.registerFactory<AuthCubit>(
-    () => AuthCubit(
-      getIt<ImplAuthService>(),
-      getIt<ImplUserRepository>(),
-      getIt<ImplAppTrackingService>(),
-      getIt<StoreCheckerService>(),
-    ),
-  );
-
-  getIt.registerFactory<AnalyticsCubit>(
-    () => AnalyticsCubit(getIt<ImplAnalyticsService>()),
-  );
-  getIt.registerFactory<NetworkTimeProvider>(
-    () => NetworkTimeProvider(getIt<NtpNetworkTimeService>()),
-  );
-  getIt.registerFactory<DeepLinkCubit>(
-    () => DeepLinkCubit(getIt<ImplDeepLinkService>()),
-  );
-
-  getIt.registerFactory<ColorThemeBloc>(
-    () => ColorThemeBloc(getIt<SharedPrefColorThemeCache>()),
-  );
-
-  getIt.registerFactory<NativePermissionBloc>(() {
-    return NativePermissionBloc(
-      getIt<NotificationPermissionService>(),
-      getIt<GalleryPermissionService>(),
-      getIt<CameraPermissionService>(),
-      getIt<FakePermissionService>(),
+  getIt
+    ..registerSingleton<SupabaseClient>(
+      SupabaseClient(envConfig.supabaseUrl, envConfig.supabaseAnonKey),
+    )
+    ..registerSingleton<SharedPreferences>(sharedPreferences)
+    ..registerSingleton<Uuid>(const Uuid())
+    ..registerSingleton<NtpWrapper>(NtpWrapper())
+    ..registerSingleton<AppLinks>(AppLinks())
+    ..registerSingleton<DeviceInfoPlugin>(DeviceInfoPlugin())
+    ..registerSingleton<PackageInfo>(await PackageInfo.fromPlatform())
+    ..registerSingleton<PurchasesWrapper>(PurchasesWrapper())
+    ..registerSingleton<HttpFailureHandler>(const HttpFailureHandler())
+    ..registerSingleton<GoogleSignIn>(GoogleSignIn())
+    ..registerSingleton<SignInWithAppleWrapper>(SignInWithAppleWrapper())
+    ..registerSingleton<UrlLauncherWrapper>(UrlLauncherWrapper())
+    ..registerSingleton<AppSettingsWrapper>(AppSettingsWrapper())
+    // Setup infrastructure dependencies
+    ..registerSingleton<ImplLauncherService>(
+      ImplLauncherService(
+        getIt<UrlLauncherWrapper>(),
+        getIt<AppSettingsWrapper>(),
+      ),
+    )
+    ..registerSingleton<ImplAuthService>(
+      ImplAuthService(
+        getIt<SupabaseClient>(),
+        getIt<SharedPreferences>(),
+        getIt<HttpFailureHandler>(),
+      ),
+    )
+    ..registerSingleton<ImplUserRepository>(
+      ImplUserRepository(getIt<SupabaseClient>(), getIt<HttpFailureHandler>()),
+    )
+    ..registerSingleton<NtpNetworkTimeService>(
+      NtpNetworkTimeService(getIt<SharedPreferences>(), getIt<NtpWrapper>()),
+    )
+    ..registerSingleton<SharedPrefColorThemeCache>(
+      SharedPrefColorThemeCache(getIt<SharedPreferences>()),
+    )
+    ..registerSingleton<FlutterLocalNotificationsPlugin>(
+      FlutterLocalNotificationsPlugin(),
+    )
+    ..registerSingleton<FlutterAppBadgerWrapper>(FlutterAppBadgerWrapper())
+    ..registerSingleton<LocalNotificationsDetailsFactory>(
+      const LocalNotificationsDetailsFactory(),
+    )
+    ..registerSingleton<LocalNotificationsServiceInitializer>(
+      const LocalNotificationsServiceInitializer(),
+    )
+    ..registerSingleton<IosCommunicationNotification>(
+      IosCommunicationNotification(),
+    )
+    ..registerSingleton<ImplAppTrackingService>(ImplAppTrackingService())
+    ..registerSingleton<ImplAnalyticsService>(const ImplAnalyticsService())
+    // Setup permission dependencies
+    ..registerSingleton<RevenuecatPurchasesService>(
+      RevenuecatPurchasesService(getIt<PurchasesWrapper>()),
+    )
+    ..registerSingleton<MicrophonePermissionService>(
+      MicrophonePermissionService(Permission.microphone),
+    )
+    ..registerSingleton<NotificationPermissionService>(
+      NotificationPermissionService(Permission.notification),
+    )
+    ..registerSingleton<CameraPermissionService>(
+      CameraPermissionService(Permission.camera),
+    )
+    ..registerSingleton<GalleryPermissionService>(
+      GalleryPermissionService(Permission.photos),
+    )
+    ..registerSingleton<FakePermissionService>(FakePermissionService())
+    ..registerFactory<FirebaseNotificationsService>(
+      () => ImplFirebaseRemoteNotificationsService(
+        FirebaseMessaging.instance,
+        FirebaseMessaging.onMessage,
+        FirebaseMessaging.onMessageOpenedApp,
+      ),
+    )
+    ..registerSingleton<Launcher>(Launcher(getIt<ImplLauncherService>()))
+    ..registerSingleton<TarotsAppConfig>(TarotsAppConfig())
+    ..registerSingleton<ImplIOSLocalNotificationsService>(
+      ImplIOSLocalNotificationsService(
+        getIt<FlutterLocalNotificationsPlugin>(),
+        getIt<FlutterAppBadgerWrapper>(),
+        getIt<LocalNotificationsDetailsFactory>(),
+        getIt<LocalNotificationsServiceInitializer>(),
+        getIt<IosCommunicationNotification>(),
+      ),
+    )
+    ..registerSingleton<ImplAndroidLocalNotificationsService>(
+      ImplAndroidLocalNotificationsService(
+        getIt<FlutterLocalNotificationsPlugin>(),
+        getIt<FlutterAppBadgerWrapper>(),
+        getIt<LocalNotificationsDetailsFactory>(),
+        getIt<LocalNotificationsServiceInitializer>(),
+      ),
+    )
+    ..registerSingleton<ClipboardWrapper>(ClipboardWrapper())
+    ..registerSingleton<ShareWrapper>(ShareWrapper())
+    ..registerSingleton<SocialShareWrapper>(SocialShareWrapper())
+    ..registerSingleton<ImplSharingService>(
+      ImplSharingService(
+        getIt<ClipboardWrapper>(),
+        getIt<ShareWrapper>(),
+        getIt<SocialShareWrapper>(),
+      ),
+    )
+    ..registerSingleton<StoreCheckerService>(const StoreCheckerService())
+    // Setup application dependencies
+    ..registerFactory<AuthCubit>(
+      () => AuthCubit(
+        getIt<ImplAuthService>(),
+        getIt<ImplUserRepository>(),
+        getIt<ImplAppTrackingService>(),
+        getIt<StoreCheckerService>(),
+      ),
+    )
+    ..registerFactory<AnalyticsCubit>(
+      () => AnalyticsCubit(getIt<ImplAnalyticsService>()),
+    )
+    ..registerFactory<NetworkTimeProvider>(
+      () => NetworkTimeProvider(getIt<NtpNetworkTimeService>()),
+    )
+    ..registerFactory<DeepLinkCubit>(
+      () => DeepLinkCubit(getIt<ImplDeepLinkService>()),
+    )
+    ..registerFactory<ColorThemeBloc>(
+      () => ColorThemeBloc(getIt<SharedPrefColorThemeCache>()),
+    )
+    ..registerFactory<NativePermissionBloc>(() {
+      return NativePermissionBloc(
+        getIt<NotificationPermissionService>(),
+        getIt<GalleryPermissionService>(),
+        getIt<CameraPermissionService>(),
+        getIt<FakePermissionService>(),
+      );
+    })
+    ..registerFactory<PurchasesBloc>(
+      () => PurchasesBloc(getIt<RevenuecatPurchasesService>()),
+    )
+    ..registerFactory<RemoteNotificationTokenCubit>(
+      () => RemoteNotificationTokenCubit(getIt<FirebaseNotificationsService>()),
+    )
+    ..registerFactory<RemoteNotificationCubit>(
+      () => RemoteNotificationCubit(
+        getIt<FirebaseNotificationsService>(),
+        Platform.isIOS
+            ? getIt<ImplIOSLocalNotificationsService>()
+            : getIt<ImplAndroidLocalNotificationsService>(),
+      ),
+    )
+    ..registerFactory<RegisterCubit>(
+      () => RegisterCubit(getIt<ImplUserRepository>()),
     );
-  });
-
-  getIt.registerFactory<PurchasesBloc>(
-    () => PurchasesBloc(getIt<RevenuecatPurchasesService>()),
-  );
-
-  getIt.registerFactory<RemoteNotificationTokenCubit>(
-    () => RemoteNotificationTokenCubit(getIt<FirebaseNotificationsService>()),
-  );
-
-  getIt.registerFactory<RemoteNotificationCubit>(
-    () => RemoteNotificationCubit(
-      getIt<FirebaseNotificationsService>(),
-      Platform.isIOS
-          ? getIt<ImplIOSLocalNotificationsService>()
-          : getIt<ImplAndroidLocalNotificationsService>(),
-    ),
-  );
-
-  getIt.registerFactory<RegisterCubit>(
-    () => RegisterCubit(getIt<ImplUserRepository>()),
-  );
 }

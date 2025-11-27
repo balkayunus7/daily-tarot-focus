@@ -3,10 +3,6 @@ import 'package:daily_tarot_focus/features/auth/domain/enums/tarot_user_relation
 import 'package:daily_tarot_focus/features/auth/domain/enums/tarot_user_zodiac_enum.dart';
 
 class TarotUserPropertiesModel {
-  final String zodiacSign;
-  final String relationshipStatus;
-  final String birthDate;
-
   const TarotUserPropertiesModel({
     required this.zodiacSign,
     required this.relationshipStatus,
@@ -20,6 +16,17 @@ class TarotUserPropertiesModel {
       birthDate: map['birth_date'] as String,
     );
   }
+
+  factory TarotUserPropertiesModel.fromEntity(TarotUserProperties entity) {
+    return TarotUserPropertiesModel(
+      zodiacSign: entity.zodiac.value,
+      relationshipStatus: entity.relationshipStatus.value,
+      birthDate: entity.birthDate.toIso8601String(),
+    );
+  }
+  final String zodiacSign;
+  final String relationshipStatus;
+  final String birthDate;
 
   Map<String, dynamic> toMap() {
     return {
@@ -36,13 +43,4 @@ class TarotUserPropertiesModel {
       birthDate: DateTime.parse(birthDate),
     );
   }
-
-  factory TarotUserPropertiesModel.fromEntity(TarotUserProperties entity) {
-    return TarotUserPropertiesModel(
-      zodiacSign: entity.zodiac.value,
-      relationshipStatus: entity.relationshipStatus.value,
-      birthDate: entity.birthDate.toIso8601String(),
-    );
-  }
 }
-

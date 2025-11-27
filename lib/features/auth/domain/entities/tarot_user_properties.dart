@@ -4,15 +4,15 @@ import 'package:mobile_boilerplate/common_dependencies.dart';
 import 'package:mobile_boilerplate/domain/auth/user_properties.dart';
 
 class TarotUserProperties extends UserProperties with EquatableMixin {
-  final ZodiacSign zodiac;
-  final RelationshipStatus relationshipStatus;
-  final DateTime birthDate;
-
   const TarotUserProperties({
     required this.zodiac,
     required this.relationshipStatus,
     required this.birthDate,
   });
+
+  final ZodiacSign zodiac;
+  final RelationshipStatus relationshipStatus;
+  final DateTime birthDate;
 
   TarotUserProperties copyWith({
     ZodiacSign? zodiac,

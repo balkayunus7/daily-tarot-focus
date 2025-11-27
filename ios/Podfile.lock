@@ -235,8 +235,6 @@ PODS:
   - GTMSessionFetcher/Core (3.5.0)
   - GTMSessionFetcher/Full (3.5.0):
     - GTMSessionFetcher/Core
-  - home_widget (0.0.1):
-    - Flutter
   - image_gallery_saver (2.0.2):
     - Flutter
   - ios_communication_notification (1.0.1):
@@ -324,7 +322,6 @@ DEPENDENCIES:
   - flutter_local_notifications (from `.symlinks/plugins/flutter_local_notifications/ios`)
   - flutter_secure_storage (from `.symlinks/plugins/flutter_secure_storage/ios`)
   - google_sign_in_ios (from `.symlinks/plugins/google_sign_in_ios/darwin`)
-  - home_widget (from `.symlinks/plugins/home_widget/ios`)
   - image_gallery_saver (from `.symlinks/plugins/image_gallery_saver/ios`)
   - ios_communication_notification (from `.symlinks/plugins/ios_communication_notification/ios`)
   - objective_c (from `.symlinks/plugins/objective_c/ios`)
@@ -412,8 +409,6 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/flutter_secure_storage/ios"
   google_sign_in_ios:
     :path: ".symlinks/plugins/google_sign_in_ios/darwin"
-  home_widget:
-    :path: ".symlinks/plugins/home_widget/ios"
   image_gallery_saver:
     :path: ".symlinks/plugins/image_gallery_saver/ios"
   ios_communication_notification:
@@ -485,7 +480,6 @@ SPEC CHECKSUMS:
   GoogleUtilities: 00c88b9a86066ef77f0da2fab05f65d7768ed8e1
   GTMAppAuth: f69bd07d68cd3b766125f7e072c45d7340dea0de
   GTMSessionFetcher: 5aea5ba6bd522a239e236100971f10cb71b96ab6
-  home_widget: 0434835a4c9a75704264feff6be17ea40e0f0d57
   image_gallery_saver: cb43cc43141711190510e92c460eb1655cd343cb
   ios_communication_notification: 00aec93bfd8d4ac7a5b267364de2ef1f3c731f69
   libwebp: 02b23773aedb6ff1fd38cec7a77b81414c6842a8

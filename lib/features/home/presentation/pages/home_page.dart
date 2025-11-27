@@ -1,8 +1,9 @@
 import 'package:daily_tarot_focus/config/app_routes.dart';
+import 'package:daily_tarot_focus/core/util/haptic_feedback_helper.dart';
+import 'package:daily_tarot_focus/features/home/presentation/widgets/home_bottom_navbar.dart';
+import 'package:daily_tarot_focus/features/tarot/presentation/pages/tarot_page.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:mobile_boilerplate/application/auth/auth_cubit.dart';
-import 'package:mobile_boilerplate/common_dependencies.dart';
 import 'package:mobile_boilerplate/presentation/routing/route_arguments.dart';
 import 'package:mobile_boilerplate/presentation/routing/route_aware_analytics_mixin.dart';
 
@@ -36,6 +37,14 @@ class _HomePageState extends State<HomePage>
   late PageController pageController;
   int currentIndex = 0;
 
+  Future<void> _onBottomNavigationBarTap(int index) async {
+    await HapticFeedbackHelper.selectionClick();
+    setState(() {
+      currentIndex = index;
+    });
+    pageController.jumpToPage(index);
+  }
+
   @override
   void initState() {
     super.initState();
@@ -48,18 +57,15 @@ class _HomePageState extends State<HomePage>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Home')),
-      body: Center(
-        child: BlocBuilder<AuthCubit, AuthState>(
-          builder: (context, state) {
-            return Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const Text('Home Page'),
-                Text(state.userOrCrash.toString()),
-              ],
-            );
-          },
+      body: PageView(
+        physics: const NeverScrollableScrollPhysics(),
+        controller: pageController,
+        children: const [TarotPage(), TarotPage(), TarotPage()],
+      ),
+      bottomNavigationBar: SafeArea(
+        child: HomeBottomNavbar(
+          currentIndex: currentIndex,
+          onTap: _onBottomNavigationBarTap,
         ),
       ),
     );

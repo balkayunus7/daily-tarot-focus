@@ -3,11 +3,10 @@ enum TarotAppAssets {
   onboardingStep1._('assets/gif/onboarding_step_1.gif'),
   onboardingStep2._('assets/gif/onboarding_step_2.gif'),
   paywall._('assets/gif/paywall.gif'),
-  fishman1._('assets/png/fishman_1.png'),
-  fishman2._('assets/png/fishman_2.png'),
-  identify._('assets/png/identify.png'),
-  popular._('assets/png/populer.png'),
   loading._('assets/png/loading.png'),
+  cardDesign._('assets/png/card_design.png'),
+  yesNoCard._('assets/png/yes_or_no.png'),
+  guide._('assets/png/guide.png'),
   crown._('assets/svg/crown.svg'),
   fish._('assets/svg/fish.svg'),
   explore._('assets/svg/explore.svg'),
@@ -25,12 +24,7 @@ enum TarotAppAssets {
   pause._('assets/svg/pause.svg'),
   play._('assets/svg/play.svg'),
   nextSong._('assets/svg/next_song.svg'),
-  spotify._('assets/svg/spotify.svg'),
-  previousSong._('assets/svg/previous_song.svg'),
-  sample._('assets/srt/sample.srt'),
-  sample2._('assets/srt/sample2.srt'),
-  gurbetMp3._('assets/srt/gurbet.mp3'),
-  gurbetSrt._('assets/srt/gurbet.srt');
+  spotify._('assets/svg/spotify.svg');
 
   const TarotAppAssets._(this.path);
   final String path;

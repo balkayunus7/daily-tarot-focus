@@ -18,72 +18,73 @@ class HomeBottomNavbar extends StatelessWidget {
   Widget build(BuildContext context) {
     final items = TarotMockDatas.navbarItems;
 
-    return Container(
-      height: 56,
-      width: double.infinity,
-      padding: const EdgeInsets.symmetric(horizontal: 4),
-      decoration: BoxDecoration(
-        color: context.colors.background,
-        borderRadius: const BorderRadius.all(Radius.circular(100)),
-        boxShadow: [
-          BoxShadow(
-            color: context.colors.textPrimary.withValues(alpha: 0.05),
-            blurRadius: 8,
-            offset: const Offset(0, -2),
-          ),
-        ],
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: List.generate(items.length, (index) {
-          final isSelected = currentIndex == index;
-          final path = items[index]['path']!;
-          final label = items[index]['label']!;
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16),
+      child: Container(
+        height: 64,
+        decoration: BoxDecoration(
+          color: context.colors.background,
+          borderRadius: const BorderRadius.all(Radius.circular(100)),
+          boxShadow: [
+            BoxShadow(
+              color: context.colors.borderSecondary,
+              blurRadius: 8,
+              offset: const Offset(0, -2),
+            ),
+          ],
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: List.generate(items.length, (index) {
+            final isSelected = currentIndex == index;
+            final path = items[index]['path']!;
+            final label = items[index]['label']!;
 
-          return Expanded(
-            child: GestureDetector(
-              onTap: () => onTap(index),
-              child: Container(
-                margin: EdgeInsets.zero,
-                padding: const EdgeInsets.symmetric(vertical: 4),
-                decoration: BoxDecoration(
-                  color:
-                      isSelected
-                          ? context.colors.secondary
-                          : Colors.transparent,
-                  borderRadius: BorderRadius.circular(100),
-                ),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    SvgPicture.asset(
-                      path,
-                      width: 24,
-                      height: 24,
-                      colorFilter: ColorFilter.mode(
+            return Expanded(
+              child: GestureDetector(
+                onTap: () => onTap(index),
+                child: Container(
+                  margin: const EdgeInsets.symmetric(horizontal: 4),
+                  padding: const EdgeInsets.symmetric(vertical: 10),
+                  decoration: BoxDecoration(
+                    color:
                         isSelected
                             ? context.colors.primary
-                            : context.colors.borderSecondary,
-                        BlendMode.srcIn,
+                            : Colors.transparent,
+                    borderRadius: BorderRadius.circular(100),
+                  ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      SvgPicture.asset(
+                        path,
+                        width: 20,
+                        height: 20,
+                        colorFilter: ColorFilter.mode(
+                          isSelected
+                              ? context.colors.background
+                              : context.colors.primary,
+                          BlendMode.srcIn,
+                        ),
                       ),
-                    ),
-                    const SizedBox(height: 4),
-                    Text(
-                      label,
-                      style: m10w600(context).copyWith(
-                        color:
-                            isSelected
-                                ? context.colors.primary
-                                : context.colors.textSecondary,
+                      const SizedBox(height: 4),
+                      Text(
+                        label,
+                        style: m10w600(context).copyWith(
+                          color:
+                              isSelected
+                                  ? context.colors.background
+                                  : context.colors.primary,
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
-            ),
-          );
-        }),
+            );
+          }),
+        ),
       ),
     );
   }

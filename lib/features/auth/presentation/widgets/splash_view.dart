@@ -41,7 +41,7 @@ class _TarotSplashViewState extends State<TarotSplashView>
       ),
       child: Scaffold(
         body: Container(
-          decoration: const BoxDecoration(color: Color(0xfffefdfc)),
+          decoration: BoxDecoration(color: context.colors.background),
           child: Center(
             child: AnimatedBuilder(
               animation: _controller,

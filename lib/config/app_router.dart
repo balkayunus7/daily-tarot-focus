@@ -4,6 +4,8 @@ import 'package:daily_tarot_focus/features/auth/presentation/pages/register_step
 import 'package:daily_tarot_focus/features/auth/presentation/pages/register_step_zodiac_page.dart';
 import 'package:daily_tarot_focus/features/auth/presentation/pages/splash_page.dart';
 import 'package:daily_tarot_focus/features/home/presentation/pages/home_page.dart';
+import 'package:daily_tarot_focus/features/tarot/presentation/pages/tarot/reveal_page.dart';
+import 'package:daily_tarot_focus/features/tarot/presentation/pages/tarot_detail_page.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -40,6 +42,35 @@ final appRouter = GoRouter(
       builder: (context, state) {
         final args = state.extra as HomePageArguments?;
         return HomePage(arguments: args ?? HomePageArguments(context));
+      },
+    ),
+    GoRoute(
+      path: AppRoutes.dailyTarotReveal,
+      name: AppRoutes.dailyTarotReveal,
+      pageBuilder: (context, state) {
+        return CustomTransitionPage(
+          key: state.pageKey,
+          child: const TarotRevealPage(),
+          transitionsBuilder: (context, animation, secondaryAnimation, child) {
+            return FadeTransition(
+              opacity: animation,
+              child: child,
+            );
+          },
+        );
+      },
+    ),
+    GoRoute(
+      path: AppRoutes.tarotCardDetail,
+      name: AppRoutes.tarotCardDetail,
+      pageBuilder: (context, state) {
+        return CustomTransitionPage(
+          key: state.pageKey,
+          child: const TarotDetailPage(),
+          transitionsBuilder: (context, animation, secondaryAnimation, child) {
+            return child;
+          },
+        );
       },
     ),
   ],

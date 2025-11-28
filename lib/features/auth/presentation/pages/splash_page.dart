@@ -2,11 +2,11 @@ import 'dart:io';
 
 import 'package:daily_tarot_focus/config/app_routes.dart';
 import 'package:daily_tarot_focus/core/util/tarot_app_assets.dart';
-import 'package:daily_tarot_focus/core/util/tarot_app_sizes.dart';
 import 'package:daily_tarot_focus/features/auth/domain/entities/tarot_user.dart';
 import 'package:daily_tarot_focus/features/auth/presentation/widgets/splash_view.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:lottie/lottie.dart';
 import 'package:mobile_boilerplate/application/auth/auth_cubit.dart';
 import 'package:mobile_boilerplate/common_dependencies.dart';
 import 'package:mobile_boilerplate/presentation/routing/route_aware_analytics_mixin.dart';
@@ -36,11 +36,10 @@ class _SplashPageState extends State<SplashPage>
     final authState = context.read<AuthCubit>().state;
     final user = authState.userOrCrash;
     if (user is! TarotUser) return;
-    context.go(AppRoutes.registerStepZodiac);
+    context.go(AppRoutes.home);
   }
 
   @override
-
   Widget build(BuildContext context) {
     return Scaffold(
       body: MultiBlocListener(
@@ -65,12 +64,14 @@ class _SplashPageState extends State<SplashPage>
           ),
         ],
         child: TarotSplashView(
-          logo: ClipRRect(
-            borderRadius: Spacing.circularBorderRadius,
-            child: Image.asset(
-              TarotAppAssets.appLogo.path,
-              width: 120,
-              height: 120,
+          logo: SizedBox(
+            width: 150,
+            height: 150,
+            child: Lottie.asset(
+              TarotAppAssets.tarot.path,
+              fit: BoxFit.contain,
+              repeat: true,
+              animate: true,
             ),
           ),
         ),

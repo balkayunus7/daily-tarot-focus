@@ -19,9 +19,29 @@ class SpacingConsts {
   static const double inputPadding = small;
   static const double contSize = 54;
 
-  static const double cardHeight = 190;
-  static const double cardWidth = 120;
+  static const double flipCardHeight = 190;
+  static const double flipCardWidth = 120;
+  static const double cardWheelItemExtent = 130;
+  static const double cardWheelDiameterRatio = 1.5;
+  static const double cardWheelPerspective = 0.0008;
+  static const double cardWheelSqueeze = 1.5;
+  static const int totalCards = 50;
+  static const Duration entranceAnimationDuration = Duration(
+    milliseconds: 1500,
+  );
+  static const Duration flipAnimationDuration = Duration(
+    milliseconds: 800,
+  );
+  static const Duration starsAnimationDuration = Duration(seconds: 2);
+  static const Duration flipCardDuration = Duration(
+    milliseconds: 3000,
+  );
   static const double cardShadowBlurRadius = 20;
+  static const double cardShadowSpreadRadius = 10;
+  static const double wheelCardSelectedWidth = 100;
+  static const double wheelCardSelectedHeight = 200;
+  static const double wheelCardUnselectedWidth = 70;
+  static const double wheelCardUnselectedHeight = 110;
 }
 
 class Spacing {

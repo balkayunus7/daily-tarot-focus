@@ -67,4 +67,5 @@ flutter:
     - assets/translations/
     - assets/png/
     - assets/svg/
-    - assets/gif/
+    - assets/json/
+    - assets/jpg/

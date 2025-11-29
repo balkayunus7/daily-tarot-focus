@@ -4,17 +4,27 @@ class CardItem extends StatelessWidget {
   const CardItem({
     required this.index,
     required this.isSelected,
+    required this.cardImagePath,
     required this.handleCardTap,
     super.key,
   });
   final int index;
   final bool isSelected;
+  final String cardImagePath;
   final void Function(int index) handleCardTap;
 
   @override
   Widget build(BuildContext context) {
-    final cardWidth = isSelected ? 100.0 : 70.0;
-    final cardHeight = isSelected ? 200.0 : 110.0;
+    double getCardSize({required bool isWidth, required bool isSelected}) {
+      if (isWidth) {
+        return isSelected
+            ? SpacingConsts.wheelCardSelectedWidth
+            : SpacingConsts.wheelCardUnselectedWidth;
+      }
+      return isSelected
+          ? SpacingConsts.wheelCardSelectedHeight
+          : SpacingConsts.wheelCardUnselectedHeight;
+    }
 
     return RotatedBox(
       quarterTurns: -1,
@@ -24,17 +34,16 @@ class CardItem extends StatelessWidget {
           child: AnimatedContainer(
             duration: const Duration(milliseconds: 200),
             curve: Curves.easeOut,
-            width: cardWidth,
-            height: cardHeight,
+            width: getCardSize(isWidth: true, isSelected: isSelected),
+            height: getCardSize(isWidth: false, isSelected: isSelected),
             margin: EdgeInsets.symmetric(vertical: isSelected ? 0 : 2),
             decoration: BoxDecoration(
               color: Colors.transparent,
               borderRadius: Spacing.xsmallBorderRadius,
-
               border:
                   isSelected
                       ? Border.all(
-                        color: context.colors.primary.withValues(alpha: 0.4),
+                        color: context.colors.surfaceSecondary,
                         width: 1.5,
                       )
                       : null,
@@ -48,7 +57,7 @@ class CardItem extends StatelessWidget {
                 ),
                 if (isSelected)
                   BoxShadow(
-                    color: context.colors.primary.withValues(alpha: 0.5),
+                    color: context.colors.surfaceSecondary,
                     blurRadius: 10,
                     spreadRadius: 3,
                   ),

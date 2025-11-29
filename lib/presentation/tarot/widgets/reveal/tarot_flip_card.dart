@@ -1,19 +1,14 @@
 part of '../../pages/tarot_reveal_page.dart';
 
-class TarotFlipCard extends StatefulWidget {
+class TarotFlipCard extends StatelessWidget {
   const TarotFlipCard({super.key});
 
-  @override
-  State<TarotFlipCard> createState() => _TarotFlipCardState();
-}
-
-class _TarotFlipCardState extends State<TarotFlipCard> {
   @override
   Widget build(BuildContext context) {
     return Center(
       child: TweenAnimationBuilder<double>(
         tween: Tween(begin: 0, end: 1),
-        duration: _TarotRevealConstants.cardFlipDuration,
+        duration: const Duration(milliseconds: 3000),
         curve: Curves.easeInOutCubic,
         onEnd: () {
           context.go(AppRoutes.tarotCardDetail);
@@ -65,8 +60,8 @@ class _TarotFrontCard extends StatelessWidget {
     return Hero(
       tag: 'daily_tarot_card_hero',
       child: Container(
-        width: SpacingConsts.cardWidth,
-        height: SpacingConsts.cardHeight,
+        width: SpacingConsts.flipCardWidth,
+        height: SpacingConsts.flipCardHeight,
         padding: const EdgeInsets.all(8),
         decoration: BoxDecoration(
           borderRadius: Spacing.xsmallBorderRadius,
@@ -95,7 +90,7 @@ class _TarotFrontCard extends StatelessWidget {
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(4),
                 child: Image.asset(
-                  TarotAppAssets.starCard.path,
+                  TarotMockDatas.randomTarotCard,
                   fit: BoxFit.cover,
                 ),
               ),
@@ -119,8 +114,8 @@ class _TarotBackCard extends StatelessWidget {
     return Hero(
       tag: 'daily_tarot_card_hero',
       child: Container(
-        width: SpacingConsts.cardWidth,
-        height: SpacingConsts.cardHeight,
+        width: SpacingConsts.flipCardWidth,
+        height: SpacingConsts.flipCardHeight,
         decoration: BoxDecoration(
           borderRadius: Spacing.xsmallBorderRadius,
           border: Border.all(color: context.colors.primary),
@@ -160,7 +155,7 @@ class _TarotShiningStarsState extends State<_TarotShiningStars>
     super.initState();
     starsController = AnimationController(
       vsync: this,
-      duration: _TarotRevealConstants.starsAnimationDuration,
+      duration: const Duration(seconds: 2),
     );
     unawaited(starsController.repeat());
   }

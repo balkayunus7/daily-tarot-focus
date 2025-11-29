@@ -5,8 +5,8 @@ enum TarotAppAssets {
   paywall._('assets/gif/paywall.gif'),
   loading._('assets/png/loading.png'),
   cardDesign._('assets/png/card_design.png'),
-  yesNoCard._('assets/png/yes_or_no.jpg'),
-  starCard._('assets/png/star.jpg'),
+  yesNoCard._('assets/jpg/yes_or_no.jpg'),
+  starCard._('assets/jpg/star.jpg'),
   background._('assets/png/background+new2.png'),
   guide._('assets/png/guide.png'),
   crown._('assets/svg/crown.svg'),
@@ -26,9 +26,9 @@ enum TarotAppAssets {
   pause._('assets/svg/pause.svg'),
   play._('assets/svg/play.svg'),
   nextSong._('assets/svg/next_song.svg'),
-  shiningStars._('assets/png/shining_stars.json'),
-  tarot._('assets/png/tarot.json'),
-  drag._('assets/png/drag.json'),
+  shiningStars._('assets/json/shining_stars.json'),
+  tarot._('assets/json/tarot.json'),
+  drag._('assets/json/drag.json'),
   spotify._('assets/svg/spotify.svg');
 
   const TarotAppAssets._(this.path);

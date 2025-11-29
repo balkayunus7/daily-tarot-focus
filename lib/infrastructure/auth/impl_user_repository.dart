@@ -1,5 +1,5 @@
-import 'package:daily_tarot_focus/domain/auth/data/tarot_user.dart';
-import 'package:daily_tarot_focus/domain/auth/data/tarot_user_properties.dart';
+import 'package:daily_tarot_focus/domain/auth/tarot_user.dart';
+import 'package:daily_tarot_focus/domain/auth/tarot_user_properties.dart';
 import 'package:mobile_boilerplate/common_dependencies.dart';
 import 'package:mobile_boilerplate/domain/auth/i_user_repository.dart';
 import 'package:mobile_boilerplate/domain/auth/session.dart';

@@ -1,4 +1,4 @@
-import 'package:daily_tarot_focus/domain/auth/data/remote_notification_message.dart';
+import 'package:daily_tarot_focus/domain/auth/remote_notification_message.dart';
 import 'package:mobile_boilerplate/domain/remote_notification/remote_notification.dart';
 import 'package:mobile_boilerplate/infrastructure/remote_notification/firebase_notifications_service.dart';
 import 'package:mobile_boilerplate/infrastructure_dependencies.dart' as fm;

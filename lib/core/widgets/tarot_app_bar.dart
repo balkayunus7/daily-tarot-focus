@@ -2,7 +2,7 @@ import 'package:daily_tarot_focus/core/util/font_style_helper.dart';
 import 'package:daily_tarot_focus/core/util/tarot_app_assets.dart';
 import 'package:daily_tarot_focus/core/util/tarot_app_sizes.dart';
 import 'package:daily_tarot_focus/core/widgets/tarot_button.dart';
-import 'package:daily_tarot_focus/domain/auth/data/tarot_user.dart';
+import 'package:daily_tarot_focus/domain/auth/tarot_user.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:mobile_boilerplate/application/auth/auth_cubit.dart';

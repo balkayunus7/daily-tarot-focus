@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:daily_tarot_focus/domain/auth/data/tarot_session.dart';
+import 'package:daily_tarot_focus/domain/auth/tarot_session.dart';
 import 'package:flutter/services.dart';
 import 'package:mobile_boilerplate/common_dependencies.dart';
 import 'package:mobile_boilerplate/domain/auth/auth_provider.dart' as domain;

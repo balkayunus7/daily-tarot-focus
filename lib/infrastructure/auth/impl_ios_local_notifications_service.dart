@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:daily_tarot_focus/domain/auth/data/remote_notification_message.dart';
+import 'package:daily_tarot_focus/domain/auth/remote_notification_message.dart';
 import 'package:mobile_boilerplate/domain/remote_notification/remote_notification.dart';
 import 'package:mobile_boilerplate/infrastructure/remote_notification/local_notifications_index.dart';
 

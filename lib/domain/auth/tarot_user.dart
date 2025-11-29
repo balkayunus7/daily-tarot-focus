@@ -1,5 +1,5 @@
-import 'package:daily_tarot_focus/domain/auth/enums/tarot_user_relations_enum.dart';
-import 'package:daily_tarot_focus/domain/auth/enums/tarot_user_zodiac_enum.dart';
+import 'package:daily_tarot_focus/domain/auth/tarot_user_relations_enum.dart';
+import 'package:daily_tarot_focus/domain/auth/tarot_user_zodiac_enum.dart';
 import 'package:mobile_boilerplate/common_dependencies.dart';
 import 'package:mobile_boilerplate/domain/auth/purchaser.dart';
 import 'package:mobile_boilerplate/domain/auth/user.dart';

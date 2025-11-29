@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:daily_tarot_focus/config/app_routes.dart';
 import 'package:daily_tarot_focus/core/util/tarot_app_assets.dart';
-import 'package:daily_tarot_focus/domain/auth/data/tarot_user.dart';
+import 'package:daily_tarot_focus/domain/auth/tarot_user.dart';
 import 'package:daily_tarot_focus/presentation/auth/widgets/splash_view.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';

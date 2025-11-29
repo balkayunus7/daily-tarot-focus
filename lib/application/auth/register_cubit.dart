@@ -1,7 +1,7 @@
-import 'package:daily_tarot_focus/domain/auth/data/tarot_user_properties.dart';
-import 'package:daily_tarot_focus/domain/auth/enums/register_enum.dart';
-import 'package:daily_tarot_focus/domain/auth/enums/tarot_user_relations_enum.dart';
-import 'package:daily_tarot_focus/domain/auth/enums/tarot_user_zodiac_enum.dart';
+import 'package:daily_tarot_focus/domain/auth/tarot_user_properties.dart';
+import 'package:daily_tarot_focus/domain/auth/register_enum.dart';
+import 'package:daily_tarot_focus/domain/auth/tarot_user_relations_enum.dart';
+import 'package:daily_tarot_focus/domain/auth/tarot_user_zodiac_enum.dart';
 import 'package:mobile_boilerplate/common_dependencies.dart';
 import 'package:mobile_boilerplate/domain/auth/i_user_repository.dart';
 import 'package:mobile_boilerplate/domain/auth/session.dart';

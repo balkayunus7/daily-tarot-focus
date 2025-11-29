@@ -1,11 +1,11 @@
 import 'package:daily_tarot_focus/config/app_routes.dart';
-import 'package:daily_tarot_focus/features/auth/presentation/pages/register_step_birthdate_page.dart';
-import 'package:daily_tarot_focus/features/auth/presentation/pages/register_step_relationship_page.dart';
-import 'package:daily_tarot_focus/features/auth/presentation/pages/register_step_zodiac_page.dart';
-import 'package:daily_tarot_focus/features/auth/presentation/pages/splash_page.dart';
-import 'package:daily_tarot_focus/features/home/presentation/pages/home_page.dart';
-import 'package:daily_tarot_focus/features/tarot/presentation/pages/tarot/reveal_page.dart';
-import 'package:daily_tarot_focus/features/tarot/presentation/pages/tarot_detail_page.dart';
+import 'package:daily_tarot_focus/presentation/auth/pages/register_step_birthdate_page.dart';
+import 'package:daily_tarot_focus/presentation/auth/pages/register_step_relationship_page.dart';
+import 'package:daily_tarot_focus/presentation/auth/pages/register_step_zodiac_page.dart';
+import 'package:daily_tarot_focus/presentation/auth/pages/splash_page.dart';
+import 'package:daily_tarot_focus/presentation/home/pages/home_page.dart';
+import 'package:daily_tarot_focus/presentation/tarot/pages/tarot_detail_page.dart';
+import 'package:daily_tarot_focus/presentation/tarot/pages/tarot_reveal_page.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 

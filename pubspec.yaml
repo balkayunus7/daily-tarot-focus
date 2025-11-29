@@ -20,9 +20,9 @@ dependencies:
   go_router: ^17.0.0
   gradient_borders: ^1.0.2
   http: ^1.2.2
-  lottie: ^3.1.0
   image: ^4.5.4
   image_gallery_saver: ^2.0.3
+  lottie: ^3.1.0
   mobile_boilerplate:
     path: ../mobile-boilerplate
   path_provider: ^2.1.5

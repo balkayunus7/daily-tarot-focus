@@ -1,13 +1,13 @@
 import 'dart:io';
 
+import 'package:daily_tarot_focus/application/auth/register_cubit.dart';
 import 'package:daily_tarot_focus/config/app_config.dart';
 import 'package:daily_tarot_focus/config/env.config.dart';
-import 'package:daily_tarot_focus/features/auth/application/register_cubit.dart';
-import 'package:daily_tarot_focus/features/auth/infrastructure/repository/impl_android_local_notifications_service.dart';
-import 'package:daily_tarot_focus/features/auth/infrastructure/repository/impl_auth_service.dart';
-import 'package:daily_tarot_focus/features/auth/infrastructure/repository/impl_firebase_remote_notifications_service.dart';
-import 'package:daily_tarot_focus/features/auth/infrastructure/repository/impl_ios_local_notifications_service.dart';
-import 'package:daily_tarot_focus/features/auth/infrastructure/repository/impl_user_repository.dart';
+import 'package:daily_tarot_focus/infrastructure/auth/repository/impl_android_local_notifications_service.dart';
+import 'package:daily_tarot_focus/infrastructure/auth/repository/impl_auth_service.dart';
+import 'package:daily_tarot_focus/infrastructure/auth/repository/impl_firebase_remote_notifications_service.dart';
+import 'package:daily_tarot_focus/infrastructure/auth/repository/impl_ios_local_notifications_service.dart';
+import 'package:daily_tarot_focus/infrastructure/auth/repository/impl_user_repository.dart';
 import 'package:mobile_boilerplate/application/analytics/analytics_cubit.dart';
 import 'package:mobile_boilerplate/application/auth/auth_cubit.dart';
 import 'package:mobile_boilerplate/application/color_theme/color_theme_bloc.dart';

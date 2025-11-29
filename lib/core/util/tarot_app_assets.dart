@@ -28,6 +28,7 @@ enum TarotAppAssets {
   nextSong._('assets/svg/next_song.svg'),
   shiningStars._('assets/png/shining_stars.json'),
   tarot._('assets/png/tarot.json'),
+  drag._('assets/png/drag.json'),
   spotify._('assets/svg/spotify.svg');
 
   const TarotAppAssets._(this.path);

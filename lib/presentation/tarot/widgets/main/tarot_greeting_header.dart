@@ -1,4 +1,4 @@
-part of '../pages/tarot_page.dart';
+part of '../../pages/tarot_page.dart';
 
 class TarotGreetingHeader extends StatelessWidget {
   const TarotGreetingHeader({super.key});

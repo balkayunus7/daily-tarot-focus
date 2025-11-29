@@ -1,4 +1,4 @@
-part of '../pages/tarot_page.dart';
+part of '../../pages/tarot_page.dart';
 
 class TarotPaywallCard extends StatelessWidget {
   const TarotPaywallCard({super.key});

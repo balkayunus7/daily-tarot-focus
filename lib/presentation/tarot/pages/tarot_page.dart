@@ -13,10 +13,10 @@ import 'package:mobile_boilerplate/presentation/extensions/build_context_theme_e
 import 'package:mobile_boilerplate/presentation/extensions/date_time_ext.dart';
 import 'package:mobile_boilerplate/presentation/widgets/scaling_container.dart';
 
-part '../widgets/tarot_greeting_header.dart';
-part '../widgets/tarot_daily_card.dart';
-part '../widgets/tarot_base_card.dart';
-part '../widgets/tarot_paywall_card.dart';
+part '../widgets/main/tarot_greeting_header.dart';
+part '../widgets/main/tarot_daily_card.dart';
+part '../widgets/main/tarot_base_card.dart';
+part '../widgets/main/tarot_paywall_card.dart';
 
 class TarotPage extends StatelessWidget {
   const TarotPage({super.key});

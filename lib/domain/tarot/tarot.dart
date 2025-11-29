@@ -1,51 +1,51 @@
 class Tarot {
   const Tarot({
-    required this.tarotTitle,
-    required this.tarotDescription,
-    required this.tarotAdvices,
-    required this.tarotWarnings,
-    required this.tarotMeanings,
+    required this.title,
+    required this.description,
+    required this.advices,
+    required this.warnings,
+    required this.meanings,
   });
 
   factory Tarot.fromMap(Map<String, dynamic> map) {
     return Tarot(
-      tarotTitle: map['tarot_title'] as String,
-      tarotDescription: map['tarot_description'] as String,
-      tarotAdvices: List<String>.from(map['tarot_advices'] as List),
-      tarotWarnings: List<String>.from(map['tarot_warnings'] as List),
-      tarotMeanings: List<String>.from(map['tarot_meanings'] as List),
+      title: map['title'] as String,
+      description: map['description'] as String,
+      advices: List<String>.from(map['advices'] as List),
+      warnings: List<String>.from(map['warnings'] as List),
+      meanings: List<String>.from(map['meanings'] as List),
     );
   }
 
-  final String tarotTitle;
-  final String tarotDescription;
-  final List<String> tarotAdvices;
-  final List<String> tarotWarnings;
-  final List<String> tarotMeanings;
+  final String title;
+  final String description;
+  final List<String> advices;
+  final List<String> warnings;
+  final List<String> meanings;
 
   Map<String, dynamic> toMap() {
     return {
-      'tarot_title': tarotTitle,
-      'tarot_description': tarotDescription,
-      'tarot_advices': tarotAdvices,
-      'tarot_warnings': tarotWarnings,
-      'tarot_meanings': tarotMeanings,
+      'title': title,
+      'description': description,
+      'advices': advices,
+      'warnings': warnings,
+      'meanings': meanings,
     };
   }
 
   Tarot copyWith({
-    String? tarotTitle,
-    String? tarotDescription,
-    List<String>? tarotAdvices,
-    List<String>? tarotWarnings,
-    List<String>? tarotMeanings,
+    String? title,
+    String? description,
+    List<String>? advices,
+    List<String>? warnings,
+    List<String>? meanings,
   }) {
     return Tarot(
-      tarotTitle: tarotTitle ?? this.tarotTitle,
-      tarotDescription: tarotDescription ?? this.tarotDescription,
-      tarotAdvices: tarotAdvices ?? this.tarotAdvices,
-      tarotWarnings: tarotWarnings ?? this.tarotWarnings,
-      tarotMeanings: tarotMeanings ?? this.tarotMeanings,
+      title: title ?? this.title,
+      description: description ?? this.description,
+      advices: advices ?? this.advices,
+      warnings: warnings ?? this.warnings,
+      meanings: meanings ?? this.meanings,
     );
   }
 }

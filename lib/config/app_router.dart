@@ -1,4 +1,5 @@
 import 'package:daily_tarot_focus/config/app_routes.dart';
+import 'package:daily_tarot_focus/domain/tarot/tarot.dart';
 import 'package:daily_tarot_focus/presentation/auth/pages/register_step_birthdate_page.dart';
 import 'package:daily_tarot_focus/presentation/auth/pages/register_step_relationship_page.dart';
 import 'package:daily_tarot_focus/presentation/auth/pages/register_step_zodiac_page.dart';
@@ -66,7 +67,28 @@ final appRouter = GoRouter(
       pageBuilder: (context, state) {
         return CustomTransitionPage(
           key: state.pageKey,
-          child: const TarotDetailPage(),
+          child: const TarotDetailPage(
+            tarot: Tarot(
+              title: 'The Star',
+              description:
+                  'The Star is a card of hope, inspiration, and creativity. It suggests a day full of positive energy and opportunities.',
+              advices: [
+                'Take bold steps',
+                'Be social',
+                'Pay attention to your appearance',
+              ],
+              warnings: [
+                'Avoid being too controlling',
+                'Watch your words',
+                'Balance is key',
+              ],
+              meanings: [
+                'Energy & Inspiration',
+                'Charisma & Influence',
+                'Attraction & Charm',
+              ],
+            ),
+          ),
           transitionsBuilder: (context, animation, secondaryAnimation, child) {
             return child;
           },

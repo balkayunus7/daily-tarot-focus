@@ -1,4 +1,4 @@
-part of '../pages/tarot_page.dart';
+part of '../../pages/tarot_page.dart';
 
 class TarotBaseCard extends StatelessWidget {
   const TarotBaseCard({

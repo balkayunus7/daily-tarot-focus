@@ -18,6 +18,10 @@ class SpacingConsts {
   static const double buttonPadding = medium;
   static const double inputPadding = small;
   static const double contSize = 54;
+
+  static const double cardHeight = 190;
+  static const double cardWidth = 120;
+  static const double cardShadowBlurRadius = 20;
 }
 
 class Spacing {

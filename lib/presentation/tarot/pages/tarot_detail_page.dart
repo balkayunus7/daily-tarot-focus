@@ -1,13 +1,15 @@
 import 'package:daily_tarot_focus/core/util/font_style_helper.dart';
 import 'package:daily_tarot_focus/core/util/tarot_app_assets.dart';
 import 'package:daily_tarot_focus/core/util/tarot_app_sizes.dart';
+import 'package:daily_tarot_focus/domain/tarot/tarot.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile_boilerplate/presentation/extensions/build_context_theme_ext.dart';
 
-part '../widgets/tarot_detail_desc_section.dart';
+part '../widgets/detail/tarot_detail_desc_section.dart';
 
 class TarotDetailPage extends StatelessWidget {
-  const TarotDetailPage({super.key});
+  const TarotDetailPage({required this.tarot, super.key});
+  final Tarot tarot;
 
   @override
   Widget build(BuildContext context) {
@@ -37,10 +39,10 @@ class TarotDetailPage extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Column(
                   children: [
-                    Text('The Star', style: m28w600(context)),
+                    Text(tarot.title, style: m28w600(context)),
                     Spacing.smallH,
                     Text(
-                      '– is a card of confidence, energy, and leadership. It suggests a day full of motivation and personal magnetism.',
+                      tarot.description,
                       style: m14w400(context),
                     ),
                     Spacing.largeH,
@@ -71,35 +73,23 @@ class TarotDetailPage extends StatelessWidget {
                       ),
                     ),
                     Spacing.largeH,
-                    const DetailDescriptionSection(
+                    DetailDescriptionSection(
                       title: 'Advice',
-                      descriptions: [
-                        'Take bold steps – This is a great day to show initiative.',
-                        'Be social – Your communication skills are strong today.',
-                        'Pay attention to your appearance – A little extra confidence goes a long way.',
-                      ],
+                      descriptions: tarot.advices,
                       icon: Icons.check_circle,
                       iconColor: Colors.green,
                     ),
                     Spacing.largeH,
-                    const DetailDescriptionSection(
+                    DetailDescriptionSection(
                       title: 'Warnings',
-                      descriptions: [
-                        'Avoid being too controlling – Let others have their space.',
-                        'Watch your words – Your directness could come off as harsh.',
-                        "Balance is key – Don't let ambition overshadow rest and emotional well-being.",
-                      ],
+                      descriptions: tarot.warnings,
                       icon: Icons.warning,
                       iconColor: Colors.amber,
                     ),
                     Spacing.largeH,
-                    const DetailDescriptionSection(
+                    DetailDescriptionSection(
                       title: 'Meaning for Your Day',
-                      descriptions: [
-                        "Energy & Inspiration – You'll feel motivated and ready to take action.",
-                        'Charisma & Influence – People will notice and respect your confidence.',
-                        'Attraction & Charm – You may naturally draw attention in both work and personal life.',
-                      ],
+                      descriptions: tarot.meanings,
                       icon: Icons.diamond,
                       iconColor: Colors.amber,
                     ),

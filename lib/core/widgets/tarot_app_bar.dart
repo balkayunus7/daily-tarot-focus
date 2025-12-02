@@ -108,14 +108,9 @@ class TarotAppBar extends StatelessWidget implements PreferredSizeWidget {
             padding: const EdgeInsets.only(left: 16),
             child: ScalingContainer(
               onTap: onBackIconTap ?? () => context.pop(),
-              child: Container(
+              child: SizedBox(
                 width: 36,
                 height: 36,
-                decoration: BoxDecoration(
-                  border: Border.all(color: context.colors.border),
-                  color: context.colors.surface.withValues(alpha: 0.04),
-                  borderRadius: BorderRadius.circular(100),
-                ),
                 child: Center(
                   child: Icon(
                     backIcon ?? Icons.arrow_back_ios,

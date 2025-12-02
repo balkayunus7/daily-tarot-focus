@@ -1,4 +1,5 @@
 import 'package:daily_tarot_focus/domain/tarot/tarot_category_enum.dart';
+import 'package:daily_tarot_focus/domain/tarot/tarot_identify.dart';
 
 class TarotLibrary {
   const TarotLibrary({
@@ -60,6 +61,19 @@ class TarotLibrary {
       meanings: meanings ?? this.meanings,
       uprightMeanings: uprightMeanings ?? this.uprightMeanings,
       reversedMeanings: reversedMeanings ?? this.reversedMeanings,
+    );
+  }
+
+  // Convert TarotLibrary to TarotIdentify
+  // Note: TarotIdentify doesn't have uprightMeanings/reversedMeanings,
+  // so we use meanings for TarotIdentify
+  TarotIdentify toTarotIdentify() {
+    return TarotIdentify(
+      title: title,
+      description: description,
+      meanings: meanings,
+      advices: null, // TarotLibrary doesn't have advices
+      warnings: null, // TarotLibrary doesn't have warnings
     );
   }
 }

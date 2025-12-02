@@ -15,6 +15,10 @@ class TarotMockDatas {
     return 'assets/jpg/${allCards[Random().nextInt(allCards.length)]}.jpg';
   }
 
+  static TarotLibrary get randomTarotLibraryCard {
+    return fullTarotDeckMock[Random().nextInt(fullTarotDeckMock.length)];
+  }
+
   static const List<String> allCards = [
     'ace_of_cups',
     'ace_of_pentacles',

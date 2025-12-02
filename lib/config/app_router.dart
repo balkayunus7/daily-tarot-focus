@@ -93,28 +93,29 @@ final appRouter = GoRouter(
       pageBuilder: (context, state) {
         final args = state.extra as Map<String, dynamic>?;
         final imagePath = args?['imagePath'] as String? ?? '';
-        final tarot =
-            args?['tarot'] as TarotIdentify? ??
-            const TarotIdentify(
-              title: 'The Star',
-              description:
-                  'The Star is a card of hope, inspiration, and creativity. It suggests a day full of positive energy and opportunities.',
-              advices: [
-                'Take bold steps',
-                'Be social',
-                'Pay attention to your appearance',
-              ],
-              warnings: [
-                'Avoid being too controlling',
-                'Watch your words',
-                'Balance is key',
-              ],
-              meanings: [
-                'Energy & Inspiration',
-                'Charisma & Influence',
-                'Attraction & Charm',
-              ],
-            );
+        final tarotMap = args?['tarot'] as Map<String, dynamic>?;
+        final tarot = tarotMap != null
+            ? TarotIdentify.fromMap(tarotMap)
+            : const TarotIdentify(
+                title: 'The Star',
+                description:
+                    'The Star is a card of hope, inspiration, and creativity. It suggests a day full of positive energy and opportunities.',
+                advices: [
+                  'Take bold steps',
+                  'Be social',
+                  'Pay attention to your appearance',
+                ],
+                warnings: [
+                  'Avoid being too controlling',
+                  'Watch your words',
+                  'Balance is key',
+                ],
+                meanings: [
+                  'Energy & Inspiration',
+                  'Charisma & Influence',
+                  'Attraction & Charm',
+                ],
+              );
 
         return CustomTransitionPage(
           key: state.pageKey,
@@ -143,15 +144,13 @@ final appRouter = GoRouter(
       name: AppRoutes.tarotLibraryDetail,
       pageBuilder: (context, state) {
         final args = state.extra as Map<String, dynamic>?;
-        final tarotMap = args?['tarot'] as Map<String, dynamic>?;
-        final tarot = tarotMap != null ? TarotLibrary.fromMap(tarotMap) : null;
+        final tarotMap = args?['tarot'] as Map<String, dynamic>;
+        final tarot = TarotLibrary.fromMap(tarotMap);
         final imagePath = args?['imagePath'] as String? ?? '';
-        
+
         return MaterialPage(
           key: state.pageKey,
-          child: tarot != null
-              ? TarotLibraryDetailPage(tarot: tarot, imagePath: imagePath)
-              : const SizedBox.shrink(),
+          child: TarotLibraryDetailPage(tarot: tarot, imagePath: imagePath),
         );
       },
     ),

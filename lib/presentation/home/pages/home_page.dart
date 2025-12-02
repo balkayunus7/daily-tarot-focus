@@ -1,9 +1,7 @@
-import 'package:daily_tarot_focus/config/app_routes.dart';
 import 'package:daily_tarot_focus/core/util/haptic_feedback_helper.dart';
 import 'package:daily_tarot_focus/presentation/home/widgets/home_bottom_navbar.dart';
 import 'package:daily_tarot_focus/presentation/tarot/pages/tarot_page.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:mobile_boilerplate/presentation/routing/route_arguments.dart';
 import 'package:mobile_boilerplate/presentation/routing/route_aware_analytics_mixin.dart';
 
@@ -20,13 +18,6 @@ class HomePageArguments extends RouteArguments {
 class HomePage extends StatefulWidget {
   const HomePage({required this.arguments, super.key});
   final HomePageArguments arguments;
-
-  static void go(BuildContext context, {int initialTabIndex = 0}) {
-    context.go(
-      AppRoutes.home,
-      extra: HomePageArguments(context, initialTabIndex: initialTabIndex),
-    );
-  }
 
   @override
   State<HomePage> createState() => _HomePageState();

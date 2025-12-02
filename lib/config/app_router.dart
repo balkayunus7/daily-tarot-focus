@@ -1,11 +1,13 @@
 import 'package:daily_tarot_focus/config/app_routes.dart';
 import 'package:daily_tarot_focus/domain/tarot/tarot_identify.dart';
+import 'package:daily_tarot_focus/domain/tarot/tarot_library.dart';
 import 'package:daily_tarot_focus/presentation/auth/pages/register_step_birthdate_page.dart';
 import 'package:daily_tarot_focus/presentation/auth/pages/register_step_relationship_page.dart';
 import 'package:daily_tarot_focus/presentation/auth/pages/register_step_zodiac_page.dart';
 import 'package:daily_tarot_focus/presentation/auth/pages/splash_page.dart';
 import 'package:daily_tarot_focus/presentation/home/pages/home_page.dart';
 import 'package:daily_tarot_focus/presentation/tarot/pages/tarot_detail_page.dart';
+import 'package:daily_tarot_focus/presentation/tarot/pages/tarot_library_detail_page.dart';
 import 'package:daily_tarot_focus/presentation/tarot/pages/tarot_library_page.dart';
 import 'package:daily_tarot_focus/presentation/tarot/pages/tarot_reveal_page.dart';
 import 'package:flutter/material.dart';
@@ -21,34 +23,57 @@ final appRouter = GoRouter(
     GoRoute(
       path: AppRoutes.splash,
       name: AppRoutes.splash,
-      builder: (context, state) => const SplashPage(),
+      pageBuilder: (context, state) {
+        return MaterialPage(
+          key: state.pageKey,
+          child: const SplashPage(),
+        );
+      },
     ),
     GoRoute(
       path: AppRoutes.registerStepZodiac,
       name: AppRoutes.registerStepZodiac,
-      builder: (context, state) => const RegisterStepZodiacPage(),
+      pageBuilder: (context, state) {
+        return MaterialPage(
+          key: state.pageKey,
+          child: const RegisterStepZodiacPage(),
+        );
+      },
     ),
     GoRoute(
       path: AppRoutes.registerStepRelationship,
       name: AppRoutes.registerStepRelationship,
-      builder: (context, state) => const RegisterStepRelationshipPage(),
+      pageBuilder: (context, state) {
+        return MaterialPage(
+          key: state.pageKey,
+          child: const RegisterStepRelationshipPage(),
+        );
+      },
     ),
     GoRoute(
       path: AppRoutes.registerStepBirthdate,
       name: AppRoutes.registerStepBirthdate,
-      builder: (context, state) => const RegisterStepBirthdatePage(),
+      pageBuilder: (context, state) {
+        return MaterialPage(
+          key: state.pageKey,
+          child: const RegisterStepBirthdatePage(),
+        );
+      },
     ),
     GoRoute(
       path: AppRoutes.home,
       name: AppRoutes.home,
-      builder: (context, state) {
+      pageBuilder: (context, state) {
         final args = state.extra as HomePageArguments?;
-        return HomePage(arguments: args ?? HomePageArguments(context));
+        return MaterialPage(
+          key: state.pageKey,
+          child: HomePage(arguments: args ?? HomePageArguments(context)),
+        );
       },
     ),
     GoRoute(
-      path: AppRoutes.dailyTarotReveal,
-      name: AppRoutes.dailyTarotReveal,
+      path: AppRoutes.tarotReveal,
+      name: AppRoutes.tarotReveal,
       pageBuilder: (context, state) {
         return CustomTransitionPage(
           key: state.pageKey,
@@ -63,8 +88,8 @@ final appRouter = GoRouter(
       },
     ),
     GoRoute(
-      path: AppRoutes.tarotCardDetail,
-      name: AppRoutes.tarotCardDetail,
+      path: AppRoutes.tarotRevealDetail,
+      name: AppRoutes.tarotRevealDetail,
       pageBuilder: (context, state) {
         final args = state.extra as Map<String, dynamic>?;
         final imagePath = args?['imagePath'] as String? ?? '';
@@ -106,7 +131,29 @@ final appRouter = GoRouter(
     GoRoute(
       path: AppRoutes.tarotLibrary,
       name: AppRoutes.tarotLibrary,
-      builder: (context, state) => const TarotLibraryPage(),
+      pageBuilder: (context, state) {
+        return MaterialPage(
+          key: state.pageKey,
+          child: const TarotLibraryPage(),
+        );
+      },
+    ),
+    GoRoute(
+      path: AppRoutes.tarotLibraryDetail,
+      name: AppRoutes.tarotLibraryDetail,
+      pageBuilder: (context, state) {
+        final args = state.extra as Map<String, dynamic>?;
+        final tarotMap = args?['tarot'] as Map<String, dynamic>?;
+        final tarot = tarotMap != null ? TarotLibrary.fromMap(tarotMap) : null;
+        final imagePath = args?['imagePath'] as String? ?? '';
+        
+        return MaterialPage(
+          key: state.pageKey,
+          child: tarot != null
+              ? TarotLibraryDetailPage(tarot: tarot, imagePath: imagePath)
+              : const SizedBox.shrink(),
+        );
+      },
     ),
   ],
 );

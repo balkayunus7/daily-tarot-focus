@@ -11,7 +11,8 @@ class AppRoutes {
   static const String home = '/home';
   
   // Tarot routes
-  static const String dailyTarotReveal = '/daily-tarot-reveal';
-  static const String tarotCardDetail = '/tarot-card-detail';
+  static const String tarotReveal = '/tarot-reveal';
+  static const String tarotRevealDetail = '/tarot-reveal-detail';
   static const String tarotLibrary = '/tarot-library';
+  static const String tarotLibraryDetail = '/tarot-library-detail';
 }

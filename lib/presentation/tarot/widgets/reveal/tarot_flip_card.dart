@@ -13,10 +13,10 @@ class TarotFlipCard extends StatelessWidget {
         duration: const Duration(seconds: 8),
         curve: Curves.easeIn,
         onEnd: () {
-          Future.delayed(const Duration(seconds: 3), () {
+          Future.delayed(const Duration(seconds: 3), () async {
             if (context.mounted) {
-              context.go(
-                AppRoutes.tarotCardDetail,
+              await context.push(
+                AppRoutes.tarotRevealDetail,
                 extra: {'imagePath': randomImagePath},
               );
             }

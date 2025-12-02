@@ -6,7 +6,7 @@ class TarotDailyCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScalingContainer(
-      onTap: () => context.go(AppRoutes.dailyTarotReveal),
+      onTap: () => context.push(AppRoutes.tarotReveal),
       child: Container(
         width: double.infinity,
         height: 180,

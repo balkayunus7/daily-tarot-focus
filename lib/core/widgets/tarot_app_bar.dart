@@ -5,6 +5,7 @@ import 'package:daily_tarot_focus/core/widgets/tarot_button.dart';
 import 'package:daily_tarot_focus/domain/auth/tarot_user.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:go_router/go_router.dart';
 import 'package:mobile_boilerplate/application/auth/auth_cubit.dart';
 import 'package:mobile_boilerplate/common_dependencies.dart';
 import 'package:mobile_boilerplate/presentation/extensions/build_context_theme_ext.dart';
@@ -99,14 +100,14 @@ class TarotAppBar extends StatelessWidget implements PreferredSizeWidget {
       backgroundColor: backgroundColor ?? Colors.transparent,
       elevation: 0,
       centerTitle: centerTitle,
-      leadingWidth: 0,
+      leadingWidth: showBackIcon ? 48 : 0,
       leading: Builder(
         builder: (context) {
           if (!showBackIcon) return const SizedBox.shrink();
           return Padding(
             padding: const EdgeInsets.only(left: 16),
             child: ScalingContainer(
-              onTap: onBackIconTap ?? () => Navigator.pop(context),
+              onTap: onBackIconTap ?? () => context.pop(),
               child: Container(
                 width: 36,
                 height: 36,
@@ -131,7 +132,7 @@ class TarotAppBar extends StatelessWidget implements PreferredSizeWidget {
         if (subsWidget != null) ...[subsWidget!],
         if (trailingIcon != null) ...[
           ScalingContainer(
-            onTap: onIconTap ?? () => Navigator.pop(context),
+            onTap: onIconTap ?? () => context.pop(),
             child: SizedBox(
               width: 36,
               height: 36,

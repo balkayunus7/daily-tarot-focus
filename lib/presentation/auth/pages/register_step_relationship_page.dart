@@ -56,7 +56,7 @@ class RegisterStepRelationshipPage extends StatelessWidget {
                   return TarotButton(
                     buttonText: 'Continue',
                     onTap: () async {
-                      context.go(AppRoutes.registerStepBirthdate);
+                      await context.push(AppRoutes.registerStepBirthdate);
                     },
                     buttonTextStyle: m16w700(context),
                     isDisabled: !state.isRelationshipStatusSelected,

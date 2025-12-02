@@ -30,24 +30,35 @@ class TarotCardGridView extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Expanded(
-                      child: Container(
-                        decoration: BoxDecoration(
-                          borderRadius: Spacing.xsmallBorderRadius,
-                          border: Border.all(
-                            color: colors.primary,
-                            width: 4,
-                          ),
-                        ),
-                        child: ClipRRect(
-                          borderRadius: Spacing.tinyBorderRadius,
-                          child: Image.asset(
-                            card.imagePath,
-                            fit: BoxFit.cover,
-                            gaplessPlayback: true,
-                            frameBuilder: (_, child, frame, _) {
-                              if (frame != null) return child;
-                              return const _ImageLoadingShimmer();
+                      child: ScalingContainer(
+                        onTap: () async {
+                          await context.push(
+                            AppRoutes.tarotLibraryDetail,
+                            extra: {
+                              'tarot': card.toMap(),
+                              'imagePath': card.imagePath,
                             },
+                          );
+                        },
+                        child: Container(
+                          decoration: BoxDecoration(
+                            borderRadius: Spacing.xsmallBorderRadius,
+                            border: Border.all(
+                              color: colors.primary,
+                              width: 4,
+                            ),
+                          ),
+                          child: ClipRRect(
+                            borderRadius: Spacing.tinyBorderRadius,
+                            child: Image.asset(
+                              card.imagePath,
+                              fit: BoxFit.cover,
+                              gaplessPlayback: true,
+                              frameBuilder: (_, child, frame, _) {
+                                if (frame != null) return child;
+                                return const _ImageLoadingShimmer();
+                              },
+                            ),
                           ),
                         ),
                       ),

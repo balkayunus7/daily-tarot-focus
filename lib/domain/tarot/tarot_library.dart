@@ -11,6 +11,30 @@ class TarotLibrary {
     required this.reversedMeanings,
   });
 
+  factory TarotLibrary.fromMap(Map<String, dynamic> map) {
+    return TarotLibrary(
+      title: map['title'] as String,
+      description: map['description'] as String,
+      imagePath: map['imagePath'] as String,
+      category: TarotCategory.fromString(map['category'] as String),
+      meanings: map['meanings'] as List<String>,
+      uprightMeanings: map['uprightMeanings'] as List<String>,
+      reversedMeanings: map['reversedMeanings'] as List<String>,
+    );
+  }
+
+  Map<String, dynamic> toMap() {
+    return {
+      'title': title,
+      'description': description,
+      'imagePath': imagePath,
+      'category': category.value,
+      'meanings': meanings,
+      'uprightMeanings': uprightMeanings,
+      'reversedMeanings': reversedMeanings,
+    };
+  }
+
   final String title;
   final String description;
   final String imagePath;

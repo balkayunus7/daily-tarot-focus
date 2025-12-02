@@ -32,10 +32,12 @@ class _SplashPageState extends State<SplashPage>
     super.initState();
   }
 
-  void routeToRegisterSteps() {
+  Future<void> routeToRegisterSteps() async {
     final authState = context.read<AuthCubit>().state;
     final user = authState.userOrCrash;
     if (user is! TarotUser) return;
+    // Use go() instead of push() to replace splash with home
+    // User shouldn't be able to go back to splash
     context.go(AppRoutes.home);
   }
 
@@ -48,8 +50,8 @@ class _SplashPageState extends State<SplashPage>
             listenWhen: (previous, current) {
               return previous.isInitial && current.isAuthenticated;
             },
-            listener: (context, state) {
-              routeToRegisterSteps();
+            listener: (context, state) async {
+              await routeToRegisterSteps();
             },
           ),
           BlocListener<AuthCubit, AuthState>(

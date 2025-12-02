@@ -54,8 +54,8 @@ class RegisterStepZodiacPage extends StatelessWidget {
                 builder: (context, state) {
                   return TarotButton(
                     buttonText: 'Continue',
-                    onTap: () {
-                      context.go(AppRoutes.registerStepRelationship);
+                    onTap: () async {
+                      await context.push(AppRoutes.registerStepRelationship);
                     },
                     buttonTextStyle: m16w700(context),
                     isDisabled: !state.isZodiacSelected,

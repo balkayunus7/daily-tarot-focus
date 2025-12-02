@@ -96,7 +96,7 @@ class TarotAppBar extends StatelessWidget implements PreferredSizeWidget {
         systemNavigationBarColor: Colors.transparent,
         statusBarColor: Colors.transparent,
       ),
-      backgroundColor: Colors.transparent,
+      backgroundColor: backgroundColor ?? Colors.transparent,
       elevation: 0,
       centerTitle: centerTitle,
       leadingWidth: 0,
@@ -117,8 +117,8 @@ class TarotAppBar extends StatelessWidget implements PreferredSizeWidget {
                 ),
                 child: Center(
                   child: Icon(
-                    backIcon ?? Icons.arrow_back,
-                    size: 18,
+                    backIcon ?? Icons.arrow_back_ios,
+                    size: 24,
                     color: context.colors.textPrimary,
                   ),
                 ),
@@ -132,18 +132,13 @@ class TarotAppBar extends StatelessWidget implements PreferredSizeWidget {
         if (trailingIcon != null) ...[
           ScalingContainer(
             onTap: onIconTap ?? () => Navigator.pop(context),
-            child: Container(
+            child: SizedBox(
               width: 36,
               height: 36,
-              decoration: BoxDecoration(
-                border: Border.all(color: context.colors.border),
-                color: context.colors.surface.withValues(alpha: 0.04),
-                borderRadius: BorderRadius.circular(100),
-              ),
               child: Center(
                 child: Icon(
                   trailingIcon,
-                  size: 20,
+                  size: 24,
                   color: context.colors.textPrimary,
                 ),
               ),
@@ -152,7 +147,7 @@ class TarotAppBar extends StatelessWidget implements PreferredSizeWidget {
         ],
         Spacing.mediumW,
       ],
-      title: Text(title ?? '', style: titleStyle ?? m18w700(context)),
+      title: Text(title ?? '', style: titleStyle ?? m21w600(context)),
     );
   }
 

@@ -171,6 +171,12 @@ TextStyle m21w600(BuildContext context) => fontTextStyle(
   fontWeight: FontWeight.w600,
 );
 
+TextStyle m24w600(BuildContext context) => fontTextStyle(
+  context,
+  fontSize: 24,
+  fontWeight: FontWeight.w600,
+);
+
 TextStyle m24w700(BuildContext context) => fontTextStyle(
   context,
   fontSize: 24,

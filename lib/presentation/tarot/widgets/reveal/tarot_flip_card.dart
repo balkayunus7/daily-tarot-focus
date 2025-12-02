@@ -5,22 +5,43 @@ class TarotFlipCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final randomImagePath = TarotMockDatas.randomTarotCard;
+
     return Center(
       child: TweenAnimationBuilder<double>(
         tween: Tween(begin: 0, end: 1),
-        duration: const Duration(milliseconds: 3000),
-        curve: Curves.easeInOutCubic,
+        duration: const Duration(seconds: 8),
+        curve: Curves.easeIn,
         onEnd: () {
-          context.go(AppRoutes.tarotCardDetail);
+          Future.delayed(const Duration(seconds: 3), () {
+            if (context.mounted) {
+              context.go(
+                AppRoutes.tarotCardDetail,
+                extra: {'imagePath': randomImagePath},
+              );
+            }
+          });
         },
         builder: (context, value, child) {
-          final isFrontVisible = value >= 0.5;
-          final rotateY = math.pi * value;
+          // Gradually accelerating flip animation with multiple rotations
+          // 4 rotations = 8 * pi radians
+          final rotateY = value * 8 * math.pi;
+          // First 80%: rotation, last 20%: card appears
+          final isFrontVisible = value >= 0.8;
+          // Scale animation: starts larger, then grows
+          final scale =
+              value < 0.8
+                  ? 0.7 + (value / 0.8) * 0.2
+                  : 0.9 + ((value - 0.8) / 0.2) * 1.0;
+
+          // Show front face only in last 20%, back face visible during rotation
+          final shouldShowFront = isFrontVisible;
+
           final transform =
               Matrix4.identity()
                 ..setEntry(3, 2, 0.001)
                 ..rotateY(rotateY)
-                ..scale(1.9, 1.9, 1.9);
+                ..scale(scale, scale, scale);
 
           return Stack(
             alignment: Alignment.center,
@@ -28,21 +49,16 @@ class TarotFlipCard extends StatelessWidget {
               Transform(
                 alignment: Alignment.center,
                 transform: transform,
-                child: Builder(
-                  builder: (context) {
-                    if (isFrontVisible) {
-                      return Transform(
-                        alignment: Alignment.center,
-                        transform: Matrix4.identity()..rotateY(math.pi),
-                        child: const _TarotFrontCard(title: 'Star'),
-                      );
-                    } else {
-                      return const _TarotBackCard();
-                    }
-                  },
-                ),
+                child:
+                    shouldShowFront
+                        ? _TarotFrontCard(
+                          title: 'Star',
+                          imagePath: randomImagePath,
+                        )
+                        : const _TarotBackCard(),
               ),
               if (isFrontVisible) const _TarotShiningStars(),
+              // Show loading message during rotation
             ],
           );
         },
@@ -52,8 +68,9 @@ class TarotFlipCard extends StatelessWidget {
 }
 
 class _TarotFrontCard extends StatelessWidget {
-  const _TarotFrontCard({required this.title});
+  const _TarotFrontCard({required this.title, required this.imagePath});
   final String title;
+  final String imagePath;
 
   @override
   Widget build(BuildContext context) {
@@ -62,7 +79,7 @@ class _TarotFrontCard extends StatelessWidget {
       child: Container(
         width: SpacingConsts.flipCardWidth,
         height: SpacingConsts.flipCardHeight,
-        padding: const EdgeInsets.all(8),
+        padding: Spacing.xsmallPadding,
         decoration: BoxDecoration(
           borderRadius: Spacing.xsmallBorderRadius,
           border: Border.all(color: context.colors.primary, width: 2),
@@ -90,7 +107,7 @@ class _TarotFrontCard extends StatelessWidget {
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(4),
                 child: Image.asset(
-                  TarotMockDatas.randomTarotCard,
+                  imagePath,
                   fit: BoxFit.cover,
                 ),
               ),

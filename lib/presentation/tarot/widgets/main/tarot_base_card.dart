@@ -16,7 +16,7 @@ class TarotBaseCard extends StatelessWidget {
     final colors = context.colors;
 
     return ScalingContainer(
-      onTap: () {},
+      onTap: onTap,
       child: Container(
         width: double.infinity,
         height: 190,

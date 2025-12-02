@@ -1,15 +1,20 @@
 import 'package:daily_tarot_focus/core/util/font_style_helper.dart';
-import 'package:daily_tarot_focus/core/util/tarot_app_assets.dart';
 import 'package:daily_tarot_focus/core/util/tarot_app_sizes.dart';
-import 'package:daily_tarot_focus/domain/tarot/tarot.dart';
+import 'package:daily_tarot_focus/core/widgets/tarot_app_bar.dart';
+import 'package:daily_tarot_focus/domain/tarot/tarot_identify.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile_boilerplate/presentation/extensions/build_context_theme_ext.dart';
 
 part '../widgets/detail/tarot_detail_desc_section.dart';
 
 class TarotDetailPage extends StatelessWidget {
-  const TarotDetailPage({required this.tarot, super.key});
-  final Tarot tarot;
+  const TarotDetailPage({
+    required this.tarot,
+    required this.imagePath,
+    super.key,
+  });
+  final TarotIdentify tarot;
+  final String imagePath;
 
   @override
   Widget build(BuildContext context) {
@@ -17,6 +22,13 @@ class TarotDetailPage extends StatelessWidget {
     final colors = context.colors;
 
     return Scaffold(
+      extendBodyBehindAppBar: true,
+      appBar: TarotAppBar(
+        title: tarot.title,
+        backIcon: Icons.close,
+        onBackIconTap: () => Navigator.pop(context),
+        trailingIcon: Icons.save_as_rounded,
+      ),
       body: Stack(
         fit: StackFit.expand,
         children: [
@@ -39,60 +51,67 @@ class TarotDetailPage extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Column(
                   children: [
-                    Text(tarot.title, style: m28w600(context)),
                     Spacing.smallH,
                     Text(
                       tarot.description,
-                      style: m14w400(context),
+                      style: m14w500(context),
                     ),
                     Spacing.largeH,
                     Center(
                       child: Hero(
                         tag: 'daily_tarot_card_hero',
                         child: Container(
-                          height: screenSize.width * 0.9,
+                          height: screenSize.height * 0.4,
                           decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(12),
-                            border: Border.all(color: Colors.amber, width: 2),
+                            borderRadius: Spacing.smallBorderRadius,
+                            border: Border.all(
+                              color: context.colors.primary,
+                              width: 2,
+                            ),
                             boxShadow: [
                               BoxShadow(
-                                color: Colors.amber.withValues(alpha: 0.3),
+                                color: context.colors.primary.withValues(
+                                  alpha: 0.3,
+                                ),
                                 blurRadius: 30,
                                 spreadRadius: 10,
                               ),
                             ],
                           ),
                           child: ClipRRect(
-                            borderRadius: BorderRadius.circular(10),
-                            child: Image.asset(
-                              TarotAppAssets.starCard.path,
-                              fit: BoxFit.cover,
-                            ),
+                            borderRadius: Spacing.smallBorderRadius,
+                            child: Image.asset(imagePath, fit: BoxFit.cover),
                           ),
                         ),
                       ),
                     ),
                     Spacing.largeH,
-                    DetailDescriptionSection(
-                      title: 'Advice',
-                      descriptions: tarot.advices,
-                      icon: Icons.check_circle,
-                      iconColor: Colors.green,
-                    ),
+                    if (tarot.hasMeanings) ...[
+                      DetailDescriptionSection(
+                        title: 'Meaning for Your Day',
+                        descriptions: tarot.meanings!,
+                        icon: Icons.diamond,
+                        iconColor: context.colors.primary,
+                      ),
+                    ],
                     Spacing.largeH,
-                    DetailDescriptionSection(
-                      title: 'Warnings',
-                      descriptions: tarot.warnings,
-                      icon: Icons.warning,
-                      iconColor: Colors.amber,
-                    ),
+                    if (tarot.hasAdvice) ...[
+                      DetailDescriptionSection(
+                        title: 'Advice',
+                        descriptions: tarot.advices!,
+                        icon: Icons.check_circle,
+                        iconColor: Colors.green,
+                      ),
+                    ],
                     Spacing.largeH,
-                    DetailDescriptionSection(
-                      title: 'Meaning for Your Day',
-                      descriptions: tarot.meanings,
-                      icon: Icons.diamond,
-                      iconColor: Colors.amber,
-                    ),
+                    if (tarot.hasWarnings) ...[
+                      DetailDescriptionSection(
+                        title: 'Warnings',
+                        descriptions: tarot.warnings!,
+                        icon: Icons.warning,
+                        iconColor: context.colors.primary,
+                      ),
+                    ],
                     Spacing.largeH,
                   ],
                 ),

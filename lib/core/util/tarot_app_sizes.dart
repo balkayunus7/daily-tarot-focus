@@ -21,7 +21,7 @@ class SpacingConsts {
 
   static const double flipCardHeight = 190;
   static const double flipCardWidth = 120;
-  static const double cardWheelItemExtent = 130;
+  static const double cardWheelItemExtent = 140;
   static const double cardWheelDiameterRatio = 1.5;
   static const double cardWheelPerspective = 0.0008;
   static const double cardWheelSqueeze = 1.5;
@@ -38,7 +38,7 @@ class SpacingConsts {
   );
   static const double cardShadowBlurRadius = 20;
   static const double cardShadowSpreadRadius = 10;
-  static const double wheelCardSelectedWidth = 100;
+  static const double wheelCardSelectedWidth = 120;
   static const double wheelCardSelectedHeight = 200;
   static const double wheelCardUnselectedWidth = 70;
   static const double wheelCardUnselectedHeight = 110;

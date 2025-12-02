@@ -1,11 +1,12 @@
 import 'package:daily_tarot_focus/config/app_routes.dart';
-import 'package:daily_tarot_focus/domain/tarot/tarot.dart';
+import 'package:daily_tarot_focus/domain/tarot/tarot_identify.dart';
 import 'package:daily_tarot_focus/presentation/auth/pages/register_step_birthdate_page.dart';
 import 'package:daily_tarot_focus/presentation/auth/pages/register_step_relationship_page.dart';
 import 'package:daily_tarot_focus/presentation/auth/pages/register_step_zodiac_page.dart';
 import 'package:daily_tarot_focus/presentation/auth/pages/splash_page.dart';
 import 'package:daily_tarot_focus/presentation/home/pages/home_page.dart';
 import 'package:daily_tarot_focus/presentation/tarot/pages/tarot_detail_page.dart';
+import 'package:daily_tarot_focus/presentation/tarot/pages/tarot_library_page.dart';
 import 'package:daily_tarot_focus/presentation/tarot/pages/tarot_reveal_page.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -65,10 +66,11 @@ final appRouter = GoRouter(
       path: AppRoutes.tarotCardDetail,
       name: AppRoutes.tarotCardDetail,
       pageBuilder: (context, state) {
-        return CustomTransitionPage(
-          key: state.pageKey,
-          child: const TarotDetailPage(
-            tarot: Tarot(
+        final args = state.extra as Map<String, dynamic>?;
+        final imagePath = args?['imagePath'] as String? ?? '';
+        final tarot =
+            args?['tarot'] as TarotIdentify? ??
+            const TarotIdentify(
               title: 'The Star',
               description:
                   'The Star is a card of hope, inspiration, and creativity. It suggests a day full of positive energy and opportunities.',
@@ -87,13 +89,24 @@ final appRouter = GoRouter(
                 'Charisma & Influence',
                 'Attraction & Charm',
               ],
-            ),
+            );
+
+        return CustomTransitionPage(
+          key: state.pageKey,
+          child: TarotDetailPage(
+            imagePath: imagePath,
+            tarot: tarot,
           ),
           transitionsBuilder: (context, animation, secondaryAnimation, child) {
             return child;
           },
         );
       },
+    ),
+    GoRoute(
+      path: AppRoutes.tarotLibrary,
+      name: AppRoutes.tarotLibrary,
+      builder: (context, state) => const TarotLibraryPage(),
     ),
   ],
 );

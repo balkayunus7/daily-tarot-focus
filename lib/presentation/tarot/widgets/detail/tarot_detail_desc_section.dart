@@ -53,7 +53,7 @@ class DetailDescriptionSection extends StatelessWidget {
         Expanded(
           child: Text(
             text,
-            style: m14w400(context).copyWith(
+            style: m14w500(context).copyWith(
               color: Colors.white70,
             ),
           ),

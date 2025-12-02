@@ -10,11 +10,9 @@ class TarotCardWheel extends StatefulWidget {
 
 class _TarotCardWheelState extends State<TarotCardWheel>
     with TickerProviderStateMixin {
-  // State Variables
   int selectedCardIndex = 0;
   int lastHapticCardIndex = -1;
 
-  // Controllers
   late final FixedExtentScrollController _scrollController;
   late final AnimationController _flipController;
 
@@ -49,7 +47,7 @@ class _TarotCardWheelState extends State<TarotCardWheel>
   Future<void> _handleCardScroll(int index) async {
     if (index != lastHapticCardIndex) {
       lastHapticCardIndex = index;
-      await HapticFeedbackHelper.mediumImpact();
+      await HapticFeedbackHelper.heavyImpact();
     }
 
     setState(() => selectedCardIndex = index);
@@ -100,12 +98,19 @@ class _TarotCardWheelState extends State<TarotCardWheel>
             ),
           ),
           Spacing.xsmallH,
+          Image.asset(
+            TarotAppAssets.arrow.path,
+            width: 100,
+            height: 50,
+            color: context.colors.primary,
+          ),
           Text(
             'Drag to move',
             style: m12w500(
               context,
             ).copyWith(color: context.colors.textSecondary),
           ),
+          Spacing.mediumH,
         ],
       ),
     );

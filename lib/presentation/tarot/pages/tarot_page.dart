@@ -1,3 +1,4 @@
+
 import 'package:daily_tarot_focus/config/app_routes.dart';
 import 'package:daily_tarot_focus/core/util/font_style_helper.dart';
 import 'package:daily_tarot_focus/core/util/tarot_app_assets.dart';
@@ -56,9 +57,11 @@ class TarotPage extends StatelessWidget {
                   Spacing.mediumW,
                   Expanded(
                     child: TarotBaseCard(
-                      subtitle: 'Guide Card',
+                      subtitle: 'Library',
                       imagePath: TarotAppAssets.guide.path,
-                      onTap: () {},
+                      onTap: () {
+                        context.go(AppRoutes.tarotLibrary);
+                      },
                     ),
                   ),
                 ],

@@ -1,14 +1,16 @@
+import 'package:daily_tarot_focus/config/app_routes.dart';
 import 'package:daily_tarot_focus/core/util/font_style_helper.dart';
 import 'package:daily_tarot_focus/core/util/tarot_app_sizes.dart';
 import 'package:daily_tarot_focus/core/widgets/tarot_app_bar.dart';
 import 'package:daily_tarot_focus/domain/tarot/tarot_identify.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:mobile_boilerplate/presentation/extensions/build_context_theme_ext.dart';
 
 part '../widgets/detail/tarot_detail_desc_section.dart';
 
-class TarotDetailPage extends StatelessWidget {
-  const TarotDetailPage({
+class TarotRevealDetailPage extends StatelessWidget {
+  const TarotRevealDetailPage({
     required this.tarot,
     required this.imagePath,
     super.key,
@@ -26,7 +28,7 @@ class TarotDetailPage extends StatelessWidget {
       appBar: TarotAppBar(
         title: tarot.title,
         backIcon: Icons.close,
-        onBackIconTap: () => Navigator.pop(context),
+        onBackIconTap: () => context.go(AppRoutes.home),
         trailingIcon: Icons.save_as_rounded,
       ),
       body: Stack(

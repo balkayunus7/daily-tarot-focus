@@ -6,9 +6,9 @@ import 'package:daily_tarot_focus/presentation/auth/pages/register_step_relation
 import 'package:daily_tarot_focus/presentation/auth/pages/register_step_zodiac_page.dart';
 import 'package:daily_tarot_focus/presentation/auth/pages/splash_page.dart';
 import 'package:daily_tarot_focus/presentation/home/pages/home_page.dart';
-import 'package:daily_tarot_focus/presentation/tarot/pages/tarot_detail_page.dart';
 import 'package:daily_tarot_focus/presentation/tarot/pages/tarot_library_detail_page.dart';
 import 'package:daily_tarot_focus/presentation/tarot/pages/tarot_library_page.dart';
+import 'package:daily_tarot_focus/presentation/tarot/pages/tarot_reveal_detail_page.dart';
 import 'package:daily_tarot_focus/presentation/tarot/pages/tarot_reveal_page.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -119,7 +119,7 @@ final appRouter = GoRouter(
 
         return CustomTransitionPage(
           key: state.pageKey,
-          child: TarotDetailPage(
+          child: TarotRevealDetailPage(
             imagePath: imagePath,
             tarot: tarot,
           ),

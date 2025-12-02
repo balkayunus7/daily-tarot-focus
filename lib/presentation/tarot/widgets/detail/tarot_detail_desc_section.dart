@@ -1,4 +1,4 @@
-part of '../../pages/tarot_detail_page.dart';
+part of '../../pages/tarot_reveal_detail_page.dart';
 
 class DetailDescriptionSection extends StatelessWidget {
   const DetailDescriptionSection({

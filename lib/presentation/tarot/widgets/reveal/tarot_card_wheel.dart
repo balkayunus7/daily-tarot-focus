@@ -67,7 +67,7 @@ class _TarotCardWheelState extends State<TarotCardWheel>
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
           SizedBox(
-            height: 250,
+            height: 200,
             child: RotatedBox(
               quarterTurns: 1,
               child: ListWheelScrollView.useDelegate(

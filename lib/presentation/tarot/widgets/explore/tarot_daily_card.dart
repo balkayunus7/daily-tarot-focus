@@ -1,4 +1,4 @@
-part of '../../pages/tarot_page.dart';
+part of '../../pages/tarot_explore_page.dart';
 
 class TarotDailyCard extends StatelessWidget {
   const TarotDailyCard({super.key});

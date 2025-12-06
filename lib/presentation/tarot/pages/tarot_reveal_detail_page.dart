@@ -2,7 +2,7 @@ import 'package:daily_tarot_focus/config/app_routes.dart';
 import 'package:daily_tarot_focus/core/util/font_style_helper.dart';
 import 'package:daily_tarot_focus/core/util/tarot_app_sizes.dart';
 import 'package:daily_tarot_focus/core/widgets/tarot_app_bar.dart';
-import 'package:daily_tarot_focus/domain/tarot/tarot_identify.dart';
+import 'package:daily_tarot_focus/domain/tarot/tarot_library.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mobile_boilerplate/presentation/extensions/build_context_theme_ext.dart';
@@ -10,13 +10,8 @@ import 'package:mobile_boilerplate/presentation/extensions/build_context_theme_e
 part '../widgets/reveal/tarot_detail_desc_section.dart';
 
 class TarotRevealDetailPage extends StatelessWidget {
-  const TarotRevealDetailPage({
-    required this.tarot,
-    required this.imagePath,
-    super.key,
-  });
-  final TarotIdentify tarot;
-  final String imagePath;
+  const TarotRevealDetailPage({required this.tarot, super.key});
+  final TarotLibrary tarot;
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +23,7 @@ class TarotRevealDetailPage extends StatelessWidget {
       appBar: TarotAppBar(
         title: tarot.title,
         backIcon: Icons.close,
-        onBackIconTap: () => context.go(AppRoutes.home),
+        onBackIconTap: () => context.go(AppRoutes.tarotExplore),
         trailingIcon: Icons.save_as_rounded,
       ),
       body: Stack(
@@ -82,38 +77,32 @@ class TarotRevealDetailPage extends StatelessWidget {
                           ),
                           child: ClipRRect(
                             borderRadius: Spacing.smallBorderRadius,
-                            child: Image.asset(imagePath, fit: BoxFit.cover),
+                            child: Image.asset(tarot.imagePath, fit: BoxFit.cover),
                           ),
                         ),
                       ),
                     ),
                     Spacing.largeH,
-                    if (tarot.hasMeanings) ...[
-                      DetailDescriptionSection(
-                        title: 'Meaning for Your Day',
-                        descriptions: tarot.meanings!,
-                        icon: Icons.diamond,
-                        iconColor: context.colors.primary,
-                      ),
-                    ],
+                    DetailDescriptionSection(
+                      title: 'Meaning for Your Day',
+                      descriptions: tarot.meanings,
+                      icon: Icons.diamond,
+                      iconColor: context.colors.primary,
+                    ),
                     Spacing.largeH,
-                    if (tarot.hasAdvice) ...[
-                      DetailDescriptionSection(
-                        title: 'Advice',
-                        descriptions: tarot.advices!,
-                        icon: Icons.check_circle,
-                        iconColor: Colors.green,
-                      ),
-                    ],
+                    DetailDescriptionSection(
+                      title: 'Upright Meanings',
+                      descriptions: tarot.uprightMeanings,
+                      icon: Icons.check_circle,
+                      iconColor: Colors.green,
+                    ),
                     Spacing.largeH,
-                    if (tarot.hasWarnings) ...[
-                      DetailDescriptionSection(
-                        title: 'Warnings',
-                        descriptions: tarot.warnings!,
-                        icon: Icons.warning,
-                        iconColor: context.colors.primary,
-                      ),
-                    ],
+                    DetailDescriptionSection(
+                      title: 'Reversed Meanings',
+                      descriptions: tarot.reversedMeanings,
+                      icon: Icons.warning,
+                      iconColor: context.colors.primary,
+                    ),
                     Spacing.largeH,
                   ],
                 ),

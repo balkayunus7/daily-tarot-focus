@@ -7,10 +7,8 @@ class AppRoutes {
   static const String registerStepRelationship = '/register-step-relationship';
   static const String registerStepBirthdate = '/register-step-birthdate';
 
-  // Home routes
-  static const String home = '/home';
-  
   // Tarot routes
+  static const String tarotExplore = '/tarot-explore';
   static const String tarotReveal = '/tarot-reveal';
   static const String tarotRevealDetail = '/tarot-reveal-detail';
   static const String tarotLibrary = '/tarot-library';

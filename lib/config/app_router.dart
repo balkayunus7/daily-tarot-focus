@@ -1,5 +1,5 @@
 import 'package:daily_tarot_focus/config/app_routes.dart';
-import 'package:daily_tarot_focus/domain/tarot/tarot_identify.dart';
+import 'package:daily_tarot_focus/core/util/tarot_mock_datas.dart';
 import 'package:daily_tarot_focus/domain/tarot/tarot_library.dart';
 import 'package:daily_tarot_focus/presentation/auth/pages/register_step_birthdate_page.dart';
 import 'package:daily_tarot_focus/presentation/auth/pages/register_step_relationship_page.dart';
@@ -61,8 +61,8 @@ final appRouter = GoRouter(
       },
     ),
     GoRoute(
-      path: AppRoutes.home,
-      name: AppRoutes.home,
+      path: AppRoutes.tarotExplore,
+      name: AppRoutes.tarotExplore,
       pageBuilder: (context, state) {
         final args = state.extra as HomePageArguments?;
         return MaterialPage(
@@ -92,37 +92,14 @@ final appRouter = GoRouter(
       name: AppRoutes.tarotRevealDetail,
       pageBuilder: (context, state) {
         final args = state.extra as Map<String, dynamic>?;
-        final imagePath = args?['imagePath'] as String? ?? '';
         final tarotMap = args?['tarot'] as Map<String, dynamic>?;
         final tarot = tarotMap != null
-            ? TarotIdentify.fromMap(tarotMap)
-            : const TarotIdentify(
-                title: 'The Star',
-                description:
-                    'The Star is a card of hope, inspiration, and creativity. It suggests a day full of positive energy and opportunities.',
-                advices: [
-                  'Take bold steps',
-                  'Be social',
-                  'Pay attention to your appearance',
-                ],
-                warnings: [
-                  'Avoid being too controlling',
-                  'Watch your words',
-                  'Balance is key',
-                ],
-                meanings: [
-                  'Energy & Inspiration',
-                  'Charisma & Influence',
-                  'Attraction & Charm',
-                ],
-              );
+            ? TarotLibrary.fromMap(tarotMap)
+            : TarotMockDatas.randomTarotLibraryCard;
 
         return CustomTransitionPage(
           key: state.pageKey,
-          child: TarotRevealDetailPage(
-            imagePath: imagePath,
-            tarot: tarot,
-          ),
+          child: TarotRevealDetailPage(tarot: tarot),
           transitionsBuilder: (context, animation, secondaryAnimation, child) {
             return child;
           },

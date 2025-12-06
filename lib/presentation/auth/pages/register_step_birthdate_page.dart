@@ -35,7 +35,7 @@ class _RegisterStepBirthdatePageState extends State<RegisterStepBirthdatePage>
           if (state.registerStatus.isSuccess) {
             await context.read<AuthCubit>().refetchUser();
             if (!context.mounted) return;
-            context.go(AppRoutes.home);
+            context.go(AppRoutes.tarotExplore);
           } else if (state.registerStatus.isFailure) {
             showErrorSnackBar(context);
           }

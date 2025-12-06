@@ -5,10 +5,7 @@ class TarotFlipCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Get random tarot card with full data
     final randomCard = TarotMockDatas.randomTarotLibraryCard;
-    final randomImagePath = randomCard.imagePath;
-    final randomTarotIdentify = randomCard.toTarotIdentify();
 
     return Center(
       child: TweenAnimationBuilder<double>(
@@ -21,8 +18,7 @@ class TarotFlipCard extends StatelessWidget {
               await context.push(
                 AppRoutes.tarotRevealDetail,
                 extra: {
-                  'imagePath': randomImagePath,
-                  'tarot': randomTarotIdentify.toMap(),
+                  'tarot': randomCard.toMap(),
                 },
               );
             }
@@ -59,7 +55,7 @@ class TarotFlipCard extends StatelessWidget {
                     shouldShowFront
                         ? _TarotFrontCard(
                           title: randomCard.title,
-                          imagePath: randomImagePath,
+                          imagePath: randomCard.imagePath,
                         )
                         : const _TarotBackCard(),
               ),

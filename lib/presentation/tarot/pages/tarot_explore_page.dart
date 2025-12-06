@@ -13,13 +13,13 @@ import 'package:mobile_boilerplate/presentation/extensions/build_context_theme_e
 import 'package:mobile_boilerplate/presentation/extensions/date_time_ext.dart';
 import 'package:mobile_boilerplate/presentation/widgets/scaling_container.dart';
 
-part '../widgets/main/tarot_greeting_header.dart';
-part '../widgets/main/tarot_daily_card.dart';
-part '../widgets/main/tarot_base_card.dart';
-part '../widgets/main/tarot_paywall_card.dart';
+part '../widgets/explore/tarot_greeting_header.dart';
+part '../widgets/explore/tarot_daily_card.dart';
+part '../widgets/explore/tarot_base_card.dart';
+part '../widgets/explore/tarot_paywall_card.dart';
 
-class TarotPage extends StatelessWidget {
-  const TarotPage({super.key});
+class TarotExplorePage extends StatelessWidget {
+  const TarotExplorePage({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -7,7 +7,6 @@ class ImplAndroidLocalNotificationsService
     extends AndroidLocalNotificationsService {
   ImplAndroidLocalNotificationsService(
     super.localNotificationPlugin,
-    super.appBadger,
     super.detailsFactory,
     super.initializer,
   );

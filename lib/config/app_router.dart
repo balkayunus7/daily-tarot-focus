@@ -8,6 +8,7 @@ import 'package:daily_tarot_focus/presentation/auth/pages/splash_page.dart';
 import 'package:daily_tarot_focus/presentation/home/pages/home_page.dart';
 import 'package:daily_tarot_focus/presentation/tarot/pages/tarot_library_detail_page.dart';
 import 'package:daily_tarot_focus/presentation/tarot/pages/tarot_library_page.dart';
+import 'package:daily_tarot_focus/presentation/tarot/pages/tarot_question_page.dart';
 import 'package:daily_tarot_focus/presentation/tarot/pages/tarot_reveal_detail_page.dart';
 import 'package:daily_tarot_focus/presentation/tarot/pages/tarot_reveal_page.dart';
 import 'package:flutter/material.dart';
@@ -128,6 +129,16 @@ final appRouter = GoRouter(
         return MaterialPage(
           key: state.pageKey,
           child: TarotLibraryDetailPage(tarot: tarot, imagePath: imagePath),
+        );
+      },
+    ),
+    GoRoute(
+      path: AppRoutes.tarotQuestion,
+      name: AppRoutes.tarotQuestion,
+      pageBuilder: (context, state) {
+        return MaterialPage(
+          key: state.pageKey,
+          child: const TarotQuestionPage(),
         );
       },
     ),

@@ -39,7 +39,6 @@ import 'package:mobile_boilerplate/infrastructure/sharing/impl_sharing_service.d
 import 'package:mobile_boilerplate/infrastructure_dependencies.dart';
 import 'package:mobile_boilerplate/wrapper/app_settings_wrapper.dart';
 import 'package:mobile_boilerplate/wrapper/clipboard_wrapper.dart';
-import 'package:mobile_boilerplate/wrapper/flutter_app_badger_wrapper.dart';
 import 'package:mobile_boilerplate/wrapper/ntp_wrapper.dart';
 import 'package:mobile_boilerplate/wrapper/purchases_wrapper.dart';
 import 'package:mobile_boilerplate/wrapper/share_wrapper.dart';
@@ -93,7 +92,6 @@ Future<void> setupDependencies() async {
     ..registerSingleton<FlutterLocalNotificationsPlugin>(
       FlutterLocalNotificationsPlugin(),
     )
-    ..registerSingleton<FlutterAppBadgerWrapper>(FlutterAppBadgerWrapper())
     ..registerSingleton<LocalNotificationsDetailsFactory>(
       const LocalNotificationsDetailsFactory(),
     )
@@ -134,7 +132,6 @@ Future<void> setupDependencies() async {
     ..registerSingleton<ImplIOSLocalNotificationsService>(
       ImplIOSLocalNotificationsService(
         getIt<FlutterLocalNotificationsPlugin>(),
-        getIt<FlutterAppBadgerWrapper>(),
         getIt<LocalNotificationsDetailsFactory>(),
         getIt<LocalNotificationsServiceInitializer>(),
         getIt<IosCommunicationNotification>(),
@@ -143,7 +140,6 @@ Future<void> setupDependencies() async {
     ..registerSingleton<ImplAndroidLocalNotificationsService>(
       ImplAndroidLocalNotificationsService(
         getIt<FlutterLocalNotificationsPlugin>(),
-        getIt<FlutterAppBadgerWrapper>(),
         getIt<LocalNotificationsDetailsFactory>(),
         getIt<LocalNotificationsServiceInitializer>(),
       ),

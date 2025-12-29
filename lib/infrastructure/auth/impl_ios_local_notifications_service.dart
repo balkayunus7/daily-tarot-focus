@@ -7,7 +7,6 @@ import 'package:mobile_boilerplate/infrastructure/remote_notification/local_noti
 class ImplIOSLocalNotificationsService extends IOSLocalNotificationsService {
   ImplIOSLocalNotificationsService(
     super.localNotificationPlugin,
-    super.appBadger,
     super.detailsFactory,
     super.initializer,
     super._iosCommNotification,

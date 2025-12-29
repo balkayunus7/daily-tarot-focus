@@ -41,16 +41,16 @@ class TarotExplorePage extends StatelessWidget {
               Spacing.largeH,
               Text(
                 'Ruhsal Rehberin',
-                style: m16w500(context),
+                style: m16w500(context)
               ),
               Spacing.mediumH,
               Row(
                 children: [
                   Expanded(
-                    child: TarotBaseCard(
-                      subtitle: 'Yes/No Card',
-                      imagePath: TarotAppAssets.yesNoCard.path,
-                      onTap: () {},
+                      child: TarotBaseCard(
+                        subtitle: 'Yes/No Card',
+                        imagePath: TarotAppAssets.yesNoCard.path,
+                        onTap: () => context.push(AppRoutes.tarotQuestion),
                     ),
                   ),
                   Spacing.mediumW,

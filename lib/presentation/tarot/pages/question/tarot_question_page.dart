@@ -20,7 +20,7 @@ class TarotQuestionPage extends StatefulWidget {
 class _TarotQuestionPageState extends State<TarotQuestionPage>
     with TickerProviderStateMixin {
   List<TarotLibrary> _deck = [];
-  List<TarotLibrary> _drawnCards = [];
+  final List<TarotLibrary> _drawnCards = [];
   bool _isDrawing = false;
   late AnimationController _drawController;
   late Animation<double> _slideDownAnimation;
@@ -38,18 +38,18 @@ class _TarotQuestionPageState extends State<TarotQuestionPage>
     );
 
     _slideDownAnimation = Tween<double>(
-      begin: 0.0,
-      end: 300.0,
+      begin: 0,
+      end: 300,
     ).animate(
       CurvedAnimation(
         parent: _drawController,
-        curve: const Interval(0.0, 0.8, curve: Curves.easeIn),
+        curve: const Interval(0, 0.8, curve: Curves.easeIn),
       ),
     );
 
     _scaleAnimation = Tween<double>(
-      begin: 1.0,
-      end: 0.0,
+      begin: 1,
+      end: 0,
     ).animate(
       CurvedAnimation(
         parent: _drawController,
@@ -106,23 +106,17 @@ class _TarotQuestionPageState extends State<TarotQuestionPage>
     return AnimatedBuilder(
       animation: _drawController,
       builder: (context, child) {
-        final slideDown = isTopCard && _isDrawing
-            ? _slideDownAnimation.value
-            : 0.0;
+        final slideDown =
+            isTopCard && _isDrawing ? _slideDownAnimation.value : 0.0;
         final scale = isTopCard ? _scaleAnimation.value : 1.0;
         final opacity = isTopCard ? _opacityAnimation.value : 1.0;
 
-        // Transform kullan
-        Widget cardWidget = Transform.translate(
+        final Widget cardWidget = Transform.translate(
           offset: Offset(0, slideDown),
           child: Transform.scale(
-            scale: isTopCard && _isDrawing
-                ? scale.clamp(0.0, 1.0)
-                : 1.0,
+            scale: isTopCard && _isDrawing ? scale.clamp(0.0, 1.0) : 1.0,
             child: Opacity(
-              opacity: isTopCard && _isDrawing
-                  ? opacity.clamp(0.0, 1.0)
-                  : 1.0,
+              opacity: isTopCard && _isDrawing ? opacity.clamp(0.0, 1.0) : 1.0,
               child: child,
             ),
           ),
@@ -131,7 +125,7 @@ class _TarotQuestionPageState extends State<TarotQuestionPage>
         return cardWidget;
       },
       child: Container(
-        width: 160,
+        width: 64,
         height: 240,
         decoration: BoxDecoration(
           borderRadius: Spacing.defaultBorderRadius,
@@ -157,9 +151,9 @@ class _TarotQuestionPageState extends State<TarotQuestionPage>
         child: ClipRRect(
           borderRadius: Spacing.defaultBorderRadius,
           child: Image.asset(
-           TarotAppAssets.cardDesign.path,
-           fit: BoxFit.cover,
-           width: double.infinity,
+            TarotAppAssets.cardDesign.path,
+            fit: BoxFit.cover,
+            width: double.infinity,
           ),
         ),
       ),
@@ -171,7 +165,7 @@ class _TarotQuestionPageState extends State<TarotQuestionPage>
     return TweenAnimationBuilder<double>(
       duration: const Duration(milliseconds: 600),
       curve: Curves.easeOutBack,
-      tween: Tween<double>(begin: 0.0, end: 1.0),
+      tween: Tween<double>(begin: 0, end: 1),
       builder: (context, value, child) {
         final clampedValue = value.clamp(0.0, 1.0);
         return Transform.scale(
@@ -185,54 +179,33 @@ class _TarotQuestionPageState extends State<TarotQuestionPage>
           ),
         );
       },
-      child: Container(
-        width: 130,
-        height: 200,
-        margin: Spacing.tinyPadding,
-        decoration: BoxDecoration(
-          color: colors.surface,
-          borderRadius: Spacing.xsmallBorderRadius,
-          border: Border.all(
-            color: colors.primary,
-            width: 2,
-          ),
-          boxShadow: [
-            BoxShadow(
-              color: colors.primary.withOpacity(0.4),
-              blurRadius: 6,
-              spreadRadius: 2,
-              offset: const Offset(0, 4),
-            ),
-          ],
-        ),
-        child: ClipRRect(
-          borderRadius: Spacing.tinyBorderRadius,
-          child: Image.asset(
-            card.imagePath,
-            fit: BoxFit.cover,
-            width: double.infinity,
-            errorBuilder: (context, error, stackTrace) {
-              return Container(
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                    colors: [
-                      colors.primary.withOpacity(0.2),
-                      colors.accent.withOpacity(0.1),
-                    ],
-                  ),
+      child: ClipRRect(
+        borderRadius: Spacing.smallBorderRadius,
+        child: Image.asset(
+          card.imagePath,
+          fit: BoxFit.cover,
+          width: double.infinity,
+          errorBuilder: (context, error, stackTrace) {
+            return Container(
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  colors: [
+                    colors.primary.withOpacity(0.2),
+                    colors.accent.withOpacity(0.1),
+                  ],
                 ),
-                child: Center(
-                  child: Icon(
-                    Icons.auto_awesome,
-                    size: 70,
-                    color: colors.primary.withOpacity(0.6),
-                  ),
+              ),
+              child: Center(
+                child: Icon(
+                  Icons.auto_awesome,
+                  size: 70,
+                  color: colors.primary.withOpacity(0.6),
                 ),
-              );
-            },
-          ),
+              ),
+            );
+          },
         ),
       ),
     );
@@ -277,13 +250,13 @@ class _TarotQuestionPageState extends State<TarotQuestionPage>
                   children: [
                     SizedBox(
                       width: 200,
-                      height: 280,
+                      height: 128,
                       child:
                           _deck.isEmpty
                               ? Center(
                                 child: Container(
-                                  width: 160,
-                                  height: 240,
+                                  width: 200,
+                                  height: 128,
                                   decoration: BoxDecoration(
                                     border: Border.all(
                                       color: colors.primary,
@@ -292,7 +265,7 @@ class _TarotQuestionPageState extends State<TarotQuestionPage>
                                     ),
                                     borderRadius: Spacing.xsmallBorderRadius,
                                   ),
-      child: Center(
+                                  child: Center(
                                     child: Column(
                                       mainAxisAlignment:
                                           MainAxisAlignment.center,
@@ -316,7 +289,7 @@ class _TarotQuestionPageState extends State<TarotQuestionPage>
                               )
                               : Stack(
                                 clipBehavior: Clip.none,
-                        alignment: Alignment.center,
+                                alignment: Alignment.center,
                                 children: List.generate(
                                   min(_deck.length, 6),
                                   (index) {
@@ -329,7 +302,9 @@ class _TarotQuestionPageState extends State<TarotQuestionPage>
                     // Buton
                     if (!_deck.isEmpty)
                       Container(
-                        margin: const EdgeInsets.only(top: SpacingConsts.medium),
+                        margin: const EdgeInsets.only(
+                          top: SpacingConsts.medium,
+                        ),
                         decoration: BoxDecoration(
                           borderRadius: Spacing.circularBorderRadius,
                           boxShadow: [
@@ -341,21 +316,22 @@ class _TarotQuestionPageState extends State<TarotQuestionPage>
                           ],
                         ),
                         child: ElevatedButton.icon(
-                          onPressed: _deck.isEmpty || _isDrawing
-                              ? null
-                              : _drawCard,
+                          onPressed:
+                              _deck.isEmpty || _isDrawing ? null : _drawCard,
                           icon: Icon(
                             Icons.auto_awesome,
-                            color: _deck.isEmpty || _isDrawing
-                                ? colors.textSecondary
-                                : colors.background,
+                            color:
+                                _deck.isEmpty || _isDrawing
+                                    ? colors.textSecondary
+                                    : colors.background,
                           ),
                           label: Text(
                             'Kart Çek',
                             style: m16w700(context).copyWith(
-                              color: _deck.isEmpty || _isDrawing
-                                  ? colors.textSecondary
-                                  : colors.background,
+                              color:
+                                  _deck.isEmpty || _isDrawing
+                                      ? colors.textSecondary
+                                      : colors.background,
                             ),
                           ),
                           style: ElevatedButton.styleFrom(
@@ -419,7 +395,7 @@ class _TarotQuestionPageState extends State<TarotQuestionPage>
                             size: 24,
                           ),
                           Spacing.xsmallW,
-                            Text(
+                          Text(
                             'Çekilen Kartlar',
                             style: m20w800(context).copyWith(
                               color: colors.primary,
@@ -440,8 +416,8 @@ class _TarotQuestionPageState extends State<TarotQuestionPage>
                               style: m16w700(context).copyWith(
                                 color: colors.background,
                               ),
-                              ),
                             ),
+                          ),
                         ],
                       ),
                       Spacing.mediumH,
@@ -473,7 +449,7 @@ class _TarotQuestionPageState extends State<TarotQuestionPage>
                                 : GridView.builder(
                                   gridDelegate:
                                       const SliverGridDelegateWithMaxCrossAxisExtent(
-                                        maxCrossAxisExtent: 150,
+                                        maxCrossAxisExtent: 84,
                                         childAspectRatio: 0.65,
                                         crossAxisSpacing: 12,
                                         mainAxisSpacing: 12,
@@ -555,7 +531,7 @@ class SparklesPainter extends CustomPainter {
   void paint(Canvas canvas, Size size) {
     final paint =
         Paint()
-          ..color = colors.primary.withOpacity(0.3)
+          ..color = colors.primary.withAlpha(300)
           ..style = PaintingStyle.fill;
 
     final random = Random(42);

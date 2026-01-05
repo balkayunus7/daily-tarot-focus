@@ -1,4 +1,4 @@
-part of '../../pages/tarot_reveal_page.dart';
+part of '../../pages/reveal/tarot_reveal_page.dart';
 
 class TarotCardWheel extends StatefulWidget {
   const TarotCardWheel({required this.onCardSelected, super.key});

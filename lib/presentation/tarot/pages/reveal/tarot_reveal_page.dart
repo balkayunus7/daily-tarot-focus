@@ -13,9 +13,9 @@ import 'package:lottie/lottie.dart';
 import 'package:mobile_boilerplate/presentation/extensions/build_context_theme_ext.dart';
 import 'package:mobile_boilerplate/presentation/extensions/date_time_ext.dart';
 
-part '../widgets/reveal/tarot_flip_card.dart';
-part '../widgets/reveal/tarot_card_wheel.dart';
-part '../widgets/reveal/tarot_card_item.dart';
+part '../../widgets/reveal/tarot_card_item.dart';
+part '../../widgets/reveal/tarot_card_wheel.dart';
+part '../../widgets/reveal/tarot_flip_card.dart';
 
 class TarotRevealPage extends StatefulWidget {
   const TarotRevealPage({super.key});

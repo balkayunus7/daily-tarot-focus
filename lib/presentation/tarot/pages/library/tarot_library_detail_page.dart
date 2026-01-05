@@ -2,7 +2,7 @@ import 'package:daily_tarot_focus/core/util/font_style_helper.dart';
 import 'package:daily_tarot_focus/core/util/tarot_app_sizes.dart';
 import 'package:daily_tarot_focus/core/widgets/tarot_app_bar.dart';
 import 'package:daily_tarot_focus/domain/tarot/tarot_library.dart';
-import 'package:daily_tarot_focus/presentation/tarot/pages/tarot_reveal_detail_page.dart';
+import 'package:daily_tarot_focus/presentation/tarot/pages/reveal/tarot_reveal_detail_page.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile_boilerplate/presentation/extensions/build_context_theme_ext.dart';
 

@@ -100,7 +100,7 @@ class TarotAppBar extends StatelessWidget implements PreferredSizeWidget {
       backgroundColor: backgroundColor ?? Colors.transparent,
       elevation: 0,
       centerTitle: centerTitle,
-      leadingWidth: showBackIcon ? 48 : 0,
+      leadingWidth: showBackIcon ? 24 : 0,
       leading: Builder(
         builder: (context) {
           if (!showBackIcon) return const SizedBox.shrink();
@@ -109,12 +109,12 @@ class TarotAppBar extends StatelessWidget implements PreferredSizeWidget {
             child: ScalingContainer(
               onTap: onBackIconTap ?? () => context.pop(),
               child: SizedBox(
-                width: 36,
-                height: 36,
+                width: 24,
+                height: 24,
                 child: Center(
                   child: Icon(
                     backIcon ?? Icons.arrow_back_ios,
-                    size: 24,
+                    size: 20,
                     color: context.colors.textPrimary,
                   ),
                 ),

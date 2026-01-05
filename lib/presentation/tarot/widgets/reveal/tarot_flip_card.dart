@@ -1,4 +1,4 @@
-part of '../../pages/tarot_reveal_page.dart';
+part of '../../pages/reveal/tarot_reveal_page.dart';
 
 class TarotFlipCard extends StatelessWidget {
   const TarotFlipCard({super.key});

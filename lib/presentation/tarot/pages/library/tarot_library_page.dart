@@ -11,8 +11,8 @@ import 'package:mobile_boilerplate/presentation/extensions/build_context_theme_e
 import 'package:mobile_boilerplate/presentation/widgets/scaling_container.dart';
 import 'package:shimmer_animation/shimmer_animation.dart';
 
-part '../widgets/library/tarot_library_card_grid.dart';
-part '../widgets/library/tarot_library_chip_list.dart';
+part '../../widgets/library/tarot_library_card_grid.dart';
+part '../../widgets/library/tarot_library_chip_list.dart';
 
 class TarotLibraryPage extends StatefulWidget {
   const TarotLibraryPage({super.key});

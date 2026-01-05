@@ -7,11 +7,22 @@ class AppRoutes {
   static const String registerStepRelationship = '/register-step-relationship';
   static const String registerStepBirthdate = '/register-step-birthdate';
 
-  // Tarot routes
+  // Tarot explore
   static const String tarotExplore = '/tarot-explore';
+
+  // Tarot reveal
   static const String tarotReveal = '/tarot-reveal';
   static const String tarotRevealDetail = '/tarot-reveal-detail';
+
+  // Tarot library
   static const String tarotLibrary = '/tarot-library';
   static const String tarotLibraryDetail = '/tarot-library-detail';
+
+  // Tarot spread (kart açılımı)
+  static const String tarotSpread = '/tarot-spread';
+  static const String tarotSpreadResult = '/tarot-spread-result';
+
+  // Tarot question (soru sorma & cevap)
   static const String tarotQuestion = '/tarot-question';
+  static const String tarotQuestionAnswer = '/tarot-question-answer';
 }

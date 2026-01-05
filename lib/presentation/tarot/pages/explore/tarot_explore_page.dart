@@ -13,10 +13,10 @@ import 'package:mobile_boilerplate/presentation/extensions/build_context_theme_e
 import 'package:mobile_boilerplate/presentation/extensions/date_time_ext.dart';
 import 'package:mobile_boilerplate/presentation/widgets/scaling_container.dart';
 
-part '../widgets/explore/tarot_greeting_header.dart';
-part '../widgets/explore/tarot_daily_card.dart';
-part '../widgets/explore/tarot_base_card.dart';
-part '../widgets/explore/tarot_paywall_card.dart';
+part '../../widgets/explore/tarot_greeting_header.dart';
+part '../../widgets/explore/tarot_daily_card.dart';
+part '../../widgets/explore/tarot_base_card.dart';
+part '../../widgets/explore/tarot_paywall_card.dart';
 
 class TarotExplorePage extends StatelessWidget {
   const TarotExplorePage({super.key});
@@ -39,18 +39,15 @@ class TarotExplorePage extends StatelessWidget {
               Spacing.largeH,
               const TarotPaywallCard(),
               Spacing.largeH,
-              Text(
-                'Ruhsal Rehberin',
-                style: m16w500(context)
-              ),
+              Text('Ruhsal Rehberin', style: m16w500(context)),
               Spacing.mediumH,
               Row(
                 children: [
                   Expanded(
-                      child: TarotBaseCard(
-                        subtitle: 'Yes/No Card',
-                        imagePath: TarotAppAssets.yesNoCard.path,
-                        onTap: () => context.push(AppRoutes.tarotQuestion),
+                    child: TarotBaseCard(
+                      subtitle: 'Yes/No Card',
+                      imagePath: TarotAppAssets.yesNoCard.path,
+                      onTap: () => context.push(AppRoutes.tarotSpread),
                     ),
                   ),
                   Spacing.mediumW,

@@ -1,4 +1,4 @@
-part of '../../pages/tarot_library_page.dart';
+part of '../../pages/library/tarot_library_page.dart';
 
 class TarotLibraryChipList extends StatelessWidget {
   const TarotLibraryChipList({

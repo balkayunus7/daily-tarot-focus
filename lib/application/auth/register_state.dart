@@ -19,6 +19,8 @@ class RegisterState extends Equatable {
   final Failure? failure;
   final RegisterStatus registerStatus;
 
+ 
+
   bool get isRegisterNotCompleted {
     return zodiac == null || relationshipStatus == null || birthDate == null;
   }

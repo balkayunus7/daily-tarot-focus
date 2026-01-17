@@ -17,9 +17,7 @@ class TarotFlipCard extends StatelessWidget {
             if (context.mounted) {
               await context.push(
                 AppRoutes.tarotRevealDetail,
-                extra: {
-                  'tarot': randomCard.toMap(),
-                },
+                extra: {'tarot': randomCard.toMap()},
               );
             }
           });

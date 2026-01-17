@@ -53,17 +53,14 @@ class _TarotQuestionPageState extends State<TarotQuestionPage>
     ).animate(
       CurvedAnimation(
         parent: _drawController,
-        curve: const Interval(0.6, 1.0, curve: Curves.easeIn),
+        curve: const Interval(0.6, 1, curve: Curves.easeIn),
       ),
     );
 
-    _opacityAnimation = Tween<double>(
-      begin: 1.0,
-      end: 0.0,
-    ).animate(
+    _opacityAnimation = Tween<double>(begin: 1, end: 0).animate(
       CurvedAnimation(
         parent: _drawController,
-        curve: const Interval(0.7, 1.0, curve: Curves.easeIn),
+        curve: const Interval(0.7, 1, curve: Curves.easeIn),
       ),
     );
   }
@@ -135,13 +132,13 @@ class _TarotQuestionPageState extends State<TarotQuestionPage>
           ),
           boxShadow: [
             BoxShadow(
-              color: colors.background.withOpacity(0.4),
+              color: colors.background.withValues(alpha: 0.4),
               blurRadius: 15,
               spreadRadius: 2,
               offset: const Offset(0, 6),
             ),
             BoxShadow(
-              color: colors.primary.withOpacity(0.3),
+              color: colors.primary.withValues(alpha: 0.3),
               blurRadius: 20,
               spreadRadius: -5,
               offset: const Offset(0, 10),
@@ -192,8 +189,8 @@ class _TarotQuestionPageState extends State<TarotQuestionPage>
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
                   colors: [
-                    colors.primary.withOpacity(0.2),
-                    colors.accent.withOpacity(0.1),
+                    colors.primary.withValues(alpha: 0.2),
+                    colors.accent.withValues(alpha: 0.1),
                   ],
                 ),
               ),
@@ -201,7 +198,7 @@ class _TarotQuestionPageState extends State<TarotQuestionPage>
                 child: Icon(
                   Icons.auto_awesome,
                   size: 70,
-                  color: colors.primary.withOpacity(0.6),
+                  color: colors.primary.withValues(alpha: 0.6),
                 ),
               ),
             );
@@ -238,7 +235,7 @@ class _TarotQuestionPageState extends State<TarotQuestionPage>
               Text(
                 'Desteden kartınızı çekin',
                 style: m16w500(context).copyWith(
-                  color: colors.primary.withOpacity(0.8),
+                  color: colors.primary.withValues(alpha: 0.8),
                   fontStyle: FontStyle.italic,
                 ),
               ),
@@ -261,7 +258,6 @@ class _TarotQuestionPageState extends State<TarotQuestionPage>
                                     border: Border.all(
                                       color: colors.primary,
                                       width: 2,
-                                      style: BorderStyle.solid,
                                     ),
                                     borderRadius: Spacing.xsmallBorderRadius,
                                   ),
@@ -300,7 +296,7 @@ class _TarotQuestionPageState extends State<TarotQuestionPage>
                               ),
                     ),
                     // Buton
-                    if (!_deck.isEmpty)
+                    if (_deck.isNotEmpty)
                       Container(
                         margin: const EdgeInsets.only(
                           top: SpacingConsts.medium,
@@ -309,7 +305,7 @@ class _TarotQuestionPageState extends State<TarotQuestionPage>
                           borderRadius: Spacing.circularBorderRadius,
                           boxShadow: [
                             BoxShadow(
-                              color: colors.primary.withOpacity(0.3),
+                              color: colors.primary.withValues(alpha: 0.3),
                               blurRadius: 20,
                               spreadRadius: 2,
                             ),
@@ -367,18 +363,18 @@ class _TarotQuestionPageState extends State<TarotQuestionPage>
                       begin: Alignment.topLeft,
                       end: Alignment.bottomRight,
                       colors: [
-                        colors.surface.withOpacity(0.1),
-                        colors.surface.withOpacity(0.05),
+                        colors.surface.withValues(alpha: 0.1),
+                        colors.surface.withValues(alpha: 0.05),
                       ],
                     ),
                     borderRadius: Spacing.largeBorderRadius,
                     border: Border.all(
-                      color: colors.primary.withOpacity(0.3),
+                      color: colors.primary.withValues(alpha: 0.3),
                       width: 2,
                     ),
                     boxShadow: [
                       BoxShadow(
-                        color: colors.background.withOpacity(0.2),
+                        color: colors.background.withValues(alpha: 0.2),
                         blurRadius: 20,
                         offset: const Offset(0, 10),
                       ),
@@ -403,7 +399,7 @@ class _TarotQuestionPageState extends State<TarotQuestionPage>
                           ),
                           Spacing.xsmallW,
                           Container(
-                            padding: EdgeInsets.symmetric(
+                            padding: const EdgeInsets.symmetric(
                               horizontal: SpacingConsts.small,
                               vertical: SpacingConsts.tiny,
                             ),
@@ -430,17 +426,18 @@ class _TarotQuestionPageState extends State<TarotQuestionPage>
                                     children: [
                                       Icon(
                                         Icons.touch_app,
-                                        color: colors.primary.withOpacity(0.5),
+                                        color: colors.primary.withValues(
+                                          alpha: 0.5,
+                                        ),
                                         size: 60,
                                       ),
                                       Spacing.mediumH,
                                       Text(
                                         'Henüz kart çekilmedi',
                                         style: m18w500(context).copyWith(
-                                          color: colors.primary.withOpacity(
-                                            0.7,
+                                          color: colors.primary.withValues(
+                                            alpha: 0.7,
                                           ),
-                                          fontStyle: FontStyle.italic,
                                         ),
                                       ),
                                     ],
@@ -485,7 +482,7 @@ class MysticalPatternPainter extends CustomPainter {
   void paint(Canvas canvas, Size size) {
     final paint =
         Paint()
-          ..color = colors.primary.withOpacity(0.1)
+          ..color = colors.primary.withValues(alpha: 0.1)
           ..style = PaintingStyle.stroke
           ..strokeWidth = 1.5;
 

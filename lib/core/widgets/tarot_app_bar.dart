@@ -129,8 +129,8 @@ class TarotAppBar extends StatelessWidget implements PreferredSizeWidget {
           ScalingContainer(
             onTap: onIconTap ?? () => context.pop(),
             child: SizedBox(
-              width: 36,
-              height: 36,
+              width: 48,
+              height: 48,
               child: Center(
                 child: Icon(
                   trailingIcon,

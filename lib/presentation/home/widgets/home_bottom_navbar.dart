@@ -47,10 +47,7 @@ class HomeBottomNavbar extends StatelessWidget {
                   margin: const EdgeInsets.symmetric(horizontal: 4),
                   padding: const EdgeInsets.symmetric(vertical: 10),
                   decoration: BoxDecoration(
-                    color:
-                        isSelected
-                            ? context.colors.primary
-                            : Colors.transparent,
+                    color: isSelected ? context.colors.primary : Colors.transparent,
                     borderRadius: BorderRadius.circular(100),
                   ),
                   child: Column(
@@ -62,9 +59,7 @@ class HomeBottomNavbar extends StatelessWidget {
                         width: 20,
                         height: 20,
                         colorFilter: ColorFilter.mode(
-                          isSelected
-                              ? context.colors.background
-                              : context.colors.primary,
+                          isSelected ? context.colors.background : context.colors.primary,
                           BlendMode.srcIn,
                         ),
                       ),
@@ -72,10 +67,7 @@ class HomeBottomNavbar extends StatelessWidget {
                       Text(
                         label,
                         style: m10w600(context).copyWith(
-                          color:
-                              isSelected
-                                  ? context.colors.background
-                                  : context.colors.primary,
+                          color: isSelected ? context.colors.background : context.colors.primary,
                         ),
                       ),
                     ],

@@ -13,7 +13,7 @@ class SpacingConsts {
   static const double huge = 64;
 
   static const double defaultPadding = medium;
-  static const double cardPadding = large;
+  static const double largePadding = large;
   static const double screenPadding = large;
   static const double buttonPadding = medium;
   static const double inputPadding = small;
@@ -91,8 +91,8 @@ class Spacing {
   static const EdgeInsets circlePadding = EdgeInsets.all(
     SpacingConsts.huge,
   );
-  static const EdgeInsets cardPadding = EdgeInsets.all(
-    SpacingConsts.cardPadding,
+  static const EdgeInsets largePadding = EdgeInsets.all(
+    SpacingConsts.largePadding,
   );
   static const EdgeInsets defaultPadding = EdgeInsets.all(
     SpacingConsts.defaultPadding,
@@ -103,11 +103,9 @@ class Spacing {
   static const EdgeInsets xsmallPadding = EdgeInsets.all(SpacingConsts.xsmall);
   static const EdgeInsets noPadding = EdgeInsets.zero;
 
-  static double screenWidth(BuildContext context) =>
-      MediaQuery.of(context).size.width;
+  static double screenWidth(BuildContext context) => MediaQuery.of(context).size.width;
 
-  static double screenHeight(BuildContext context) =>
-      MediaQuery.of(context).size.height;
+  static double screenHeight(BuildContext context) => MediaQuery.of(context).size.height;
 
   static double get buttonHeight => 54;
   static double get contHeight => 54;

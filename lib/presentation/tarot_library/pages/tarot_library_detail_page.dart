@@ -1,17 +1,15 @@
 import 'package:daily_tarot_focus/core/util/font_style_helper.dart';
+import 'package:daily_tarot_focus/core/util/locale_keys.dart';
 import 'package:daily_tarot_focus/core/util/tarot_app_sizes.dart';
 import 'package:daily_tarot_focus/core/widgets/tarot_app_bar.dart';
 import 'package:daily_tarot_focus/domain/tarot/tarot_library.dart';
 import 'package:daily_tarot_focus/presentation/tarot_reveal/pages/tarot_reveal_detail_page.dart';
 import 'package:flutter/material.dart';
+import 'package:mobile_boilerplate/common_dependencies.dart';
 import 'package:mobile_boilerplate/presentation/extensions/build_context_theme_ext.dart';
 
 class TarotLibraryDetailPage extends StatelessWidget {
-  const TarotLibraryDetailPage({
-    required this.tarot,
-    required this.imagePath,
-    super.key
-  });
+  const TarotLibraryDetailPage({required this.tarot, required this.imagePath, super.key});
   final TarotLibrary tarot;
   final String imagePath;
 
@@ -76,21 +74,21 @@ class TarotLibraryDetailPage extends StatelessWidget {
                     ),
                     Spacing.largeH,
                     DetailDescriptionSection(
-                      title: 'Meaning for Your Day',
+                      title: LocaleKeys.libraryMeaningForDay.tr(),
                       descriptions: tarot.meanings,
                       icon: Icons.diamond,
                       iconColor: context.colors.primary,
                     ),
                     Spacing.largeH,
                     DetailDescriptionSection(
-                      title: 'Upright Meanings',
+                      title: LocaleKeys.libraryUprightMeanings.tr(),
                       descriptions: tarot.uprightMeanings,
                       icon: Icons.check_circle,
                       iconColor: Colors.green,
                     ),
                     Spacing.largeH,
                     DetailDescriptionSection(
-                      title: 'Reversed Meanings',
+                      title: LocaleKeys.libraryReversedMeanings.tr(),
                       descriptions: tarot.reversedMeanings,
                       icon: Icons.warning,
                       iconColor: context.colors.primary,

@@ -193,9 +193,7 @@ Future<void> setupDependencies() async {
     ..registerFactory<RemoteNotificationCubit>(
       () => RemoteNotificationCubit(
         getIt<FirebaseNotificationsService>(),
-        Platform.isIOS
-            ? getIt<ImplIOSLocalNotificationsService>()
-            : getIt<ImplAndroidLocalNotificationsService>(),
+        Platform.isIOS ? getIt<ImplIOSLocalNotificationsService>() : getIt<ImplAndroidLocalNotificationsService>(),
       ),
     )
     ..registerFactory<RegisterCubit>(

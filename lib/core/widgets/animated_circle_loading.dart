@@ -11,8 +11,7 @@ class AnimatedCircleLoading extends StatefulWidget {
   State<AnimatedCircleLoading> createState() => _AnimatedLoadingImageState();
 }
 
-class _AnimatedLoadingImageState extends State<AnimatedCircleLoading>
-    with SingleTickerProviderStateMixin {
+class _AnimatedLoadingImageState extends State<AnimatedCircleLoading> with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _scaleAnimation;
   late Animation<double> _rotationAnimation;

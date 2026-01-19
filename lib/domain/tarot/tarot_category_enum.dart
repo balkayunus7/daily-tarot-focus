@@ -7,8 +7,7 @@ enum TarotCategory {
 
   const TarotCategory(this.value);
 
-  factory TarotCategory.fromString(String value) =>
-      TarotCategory.values.firstWhere((e) => e.value == value);
+  factory TarotCategory.fromString(String value) => TarotCategory.values.firstWhere((e) => e.value == value);
 
   final String value;
 }

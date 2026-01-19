@@ -1,4 +1,5 @@
 import 'package:daily_tarot_focus/core/util/font_style_helper.dart';
+import 'package:daily_tarot_focus/core/util/locale_keys.dart';
 import 'package:daily_tarot_focus/core/util/tarot_app_sizes.dart';
 import 'package:daily_tarot_focus/core/widgets/tarot_app_bar.dart';
 import 'package:daily_tarot_focus/core/widgets/tarot_button.dart';
@@ -14,8 +15,7 @@ enum TarotReadingType {
 
   const TarotReadingType(this.value);
 
-  factory TarotReadingType.fromString(String value) =>
-      TarotReadingType.values.firstWhere((e) => e.value == value);
+  factory TarotReadingType.fromString(String value) => TarotReadingType.values.firstWhere((e) => e.value == value);
 
   final String value;
 
@@ -55,7 +55,7 @@ class _TarotQuestionPageState extends State<TarotQuestionPage> {
     final colors = context.colors;
     return Scaffold(
       backgroundColor: colors.background,
-      appBar: const TarotAppBar(title: 'Ask the Question'),
+      appBar: TarotAppBar(title: LocaleKeys.questionTitle.tr()),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -81,7 +81,7 @@ class _TarotQuestionPageState extends State<TarotQuestionPage> {
                         borderRadius: Spacing.smallBorderRadius,
                         borderSide: BorderSide(color: colors.primary, width: 2),
                       ),
-                      hintText: 'What would you like guidance on?',
+                      hintText: LocaleKeys.questionHintText.tr(),
                       alignLabelWithHint: true,
                     ),
                   ),
@@ -97,9 +97,9 @@ class _TarotQuestionPageState extends State<TarotQuestionPage> {
                 ],
               ),
               Spacing.xxlargeH,
-              const _SectionTitle(
+              _SectionTitle(
                 icon: FontAwesomeIcons.handSparkles,
-                title: 'Choose Reading Type',
+                title: LocaleKeys.questionChooseReadingType.tr(),
               ),
               Spacing.mediumH,
               ValueListenableBuilder(
@@ -108,7 +108,7 @@ class _TarotQuestionPageState extends State<TarotQuestionPage> {
                   return Row(
                     children: [
                       _ReadingTypeCard(
-                        title: 'Career Reading',
+                        title: LocaleKeys.questionCareerReading.tr(),
                         icon: Icons.business,
                         onTap: () {
                           _selectedReadingType.value = TarotReadingType.career;
@@ -117,7 +117,7 @@ class _TarotQuestionPageState extends State<TarotQuestionPage> {
                       ),
                       Spacing.mediumW,
                       _ReadingTypeCard(
-                        title: 'Love Reading',
+                        title: LocaleKeys.questionLoveReading.tr(),
                         icon: Icons.heart_broken,
                         onTap: () {
                           _selectedReadingType.value = TarotReadingType.love;
@@ -126,7 +126,7 @@ class _TarotQuestionPageState extends State<TarotQuestionPage> {
                       ),
                       Spacing.mediumW,
                       _ReadingTypeCard(
-                        title: 'Health Reading',
+                        title: LocaleKeys.questionHealthReading.tr(),
                         icon: Icons.health_and_safety,
                         onTap: () {
                           _selectedReadingType.value = TarotReadingType.health;
@@ -138,9 +138,9 @@ class _TarotQuestionPageState extends State<TarotQuestionPage> {
                 },
               ),
               Spacing.xxlargeH,
-              const _SectionTitle(
+              _SectionTitle(
                 icon: FontAwesomeIcons.accusoft,
-                title: 'Choose Number of Cards',
+                title: LocaleKeys.questionChooseCardCount.tr(),
               ),
               Spacing.mediumH,
               ValueListenableBuilder(
@@ -150,8 +150,8 @@ class _TarotQuestionPageState extends State<TarotQuestionPage> {
                     children: [
                       _CardOption(
                         cardCount: 1,
-                        title: 'Single Card',
-                        subtitle: 'For a quick insight',
+                        title: LocaleKeys.questionSingleCard.tr(),
+                        subtitle: LocaleKeys.questionSingleCardDesc.tr(),
                         isSelected: value == 1,
                         onTap: () {
                           _selectedCardCount.value = 1;
@@ -160,8 +160,8 @@ class _TarotQuestionPageState extends State<TarotQuestionPage> {
                       Spacing.mediumW,
                       _CardOption(
                         cardCount: 3,
-                        title: 'Three Cards',
-                        subtitle: 'For a deeper insight',
+                        title: LocaleKeys.questionThreeCards.tr(),
+                        subtitle: LocaleKeys.questionThreeCardsDesc.tr(),
                         isSelected: value == 3,
                         onTap: () {
                           _selectedCardCount.value = 3;
@@ -173,10 +173,9 @@ class _TarotQuestionPageState extends State<TarotQuestionPage> {
               ),
               const Spacer(),
               TarotButton(
-                buttonText: 'Start Reading',
+                buttonText: LocaleKeys.questionStartReading.tr(),
                 onTap: () {},
                 buttonTextStyle: m16w700(context),
-                isLoading: false,
                 isDisabled: _questionController.text.isEmpty,
               ),
             ],

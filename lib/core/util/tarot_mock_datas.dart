@@ -241,8 +241,7 @@ const TarotLibrary judgementCard = TarotLibrary(
 
 const TarotLibrary justiceCard = TarotLibrary(
   title: 'Justice',
-  description:
-      'Adaleti, dengeyi, gerçeği ve hukuki konuları temsil eder. Sebep-sonuç ilişkisinin kartıdır.',
+  description: 'Adaleti, dengeyi, gerçeği ve hukuki konuları temsil eder. Sebep-sonuç ilişkisinin kartıdır.',
   category: TarotCategory.majorArcana,
   imagePath: 'assets/jpg/justice.jpg',
   meanings: [
@@ -265,8 +264,7 @@ const TarotLibrary justiceCard = TarotLibrary(
 
 const TarotLibrary theStarCard = TarotLibrary(
   title: 'The Star',
-  description:
-      'Umut, ilham, yenilenme ve dinginliği simgeler. Evren tarafından kutsanmış hissetme.',
+  description: 'Umut, ilham, yenilenme ve dinginliği simgeler. Evren tarafından kutsanmış hissetme.',
   category: TarotCategory.majorArcana,
   imagePath: 'assets/jpg/the_star.jpg',
   meanings: [
@@ -289,8 +287,7 @@ const TarotLibrary theStarCard = TarotLibrary(
 
 const TarotLibrary strengthCard = TarotLibrary(
   title: 'Strength',
-  description:
-      'İçsel gücü, cesareti, merhameti ve sabrı temsil eder. Dışsal değil, içsel gücü kullanma.',
+  description: 'İçsel gücü, cesareti, merhameti ve sabrı temsil eder. Dışsal değil, içsel gücü kullanma.',
   category: TarotCategory.majorArcana,
   imagePath: 'assets/jpg/strength.jpg',
   meanings: [
@@ -313,8 +310,7 @@ const TarotLibrary strengthCard = TarotLibrary(
 
 const TarotLibrary temperanceCard = TarotLibrary(
   title: 'Temperance',
-  description:
-      'Dengeyi, ölçülülüğü, sabrı ve uyumu temsil eder. Hayatın farklı yönlerini harmanlama ihtiyacı.',
+  description: 'Dengeyi, ölçülülüğü, sabrı ve uyumu temsil eder. Hayatın farklı yönlerini harmanlama ihtiyacı.',
   category: TarotCategory.majorArcana,
   imagePath: 'assets/jpg/temperance.jpg',
   meanings: [
@@ -361,8 +357,7 @@ const TarotLibrary theDevilCard = TarotLibrary(
 
 const TarotLibrary theEmperorCard = TarotLibrary(
   title: 'The Emperor',
-  description:
-      'Otorite, yapı, kontrol ve babalık figürünü temsil eder. Düzen kurma ve disiplin kartıdır.',
+  description: 'Otorite, yapı, kontrol ve babalık figürünü temsil eder. Düzen kurma ve disiplin kartıdır.',
   category: TarotCategory.majorArcana,
   imagePath: 'assets/jpg/the_emperor.jpg',
   meanings: [
@@ -409,8 +404,7 @@ const TarotLibrary theFoolCard = TarotLibrary(
 
 const TarotLibrary theHangedManCard = TarotLibrary(
   title: 'The Hanged Man',
-  description:
-      'Farklı bir perspektife, fedakarlığa, ertelemeye ve teslimiyete çağırır. Askıya alınmış eylem.',
+  description: 'Farklı bir perspektife, fedakarlığa, ertelemeye ve teslimiyete çağırır. Askıya alınmış eylem.',
   category: TarotCategory.majorArcana,
   imagePath: 'assets/jpg/the_hanged_man.jpg',
   meanings: [
@@ -433,8 +427,7 @@ const TarotLibrary theHangedManCard = TarotLibrary(
 
 const TarotLibrary theHermitCard = TarotLibrary(
   title: 'The Hermit',
-  description:
-      'Yalnızlık, iç gözlem, arayış ve bilgelik arayışını temsil eder. Dış dünyadan çekilme ihtiyacı.',
+  description: 'Yalnızlık, iç gözlem, arayış ve bilgelik arayışını temsil eder. Dış dünyadan çekilme ihtiyacı.',
   category: TarotCategory.majorArcana,
   imagePath: 'assets/jpg/the_hermit.jpg',
   meanings: [
@@ -457,8 +450,7 @@ const TarotLibrary theHermitCard = TarotLibrary(
 
 const TarotLibrary theHierophantCard = TarotLibrary(
   title: 'The Hierophant',
-  description:
-      'Gelenek, kurumlar, manevi rehberlik ve uyumu temsil eder. Doğru yolu bulmak için kurallara uyma.',
+  description: 'Gelenek, kurumlar, manevi rehberlik ve uyumu temsil eder. Doğru yolu bulmak için kurallara uyma.',
   category: TarotCategory.majorArcana,
   imagePath: 'assets/jpg/the_hierophant.jpg',
   meanings: [
@@ -505,8 +497,7 @@ const TarotLibrary theHighPriestessCard = TarotLibrary(
 
 const TarotLibrary theMagicianCard = TarotLibrary(
   title: 'The Magician',
-  description:
-      'Potansiyeli, eylemi, kaynakları ve irade gücünü temsil eder. Sahip olduğu yetenekleri kullanma zamanı.',
+  description: 'Potansiyeli, eylemi, kaynakları ve irade gücünü temsil eder. Sahip olduğu yetenekleri kullanma zamanı.',
   category: TarotCategory.majorArcana,
   imagePath: 'assets/jpg/the_magician.jpg',
   meanings: [
@@ -529,8 +520,7 @@ const TarotLibrary theMagicianCard = TarotLibrary(
 
 const TarotLibrary theMoonCard = TarotLibrary(
   title: 'The Moon',
-  description:
-      'Korkuyu, illüzyonu, bilinçaltını ve sezgiyi temsil eder. Durumlar net değildir ve şüphe vardır.',
+  description: 'Korkuyu, illüzyonu, bilinçaltını ve sezgiyi temsil eder. Durumlar net değildir ve şüphe vardır.',
   category: TarotCategory.majorArcana,
   imagePath: 'assets/jpg/the_moon.jpg',
   meanings: [
@@ -553,8 +543,7 @@ const TarotLibrary theMoonCard = TarotLibrary(
 
 const TarotLibrary theSunCard = TarotLibrary(
   title: 'The Sun',
-  description:
-      'Neşe, başarı, canlılık ve özgüveni temsil eder. Hayatın en parlak ve en olumlu yönleri.',
+  description: 'Neşe, başarı, canlılık ve özgüveni temsil eder. Hayatın en parlak ve en olumlu yönleri.',
   category: TarotCategory.majorArcana,
   imagePath: 'assets/jpg/the_sun.jpg',
   meanings: [
@@ -577,8 +566,7 @@ const TarotLibrary theSunCard = TarotLibrary(
 
 const TarotLibrary theTowerCard = TarotLibrary(
   title: 'The Tower',
-  description:
-      'Ani yıkım, köklü değişiklik, kriz ve özgürleşmeyi temsil eder. Gerekli bir uyanış.',
+  description: 'Ani yıkım, köklü değişiklik, kriz ve özgürleşmeyi temsil eder. Gerekli bir uyanış.',
   category: TarotCategory.majorArcana,
   imagePath: 'assets/jpg/the_tower.jpg',
   meanings: [
@@ -601,8 +589,7 @@ const TarotLibrary theTowerCard = TarotLibrary(
 
 const TarotLibrary wheelOfFortuneCard = TarotLibrary(
   title: 'Wheel of Fortune',
-  description:
-      'Kader, şans, döngüler ve dönüm noktalarını temsil eder. Hayatınızda büyük bir dönemeç.',
+  description: 'Kader, şans, döngüler ve dönüm noktalarını temsil eder. Hayatınızda büyük bir dönemeç.',
   category: TarotCategory.majorArcana,
   imagePath: 'assets/jpg/wheel_of_fortune.jpg',
   meanings: [
@@ -649,8 +636,7 @@ const TarotLibrary theChariotCard = TarotLibrary(
 
 const TarotLibrary theEmpressCard = TarotLibrary(
   title: 'The Empress',
-  description:
-      'Bereket, annelik, yaratıcılık, duyusallık ve doğanın gücünü simgeler. Bolluk ve büyümeyi temsil eder.',
+  description: 'Bereket, annelik, yaratıcılık, duyusallık ve doğanın gücünü simgeler. Bolluk ve büyümeyi temsil eder.',
   category: TarotCategory.majorArcana,
   imagePath: 'assets/jpg/the_empress.jpg',
   meanings: [
@@ -673,8 +659,7 @@ const TarotLibrary theEmpressCard = TarotLibrary(
 
 const TarotLibrary theLoversCard = TarotLibrary(
   title: 'The Lovers',
-  description:
-      'Aşkı, ilişkileri, değerleri ve önemli bir seçimi temsil eder. İki yol arasındaki kararı simgeler.',
+  description: 'Aşkı, ilişkileri, değerleri ve önemli bir seçimi temsil eder. İki yol arasındaki kararı simgeler.',
   category: TarotCategory.majorArcana,
   imagePath: 'assets/jpg/the_lovers.jpg',
   meanings: [
@@ -697,8 +682,7 @@ const TarotLibrary theLoversCard = TarotLibrary(
 
 const TarotLibrary theWorldCard = TarotLibrary(
   title: 'The World',
-  description:
-      'Tamamlanma, başarı, bütünlük ve uyumu temsil eder. Bir döngünün sonu ve kutlama.',
+  description: 'Tamamlanma, başarı, bütünlük ve uyumu temsil eder. Bir döngünün sonu ve kutlama.',
   category: TarotCategory.majorArcana,
   imagePath: 'assets/jpg/the_world.jpg',
   meanings: [
@@ -748,8 +732,7 @@ const TarotLibrary aceOfCupsCard = TarotLibrary(
 
 const TarotLibrary twoOfCupsCard = TarotLibrary(
   title: 'Two of Cups',
-  description:
-      'Birlik, uyum, ortaklık ve karşılıklı çekimi temsil eder. Sevgi dolu bir ilişki veya anlaşma.',
+  description: 'Birlik, uyum, ortaklık ve karşılıklı çekimi temsil eder. Sevgi dolu bir ilişki veya anlaşma.',
   category: TarotCategory.cups,
   imagePath: 'assets/jpg/two_of_cups.jpg',
   meanings: [
@@ -772,8 +755,7 @@ const TarotLibrary twoOfCupsCard = TarotLibrary(
 
 const TarotLibrary threeOfCupsCard = TarotLibrary(
   title: 'Three of Cups',
-  description:
-      'Kutlama, dostluk, topluluk ve başarıyı temsil eder. Başarıyı arkadaşlarınızla kutlama zamanı.',
+  description: 'Kutlama, dostluk, topluluk ve başarıyı temsil eder. Başarıyı arkadaşlarınızla kutlama zamanı.',
   category: TarotCategory.cups,
   imagePath: 'assets/jpg/three_of_cups.jpg',
   meanings: [
@@ -868,8 +850,7 @@ const TarotLibrary sixOfCupsCard = TarotLibrary(
 
 const TarotLibrary sevenOfCupsCard = TarotLibrary(
   title: 'Seven of Cups',
-  description:
-      'Seçenekleri, hayalleri, illüzyonları ve kafa karışıklığını temsil eder. Gerçekçi olmayan beklentiler.',
+  description: 'Seçenekleri, hayalleri, illüzyonları ve kafa karışıklığını temsil eder. Gerçekçi olmayan beklentiler.',
   category: TarotCategory.cups,
   imagePath: 'assets/jpg/seven_of_cups.jpg',
   meanings: [
@@ -964,8 +945,7 @@ const TarotLibrary tenOfCupsCard = TarotLibrary(
 
 const TarotLibrary pageOfCupsCard = TarotLibrary(
   title: 'Page of Cups',
-  description:
-      'Duygusal haberi, sezgiyi, sanatsal ilhamı ve yaratıcı teklifleri temsil eder. Genç, hassas bir kişi.',
+  description: 'Duygusal haberi, sezgiyi, sanatsal ilhamı ve yaratıcı teklifleri temsil eder. Genç, hassas bir kişi.',
   category: TarotCategory.cups,
   imagePath: 'assets/jpg/page_of_cups.jpg',
   meanings: [
@@ -988,8 +968,7 @@ const TarotLibrary pageOfCupsCard = TarotLibrary(
 
 const TarotLibrary knightOfCupsCard = TarotLibrary(
   title: 'Knight of Cups',
-  description:
-      'Romantizmi, teklifleri, davetleri ve hayalperest bir eylemi temsil eder. Duygusal bir haberci.',
+  description: 'Romantizmi, teklifleri, davetleri ve hayalperest bir eylemi temsil eder. Duygusal bir haberci.',
   category: TarotCategory.cups,
   imagePath: 'assets/jpg/knight_of_cups.jpg',
   meanings: [
@@ -1012,8 +991,7 @@ const TarotLibrary knightOfCupsCard = TarotLibrary(
 
 const TarotLibrary queenOfCupsCard = TarotLibrary(
   title: 'Queen of Cups',
-  description:
-      'Sezgi, şefkat, duygusal istikrar ve sanatsal yeteneği temsil eder. Duyarlı bir figür.',
+  description: 'Sezgi, şefkat, duygusal istikrar ve sanatsal yeteneği temsil eder. Duyarlı bir figür.',
   category: TarotCategory.cups,
   imagePath: 'assets/jpg/queen_of_cups.jpg',
   meanings: [
@@ -1036,8 +1014,7 @@ const TarotLibrary queenOfCupsCard = TarotLibrary(
 
 const TarotLibrary kingOfCupsCard = TarotLibrary(
   title: 'King of Cups',
-  description:
-      'Duygusal olgunluk, merhamet, kontrol ve dengeyi temsil eder. Bilge bir yönetici figürü.',
+  description: 'Duygusal olgunluk, merhamet, kontrol ve dengeyi temsil eder. Bilge bir yönetici figürü.',
   category: TarotCategory.cups,
   imagePath: 'assets/jpg/king_of_cups.jpg',
   meanings: [
@@ -1063,8 +1040,7 @@ const TarotLibrary kingOfCupsCard = TarotLibrary(
 
 const TarotLibrary aceOfSwordsCard = TarotLibrary(
   title: 'Ace of Swords',
-  description:
-      'Zihinsel netliği, yeni fikirleri, atılımları ve gerçeği temsil eder. Zihnin gücü.',
+  description: 'Zihinsel netliği, yeni fikirleri, atılımları ve gerçeği temsil eder. Zihnin gücü.',
   category: TarotCategory.swords,
   imagePath: 'assets/jpg/ace_of_swords.jpg',
   meanings: [
@@ -1087,8 +1063,7 @@ const TarotLibrary aceOfSwordsCard = TarotLibrary(
 
 const TarotLibrary twoOfSwordsCard = TarotLibrary(
   title: 'Two of Swords',
-  description:
-      'Kararsızlık, çıkmaz, savunma ve kaçınmayı temsil eder. Zor bir seçimden kaçınma.',
+  description: 'Kararsızlık, çıkmaz, savunma ve kaçınmayı temsil eder. Zor bir seçimden kaçınma.',
   category: TarotCategory.swords,
   imagePath: 'assets/jpg/two_of_swords.jpg',
   meanings: [
@@ -1111,8 +1086,7 @@ const TarotLibrary twoOfSwordsCard = TarotLibrary(
 
 const TarotLibrary threeOfSwordsCard = TarotLibrary(
   title: 'Three of Swords',
-  description:
-      'Üzüntü, kalp kırıklığı, kayıp ve ihaneti temsil eder. Duygusal acı.',
+  description: 'Üzüntü, kalp kırıklığı, kayıp ve ihaneti temsil eder. Duygusal acı.',
   category: TarotCategory.swords,
   imagePath: 'assets/jpg/three_of_swords.jpg',
   meanings: [
@@ -1135,8 +1109,7 @@ const TarotLibrary threeOfSwordsCard = TarotLibrary(
 
 const TarotLibrary fourOfSwordsCard = TarotLibrary(
   title: 'Four of Swords',
-  description:
-      'Dinlenme, iyileşme, meditasyon ve geri çekilmeyi temsil eder. Eyleme geçmeden önce toparlanma zamanı.',
+  description: 'Dinlenme, iyileşme, meditasyon ve geri çekilmeyi temsil eder. Eyleme geçmeden önce toparlanma zamanı.',
   category: TarotCategory.swords,
   imagePath: 'assets/jpg/four_of_swords.jpg',
   meanings: [
@@ -1207,8 +1180,7 @@ const TarotLibrary sixOfSwordsCard = TarotLibrary(
 
 const TarotLibrary sevenOfSwordsCard = TarotLibrary(
   title: 'Seven of Swords',
-  description:
-      'Gizlilik, aldatma, hilekarlık ve bir şeylerden kaçmayı temsil eder. Bir durumu gizlice manipüle etme.',
+  description: 'Gizlilik, aldatma, hilekarlık ve bir şeylerden kaçmayı temsil eder. Bir durumu gizlice manipüle etme.',
   category: TarotCategory.swords,
   imagePath: 'assets/jpg/seven_of_swords.jpg',
   meanings: [
@@ -1255,8 +1227,7 @@ const TarotLibrary eightOfSwordsCard = TarotLibrary(
 
 const TarotLibrary nineOfSwordsCard = TarotLibrary(
   title: 'Nine of Swords',
-  description:
-      'Endişe, kabuslar, umutsuzluk ve kaygıyı temsil eder. Gerçekten daha kötü görünen zihinsel bir acı.',
+  description: 'Endişe, kabuslar, umutsuzluk ve kaygıyı temsil eder. Gerçekten daha kötü görünen zihinsel bir acı.',
   category: TarotCategory.swords,
   imagePath: 'assets/jpg/nine_of_swords.jpg',
   meanings: [
@@ -1303,8 +1274,7 @@ const TarotLibrary tenOfSwordsCard = TarotLibrary(
 
 const TarotLibrary pageOfSwordsCard = TarotLibrary(
   title: 'Page of Swords',
-  description:
-      'Yeni fikirleri, merakı, hızlı düşünmeyi ve sözlü iletişimi temsil eder. Bir düşünce habercisi.',
+  description: 'Yeni fikirleri, merakı, hızlı düşünmeyi ve sözlü iletişimi temsil eder. Bir düşünce habercisi.',
   category: TarotCategory.swords,
   imagePath: 'assets/jpg/page_of_swords.jpg',
   meanings: [
@@ -1327,8 +1297,7 @@ const TarotLibrary pageOfSwordsCard = TarotLibrary(
 
 const TarotLibrary knightOfSwordsCard = TarotLibrary(
   title: 'Knight of Swords',
-  description:
-      'Hızlı eylemi, atılganlığı, aceleciliği ve kararlılığı temsil eder. Fevri ve cesur bir eylem.',
+  description: 'Hızlı eylemi, atılganlığı, aceleciliği ve kararlılığı temsil eder. Fevri ve cesur bir eylem.',
   category: TarotCategory.swords,
   imagePath: 'assets/jpg/knight_of_swords.jpg',
   meanings: [
@@ -1375,8 +1344,7 @@ const TarotLibrary queenOfSwordsCard = TarotLibrary(
 
 const TarotLibrary kingOfSwordsCard = TarotLibrary(
   title: 'King of Swords',
-  description:
-      'Entelektüel otoriteyi, zihinsel disiplini, gücü ve gerçeği temsil eder. Adil ama sert bir yönetici.',
+  description: 'Entelektüel otoriteyi, zihinsel disiplini, gücü ve gerçeği temsil eder. Adil ama sert bir yönetici.',
   category: TarotCategory.swords,
   imagePath: 'assets/jpg/king_of_swords.jpg',
   meanings: [
@@ -1402,8 +1370,7 @@ const TarotLibrary kingOfSwordsCard = TarotLibrary(
 
 const TarotLibrary aceOfPentaclesCard = TarotLibrary(
   title: 'Ace of Pentacles',
-  description:
-      'Yeni bir maddi fırsatı, refahı, istikrarı ve somut bir başlangıcı temsil eder. Maddi bir hediye.',
+  description: 'Yeni bir maddi fırsatı, refahı, istikrarı ve somut bir başlangıcı temsil eder. Maddi bir hediye.',
   category: TarotCategory.pentacles,
   imagePath: 'assets/jpg/ace_of_pentacles.jpg',
   meanings: [
@@ -1426,8 +1393,7 @@ const TarotLibrary aceOfPentaclesCard = TarotLibrary(
 
 const TarotLibrary twoOfPentaclesCard = TarotLibrary(
   title: 'Two of Pentacles',
-  description:
-      'Dengeleme, esneklik, öncelikleri yönetme ve hayatın farklı yönlerini idare etmeyi temsil eder.',
+  description: 'Dengeleme, esneklik, öncelikleri yönetme ve hayatın farklı yönlerini idare etmeyi temsil eder.',
   category: TarotCategory.pentacles,
   imagePath: 'assets/jpg/two_of_pentacles.jpg',
   meanings: [
@@ -1474,8 +1440,7 @@ const TarotLibrary threeOfPentaclesCard = TarotLibrary(
 
 const TarotLibrary fourOfPentaclesCard = TarotLibrary(
   title: 'Four of Pentacles',
-  description:
-      'Maddi güvenlik, sahip olma, cimrilik ve kontrolü temsil eder. Elde tutulan mal varlığı.',
+  description: 'Maddi güvenlik, sahip olma, cimrilik ve kontrolü temsil eder. Elde tutulan mal varlığı.',
   category: TarotCategory.pentacles,
   imagePath: 'assets/jpg/four_of_pentacles.jpg',
   meanings: [
@@ -1498,8 +1463,7 @@ const TarotLibrary fourOfPentaclesCard = TarotLibrary(
 
 const TarotLibrary fiveOfPentaclesCard = TarotLibrary(
   title: 'Five of Pentacles',
-  description:
-      'Maddi kayıp, yoksulluk, dışlanma ve sağlık sorunlarını temsil eder. Kendini dışlanmış hissetme.',
+  description: 'Maddi kayıp, yoksulluk, dışlanma ve sağlık sorunlarını temsil eder. Kendini dışlanmış hissetme.',
   category: TarotCategory.pentacles,
   imagePath: 'assets/jpg/five_of_pentacles.jpg',
   meanings: [
@@ -1522,8 +1486,7 @@ const TarotLibrary fiveOfPentaclesCard = TarotLibrary(
 
 const TarotLibrary sixOfPentaclesCard = TarotLibrary(
   title: 'Six of Pentacles',
-  description:
-      'Cömertlik, hayırseverlik, verme ve alma dengesini temsil eder. Finansal adalet.',
+  description: 'Cömertlik, hayırseverlik, verme ve alma dengesini temsil eder. Finansal adalet.',
   category: TarotCategory.pentacles,
   imagePath: 'assets/jpg/six_of_pentacles.jpg',
   meanings: [
@@ -1570,8 +1533,7 @@ const TarotLibrary sevenOfPentaclesCard = TarotLibrary(
 
 const TarotLibrary eightOfPentaclesCard = TarotLibrary(
   title: 'Eight of Pentacles',
-  description:
-      'Zanaat, beceri, çıraklık ve ayrıntılara dikkat etmeyi temsil eder. Kendini geliştirmeye adama.',
+  description: 'Zanaat, beceri, çıraklık ve ayrıntılara dikkat etmeyi temsil eder. Kendini geliştirmeye adama.',
   category: TarotCategory.pentacles,
   imagePath: 'assets/jpg/eight_of_pentacles.jpg',
   meanings: [
@@ -1666,8 +1628,7 @@ const TarotLibrary pageOfPentaclesCard = TarotLibrary(
 
 const TarotLibrary knightOfPentaclesCard = TarotLibrary(
   title: 'Knight of Pentacles',
-  description:
-      'Sabrı, çalışkanlığı, güvenilirliği ve yavaş ilerlemeyi temsil eder. Garanti edilmiş ama yavaş başarı.',
+  description: 'Sabrı, çalışkanlığı, güvenilirliği ve yavaş ilerlemeyi temsil eder. Garanti edilmiş ama yavaş başarı.',
   category: TarotCategory.pentacles,
   imagePath: 'assets/jpg/knight_of_pentacles.jpg',
   meanings: [
@@ -1690,8 +1651,7 @@ const TarotLibrary knightOfPentaclesCard = TarotLibrary(
 
 const TarotLibrary queenOfPentaclesCard = TarotLibrary(
   title: 'Queen of Pentacles',
-  description:
-      'Cömertlik, annelik, pratiklik ve maddi güvenliği temsil eder. Besleyici ve başarılı bir figür.',
+  description: 'Cömertlik, annelik, pratiklik ve maddi güvenliği temsil eder. Besleyici ve başarılı bir figür.',
   category: TarotCategory.pentacles,
   imagePath: 'assets/jpg/queen_of_pentacles.jpg',
   meanings: [
@@ -1714,8 +1674,7 @@ const TarotLibrary queenOfPentaclesCard = TarotLibrary(
 
 const TarotLibrary kingOfPentaclesCard = TarotLibrary(
   title: 'King of Pentacles',
-  description:
-      'Maddi başarı, iş zekası, istikrar ve gücü temsil eder. Başarılı bir iş adamı veya yönetici.',
+  description: 'Maddi başarı, iş zekası, istikrar ve gücü temsil eder. Başarılı bir iş adamı veya yönetici.',
   category: TarotCategory.pentacles,
   imagePath: 'assets/jpg/king_of_pentacles.jpg',
   meanings: [
@@ -1765,8 +1724,7 @@ const TarotLibrary aceOfWandsCard = TarotLibrary(
 
 const TarotLibrary twoOfWandsCard = TarotLibrary(
   title: 'Two of Wands',
-  description:
-      'Planlama, ilerleme, geleceği düşünme ve cesur kararlar almayı temsil eder. Dünya ile birleşme.',
+  description: 'Planlama, ilerleme, geleceği düşünme ve cesur kararlar almayı temsil eder. Dünya ile birleşme.',
   category: TarotCategory.wands,
   imagePath: 'assets/jpg/two_of_wands.jpg',
   meanings: [
@@ -1813,8 +1771,7 @@ const TarotLibrary threeOfWandsCard = TarotLibrary(
 
 const TarotLibrary fourOfWandsCard = TarotLibrary(
   title: 'Four of Wands',
-  description:
-      'Kutlama, uyum, istikrar ve yuva kurmayı simgeler. Başarılı bir dönemin ardından gelen huzur.',
+  description: 'Kutlama, uyum, istikrar ve yuva kurmayı simgeler. Başarılı bir dönemin ardından gelen huzur.',
   category: TarotCategory.wands,
   imagePath: 'assets/jpg/four_of_wands.jpg',
   meanings: [
@@ -1861,8 +1818,7 @@ const TarotLibrary fiveOfWandsCard = TarotLibrary(
 
 const TarotLibrary sixOfWandsCard = TarotLibrary(
   title: 'Six of Wands',
-  description:
-      'Zafer, halk önünde tanınma, başarı ve özgüveni temsil eder. Bir zorluğun ardından gelen onur.',
+  description: 'Zafer, halk önünde tanınma, başarı ve özgüveni temsil eder. Bir zorluğun ardından gelen onur.',
   category: TarotCategory.wands,
   imagePath: 'assets/jpg/six_of_wands.jpg',
   meanings: [
@@ -1885,8 +1841,7 @@ const TarotLibrary sixOfWandsCard = TarotLibrary(
 
 const TarotLibrary sevenOfWandsCard = TarotLibrary(
   title: 'Seven of Wands',
-  description:
-      'Meydan okuma, rekabet, cesaret ve kendinizi savunmayı temsil eder. Zorluklara karşı ayakta durma.',
+  description: 'Meydan okuma, rekabet, cesaret ve kendinizi savunmayı temsil eder. Zorluklara karşı ayakta durma.',
   category: TarotCategory.wands,
   imagePath: 'assets/jpg/seven_of_wands.jpg',
   meanings: [
@@ -1957,8 +1912,7 @@ const TarotLibrary nineOfWandsCard = TarotLibrary(
 
 const TarotLibrary tenOfWandsCard = TarotLibrary(
   title: 'Ten of Wands',
-  description:
-      'Aşırı yüklenme, sorumluluk, baskı ve ağırlık altında kalmayı temsil eder. Yükü bırakma zamanı.',
+  description: 'Aşırı yüklenme, sorumluluk, baskı ve ağırlık altında kalmayı temsil eder. Yükü bırakma zamanı.',
   category: TarotCategory.wands,
   imagePath: 'assets/jpg/ten_of_wands.jpg',
   meanings: [
@@ -2029,8 +1983,7 @@ const TarotLibrary knightOfWandsCard = TarotLibrary(
 
 const TarotLibrary queenOfWandsCard = TarotLibrary(
   title: 'Queen of Wands',
-  description:
-      'Cazibe, kendine güven, cesaret ve yaratıcılığı temsil eder. Enerjik ve popüler bir figür.',
+  description: 'Cazibe, kendine güven, cesaret ve yaratıcılığı temsil eder. Enerjik ve popüler bir figür.',
   category: TarotCategory.wands,
   imagePath: 'assets/jpg/queen_of_wands.jpg',
   meanings: [

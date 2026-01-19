@@ -1,8 +1,6 @@
 import 'package:mobile_boilerplate/domain/auth/auth_provider.dart';
 import 'package:mobile_boilerplate/domain/auth/session.dart';
 
-
-  
 class TarotSession extends Session {
   const TarotSession({
     required super.userId,
@@ -18,8 +16,6 @@ class TarotSession extends Session {
       provider: AuthProvider.fromKey(map['provider'] as String),
     );
   }
-
- 
 
   Map<String, dynamic> toMap() {
     return {

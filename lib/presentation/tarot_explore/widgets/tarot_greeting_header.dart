@@ -6,39 +6,38 @@ class TarotGreetingHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colors = context.colors;
-    final user = context.read<AuthCubit>().state.userOrCrash as TarotUser;
-    final userZodiac = user.zodiac;
-    final isNight = DateTime.now().isNight();
-    final timeGreeting =
-        !isNight
-            ? 'Günün enerjisi seninle.'
-            : "Ay'ın gizemli enerjisi seninle.";
+    final isNight = context.networkNow().isNight();
+    final exploreMoonEnergy = LocaleKeys.exploreMoonEnergy.tr();
+    final exploreDayEnergy = LocaleKeys.exploreDayEnergy.tr();
+    final timeIcon = isNight ? Icons.nightlight_round : Icons.sunny;
+    final timeGreeting = isNight ? exploreMoonEnergy : exploreDayEnergy;
 
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Row(
+    return BlocBuilder<AuthCubit, AuthState>(
+      buildWhen: (previous, current) => current.isAuthenticated,
+      builder: (context, state) {
+        final user = state.userOrCrash as TarotUser;
+        final userZodiac = user.zodiac;
+
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Icon(
-              Icons.sunny,
-              color: colors.primary,
-              size: 28,
+            Row(
+              children: [
+                Icon(timeIcon, color: colors.primary, size: 28),
+                Spacing.xsmallW,
+                Text(timeGreeting, style: m18w700(context)),
+              ],
             ),
-            Spacing.xsmallW,
-            Text(
-              timeGreeting,
-              style: m18w700(context),
-            ),
+            Spacing.smallH,
+            if (userZodiac != null) ...[
+              Text(
+                LocaleKeys.exploreIntuitionGuide.tr(args: [userZodiac.name]),
+                style: m16w600(context).copyWith(color: colors.textSecondary),
+              ),
+            ],
           ],
-        ),
-        Spacing.smallH,
-        Text(
-          'Sevgili ${userZodiac?.value}, sezgilerinin sesi yol göstersin.',
-          style: m16w600(context).copyWith(
-            color: colors.textSecondary,
-          ),
-        ),
-      ],
+        );
+      },
     );
   }
 }

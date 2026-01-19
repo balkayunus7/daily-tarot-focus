@@ -13,18 +13,9 @@ class TarotIdentify with EquatableMixin {
     return TarotIdentify(
       title: map['title'] as String,
       description: map['description'] as String,
-      advices:
-          (map['advices'] as List?) != null
-              ? (map['advices'] as List) as List<String>
-              : null,
-      warnings:
-          (map['warnings'] as List?) != null
-              ? (map['warnings'] as List) as List<String>
-              : null,
-      meanings:
-          (map['meanings'] as List?) != null
-              ? (map['meanings'] as List) as List<String>
-              : null,
+      advices: (map['advices'] as List?) != null ? (map['advices'] as List) as List<String> : null,
+      warnings: (map['warnings'] as List?) != null ? (map['warnings'] as List) as List<String> : null,
+      meanings: (map['meanings'] as List?) != null ? (map['meanings'] as List) as List<String> : null,
     );
   }
 

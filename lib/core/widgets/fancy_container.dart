@@ -39,10 +39,7 @@ class FancyContainer extends StatelessWidget {
         border: Border.all(
           color: Colors.black.withValues(alpha: 0.1),
         ),
-        image:
-            image != null
-                ? DecorationImage(image: image!, fit: BoxFit.cover)
-                : null,
+        image: image != null ? DecorationImage(image: image!, fit: BoxFit.cover) : null,
       ),
       child: Container(
         decoration: BoxDecoration(

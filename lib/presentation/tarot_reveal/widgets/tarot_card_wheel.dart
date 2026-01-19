@@ -8,8 +8,7 @@ class TarotCardWheel extends StatefulWidget {
   State<TarotCardWheel> createState() => _TarotCardWheelState();
 }
 
-class _TarotCardWheelState extends State<TarotCardWheel>
-    with TickerProviderStateMixin {
+class _TarotCardWheelState extends State<TarotCardWheel> with TickerProviderStateMixin {
   int selectedCardIndex = 0;
   int lastHapticCardIndex = -1;
 

@@ -1,5 +1,66 @@
 {
-    "app_name": "Mind Check: Anxiety Tracker",
+    "explore_page": {
+        "spiritual_guide": "Your Spiritual Guide",
+        "yes_no_card": "Yes/No Card",
+        "library": "Library",
+        "discover_daily": "Discover Your Daily Tarot",
+        "daily_card": "Daily Card",
+        "daily_card_title": "Discover your power with today's card!",
+        "explore_card_button": "Explore Card!",
+        "go_premium": "Go Premium",
+        "unlock_all_features": "Unlock all features",
+        "get_pro": "Get Pro",
+        "day_energy": "The day's energy is with you.",
+        "moon_energy": "The mysterious energy of the Moon is with you.",
+        "intuition_guide": "Dear {zodiac}, let the voice of your intuition guide you."
+    },
+    "library_page": {
+        "title": "Library",
+        "meaning_for_day": "Meaning for Your Day",
+        "upright_meanings": "Upright Meanings",
+        "reversed_meanings": "Reversed Meanings"
+    },
+    "reveal_page": {
+        "tap_to_pick": "Tap to pick your card"
+    },
+    "question_page": {
+        "title": "Ask the Question",
+        "hint_text": "What would you like guidance on?",
+        "choose_reading_type": "Choose Reading Type",
+        "choose_card_count": "Choose Number of Cards",
+        "career_reading": "Career Reading",
+        "love_reading": "Love Reading",
+        "health_reading": "Health Reading",
+        "single_card": "Single Card",
+        "single_card_desc": "For a quick insight",
+        "three_cards": "Three Cards",
+        "three_cards_desc": "For a deeper insight",
+        "start_reading": "Start Reading"
+    },
+    "register_page": {
+        "step_1_of_3": "Step 1 of 3",
+        "step_2_of_3": "Step 2 of 3",
+        "step_3_of_3": "Step 3 of 3",
+        "zodiac_title": "What's your zodiac sign?",
+        "zodiac_subtitle": "Help us personalize your tarot experience",
+        "relationship_title": "What's your relationship status?",
+        "relationship_subtitle": "This helps us provide better insights",
+        "birthdate_title": "When were you born?",
+        "birthdate_subtitle": "Your birth date helps us calculate your cosmic path",
+        "continue_button": "Continue",
+        "complete_registration": "Complete Registration"
+    },
+    "navbar": {
+        "explore": "Explore",
+        "profile": "Profile"
+    },
+    "common": {
+        "cancel": "Cancel",
+        "confirm": "Confirm",
+        "save": "Save",
+        "delete": "Delete",
+        "back": "Back"
+    },
     "settings_page": {
         "app_bar": "Settings",
         "account": "Account",
@@ -10,7 +71,10 @@
         "terms_of_service": "Terms of Service",
         "privacy_policy": "Privacy Policy",
         "signout": "Sign Out",
-        "delete_account": "Delete Account"
+        "delete_account": "Delete Account",
+        "choose_language": "Choose Language",
+        "english": "English",
+        "turkish": "Türkçe"
     },
     "delete_account_popup": {
         "title": "Delete Account",
@@ -21,42 +85,24 @@
         "cancel_button": "Cancel",
         "confirm_button": "Okay"
     },
-    "image_selection_bottom_sheet": {
-        "title": "Upload Photo",
-        "gallery_button": "Gallery",
-        "camera_button": "Take Photo",
-        "back_button": "Go Back",
-        "save_button": "Save"
-    },
-    "camera_page": {
-        "image_large_failure": "Image is too large"
-    },
-    "camera_permission_popup": {
-        "title": "Enable Camera Access",
-        "desc": "To share photos, you need to go to Settings and enable camera access."
-    },
-    "camera_photo_edit_page": {
-        "success_toast_message": "Photo Saved",
-        "failure_toast_message": "Photo Could Not Be Saved"
-    },
-    "mockup_page": {
-        "saved_to_gallery": "Image saved to gallery"
-    },
-    "image_crop_page": {
-        "crop_button": "Crop",
-        "cancel_button": "Cancel"
-    },
-    "gallery_permission_popup": {
-        "title": "Access Photos",
-        "desc": "Manage permissions from Settings to access photos."
-    },
     "failure": {
         "connection_message": "Connection error",
         "forbidden_message": "You are not allowed to perform this action",
         "rate_limit_message": "You need to wait a bit to perform more actions",
-        "unexpected_message": "An unexpected error occurred",
-        "active_subs_not_found_message": "No active subscription found",
-        "image_upload_forbidden": "Unable to upload image. Please try signing in again.",
-        "user_not_found": "User session expired. Please sign in again."
+        "unexpected_message": "An unexpected error occurred"
+    },
+    "zodiac": {
+        "aries": "Aries",
+        "taurus": "Taurus",
+        "gemini": "Gemini",
+        "cancer": "Cancer",
+        "leo": "Leo",
+        "virgo": "Virgo",
+        "libra": "Libra",
+        "scorpio": "Scorpio",
+        "sagittarius": "Sagittarius",
+        "capricorn": "Capricorn",
+        "aquarius": "Aquarius",
+        "pisces": "Pisces"
     }
 }

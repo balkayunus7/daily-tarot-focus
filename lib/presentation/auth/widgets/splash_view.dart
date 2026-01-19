@@ -12,8 +12,7 @@ class TarotSplashView extends StatefulWidget {
   State<TarotSplashView> createState() => _TarotSplashViewState();
 }
 
-class _TarotSplashViewState extends State<TarotSplashView>
-    with TickerProviderStateMixin {
+class _TarotSplashViewState extends State<TarotSplashView> with TickerProviderStateMixin {
   late AnimationController _controller;
   @override
   void initState() {

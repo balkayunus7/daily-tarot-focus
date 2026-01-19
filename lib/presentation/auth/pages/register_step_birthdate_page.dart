@@ -1,6 +1,7 @@
 import 'package:daily_tarot_focus/application/auth/register_cubit.dart';
 import 'package:daily_tarot_focus/config/app_routes.dart';
 import 'package:daily_tarot_focus/core/util/font_style_helper.dart';
+import 'package:daily_tarot_focus/core/util/locale_keys.dart';
 import 'package:daily_tarot_focus/core/util/tarot_app_sizes.dart';
 import 'package:daily_tarot_focus/core/widgets/tarot_button.dart';
 import 'package:flutter/material.dart';
@@ -18,12 +19,10 @@ class RegisterStepBirthdatePage extends StatefulWidget {
   const RegisterStepBirthdatePage({super.key});
 
   @override
-  State<RegisterStepBirthdatePage> createState() =>
-      _RegisterStepBirthdatePageState();
+  State<RegisterStepBirthdatePage> createState() => _RegisterStepBirthdatePageState();
 }
 
-class _RegisterStepBirthdatePageState extends State<RegisterStepBirthdatePage>
-    with BirthdayMixin {
+class _RegisterStepBirthdatePageState extends State<RegisterStepBirthdatePage> with BirthdayMixin {
   @override
   Widget build(BuildContext context) {
     final colors = context.colors;
@@ -47,7 +46,7 @@ class _RegisterStepBirthdatePageState extends State<RegisterStepBirthdatePage>
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Step 3 of 3',
+                  LocaleKeys.registerStep3Of3.tr(),
                   style: TextStyle(
                     color: colors.textSecondary,
                     fontSize: 14,
@@ -56,7 +55,7 @@ class _RegisterStepBirthdatePageState extends State<RegisterStepBirthdatePage>
                 ),
                 Spacing.xsmallH,
                 Text(
-                  'When were you born?',
+                  LocaleKeys.registerBirthdateTitle.tr(),
                   style: TextStyle(
                     color: colors.textPrimary,
                     fontSize: 32,
@@ -65,7 +64,7 @@ class _RegisterStepBirthdatePageState extends State<RegisterStepBirthdatePage>
                 ),
                 Spacing.xsmallH,
                 Text(
-                  'Your birth date helps us calculate your cosmic path',
+                  LocaleKeys.registerBirthdateSubtitle.tr(),
                   style: TextStyle(
                     color: colors.textSecondary,
                     fontSize: 16,
@@ -101,7 +100,7 @@ class _RegisterStepBirthdatePageState extends State<RegisterStepBirthdatePage>
                 BlocBuilder<RegisterCubit, RegisterState>(
                   builder: (context, state) {
                     return TarotButton(
-                      buttonText: 'Complete Registration',
+                      buttonText: LocaleKeys.registerCompleteRegistration.tr(),
                       onTap: () async {
                         final authState = context.read<AuthCubit>().state;
                         await context.read<RegisterCubit>().submitRegistration(

@@ -6,6 +6,7 @@ import 'package:daily_tarot_focus/presentation/auth/pages/register_step_relation
 import 'package:daily_tarot_focus/presentation/auth/pages/register_step_zodiac_page.dart';
 import 'package:daily_tarot_focus/presentation/auth/pages/splash_page.dart';
 import 'package:daily_tarot_focus/presentation/home/pages/home_page.dart';
+import 'package:daily_tarot_focus/presentation/settings/pages/settings_page.dart';
 import 'package:daily_tarot_focus/presentation/tarot_library/pages/tarot_library_detail_page.dart';
 import 'package:daily_tarot_focus/presentation/tarot_library/pages/tarot_library_page.dart';
 import 'package:daily_tarot_focus/presentation/tarot_question/pages/tarot_question_page.dart';
@@ -94,10 +95,7 @@ final appRouter = GoRouter(
       pageBuilder: (context, state) {
         final args = state.extra as Map<String, dynamic>?;
         final tarotMap = args?['tarot'] as Map<String, dynamic>?;
-        final tarot =
-            tarotMap != null
-                ? TarotLibrary.fromMap(tarotMap)
-                : TarotMockDatas.randomTarotLibraryCard;
+        final tarot = tarotMap != null ? TarotLibrary.fromMap(tarotMap) : TarotMockDatas.randomTarotLibraryCard;
 
         return CustomTransitionPage(
           key: state.pageKey,
@@ -140,6 +138,16 @@ final appRouter = GoRouter(
         return MaterialPage(
           key: state.pageKey,
           child: const TarotQuestionPage(),
+        );
+      },
+    ),
+    GoRoute(
+      path: AppRoutes.settings,
+      name: AppRoutes.settings,
+      pageBuilder: (context, state) {
+        return MaterialPage(
+          key: state.pageKey,
+          child: const SettingsPage(),
         );
       },
     ),

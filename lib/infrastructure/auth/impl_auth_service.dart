@@ -11,8 +11,7 @@ import 'package:mobile_boilerplate/infrastructure/auth/device_id_mixin.dart';
 import 'package:mobile_boilerplate/infrastructure/http/http_failure_handler.dart';
 import 'package:supabase/supabase.dart' hide Session;
 
-class ImplAuthService extends IAuthService
-    with HttpFailureHandlerMixin, DeviceIdMixin {
+class ImplAuthService extends IAuthService with HttpFailureHandlerMixin, DeviceIdMixin {
   ImplAuthService(
     this._supabaseClient,
     this._sharedPreferences,
@@ -26,7 +25,7 @@ class ImplAuthService extends IAuthService
     try {
       final sessionJson = _sharedPreferences.getString(_sessionKey);
       if (sessionJson == null) return left(const NotFoundFailure());
-      
+
       final session = TarotSession.fromMap(
         jsonDecode(sessionJson) as Map<String, dynamic>,
       );

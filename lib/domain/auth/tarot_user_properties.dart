@@ -13,8 +13,7 @@ class TarotUserProperties extends UserProperties with EquatableMixin {
   factory TarotUserProperties.fromMap(Map<String, dynamic> map) {
     return TarotUserProperties(
       zodiac: ZodiacSign.fromString(map['zodiac_sign'] as String),
-      relationshipStatus:
-          RelationshipStatus.fromString(map['relationship_status'] as String),
+      relationshipStatus: RelationshipStatus.fromString(map['relationship_status'] as String),
       birthDate: DateTime.parse(map['birth_date'] as String),
     );
   }

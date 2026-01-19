@@ -9,10 +9,13 @@ import 'package:flutter/material.dart';
 import 'package:mobile_boilerplate/core_app.dart';
 
 Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
   await EnvConfig.load();
   await setupBindings();
   await setupCoreApp(TarotsAppConfig());
   await setupFirebase();
   await setupDependencies();
+
   runApp(const RestartableApp(child: TarotApp()));
 }

@@ -8,8 +8,7 @@ enum RelationshipStatus {
 
   const RelationshipStatus(this.value);
 
-  factory RelationshipStatus.fromString(String value) =>
-      RelationshipStatus.values.firstWhere((e) => e.value == value);
+  factory RelationshipStatus.fromString(String value) => RelationshipStatus.values.firstWhere((e) => e.value == value);
 
   final String value;
 

@@ -45,16 +45,11 @@ class TarotPaywallCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisSize: MainAxisSize.min,
               children: [
-                Text(
-                  'Go Premium',
-                  style: m18w700(context).copyWith(color: Colors.white),
-                ),
+                Text(LocaleKeys.exploreGoPremium.tr(), style: m18w700(context)),
                 Spacing.tinyH,
                 Text(
-                  'Unlock all features',
-                  style: m12w500(context).copyWith(
-                    color: Colors.white.withValues(alpha: 0.8),
-                  ),
+                  LocaleKeys.exploreUnlockAllFeatures.tr(),
+                  style: m12w500(context),
                 ),
               ],
             ),
@@ -63,7 +58,7 @@ class TarotPaywallCard extends StatelessWidget {
             height: 40,
             width: 100,
             onTap: () {},
-            buttonText: 'Get Pro',
+            buttonText: LocaleKeys.exploreGetPro.tr(),
             bgColor: colors.textPrimary,
             buttonTextStyle: m14w700(
               context,

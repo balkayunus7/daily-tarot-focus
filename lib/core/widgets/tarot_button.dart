@@ -1,4 +1,3 @@
-
 import 'package:daily_tarot_focus/core/widgets/fancy_button.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile_boilerplate/common_dependencies.dart';
@@ -7,7 +6,9 @@ import 'package:mobile_boilerplate/presentation/widgets/scaling_container.dart';
 
 class TarotButton extends StatelessWidget {
   const TarotButton({
-    required this.onTap, required this.buttonText, super.key,
+    required this.onTap,
+    required this.buttonText,
+    super.key,
     this.width = double.infinity,
     this.paddingHorizontal = 0,
     this.height = 54,
@@ -49,10 +50,7 @@ class TarotButton extends StatelessWidget {
               onPressed: onTap,
               backgroundColor: bgColor ?? context.colors.primary,
               isLoading: isLoading,
-              icon:
-                  svgIcon != null && svgIcon!.isNotEmpty
-                      ? SvgPicture.asset(svgIcon!)
-                      : null,
+              icon: svgIcon != null && svgIcon!.isNotEmpty ? SvgPicture.asset(svgIcon!) : null,
             ),
           ),
         ),

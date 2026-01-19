@@ -1,0 +1,108 @@
+{
+    "explore_page": {
+        "spiritual_guide": "Ruhsal Rehberin",
+        "yes_no_card": "Evet/Hayır Kartı",
+        "library": "Kütüphane",
+        "discover_daily": "Günlük Tarotunu Keşfet",
+        "daily_card": "Günün Kartı",
+        "daily_card_title": "Günün kartı ile gücünü keşfet!",
+        "explore_card_button": "Kartı Keşfet!",
+        "go_premium": "Premium'a Geç",
+        "unlock_all_features": "Tüm özelliklerin kilidini aç",
+        "get_pro": "Pro Al",
+        "day_energy": "Günün enerjisi seninle.",
+        "moon_energy": "Ay'ın gizemli enerjisi seninle.",
+        "intuition_guide": "Sevgili {}, sezgilerinin sesi yol göstersin."
+    },
+    "library_page": {
+        "title": "Kütüphane",
+        "meaning_for_day": "Günün Anlamı",
+        "upright_meanings": "Düz Anlamlar",
+        "reversed_meanings": "Ters Anlamlar"
+    },
+    "reveal_page": {
+        "tap_to_pick": "Kartını seçmek için dokun"
+    },
+    "question_page": {
+        "title": "Soru Sor",
+        "hint_text": "Hangi konuda rehberlik istersin?",
+        "choose_reading_type": "Okuma Türünü Seç",
+        "choose_card_count": "Kart Sayısını Seç",
+        "career_reading": "Kariyer Okuması",
+        "love_reading": "Aşk Okuması",
+        "health_reading": "Sağlık Okuması",
+        "single_card": "Tek Kart",
+        "single_card_desc": "Hızlı bir içgörü için",
+        "three_cards": "Üç Kart",
+        "three_cards_desc": "Daha derin bir içgörü için",
+        "start_reading": "Okumaya Başla"
+    },
+    "register_page": {
+        "step_1_of_3": "Adım 1 / 3",
+        "step_2_of_3": "Adım 2 / 3",
+        "step_3_of_3": "Adım 3 / 3",
+        "zodiac_title": "Burç işaretin ne?",
+        "zodiac_subtitle": "Tarot deneyimini kişiselleştirmemize yardım et",
+        "relationship_title": "İlişki durumun ne?",
+        "relationship_subtitle": "Bu, daha iyi içgörüler sağlamamıza yardımcı olur",
+        "birthdate_title": "Ne zaman doğdun?",
+        "birthdate_subtitle": "Doğum tarihin kozmik yolunu hesaplamamıza yardımcı olur",
+        "continue_button": "Devam Et",
+        "complete_registration": "Kaydı Tamamla"
+    },
+    "navbar": {
+        "explore": "Keşfet",
+        "profile": "Profil"
+    },
+    "common": {
+        "cancel": "İptal",
+        "confirm": "Onayla",
+        "save": "Kaydet",
+        "delete": "Sil",
+        "back": "Geri"
+    },
+    "settings_page": {
+        "app_bar": "Ayarlar",
+        "account": "Hesap",
+        "profile": "Profil",
+        "language": "Dil",
+        "rate_us": "Bizi Değerlendir",
+        "restore_purchases": "Satın Alımları Geri Yükle",
+        "terms_of_service": "Kullanım Koşulları",
+        "privacy_policy": "Gizlilik Politikası",
+        "signout": "Çıkış Yap",
+        "delete_account": "Hesabı Sil",
+        "choose_language": "Dil Seçin",
+        "english": "English",
+        "turkish": "Türkçe"
+    },
+    "delete_account_popup": {
+        "title": "Hesabı Sil",
+        "desc": "Hesabınızı silmek istediğinizden emin misiniz? Bu işlem geri alınamaz.",
+        "delete_button": "Sil"
+    },
+    "popup": {
+        "cancel_button": "İptal",
+        "confirm_button": "Tamam"
+    },
+    "failure": {
+        "connection_message": "Bağlantı hatası",
+        "forbidden_message": "Bu işlemi yapmaya yetkiniz yok",
+        "rate_limit_message": "Daha fazla işlem yapmak için biraz beklemeniz gerekiyor",
+        "unexpected_message": "Beklenmedik bir hata oluştu"
+    },
+    "zodiac": {
+        "aries": "Koç",
+        "taurus": "Boğa",
+        "gemini": "İkizler",
+        "cancer": "Yengeç",
+        "leo": "Aslan",
+        "virgo": "Başak",
+        "libra": "Terazi",
+        "scorpio": "Akrep",
+        "sagittarius": "Yay",
+        "capricorn": "Oğlak",
+        "aquarius": "Kova",
+        "pisces": "Balık"
+    }
+}

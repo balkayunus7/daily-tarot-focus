@@ -6,8 +6,7 @@ enum RegisterStatus {
 
   const RegisterStatus(this.value);
 
-  factory RegisterStatus.fromString(String value) =>
-      RegisterStatus.values.firstWhere((e) => e.value == value);
+  factory RegisterStatus.fromString(String value) => RegisterStatus.values.firstWhere((e) => e.value == value);
 
   final String value;
 

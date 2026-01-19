@@ -19,8 +19,7 @@ class TarotLibraryChipList extends StatelessWidget {
         return;
       }
       selectedCategory.value = category;
-      filteredCards.value =
-          fullCards.where((card) => card.category == category).toList();
+      filteredCards.value = fullCards.where((card) => card.category == category).toList();
     }
 
     return ValueListenableBuilder(
@@ -86,10 +85,7 @@ class _CategoryChip extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
         decoration: BoxDecoration(
-          color:
-              isSelected
-                  ? colors.primary
-                  : colors.surface.withValues(alpha: 0.1),
+          color: isSelected ? colors.primary : colors.surface.withValues(alpha: 0.1),
           borderRadius: Spacing.largeBorderRadius,
           border: Border.all(
             color: isSelected ? colors.primary : colors.border,

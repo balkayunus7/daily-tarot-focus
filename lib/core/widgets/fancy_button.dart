@@ -48,8 +48,7 @@ class FancyButton extends StatelessWidget {
       child: FancyContainer(
         color: buttonColor,
         borderRadius: BorderRadius.circular(16),
-        padding:
-            padding ?? const EdgeInsets.symmetric(horizontal: 12, vertical: 7),
+        padding: padding ?? const EdgeInsets.symmetric(horizontal: 12, vertical: 7),
         width: width,
         height: height,
         child: Row(

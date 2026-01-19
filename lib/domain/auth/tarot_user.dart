@@ -33,35 +33,27 @@ class TarotUser extends User {
           }),
         ),
       ),
-      zodiac:
-          map['zodiac_sign'] != null
-              ? ZodiacSign.fromString(map['zodiac_sign'] as String)
-              : null,
+      zodiac: map['zodiac_sign'] != null ? ZodiacSign.fromString(map['zodiac_sign'] as String) : null,
       relationshipStatus:
           map['relationship_status'] != null
               ? RelationshipStatus.fromString(
                 map['relationship_status'] as String,
               )
               : null,
-      birthDate:
-          map['birth_date'] != null
-              ? DateTime.parse(map['birth_date'] as String)
-              : null,
+      birthDate: map['birth_date'] != null ? DateTime.parse(map['birth_date'] as String) : null,
     );
   }
   final ZodiacSign? zodiac;
   final RelationshipStatus? relationshipStatus;
   final DateTime? birthDate;
 
-  bool get isProfileComplete =>
-      zodiac != null && relationshipStatus != null && birthDate != null;
+  bool get isProfileComplete => zodiac != null && relationshipStatus != null && birthDate != null;
 
   int? get age {
     if (birthDate == null) return null;
     final today = DateTime.now();
     var age = today.year - birthDate!.year;
-    if (today.month < birthDate!.month ||
-        (today.month == birthDate!.month && today.day < birthDate!.day)) {
+    if (today.month < birthDate!.month || (today.month == birthDate!.month && today.day < birthDate!.day)) {
       age--;
     }
     return age;

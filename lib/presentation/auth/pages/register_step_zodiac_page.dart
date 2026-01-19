@@ -1,6 +1,7 @@
 import 'package:daily_tarot_focus/application/auth/register_cubit.dart';
 import 'package:daily_tarot_focus/config/app_routes.dart';
 import 'package:daily_tarot_focus/core/util/font_style_helper.dart';
+import 'package:daily_tarot_focus/core/util/locale_keys.dart';
 import 'package:daily_tarot_focus/core/util/tarot_app_sizes.dart';
 import 'package:daily_tarot_focus/core/widgets/tarot_button.dart';
 import 'package:daily_tarot_focus/domain/auth/tarot_user_zodiac_enum.dart';
@@ -29,17 +30,17 @@ class RegisterStepZodiacPage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'Step 1 of 3',
+                LocaleKeys.registerStep1Of3.tr(),
                 style: m14w400(context).copyWith(color: colors.textSecondary),
               ),
               Spacing.xsmallH,
               Text(
-                "What's your zodiac sign?",
+                LocaleKeys.registerZodiacTitle.tr(),
                 style: m32w600(context),
               ),
               Spacing.xsmallH,
               Text(
-                'Help us personalize your tarot experience',
+                LocaleKeys.registerZodiacSubtitle.tr(),
                 style: m16w400(context).copyWith(color: colors.textSecondary),
               ),
               Spacing.smallH,
@@ -53,7 +54,7 @@ class RegisterStepZodiacPage extends StatelessWidget {
               BlocBuilder<RegisterCubit, RegisterState>(
                 builder: (context, state) {
                   return TarotButton(
-                    buttonText: 'Continue',
+                    buttonText: LocaleKeys.registerContinueButton.tr(),
                     onTap: () async {
                       await context.push(AppRoutes.registerStepRelationship);
                     },

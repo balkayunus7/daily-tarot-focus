@@ -17,8 +17,7 @@ class SplashPage extends StatefulWidget {
   State<SplashPage> createState() => _SplashPageState();
 }
 
-class _SplashPageState extends State<SplashPage>
-    with RouteAwareAnalyticsMixin, RouteAwareAnalyticsPageParamsMixin {
+class _SplashPageState extends State<SplashPage> with RouteAwareAnalyticsMixin, RouteAwareAnalyticsPageParamsMixin {
   @override
   void initState() {
     final authCubit = context.read<AuthCubit>();
@@ -32,13 +31,16 @@ class _SplashPageState extends State<SplashPage>
     super.initState();
   }
 
-  Future<void> routeToRegisterSteps() async {
+  Future<void> routeOnAuthenticated() async {
     final authState = context.read<AuthCubit>().state;
     final user = authState.userOrCrash;
     if (user is! TarotUser) return;
-    // Use go() instead of push() to replace splash with home
-    // User shouldn't be able to go back to splash
-    context.go(AppRoutes.tarotExplore);
+
+    if (user.isProfileComplete) {
+      context.go(AppRoutes.tarotExplore);
+    } else {
+      context.go(AppRoutes.registerStepZodiac);
+    }
   }
 
   @override
@@ -48,17 +50,15 @@ class _SplashPageState extends State<SplashPage>
         listeners: [
           BlocListener<AuthCubit, AuthState>(
             listenWhen: (previous, current) {
-              return previous.isInitial && current.isAuthenticated;
+              return current.isAuthenticated && (previous.isInitial || !previous.isAuthenticated);
             },
             listener: (context, state) async {
-              await routeToRegisterSteps();
+              await routeOnAuthenticated();
             },
           ),
           BlocListener<AuthCubit, AuthState>(
             listenWhen: (previous, current) {
-              return previous.isInitial &&
-                  !current.isInitial &&
-                  !current.isAuthenticated;
+              return previous.isInitial && !current.isInitial && !current.isAuthenticated;
             },
             listener: (context, state) async {
               await context.read<AuthCubit>().signInAnonymously();

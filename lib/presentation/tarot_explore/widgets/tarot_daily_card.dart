@@ -33,7 +33,7 @@ class TarotDailyCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Günün kartı ile gücünü keşfet!',
+                    LocaleKeys.exploreDailyCardTitle.tr(),
                     style: m18w600(context),
                   ),
                   Spacing.mediumH,
@@ -44,7 +44,7 @@ class TarotDailyCard extends StatelessWidget {
                         height: 40,
                         width: 120,
                         onTap: () {},
-                        buttonText: 'Kartı Keşfet!',
+                        buttonText: LocaleKeys.exploreCardButton.tr(),
                         bgColor: context.colors.accent,
                         buttonTextStyle: m12w600(context),
                       ),
@@ -71,7 +71,7 @@ class _DailyCardImage extends StatelessWidget {
       top: -10,
       bottom: -10,
       child: Hero(
-        tag: 'daily_tarot_card_hero', 
+        tag: 'daily_tarot_card_hero',
         child: Transform.rotate(
           angle: -0.15,
           child: Container(
@@ -89,7 +89,7 @@ class _DailyCardImage extends StatelessWidget {
             child: ClipRRect(
               borderRadius: BorderRadius.circular(16),
               child: Image.asset(
-                TarotAppAssets.cardDesign.path, 
+                TarotAppAssets.cardDesign.path,
                 fit: BoxFit.cover,
               ),
             ),

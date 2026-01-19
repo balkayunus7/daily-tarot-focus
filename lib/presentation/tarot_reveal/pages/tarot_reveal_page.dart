@@ -1,8 +1,10 @@
 import 'dart:async';
 import 'dart:math' as math;
+
 import 'package:daily_tarot_focus/config/app_routes.dart';
 import 'package:daily_tarot_focus/core/util/font_style_helper.dart';
 import 'package:daily_tarot_focus/core/util/haptic_feedback_helper.dart';
+import 'package:daily_tarot_focus/core/util/locale_keys.dart';
 import 'package:daily_tarot_focus/core/util/tarot_app_assets.dart';
 import 'package:daily_tarot_focus/core/util/tarot_app_sizes.dart';
 import 'package:daily_tarot_focus/core/util/tarot_mock_datas.dart';
@@ -10,6 +12,7 @@ import 'package:daily_tarot_focus/core/widgets/tarot_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:lottie/lottie.dart';
+import 'package:mobile_boilerplate/common_dependencies.dart';
 import 'package:mobile_boilerplate/presentation/extensions/build_context_theme_ext.dart';
 import 'package:mobile_boilerplate/presentation/extensions/date_time_ext.dart';
 
@@ -24,8 +27,7 @@ class TarotRevealPage extends StatefulWidget {
   State<TarotRevealPage> createState() => _TarotRevealPageState();
 }
 
-class _TarotRevealPageState extends State<TarotRevealPage>
-    with TickerProviderStateMixin {
+class _TarotRevealPageState extends State<TarotRevealPage> with TickerProviderStateMixin {
   bool _isCardSelected = false;
 
   @override
@@ -53,7 +55,7 @@ class _TarotRevealPageState extends State<TarotRevealPage>
                     ),
                     Spacing.mediumH,
                     Text(
-                      'Tap to pick your card',
+                      LocaleKeys.revealTapToPick.tr(),
                       style: m14w500(
                         context,
                       ).copyWith(color: context.colors.textSecondary),

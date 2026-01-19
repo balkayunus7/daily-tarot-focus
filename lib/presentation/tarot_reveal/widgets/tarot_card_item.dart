@@ -17,13 +17,9 @@ class CardItem extends StatelessWidget {
   Widget build(BuildContext context) {
     double getCardSize({required bool isWidth, required bool isSelected}) {
       if (isWidth) {
-        return isSelected
-            ? SpacingConsts.wheelCardSelectedWidth
-            : SpacingConsts.wheelCardUnselectedWidth;
+        return isSelected ? SpacingConsts.wheelCardSelectedWidth : SpacingConsts.wheelCardUnselectedWidth;
       }
-      return isSelected
-          ? SpacingConsts.wheelCardSelectedHeight
-          : SpacingConsts.wheelCardUnselectedHeight;
+      return isSelected ? SpacingConsts.wheelCardSelectedHeight : SpacingConsts.wheelCardUnselectedHeight;
     }
 
     return RotatedBox(

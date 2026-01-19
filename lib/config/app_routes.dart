@@ -21,4 +21,7 @@ class AppRoutes {
   // Tarot question (soru sorma & cevap)
   static const String tarotQuestion = '/tarot-question';
   static const String tarotQuestionAnswer = '/tarot-question-answer';
+
+  // Settings
+  static const String settings = '/settings';
 }

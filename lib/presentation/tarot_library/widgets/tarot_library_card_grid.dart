@@ -82,8 +82,13 @@ class _ImageLoadingShimmer extends StatelessWidget {
     final colors = context.colors;
 
     return Shimmer(
-      duration: const Duration(milliseconds: 1500),
-      color: colors.primary.withValues(alpha: 0.3),
+      gradient: LinearGradient(
+        colors: [
+          colors.primary.withValues(alpha: 0.1),
+          colors.primary.withValues(alpha: 0.3),
+          colors.primary.withValues(alpha: 0.1),
+        ],
+      ),
       child: SizedBox.expand(
         child: Container(
           decoration: BoxDecoration(

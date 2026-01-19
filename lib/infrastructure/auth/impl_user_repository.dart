@@ -60,7 +60,7 @@ class ImplUserRepository extends IUserRepository with HttpFailureHandlerMixin {
       final data = decodeSupabaseResponse(response.data);
       final generalFailure = handleResult(response.status, data);
       if (generalFailure != null) return left(generalFailure);
-      
+
       return right(unit);
     } on Exception {
       return left(const UnknownFailure());

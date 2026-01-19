@@ -35,12 +35,10 @@ Future<void> showSheetBase(
             ),
             margin: const EdgeInsets.fromLTRB(16, 16, 16, 32),
             child: _SheetBase(
-              bodyPadding:
-                  hasBodyPadding ? Spacing.defaultPadding : EdgeInsets.zero,
+              bodyPadding: hasBodyPadding ? Spacing.defaultPadding : EdgeInsets.zero,
               body: [
                 Padding(
-                  padding:
-                      hasBodyPadding ? EdgeInsets.zero : Spacing.defaultPadding,
+                  padding: hasBodyPadding ? EdgeInsets.zero : Spacing.defaultPadding,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [

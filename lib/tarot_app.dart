@@ -1,5 +1,6 @@
 import 'package:daily_tarot_focus/application/auth/register_cubit.dart';
 import 'package:daily_tarot_focus/config/app_router.dart';
+import 'package:daily_tarot_focus/core/util/locale_supported.dart';
 import 'package:daily_tarot_focus/core/util/tarot_app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile_boilerplate/application/analytics/analytics_cubit.dart';
@@ -39,7 +40,7 @@ class TarotApp extends StatelessWidget {
         lightColors: TarotAppColorsLight(),
         routerConfig: appRouter,
         fontFamily: 'Montserrat',
-        supportedLocales: const [Locale('en')],
+        supportedLocales: context.supportedCoreLocales,
       ),
     );
   }

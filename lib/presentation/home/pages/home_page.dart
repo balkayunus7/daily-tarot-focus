@@ -1,5 +1,6 @@
 import 'package:daily_tarot_focus/core/util/haptic_feedback_helper.dart';
 import 'package:daily_tarot_focus/presentation/home/widgets/home_bottom_navbar.dart';
+import 'package:daily_tarot_focus/presentation/settings/pages/settings_page.dart';
 import 'package:daily_tarot_focus/presentation/tarot_explore/pages/tarot_explore_page.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile_boilerplate/presentation/routing/route_arguments.dart';
@@ -23,8 +24,7 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage>
-    with RouteAwareAnalyticsMixin, RouteAwareAnalyticsPageParamsMixin {
+class _HomePageState extends State<HomePage> with RouteAwareAnalyticsMixin, RouteAwareAnalyticsPageParamsMixin {
   late PageController pageController;
   int currentIndex = 0;
 
@@ -54,7 +54,7 @@ class _HomePageState extends State<HomePage>
         children: const [
           TarotExplorePage(),
           TarotExplorePage(),
-          TarotExplorePage(),
+          SettingsPage(),
         ],
       ),
       bottomNavigationBar: SafeArea(

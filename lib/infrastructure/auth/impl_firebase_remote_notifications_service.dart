@@ -3,8 +3,7 @@ import 'package:mobile_boilerplate/domain/remote_notification/remote_notificatio
 import 'package:mobile_boilerplate/infrastructure/remote_notification/firebase_notifications_service.dart';
 import 'package:mobile_boilerplate/infrastructure_dependencies.dart' as fm;
 
-class ImplFirebaseRemoteNotificationsService
-    extends FirebaseNotificationsService {
+class ImplFirebaseRemoteNotificationsService extends FirebaseNotificationsService {
   ImplFirebaseRemoteNotificationsService(
     super._firebaseMessaging,
     super._firebaseMessagingOnNotification,

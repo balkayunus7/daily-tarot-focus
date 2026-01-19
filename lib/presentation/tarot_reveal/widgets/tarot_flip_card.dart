@@ -29,10 +29,7 @@ class TarotFlipCard extends StatelessWidget {
           // First 80%: rotation, last 20%: card appears
           final isFrontVisible = value >= 0.8;
           // Scale animation: starts larger, then grows
-          final scale =
-              value < 0.8
-                  ? 0.7 + (value / 0.8) * 0.2
-                  : 0.9 + ((value - 0.8) / 0.2) * 1.0;
+          final scale = value < 0.8 ? 0.7 + (value / 0.8) * 0.2 : 0.9 + ((value - 0.8) / 0.2) * 1.0;
 
           // Show front face only in last 20%, back face visible during rotation
           final shouldShowFront = isFrontVisible;
@@ -163,8 +160,7 @@ class _TarotShiningStars extends StatefulWidget {
   State<_TarotShiningStars> createState() => _TarotShiningStarsState();
 }
 
-class _TarotShiningStarsState extends State<_TarotShiningStars>
-    with TickerProviderStateMixin {
+class _TarotShiningStarsState extends State<_TarotShiningStars> with TickerProviderStateMixin {
   late final AnimationController starsController;
 
   @override

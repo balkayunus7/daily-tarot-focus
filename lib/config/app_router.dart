@@ -6,12 +6,11 @@ import 'package:daily_tarot_focus/presentation/auth/pages/register_step_relation
 import 'package:daily_tarot_focus/presentation/auth/pages/register_step_zodiac_page.dart';
 import 'package:daily_tarot_focus/presentation/auth/pages/splash_page.dart';
 import 'package:daily_tarot_focus/presentation/home/pages/home_page.dart';
-import 'package:daily_tarot_focus/presentation/tarot/pages/library/tarot_library_detail_page.dart';
-import 'package:daily_tarot_focus/presentation/tarot/pages/library/tarot_library_page.dart';
-import 'package:daily_tarot_focus/presentation/tarot/pages/question/tarot_question_page.dart';
-import 'package:daily_tarot_focus/presentation/tarot/pages/question/tarot_spread_page.dart';
-import 'package:daily_tarot_focus/presentation/tarot/pages/reveal/tarot_reveal_detail_page.dart';
-import 'package:daily_tarot_focus/presentation/tarot/pages/reveal/tarot_reveal_page.dart';
+import 'package:daily_tarot_focus/presentation/tarot_library/pages/tarot_library_detail_page.dart';
+import 'package:daily_tarot_focus/presentation/tarot_library/pages/tarot_library_page.dart';
+import 'package:daily_tarot_focus/presentation/tarot_question/pages/tarot_question_page.dart';
+import 'package:daily_tarot_focus/presentation/tarot_reveal/pages/tarot_reveal_detail_page.dart';
+import 'package:daily_tarot_focus/presentation/tarot_reveal/pages/tarot_reveal_page.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -95,9 +94,10 @@ final appRouter = GoRouter(
       pageBuilder: (context, state) {
         final args = state.extra as Map<String, dynamic>?;
         final tarotMap = args?['tarot'] as Map<String, dynamic>?;
-        final tarot = tarotMap != null
-            ? TarotLibrary.fromMap(tarotMap)
-            : TarotMockDatas.randomTarotLibraryCard;
+        final tarot =
+            tarotMap != null
+                ? TarotLibrary.fromMap(tarotMap)
+                : TarotMockDatas.randomTarotLibraryCard;
 
         return CustomTransitionPage(
           key: state.pageKey,
@@ -140,16 +140,6 @@ final appRouter = GoRouter(
         return MaterialPage(
           key: state.pageKey,
           child: const TarotQuestionPage(),
-        );
-      },
-    ),
-    GoRoute(
-      path: AppRoutes.tarotSpread,
-      name: AppRoutes.tarotSpread,
-      pageBuilder: (context, state) {
-        return MaterialPage(
-          key: state.pageKey,
-          child: const TarotSpreadPage(),
         );
       },
     ),

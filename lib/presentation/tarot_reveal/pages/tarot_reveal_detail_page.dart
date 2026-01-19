@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mobile_boilerplate/presentation/extensions/build_context_theme_ext.dart';
 
-part '../../widgets/reveal/tarot_detail_desc_section.dart';
+part '../widgets/tarot_detail_desc_section.dart';
 
 class TarotRevealDetailPage extends StatelessWidget {
   const TarotRevealDetailPage({required this.tarot, super.key});
@@ -77,7 +77,10 @@ class TarotRevealDetailPage extends StatelessWidget {
                           ),
                           child: ClipRRect(
                             borderRadius: Spacing.smallBorderRadius,
-                            child: Image.asset(tarot.imagePath, fit: BoxFit.cover),
+                            child: Image.asset(
+                              tarot.imagePath,
+                              fit: BoxFit.cover,
+                            ),
                           ),
                         ),
                       ),

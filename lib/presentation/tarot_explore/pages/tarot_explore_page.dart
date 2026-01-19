@@ -13,10 +13,10 @@ import 'package:mobile_boilerplate/presentation/extensions/build_context_theme_e
 import 'package:mobile_boilerplate/presentation/extensions/date_time_ext.dart';
 import 'package:mobile_boilerplate/presentation/widgets/scaling_container.dart';
 
-part '../../widgets/explore/tarot_greeting_header.dart';
-part '../../widgets/explore/tarot_daily_card.dart';
-part '../../widgets/explore/tarot_base_card.dart';
-part '../../widgets/explore/tarot_paywall_card.dart';
+part '../widgets/tarot_greeting_header.dart';
+part '../widgets/tarot_daily_card.dart';
+part '../widgets/tarot_base_card.dart';
+part '../widgets/tarot_paywall_card.dart';
 
 class TarotExplorePage extends StatelessWidget {
   const TarotExplorePage({super.key});
@@ -47,7 +47,7 @@ class TarotExplorePage extends StatelessWidget {
                     child: TarotBaseCard(
                       subtitle: 'Yes/No Card',
                       imagePath: TarotAppAssets.yesNoCard.path,
-                      onTap: () => context.push(AppRoutes.tarotSpread),
+                      onTap: () => context.push(AppRoutes.tarotQuestion),
                     ),
                   ),
                   Spacing.mediumW,

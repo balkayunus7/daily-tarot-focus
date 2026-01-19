@@ -18,10 +18,6 @@ class AppRoutes {
   static const String tarotLibrary = '/tarot-library';
   static const String tarotLibraryDetail = '/tarot-library-detail';
 
-  // Tarot spread (kart açılımı)
-  static const String tarotSpread = '/tarot-spread';
-  static const String tarotSpreadResult = '/tarot-spread-result';
-
   // Tarot question (soru sorma & cevap)
   static const String tarotQuestion = '/tarot-question';
   static const String tarotQuestionAnswer = '/tarot-question-answer';

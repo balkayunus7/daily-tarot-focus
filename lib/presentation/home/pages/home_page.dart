@@ -1,6 +1,6 @@
 import 'package:daily_tarot_focus/core/util/haptic_feedback_helper.dart';
 import 'package:daily_tarot_focus/presentation/home/widgets/home_bottom_navbar.dart';
-import 'package:daily_tarot_focus/presentation/tarot/pages/explore/tarot_explore_page.dart';
+import 'package:daily_tarot_focus/presentation/tarot_explore/pages/tarot_explore_page.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile_boilerplate/presentation/routing/route_arguments.dart';
 import 'package:mobile_boilerplate/presentation/routing/route_aware_analytics_mixin.dart';
@@ -51,7 +51,11 @@ class _HomePageState extends State<HomePage>
       body: PageView(
         physics: const NeverScrollableScrollPhysics(),
         controller: pageController,
-        children: const [TarotExplorePage(), TarotExplorePage(), TarotExplorePage()],
+        children: const [
+          TarotExplorePage(),
+          TarotExplorePage(),
+          TarotExplorePage(),
+        ],
       ),
       bottomNavigationBar: SafeArea(
         child: HomeBottomNavbar(

@@ -1,4 +1,4 @@
-part of '../../pages/reveal/tarot_reveal_page.dart';
+part of '../pages/tarot_reveal_page.dart';
 
 class CardItem extends StatelessWidget {
   const CardItem({

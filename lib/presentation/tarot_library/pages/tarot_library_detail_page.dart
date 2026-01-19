@@ -2,7 +2,7 @@ import 'package:daily_tarot_focus/core/util/font_style_helper.dart';
 import 'package:daily_tarot_focus/core/util/tarot_app_sizes.dart';
 import 'package:daily_tarot_focus/core/widgets/tarot_app_bar.dart';
 import 'package:daily_tarot_focus/domain/tarot/tarot_library.dart';
-import 'package:daily_tarot_focus/presentation/tarot/pages/reveal/tarot_reveal_detail_page.dart';
+import 'package:daily_tarot_focus/presentation/tarot_reveal/pages/tarot_reveal_detail_page.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile_boilerplate/presentation/extensions/build_context_theme_ext.dart';
 
@@ -10,7 +10,7 @@ class TarotLibraryDetailPage extends StatelessWidget {
   const TarotLibraryDetailPage({
     required this.tarot,
     required this.imagePath,
-    super.key,
+    super.key
   });
   final TarotLibrary tarot;
   final String imagePath;
@@ -51,32 +51,27 @@ class TarotLibraryDetailPage extends StatelessWidget {
                       style: m14w500(context),
                     ),
                     Spacing.largeH,
-                    Center(
-                      child: Hero(
-                        tag: 'daily_tarot_card_hero',
-                        child: Container(
-                          height: screenSize.height * 0.4,
-                          decoration: BoxDecoration(
-                            borderRadius: Spacing.smallBorderRadius,
-                            border: Border.all(
-                              color: context.colors.primary,
-                              width: 2,
-                            ),
-                            boxShadow: [
-                              BoxShadow(
-                                color: context.colors.primary.withValues(
-                                  alpha: 0.3,
-                                ),
-                                blurRadius: 30,
-                                spreadRadius: 10,
-                              ),
-                            ],
-                          ),
-                          child: ClipRRect(
-                            borderRadius: Spacing.smallBorderRadius,
-                            child: Image.asset(imagePath, fit: BoxFit.cover),
-                          ),
+                    Container(
+                      height: screenSize.height * 0.4,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(14),
+                        border: Border.all(
+                          color: context.colors.primary,
+                          width: 2,
                         ),
+                        boxShadow: [
+                          BoxShadow(
+                            color: context.colors.primary.withValues(
+                              alpha: 0.3,
+                            ),
+                            blurRadius: 30,
+                            spreadRadius: 10,
+                          ),
+                        ],
+                      ),
+                      child: ClipRRect(
+                        borderRadius: Spacing.smallBorderRadius,
+                        child: Image.asset(imagePath, fit: BoxFit.cover),
                       ),
                     ),
                     Spacing.largeH,

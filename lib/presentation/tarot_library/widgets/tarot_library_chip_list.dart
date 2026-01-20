@@ -1,58 +1,35 @@
 part of '../pages/tarot_library_page.dart';
 
 class TarotLibraryChipList extends StatelessWidget {
-  const TarotLibraryChipList({
-    required this.filteredCards,
-    required this.selectedCategory,
-    super.key,
-  });
-  final ValueNotifier<TarotCategory?> selectedCategory;
-  final ValueNotifier<List<TarotLibrary>> filteredCards;
+  const TarotLibraryChipList({super.key});
 
   @override
   Widget build(BuildContext context) {
-    void handleCategoryChange({required TarotCategory? category}) {
-      final fullCards = TarotMockDatas.fullTarotDeckMock;
-      if (category == null) {
-        selectedCategory.value = null;
-        filteredCards.value = fullCards;
-        return;
-      }
-      selectedCategory.value = category;
-      filteredCards.value = fullCards.where((card) => card.category == category).toList();
-    }
+    final scope = TarotLibraryScope.of(context);
 
-    return ValueListenableBuilder(
-      valueListenable: selectedCategory,
-      builder: (context, value, child) {
+    return ValueListenableBuilder<TarotCategory?>(
+      valueListenable: scope.selectedCategory,
+      builder: (context, currentCategory, child) {
         return SingleChildScrollView(
           scrollDirection: Axis.horizontal,
-          padding: const EdgeInsets.symmetric(
-            horizontal: 16,
-            vertical: 8,
-          ),
+          padding: Spacing.hMediumVSmallPad,
           child: Row(
             children: [
               _CategoryChip(
                 label: 'All',
-                isSelected: selectedCategory.value == null,
-                onTap: () {
-                  handleCategoryChange(category: null);
-                },
+                isSelected: currentCategory == null,
+                onTap: () => scope.onCategoryChanged(null),
               ),
               Spacing.xsmallW,
               ...TarotCategory.values.map(
                 (category) {
-                  final isSelected = selectedCategory.value == category;
-
+                  final isSelected = currentCategory == category;
                   return Padding(
-                    padding: const EdgeInsets.only(right: 8),
+                    padding: const EdgeInsets.only(right: SpacingConsts.xsmall),
                     child: _CategoryChip(
                       label: category.value,
                       isSelected: isSelected,
-                      onTap: () {
-                        handleCategoryChange(category: category);
-                      },
+                      onTap: () => scope.onCategoryChanged(category),
                     ),
                   );
                 },
@@ -71,7 +48,6 @@ class _CategoryChip extends StatelessWidget {
     required this.isSelected,
     required this.onTap,
   });
-
   final String label;
   final bool isSelected;
   final VoidCallback onTap;
@@ -79,23 +55,23 @@ class _CategoryChip extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colors = context.colors;
+    final textPrimary = colors.textPrimary;
+    final bgColor = isSelected ? colors.primary : colors.textFieldBg;
+    final borderColor = isSelected ? colors.primary : colors.surfaceSecondary;
+    final textColor = isSelected ? textPrimary : textPrimary.withAlpha(500);
 
-    return GestureDetector(
+    return InkWell(
       onTap: onTap,
       child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+        padding: Spacing.hMediumVSmallPad,
         decoration: BoxDecoration(
-          color: isSelected ? colors.primary : colors.surface.withValues(alpha: 0.1),
+          color: bgColor,
           borderRadius: Spacing.largeBorderRadius,
-          border: Border.all(
-            color: isSelected ? colors.primary : colors.border,
-          ),
+          border: Border.all(color: borderColor),
         ),
         child: Text(
           label,
-          style: m12w600(context).copyWith(
-            color: isSelected ? colors.textPrimary : colors.textSecondary,
-          ),
+          style: m12w600(context).copyWith(color: textColor),
         ),
       ),
     );

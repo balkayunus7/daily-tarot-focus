@@ -1,6 +1,5 @@
 import 'package:daily_tarot_focus/config/app_routes.dart';
 import 'package:daily_tarot_focus/core/util/tarot_mock_datas.dart';
-import 'package:daily_tarot_focus/domain/tarot/tarot_library.dart';
 import 'package:daily_tarot_focus/presentation/auth/pages/register_step_birthdate_page.dart';
 import 'package:daily_tarot_focus/presentation/auth/pages/register_step_relationship_page.dart';
 import 'package:daily_tarot_focus/presentation/auth/pages/register_step_zodiac_page.dart';
@@ -90,13 +89,13 @@ final appRouter = GoRouter(
       },
     ),
     GoRoute(
-      path: AppRoutes.tarotRevealDetail,
+      path: '${AppRoutes.tarotRevealDetail}/:tarotId',
       name: AppRoutes.tarotRevealDetail,
       pageBuilder: (context, state) {
-        final args = state.extra as Map<String, dynamic>?;
-        final tarotMap = args?['tarot'] as Map<String, dynamic>?;
-        final tarot = tarotMap != null ? TarotLibrary.fromMap(tarotMap) : TarotMockDatas.randomTarotLibraryCard;
-
+        final tarotId = state.pathParameters['tarotId'];
+        final tarot = tarotId != null
+            ? TarotMockDatas.getByName(tarotId)
+            : TarotMockDatas.randomTarotLibraryCard;
         return CustomTransitionPage(
           key: state.pageKey,
           child: TarotRevealDetailPage(tarot: tarot),
@@ -117,17 +116,15 @@ final appRouter = GoRouter(
       },
     ),
     GoRoute(
-      path: AppRoutes.tarotLibraryDetail,
+      path: '${AppRoutes.tarotLibraryDetail}/:tarotId',
       name: AppRoutes.tarotLibraryDetail,
       pageBuilder: (context, state) {
-        final args = state.extra as Map<String, dynamic>?;
-        final tarotMap = args?['tarot'] as Map<String, dynamic>;
-        final tarot = TarotLibrary.fromMap(tarotMap);
-        final imagePath = args?['imagePath'] as String? ?? '';
+        final tarotId = state.pathParameters['tarotId'];
+        final tarot = TarotMockDatas.getByName(tarotId ?? '');
 
         return MaterialPage(
           key: state.pageKey,
-          child: TarotLibraryDetailPage(tarot: tarot, imagePath: imagePath),
+          child: TarotLibraryDetailPage(tarot: tarot),
         );
       },
     ),

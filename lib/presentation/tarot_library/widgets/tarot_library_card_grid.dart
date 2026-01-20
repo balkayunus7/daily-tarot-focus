@@ -6,7 +6,6 @@ class TarotCardGridView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final colors = context.colors;
     return ValueListenableBuilder(
       valueListenable: filteredCards,
       builder: (context, value, child) {
@@ -26,50 +25,57 @@ class TarotCardGridView extends StatelessWidget {
               itemBuilder: (context, index) {
                 final card = filteredCardsList[index];
 
-                return Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Expanded(
-                      child: ScalingContainer(
-                        onTap: () async {
-                          await context.push(
-                            AppRoutes.tarotLibraryDetail,
-                            extra: {
-                              'tarot': card.toMap(),
-                              'imagePath': card.imagePath,
-                            },
-                          );
-                        },
-                        child: Container(
-                          decoration: BoxDecoration(
-                            borderRadius: Spacing.xsmallBorderRadius,
-                            border: Border.all(
-                              color: colors.primary,
-                              width: 4,
-                            ),
-                          ),
-                          child: ClipRRect(
-                            borderRadius: Spacing.tinyBorderRadius,
-                            child: Image.asset(
-                              card.imagePath,
-                              fit: BoxFit.cover,
-                              gaplessPlayback: true,
-                              frameBuilder: (_, child, frame, _) {
-                                if (frame != null) return child;
-                                return const _ImageLoadingShimmer();
-                              },
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                );
+                return _LibraryCard(card: card);
               },
             ),
           ),
         );
       },
+    );
+  }
+}
+
+class _LibraryCard extends StatelessWidget {
+  const _LibraryCard({required this.card});
+
+  final TarotLibrary card;
+
+  @override
+  Widget build(BuildContext context) {
+    final colors = context.colors;
+
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Expanded(
+          child: ScalingContainer(
+            onTap: () async {
+              await context.pushNamed(
+                AppRoutes.tarotLibraryDetail,
+                pathParameters: {'tarotId': card.title},
+              );
+            },
+            child: Container(
+              decoration: BoxDecoration(
+                borderRadius: Spacing.xsmallBorderRadius,
+                border: Border.all(color: colors.primary, width: 4),
+              ),
+              child: ClipRRect(
+                borderRadius: Spacing.tinyBorderRadius,
+                child: Image.asset(
+                  card.imagePath,
+                  fit: BoxFit.cover,
+                  gaplessPlayback: true,
+                  frameBuilder: (_, child, frame, _) {
+                    if (frame != null) return child;
+                    return const _ImageLoadingShimmer();
+                  },
+                ),
+              ),
+            ),
+          ),
+        ),
+      ],
     );
   }
 }

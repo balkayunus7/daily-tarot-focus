@@ -19,6 +19,13 @@ class TarotMockDatas {
     return fullTarotDeckMock[Random().nextInt(fullTarotDeckMock.length)];
   }
 
+  static TarotLibrary getByName(String name) {
+    return fullTarotDeckMock.firstWhere(
+      (element) => element.title.toLowerCase() == name.toLowerCase(),
+      orElse: () => fullTarotDeckMock.first,
+    );
+  }
+
   static const List<String> allCards = [
     'ace_of_cups',
     'ace_of_pentacles',

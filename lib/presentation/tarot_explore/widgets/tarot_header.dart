@@ -25,14 +25,14 @@ class TarotHeader extends StatelessWidget {
               children: [
                 Icon(timeIcon, color: colors.primary, size: 28),
                 Spacing.xsmallW,
-                Text(timeGreeting, style: m18w700(context)),
+                Flexible(child: Text(timeGreeting, style: m18w700(context))),
               ],
             ),
             Spacing.smallH,
             if (userZodiac != null) ...[
               Text(
-                LocaleKeys.exploreIntuitionGuide.tr(args: [userZodiac.name]),
-                style: m16w600(context).copyWith(color: colors.textSecondary),
+                LocaleKeys.exploreIntuitionGuide.tr(args: [userZodiac.value]),
+                style: m14w500(context).copyWith(color: colors.textSecondary),
               ),
             ],
           ],

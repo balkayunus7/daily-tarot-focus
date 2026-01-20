@@ -7,28 +7,31 @@ class TarotPaywallCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final colors = context.colors;
 
-    return Container(
-      padding: Spacing.hLargeVMediumPad,
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-          colors: [colors.primary, colors.secondary, colors.accent],
+    return ScalingContainer(
+      onTap: () async {},
+      child: Container(
+        padding: Spacing.hLargeVMediumPad,
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [colors.primary, colors.secondary, colors.accent],
+          ),
+          borderRadius: Spacing.defaultBorderRadius,
+          border: Border.all(
+            color: colors.primary.withValues(alpha: 0.5),
+            width: 1.5,
+          ),
+          boxShadow: colors.primary.mediumShadow,
         ),
-        borderRadius: Spacing.defaultBorderRadius,
-        border: Border.all(
-          color: colors.primary.withValues(alpha: 0.5),
-          width: 1.5,
+        child: const Row(
+          children: [
+            _PremiumIcon(),
+            Spacing.smallW,
+            _PaywallTextContent(),
+            _PremiumButton(),
+          ],
         ),
-        boxShadow: colors.primary.mediumShadow,
-      ),
-      child: const Row(
-        children: [
-          _PremiumIcon(),
-          Spacing.smallW,
-          _PaywallTextContent(),
-          _PremiumButton(),
-        ],
       ),
     );
   }
@@ -81,17 +84,19 @@ class _PremiumButton extends StatelessWidget {
     final screenWidth = Spacing.screenWidth(context);
     final buttonWidth = screenWidth * 0.25;
     final buttonHeight = buttonWidth * 0.4;
-    
-    return TarotButton(
-      height: buttonHeight,
-      width: buttonWidth,
-      onTap: () {
-        // TODO: Paywall sayfasına yönlendirme veya bottom sheet tetikleme
-      },
-      buttonText: LocaleKeys.exploreGetPro.tr(),
-      bgColor: colors.textPrimary,
-      buttonTextStyle: m14w700(context).copyWith(
-        color: colors.primary,
+
+    return IgnorePointer(
+      child: TarotButton(
+        height: buttonHeight,
+        width: buttonWidth,
+        onTap: () {
+          // TODO: Paywall sayfasına yönlendirme veya bottom sheet tetikleme
+        },
+        buttonText: LocaleKeys.exploreGetPro.tr(),
+        bgColor: colors.textPrimary,
+        buttonTextStyle: m14w700(context).copyWith(
+          color: colors.primary,
+        ),
       ),
     );
   }

@@ -41,7 +41,7 @@ class _CardContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final screenWidth = Spacing.screenWidth(context);
-    final contentSize = screenWidth * 0.5;
+    final contentSize = screenWidth * 0.48;
     final buttonWidth = screenWidth * 0.3;
     final buttonHeight = buttonWidth * 0.35;
 

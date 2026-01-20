@@ -12,7 +12,7 @@
         "get_pro": "Get Pro",
         "day_energy": "The day's energy is with you.",
         "moon_energy": "The mysterious energy of the Moon is with you.",
-        "intuition_guide": "Dear {zodiac}, let the voice of your intuition guide you."
+        "intuition_guide": "Dear {}, let the voice of your intuition guide you."
     },
     "library_page": {
         "title": "Library",

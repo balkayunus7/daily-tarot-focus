@@ -14,6 +14,7 @@ class SpacingConsts {
 
   static const double defaultPadding = medium;
   static const double largePadding = large;
+  static const double xlargePadding = xlarge;
   static const double screenPadding = large;
   static const double buttonPadding = medium;
   static const double inputPadding = small;
@@ -94,6 +95,11 @@ class Spacing {
   static const EdgeInsets largePadding = EdgeInsets.all(
     SpacingConsts.largePadding,
   );
+
+  static const EdgeInsets xlargePadding = EdgeInsets.all(
+    SpacingConsts.xlargePadding,
+  );
+
   static const EdgeInsets defaultPadding = EdgeInsets.all(
     SpacingConsts.defaultPadding,
   );
@@ -103,9 +109,31 @@ class Spacing {
   static const EdgeInsets xsmallPadding = EdgeInsets.all(SpacingConsts.xsmall);
   static const EdgeInsets noPadding = EdgeInsets.zero;
 
-  static double screenWidth(BuildContext context) => MediaQuery.of(context).size.width;
+   static const EdgeInsets hXLargeVLargePad = EdgeInsets.symmetric(
+    horizontal: SpacingConsts.xlarge,
+    vertical: SpacingConsts.large,
+  );
 
-  static double screenHeight(BuildContext context) => MediaQuery.of(context).size.height;
+  static const EdgeInsets hLargeVMediumPad = EdgeInsets.symmetric(
+    horizontal: SpacingConsts.large,
+    vertical: SpacingConsts.medium,
+  );
+
+  static const EdgeInsets hMediumVSmallPad = EdgeInsets.symmetric(
+    horizontal: SpacingConsts.medium,
+    vertical: SpacingConsts.small,
+  );
+
+  static const EdgeInsets hSmallVTinyPad = EdgeInsets.symmetric(
+    horizontal: SpacingConsts.small,
+    vertical: SpacingConsts.tiny,
+  );
+
+  static double screenWidth(BuildContext context) =>
+      MediaQuery.of(context).size.width;
+
+  static double screenHeight(BuildContext context) =>
+      MediaQuery.of(context).size.height;
 
   static double get buttonHeight => 54;
   static double get contHeight => 54;

@@ -1,7 +1,7 @@
 part of '../pages/tarot_explore_page.dart';
 
-class TarotGreetingHeader extends StatelessWidget {
-  const TarotGreetingHeader({super.key});
+class TarotHeader extends StatelessWidget {
+  const TarotHeader({super.key});
 
   @override
   Widget build(BuildContext context) {

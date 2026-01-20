@@ -5,12 +5,15 @@ class TarotDailyCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final screenHeight = Spacing.screenHeight(context);
+    final cardHeight = screenHeight / 4.7;
+
     return ScalingContainer(
       onTap: () => context.push(AppRoutes.tarotReveal),
       child: Container(
         width: double.infinity,
-        height: 180,
-        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 20),
+        height: cardHeight,
+        padding: Spacing.xlargePadding,
         decoration: BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topCenter,
@@ -23,75 +26,83 @@ class TarotDailyCard extends StatelessWidget {
           borderRadius: Spacing.largeBorderRadius,
           border: Border.all(color: context.colors.borderSecondary, width: 0.5),
         ),
-        child: Stack(
+        child: const Stack(
           clipBehavior: Clip.none,
-          children: [
-            SizedBox(
-              width: MediaQuery.of(context).size.width * 0.5,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    LocaleKeys.exploreDailyCardTitle.tr(),
-                    style: m18w600(context),
-                  ),
-                  Spacing.mediumH,
-                  IgnorePointer(
-                    child: UnconstrainedBox(
-                      alignment: Alignment.centerLeft,
-                      child: TarotButton(
-                        height: 40,
-                        width: 120,
-                        onTap: () {},
-                        buttonText: LocaleKeys.exploreCardButton.tr(),
-                        bgColor: context.colors.accent,
-                        buttonTextStyle: m12w600(context),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            const _DailyCardImage(),
-          ],
+          children: [_CardContent(), _OverlayCardImage()],
         ),
       ),
     );
   }
 }
 
-class _DailyCardImage extends StatelessWidget {
-  const _DailyCardImage();
+class _CardContent extends StatelessWidget {
+  const _CardContent();
 
   @override
   Widget build(BuildContext context) {
-    return Positioned(
-      right: -15,
-      top: -10,
-      bottom: -10,
-      child: Hero(
-        tag: 'daily_tarot_card_hero',
-        child: Transform.rotate(
-          angle: -0.15,
-          child: Container(
-            width: 125,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(12),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black.withValues(alpha: 0.5),
-                  blurRadius: 20,
-                  spreadRadius: 5,
-                ),
-              ],
-            ),
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(16),
-              child: Image.asset(
-                TarotAppAssets.cardDesign.path,
-                fit: BoxFit.cover,
+    final screenWidth = Spacing.screenWidth(context);
+    final contentSize = screenWidth * 0.5;
+    final buttonWidth = screenWidth * 0.3;
+    final buttonHeight = buttonWidth * 0.35;
+
+    return SizedBox(
+      width: contentSize,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            LocaleKeys.exploreDailyCardTitle.tr(),
+            style: m18w600(context),
+          ),
+          Spacing.mediumH,
+          IgnorePointer(
+            child: UnconstrainedBox(
+              alignment: Alignment.centerLeft,
+              child: TarotButton(
+                height: buttonHeight,
+                width: buttonWidth,
+                onTap: () {},
+                buttonText: LocaleKeys.exploreCardButton.tr(),
+                bgColor: context.colors.accent,
+                buttonTextStyle: m12w600(context),
               ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _OverlayCardImage extends StatelessWidget {
+  const _OverlayCardImage();
+  static const double _kWidthRatio = 0.30;
+  static const double _kAspectRatio = 2.5 / 3;
+  static const double _kRotation = -0.15;
+  static const double _kPaddingRatio = 0.1;
+
+  @override
+  Widget build(BuildContext context) {
+    final screenWidth = Spacing.screenWidth(context);
+    final cardWidth = screenWidth * _kWidthRatio;
+    final cardHeight = cardWidth / _kAspectRatio;
+
+    return Positioned(
+      right: -cardWidth * _kPaddingRatio,
+      top: -cardHeight * _kPaddingRatio,
+      bottom: -cardHeight * _kPaddingRatio,
+      child: Transform.rotate(
+        angle: _kRotation,
+        child: Container(
+          width: cardWidth,
+          height: cardHeight,
+          decoration: BoxDecoration(
+            borderRadius: Spacing.defaultBorderRadius,
+            boxShadow: context.colors.accent.cardShadow,
+            image: DecorationImage(
+              image: AssetImage(TarotAppAssets.cardDesign.path),
+              fit: BoxFit.cover,
             ),
           ),
         ),

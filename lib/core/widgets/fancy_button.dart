@@ -1,5 +1,5 @@
-import 'package:daily_tarot_focus/core/util/text_style_helper.dart';
 import 'package:daily_tarot_focus/core/util/tarot_app_sizes.dart';
+import 'package:daily_tarot_focus/core/util/text_style_helper.dart';
 import 'package:daily_tarot_focus/core/widgets/custom_loading_indicator.dart';
 import 'package:daily_tarot_focus/core/widgets/fancy_container.dart';
 import 'package:flutter/material.dart';

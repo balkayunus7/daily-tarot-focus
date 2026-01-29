@@ -1,8 +1,8 @@
 import 'package:daily_tarot_focus/application/auth/register_cubit.dart';
 import 'package:daily_tarot_focus/config/app_routes.dart';
-import 'package:daily_tarot_focus/core/util/text_style_helper.dart';
 import 'package:daily_tarot_focus/core/util/locale_keys.dart';
 import 'package:daily_tarot_focus/core/util/tarot_app_sizes.dart';
+import 'package:daily_tarot_focus/core/util/text_style_helper.dart';
 import 'package:daily_tarot_focus/core/widgets/tarot_button.dart';
 import 'package:daily_tarot_focus/domain/auth/tarot_user_relations_enum.dart';
 import 'package:flutter/material.dart';

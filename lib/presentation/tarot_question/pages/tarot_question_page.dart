@@ -8,21 +8,7 @@ import 'package:mobile_boilerplate/common_dependencies.dart';
 import 'package:mobile_boilerplate/presentation/extensions/build_context_theme_ext.dart';
 import 'package:mobile_boilerplate/presentation/widgets/scaling_container.dart';
 
-enum TarotReadingType {
-  career('Career'),
-  love('Love'),
-  health('Health');
-
-  const TarotReadingType(this.value);
-
-  factory TarotReadingType.fromString(String value) => TarotReadingType.values.firstWhere((e) => e.value == value);
-
-  final String value;
-
-  bool get isCareer => this == TarotReadingType.career;
-  bool get isLove => this == TarotReadingType.love;
-  bool get isHealth => this == TarotReadingType.health;
-}
+part '../helpers/tarot_reading_type_enum.dart';
 
 class TarotQuestionPage extends StatefulWidget {
   const TarotQuestionPage({super.key});

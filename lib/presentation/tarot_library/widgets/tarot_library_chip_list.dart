@@ -10,6 +10,7 @@ class TarotLibraryChipList extends StatelessWidget {
     return ValueListenableBuilder<TarotCategory?>(
       valueListenable: scope.selectedCategory,
       builder: (context, currentCategory, child) {
+        final isCategoryAllSelected = currentCategory == null;
         return SingleChildScrollView(
           scrollDirection: Axis.horizontal,
           padding: Spacing.hMediumVSmallPad,
@@ -17,7 +18,7 @@ class TarotLibraryChipList extends StatelessWidget {
             children: [
               _CategoryChip(
                 label: 'All',
-                isSelected: currentCategory == null,
+                isSelected: isCategoryAllSelected,
                 onTap: () => scope.onCategoryChanged(null),
               ),
               Spacing.xsmallW,

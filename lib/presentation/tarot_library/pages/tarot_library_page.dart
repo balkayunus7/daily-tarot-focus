@@ -7,7 +7,7 @@ import 'package:daily_tarot_focus/core/widgets/base_gradient_layout.dart';
 import 'package:daily_tarot_focus/core/widgets/tarot_app_bar.dart';
 import 'package:daily_tarot_focus/domain/tarot/tarot_category_enum.dart';
 import 'package:daily_tarot_focus/domain/tarot/tarot_library.dart';
-import 'package:daily_tarot_focus/presentation/tarot_library/mixins/library_page_scope.dart';
+import 'package:daily_tarot_focus/presentation/tarot_library/helpers/library_page_scope.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mobile_boilerplate/common_dependencies.dart';
@@ -16,7 +16,7 @@ import 'package:mobile_boilerplate/presentation/widgets/scaling_container.dart';
 
 part '../../tarot_library/widgets/tarot_library_card_grid.dart';
 part '../../tarot_library/widgets/tarot_library_chip_list.dart';
-part '../mixins/library_page_mixin.dart';
+part '../helpers/library_page_mixin.dart';
 
 class TarotLibraryPage extends StatefulWidget {
   const TarotLibraryPage({super.key});

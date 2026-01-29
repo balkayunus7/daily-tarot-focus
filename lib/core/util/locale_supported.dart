@@ -6,7 +6,8 @@ enum LocaleLanguage {
 
   const LocaleLanguage(this.value);
 
-  factory LocaleLanguage.fromString(String value) => LocaleLanguage.values.firstWhere((e) => e.value == value);
+  factory LocaleLanguage.fromString(String value) =>
+      LocaleLanguage.values.firstWhere((e) => e.value == value);
 
   final String value;
 }
@@ -22,7 +23,8 @@ extension LocaleSupported on BuildContext {
   bool get isLocaleEn => currentLocale.languageCode == LocaleLanguage.en.value;
   bool get isLocaleTr => currentLocale.languageCode == LocaleLanguage.tr.value;
 
-  LocaleLanguage get currentLocaleLanguage => LocaleLanguage.fromString(currentLocale.languageCode);
+  LocaleLanguage get currentLocaleLanguage =>
+      LocaleLanguage.fromString(currentLocale.languageCode);
 
   Locale get localeEn => Locale(LocaleLanguage.en.value);
   Locale get localeTr => Locale(LocaleLanguage.tr.value);

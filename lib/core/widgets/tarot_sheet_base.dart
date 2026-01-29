@@ -1,12 +1,12 @@
 import 'dart:async';
 
-import 'package:daily_tarot_focus/core/util/font_style_helper.dart';
+import 'package:daily_tarot_focus/core/util/text_style_helper.dart';
 import 'package:daily_tarot_focus/core/util/tarot_app_sizes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:mobile_boilerplate/presentation/extensions/build_context_theme_ext.dart';
 
-Future<void> showSheetBase(
+Future<void> showTarotSheet(
   BuildContext context, {
   required double heightFactor,
   required List<Widget> body,

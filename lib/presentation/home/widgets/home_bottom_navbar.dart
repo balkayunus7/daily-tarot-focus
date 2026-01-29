@@ -1,5 +1,5 @@
-import 'package:daily_tarot_focus/core/util/font_style_helper.dart';
-import 'package:daily_tarot_focus/core/util/tarot_mock_datas.dart';
+import 'package:daily_tarot_focus/core/util/tarot_mock_data.dart';
+import 'package:daily_tarot_focus/core/util/text_style_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:mobile_boilerplate/presentation/extensions/build_context_theme_ext.dart';
@@ -16,7 +16,7 @@ class HomeBottomNavbar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final items = TarotMockDatas.navbarItems;
+    final items = TarotMockData.navbarItems;
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16),

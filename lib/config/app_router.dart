@@ -1,5 +1,5 @@
 import 'package:daily_tarot_focus/config/app_routes.dart';
-import 'package:daily_tarot_focus/core/util/tarot_mock_datas.dart';
+import 'package:daily_tarot_focus/core/util/tarot_mock_data.dart';
 import 'package:daily_tarot_focus/presentation/auth/pages/register_step_birthdate_page.dart';
 import 'package:daily_tarot_focus/presentation/auth/pages/register_step_relationship_page.dart';
 import 'package:daily_tarot_focus/presentation/auth/pages/register_step_zodiac_page.dart';
@@ -94,8 +94,8 @@ final appRouter = GoRouter(
       pageBuilder: (context, state) {
         final tarotId = state.pathParameters['tarotId'];
         final tarot = tarotId != null
-            ? TarotMockDatas.getByName(tarotId)
-            : TarotMockDatas.randomTarotLibraryCard;
+            ? TarotMockData.getByName(tarotId)
+            : TarotMockData.randomTarotLibraryCard;
         return CustomTransitionPage(
           key: state.pageKey,
           child: TarotRevealDetailPage(tarot: tarot),
@@ -120,7 +120,7 @@ final appRouter = GoRouter(
       name: AppRoutes.tarotLibraryDetail,
       pageBuilder: (context, state) {
         final tarotId = state.pathParameters['tarotId'];
-        final tarot = TarotMockDatas.getByName(tarotId ?? '');
+        final tarot = TarotMockData.getByName(tarotId ?? '');
 
         return MaterialPage(
           key: state.pageKey,

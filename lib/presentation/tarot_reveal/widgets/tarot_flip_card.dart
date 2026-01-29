@@ -5,7 +5,7 @@ class TarotFlipCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final randomCard = TarotMockDatas.randomTarotLibraryCard;
+    final randomCard = TarotMockData.randomTarotLibraryCard;
 
     return Center(
       child: TweenAnimationBuilder<double>(

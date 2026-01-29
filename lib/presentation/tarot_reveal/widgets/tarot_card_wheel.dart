@@ -87,7 +87,7 @@ class _TarotCardWheelState extends State<TarotCardWheel> with TickerProviderStat
 
                     return CardItem(
                       index: index,
-                      cardImagePath: TarotMockDatas.randomTarotCard,
+                      cardImagePath: TarotMockData.randomTarotCard,
                       isSelected: isSelected,
                       handleCardTap: _handleCardTap,
                     );

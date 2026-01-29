@@ -8,11 +8,11 @@ mixin LibraryPageStateMixin on State<TarotLibraryPage> {
   void initState() {
     super.initState();
     selectedCategory = ValueNotifier(null);
-    filteredCards = ValueNotifier(TarotMockDatas.fullTarotDeckMock);
+    filteredCards = ValueNotifier(TarotMockData.fullTarotDeckMock);
   }
 
   void onCategoryChanged(TarotCategory? category) {
-    final fullCards = TarotMockDatas.fullTarotDeckMock;
+    final fullCards = TarotMockData.fullTarotDeckMock;
     if (category == null) {
       selectedCategory.value = null;
       filteredCards.value = fullCards;

@@ -12,7 +12,7 @@ enum LocaleLanguage {
   final String value;
 }
 
-extension LocaleSupported on BuildContext {
+extension LocaleExtensions on BuildContext {
   List<Locale> get supportedCoreLocales => [
     Locale(LocaleLanguage.en.value),
     Locale(LocaleLanguage.tr.value),

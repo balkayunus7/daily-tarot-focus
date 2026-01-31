@@ -37,8 +37,8 @@ class LocaleKeys {
   static const questionHealthReading = 'question_page.health_reading';
   static const questionSingleCard = 'question_page.single_card';
   static const questionSingleCardDesc = 'question_page.single_card_desc';
-  static const questionThreeCards = 'question_page.three_cards';
-  static const questionThreeCardsDesc = 'question_page.three_cards_desc';
+  static const questionMultipleCards = 'question_page.multiple_cards';
+  static const questionMultipleCardsDesc = 'question_page.multiple_cards_desc';
   static const questionStartReading = 'question_page.start_reading';
 
   // Register Page

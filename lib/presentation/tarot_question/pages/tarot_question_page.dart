@@ -3,12 +3,13 @@ import 'package:daily_tarot_focus/core/util/tarot_app_sizes.dart';
 import 'package:daily_tarot_focus/core/util/text_style_helper.dart';
 import 'package:daily_tarot_focus/core/widgets/tarot_app_bar.dart';
 import 'package:daily_tarot_focus/core/widgets/tarot_button.dart';
+import 'package:daily_tarot_focus/presentation/tarot_question/helpers/question_page_mixin.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile_boilerplate/common_dependencies.dart';
 import 'package:mobile_boilerplate/presentation/extensions/build_context_theme_ext.dart';
 import 'package:mobile_boilerplate/presentation/widgets/scaling_container.dart';
 
-part '../helpers/tarot_reading_type_enum.dart';
+part '../helpers/tarot_reading_topic_enum.dart';
 
 class TarotQuestionPage extends StatefulWidget {
   const TarotQuestionPage({super.key});
@@ -17,25 +18,8 @@ class TarotQuestionPage extends StatefulWidget {
   State<TarotQuestionPage> createState() => _TarotQuestionPageState();
 }
 
-class _TarotQuestionPageState extends State<TarotQuestionPage> {
-  late final TextEditingController _questionController;
-  late final ValueNotifier<TarotReadingType?> _selectedReadingType;
-  late final ValueNotifier<int?> _selectedCardCount;
-
-  @override
-  void initState() {
-    _questionController = TextEditingController();
-    _selectedReadingType = ValueNotifier(TarotReadingType.career);
-    _selectedCardCount = ValueNotifier(1);
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    _questionController.dispose();
-    super.dispose();
-  }
-
+class _TarotQuestionPageState extends State<TarotQuestionPage>
+    with QuestionPageStateMixin {
   @override
   Widget build(BuildContext context) {
     final colors = context.colors;
@@ -44,7 +28,7 @@ class _TarotQuestionPageState extends State<TarotQuestionPage> {
       appBar: TarotAppBar(title: LocaleKeys.questionTitle.tr()),
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
+          padding: const EdgeInsets.symmetric(horizontal: SpacingConsts.large),
           child: Column(
             children: [
               Spacing.largeH,
@@ -52,11 +36,9 @@ class _TarotQuestionPageState extends State<TarotQuestionPage> {
                 alignment: Alignment.bottomRight,
                 children: [
                   TextFormField(
-                    controller: _questionController,
+                    controller: questionController,
                     maxLines: 5,
-                    onTapOutside: (event) {
-                      FocusScope.of(context).unfocus();
-                    },
+                    onTapOutside: (event) => FocusScope.of(context).unfocus(),
                     cursorColor: colors.primary,
                     decoration: InputDecoration(
                       border: OutlineInputBorder(
@@ -72,12 +54,12 @@ class _TarotQuestionPageState extends State<TarotQuestionPage> {
                     ),
                   ),
                   Positioned(
-                    right: 16,
-                    bottom: 24,
+                    right: SpacingConsts.medium,
+                    bottom: SpacingConsts.xlarge,
                     child: Icon(
                       FontAwesomeIcons.wandSparkles,
                       color: colors.primary,
-                      size: 20,
+                      size: SpacingConsts.large,
                     ),
                   ),
                 ],
@@ -89,34 +71,28 @@ class _TarotQuestionPageState extends State<TarotQuestionPage> {
               ),
               Spacing.mediumH,
               ValueListenableBuilder(
-                valueListenable: _selectedReadingType,
+                valueListenable: selectedReadingTopic,
                 builder: (context, value, child) {
                   return Row(
                     children: [
                       _ReadingTypeCard(
                         title: LocaleKeys.questionCareerReading.tr(),
                         icon: Icons.business,
-                        onTap: () {
-                          _selectedReadingType.value = TarotReadingType.career;
-                        },
+                        onTap: () => readingTopic = TarotReadingTopic.career,
                         isSelected: value!.isCareer,
                       ),
                       Spacing.mediumW,
                       _ReadingTypeCard(
                         title: LocaleKeys.questionLoveReading.tr(),
                         icon: Icons.heart_broken,
-                        onTap: () {
-                          _selectedReadingType.value = TarotReadingType.love;
-                        },
+                        onTap: () => readingTopic = TarotReadingTopic.love,
                         isSelected: value.isLove,
                       ),
                       Spacing.mediumW,
                       _ReadingTypeCard(
                         title: LocaleKeys.questionHealthReading.tr(),
                         icon: Icons.health_and_safety,
-                        onTap: () {
-                          _selectedReadingType.value = TarotReadingType.health;
-                        },
+                        onTap: () => readingTopic = TarotReadingTopic.health,
                         isSelected: value.isHealth,
                       ),
                     ],
@@ -130,28 +106,27 @@ class _TarotQuestionPageState extends State<TarotQuestionPage> {
               ),
               Spacing.mediumH,
               ValueListenableBuilder(
-                valueListenable: _selectedCardCount,
+                valueListenable: selectedCardCount,
                 builder: (context, value, child) {
+                  const singleCardCount = QuestionCardCount.singleCardCount;
+                  const multipleCardCount = QuestionCardCount.multipleCardCount;
+
                   return Row(
                     children: [
                       _CardOption(
-                        cardCount: 1,
+                        cardCount: singleCardCount.value,
                         title: LocaleKeys.questionSingleCard.tr(),
                         subtitle: LocaleKeys.questionSingleCardDesc.tr(),
-                        isSelected: value == 1,
-                        onTap: () {
-                          _selectedCardCount.value = 1;
-                        },
+                        isSelected: value == singleCardCount,
+                        onTap: () => cardCount = singleCardCount,
                       ),
                       Spacing.mediumW,
                       _CardOption(
-                        cardCount: 3,
-                        title: LocaleKeys.questionThreeCards.tr(),
-                        subtitle: LocaleKeys.questionThreeCardsDesc.tr(),
-                        isSelected: value == 3,
-                        onTap: () {
-                          _selectedCardCount.value = 3;
-                        },
+                        cardCount: multipleCardCount.value,
+                        title: LocaleKeys.questionMultipleCards.tr(),
+                        subtitle: LocaleKeys.questionMultipleCardsDesc.tr(),
+                        isSelected: value == multipleCardCount,
+                        onTap: () => cardCount = multipleCardCount,
                       ),
                     ],
                   );
@@ -162,7 +137,7 @@ class _TarotQuestionPageState extends State<TarotQuestionPage> {
                 buttonText: LocaleKeys.questionStartReading.tr(),
                 onTap: () {},
                 buttonTextStyle: m16w700(context),
-                isDisabled: _questionController.text.isEmpty,
+                isDisabled: questionController.text.isEmpty,
               ),
             ],
           ),
@@ -217,7 +192,7 @@ class _ReadingTypeCard extends StatelessWidget {
     return ScalingContainer(
       onTap: onTap,
       child: Container(
-        padding: const EdgeInsets.symmetric(vertical: 16),
+        padding: const EdgeInsets.symmetric(vertical: SpacingConsts.medium),
         width: cardWidth,
         decoration: BoxDecoration(
           borderRadius: Spacing.smallBorderRadius,
@@ -258,18 +233,22 @@ class _CardOption extends StatelessWidget {
   Widget build(BuildContext context) {
     final colors = context.colors;
     final itemWidth = MediaQuery.of(context).size.width / 2 - 28;
+    final itemHeight = itemWidth + SpacingConsts.medium;
     final selectedColor = isSelected ? colors.primary : colors.surfaceSecondary;
+    final cardWidth = itemHeight / 5;
+    final cardHeight = itemHeight / 3;
+
     return ScalingContainer(
       onTap: onTap,
       child: Container(
-        height: 180,
+        height: itemHeight,
         width: itemWidth,
         decoration: BoxDecoration(
           borderRadius: Spacing.defaultBorderRadius,
           border: Border.all(color: selectedColor, width: 2),
         ),
         child: Padding(
-          padding: const EdgeInsets.all(8),
+          padding: Spacing.xsmallPadding,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -278,10 +257,12 @@ class _CardOption extends StatelessWidget {
                 children: List.generate(
                   cardCount,
                   (index) => Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 4),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: SpacingConsts.tiny,
+                    ),
                     child: Container(
-                      width: 36,
-                      height: 48,
+                      width: cardWidth,
+                      height: cardHeight,
                       decoration: BoxDecoration(
                         borderRadius: Spacing.xsmallBorderRadius,
                         border: Border.all(color: selectedColor),
@@ -295,6 +276,7 @@ class _CardOption extends StatelessWidget {
               Spacing.xsmallH,
               Text(
                 subtitle,
+                textAlign: TextAlign.center,
                 style: m12w500(context).copyWith(color: colors.textSecondary),
               ),
             ],

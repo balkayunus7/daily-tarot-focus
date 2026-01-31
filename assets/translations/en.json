@@ -33,8 +33,8 @@
         "health_reading": "Health Reading",
         "single_card": "Single Card",
         "single_card_desc": "For a quick insight",
-        "three_cards": "Three Cards",
-        "three_cards_desc": "For a deeper insight",
+        "multiple_cards": "Three Cards",
+        "multiple_cards_desc": "For a deeper insight",
         "start_reading": "Start Reading"
     },
     "register_page": {

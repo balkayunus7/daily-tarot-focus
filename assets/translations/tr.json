@@ -33,8 +33,8 @@
         "health_reading": "Sağlık Okuması",
         "single_card": "Tek Kart",
         "single_card_desc": "Hızlı bir içgörü için",
-        "three_cards": "Üç Kart",
-        "three_cards_desc": "Daha derin bir içgörü için",
+        "multiple_cards": "Üç Kart",
+        "multiple_cards_desc": "Daha derin bir içgörü için",
         "start_reading": "Okumaya Başla"
     },
     "register_page": {

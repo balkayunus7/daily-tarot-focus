@@ -40,6 +40,27 @@ class LocaleKeys {
   static const questionSingleCardDesc = 'question_page.single_card_desc';
   static const questionMultipleCards = 'question_page.multiple_cards';
   static const questionMultipleCardsDesc = 'question_page.multiple_cards_desc';
+  static const questionSuggestedQuestionsTitle = 'question_page.suggested_questions_title';
+  static const questionSuggestedQuestion1 = 'question_page.suggested_question_1';
+  static const questionSuggestedQuestion2 = 'question_page.suggested_question_2';
+  static const questionSuggestedQuestion3 = 'question_page.suggested_question_3';
+  static const questionSuggestedQuestion4 = 'question_page.suggested_question_4';
+  static const questionSuggestedQuestion5 = 'question_page.suggested_question_5';
+  static const questionSuggestedQuestion6 = 'question_page.suggested_question_6';
+  static const questionSuggestedQuestion7 = 'question_page.suggested_question_7';
+  static const questionSuggestedQuestion8 = 'question_page.suggested_question_8';
+  static const questionSuggestedQuestion9 = 'question_page.suggested_question_9';
+  static const questionSuggestedQuestion10 = 'question_page.suggested_question_10';
+  static const questionSuggestedQuestion11 = 'question_page.suggested_question_11';
+  static const questionSuggestedQuestion12 = 'question_page.suggested_question_12';
+  static const questionSuggestedQuestion13 = 'question_page.suggested_question_13';
+  static const questionSuggestedQuestion14 = 'question_page.suggested_question_14';
+  static const questionSuggestedQuestion15 = 'question_page.suggested_question_15';
+  static const questionSuggestedQuestion16 = 'question_page.suggested_question_16';
+  static const questionSuggestedQuestion17 = 'question_page.suggested_question_17';
+  static const questionSuggestedQuestion18 = 'question_page.suggested_question_18';
+  static const questionSuggestedQuestion19 = 'question_page.suggested_question_19';
+  static const questionSuggestedQuestion20 = 'question_page.suggested_question_20';
   static const questionStartQuestion = 'question_page.start_question';
 
   // Register Page

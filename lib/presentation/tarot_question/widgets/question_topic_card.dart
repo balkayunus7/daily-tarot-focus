@@ -24,13 +24,15 @@ class QuestionTopicCard extends StatelessWidget {
     return ScalingContainer(
       onTap: onTap,
       child: Container(
-        padding: const EdgeInsets.symmetric(vertical: SpacingConsts.medium),
+        padding:Spacing.hMediumVSmallPad,
         width: cardWidth,
+        height: cardWidth * 1.2,
         decoration: BoxDecoration(
           borderRadius: Spacing.smallBorderRadius,
           border: Border.all(color: primaryColor),
         ),
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Icon(icon, color: primaryColor),
             Spacing.smallH,

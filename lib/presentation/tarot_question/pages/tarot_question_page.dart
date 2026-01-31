@@ -58,11 +58,17 @@ class _TarotQuestionPageState extends State<TarotQuestionPage>
                   ),
                   Positioned(
                     right: SpacingConsts.medium,
-                    bottom: SpacingConsts.xlarge,
-                    child: Icon(
-                      FontAwesomeIcons.wandSparkles,
-                      color: colors.primary,
-                      size: SpacingConsts.large,
+                    bottom: SpacingConsts.medium,
+                    child: ScalingContainer(
+                      onTap: getSuggestedQuestion,
+                      child: Padding(
+                        padding: const EdgeInsets.all(SpacingConsts.small),
+                        child: Icon(
+                          FontAwesomeIcons.wandSparkles,
+                          color: colors.primary,
+                          size: SpacingConsts.large,
+                        ),
+                      ),
                     ),
                   ),
                 ],

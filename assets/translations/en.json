@@ -21,21 +21,22 @@
         "reversed_meanings": "Reversed Meanings"
     },
     "reveal_page": {
-        "tap_to_pick": "Tap to pick your card"
+        "tap_to_pick": "Tap to pick your card",
+        "drag_to_move": "Drag to move"
     },
     "question_page": {
         "title": "Ask the Question",
         "hint_text": "What would you like guidance on?",
-        "choose_reading_type": "Choose Reading Type",
+        "choose_topic": "Choose Topic",
         "choose_card_count": "Choose Number of Cards",
-        "career_reading": "Career Reading",
-        "love_reading": "Love Reading",
-        "health_reading": "Health Reading",
+        "career_topic": "Career Topic",
+        "love_topic": "Love Topic",
+        "health_topic": "Health Topic",
         "single_card": "Single Card",
         "single_card_desc": "For a quick insight",
         "multiple_cards": "Three Cards",
         "multiple_cards_desc": "For a deeper insight",
-        "start_reading": "Start Reading"
+        "start_question": "Start Question"
     },
     "register_page": {
         "step_1_of_3": "Step 1 of 3",

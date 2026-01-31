@@ -1,47 +1,34 @@
 part of '../pages/tarot_reveal_page.dart';
 
-class TarotFlipCard extends StatelessWidget {
-  const TarotFlipCard({super.key});
+class RevealFlipCard extends StatelessWidget {
+  const RevealFlipCard({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final randomCard = TarotMockData.randomTarotLibraryCard;
+    final scope = RevealPageScope.of(context);
+    if (!scope.isCardSelected) return const SizedBox.shrink();
+    final selectedCard = scope.selectedTarotCard.value!;
 
     return Center(
-      child: TweenAnimationBuilder<double>(
-        tween: Tween(begin: 0, end: 1),
-        duration: const Duration(seconds: 8),
-        curve: Curves.easeIn,
-        onEnd: () {
-          Future.delayed(const Duration(seconds: 3), () async {
-            if (context.mounted) {
-              await context.pushNamed(
-                AppRoutes.tarotRevealDetail,
-                pathParameters: {'tarotId': randomCard.title},
-              );
-            }
-          });
-        },
-        builder: (context, value, child) {
-          // Gradually accelerating flip animation with multiple rotations
-          // 4 rotations = 8 * pi radians
-          final rotateY = value * 8 * math.pi;
-          // First 80%: rotation, last 20%: card appears
-          final isFrontVisible = value >= 0.8;
-          // Scale animation: starts larger, then grows
-          final scale =
-              value < 0.8
-                  ? 0.7 + (value / 0.8) * 0.2
-                  : 0.9 + ((value - 0.8) / 0.2) * 1.0;
-
-          // Show front face only in last 20%, back face visible during rotation
-          final shouldShowFront = isFrontVisible;
+      child: AnimatedBuilder(
+        animation: scope.revealAnimController,
+        builder: (context, child) {
+          // Even gentler curve for a more mystical feel
+          final curvedValue = Curves.easeInOutSine.transform(
+            scope.revealAnimController.value,
+          );
+          // 3 rotations (6 * pi) over the now 10-second duration
+          final rotateY = curvedValue * 6 * math.pi;
+          // Continuous growth from 0.7 (small/far) to 1.9 (large/close)
+          final scale = 0.7 + (curvedValue * 1.2);
+          // Transition to front card closer to the end for the final reveal (0.9 threshold)
+          final isFrontVisible = curvedValue >= 0.9;
 
           final transform =
               Matrix4.identity()
                 ..setEntry(3, 2, 0.001)
                 ..rotateY(rotateY)
-                ..scale(scale, scale, scale);
+                ..scaleByDouble(scale, scale, scale, 1);
 
           return Stack(
             alignment: Alignment.center,
@@ -49,16 +36,19 @@ class TarotFlipCard extends StatelessWidget {
               Transform(
                 alignment: Alignment.center,
                 transform: transform,
-                child:
-                    shouldShowFront
-                        ? _TarotFrontCard(
-                          title: randomCard.title,
-                          imagePath: randomCard.imagePath,
-                        )
-                        : const _TarotBackCard(),
+                child: Builder(
+                  builder: (context) {
+                    if (isFrontVisible) {
+                      return _TarotFrontCard(
+                        title: selectedCard.title,
+                        imagePath: selectedCard.imagePath,
+                      );
+                    }
+                    return const _TarotBackCard();
+                  },
+                ),
               ),
               if (isFrontVisible) const _TarotShiningStars(),
-              // Show loading message during rotation
             ],
           );
         },
@@ -75,7 +65,7 @@ class _TarotFrontCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Hero(
-      tag: 'daily_tarot_card_hero',
+      tag: TarotMockData.dailyTarotCardHeroTag,
       child: Container(
         width: SpacingConsts.flipCardWidth,
         height: SpacingConsts.flipCardHeight,
@@ -83,13 +73,7 @@ class _TarotFrontCard extends StatelessWidget {
         decoration: BoxDecoration(
           borderRadius: Spacing.xsmallBorderRadius,
           border: Border.all(color: context.colors.primary, width: 2),
-          boxShadow: [
-            BoxShadow(
-              color: context.colors.primary.withValues(alpha: 0.3),
-              blurRadius: SpacingConsts.cardShadowBlurRadius,
-              spreadRadius: 10,
-            ),
-          ],
+          boxShadow: context.colors.primary.mediumShadow,
           gradient: LinearGradient(
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
@@ -105,11 +89,8 @@ class _TarotFrontCard extends StatelessWidget {
           children: [
             Expanded(
               child: ClipRRect(
-                borderRadius: BorderRadius.circular(4),
-                child: Image.asset(
-                  imagePath,
-                  fit: BoxFit.cover,
-                ),
+                borderRadius: Spacing.tinyBorderRadius,
+                child: Image.asset(imagePath, fit: BoxFit.cover),
               ),
             ),
             Container(
@@ -129,20 +110,14 @@ class _TarotBackCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Hero(
-      tag: 'daily_tarot_card_hero',
+      tag: TarotMockData.dailyTarotCardHeroTag,
       child: Container(
         width: SpacingConsts.flipCardWidth,
         height: SpacingConsts.flipCardHeight,
         decoration: BoxDecoration(
           borderRadius: Spacing.xsmallBorderRadius,
           border: Border.all(color: context.colors.primary),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withValues(alpha: 0.5),
-              blurRadius: SpacingConsts.cardShadowBlurRadius,
-              spreadRadius: 5,
-            ),
-          ],
+          boxShadow: context.colors.primary.mediumShadow,
         ),
         child: ClipRRect(
           borderRadius: Spacing.xsmallBorderRadius,
@@ -179,7 +154,7 @@ class _TarotShiningStarsState extends State<_TarotShiningStars>
 
   @override
   void dispose() {
-    starsController.stop();
+    starsController.dispose();
     super.dispose();
   }
 

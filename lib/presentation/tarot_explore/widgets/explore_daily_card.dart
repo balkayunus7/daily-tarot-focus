@@ -1,7 +1,7 @@
 part of '../pages/tarot_explore_page.dart';
 
-class TarotDailyCard extends StatelessWidget {
-  const TarotDailyCard({super.key});
+class ExploreDailyCard extends StatelessWidget {
+  const ExploreDailyCard({super.key});
 
   @override
   Widget build(BuildContext context) {

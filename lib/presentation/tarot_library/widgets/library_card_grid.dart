@@ -1,7 +1,7 @@
 part of '../pages/tarot_library_page.dart';
 
-class TarotCardGridView extends StatelessWidget {
-  const TarotCardGridView({required this.filteredCards, super.key});
+class LibraryCardGridView extends StatelessWidget {
+  const LibraryCardGridView({required this.filteredCards, super.key});
   final ValueNotifier<List<TarotLibrary>> filteredCards;
 
   @override

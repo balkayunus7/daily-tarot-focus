@@ -14,8 +14,8 @@ import 'package:mobile_boilerplate/common_dependencies.dart';
 import 'package:mobile_boilerplate/presentation/extensions/build_context_theme_ext.dart';
 import 'package:mobile_boilerplate/presentation/widgets/scaling_container.dart';
 
-part '../../tarot_library/widgets/tarot_library_card_grid.dart';
-part '../../tarot_library/widgets/tarot_library_chip_list.dart';
+part '../widgets/library_card_grid.dart';
+part '../widgets/library_chip_list.dart';
 part '../helpers/library_page_mixin.dart';
 
 class TarotLibraryPage extends StatefulWidget {
@@ -29,18 +29,16 @@ class _TarotLibraryPageState extends State<TarotLibraryPage>
     with LibraryPageStateMixin {
   @override
   Widget build(BuildContext context) {
-    return TarotLibraryScope(
-      selectedCategory: selectedCategory,
-      filteredCards: filteredCards,
-      onCategoryChanged: onCategoryChanged,
+    return LibraryPageScope(
+      state: this,
       child: BaseGradientLayout(
         appBar: TarotAppBar(title: LocaleKeys.libraryTitle.tr()),
         child: SafeArea(
           child: Column(
             children: [
-              const TarotLibraryChipList(),
+              const LibraryChipList(),
               Spacing.mediumH,
-              TarotCardGridView(filteredCards: filteredCards),
+              LibraryCardGridView(filteredCards: filteredCards),
             ],
           ),
         ),

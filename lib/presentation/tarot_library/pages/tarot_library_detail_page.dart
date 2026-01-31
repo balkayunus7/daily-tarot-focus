@@ -41,21 +41,21 @@ class TarotLibraryDetailPage extends StatelessWidget {
                   ),
                 ),
                 Spacing.largeH,
-                DetailDescriptionSection(
+                RevealDetailSection(
                   title: LocaleKeys.libraryMeaningForDay.tr(),
                   descriptions: tarot.meanings,
                   icon: Icons.diamond,
                   iconColor: context.colors.primary,
                 ),
                 Spacing.largeH,
-                DetailDescriptionSection(
+                RevealDetailSection(
                   title: LocaleKeys.libraryUprightMeanings.tr(),
                   descriptions: tarot.uprightMeanings,
                   icon: Icons.check_circle,
                   iconColor: context.colors.correctColor,
                 ),
                 Spacing.largeH,
-                DetailDescriptionSection(
+                RevealDetailSection(
                   title: LocaleKeys.libraryReversedMeanings.tr(),
                   descriptions: tarot.reversedMeanings,
                   icon: Icons.warning,

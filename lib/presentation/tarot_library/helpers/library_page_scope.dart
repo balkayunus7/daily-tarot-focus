@@ -1,26 +1,21 @@
-import 'package:daily_tarot_focus/domain/tarot/tarot_category_enum.dart';
-import 'package:daily_tarot_focus/domain/tarot/tarot_library.dart';
+import 'package:daily_tarot_focus/presentation/tarot_library/pages/tarot_library_page.dart';
 import 'package:flutter/material.dart';
 
-class TarotLibraryScope extends InheritedWidget {
-  const TarotLibraryScope({
-    required this.selectedCategory,
-    required this.filteredCards,
-    required this.onCategoryChanged,
+class LibraryPageScope extends InheritedWidget {
+  const LibraryPageScope({
+    required this.state,
     required super.child,
     super.key,
   });
 
-  final ValueNotifier<TarotCategory?> selectedCategory;
-  final ValueNotifier<List<TarotLibrary>> filteredCards;
-  final void Function(TarotCategory?) onCategoryChanged;
+  final LibraryPageStateMixin state;
 
-  static TarotLibraryScope of(BuildContext context) {
-    final result = context.dependOnInheritedWidgetOfExactType<TarotLibraryScope>();
+  static LibraryPageScope of(BuildContext context) {
+    final result = context.dependOnInheritedWidgetOfExactType<LibraryPageScope>();
     assert(result != null, 'No TarotLibraryScope found in context');
     return result!;
   }
 
   @override
-  bool updateShouldNotify(TarotLibraryScope oldWidget) => false;
+  bool updateShouldNotify(LibraryPageScope oldWidget) => false;
 }

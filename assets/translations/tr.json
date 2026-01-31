@@ -21,21 +21,22 @@
         "reversed_meanings": "Ters Anlamlar"
     },
     "reveal_page": {
-        "tap_to_pick": "Kartını seçmek için dokun"
+        "tap_to_pick": "Kartını seçmek için dokun",
+        "drag_to_move": "Kaydırmak için sürükle"
     },
     "question_page": {
         "title": "Soru Sor",
         "hint_text": "Hangi konuda rehberlik istersin?",
-        "choose_reading_type": "Okuma Türünü Seç",
+        "choose_topic": "Konuyu Seç",
         "choose_card_count": "Kart Sayısını Seç",
-        "career_reading": "Kariyer Okuması",
-        "love_reading": "Aşk Okuması",
-        "health_reading": "Sağlık Okuması",
+        "career_topic": "Kariyer Konusu",
+        "love_topic": "Aşk Konusu",
+        "health_topic": "Sağlık Konusu",
         "single_card": "Tek Kart",
         "single_card_desc": "Hızlı bir içgörü için",
         "multiple_cards": "Üç Kart",
         "multiple_cards_desc": "Daha derin bir içgörü için",
-        "start_reading": "Okumaya Başla"
+        "start_question": "Soruya Başla"
     },
     "register_page": {
         "step_1_of_3": "Adım 1 / 3",

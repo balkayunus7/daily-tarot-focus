@@ -1,14 +1,14 @@
 part of '../pages/tarot_library_page.dart';
 
-class TarotLibraryChipList extends StatelessWidget {
-  const TarotLibraryChipList({super.key});
+class LibraryChipList extends StatelessWidget {
+  const LibraryChipList({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final scope = TarotLibraryScope.of(context);
+    final scope = LibraryPageScope.of(context);
 
     return ValueListenableBuilder<TarotCategory?>(
-      valueListenable: scope.selectedCategory,
+      valueListenable: scope.state.selectedCategory,
       builder: (context, currentCategory, child) {
         final isCategoryAllSelected = currentCategory == null;
         return SingleChildScrollView(
@@ -19,7 +19,7 @@ class TarotLibraryChipList extends StatelessWidget {
               _CategoryChip(
                 label: 'All',
                 isSelected: isCategoryAllSelected,
-                onTap: () => scope.onCategoryChanged(null),
+                onTap: () => scope.state.onCategoryChanged(null),
               ),
               Spacing.xsmallW,
               ...TarotCategory.values.map(
@@ -30,7 +30,7 @@ class TarotLibraryChipList extends StatelessWidget {
                     child: _CategoryChip(
                       label: category.value,
                       isSelected: isSelected,
-                      onTap: () => scope.onCategoryChanged(category),
+                      onTap: () => scope.state.onCategoryChanged(category),
                     ),
                   );
                 },

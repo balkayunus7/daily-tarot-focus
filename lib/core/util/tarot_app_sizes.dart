@@ -27,16 +27,16 @@ class SpacingConsts {
   static const double cardWheelPerspective = 0.0008;
   static const double cardWheelSqueeze = 1.5;
   static const int totalCards = 50;
-  static const Duration entranceAnimationDuration = Duration(
-    milliseconds: 1500,
-  );
   static const Duration flipAnimationDuration = Duration(
-    milliseconds: 800,
+    milliseconds: 500,
   );
-  static const Duration starsAnimationDuration = Duration(seconds: 2);
-  static const Duration flipCardDuration = Duration(
-    milliseconds: 3000,
+  static const Duration revealAnimationDuration = Duration(
+    milliseconds: 7500,
   );
+  static const Duration wheelAnimationDuration = Duration(
+    milliseconds: 500,
+  );
+  static const Duration flipCardDuration = Duration(seconds: 3);
   static const double cardShadowBlurRadius = 20;
   static const double cardShadowSpreadRadius = 10;
   static const double wheelCardSelectedWidth = 120;
@@ -109,7 +109,7 @@ class Spacing {
   static const EdgeInsets xsmallPadding = EdgeInsets.all(SpacingConsts.xsmall);
   static const EdgeInsets noPadding = EdgeInsets.zero;
 
-   static const EdgeInsets hXLargeVLargePad = EdgeInsets.symmetric(
+  static const EdgeInsets hXLargeVLargePad = EdgeInsets.symmetric(
     horizontal: SpacingConsts.xlarge,
     vertical: SpacingConsts.large,
   );

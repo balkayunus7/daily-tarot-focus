@@ -1,7 +1,7 @@
 part of '../pages/tarot_explore_page.dart';
 
-class TarotPaywallCard extends StatelessWidget {
-  const TarotPaywallCard({super.key});
+class ExplorePaywallCard extends StatelessWidget {
+  const ExplorePaywallCard({super.key});
 
   @override
   Widget build(BuildContext context) {

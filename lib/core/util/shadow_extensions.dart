@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 extension ShadowExtensions on Color {
   List<BoxShadow> get softShadow => AppShadows.soft(this);
   List<BoxShadow> get mediumShadow => AppShadows.medium(this);
-  List<BoxShadow> get hardShadow => AppShadows.high(this);
+  List<BoxShadow> get highShadow => AppShadows.high(this);
   List<BoxShadow> get glowShadow => AppShadows.glow(this);
   List<BoxShadow> get cardShadow => AppShadows.card(this);
 

@@ -26,20 +26,21 @@ class LocaleKeys {
 
   // Reveal Page
   static const revealTapToPick = 'reveal_page.tap_to_pick';
+  static const revealDragToMove = 'reveal_page.drag_to_move';
 
   // Question Page
   static const questionTitle = 'question_page.title';
   static const questionHintText = 'question_page.hint_text';
-  static const questionChooseReadingType = 'question_page.choose_reading_type';
+  static const questionChooseTopic = 'question_page.choose_topic';
   static const questionChooseCardCount = 'question_page.choose_card_count';
-  static const questionCareerReading = 'question_page.career_reading';
-  static const questionLoveReading = 'question_page.love_reading';
-  static const questionHealthReading = 'question_page.health_reading';
+  static const questionCareerTopic = 'question_page.career_topic';
+  static const questionLoveTopic = 'question_page.love_topic';
+  static const questionHealthTopic = 'question_page.health_topic';
   static const questionSingleCard = 'question_page.single_card';
   static const questionSingleCardDesc = 'question_page.single_card_desc';
   static const questionMultipleCards = 'question_page.multiple_cards';
   static const questionMultipleCardsDesc = 'question_page.multiple_cards_desc';
-  static const questionStartReading = 'question_page.start_reading';
+  static const questionStartQuestion = 'question_page.start_question';
 
   // Register Page
   static const registerStep1Of3 = 'register_page.step_1_of_3';

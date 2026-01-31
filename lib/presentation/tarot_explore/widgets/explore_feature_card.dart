@@ -1,7 +1,7 @@
 part of '../pages/tarot_explore_page.dart';
 
-class TarotFeatureCard extends StatelessWidget {
-  const TarotFeatureCard({
+class ExploreFeatureCard extends StatelessWidget {
+  const ExploreFeatureCard({
     required this.title,
     required this.imagePath,
     required this.onTap,

@@ -11,6 +11,8 @@ class TarotMockData {
     {'path': TarotAppAssets.settings.path, 'label': 'Profile'},
   ];
 
+  static const String dailyTarotCardHeroTag = 'daily_tarot_card_hero';
+
   static String get randomTarotCard {
     return 'assets/jpg/${allCards[Random().nextInt(allCards.length)]}.jpg';
   }

@@ -1,3 +1,4 @@
+import 'package:daily_tarot_focus/presentation/tarot_question/helpers/question_topic_enum.dart';
 import 'package:daily_tarot_focus/presentation/tarot_question/pages/tarot_question_page.dart';
 import 'package:flutter/material.dart';
 
@@ -11,13 +12,13 @@ enum QuestionCardCount {
 
 mixin QuestionPageStateMixin on State<TarotQuestionPage> {
   late final TextEditingController questionController;
-  late final ValueNotifier<TarotReadingTopic?> selectedReadingTopic;
+  late final ValueNotifier<QuestionTopic?> selectedTopic;
   late final ValueNotifier<QuestionCardCount?> selectedCardCount;
 
   @override
   void initState() {
     questionController = TextEditingController();
-    selectedReadingTopic = ValueNotifier(TarotReadingTopic.career);
+    selectedTopic = ValueNotifier(QuestionTopic.career);
     selectedCardCount = ValueNotifier(QuestionCardCount.singleCardCount);
     super.initState();
   }
@@ -25,11 +26,13 @@ mixin QuestionPageStateMixin on State<TarotQuestionPage> {
   @override
   void dispose() {
     questionController.dispose();
+    selectedTopic.dispose();
+    selectedCardCount.dispose();
     super.dispose();
   }
 
-  set readingTopic(TarotReadingTopic topic) {
-    selectedReadingTopic.value = topic;
+  set topic(QuestionTopic topic) {
+    selectedTopic.value = topic;
   }
 
   set cardCount(QuestionCardCount count) {

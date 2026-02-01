@@ -37,7 +37,7 @@ class _SplashPageState extends State<SplashPage> with RouteAwareAnalyticsMixin, 
     if (user is! TarotUser) return;
 
     if (user.isProfileComplete) {
-      context.go(AppRoutes.tarotExplore);
+      context.go(AppRoutes.registerStepZodiac);
     } else {
       context.go(AppRoutes.registerStepZodiac);
     }

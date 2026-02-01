@@ -73,7 +73,6 @@ class SettingsPage extends StatelessWidget {
                     title: LocaleKeys.settingsSignout.tr(),
                     onTap: () {},
                   ),
-                  Spacing.mediumH,
                   _SettingsTile(
                     icon: Icons.delete_forever,
                     title: LocaleKeys.settingsDeleteAccount.tr(),

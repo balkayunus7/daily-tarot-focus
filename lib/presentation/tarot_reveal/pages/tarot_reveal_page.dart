@@ -9,8 +9,8 @@ import 'package:daily_tarot_focus/core/util/tarot_mock_data.dart';
 import 'package:daily_tarot_focus/core/util/text_style_helper.dart';
 import 'package:daily_tarot_focus/core/widgets/tarot_app_bar.dart';
 import 'package:daily_tarot_focus/domain/tarot/tarot_library.dart';
-import 'package:daily_tarot_focus/presentation/tarot_reveal/helpers/reveal_page_scope.dart';
 import 'package:daily_tarot_focus/presentation/tarot_reveal/helpers/reveal_page_mixin.dart';
+import 'package:daily_tarot_focus/presentation/tarot_reveal/helpers/reveal_page_scope.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:mobile_boilerplate/common_dependencies.dart';
@@ -30,7 +30,6 @@ class TarotRevealPage extends StatefulWidget {
 
 class _TarotRevealPageState extends State<TarotRevealPage>
     with TickerProviderStateMixin, RevealPageStateMixin {
-      
   @override
   Widget build(BuildContext context) {
     return RevealPageScope(
@@ -45,7 +44,7 @@ class _TarotRevealPageState extends State<TarotRevealPage>
             return Stack(
               fit: StackFit.expand,
               children: [
-                Image.asset(TarotAppAssets.background.path, fit: BoxFit.cover),
+                Image.asset(TarotAppAssets.dailyBack.path, fit: BoxFit.cover),
                 AnimatedOpacity(
                   duration: SpacingConsts.wheelAnimationDuration,
                   opacity: isCardSelected ? 0.0 : 1.0,

@@ -122,8 +122,8 @@ class _TarotBackCard extends StatelessWidget {
         child: ClipRRect(
           borderRadius: Spacing.xsmallBorderRadius,
           child: Image.asset(
-            TarotAppAssets.cardDesign.path,
-            fit: BoxFit.cover,
+            TarotAppAssets.cardBack.path,
+            fit: BoxFit.fill,
           ),
         ),
       ),

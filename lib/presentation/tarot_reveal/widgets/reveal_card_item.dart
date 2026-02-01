@@ -32,17 +32,14 @@ class RevealCardItem extends StatelessWidget {
             margin: EdgeInsets.symmetric(vertical: isSelected ? 0 : 2),
             decoration: BoxDecoration(
               borderRadius: Spacing.defaultBorderRadius,
-              border: Border.all(
-                color: context.colors.surfaceSecondary,
-                width: isSelected ? 1.5 : 0,
-              ),
+              border: Border.all(color: context.colors.surfaceSecondary),
               boxShadow: isSelected ? context.colors.primary.highShadow : [],
             ),
             child: ClipRRect(
               borderRadius: Spacing.defaultBorderRadius,
               child: Image.asset(
-                TarotAppAssets.cardDesign.path,
-                fit: BoxFit.cover,
+                TarotAppAssets.cardBack.path,
+                fit: BoxFit.fill,
               ),
             ),
           ),

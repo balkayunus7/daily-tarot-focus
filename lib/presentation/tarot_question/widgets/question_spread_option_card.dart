@@ -60,7 +60,7 @@ class QuestionSpreadOptionCard extends StatelessWidget {
               ),
               Spacing.mediumH,
               Text(title, style: m16w500(context)),
-              Spacing.xsmallH,
+              Spacing.tinyH,
               Text(
                 subtitle,
                 textAlign: TextAlign.center,

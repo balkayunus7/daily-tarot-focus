@@ -7,6 +7,7 @@ class ExploreDailyCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final screenHeight = Spacing.screenHeight(context);
     final cardHeight = screenHeight / 4.7;
+    final colors = context.colors;
 
     return ScalingContainer(
       onTap: () => context.push(AppRoutes.tarotReveal),
@@ -16,12 +17,9 @@ class ExploreDailyCard extends StatelessWidget {
         padding: Spacing.xlargePadding,
         decoration: BoxDecoration(
           gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [
-              context.colors.accent,
-              context.colors.primary,
-            ],
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [colors.primary, colors.secondary, colors.accent],
           ),
           borderRadius: Spacing.largeBorderRadius,
           border: Border.all(color: context.colors.borderSecondary, width: 0.5),

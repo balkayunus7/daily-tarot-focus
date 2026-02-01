@@ -59,6 +59,7 @@ class RegisterStepRelationshipPage extends StatelessWidget {
                     onTap: () async {
                       await context.push(AppRoutes.registerStepBirthdate);
                     },
+                    bgColor: colors.accent,
                     buttonTextStyle: m16w700(context),
                     isDisabled: !state.isRelationshipStatusSelected,
                   );

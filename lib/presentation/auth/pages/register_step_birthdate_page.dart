@@ -107,6 +107,7 @@ class _RegisterStepBirthdatePageState extends State<RegisterStepBirthdatePage> w
                           authState.sessionOrCrash,
                         );
                       },
+                      bgColor: colors.accent,
                       buttonTextStyle: m16w700(context),
                       isLoading: state.registerStatus.isLoading,
                       isDisabled: !state.isBirthDateSelected,

@@ -27,70 +27,57 @@ class ExploreFeatureCard extends StatelessWidget {
           borderRadius: Spacing.defaultBorderRadius,
           border: Border.all(color: colors.borderSecondary, width: 0.5),
         ),
-        child: Stack(
-          clipBehavior: Clip.none,
+        child: Column(
           children: [
-            _CardBackground(imagePath: imagePath),
-            _CardForeground(title: title),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class _CardBackground extends StatelessWidget {
-  const _CardBackground({required this.imagePath});
-  final String imagePath;
-
-  @override
-  Widget build(BuildContext context) {
-    return Positioned.fill(
-      child: Padding(
-        padding: Spacing.tinyPadding,
-        child: ClipRRect(
-          borderRadius: Spacing.smallBorderRadius,
-          child: Opacity(
-            opacity: 0.6,
-            child: Image.asset(imagePath, fit: BoxFit.cover),
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class _CardForeground extends StatelessWidget {
-  const _CardForeground({required this.title});
-  final String title;
-
-  @override
-  Widget build(BuildContext context) {
-    final colors = context.colors;
-
-    return Padding(
-      padding: Spacing.defaultPadding,
-      child: Column(
-        children: [
-          Align(
-            alignment: Alignment.topRight,
-            child: FancyContainer(
-              color: colors.primary,
-              borderRadius: Spacing.xlargeBorderRadius,
-              padding: Spacing.tinyPadding,
-              child: Icon(
-                Icons.arrow_outward,
-                color: colors.textPrimary,
-                size: 20,
+            Expanded(
+              flex: 4,
+              child: Stack(
+                children: [
+                  Positioned.fill(
+                    child: Padding(
+                      padding: Spacing.tinyPadding,
+                      child: ClipRRect(
+                        borderRadius: Spacing.smallBorderRadius,
+                        child: Opacity(
+                          opacity: 0.8,
+                          child: Image.asset(imagePath, fit: BoxFit.cover),
+                        ),
+                      ),
+                    ),
+                  ),
+                  Positioned(
+                    top: SpacingConsts.small,
+                    right: SpacingConsts.small,
+                    child: FancyContainer(
+                      color: colors.primary,
+                      borderRadius: Spacing.xlargeBorderRadius,
+                      padding: Spacing.tinyPadding,
+                      child: Icon(
+                        Icons.arrow_outward,
+                        color: colors.textPrimary,
+                        size: 16,
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
-          ),
-          const Spacer(),
-          Align(
-            alignment: Alignment.bottomLeft,
-            child: Text(title, style: m16w600(context)),
-          ),
-        ],
+            Padding(
+              padding: const EdgeInsets.only(
+                bottom: SpacingConsts.xsmall,
+                left: SpacingConsts.small,
+                right: SpacingConsts.small,
+              ),
+              child: Text(
+                title,
+                style: m14w600(context),
+                textAlign: TextAlign.center,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

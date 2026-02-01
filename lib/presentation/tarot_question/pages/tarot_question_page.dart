@@ -1,6 +1,7 @@
 import 'package:daily_tarot_focus/core/util/locale_keys.dart';
 import 'package:daily_tarot_focus/core/util/tarot_app_sizes.dart';
 import 'package:daily_tarot_focus/core/util/text_style_helper.dart';
+import 'package:daily_tarot_focus/core/widgets/base_gradient_layout.dart';
 import 'package:daily_tarot_focus/core/widgets/tarot_app_bar.dart';
 import 'package:daily_tarot_focus/core/widgets/tarot_button.dart';
 import 'package:daily_tarot_focus/presentation/tarot_question/helpers/question_page_mixin.dart';
@@ -26,10 +27,10 @@ class _TarotQuestionPageState extends State<TarotQuestionPage>
   @override
   Widget build(BuildContext context) {
     final colors = context.colors;
-    return Scaffold(
-      backgroundColor: colors.background,
+
+    return BaseGradientLayout(
       appBar: TarotAppBar(title: LocaleKeys.questionTitle.tr()),
-      body: SafeArea(
+      child: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: SpacingConsts.large),
           child: Column(
@@ -145,6 +146,7 @@ class _TarotQuestionPageState extends State<TarotQuestionPage>
               TarotButton(
                 buttonText: LocaleKeys.questionStartQuestion.tr(),
                 onTap: () {},
+                bgColor: colors.accent,
                 buttonTextStyle: m16w700(context),
                 isDisabled: questionController.text.isEmpty,
               ),

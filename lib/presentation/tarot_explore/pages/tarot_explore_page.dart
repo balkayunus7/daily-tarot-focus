@@ -48,8 +48,8 @@ class TarotExplorePage extends StatelessWidget {
                 children: [
                   Expanded(
                     child: ExploreFeatureCard(
-                      title: LocaleKeys.exploreYesNoCard.tr(),
-                      imagePath: TarotAppAssets.yesNoCard.path,
+                      title: LocaleKeys.exploreAskQuestion.tr(),
+                      imagePath: TarotAppAssets.askQuestion.path,
                       onTap: () => context.push(AppRoutes.tarotQuestion),
                     ),
                   ),
@@ -57,7 +57,7 @@ class TarotExplorePage extends StatelessWidget {
                   Expanded(
                     child: ExploreFeatureCard(
                       title: LocaleKeys.exploreLibrary.tr(),
-                      imagePath: TarotAppAssets.guide.path,
+                      imagePath: TarotAppAssets.library.path,
                       onTap: () => context.push(AppRoutes.tarotLibrary),
                     ),
                   ),

@@ -62,12 +62,12 @@ class _PaywallTextContent extends StatelessWidget {
         children: [
           Text(
             LocaleKeys.exploreGoPremium.tr(),
-            style: m18w700(context),
+            style: m16w600(context),
           ),
           Spacing.tinyH,
           Text(
             LocaleKeys.exploreUnlockAllFeatures.tr(),
-            style: m12w500(context),
+            style: m11w500(context),
           ),
         ],
       ),
@@ -93,10 +93,8 @@ class _PremiumButton extends StatelessWidget {
           // TODO: Paywall sayfasına yönlendirme veya bottom sheet tetikleme
         },
         buttonText: LocaleKeys.exploreGetPro.tr(),
-        bgColor: colors.textPrimary,
-        buttonTextStyle: m14w700(context).copyWith(
-          color: colors.primary,
-        ),
+        bgColor: colors.accent,
+        buttonTextStyle: m12w600(context),
       ),
     );
   }

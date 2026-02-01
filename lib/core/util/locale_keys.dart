@@ -5,7 +5,7 @@ class LocaleKeys {
 
   // Explore Page
   static const exploreSpiritualGuide = 'explore_page.spiritual_guide';
-  static const exploreYesNoCard = 'explore_page.yes_no_card';
+  static const exploreAskQuestion = 'explore_page.ask_question';
   static const exploreLibrary = 'explore_page.library';
   static const exploreDiscoverDaily = 'explore_page.discover_daily';
   static const exploreDailyCard = 'explore_page.daily_card';

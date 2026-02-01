@@ -1,3 +1,4 @@
+import 'package:daily_tarot_focus/core/util/tarot_app_assets.dart';
 import 'package:daily_tarot_focus/core/util/tarot_mock_data.dart';
 import 'package:daily_tarot_focus/core/util/text_style_helper.dart';
 import 'package:flutter/material.dart';
@@ -56,8 +57,8 @@ class HomeBottomNavbar extends StatelessWidget {
                     children: [
                       SvgPicture.asset(
                         path,
-                        width: 20,
-                        height: 20,
+                        width: path == TarotAppAssets.tarotIcon.path ? 28 : 20,
+                        height: path == TarotAppAssets.tarotIcon.path ? 28 : 20,
                         colorFilter: ColorFilter.mode(
                           isSelected ? context.colors.background : context.colors.primary,
                           BlendMode.srcIn,

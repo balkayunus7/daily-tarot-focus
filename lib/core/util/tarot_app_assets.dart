@@ -30,7 +30,8 @@ enum TarotAppAssets {
   shiningStars._('assets/json/shining_stars.json'),
   tarot._('assets/json/tarot.json'),
   drag._('assets/json/drag.json'),
-  spotify._('assets/svg/spotify.svg');
+  spotify._('assets/svg/spotify.svg'),
+  tarotIcon._('assets/svg/tarot.svg');
 
   const TarotAppAssets._(this.path);
   final String path;

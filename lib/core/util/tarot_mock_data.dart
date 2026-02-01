@@ -7,7 +7,7 @@ import 'package:daily_tarot_focus/domain/tarot/tarot_library.dart';
 class TarotMockData {
   static final List<Map<String, String>> navbarItems = [
     {'path': TarotAppAssets.explore.path, 'label': 'Exlore'},
-    {'path': TarotAppAssets.fish.path, 'label': 'Daily Tarots'},
+    {'path': TarotAppAssets.tarotIcon.path, 'label': 'Daily Tarots'},
     {'path': TarotAppAssets.settings.path, 'label': 'Profile'},
   ];
 

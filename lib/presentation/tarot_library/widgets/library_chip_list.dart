@@ -7,10 +7,11 @@ class LibraryChipList extends StatelessWidget {
   Widget build(BuildContext context) {
     final scope = LibraryPageScope.of(context);
 
-    return ValueListenableBuilder<TarotCategory?>(
-      valueListenable: scope.state.selectedCategory,
-      builder: (context, currentCategory, child) {
+    return BlocBuilder<TarotCardCubit, TarotCardState>(
+      builder: (context, state) {
+        final currentCategory = state.selectedCategory;
         final isCategoryAllSelected = currentCategory == null;
+
         return SingleChildScrollView(
           scrollDirection: Axis.horizontal,
           padding: Spacing.hMediumVSmallPad,

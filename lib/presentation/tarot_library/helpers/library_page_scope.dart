@@ -12,7 +12,7 @@ class LibraryPageScope extends InheritedWidget {
 
   static LibraryPageScope of(BuildContext context) {
     final result = context.dependOnInheritedWidgetOfExactType<LibraryPageScope>();
-    assert(result != null, 'No TarotLibraryScope found in context');
+    assert(result != null, 'No TarotDataScope found in context');
     return result!;
   }
 

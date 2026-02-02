@@ -1,3 +1,4 @@
+import 'package:daily_tarot_focus/application/tarot/tarot_card_cubit.dart';
 import 'package:daily_tarot_focus/core/util/haptic_feedback_helper.dart';
 import 'package:daily_tarot_focus/core/util/locale_extensions.dart';
 import 'package:daily_tarot_focus/core/util/locale_keys.dart';
@@ -127,6 +128,9 @@ class SettingsPage extends StatelessWidget {
                 isSelected: context.isLocaleEn,
                 onTap: () async {
                   await context.setLocale(context.localeEn);
+                  if (context.mounted) {
+                    await context.read<TarotCardCubit>().refreshCards(context);
+                  }
                   await HapticFeedbackHelper.selectionClick();
                   if (context.mounted) Navigator.pop(context);
                 },
@@ -138,6 +142,9 @@ class SettingsPage extends StatelessWidget {
                 isSelected: context.isLocaleTr,
                 onTap: () async {
                   await context.setLocale(context.localeTr);
+                  if (context.mounted) {
+                    await context.read<TarotCardCubit>().refreshCards(context);
+                  }
                   await HapticFeedbackHelper.selectionClick();
                   if (context.mounted) Navigator.pop(context);
                 },

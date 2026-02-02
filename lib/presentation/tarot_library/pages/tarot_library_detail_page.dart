@@ -4,15 +4,15 @@ import 'package:daily_tarot_focus/core/util/tarot_app_sizes.dart';
 import 'package:daily_tarot_focus/core/util/text_style_helper.dart';
 import 'package:daily_tarot_focus/core/widgets/base_gradient_layout.dart';
 import 'package:daily_tarot_focus/core/widgets/tarot_app_bar.dart';
-import 'package:daily_tarot_focus/domain/tarot/tarot_library.dart';
+import 'package:daily_tarot_focus/domain/tarot/tarot_data.dart';
 import 'package:daily_tarot_focus/presentation/tarot_reveal/pages/tarot_reveal_detail_page.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile_boilerplate/common_dependencies.dart';
 import 'package:mobile_boilerplate/presentation/extensions/build_context_theme_ext.dart';
 
-class TarotLibraryDetailPage extends StatelessWidget {
-  const TarotLibraryDetailPage({required this.tarot, super.key});
-  final TarotLibrary tarot;
+class TarotDataDetailPage extends StatelessWidget {
+  const TarotDataDetailPage({required this.tarot, super.key});
+  final TarotData tarot;
 
   @override
   Widget build(BuildContext context) {

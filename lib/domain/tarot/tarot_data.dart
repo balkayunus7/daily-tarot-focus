@@ -1,8 +1,8 @@
 import 'package:daily_tarot_focus/domain/tarot/tarot_category_enum.dart';
-import 'package:daily_tarot_focus/domain/tarot/tarot_identify.dart';
+import 'package:mobile_boilerplate/common_dependencies.dart';
 
-class TarotLibrary {
-  const TarotLibrary({
+class TarotData with EquatableMixin {
+  const TarotData({
     required this.title,
     required this.category,
     required this.imagePath,
@@ -10,17 +10,21 @@ class TarotLibrary {
     required this.meanings,
     required this.uprightMeanings,
     required this.reversedMeanings,
+    required this.advices,
+    required this.warnings,
   });
 
-  factory TarotLibrary.fromMap(Map<String, dynamic> map) {
-    return TarotLibrary(
+  factory TarotData.fromMap(Map<String, dynamic> map) {
+    return TarotData(
       title: map['title'] as String,
       description: map['description'] as String,
       imagePath: map['imagePath'] as String,
       category: TarotCategory.fromString(map['category'] as String),
-      meanings: map['meanings'] as List<String>,
-      uprightMeanings: map['uprightMeanings'] as List<String>,
-      reversedMeanings: map['reversedMeanings'] as List<String>,
+      meanings: List<String>.from(map['meanings'] as List),
+      uprightMeanings: List<String>.from(map['uprightMeanings'] as List),
+      reversedMeanings: List<String>.from(map['reversedMeanings'] as List),
+      advices: List<String>.from(map['advices'] as List),
+      warnings: List<String>.from(map['warnings'] as List),
     );
   }
 
@@ -33,6 +37,8 @@ class TarotLibrary {
       'meanings': meanings,
       'uprightMeanings': uprightMeanings,
       'reversedMeanings': reversedMeanings,
+      'advices': advices,
+      'warnings': warnings,
     };
   }
 
@@ -43,8 +49,14 @@ class TarotLibrary {
   final List<String> meanings;
   final List<String> uprightMeanings;
   final List<String> reversedMeanings;
+  final List<String> advices;
+  final List<String> warnings;
 
-  TarotLibrary copyWith({
+  bool get hasAdvices => advices.isNotEmpty;
+  bool get hasWarnings => warnings.isNotEmpty;
+  bool get hasMeanings => meanings.isNotEmpty;
+
+  TarotData copyWith({
     String? title,
     String? description,
     String? imagePath,
@@ -52,8 +64,10 @@ class TarotLibrary {
     List<String>? meanings,
     List<String>? uprightMeanings,
     List<String>? reversedMeanings,
+    List<String>? advices,
+    List<String>? warnings,
   }) {
-    return TarotLibrary(
+    return TarotData(
       title: title ?? this.title,
       description: description ?? this.description,
       imagePath: imagePath ?? this.imagePath,
@@ -61,19 +75,21 @@ class TarotLibrary {
       meanings: meanings ?? this.meanings,
       uprightMeanings: uprightMeanings ?? this.uprightMeanings,
       reversedMeanings: reversedMeanings ?? this.reversedMeanings,
+      advices: advices ?? this.advices,
+      warnings: warnings ?? this.warnings,
     );
   }
 
-  // Convert TarotLibrary to TarotIdentify
-  // Note: TarotIdentify doesn't have uprightMeanings/reversedMeanings,
-  // so we use meanings for TarotIdentify
-  TarotIdentify toTarotIdentify() {
-    return TarotIdentify(
-      title: title,
-      description: description,
-      meanings: meanings,
-      advices: null, // TarotLibrary doesn't have advices
-      warnings: null, // TarotLibrary doesn't have warnings
-    );
-  }
+  @override
+  List<Object?> get props => [
+        title,
+        description,
+        imagePath,
+        category,
+        meanings,
+        uprightMeanings,
+        reversedMeanings,
+        advices,
+        warnings,
+      ];
 }

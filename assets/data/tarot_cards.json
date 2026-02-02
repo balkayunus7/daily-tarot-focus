@@ -1,0 +1,392 @@
+[
+  {
+    "id": "death",
+    "category": "majorArcana",
+    "imagePath": "assets/jpg/death.jpg"
+  },
+  {
+    "id": "judgement",
+    "category": "majorArcana",
+    "imagePath": "assets/jpg/judgement.jpg"
+  },
+  {
+    "id": "justice",
+    "category": "majorArcana",
+    "imagePath": "assets/jpg/justice.jpg"
+  },
+  {
+    "id": "the_star",
+    "category": "majorArcana",
+    "imagePath": "assets/jpg/the_star.jpg"
+  },
+  {
+    "id": "strength",
+    "category": "majorArcana",
+    "imagePath": "assets/jpg/strength.jpg"
+  },
+  {
+    "id": "temperance",
+    "category": "majorArcana",
+    "imagePath": "assets/jpg/temperance.jpg"
+  },
+  {
+    "id": "the_devil",
+    "category": "majorArcana",
+    "imagePath": "assets/jpg/the_devil.jpg"
+  },
+  {
+    "id": "the_emperor",
+    "category": "majorArcana",
+    "imagePath": "assets/jpg/the_emperor.jpg"
+  },
+  {
+    "id": "the_fool",
+    "category": "majorArcana",
+    "imagePath": "assets/jpg/the_fool.jpg"
+  },
+  {
+    "id": "the_hanged_man",
+    "category": "majorArcana",
+    "imagePath": "assets/jpg/the_hanged_man.jpg"
+  },
+  {
+    "id": "the_hermit",
+    "category": "majorArcana",
+    "imagePath": "assets/jpg/the_hermit.jpg"
+  },
+  {
+    "id": "the_hierophant",
+    "category": "majorArcana",
+    "imagePath": "assets/jpg/the_hierophant.jpg"
+  },
+  {
+    "id": "the_high_priestess",
+    "category": "majorArcana",
+    "imagePath": "assets/jpg/the_high_priestess.jpg"
+  },
+  {
+    "id": "the_magician",
+    "category": "majorArcana",
+    "imagePath": "assets/jpg/the_magician.jpg"
+  },
+  {
+    "id": "the_moon",
+    "category": "majorArcana",
+    "imagePath": "assets/jpg/the_moon.jpg"
+  },
+  {
+    "id": "the_sun",
+    "category": "majorArcana",
+    "imagePath": "assets/jpg/the_sun.jpg"
+  },
+  {
+    "id": "the_tower",
+    "category": "majorArcana",
+    "imagePath": "assets/jpg/the_tower.jpg"
+  },
+  {
+    "id": "wheel_of_fortune",
+    "category": "majorArcana",
+    "imagePath": "assets/jpg/wheel_of_fortune.jpg"
+  },
+  {
+    "id": "the_chariot",
+    "category": "majorArcana",
+    "imagePath": "assets/jpg/the_chariot.jpg"
+  },
+  {
+    "id": "the_empress",
+    "category": "majorArcana",
+    "imagePath": "assets/jpg/the_empress.jpg"
+  },
+  {
+    "id": "the_lovers",
+    "category": "majorArcana",
+    "imagePath": "assets/jpg/the_lovers.jpg"
+  },
+  {
+    "id": "the_world",
+    "category": "majorArcana",
+    "imagePath": "assets/jpg/the_world.jpg"
+  },
+  {
+    "id": "ace_of_cups",
+    "category": "cups",
+    "imagePath": "assets/jpg/ace_of_cups.jpg"
+  },
+  {
+    "id": "two_of_cups",
+    "category": "cups",
+    "imagePath": "assets/jpg/two_of_cups.jpg"
+  },
+  {
+    "id": "three_of_cups",
+    "category": "cups",
+    "imagePath": "assets/jpg/three_of_cups.jpg"
+  },
+  {
+    "id": "four_of_cups",
+    "category": "cups",
+    "imagePath": "assets/jpg/four_of_cups.jpg"
+  },
+  {
+    "id": "five_of_cups",
+    "category": "cups",
+    "imagePath": "assets/jpg/five_of_cups.jpg"
+  },
+  {
+    "id": "six_of_cups",
+    "category": "cups",
+    "imagePath": "assets/jpg/six_of_cups.jpg"
+  },
+  {
+    "id": "seven_of_cups",
+    "category": "cups",
+    "imagePath": "assets/jpg/seven_of_cups.jpg"
+  },
+  {
+    "id": "eight_of_cups",
+    "category": "cups",
+    "imagePath": "assets/jpg/eight_of_cups.jpg"
+  },
+  {
+    "id": "nine_of_cups",
+    "category": "cups",
+    "imagePath": "assets/jpg/nine_of_cups.jpg"
+  },
+  {
+    "id": "ten_of_cups",
+    "category": "cups",
+    "imagePath": "assets/jpg/ten_of_cups.jpg"
+  },
+  {
+    "id": "page_of_cups",
+    "category": "cups",
+    "imagePath": "assets/jpg/page_of_cups.jpg"
+  },
+  {
+    "id": "knight_of_cups",
+    "category": "cups",
+    "imagePath": "assets/jpg/knight_of_cups.jpg"
+  },
+  {
+    "id": "queen_of_cups",
+    "category": "cups",
+    "imagePath": "assets/jpg/queen_of_cups.jpg"
+  },
+  {
+    "id": "king_of_cups",
+    "category": "cups",
+    "imagePath": "assets/jpg/king_of_cups.jpg"
+  },
+  {
+    "id": "ace_of_swords",
+    "category": "swords",
+    "imagePath": "assets/jpg/ace_of_swords.jpg"
+  },
+  {
+    "id": "two_of_swords",
+    "category": "swords",
+    "imagePath": "assets/jpg/two_of_swords.jpg"
+  },
+  {
+    "id": "three_of_swords",
+    "category": "swords",
+    "imagePath": "assets/jpg/three_of_swords.jpg"
+  },
+  {
+    "id": "four_of_swords",
+    "category": "swords",
+    "imagePath": "assets/jpg/four_of_swords.jpg"
+  },
+  {
+    "id": "five_of_swords",
+    "category": "swords",
+    "imagePath": "assets/jpg/five_of_swords.jpg"
+  },
+  {
+    "id": "six_of_swords",
+    "category": "swords",
+    "imagePath": "assets/jpg/six_of_swords.jpg"
+  },
+  {
+    "id": "seven_of_swords",
+    "category": "swords",
+    "imagePath": "assets/jpg/seven_of_swords.jpg"
+  },
+  {
+    "id": "eight_of_swords",
+    "category": "swords",
+    "imagePath": "assets/jpg/eight_of_swords.jpg"
+  },
+  {
+    "id": "nine_of_swords",
+    "category": "swords",
+    "imagePath": "assets/jpg/nine_of_swords.jpg"
+  },
+  {
+    "id": "ten_of_swords",
+    "category": "swords",
+    "imagePath": "assets/jpg/ten_of_swords.jpg"
+  },
+  {
+    "id": "page_of_swords",
+    "category": "swords",
+    "imagePath": "assets/jpg/page_of_swords.jpg"
+  },
+  {
+    "id": "knight_of_swords",
+    "category": "swords",
+    "imagePath": "assets/jpg/knight_of_swords.jpg"
+  },
+  {
+    "id": "queen_of_swords",
+    "category": "swords",
+    "imagePath": "assets/jpg/queen_of_swords.jpg"
+  },
+  {
+    "id": "king_of_swords",
+    "category": "swords",
+    "imagePath": "assets/jpg/king_of_swords.jpg"
+  },
+  {
+    "id": "ace_of_pentacles",
+    "category": "pentacles",
+    "imagePath": "assets/jpg/ace_of_pentacles.jpg"
+  },
+  {
+    "id": "two_of_pentacles",
+    "category": "pentacles",
+    "imagePath": "assets/jpg/two_of_pentacles.jpg"
+  },
+  {
+    "id": "three_of_pentacles",
+    "category": "pentacles",
+    "imagePath": "assets/jpg/three_of_pentacles.jpg"
+  },
+  {
+    "id": "four_of_pentacles",
+    "category": "pentacles",
+    "imagePath": "assets/jpg/four_of_pentacles.jpg"
+  },
+  {
+    "id": "five_of_pentacles",
+    "category": "pentacles",
+    "imagePath": "assets/jpg/five_of_pentacles.jpg"
+  },
+  {
+    "id": "six_of_pentacles",
+    "category": "pentacles",
+    "imagePath": "assets/jpg/six_of_pentacles.jpg"
+  },
+  {
+    "id": "seven_of_pentacles",
+    "category": "pentacles",
+    "imagePath": "assets/jpg/seven_of_pentacles.jpg"
+  },
+  {
+    "id": "eight_of_pentacles",
+    "category": "pentacles",
+    "imagePath": "assets/jpg/eight_of_pentacles.jpg"
+  },
+  {
+    "id": "nine_of_pentacles",
+    "category": "pentacles",
+    "imagePath": "assets/jpg/nine_of_pentacles.jpg"
+  },
+  {
+    "id": "ten_of_pentacles",
+    "category": "pentacles",
+    "imagePath": "assets/jpg/ten_of_pentacles.jpg"
+  },
+  {
+    "id": "page_of_pentacles",
+    "category": "pentacles",
+    "imagePath": "assets/jpg/page_of_pentacles.jpg"
+  },
+  {
+    "id": "knight_of_pentacles",
+    "category": "pentacles",
+    "imagePath": "assets/jpg/knight_of_pentacles.jpg"
+  },
+  {
+    "id": "queen_of_pentacles",
+    "category": "pentacles",
+    "imagePath": "assets/jpg/queen_of_pentacles.jpg"
+  },
+  {
+    "id": "king_of_pentacles",
+    "category": "pentacles",
+    "imagePath": "assets/jpg/king_of_pentacles.jpg"
+  },
+  {
+    "id": "ace_of_wands",
+    "category": "wands",
+    "imagePath": "assets/jpg/ace_of_wands.jpg"
+  },
+  {
+    "id": "two_of_wands",
+    "category": "wands",
+    "imagePath": "assets/jpg/two_of_wands.jpg"
+  },
+  {
+    "id": "three_of_wands",
+    "category": "wands",
+    "imagePath": "assets/jpg/three_of_wands.jpg"
+  },
+  {
+    "id": "four_of_wands",
+    "category": "wands",
+    "imagePath": "assets/jpg/four_of_wands.jpg"
+  },
+  {
+    "id": "five_of_wands",
+    "category": "wands",
+    "imagePath": "assets/jpg/five_of_wands.jpg"
+  },
+  {
+    "id": "six_of_wands",
+    "category": "wands",
+    "imagePath": "assets/jpg/six_of_wands.jpg"
+  },
+  {
+    "id": "seven_of_wands",
+    "category": "wands",
+    "imagePath": "assets/jpg/seven_of_wands.jpg"
+  },
+  {
+    "id": "eight_of_wands",
+    "category": "wands",
+    "imagePath": "assets/jpg/eight_of_wands.jpg"
+  },
+  {
+    "id": "nine_of_wands",
+    "category": "wands",
+    "imagePath": "assets/jpg/nine_of_wands.jpg"
+  },
+  {
+    "id": "ten_of_wands",
+    "category": "wands",
+    "imagePath": "assets/jpg/ten_of_wands.jpg"
+  },
+  {
+    "id": "page_of_wands",
+    "category": "wands",
+    "imagePath": "assets/jpg/page_of_wands.jpg"
+  },
+  {
+    "id": "knight_of_wands",
+    "category": "wands",
+    "imagePath": "assets/jpg/knight_of_wands.jpg"
+  },
+  {
+    "id": "queen_of_wands",
+    "category": "wands",
+    "imagePath": "assets/jpg/queen_of_wands.jpg"
+  },
+  {
+    "id": "king_of_wands",
+    "category": "wands",
+    "imagePath": "assets/jpg/king_of_wands.jpg"
+  }
+]

@@ -1,12 +1,12 @@
+import 'package:daily_tarot_focus/application/tarot/tarot_card_cubit.dart';
 import 'package:daily_tarot_focus/config/app_routes.dart';
 import 'package:daily_tarot_focus/core/util/locale_keys.dart';
 import 'package:daily_tarot_focus/core/util/tarot_app_sizes.dart';
-import 'package:daily_tarot_focus/core/util/tarot_mock_data.dart';
 import 'package:daily_tarot_focus/core/util/text_style_helper.dart';
 import 'package:daily_tarot_focus/core/widgets/base_gradient_layout.dart';
 import 'package:daily_tarot_focus/core/widgets/tarot_app_bar.dart';
 import 'package:daily_tarot_focus/domain/tarot/tarot_category_enum.dart';
-import 'package:daily_tarot_focus/domain/tarot/tarot_library.dart';
+import 'package:daily_tarot_focus/domain/tarot/tarot_data.dart';
 import 'package:daily_tarot_focus/presentation/tarot_library/helpers/library_page_scope.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -18,14 +18,14 @@ part '../widgets/library_card_grid.dart';
 part '../widgets/library_chip_list.dart';
 part '../helpers/library_page_mixin.dart';
 
-class TarotLibraryPage extends StatefulWidget {
-  const TarotLibraryPage({super.key});
+class TarotDataPage extends StatefulWidget {
+  const TarotDataPage({super.key});
 
   @override
-  State<TarotLibraryPage> createState() => _TarotLibraryPageState();
+  State<TarotDataPage> createState() => _TarotDataPageState();
 }
 
-class _TarotLibraryPageState extends State<TarotLibraryPage>
+class _TarotDataPageState extends State<TarotDataPage>
     with LibraryPageStateMixin {
   @override
   Widget build(BuildContext context) {
@@ -34,12 +34,28 @@ class _TarotLibraryPageState extends State<TarotLibraryPage>
       child: BaseGradientLayout(
         appBar: TarotAppBar(title: LocaleKeys.libraryTitle.tr()),
         child: SafeArea(
-          child: Column(
-            children: [
-              const LibraryChipList(),
-              Spacing.mediumH,
-              LibraryCardGridView(filteredCards: filteredCards),
-            ],
+          child: BlocBuilder<TarotCardCubit, TarotCardState>(
+            builder: (context, state) {
+              if (state.isLoading) {
+                return const Center(
+                  child: CircularProgressIndicator(),
+                );
+              }
+
+              if (state.hasError) {
+                return Center(
+                  child: Text(state.errorMessage ?? 'Error loading cards'),
+                );
+              }
+
+              return Column(
+                children: [
+                  const LibraryChipList(),
+                  Spacing.mediumH,
+                  LibraryCardGridView(filteredCards: state.filteredCards),
+                ],
+              );
+            },
           ),
         ),
       ),

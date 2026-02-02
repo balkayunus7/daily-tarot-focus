@@ -1,22 +1,27 @@
+import 'dart:async';
+
+import 'package:daily_tarot_focus/application/tarot/tarot_card_cubit.dart';
 import 'package:daily_tarot_focus/config/app_routes.dart';
 import 'package:daily_tarot_focus/core/util/haptic_feedback_helper.dart';
 import 'package:daily_tarot_focus/core/util/tarot_app_sizes.dart';
-import 'package:daily_tarot_focus/core/util/tarot_mock_data.dart';
-import 'package:daily_tarot_focus/domain/tarot/tarot_library.dart';
+import 'package:daily_tarot_focus/domain/tarot/tarot_data.dart';
 import 'package:daily_tarot_focus/presentation/tarot_reveal/pages/tarot_reveal_page.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:mobile_boilerplate/common_dependencies.dart';
 
 mixin RevealPageStateMixin on State<TarotRevealPage>, TickerProvider {
   late final ValueNotifier<int> selectedCardIndex;
   int lastHapticCardIndex = -1;
-  late final ValueNotifier<TarotLibrary?> selectedTarotCard;
+  late final ValueNotifier<TarotData?> selectedTarotCard;
   late final FixedExtentScrollController wheelScrollController;
   late final AnimationController flipAnimController;
   late final AnimationController revealAnimController;
 
   @override
   void initState() {
+    super.initState();
+    
     const initialCardIndex = SpacingConsts.totalCards ~/ 2;
     selectedCardIndex = ValueNotifier(initialCardIndex);
     lastHapticCardIndex = initialCardIndex;
@@ -35,12 +40,10 @@ mixin RevealPageStateMixin on State<TarotRevealPage>, TickerProvider {
       vsync: this,
       duration: SpacingConsts.revealAnimationDuration,
     )..addStatusListener((status) async {
-      if (status.isCompleted) {
-        await navigateToDetail();
-      }
-    });
-
-    super.initState();
+        if (status.isCompleted) {
+          await navigateToDetail();
+        }
+      });
   }
 
   @override
@@ -65,8 +68,11 @@ mixin RevealPageStateMixin on State<TarotRevealPage>, TickerProvider {
   Future<void> handleCardTap(int index) async {
     selectedCardIndex.value = index;
     await flipAnimController.forward();
-    // Setting this value will trigger the transition to RevealFlipCard
-    selectedTarotCard.value = TarotMockData.randomTarotLibraryCard;
+    // Get a random card from the Cubit
+    if(mounted){
+      final tarotCardCubit = context.read<TarotCardCubit>();
+      selectedTarotCard.value = tarotCardCubit.getRandomCard();
+    }
     // Start reveal animation after card is selected
     await revealAnimController.forward();
   }

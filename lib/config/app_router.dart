@@ -1,5 +1,6 @@
+import 'package:daily_tarot_focus/application/tarot/tarot_card_cubit.dart';
 import 'package:daily_tarot_focus/config/app_routes.dart';
-import 'package:daily_tarot_focus/core/util/tarot_mock_data.dart';
+import 'package:daily_tarot_focus/domain/tarot/tarot_data.dart';
 import 'package:daily_tarot_focus/presentation/auth/pages/register_step_birthdate_page.dart';
 import 'package:daily_tarot_focus/presentation/auth/pages/register_step_relationship_page.dart';
 import 'package:daily_tarot_focus/presentation/auth/pages/register_step_zodiac_page.dart';
@@ -13,6 +14,7 @@ import 'package:daily_tarot_focus/presentation/tarot_reveal/pages/tarot_reveal_d
 import 'package:daily_tarot_focus/presentation/tarot_reveal/pages/tarot_reveal_page.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:mobile_boilerplate/common_dependencies.dart';
 
 final GlobalKey<NavigatorState> rootNavigatorKey = GlobalKey<NavigatorState>();
 
@@ -92,13 +94,30 @@ final appRouter = GoRouter(
       path: '${AppRoutes.tarotRevealDetail}/:tarotId',
       name: AppRoutes.tarotRevealDetail,
       pageBuilder: (context, state) {
+        // Try to get tarot from extra first, fallback to cubit lookup
+        final extraTarot = state.extra as TarotData?;
+        if (extraTarot != null) {
+          return CustomTransitionPage(
+            key: state.pageKey,
+            child: TarotRevealDetailPage(tarot: extraTarot),
+            transitionsBuilder:
+                (context, animation, secondaryAnimation, child) {
+              return child;
+            },
+          );
+        }
+
         final tarotId = state.pathParameters['tarotId'];
+        final cubit = context.read<TarotCardCubit>();
         final tarot = tarotId != null
-            ? TarotMockData.getByName(tarotId)
-            : TarotMockData.randomTarotLibraryCard;
+            ? cubit.getByTitle(tarotId)
+            : cubit.getRandomCard();
+
         return CustomTransitionPage(
           key: state.pageKey,
-          child: TarotRevealDetailPage(tarot: tarot),
+          child: TarotRevealDetailPage(
+            tarot: tarot ?? cubit.state.allCards.first,
+          ),
           transitionsBuilder: (context, animation, secondaryAnimation, child) {
             return child;
           },
@@ -111,7 +130,7 @@ final appRouter = GoRouter(
       pageBuilder: (context, state) {
         return MaterialPage(
           key: state.pageKey,
-          child: const TarotLibraryPage(),
+          child: const TarotDataPage(),
         );
       },
     ),
@@ -119,12 +138,24 @@ final appRouter = GoRouter(
       path: '${AppRoutes.tarotLibraryDetail}/:tarotId',
       name: AppRoutes.tarotLibraryDetail,
       pageBuilder: (context, state) {
+        // Try to get tarot from extra first, fallback to cubit lookup
+        final extraTarot = state.extra as TarotData?;
+        if (extraTarot != null) {
+          return MaterialPage(
+            key: state.pageKey,
+            child: TarotDataDetailPage(tarot: extraTarot),
+          );
+        }
+
         final tarotId = state.pathParameters['tarotId'];
-        final tarot = TarotMockData.getByName(tarotId ?? '');
+        final cubit = context.read<TarotCardCubit>();
+        final tarot = cubit.getByTitle(tarotId ?? '');
 
         return MaterialPage(
           key: state.pageKey,
-          child: TarotLibraryDetailPage(tarot: tarot),
+          child: TarotDataDetailPage(
+            tarot: tarot ?? cubit.state.allCards.first,
+          ),
         );
       },
     ),

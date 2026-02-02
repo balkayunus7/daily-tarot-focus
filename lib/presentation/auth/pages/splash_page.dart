@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:daily_tarot_focus/application/tarot/tarot_card_cubit.dart';
 import 'package:daily_tarot_focus/config/app_routes.dart';
 import 'package:daily_tarot_focus/core/util/tarot_app_assets.dart';
 import 'package:daily_tarot_focus/domain/auth/tarot_user.dart';
@@ -17,18 +18,24 @@ class SplashPage extends StatefulWidget {
   State<SplashPage> createState() => _SplashPageState();
 }
 
-class _SplashPageState extends State<SplashPage> with RouteAwareAnalyticsMixin, RouteAwareAnalyticsPageParamsMixin {
+class _SplashPageState extends State<SplashPage>
+    with RouteAwareAnalyticsMixin, RouteAwareAnalyticsPageParamsMixin {
   @override
   void initState() {
+    super.initState();
     final authCubit = context.read<AuthCubit>();
+    final tarotCardCubit = context.read<TarotCardCubit>();
+
     WidgetsBinding.instance.addPostFrameCallback((_) async {
+      // Load tarot cards for current locale
+      await tarotCardCubit.loadCards(context);
+
+      // Initialize auth after cards are loaded
       Future.delayed(const Duration(seconds: 1), () async {
         if (!mounted) return;
         await authCubit.initialize(requestAttAuth: Platform.isIOS);
       });
     });
-
-    super.initState();
   }
 
   Future<void> routeOnAuthenticated() async {
@@ -50,7 +57,8 @@ class _SplashPageState extends State<SplashPage> with RouteAwareAnalyticsMixin, 
         listeners: [
           BlocListener<AuthCubit, AuthState>(
             listenWhen: (previous, current) {
-              return current.isAuthenticated && (previous.isInitial || !previous.isAuthenticated);
+              return current.isAuthenticated &&
+                  (previous.isInitial || !previous.isAuthenticated);
             },
             listener: (context, state) async {
               await routeOnAuthenticated();
@@ -58,7 +66,9 @@ class _SplashPageState extends State<SplashPage> with RouteAwareAnalyticsMixin, 
           ),
           BlocListener<AuthCubit, AuthState>(
             listenWhen: (previous, current) {
-              return previous.isInitial && !current.isInitial && !current.isAuthenticated;
+              return previous.isInitial &&
+                  !current.isInitial &&
+                  !current.isAuthenticated;
             },
             listener: (context, state) async {
               await context.read<AuthCubit>().signInAnonymously();

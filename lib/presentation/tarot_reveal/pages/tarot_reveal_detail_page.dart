@@ -6,7 +6,7 @@ import 'package:daily_tarot_focus/core/util/tarot_mock_data.dart';
 import 'package:daily_tarot_focus/core/util/text_style_helper.dart';
 import 'package:daily_tarot_focus/core/widgets/base_gradient_layout.dart';
 import 'package:daily_tarot_focus/core/widgets/tarot_app_bar.dart';
-import 'package:daily_tarot_focus/domain/tarot/tarot_library.dart';
+import 'package:daily_tarot_focus/domain/tarot/tarot_data.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mobile_boilerplate/common_dependencies.dart';
@@ -16,7 +16,7 @@ part '../widgets/reveal_detail_section.dart';
 
 class TarotRevealDetailPage extends StatelessWidget {
   const TarotRevealDetailPage({required this.tarot, super.key});
-  final TarotLibrary tarot;
+  final TarotData tarot;
 
   @override
   Widget build(BuildContext context) {

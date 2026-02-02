@@ -8,7 +8,7 @@ import 'package:daily_tarot_focus/core/util/tarot_app_sizes.dart';
 import 'package:daily_tarot_focus/core/util/tarot_mock_data.dart';
 import 'package:daily_tarot_focus/core/util/text_style_helper.dart';
 import 'package:daily_tarot_focus/core/widgets/tarot_app_bar.dart';
-import 'package:daily_tarot_focus/domain/tarot/tarot_library.dart';
+import 'package:daily_tarot_focus/domain/tarot/tarot_data.dart';
 import 'package:daily_tarot_focus/presentation/tarot_reveal/helpers/reveal_page_mixin.dart';
 import 'package:daily_tarot_focus/presentation/tarot_reveal/helpers/reveal_page_scope.dart';
 import 'package:flutter/material.dart';
@@ -37,7 +37,7 @@ class _TarotRevealPageState extends State<TarotRevealPage>
       child: Scaffold(
         extendBodyBehindAppBar: true,
         appBar: const TarotAppBar(),
-        body: ValueListenableBuilder<TarotLibrary?>(
+        body: ValueListenableBuilder<TarotData?>(
           valueListenable: selectedTarotCard,
           builder: (context, value, child) {
             final isCardSelected = this.isCardSelected;

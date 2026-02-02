@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:daily_tarot_focus/application/auth/register_cubit.dart';
+import 'package:daily_tarot_focus/application/tarot/tarot_card_cubit.dart';
 import 'package:daily_tarot_focus/config/app_config.dart';
 import 'package:daily_tarot_focus/config/env.config.dart';
 import 'package:daily_tarot_focus/infrastructure/auth/impl_android_local_notifications_service.dart';
@@ -8,6 +9,7 @@ import 'package:daily_tarot_focus/infrastructure/auth/impl_auth_service.dart';
 import 'package:daily_tarot_focus/infrastructure/auth/impl_firebase_remote_notifications_service.dart';
 import 'package:daily_tarot_focus/infrastructure/auth/impl_ios_local_notifications_service.dart';
 import 'package:daily_tarot_focus/infrastructure/auth/impl_user_repository.dart';
+import 'package:daily_tarot_focus/infrastructure/tarot/impl_tarot_localization_service.dart';
 import 'package:mobile_boilerplate/application/analytics/analytics_cubit.dart';
 import 'package:mobile_boilerplate/application/auth/auth_cubit.dart';
 import 'package:mobile_boilerplate/application/color_theme/color_theme_bloc.dart';
@@ -128,7 +130,7 @@ Future<void> setupDependencies() async {
       ),
     )
     ..registerSingleton<Launcher>(Launcher(getIt<ImplLauncherService>()))
-    ..registerSingleton<TarotsAppConfig>(TarotsAppConfig())
+    ..registerSingleton<TarotAppConfig>(TarotAppConfig())
     ..registerSingleton<ImplIOSLocalNotificationsService>(
       ImplIOSLocalNotificationsService(
         getIt<FlutterLocalNotificationsPlugin>(),
@@ -155,6 +157,9 @@ Future<void> setupDependencies() async {
       ),
     )
     ..registerSingleton<StoreCheckerService>(const StoreCheckerService())
+    ..registerSingleton<ImplTarotLocalizationService>(
+      ImplTarotLocalizationService(),
+    )
     // Setup application dependencies
     ..registerFactory<AuthCubit>(
       () => AuthCubit(
@@ -193,10 +198,15 @@ Future<void> setupDependencies() async {
     ..registerFactory<RemoteNotificationCubit>(
       () => RemoteNotificationCubit(
         getIt<FirebaseNotificationsService>(),
-        Platform.isIOS ? getIt<ImplIOSLocalNotificationsService>() : getIt<ImplAndroidLocalNotificationsService>(),
+        Platform.isIOS
+            ? getIt<ImplIOSLocalNotificationsService>()
+            : getIt<ImplAndroidLocalNotificationsService>(),
       ),
     )
     ..registerFactory<RegisterCubit>(
       () => RegisterCubit(getIt<ImplUserRepository>()),
+    )
+    ..registerFactory<TarotCardCubit>(
+      () => TarotCardCubit(getIt<ImplTarotLocalizationService>()),
     );
 }

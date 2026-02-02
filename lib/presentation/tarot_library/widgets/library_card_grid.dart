@@ -2,35 +2,28 @@ part of '../pages/tarot_library_page.dart';
 
 class LibraryCardGridView extends StatelessWidget {
   const LibraryCardGridView({required this.filteredCards, super.key});
-  final ValueNotifier<List<TarotLibrary>> filteredCards;
+  final List<TarotData> filteredCards;
 
   @override
   Widget build(BuildContext context) {
-    return ValueListenableBuilder(
-      valueListenable: filteredCards,
-      builder: (context, value, child) {
-        final filteredCardsList = filteredCards.value;
-
-        return Expanded(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: GridView.builder(
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 3,
-                childAspectRatio: 0.6,
-                crossAxisSpacing: 24,
-                mainAxisSpacing: 24,
-              ),
-              itemCount: filteredCardsList.length,
-              itemBuilder: (context, index) {
-                final card = filteredCardsList[index];
-
-                return _LibraryCard(card: card);
-              },
-            ),
+    return Expanded(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 20),
+        child: GridView.builder(
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 3,
+            childAspectRatio: 0.6,
+            crossAxisSpacing: 24,
+            mainAxisSpacing: 24,
           ),
-        );
-      },
+          itemCount: filteredCards.length,
+          itemBuilder: (context, index) {
+            final card = filteredCards[index];
+
+            return _LibraryCard(card: card);
+          },
+        ),
+      ),
     );
   }
 }
@@ -38,7 +31,7 @@ class LibraryCardGridView extends StatelessWidget {
 class _LibraryCard extends StatelessWidget {
   const _LibraryCard({required this.card});
 
-  final TarotLibrary card;
+  final TarotData card;
 
   @override
   Widget build(BuildContext context) {

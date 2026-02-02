@@ -3,8 +3,8 @@ import 'package:mobile_boilerplate/app_config.dart';
 
 final envConfig = EnvConfig();
 
-class TarotsAppConfig extends AppConfig {
-  TarotsAppConfig()
+class TarotAppConfig extends AppConfig {
+  TarotAppConfig()
     : super(
         appVersion: 1,
         meta: '123',

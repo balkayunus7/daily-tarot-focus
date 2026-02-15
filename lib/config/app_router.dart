@@ -1,4 +1,4 @@
-import 'package:daily_tarot_focus/application/tarot/tarot_card_cubit.dart';
+import 'package:daily_tarot_focus/application/tarot_localization/tarot_localization_cubit.dart';
 import 'package:daily_tarot_focus/config/app_routes.dart';
 import 'package:daily_tarot_focus/domain/tarot/tarot_data.dart';
 import 'package:daily_tarot_focus/presentation/auth/pages/register_step_birthdate_page.dart';
@@ -108,7 +108,7 @@ final appRouter = GoRouter(
         }
 
         final tarotId = state.pathParameters['tarotId'];
-        final cubit = context.read<TarotCardCubit>();
+        final cubit = context.read<TarotLocalizationCubit>();
         final tarot = tarotId != null
             ? cubit.getByTitle(tarotId)
             : cubit.getRandomCard();
@@ -148,7 +148,7 @@ final appRouter = GoRouter(
         }
 
         final tarotId = state.pathParameters['tarotId'];
-        final cubit = context.read<TarotCardCubit>();
+        final cubit = context.read<TarotLocalizationCubit>();
         final tarot = cubit.getByTitle(tarotId ?? '');
 
         return MaterialPage(

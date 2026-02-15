@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:daily_tarot_focus/application/tarot/tarot_card_cubit.dart';
+import 'package:daily_tarot_focus/application/tarot_localization/tarot_localization_cubit.dart';
 import 'package:daily_tarot_focus/config/app_routes.dart';
 import 'package:daily_tarot_focus/core/util/tarot_app_assets.dart';
 import 'package:daily_tarot_focus/domain/auth/tarot_user.dart';
@@ -24,11 +24,11 @@ class _SplashPageState extends State<SplashPage>
   void initState() {
     super.initState();
     final authCubit = context.read<AuthCubit>();
-    final tarotCardCubit = context.read<TarotCardCubit>();
+    final tarotLocalCubit = context.read<TarotLocalizationCubit>();
 
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       // Load tarot cards for current locale
-      await tarotCardCubit.loadCards(context);
+      await tarotLocalCubit.loadCards(context);
 
       // Initialize auth after cards are loaded
       Future.delayed(const Duration(seconds: 1), () async {

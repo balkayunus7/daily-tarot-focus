@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:daily_tarot_focus/application/auth/register_cubit.dart';
-import 'package:daily_tarot_focus/application/tarot/tarot_card_cubit.dart';
+import 'package:daily_tarot_focus/application/tarot_localization/tarot_localization_cubit.dart';
 import 'package:daily_tarot_focus/config/app_config.dart';
 import 'package:daily_tarot_focus/config/env.config.dart';
 import 'package:daily_tarot_focus/infrastructure/auth/impl_android_local_notifications_service.dart';
@@ -206,7 +206,7 @@ Future<void> setupDependencies() async {
     ..registerFactory<RegisterCubit>(
       () => RegisterCubit(getIt<ImplUserRepository>()),
     )
-    ..registerFactory<TarotCardCubit>(
-      () => TarotCardCubit(getIt<ImplTarotLocalizationService>()),
+    ..registerFactory<TarotLocalizationCubit>(
+      () => TarotLocalizationCubit(getIt<ImplTarotLocalizationService>()),
     );
 }

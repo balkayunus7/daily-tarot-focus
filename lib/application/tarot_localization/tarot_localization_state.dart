@@ -1,4 +1,4 @@
-part of 'tarot_card_cubit.dart';
+part of 'tarot_localization_cubit.dart';
 
 /// Status of tarot card loading
 enum TarotCardStatus {
@@ -9,8 +9,8 @@ enum TarotCardStatus {
 }
 
 /// State for TarotCardCubit
-class TarotCardState extends Equatable {
-  const TarotCardState({
+class TarotLocalizationState extends Equatable {
+  const TarotLocalizationState({
     required this.status,
     required this.allCards,
     required this.filteredCards,
@@ -19,8 +19,8 @@ class TarotCardState extends Equatable {
     this.errorMessage,
   });
 
-  factory TarotCardState.initial() {
-    return const TarotCardState(
+  factory TarotLocalizationState.initial() {
+    return const TarotLocalizationState(
       status: TarotCardStatus.initial,
       allCards: [],
       filteredCards: [],
@@ -39,7 +39,7 @@ class TarotCardState extends Equatable {
   bool get hasError => status == TarotCardStatus.error;
   bool get hasCards => allCards.isNotEmpty;
 
-  TarotCardState copyWith({
+  TarotLocalizationState copyWith({
     TarotCardStatus? status,
     List<TarotData>? allCards,
     List<TarotData>? filteredCards,
@@ -47,7 +47,7 @@ class TarotCardState extends Equatable {
     TarotData? selectedCard,
     String? errorMessage,
   }) {
-    return TarotCardState(
+    return TarotLocalizationState(
       status: status ?? this.status,
       allCards: allCards ?? this.allCards,
       filteredCards: filteredCards ?? this.filteredCards,
@@ -58,8 +58,8 @@ class TarotCardState extends Equatable {
   }
 
   /// Special copyWith to set selectedCard to null
-  TarotCardState copyWithNullSelectedCard() {
-    return TarotCardState(
+  TarotLocalizationState copyWithNullSelectedCard() {
+    return TarotLocalizationState(
       status: status,
       allCards: allCards,
       filteredCards: filteredCards,
@@ -69,8 +69,8 @@ class TarotCardState extends Equatable {
   }
 
   /// Clear category filter and show all cards
-  TarotCardState copyWithClearedCategory() {
-    return TarotCardState(
+  TarotLocalizationState copyWithClearedCategory() {
+    return TarotLocalizationState(
       status: status,
       allCards: allCards,
       filteredCards: allCards,
@@ -78,14 +78,13 @@ class TarotCardState extends Equatable {
     );
   }
 
-
   @override
   List<Object?> get props => [
-        status,
-        allCards,
-        filteredCards,
-        selectedCategory,
-        selectedCard,
-        errorMessage,
-      ];
+    status,
+    allCards,
+    filteredCards,
+    selectedCategory,
+    selectedCard,
+    errorMessage,
+  ];
 }

@@ -33,25 +33,15 @@ class ImplTarotLocalizationService implements ITarotLocalizationService {
   }
 
   @override
-  Future<TarotData?> findCardByTitle(
-    BuildContext context,
-    String title,
-  ) async {
+  Future<TarotData?> findCardByTitle(BuildContext context, String title) async {
     final cards = await getCards(context);
     final normalizedTitle = title.toLowerCase();
 
-    return cards
-        .where(
-          (card) => card.title.toLowerCase() == normalizedTitle,
-        )
-        .firstOrNull;
+    return cards.where((card) => card.title.toLowerCase() == normalizedTitle).firstOrNull;
   }
 
   @override
-  Future<List<TarotData>> getCardsByCategory(
-    BuildContext context,
-    TarotCategory category,
-  ) async {
+  Future<List<TarotData>> getCardsByCategory(BuildContext context, TarotCategory category) async {
     final cards = await getCards(context);
     return cards.where((card) => card.category == category).toList();
   }
@@ -78,15 +68,11 @@ class ImplTarotLocalizationService implements ITarotLocalizationService {
 
   Future<List<dynamic>> _loadLocaleTranslations(String locale) async {
     final fileName = _resolveTranslationFileName(locale);
-    final jsonString = await rootBundle.loadString(
-      '$_translationsPath/$fileName',
-    );
+    final jsonString = await rootBundle.loadString('$_translationsPath/$fileName');
     return json.decode(jsonString) as List;
   }
 
-  Map<String, Map<String, dynamic>> _indexTranslationsById(
-    List<dynamic> translations,
-  ) {
+  Map<String, Map<String, dynamic>> _indexTranslationsById(List<dynamic> translations) {
     return {
       for (final translation in translations)
         (translation as Map<String, dynamic>)['id'] as String: translation,

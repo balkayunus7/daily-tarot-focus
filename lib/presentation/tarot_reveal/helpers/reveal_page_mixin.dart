@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:daily_tarot_focus/application/tarot/tarot_card_cubit.dart';
+import 'package:daily_tarot_focus/application/tarot_localization/tarot_localization_cubit.dart';
 import 'package:daily_tarot_focus/config/app_routes.dart';
 import 'package:daily_tarot_focus/core/util/haptic_feedback_helper.dart';
 import 'package:daily_tarot_focus/core/util/tarot_app_sizes.dart';
@@ -65,12 +65,10 @@ mixin RevealPageStateMixin on State<TarotRevealPage>, TickerProvider {
   Future<void> handleCardTap(int index) async {
     selectedCardIndex.value = index;
     await flipAnimController.forward();
-    // Get a random card from the Cubit
     if (mounted) {
-      final tarotCardCubit = context.read<TarotCardCubit>();
-      selectedTarotCard.value = tarotCardCubit.getRandomCard();
+      final tarotLocalCubit = context.read<TarotLocalizationCubit>();
+      selectedTarotCard.value = tarotLocalCubit.getRandomCard();
     }
-    // Start reveal animation after card is selected
     await revealAnimController.forward();
   }
 

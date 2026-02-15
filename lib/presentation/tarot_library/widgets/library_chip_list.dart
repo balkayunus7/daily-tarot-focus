@@ -7,7 +7,7 @@ class LibraryChipList extends StatelessWidget {
   Widget build(BuildContext context) {
     final scope = LibraryPageScope.of(context);
 
-    return BlocBuilder<TarotCardCubit, TarotCardState>(
+    return BlocBuilder<TarotLocalizationCubit, TarotLocalizationState>(
       builder: (context, state) {
         final currentCategory = state.selectedCategory;
         final isCategoryAllSelected = currentCategory == null;

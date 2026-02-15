@@ -6,9 +6,6 @@ abstract class ITarotLocalizationService {
   Future<List<TarotData>> getCards(BuildContext context);
   Future<TarotData> drawRandomCard(BuildContext context);
   Future<TarotData?> findCardByTitle(BuildContext context, String title);
-  Future<List<TarotData>> getCardsByCategory(
-    BuildContext context,
-    TarotCategory category,
-  );
+  Future<List<TarotData>> getCardsByCategory(BuildContext context, TarotCategory category);
   void clearCache();
 }

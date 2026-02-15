@@ -1,4 +1,4 @@
-import 'package:daily_tarot_focus/application/tarot/tarot_card_cubit.dart';
+import 'package:daily_tarot_focus/application/tarot_localization/tarot_localization_cubit.dart';
 import 'package:daily_tarot_focus/config/app_routes.dart';
 import 'package:daily_tarot_focus/core/util/locale_keys.dart';
 import 'package:daily_tarot_focus/core/util/tarot_app_sizes.dart';
@@ -33,7 +33,7 @@ class _TarotDataPageState extends State<TarotDataPage> with LibraryPageStateMixi
       child: BaseGradientLayout(
         appBar: TarotAppBar(title: LocaleKeys.libraryTitle.tr()),
         child: SafeArea(
-          child: BlocBuilder<TarotCardCubit, TarotCardState>(
+          child: BlocBuilder<TarotLocalizationCubit, TarotLocalizationState>(
             builder: (context, state) {
               if (state.isLoading) {
                 return const Center(child: CircularProgressIndicator());

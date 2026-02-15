@@ -44,7 +44,7 @@ class _SplashPageState extends State<SplashPage>
     if (user is! TarotUser) return;
 
     if (user.isProfileComplete) {
-      context.go(AppRoutes.registerStepZodiac);
+      context.go(AppRoutes.tarotExplore);
     } else {
       context.go(AppRoutes.registerStepZodiac);
     }

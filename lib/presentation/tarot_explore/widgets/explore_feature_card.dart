@@ -52,11 +52,7 @@ class ExploreFeatureCard extends StatelessWidget {
                       color: colors.primary,
                       borderRadius: Spacing.xlargeBorderRadius,
                       padding: Spacing.tinyPadding,
-                      child: Icon(
-                        Icons.arrow_outward,
-                        color: colors.textPrimary,
-                        size: 16,
-                      ),
+                      child: Icon(Icons.arrow_outward, color: colors.textPrimary, size: 16),
                     ),
                   ),
                 ],

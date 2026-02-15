@@ -44,9 +44,7 @@ class QuestionSpreadOptionCard extends StatelessWidget {
                 children: List.generate(
                   cardCount,
                   (index) => Padding(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: SpacingConsts.tiny,
-                    ),
+                    padding: const EdgeInsets.symmetric(horizontal: SpacingConsts.tiny),
                     child: Container(
                       width: cardWidth,
                       height: cardHeight,

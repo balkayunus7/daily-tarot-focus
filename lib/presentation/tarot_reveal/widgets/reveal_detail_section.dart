@@ -26,11 +26,7 @@ class RevealDetailSection extends StatelessWidget {
               children: [
                 Padding(
                   padding: const EdgeInsets.only(top: 4, right: 12),
-                  child: Icon(
-                    icon,
-                    size: SpacingConsts.large,
-                    color: iconColor
-                  ),
+                  child: Icon(icon, size: SpacingConsts.large, color: iconColor),
                 ),
                 Expanded(
                   child: Text(

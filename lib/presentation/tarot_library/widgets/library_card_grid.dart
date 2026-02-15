@@ -19,7 +19,6 @@ class LibraryCardGridView extends StatelessWidget {
           itemCount: filteredCards.length,
           itemBuilder: (context, index) {
             final card = filteredCards[index];
-
             return _LibraryCard(card: card);
           },
         ),

@@ -216,10 +216,7 @@ class _SettingsTile extends StatelessWidget {
             Icon(icon, color: textColor, size: 20),
             Spacing.mediumW,
             Expanded(
-              child: Text(
-                title,
-                style: m16w500(context).copyWith(color: textColor),
-              ),
+              child: Text(title, style: m16w500(context).copyWith(color: textColor)),
             ),
             Icon(Icons.chevron_right, color: colors.textSecondary),
           ],
@@ -263,9 +260,9 @@ class _LanguageOption extends StatelessWidget {
             Expanded(
               child: Text(
                 title,
-                style: m16w500(context).copyWith(
-                  color: isSelected ? colors.primary : colors.textPrimary,
-                ),
+                style: m16w500(
+                  context,
+                ).copyWith(color: isSelected ? colors.primary : colors.textPrimary),
               ),
             ),
             if (isSelected) Icon(Icons.check_circle, color: colors.primary),

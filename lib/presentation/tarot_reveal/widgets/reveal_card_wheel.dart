@@ -26,9 +26,7 @@ class RevealCardWheel extends StatelessWidget {
                     itemExtent: SpacingConsts.cardWheelItemExtent,
                     diameterRatio: SpacingConsts.cardWheelDiameterRatio,
                     perspective: SpacingConsts.cardWheelPerspective,
-                    physics: const FixedExtentScrollPhysics(
-                      parent: ClampingScrollPhysics(),
-                    ),
+                    physics: const FixedExtentScrollPhysics(parent: ClampingScrollPhysics()),
                     squeeze: SpacingConsts.cardWheelSqueeze,
                     clipBehavior: Clip.none,
                     onSelectedItemChanged: scope.handleCardScroll,
@@ -59,9 +57,7 @@ class RevealCardWheel extends StatelessWidget {
           ),
           Text(
             LocaleKeys.revealDragToMove.tr(),
-            style: m12w500(
-              context,
-            ).copyWith(color: context.colors.textSecondary),
+            style: m12w500(context).copyWith(color: context.colors.textSecondary),
           ),
           Spacing.mediumH,
         ],

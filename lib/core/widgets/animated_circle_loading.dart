@@ -11,7 +11,8 @@ class AnimatedCircleLoading extends StatefulWidget {
   State<AnimatedCircleLoading> createState() => _AnimatedLoadingImageState();
 }
 
-class _AnimatedLoadingImageState extends State<AnimatedCircleLoading> with SingleTickerProviderStateMixin {
+class _AnimatedLoadingImageState extends State<AnimatedCircleLoading>
+    with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _scaleAnimation;
   late Animation<double> _rotationAnimation;
@@ -51,10 +52,7 @@ class _AnimatedLoadingImageState extends State<AnimatedCircleLoading> with Singl
         builder: (_, child) {
           return Transform.scale(
             scale: _scaleAnimation.value,
-            child: Transform.rotate(
-              angle: _rotationAnimation.value,
-              child: child,
-            ),
+            child: Transform.rotate(angle: _rotationAnimation.value, child: child),
           );
         },
         child: Image.asset(TarotAppAssets.loading.path),

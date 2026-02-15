@@ -24,7 +24,8 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> with RouteAwareAnalyticsMixin, RouteAwareAnalyticsPageParamsMixin {
+class _HomePageState extends State<HomePage>
+    with RouteAwareAnalyticsMixin, RouteAwareAnalyticsPageParamsMixin {
   late PageController pageController;
   int currentIndex = 0;
 
@@ -51,17 +52,10 @@ class _HomePageState extends State<HomePage> with RouteAwareAnalyticsMixin, Rout
       body: PageView(
         physics: const NeverScrollableScrollPhysics(),
         controller: pageController,
-        children: const [
-          TarotExplorePage(),
-          TarotExplorePage(),
-          SettingsPage(),
-        ],
+        children: const [TarotExplorePage(), TarotExplorePage(), SettingsPage()],
       ),
       bottomNavigationBar: SafeArea(
-        child: HomeBottomNavbar(
-          currentIndex: currentIndex,
-          onTap: _onBottomNavigationBarTap,
-        ),
+        child: HomeBottomNavbar(currentIndex: currentIndex, onTap: _onBottomNavigationBarTap),
       ),
     );
   }

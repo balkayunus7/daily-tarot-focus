@@ -25,8 +25,7 @@ class TarotDataPage extends StatefulWidget {
   State<TarotDataPage> createState() => _TarotDataPageState();
 }
 
-class _TarotDataPageState extends State<TarotDataPage>
-    with LibraryPageStateMixin {
+class _TarotDataPageState extends State<TarotDataPage> with LibraryPageStateMixin {
   @override
   Widget build(BuildContext context) {
     return LibraryPageScope(
@@ -37,15 +36,11 @@ class _TarotDataPageState extends State<TarotDataPage>
           child: BlocBuilder<TarotCardCubit, TarotCardState>(
             builder: (context, state) {
               if (state.isLoading) {
-                return const Center(
-                  child: CircularProgressIndicator(),
-                );
+                return const Center(child: CircularProgressIndicator());
               }
 
               if (state.hasError) {
-                return Center(
-                  child: Text(state.errorMessage ?? 'Error loading cards'),
-                );
+                return Center(child: Text(state.errorMessage ?? 'Error loading cards'));
               }
 
               return Column(

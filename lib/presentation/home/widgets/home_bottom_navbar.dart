@@ -1,4 +1,5 @@
 import 'package:daily_tarot_focus/core/util/tarot_app_assets.dart';
+import 'package:daily_tarot_focus/core/util/tarot_app_sizes.dart';
 import 'package:daily_tarot_focus/core/util/tarot_mock_data.dart';
 import 'package:daily_tarot_focus/core/util/text_style_helper.dart';
 import 'package:flutter/material.dart';
@@ -64,7 +65,7 @@ class HomeBottomNavbar extends StatelessWidget {
                           BlendMode.srcIn,
                         ),
                       ),
-                      const SizedBox(height: 4),
+                      Spacing.tinyH,
                       Text(
                         label,
                         style: m10w600(context).copyWith(

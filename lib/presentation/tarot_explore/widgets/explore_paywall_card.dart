@@ -18,19 +18,11 @@ class ExplorePaywallCard extends StatelessWidget {
             colors: [colors.primary, colors.secondary, colors.accent],
           ),
           borderRadius: Spacing.defaultBorderRadius,
-          border: Border.all(
-            color: colors.primary.withValues(alpha: 0.5),
-            width: 1.5,
-          ),
+          border: Border.all(color: colors.primary.withValues(alpha: 0.5), width: 1.5),
           boxShadow: colors.primary.mediumShadow,
         ),
         child: const Row(
-          children: [
-            _PremiumIcon(),
-            Spacing.smallW,
-            _PaywallTextContent(),
-            _PremiumButton(),
-          ],
+          children: [_PremiumIcon(), Spacing.smallW, _PaywallTextContent(), _PremiumButton()],
         ),
       ),
     );
@@ -42,11 +34,7 @@ class _PremiumIcon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Icon(
-      Icons.star_rounded,
-      color: context.colors.textPrimary,
-      size: 28,
-    );
+    return Icon(Icons.star_rounded, color: context.colors.textPrimary, size: 28);
   }
 }
 
@@ -60,15 +48,9 @@ class _PaywallTextContent extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
         children: [
-          Text(
-            LocaleKeys.exploreGoPremium.tr(),
-            style: m16w600(context),
-          ),
+          Text(LocaleKeys.exploreGoPremium.tr(), style: m16w600(context)),
           Spacing.tinyH,
-          Text(
-            LocaleKeys.exploreUnlockAllFeatures.tr(),
-            style: m11w500(context),
-          ),
+          Text(LocaleKeys.exploreUnlockAllFeatures.tr(), style: m11w500(context)),
         ],
       ),
     );

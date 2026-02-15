@@ -24,7 +24,7 @@ class QuestionTopicCard extends StatelessWidget {
     return ScalingContainer(
       onTap: onTap,
       child: Container(
-        padding:Spacing.hMediumVSmallPad,
+        padding: Spacing.hMediumVSmallPad,
         width: cardWidth,
         height: cardWidth * 1.2,
         decoration: BoxDecoration(
@@ -36,11 +36,7 @@ class QuestionTopicCard extends StatelessWidget {
           children: [
             Icon(icon, color: primaryColor),
             Spacing.smallH,
-            Text(
-              title,
-              style: m16w500(context),
-              textAlign: TextAlign.center,
-            ),
+            Text(title, style: m16w500(context), textAlign: TextAlign.center),
           ],
         ),
       ),

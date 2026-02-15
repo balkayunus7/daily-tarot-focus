@@ -26,9 +26,7 @@ Future<void> showTarotSheet(
         },
         child: AnimatedContainer(
           duration: const Duration(milliseconds: 100),
-          padding: EdgeInsets.only(
-            bottom: MediaQuery.of(context).viewInsets.bottom,
-          ),
+          padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
           child: Container(
             constraints: BoxConstraints(
               maxHeight: MediaQuery.of(context).size.height * heightFactor,
@@ -46,17 +44,11 @@ Future<void> showTarotSheet(
                       IconButton(
                         onPressed: () async {
                           FocusScope.of(context).unfocus();
-                          await SystemChannels.textInput.invokeMethod(
-                            'TextInput.hide',
-                          );
+                          await SystemChannels.textInput.invokeMethod('TextInput.hide');
                           if (!context.mounted) return;
                           Navigator.pop(context);
                         },
-                        icon: Icon(
-                          Icons.close,
-                          color: context.colors.borderSecondary,
-                          size: 20,
-                        ),
+                        icon: Icon(Icons.close, color: context.colors.borderSecondary, size: 20),
                       ),
                     ],
                   ),

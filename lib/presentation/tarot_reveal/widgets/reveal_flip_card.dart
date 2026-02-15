@@ -77,11 +77,7 @@ class _TarotFrontCard extends StatelessWidget {
           gradient: LinearGradient(
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
-            colors: [
-              context.colors.primary,
-              context.colors.secondary,
-              context.colors.accent,
-            ],
+            colors: [context.colors.primary, context.colors.secondary, context.colors.accent],
           ),
         ),
         child: Column(
@@ -135,17 +131,13 @@ class _TarotShiningStars extends StatefulWidget {
   State<_TarotShiningStars> createState() => _TarotShiningStarsState();
 }
 
-class _TarotShiningStarsState extends State<_TarotShiningStars>
-    with TickerProviderStateMixin {
+class _TarotShiningStarsState extends State<_TarotShiningStars> with TickerProviderStateMixin {
   late final AnimationController starsController;
 
   @override
   void initState() {
     super.initState();
-    starsController = AnimationController(
-      vsync: this,
-      duration: const Duration(seconds: 2),
-    );
+    starsController = AnimationController(vsync: this, duration: const Duration(seconds: 2));
     unawaited(starsController.repeat());
   }
 

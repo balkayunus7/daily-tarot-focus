@@ -21,15 +21,13 @@ mixin RevealPageStateMixin on State<TarotRevealPage>, TickerProvider {
   @override
   void initState() {
     super.initState();
-    
+
     const initialCardIndex = SpacingConsts.totalCards ~/ 2;
     selectedCardIndex = ValueNotifier(initialCardIndex);
     lastHapticCardIndex = initialCardIndex;
     selectedTarotCard = ValueNotifier(null);
 
-    wheelScrollController = FixedExtentScrollController(
-      initialItem: initialCardIndex,
-    );
+    wheelScrollController = FixedExtentScrollController(initialItem: initialCardIndex);
 
     flipAnimController = AnimationController(
       vsync: this,
@@ -40,10 +38,10 @@ mixin RevealPageStateMixin on State<TarotRevealPage>, TickerProvider {
       vsync: this,
       duration: SpacingConsts.revealAnimationDuration,
     )..addStatusListener((status) async {
-        if (status.isCompleted) {
-          await navigateToDetail();
-        }
-      });
+      if (status.isCompleted) {
+        await navigateToDetail();
+      }
+    });
   }
 
   @override
@@ -61,7 +59,6 @@ mixin RevealPageStateMixin on State<TarotRevealPage>, TickerProvider {
       lastHapticCardIndex = index;
       await HapticFeedbackHelper.heavyImpact();
     }
-
     selectedCardIndex.value = index;
   }
 
@@ -69,7 +66,7 @@ mixin RevealPageStateMixin on State<TarotRevealPage>, TickerProvider {
     selectedCardIndex.value = index;
     await flipAnimController.forward();
     // Get a random card from the Cubit
-    if(mounted){
+    if (mounted) {
       final tarotCardCubit = context.read<TarotCardCubit>();
       selectedTarotCard.value = tarotCardCubit.getRandomCard();
     }

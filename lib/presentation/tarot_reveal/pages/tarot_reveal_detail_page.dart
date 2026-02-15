@@ -30,9 +30,7 @@ class TarotRevealDetailPage extends StatelessWidget {
       child: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: SpacingConsts.large,
-            ),
+            padding: const EdgeInsets.symmetric(horizontal: SpacingConsts.large),
             child: Column(
               children: [
                 Spacing.smallH,

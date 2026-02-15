@@ -48,18 +48,14 @@ class FancyButton extends StatelessWidget {
       child: FancyContainer(
         color: buttonColor,
         borderRadius: BorderRadius.circular(16),
-        padding:
-            padding ?? const EdgeInsets.symmetric(horizontal: 12, vertical: 7),
+        padding: padding ?? const EdgeInsets.symmetric(horizontal: 12, vertical: 7),
         width: width,
         height: height,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             if (isLoading) ...[
-              CustomLoadingIndicator(
-                indicatorSize: 28,
-                color: context.colors.background,
-              ),
+              CustomLoadingIndicator(indicatorSize: 28, color: context.colors.background),
             ] else ...[
               if (icon != null) ...[icon!],
               if (text != null) ...[
@@ -67,11 +63,7 @@ class FancyButton extends StatelessWidget {
                 Text(
                   text!,
                   overflow: TextOverflow.ellipsis,
-                  style:
-                      textStyle ??
-                      m16w700(
-                        context,
-                      ).copyWith(color: context.colors.background),
+                  style: textStyle ?? m16w700(context).copyWith(color: context.colors.background),
                 ),
               ],
             ],

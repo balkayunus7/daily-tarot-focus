@@ -54,17 +54,13 @@ class _TarotRevealPageState extends State<TarotRevealPage>
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            DateTime.now().toLocal().dayMonthDay(
-                              Localizations.localeOf(context),
-                            ),
+                            DateTime.now().toLocal().dayMonthDay(Localizations.localeOf(context)),
                             style: m28w600(context),
                           ),
                           Spacing.mediumH,
                           Text(
                             LocaleKeys.revealTapToPick.tr(),
-                            style: m14w500(
-                              context,
-                            ).copyWith(color: context.colors.textSecondary),
+                            style: m14w500(context).copyWith(color: context.colors.textSecondary),
                           ),
                         ],
                       ),

@@ -22,8 +22,7 @@ class TarotQuestionPage extends StatefulWidget {
   State<TarotQuestionPage> createState() => _TarotQuestionPageState();
 }
 
-class _TarotQuestionPageState extends State<TarotQuestionPage>
-    with QuestionPageStateMixin {
+class _TarotQuestionPageState extends State<TarotQuestionPage> with QuestionPageStateMixin {
   @override
   Widget build(BuildContext context) {
     final colors = context.colors;

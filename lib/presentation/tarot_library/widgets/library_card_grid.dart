@@ -2,7 +2,7 @@ part of '../pages/tarot_library_page.dart';
 
 class LibraryCardGridView extends StatelessWidget {
   const LibraryCardGridView({required this.filteredCards, super.key});
-  final List<TarotData> filteredCards;
+  final List<TarotCard> filteredCards;
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +30,7 @@ class LibraryCardGridView extends StatelessWidget {
 class _LibraryCard extends StatelessWidget {
   const _LibraryCard({required this.card});
 
-  final TarotData card;
+  final TarotCard card;
 
   @override
   Widget build(BuildContext context) {

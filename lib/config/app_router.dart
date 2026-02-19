@@ -95,7 +95,7 @@ final appRouter = GoRouter(
       name: AppRoutes.tarotRevealDetail,
       pageBuilder: (context, state) {
         // Try to get tarot from extra first, fallback to cubit lookup
-        final extraTarot = state.extra as TarotData?;
+        final extraTarot = state.extra as TarotCard?;
         if (extraTarot != null) {
           return CustomTransitionPage(
             key: state.pageKey,
@@ -139,7 +139,7 @@ final appRouter = GoRouter(
       name: AppRoutes.tarotLibraryDetail,
       pageBuilder: (context, state) {
         // Try to get tarot from extra first, fallback to cubit lookup
-        final extraTarot = state.extra as TarotData?;
+        final extraTarot = state.extra as TarotCard?;
         if (extraTarot != null) {
           return MaterialPage(
             key: state.pageKey,

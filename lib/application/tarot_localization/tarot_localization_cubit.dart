@@ -34,13 +34,13 @@ class TarotLocalizationCubit extends Cubit<TarotLocalizationState> {
     }
   }
 
-  TarotData? getRandomCard() {
+  TarotCard? getRandomCard() {
     if (state.allCards.isEmpty) return null;
-    final shuffled = List<TarotData>.from(state.allCards)..shuffle();
+    final shuffled = List<TarotCard>.from(state.allCards)..shuffle();
     return shuffled.first;
   }
 
-  TarotData? getByTitle(String title) {
+  TarotCard? getByTitle(String title) {
     if (state.allCards.isEmpty) return null;
     final matching = state.allCards.where(
       (card) => card.title.toLowerCase() == title.toLowerCase(),
@@ -53,7 +53,7 @@ class TarotLocalizationCubit extends Cubit<TarotLocalizationState> {
     await loadCards(context);
   }
 
-  void selectCard(TarotData? card) {
+  void selectCard(TarotCard? card) {
     emit(state.copyWith(selectedCard: card));
   }
 

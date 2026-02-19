@@ -37,7 +37,7 @@ class _TarotRevealPageState extends State<TarotRevealPage>
       child: Scaffold(
         extendBodyBehindAppBar: true,
         appBar: const TarotAppBar(),
-        body: ValueListenableBuilder<TarotData?>(
+        body: ValueListenableBuilder<TarotCard?>(
           valueListenable: selectedTarotCard,
           builder: (context, value, child) {
             final isCardSelected = this.isCardSelected;

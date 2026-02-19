@@ -13,7 +13,7 @@ import 'package:mobile_boilerplate/common_dependencies.dart';
 mixin RevealPageStateMixin on State<TarotRevealPage>, TickerProvider {
   late final ValueNotifier<int> selectedCardIndex;
   int lastHapticCardIndex = -1;
-  late final ValueNotifier<TarotData?> selectedTarotCard;
+  late final ValueNotifier<TarotCard?> selectedTarotCard;
   late final FixedExtentScrollController wheelScrollController;
   late final AnimationController flipAnimController;
   late final AnimationController revealAnimController;

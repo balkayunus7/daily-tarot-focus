@@ -28,10 +28,10 @@ class TarotLocalizationState extends Equatable {
   }
 
   final TarotCardStatus status;
-  final List<TarotData> allCards;
-  final List<TarotData> filteredCards;
+  final List<TarotCard> allCards;
+  final List<TarotCard> filteredCards;
   final TarotCategory? selectedCategory;
-  final TarotData? selectedCard;
+  final TarotCard? selectedCard;
   final String? errorMessage;
 
   bool get isLoading => status == TarotCardStatus.loading;
@@ -41,10 +41,10 @@ class TarotLocalizationState extends Equatable {
 
   TarotLocalizationState copyWith({
     TarotCardStatus? status,
-    List<TarotData>? allCards,
-    List<TarotData>? filteredCards,
+    List<TarotCard>? allCards,
+    List<TarotCard>? filteredCards,
     TarotCategory? selectedCategory,
-    TarotData? selectedCard,
+    TarotCard? selectedCard,
     String? errorMessage,
   }) {
     return TarotLocalizationState(

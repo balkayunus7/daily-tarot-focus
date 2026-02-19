@@ -16,7 +16,7 @@ part '../widgets/reveal_detail_section.dart';
 
 class TarotRevealDetailPage extends StatelessWidget {
   const TarotRevealDetailPage({required this.tarot, super.key});
-  final TarotData tarot;
+  final TarotCard tarot;
 
   @override
   Widget build(BuildContext context) {

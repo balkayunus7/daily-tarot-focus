@@ -10,11 +10,11 @@ class ImplTarotLocalizationService implements ITarotLocalizationService {
   static const _baseCardsPath = 'assets/data/tarot_cards.json';
   static const _translationsPath = 'assets/data';
 
-  List<TarotData>? _cachedCards;
+  List<TarotCard>? _cachedCards;
   String? _cachedLocale;
 
   @override
-  Future<List<TarotData>> getCards(BuildContext context) async {
+  Future<List<TarotCard>> getCards(BuildContext context) async {
     final currentLocale = context.locale.languageCode;
 
     if (_isLocaleCached(currentLocale)) return _cachedCards!;
@@ -26,14 +26,14 @@ class ImplTarotLocalizationService implements ITarotLocalizationService {
   }
 
   @override
-  Future<TarotData> drawRandomCard(BuildContext context) async {
+  Future<TarotCard> drawRandomCard(BuildContext context) async {
     final cards = await getCards(context);
     cards.shuffle();
     return cards.first;
   }
 
   @override
-  Future<TarotData?> findCardByTitle(BuildContext context, String title) async {
+  Future<TarotCard?> findCardByTitle(BuildContext context, String title) async {
     final cards = await getCards(context);
     final normalizedTitle = title.toLowerCase();
 
@@ -41,7 +41,7 @@ class ImplTarotLocalizationService implements ITarotLocalizationService {
   }
 
   @override
-  Future<List<TarotData>> getCardsByCategory(BuildContext context, TarotCategory category) async {
+  Future<List<TarotCard>> getCardsByCategory(BuildContext context, TarotCategory category) async {
     final cards = await getCards(context);
     return cards.where((card) => card.category == category).toList();
   }
@@ -53,7 +53,7 @@ class ImplTarotLocalizationService implements ITarotLocalizationService {
   }
 
   // Private helper methods
-  Future<List<TarotData>> _loadCardsWithTranslations(String locale) async {
+  Future<List<TarotCard>> _loadCardsWithTranslations(String locale) async {
     final baseCards = await _loadCardStructures();
     final translations = await _loadLocaleTranslations(locale);
     final translationMap = _indexTranslationsById(translations);
@@ -79,18 +79,18 @@ class ImplTarotLocalizationService implements ITarotLocalizationService {
     };
   }
 
-  List<TarotData> _buildTranslatedCards(
+  List<TarotCard> _buildTranslatedCards(
     List<dynamic> baseCards,
     Map<String, Map<String, dynamic>> translationMap,
   ) {
     return baseCards
         .cast<Map<String, dynamic>>()
         .map((base) => _createCardWithTranslation(base, translationMap))
-        .whereType<TarotData>()
+        .whereType<TarotCard>()
         .toList();
   }
 
-  TarotData? _createCardWithTranslation(
+  TarotCard? _createCardWithTranslation(
     Map<String, dynamic> base,
     Map<String, Map<String, dynamic>> translationMap,
   ) {
@@ -99,7 +99,7 @@ class ImplTarotLocalizationService implements ITarotLocalizationService {
 
     if (translation == null) return null;
 
-    return TarotData(
+    return TarotCard(
       title: translation['title'] as String,
       description: translation['description'] as String,
       imagePath: base['imagePath'] as String,
@@ -127,7 +127,7 @@ class ImplTarotLocalizationService implements ITarotLocalizationService {
     return _cachedCards != null && _cachedLocale == currentLocale;
   }
 
-  void _cacheCardsForLocale(List<TarotData> cards, String locale) {
+  void _cacheCardsForLocale(List<TarotCard> cards, String locale) {
     _cachedCards = cards;
     _cachedLocale = locale;
   }

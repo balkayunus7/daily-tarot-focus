@@ -1,8 +1,8 @@
 import 'package:daily_tarot_focus/domain/tarot/tarot_category_enum.dart';
 import 'package:mobile_boilerplate/common_dependencies.dart';
 
-class TarotData with EquatableMixin {
-  const TarotData({
+class TarotCard with EquatableMixin {
+  const TarotCard({
     required this.title,
     required this.category,
     required this.imagePath,
@@ -14,8 +14,8 @@ class TarotData with EquatableMixin {
     required this.warnings,
   });
 
-  factory TarotData.fromMap(Map<String, dynamic> map) {
-    return TarotData(
+  factory TarotCard.fromMap(Map<String, dynamic> map) {
+    return TarotCard(
       title: map['title'] as String,
       description: map['description'] as String,
       imagePath: map['imagePath'] as String,
@@ -56,7 +56,7 @@ class TarotData with EquatableMixin {
   bool get hasWarnings => warnings.isNotEmpty;
   bool get hasMeanings => meanings.isNotEmpty;
 
-  TarotData copyWith({
+  TarotCard copyWith({
     String? title,
     String? description,
     String? imagePath,
@@ -67,7 +67,7 @@ class TarotData with EquatableMixin {
     List<String>? advices,
     List<String>? warnings,
   }) {
-    return TarotData(
+    return TarotCard(
       title: title ?? this.title,
       description: description ?? this.description,
       imagePath: imagePath ?? this.imagePath,

@@ -12,7 +12,7 @@ import 'package:mobile_boilerplate/presentation/extensions/build_context_theme_e
 
 class TarotDataDetailPage extends StatelessWidget {
   const TarotDataDetailPage({required this.tarot, super.key});
-  final TarotData tarot;
+  final TarotCard tarot;
 
   @override
   Widget build(BuildContext context) {

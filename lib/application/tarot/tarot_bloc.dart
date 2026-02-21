@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:daily_tarot_focus/application/tarot/tarot_event.dart';
 import 'package:daily_tarot_focus/application/tarot/tarot_state.dart';
 import 'package:daily_tarot_focus/domain/tarot/i_tarot_repository.dart';
@@ -24,8 +22,8 @@ class TarotBloc extends Bloc<TarotEvent, TarotState> {
   }
 
   void addDailyCardSaved({
-    required String tarotCardId,
     required Session session,
+    required String tarotCardId,
     required String languageCode,
   }) {
     add(
@@ -98,7 +96,6 @@ class TarotBloc extends Bloc<TarotEvent, TarotState> {
 
     final newState = await failOrUnit.fold(
       (failure) async {
-        log('saveDailyCard failed: $failure');
         return state.copyWith(
           saveDailyCardFailureOrUnit: some(left(failure)),
           isSavingDailyCard: false,
@@ -111,9 +108,10 @@ class TarotBloc extends Bloc<TarotEvent, TarotState> {
         );
       },
     );
+
     emit(newState);
 
-    if (newState.isSavedSucceeded) {
+    if (newState.hasSavedDailyCardSucceeded) {
       add(
         TarotDailyCardsFetched(
           session: event.session,

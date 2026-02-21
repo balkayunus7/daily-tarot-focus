@@ -17,8 +17,8 @@ final class TarotDailyCardsFetched extends TarotEvent {
 
 final class TarotDailyCardSaved extends TarotEvent {
   const TarotDailyCardSaved({
-    required this.tarotCardId,
     required this.session,
+    required this.tarotCardId,
     required this.languageCode,
   });
   final String tarotCardId;

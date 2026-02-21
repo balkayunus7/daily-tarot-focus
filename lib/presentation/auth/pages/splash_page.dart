@@ -1,5 +1,7 @@
 import 'dart:io';
 
+import 'package:daily_tarot_focus/application/tarot/tarot_bloc.dart';
+import 'package:daily_tarot_focus/application/tarot/tarot_state.dart';
 import 'package:daily_tarot_focus/application/tarot_localization/tarot_localization_cubit.dart';
 import 'package:daily_tarot_focus/config/app_routes.dart';
 import 'package:daily_tarot_focus/core/util/tarot_app_assets.dart';
@@ -49,17 +51,35 @@ class _SplashPageState extends State<SplashPage>
     }
   }
 
+  Future<void> _fetchDailyCards() async {
+    final authState = context.read<AuthCubit>().state;
+    final langCode = Localizations.localeOf(context).languageCode;
+
+    context.read<TarotBloc>().addDailyCardsFetched(
+      session: authState.sessionOrCrash,
+      languageCode: langCode,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: MultiBlocListener(
         listeners: [
+          BlocListener<TarotBloc, TarotState>(
+            listenWhen: (previous, current) {
+              return previous.hasFetchedDailyCards != current.hasFetchedDailyCards;
+            },
+            listener: (context, state) async {
+              await routeOnAuthenticated();
+            },
+          ),
           BlocListener<AuthCubit, AuthState>(
             listenWhen: (previous, current) {
               return current.isAuthenticated && (previous.isInitial || !previous.isAuthenticated);
             },
             listener: (context, state) async {
-              await routeOnAuthenticated();
+              await _fetchDailyCards();
             },
           ),
           BlocListener<AuthCubit, AuthState>(

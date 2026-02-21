@@ -1,5 +1,5 @@
-import 'dart:developer';
-
+import 'package:daily_tarot_focus/core/util/supabase_helper.dart';
+import 'package:daily_tarot_focus/core/util/tarot_routes.dart';
 import 'package:daily_tarot_focus/domain/auth/tarot_user.dart';
 import 'package:daily_tarot_focus/domain/auth/tarot_user_properties.dart';
 import 'package:mobile_boilerplate/common_dependencies.dart';
@@ -8,6 +8,7 @@ import 'package:mobile_boilerplate/domain/auth/session.dart';
 import 'package:mobile_boilerplate/domain/auth/user.dart';
 import 'package:mobile_boilerplate/domain/common/failure.dart';
 import 'package:mobile_boilerplate/domain/common/http_utilities.dart';
+import 'package:mobile_boilerplate/extensions.dart';
 import 'package:mobile_boilerplate/infrastructure/http/http_failure_handler.dart';
 import 'package:supabase/supabase.dart' hide Session, User;
 
@@ -17,20 +18,13 @@ class ImplUserRepository extends IUserRepository with HttpFailureHandlerMixin {
   @override
   Future<FailureOr<User>> getUser({required Session session}) async {
     try {
-      final currentSession = _supabaseClient.auth.currentSession;
-      final liveToken = currentSession?.accessToken;
-      if (liveToken == null) return left(const UnknownFailure());
-      final expiresAt = currentSession!.expiresAt;
-      final now = DateTime.now().millisecondsSinceEpoch ~/ 1000;
-      log('getUser → token expires_at: $expiresAt, now: $now, kalan: ${expiresAt! - now}s');
-      final response = await supabaseClient.functions.invoke(
-        'get-user',
-        method: HttpMethod.get,
-        headers: {'authorization': 'Bearer $liveToken'},
-      );
+      final responseOrFail = await supabaseClient.secureInvoke(route: GET_USER);
+      if (responseOrFail.isLeft()) return left(const UnknownFailure());
+      final response = responseOrFail.getRightOrCrash();
 
       final data = decodeSupabaseResponse(response.data);
       final user = TarotUser.fromMap(data);
+
       return right(user);
     } on Exception {
       return left(const UnknownFailure());
@@ -60,17 +54,13 @@ class ImplUserRepository extends IUserRepository with HttpFailureHandlerMixin {
     required covariant TarotUserProperties properties,
   }) async {
     try {
-      final currentSession = _supabaseClient.auth.currentSession;
-      final liveToken = currentSession?.accessToken;
-      if (liveToken == null) return left(const UnknownFailure());
-      final expiresAt = currentSession!.expiresAt;
-      final now = DateTime.now().millisecondsSinceEpoch ~/ 1000;
-      log('updateUser → token expires_at: $expiresAt, now: $now, kalan: ${expiresAt! - now}s');
-      final response = await supabaseClient.functions.invoke(
-        'update-user',
-        headers: {'authorization': 'Bearer $liveToken'},
+      final responseOrFail = await supabaseClient.secureInvoke(
+        route: UPDATE_USER,
         body: properties.toMap(),
+        method: HttpMethod.patch,
       );
+      if (responseOrFail.isLeft()) return left(const UnknownFailure());
+      final response = responseOrFail.getRightOrCrash();
 
       final data = decodeSupabaseResponse(response.data);
       final generalFailure = handleResult(response.status, data);

@@ -214,7 +214,7 @@ Future<void> setupDependencies() async {
     ..registerFactory<TarotLocalizationCubit>(
       () => TarotLocalizationCubit(getIt<ImplTarotLocalizationService>()),
     )
-    ..registerFactory<TarotBloc>(
+    ..registerLazySingleton<TarotBloc>(
       () => TarotBloc(
         getIt<ImplTarotRepository>(),
         getIt<ImplTarotLocalizationService>(),

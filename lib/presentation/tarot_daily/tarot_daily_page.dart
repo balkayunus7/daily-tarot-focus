@@ -5,7 +5,6 @@ import 'package:daily_tarot_focus/core/util/text_style_helper.dart';
 import 'package:daily_tarot_focus/core/widgets/tarot_app_bar.dart';
 import 'package:daily_tarot_focus/domain/tarot/tarot_data.dart';
 import 'package:flutter/material.dart';
-import 'package:mobile_boilerplate/application/auth/auth_cubit.dart';
 import 'package:mobile_boilerplate/common_dependencies.dart';
 import 'package:mobile_boilerplate/presentation/extensions/build_context_theme_ext.dart';
 import 'package:mobile_boilerplate/presentation/extensions/date_time_ext.dart';
@@ -18,69 +17,48 @@ class TarotDailyPage extends StatefulWidget {
 }
 
 class _TarotDailyPageState extends State<TarotDailyPage> {
-  void _fetchDailyCards() {
-    final authState = context.read<AuthCubit>().state;
-    final langCode = Localizations.localeOf(context).languageCode;
-    context.read<TarotBloc>().addDailyCardsFetched(
-      session: authState.sessionOrCrash,
-      languageCode: langCode,
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const TarotAppBar(
-        title: 'Daily Tarots',
-        showBackIcon: false,
-      ),
+      appBar: const TarotAppBar(title: 'Daily Tarots', showBackIcon: false),
       body: BlocBuilder<TarotBloc, TarotState>(
-        buildWhen:
-            (previous, current) =>
-                previous.fetchFailureOrDailyCards != current.fetchFailureOrDailyCards ||
-                previous.isFetchingDailyCards != current.isFetchingDailyCards,
         builder: (context, state) {
           if (state.isFetchingDailyCards) {
             return const Center(child: CircularProgressIndicator());
           }
 
-          return state.fetchFailureOrDailyCards.fold(
-            () => const Center(child: Text('Henüz kart çekilmedi')),
-            (failureOrCards) => failureOrCards.fold(
-              (failure) => Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Text('Kartlar yüklenemedi'),
-                    Spacing.mediumH,
-                    ElevatedButton(
-                      onPressed: _fetchDailyCards,
-                      child: const Text('Tekrar dene'),
-                    ),
-                  ],
-                ),
+          if (state.hasFetchedDailyCardsFailed) {
+            return const Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text('Kartlar yüklenemedi'),
+                  Spacing.mediumH,
+                ],
               ),
-              (cards) {
-                if (cards.isEmpty()) {
-                  return const Center(
-                    child: Text('Henüz günlük kart çekilmedi'),
-                  );
-                }
+            );
+          }
 
-                return ListView.builder(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: SpacingConsts.medium,
-                    vertical: SpacingConsts.small,
-                  ),
-                  itemCount: cards.size,
-                  itemBuilder: (context, index) {
-                    final card = cards[index];
-                    return _DailyCardListItem(card: card);
-                  },
-                );
+          if (state.hasFetchedDailyCardsSucceeded) {
+            final cards = state.dailyCardsOrEmpty;
+            if (cards.isEmpty()) {
+              return const Center(child: Text('Henüz kart çekilmedi'));
+            }
+
+            return ListView.builder(
+              padding: const EdgeInsets.symmetric(
+                horizontal: SpacingConsts.medium,
+                vertical: SpacingConsts.small,
+              ),
+              itemCount: cards.size,
+              itemBuilder: (context, index) {
+                final card = cards[index];
+                return _DailyCardListItem(card: card);
               },
-            ),
-          );
+            );
+          }
+
+          return const SizedBox.shrink();
         },
       ),
     );

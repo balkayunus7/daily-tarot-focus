@@ -24,21 +24,18 @@ class TarotRevealDetailPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocListener<TarotBloc, TarotState>(
-      listenWhen:
-          (previous, current) =>
-              previous.saveDailyCardFailureOrUnit != current.saveDailyCardFailureOrUnit,
+      listenWhen: (previous, current) => previous.hasSavedDailyCard != current.hasSavedDailyCard,
       listener: (context, state) {
-        state.saveDailyCardFailureOrUnit.fold(
-          () {},
-          (failureOrUnit) => failureOrUnit.fold(
-            (failure) => ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(content: Text('Kart kaydedilemedi')),
-            ),
-            (_) => ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(content: Text('Kart kaydedildi ✨')),
-            ),
-          ),
-        );
+        if (state.hasFetchedDailyCardsFailed) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(content: Text('Kart kaydedilemedi')),
+          );
+        }
+        if (state.hasSavedDailyCardSucceeded) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(content: Text('Kart kaydedildi ✨')),
+          );
+        }
       },
       child: BaseGradientLayout(
         appBar: TarotAppBar(
@@ -49,9 +46,10 @@ class TarotRevealDetailPage extends StatelessWidget {
           onIconTap: () {
             final authState = context.read<AuthCubit>().state;
             final langCode = Localizations.localeOf(context).languageCode;
+
             context.read<TarotBloc>().addDailyCardSaved(
-              tarotCardId: tarot.id,
               session: authState.sessionOrCrash,
+              tarotCardId: tarot.id,
               languageCode: langCode,
             );
           },

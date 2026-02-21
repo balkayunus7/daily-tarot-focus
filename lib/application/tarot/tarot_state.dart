@@ -1,6 +1,7 @@
 import 'package:daily_tarot_focus/domain/tarot/tarot_data.dart';
 import 'package:mobile_boilerplate/common_dependencies.dart';
 import 'package:mobile_boilerplate/domain/common/failure.dart';
+import 'package:mobile_boilerplate/extensions.dart';
 
 class TarotState extends Equatable {
   const TarotState({
@@ -24,7 +25,39 @@ class TarotState extends Equatable {
   final bool isFetchingDailyCards;
   final bool isSavingDailyCard;
 
-  bool get isSavedSucceeded => saveDailyCardFailureOrUnit.fold(() => false, (r) => r.isRight());
+  // SAVE DAILY CARD
+  bool get hasSavedDailyCard {
+    return saveDailyCardFailureOrUnit.getOrNull() != null;
+  }
+
+  bool get hasSavedDailyCardSucceeded {
+    return saveDailyCardFailureOrUnit.getOrNull()?.isRight() != null;
+  }
+
+  bool get hasSavedDailyCardFailed {
+    return saveDailyCardFailureOrUnit.getOrNull()?.getLeftOrNull() != null;
+  }
+
+  // FETCH DAILY CARDS
+  bool get hasFetchedDailyCards {
+    return fetchFailureOrDailyCards.getOrNull() != null;
+  }
+
+  bool get hasFetchedDailyCardsFailed {
+    return fetchFailureOrDailyCards.getOrNull()?.getLeftOrNull() != null;
+  }
+
+  bool get hasFetchedDailyCardsSucceeded {
+    return _dailyCardsOrNull != null;
+  }
+
+  KtList<TarotCard>? get _dailyCardsOrNull {
+    return fetchFailureOrDailyCards.getOrNull()?.getRightOrNull();
+  }
+
+  KtList<TarotCard> get dailyCardsOrEmpty {
+    return _dailyCardsOrNull ?? const KtList<TarotCard>.empty();
+  }
 
   TarotState copyWith({
     Option<FailureOr<KtList<TarotCard>>>? fetchFailureOrDailyCards,

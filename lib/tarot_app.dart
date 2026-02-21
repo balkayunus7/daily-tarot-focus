@@ -1,4 +1,5 @@
 import 'package:daily_tarot_focus/application/auth/register_cubit.dart';
+import 'package:daily_tarot_focus/application/tarot/tarot_bloc.dart';
 import 'package:daily_tarot_focus/application/tarot_localization/tarot_localization_cubit.dart';
 import 'package:daily_tarot_focus/config/app_router.dart';
 import 'package:daily_tarot_focus/core/util/locale_extensions.dart';
@@ -32,6 +33,7 @@ class TarotApp extends StatelessWidget {
         BlocProvider(create: (_) => getIt<PurchasesBloc>()),
         BlocProvider(create: (_) => getIt<RegisterCubit>()),
         BlocProvider(create: (_) => getIt<TarotLocalizationCubit>()),
+        BlocProvider(create: (_) => getIt<TarotBloc>()),
         Provider<Launcher>(create: (_) => getIt<Launcher>()),
         Provider<NetworkTimeProvider>(
           create: (_) => getIt<NetworkTimeProvider>(),

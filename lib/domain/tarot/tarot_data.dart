@@ -3,6 +3,7 @@ import 'package:mobile_boilerplate/common_dependencies.dart';
 
 class TarotCard with EquatableMixin {
   const TarotCard({
+    required this.id,
     required this.title,
     required this.category,
     required this.imagePath,
@@ -12,10 +13,12 @@ class TarotCard with EquatableMixin {
     required this.reversedMeanings,
     required this.advices,
     required this.warnings,
+    this.savedAt,
   });
 
   factory TarotCard.fromMap(Map<String, dynamic> map) {
     return TarotCard(
+      id: map['id'] as String,
       title: map['title'] as String,
       description: map['description'] as String,
       imagePath: map['imagePath'] as String,
@@ -30,6 +33,7 @@ class TarotCard with EquatableMixin {
 
   Map<String, dynamic> toMap() {
     return {
+      'id': id,
       'title': title,
       'description': description,
       'imagePath': imagePath,
@@ -42,6 +46,7 @@ class TarotCard with EquatableMixin {
     };
   }
 
+  final String id;
   final String title;
   final String description;
   final String imagePath;
@@ -51,12 +56,14 @@ class TarotCard with EquatableMixin {
   final List<String> reversedMeanings;
   final List<String> advices;
   final List<String> warnings;
+  final DateTime? savedAt;
 
   bool get hasAdvices => advices.isNotEmpty;
   bool get hasWarnings => warnings.isNotEmpty;
   bool get hasMeanings => meanings.isNotEmpty;
 
   TarotCard copyWith({
+    String? id,
     String? title,
     String? description,
     String? imagePath,
@@ -66,8 +73,10 @@ class TarotCard with EquatableMixin {
     List<String>? reversedMeanings,
     List<String>? advices,
     List<String>? warnings,
+    DateTime? savedAt,
   }) {
     return TarotCard(
+      id: id ?? this.id,
       title: title ?? this.title,
       description: description ?? this.description,
       imagePath: imagePath ?? this.imagePath,
@@ -77,19 +86,22 @@ class TarotCard with EquatableMixin {
       reversedMeanings: reversedMeanings ?? this.reversedMeanings,
       advices: advices ?? this.advices,
       warnings: warnings ?? this.warnings,
+      savedAt: savedAt ?? this.savedAt,
     );
   }
 
   @override
   List<Object?> get props => [
-        title,
-        description,
-        imagePath,
-        category,
-        meanings,
-        uprightMeanings,
-        reversedMeanings,
-        advices,
-        warnings,
-      ];
+    id,
+    title,
+    description,
+    imagePath,
+    category,
+    meanings,
+    uprightMeanings,
+    reversedMeanings,
+    advices,
+    warnings,
+    savedAt,
+  ];
 }

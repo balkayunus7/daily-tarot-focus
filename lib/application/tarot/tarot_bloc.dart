@@ -1,254 +1,128 @@
 import 'dart:developer';
 
 import 'package:daily_tarot_focus/application/tarot/tarot_event.dart';
-import 'package:fishfinder/domain/fish/fish_data.dart';
-import 'package:fishfinder/domain/fish/i_fish_repository.dart';
-import 'package:mobile_core/common_dependencies.dart';
-import 'package:mobile_core/domain/auth/session.dart';
-import 'package:mobile_core/domain/common/failure.dart';
-import 'package:mobile_core/extensions.dart';
+import 'package:daily_tarot_focus/application/tarot/tarot_state.dart';
+import 'package:daily_tarot_focus/domain/tarot/i_tarot_repository.dart';
+import 'package:daily_tarot_focus/domain/tarot/tarot_data.dart';
+import 'package:daily_tarot_focus/infrastructure/tarot/impl_tarot_localization_service.dart';
+import 'package:mobile_boilerplate/common_dependencies.dart';
+import 'package:mobile_boilerplate/domain/auth/session.dart';
 
-
-class FishBloc extends Bloc<TarotEvent, FishState> {
-  FishBloc(this._fishRepository) : super(FishState.initial()) {
+class TarotBloc extends Bloc<TarotEvent, TarotState> {
+  TarotBloc(this._tarotRepository, this._localizationService) : super(TarotState.initial()) {
     on<TarotEvent>((event, emit) async {
-      if (event is FishPopularFishesFetched) {
-        await _onPopularFishesFetched(event, emit);
-      } else if (event is FishPopularFishesLoaded) {
-        await _onPopularFishesLoaded(event, emit);
-      } else if (event is FishIdentified) {
-        await _onFishIdentified(event, emit);
-      } else if (event is FishSavedToLibrary) {
-        await _onFishSavedToLibrary(event, emit);
-      } else if (event is FishNotesAdded) {
-        await _onFishNotesAdded(event, emit);
-      } else if (event is FishDeletedFromLibrary) {
-        await _onFishDeletedFromLibrary(event, emit);
+      if (event is TarotDailyCardsFetched) {
+        await _onDailyCardsFetched(event, emit);
+      } else if (event is TarotDailyCardSaved) {
+        await _onDailyCardSaved(event, emit);
       }
     }, transformer: sequential());
   }
 
-  void addPopularFishesFetched({required Session session}) {
-    add(FishPopularFishesFetched(session: session));
+  void addDailyCardsFetched({required Session session, required String languageCode}) {
+    add(TarotDailyCardsFetched(session: session, languageCode: languageCode));
   }
 
-  void addPopularFishesLoaded({required Session session}) {
-    add(FishPopularFishesLoaded(session: session));
-  }
-
-  void addFishIdentified({
-    required String fishImage,
+  void addDailyCardSaved({
+    required String tarotCardId,
     required Session session,
+    required String languageCode,
   }) {
-    add(FishIdentified(fishImage: fishImage, session: session));
+    add(
+      TarotDailyCardSaved(
+        tarotCardId: tarotCardId,
+        session: session,
+        languageCode: languageCode,
+      ),
+    );
   }
 
-  void addFishSavedToLibrary({
-    required String fishId,
-    required Session session,
-  }) {
-    add(FishSavedToLibrary(fishId: fishId, session: session));
-  }
-
-  void addFishNotesAdded({
-    required String fishId,
-    required String note,
-    required Session session,
-  }) {
-    add(FishNotesAdded(fishId: fishId, note: note, session: session));
-  }
-
-  void addFishDeletedFromLibrary({
-    required String fishId,
-    required Session session,
-  }) {
-    add(FishDeletedFromLibrary(fishId: fishId, session: session));
-  }
-
-  Future<void> _onPopularFishesFetched(
-    FishPopularFishesFetched event,
-    Emitter<FishState> emit,
+  Future<void> _onDailyCardsFetched(
+    TarotDailyCardsFetched event,
+    Emitter<TarotState> emit,
   ) async {
     emit(
       state.copyWith(
-        isPopularFishesFetching: true,
-        fetchFailureOrPopularFishes: none(),
+        isFetchingDailyCards: true,
+        fetchFailureOrDailyCards: none(),
       ),
     );
 
-    final failOrPopularFishes = await fishRepository.fetchPopularFishes(
+    final failOrRecords = await _tarotRepository.getDailyCards(
       session: event.session,
     );
 
-    final newState = await failOrPopularFishes.fold(
+    final newState = await failOrRecords.fold(
       (failure) async {
         return state.copyWith(
-          fetchFailureOrPopularFishes: some(left(failure)),
-          isPopularFishesFetching: false,
+          fetchFailureOrDailyCards: some(left(failure)),
+          isFetchingDailyCards: false,
         );
       },
-      (popularFishes) async {
+      (records) async {
+        final cards = <TarotCard>[];
+        for (final record in records) {
+          final card = await _localizationService.findCardById(
+            event.languageCode,
+            record.cardId,
+          );
+          if (card != null) {
+            cards.add(card.copyWith(savedAt: record.date));
+          }
+        }
+
         return state.copyWith(
-          fetchFailureOrPopularFishes: some(right(popularFishes)),
-          isPopularFishesFetching: false,
+          fetchFailureOrDailyCards: some(right(KtList.from(cards))),
+          isFetchingDailyCards: false,
         );
       },
     );
     emit(newState);
   }
 
-  Future<void> _onPopularFishesLoaded(
-    FishPopularFishesLoaded event,
-    Emitter<FishState> emit,
+  Future<void> _onDailyCardSaved(
+    TarotDailyCardSaved event,
+    Emitter<TarotState> emit,
   ) async {
     emit(
       state.copyWith(
-        isLoadingPopularFishes: true,
-        loadFailureOrPopularFishes: none(),
+        isSavingDailyCard: true,
+        saveDailyCardFailureOrUnit: none(),
       ),
     );
 
-    final failOrUnit = await fishRepository.loadPopularFishes(
+    final failOrUnit = await _tarotRepository.saveDailyCard(
       session: event.session,
+      cardId: event.tarotCardId,
     );
 
     final newState = await failOrUnit.fold(
       (failure) async {
+        log('saveDailyCard failed: $failure');
         return state.copyWith(
-          loadFailureOrPopularFishes: some(left(failure)),
-          isLoadingPopularFishes: false,
+          saveDailyCardFailureOrUnit: some(left(failure)),
+          isSavingDailyCard: false,
         );
       },
       (unit) async {
         return state.copyWith(
-          loadFailureOrPopularFishes: some(right(unit)),
-          isLoadingPopularFishes: false,
+          saveDailyCardFailureOrUnit: some(right(unit)),
+          isSavingDailyCard: false,
         );
       },
     );
     emit(newState);
+
+    if (newState.isSavedSucceeded) {
+      add(
+        TarotDailyCardsFetched(
+          session: event.session,
+          languageCode: event.languageCode,
+        ),
+      );
+    }
   }
 
-  Future<void> _onFishIdentified(
-    FishIdentified event,
-    Emitter<FishState> emit,
-  ) async {
-    emit(
-      state.copyWith(isIdentifyingFish: true, identifyFailureOrFish: none()),
-    );
-
-    final failOrFish = await fishRepository.identifyFish(
-      fishImage: event.fishImage,
-      session: event.session,
-    );
-
-    final newState = await failOrFish.fold(
-      (failure) async {
-        return state.copyWith(
-          identifyFailureOrFish: some(left(failure)),
-          isIdentifyingFish: false,
-        );
-      },
-      (fish) async {
-        return state.copyWith(
-          identifyFailureOrFish: some(right(fish)),
-          isIdentifyingFish: false,
-        );
-      },
-    );
-    emit(newState);
-  }
-
-  Future<void> _onFishSavedToLibrary(
-    FishSavedToLibrary event,
-    Emitter<FishState> emit,
-  ) async {
-    emit(state.copyWith(isSavingToLibrary: true, saveFailureOrUnit: none()));
-
-    final failOrUnit = await fishRepository.saveToLibrary(
-      fishId: event.fishId,
-      session: event.session,
-    );
-
-    final newState = await failOrUnit.fold(
-      (failure) async {
-        return state.copyWith(
-          saveFailureOrUnit: some(left(failure)),
-          isSavingToLibrary: false,
-        );
-      },
-      (unit) async {
-        return state.copyWith(
-          saveFailureOrUnit: some(right(unit)),
-          isSavingToLibrary: false,
-        );
-      },
-    );
-    emit(newState);
-  }
-
-  Future<void> _onFishNotesAdded(
-    FishNotesAdded event,
-    Emitter<FishState> emit,
-  ) async {
-    emit(state.copyWith(isAddingNote: true, addNoteFailureOrUnit: none()));
-
-    final failOrUnit = await fishRepository.addNotesToFish(
-      fishId: event.fishId,
-      note: event.note,
-      session: event.session,
-    );
-
-    final newState = await failOrUnit.fold(
-      (failure) async {
-        return state.copyWith(
-          addNoteFailureOrUnit: some(left(failure)),
-          isAddingNote: false,
-        );
-      },
-      (unit) async {
-        return state.copyWith(
-          addNoteFailureOrUnit: some(right(unit)),
-          isAddingNote: false,
-        );
-      },
-    );
-    emit(newState);
-  }
-
-  Future<void> _onFishDeletedFromLibrary(
-    FishDeletedFromLibrary event,
-    Emitter<FishState> emit,
-  ) async {
-    emit(
-      state.copyWith(
-        isDeletingFromLibrary: true,
-        deleteFromLibraryFailureOrUnit: none(),
-      ),
-    );
-
-    final failOrUnit = await fishRepository.deleteFromLibrary(
-      fishId: event.fishId,
-      session: event.session,
-    );
-
-    final newState = await failOrUnit.fold(
-      (failure) async {
-        return state.copyWith(
-          deleteFromLibraryFailureOrUnit: some(left(failure)),
-          isDeletingFromLibrary: false,
-        );
-      },
-      (unit) async {
-        return state.copyWith(
-          deleteFromLibraryFailureOrUnit: some(right(unit)),
-          isDeletingFromLibrary: false,
-        );
-      },
-    );
-    emit(newState);
-  }
-
-  IFishRepository get fishRepository => _fishRepository;
-  final IFishRepository _fishRepository;
+  final ITarotRepository _tarotRepository;
+  final ImplTarotLocalizationService _localizationService;
 }

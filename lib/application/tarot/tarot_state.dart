@@ -24,6 +24,8 @@ class TarotState extends Equatable {
   final bool isFetchingDailyCards;
   final bool isSavingDailyCard;
 
+  bool get isSavedSucceeded => saveDailyCardFailureOrUnit.fold(() => false, (r) => r.isRight());
+
   TarotState copyWith({
     Option<FailureOr<KtList<TarotCard>>>? fetchFailureOrDailyCards,
     bool? isFetchingDailyCards,

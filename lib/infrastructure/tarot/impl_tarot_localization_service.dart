@@ -2,9 +2,7 @@ import 'dart:convert';
 import 'package:daily_tarot_focus/domain/tarot/i_tarot_localization_service.dart';
 import 'package:daily_tarot_focus/domain/tarot/tarot_category_enum.dart';
 import 'package:daily_tarot_focus/domain/tarot/tarot_data.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:mobile_boilerplate/common_dependencies.dart';
 
 class ImplTarotLocalizationService implements ITarotLocalizationService {
   static const _baseCardsPath = 'assets/data/tarot_cards.json';
@@ -14,35 +12,33 @@ class ImplTarotLocalizationService implements ITarotLocalizationService {
   String? _cachedLocale;
 
   @override
-  Future<List<TarotCard>> getCards(BuildContext context) async {
-    final currentLocale = context.locale.languageCode;
+  Future<List<TarotCard>> getCards(String languageCode) async {
+    if (_isLocaleCached(languageCode)) return _cachedCards!;
 
-    if (_isLocaleCached(currentLocale)) return _cachedCards!;
-
-    final cards = await _loadCardsWithTranslations(currentLocale);
-    _cacheCardsForLocale(cards, currentLocale);
+    final cards = await _loadCardsWithTranslations(languageCode);
+    _cacheCardsForLocale(cards, languageCode);
 
     return cards;
   }
 
   @override
-  Future<TarotCard> drawRandomCard(BuildContext context) async {
-    final cards = await getCards(context);
+  Future<TarotCard> drawRandomCard(String languageCode) async {
+    final cards = await getCards(languageCode);
     cards.shuffle();
     return cards.first;
   }
 
   @override
-  Future<TarotCard?> findCardByTitle(BuildContext context, String title) async {
-    final cards = await getCards(context);
+  Future<TarotCard?> findCardByTitle(String languageCode, String title) async {
+    final cards = await getCards(languageCode);
     final normalizedTitle = title.toLowerCase();
 
     return cards.where((card) => card.title.toLowerCase() == normalizedTitle).firstOrNull;
   }
 
   @override
-  Future<List<TarotCard>> getCardsByCategory(BuildContext context, TarotCategory category) async {
-    final cards = await getCards(context);
+  Future<List<TarotCard>> getCardsByCategory(String languageCode, TarotCategory category) async {
+    final cards = await getCards(languageCode);
     return cards.where((card) => card.category == category).toList();
   }
 
@@ -50,6 +46,12 @@ class ImplTarotLocalizationService implements ITarotLocalizationService {
   void clearCache() {
     _cachedCards = null;
     _cachedLocale = null;
+  }
+
+  @override
+  Future<TarotCard?> findCardById(String languageCode, String id) async {
+    final cards = await getCards(languageCode);
+    return cards.where((card) => card.id == id).firstOrNull;
   }
 
   // Private helper methods
@@ -100,6 +102,7 @@ class ImplTarotLocalizationService implements ITarotLocalizationService {
     if (translation == null) return null;
 
     return TarotCard(
+      id: id,
       title: translation['title'] as String,
       description: translation['description'] as String,
       imagePath: base['imagePath'] as String,

@@ -27,10 +27,9 @@ class _SplashPageState extends State<SplashPage>
     final tarotLocalCubit = context.read<TarotLocalizationCubit>();
 
     WidgetsBinding.instance.addPostFrameCallback((_) async {
-      // Load tarot cards for current locale
-      await tarotLocalCubit.loadCards(context);
+      final langCode = Localizations.localeOf(context).languageCode;
+      await tarotLocalCubit.loadCards(langCode);
 
-      // Initialize auth after cards are loaded
       Future.delayed(const Duration(seconds: 1), () async {
         if (!mounted) return;
         await authCubit.initialize(requestAttAuth: Platform.isIOS);
@@ -57,8 +56,7 @@ class _SplashPageState extends State<SplashPage>
         listeners: [
           BlocListener<AuthCubit, AuthState>(
             listenWhen: (previous, current) {
-              return current.isAuthenticated &&
-                  (previous.isInitial || !previous.isAuthenticated);
+              return current.isAuthenticated && (previous.isInitial || !previous.isAuthenticated);
             },
             listener: (context, state) async {
               await routeOnAuthenticated();
@@ -66,9 +64,7 @@ class _SplashPageState extends State<SplashPage>
           ),
           BlocListener<AuthCubit, AuthState>(
             listenWhen: (previous, current) {
-              return previous.isInitial &&
-                  !current.isInitial &&
-                  !current.isAuthenticated;
+              return previous.isInitial && !current.isInitial && !current.isAuthenticated;
             },
             listener: (context, state) async {
               await context.read<AuthCubit>().signInAnonymously();

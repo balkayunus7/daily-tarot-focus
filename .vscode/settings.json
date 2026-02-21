@@ -1,4 +1,5 @@
 {
   "files.exclude": {},
-  "dart.lineLength": 100
+  "dart.lineLength": 100,
+  "editor.fontSize": 10
 }

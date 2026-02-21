@@ -1,7 +1,6 @@
 import 'package:daily_tarot_focus/domain/tarot/i_tarot_localization_service.dart';
 import 'package:daily_tarot_focus/domain/tarot/tarot_category_enum.dart';
 import 'package:daily_tarot_focus/domain/tarot/tarot_data.dart';
-import 'package:flutter/widgets.dart';
 import 'package:mobile_boilerplate/common_dependencies.dart';
 
 part 'tarot_localization_state.dart';
@@ -11,12 +10,12 @@ part 'tarot_localization_state.dart';
 class TarotLocalizationCubit extends Cubit<TarotLocalizationState> {
   TarotLocalizationCubit(this._localizationService) : super(TarotLocalizationState.initial());
 
-  Future<void> loadCards(BuildContext context) async {
+  Future<void> loadCards(String languageCode) async {
     if (state.status == TarotCardStatus.loading) return;
     emit(state.copyWith(status: TarotCardStatus.loading));
 
     try {
-      final cards = await localizationService.getCards(context);
+      final cards = await localizationService.getCards(languageCode);
       emit(state.copyWith(status: TarotCardStatus.loaded, allCards: cards, filteredCards: cards));
     } on Exception catch (e) {
       emit(state.copyWith(status: TarotCardStatus.error, errorMessage: e.toString()));
@@ -48,9 +47,9 @@ class TarotLocalizationCubit extends Cubit<TarotLocalizationState> {
     return matching.isEmpty ? null : matching.first;
   }
 
-  Future<void> refreshCards(BuildContext context) async {
+  Future<void> refreshCards(String languageCode) async {
     emit(TarotLocalizationState.initial());
-    await loadCards(context);
+    await loadCards(languageCode);
   }
 
   void selectCard(TarotCard? card) {

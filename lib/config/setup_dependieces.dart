@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:daily_tarot_focus/application/auth/register_cubit.dart';
+import 'package:daily_tarot_focus/application/tarot/tarot_bloc.dart';
 import 'package:daily_tarot_focus/application/tarot_localization/tarot_localization_cubit.dart';
 import 'package:daily_tarot_focus/config/app_config.dart';
 import 'package:daily_tarot_focus/config/env.config.dart';
@@ -10,6 +11,7 @@ import 'package:daily_tarot_focus/infrastructure/auth/impl_firebase_remote_notif
 import 'package:daily_tarot_focus/infrastructure/auth/impl_ios_local_notifications_service.dart';
 import 'package:daily_tarot_focus/infrastructure/auth/impl_user_repository.dart';
 import 'package:daily_tarot_focus/infrastructure/tarot/impl_tarot_localization_service.dart';
+import 'package:daily_tarot_focus/infrastructure/tarot/impl_tarot_repository.dart';
 import 'package:mobile_boilerplate/application/analytics/analytics_cubit.dart';
 import 'package:mobile_boilerplate/application/auth/auth_cubit.dart';
 import 'package:mobile_boilerplate/application/color_theme/color_theme_bloc.dart';
@@ -160,6 +162,9 @@ Future<void> setupDependencies() async {
     ..registerSingleton<ImplTarotLocalizationService>(
       ImplTarotLocalizationService(),
     )
+    ..registerSingleton<ImplTarotRepository>(
+      ImplTarotRepository(getIt<SupabaseClient>(), getIt<HttpFailureHandler>()),
+    )
     // Setup application dependencies
     ..registerFactory<AuthCubit>(
       () => AuthCubit(
@@ -208,5 +213,11 @@ Future<void> setupDependencies() async {
     )
     ..registerFactory<TarotLocalizationCubit>(
       () => TarotLocalizationCubit(getIt<ImplTarotLocalizationService>()),
+    )
+    ..registerFactory<TarotBloc>(
+      () => TarotBloc(
+        getIt<ImplTarotRepository>(),
+        getIt<ImplTarotLocalizationService>(),
+      ),
     );
 }

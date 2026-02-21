@@ -7,18 +7,24 @@ sealed class TarotEvent {
 }
 
 final class TarotDailyCardsFetched extends TarotEvent {
-  const TarotDailyCardsFetched({required this.session});
+  const TarotDailyCardsFetched({required this.session, required this.languageCode});
   final Session session;
+  final String languageCode;
 
   @override
-  List<Object?> get props => [session];
+  List<Object?> get props => [session, languageCode];
 }
 
 final class TarotDailyCardSaved extends TarotEvent {
-  const TarotDailyCardSaved({required this.tarotCardId, required this.session});
+  const TarotDailyCardSaved({
+    required this.tarotCardId,
+    required this.session,
+    required this.languageCode,
+  });
   final String tarotCardId;
   final Session session;
+  final String languageCode;
 
   @override
-  List<Object?> get props => [tarotCardId, session];
+  List<Object?> get props => [tarotCardId, session, languageCode];
 }

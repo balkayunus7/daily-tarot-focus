@@ -129,7 +129,8 @@ class SettingsPage extends StatelessWidget {
                 onTap: () async {
                   await context.setLocale(context.localeEn);
                   if (context.mounted) {
-                    await context.read<TarotLocalizationCubit>().refreshCards(context);
+                    final langCode = Localizations.localeOf(context).languageCode;
+                    await context.read<TarotLocalizationCubit>().refreshCards(langCode);
                   }
                   await HapticFeedbackHelper.selectionClick();
                   if (context.mounted) Navigator.pop(context);
@@ -143,7 +144,8 @@ class SettingsPage extends StatelessWidget {
                 onTap: () async {
                   await context.setLocale(context.localeTr);
                   if (context.mounted) {
-                    await context.read<TarotLocalizationCubit>().refreshCards(context);
+                    final langCode = Localizations.localeOf(context).languageCode;
+                    await context.read<TarotLocalizationCubit>().refreshCards(langCode);
                   }
                   await HapticFeedbackHelper.selectionClick();
                   if (context.mounted) Navigator.pop(context);

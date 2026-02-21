@@ -1,3 +1,5 @@
+import 'package:daily_tarot_focus/application/tarot/tarot_bloc.dart';
+import 'package:daily_tarot_focus/application/tarot/tarot_state.dart';
 import 'package:daily_tarot_focus/config/app_routes.dart';
 import 'package:daily_tarot_focus/core/util/locale_keys.dart';
 import 'package:daily_tarot_focus/core/util/shadow_extensions.dart';
@@ -9,6 +11,7 @@ import 'package:daily_tarot_focus/core/widgets/tarot_app_bar.dart';
 import 'package:daily_tarot_focus/domain/tarot/tarot_data.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:mobile_boilerplate/application/auth/auth_cubit.dart';
 import 'package:mobile_boilerplate/common_dependencies.dart';
 import 'package:mobile_boilerplate/presentation/extensions/build_context_theme_ext.dart';
 
@@ -20,46 +23,73 @@ class TarotRevealDetailPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BaseGradientLayout(
-      appBar: TarotAppBar(
-        title: tarot.title,
-        backIcon: Icons.close,
-        onBackIconTap: () => context.go(AppRoutes.tarotExplore),
-        trailingIcon: Icons.save_as_rounded,
-      ),
-      child: SafeArea(
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: SpacingConsts.large),
-            child: Column(
-              children: [
-                Spacing.smallH,
-                Text(tarot.description, style: m14w500(context)),
-                Spacing.largeH,
-                _RevealDetailCard(imagePath: tarot.imagePath),
-                Spacing.largeH,
-                RevealDetailSection(
-                  title: LocaleKeys.libraryMeaningForDay.tr(),
-                  descriptions: tarot.meanings,
-                  icon: Icons.diamond,
-                  iconColor: context.colors.primary,
-                ),
-                Spacing.largeH,
-                RevealDetailSection(
-                  title: LocaleKeys.libraryUprightMeanings.tr(),
-                  descriptions: tarot.uprightMeanings,
-                  icon: Icons.check_circle,
-                  iconColor: context.colors.correctColor,
-                ),
-                Spacing.largeH,
-                RevealDetailSection(
-                  title: LocaleKeys.libraryReversedMeanings.tr(),
-                  descriptions: tarot.reversedMeanings,
-                  icon: Icons.warning,
-                  iconColor: context.colors.primary,
-                ),
-                Spacing.largeH,
-              ],
+    return BlocListener<TarotBloc, TarotState>(
+      listenWhen:
+          (previous, current) =>
+              previous.saveDailyCardFailureOrUnit != current.saveDailyCardFailureOrUnit,
+      listener: (context, state) {
+        state.saveDailyCardFailureOrUnit.fold(
+          () {},
+          (failureOrUnit) => failureOrUnit.fold(
+            (failure) => ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(content: Text('Kart kaydedilemedi')),
+            ),
+            (_) => ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(content: Text('Kart kaydedildi ✨')),
+            ),
+          ),
+        );
+      },
+      child: BaseGradientLayout(
+        appBar: TarotAppBar(
+          title: tarot.title,
+          backIcon: Icons.close,
+          onBackIconTap: () => context.go(AppRoutes.tarotExplore),
+          trailingIcon: Icons.save_as_rounded,
+          onIconTap: () {
+            final authState = context.read<AuthCubit>().state;
+            final langCode = Localizations.localeOf(context).languageCode;
+            context.read<TarotBloc>().addDailyCardSaved(
+              tarotCardId: tarot.id,
+              session: authState.sessionOrCrash,
+              languageCode: langCode,
+            );
+          },
+        ),
+        child: SafeArea(
+          child: SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: SpacingConsts.large),
+              child: Column(
+                children: [
+                  Spacing.smallH,
+                  Text(tarot.description, style: m14w500(context)),
+                  Spacing.largeH,
+                  _RevealDetailCard(imagePath: tarot.imagePath),
+                  Spacing.largeH,
+                  RevealDetailSection(
+                    title: LocaleKeys.libraryMeaningForDay.tr(),
+                    descriptions: tarot.meanings,
+                    icon: Icons.diamond,
+                    iconColor: context.colors.primary,
+                  ),
+                  Spacing.largeH,
+                  RevealDetailSection(
+                    title: LocaleKeys.libraryUprightMeanings.tr(),
+                    descriptions: tarot.uprightMeanings,
+                    icon: Icons.check_circle,
+                    iconColor: context.colors.correctColor,
+                  ),
+                  Spacing.largeH,
+                  RevealDetailSection(
+                    title: LocaleKeys.libraryReversedMeanings.tr(),
+                    descriptions: tarot.reversedMeanings,
+                    icon: Icons.warning,
+                    iconColor: context.colors.primary,
+                  ),
+                  Spacing.largeH,
+                ],
+              ),
             ),
           ),
         ),

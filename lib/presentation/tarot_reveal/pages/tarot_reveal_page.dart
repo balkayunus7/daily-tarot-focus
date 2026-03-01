@@ -44,7 +44,10 @@ class _TarotRevealPageState extends State<TarotRevealPage>
             return Stack(
               fit: StackFit.expand,
               children: [
-                Image.asset(TarotAppAssets.dailyBack.path, fit: BoxFit.cover),
+                Align(
+                  alignment: Alignment.topCenter,
+                  child: Image.asset(TarotAppAssets.dailyPickBg.path, fit: BoxFit.cover),
+                ),
                 AnimatedOpacity(
                   duration: SpacingConsts.wheelAnimationDuration,
                   opacity: isCardSelected ? 0.0 : 1.0,

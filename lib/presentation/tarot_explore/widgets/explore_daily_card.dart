@@ -75,10 +75,9 @@ class _CardContent extends StatelessWidget {
 
 class _OverlayCardImage extends StatelessWidget {
   const _OverlayCardImage();
-  static const double _kWidthRatio = 0.30;
+  static const double _kWidthRatio = 0.35;
   static const double _kAspectRatio = 2.5 / 3;
-  static const double _kRotation = -0.15;
-  static const double _kPaddingRatio = 0.1;
+  static const double _kPaddingRatio = 0.12;
 
   @override
   Widget build(BuildContext context) {
@@ -90,18 +89,14 @@ class _OverlayCardImage extends StatelessWidget {
       right: -cardWidth * _kPaddingRatio,
       top: -cardHeight * _kPaddingRatio,
       bottom: -cardHeight * _kPaddingRatio,
-      child: Transform.rotate(
-        angle: _kRotation,
-        child: Container(
-          width: cardWidth,
-          height: cardHeight,
-          decoration: BoxDecoration(
-            borderRadius: Spacing.defaultBorderRadius,
-            boxShadow: context.colors.accent.cardShadow,
-            image: DecorationImage(
-              image: AssetImage(TarotAppAssets.cardDesign.path),
-              fit: BoxFit.cover,
-            ),
+      child: Container(
+        width: cardWidth,
+        height: cardHeight,
+        decoration: BoxDecoration(
+          borderRadius: Spacing.defaultBorderRadius,
+          image: DecorationImage(
+            image: AssetImage(TarotAppAssets.maskotDaily.path),
+            fit: BoxFit.cover,
           ),
         ),
       ),

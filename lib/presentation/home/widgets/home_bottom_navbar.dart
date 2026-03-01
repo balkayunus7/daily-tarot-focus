@@ -21,9 +21,9 @@ class HomeBottomNavbar extends StatelessWidget {
     final items = TarotMockData.navbarItems;
 
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16),
+      padding: const EdgeInsets.symmetric(horizontal: 32),
       child: Container(
-        height: 64,
+        height: 52,
         decoration: BoxDecoration(
           color: context.colors.background,
           borderRadius: const BorderRadius.all(Radius.circular(100)),
@@ -47,7 +47,7 @@ class HomeBottomNavbar extends StatelessWidget {
                 onTap: () => onTap(index),
                 child: Container(
                   margin: const EdgeInsets.symmetric(horizontal: 4),
-                  padding: const EdgeInsets.symmetric(vertical: 10),
+                  padding: const EdgeInsets.symmetric(vertical: 6),
                   decoration: BoxDecoration(
                     color: isSelected ? context.colors.primary : Colors.transparent,
                     borderRadius: BorderRadius.circular(100),
@@ -58,8 +58,8 @@ class HomeBottomNavbar extends StatelessWidget {
                     children: [
                       SvgPicture.asset(
                         path,
-                        width: path == TarotAppAssets.tarotIcon.path ? 28 : 20,
-                        height: path == TarotAppAssets.tarotIcon.path ? 28 : 20,
+                        width: path == TarotAppAssets.tarotIcon.path ? 24 : 16,
+                        height: path == TarotAppAssets.tarotIcon.path ? 24 : 16,
                         colorFilter: ColorFilter.mode(
                           isSelected ? context.colors.background : context.colors.primary,
                           BlendMode.srcIn,

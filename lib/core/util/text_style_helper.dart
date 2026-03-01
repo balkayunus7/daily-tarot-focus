@@ -86,6 +86,9 @@ TextStyle m18w700(BuildContext context) =>
 TextStyle m20w600(BuildContext context) =>
     buildTextStyle(context, fontSize: 20, fontWeight: FontWeight.w600);
 
+TextStyle m20w700(BuildContext context) =>
+    buildTextStyle(context, fontSize: 20, fontWeight: FontWeight.w700);
+
 TextStyle m20w800(BuildContext context) =>
     buildTextStyle(context, fontSize: 20, fontWeight: FontWeight.w800);
 

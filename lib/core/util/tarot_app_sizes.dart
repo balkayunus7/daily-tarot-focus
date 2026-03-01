@@ -40,9 +40,9 @@ class SpacingConsts {
   static const double cardShadowBlurRadius = 20;
   static const double cardShadowSpreadRadius = 10;
   static const double wheelCardSelectedWidth = 120;
-  static const double wheelCardSelectedHeight = 200;
-  static const double wheelCardUnselectedWidth = 70;
-  static const double wheelCardUnselectedHeight = 110;
+  static const double wheelCardSelectedHeight = 180;
+  static const double wheelCardUnselectedWidth = 65;
+  static const double wheelCardUnselectedHeight = 100;
 }
 
 class Spacing {

@@ -1,15 +1,13 @@
 enum TarotAppAssets {
-  appLogo._('assets/png/app_logo.png'),
-  onboardingStep1._('assets/gif/onboarding_step_1.gif'),
-  onboardingStep2._('assets/gif/onboarding_step_2.gif'),
-  paywall._('assets/gif/paywall.gif'),
-  loading._('assets/png/loading.png'),
-  cardDesign._('assets/png/card_design.png'),
-  askQuestion._('assets/png/ask_question.png'),
-  library._('assets/png/library.png'),
-  dailyBack._('assets/png/background+new2.png'),
-  cardBack._('assets/png/card_background.png'),
+  /////PNG///////////////////////
+  dailyPickBg._('assets/png/daily_pick_bg.png'),
+  cardBg._('assets/png/card_bg.png'),
   arrow._('assets/png/arrow.png'),
+  maskotMain._('assets/png/maskot_main.png'),
+  maskotDaily._('assets/png/maskot_daily.png'),
+  library._('assets/png/library.png'),
+  askQuestion._('assets/png/ask_question.png'),
+  /////SVG///////////////////////
   crown._('assets/svg/crown.svg'),
   fish._('assets/svg/fish.svg'),
   explore._('assets/svg/explore.svg'),

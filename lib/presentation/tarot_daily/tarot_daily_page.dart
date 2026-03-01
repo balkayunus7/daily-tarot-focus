@@ -32,7 +32,7 @@ class _TarotDailyPageState extends State<TarotDailyPage> {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text('Daily Tarots', style: m18w700(context)),
+                      Text('Daily Tarots', style: m20w700(context)),
                       Spacing.xsmallH,
                       Text(
                         'YOUR SPIRITUAL JOURNEY',
@@ -176,7 +176,37 @@ class _DailyCardListItem extends StatelessWidget {
                       ),
                       child: ClipRRect(
                         borderRadius: Spacing.xsmallBorderRadius,
-                        child: Image.asset(card.imagePath, width: 56, fit: BoxFit.fitHeight),
+                        child: Image.asset(
+                          card.imagePath,
+                          width: 56,
+                          height: 80,
+                          fit: BoxFit.cover,
+                          frameBuilder: (context, child, frame, wasSynchronouslyLoaded) {
+                            if (wasSynchronouslyLoaded || frame != null) {
+                              return child;
+                            }
+                            return SizedBox(
+                              width: 56,
+                              height: 80,
+                              child: DecoratedBox(
+                                decoration: BoxDecoration(
+                                  color: dotColor.withValues(alpha: 0.1),
+                                  borderRadius: Spacing.xsmallBorderRadius,
+                                ),
+                                child: Center(
+                                  child: SizedBox(
+                                    width: 16,
+                                    height: 16,
+                                    child: CircularProgressIndicator(
+                                      strokeWidth: 1.5,
+                                      color: dotColor.withValues(alpha: 0.4),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            );
+                          },
+                        ),
                       ),
                     ),
                     Spacing.mediumW,

@@ -48,6 +48,7 @@ class TarotLocalizationCubit extends Cubit<TarotLocalizationState> {
   }
 
   Future<void> refreshCards(String languageCode) async {
+    _localizationService.clearCache();
     emit(TarotLocalizationState.initial());
     await loadCards(languageCode);
   }

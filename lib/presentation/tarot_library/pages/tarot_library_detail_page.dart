@@ -1,3 +1,4 @@
+import 'package:daily_tarot_focus/application/tarot_localization/tarot_localization_cubit.dart';
 import 'package:daily_tarot_focus/core/util/locale_keys.dart';
 import 'package:daily_tarot_focus/core/util/shadow_extensions.dart';
 import 'package:daily_tarot_focus/core/util/tarot_app_sizes.dart';
@@ -11,7 +12,36 @@ import 'package:mobile_boilerplate/common_dependencies.dart';
 import 'package:mobile_boilerplate/presentation/extensions/build_context_theme_ext.dart';
 
 class TarotDataDetailPage extends StatelessWidget {
-  const TarotDataDetailPage({required this.tarot, super.key});
+  const TarotDataDetailPage({required this.tarotId, super.key});
+
+  /// Card title used to look up the latest localized version from the cubit.
+  final String tarotId;
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<TarotLocalizationCubit, TarotLocalizationState>(
+      builder: (context, locState) {
+        // Always resolve card from cubit so language changes are reflected.
+        final cubit = context.read<TarotLocalizationCubit>();
+        final tarot =
+            cubit.getByTitle(tarotId) ??
+            (locState.allCards.isNotEmpty ? locState.allCards.first : null);
+
+        if (tarot == null) {
+          return BaseGradientLayout(
+            appBar: TarotAppBar(title: tarotId),
+            child: const Center(child: CircularProgressIndicator()),
+          );
+        }
+
+        return _TarotDetailContent(tarot: tarot);
+      },
+    );
+  }
+}
+
+class _TarotDetailContent extends StatelessWidget {
+  const _TarotDetailContent({required this.tarot});
   final TarotCard tarot;
 
   @override

@@ -100,8 +100,7 @@ final appRouter = GoRouter(
           return CustomTransitionPage(
             key: state.pageKey,
             child: TarotRevealDetailPage(tarot: extraTarot),
-            transitionsBuilder:
-                (context, animation, secondaryAnimation, child) {
+            transitionsBuilder: (context, animation, secondaryAnimation, child) {
               return child;
             },
           );
@@ -109,9 +108,7 @@ final appRouter = GoRouter(
 
         final tarotId = state.pathParameters['tarotId'];
         final cubit = context.read<TarotLocalizationCubit>();
-        final tarot = tarotId != null
-            ? cubit.getByTitle(tarotId)
-            : cubit.getRandomCard();
+        final tarot = tarotId != null ? cubit.getByTitle(tarotId) : cubit.getRandomCard();
 
         return CustomTransitionPage(
           key: state.pageKey,
@@ -138,24 +135,11 @@ final appRouter = GoRouter(
       path: '${AppRoutes.tarotLibraryDetail}/:tarotId',
       name: AppRoutes.tarotLibraryDetail,
       pageBuilder: (context, state) {
-        // Try to get tarot from extra first, fallback to cubit lookup
-        final extraTarot = state.extra as TarotCard?;
-        if (extraTarot != null) {
-          return MaterialPage(
-            key: state.pageKey,
-            child: TarotDataDetailPage(tarot: extraTarot),
-          );
-        }
-
-        final tarotId = state.pathParameters['tarotId'];
-        final cubit = context.read<TarotLocalizationCubit>();
-        final tarot = cubit.getByTitle(tarotId ?? '');
+        final tarotId = state.pathParameters['tarotId'] ?? '';
 
         return MaterialPage(
           key: state.pageKey,
-          child: TarotDataDetailPage(
-            tarot: tarot ?? cubit.state.allCards.first,
-          ),
+          child: TarotDataDetailPage(tarotId: tarotId),
         );
       },
     ),

@@ -1,3 +1,4 @@
+import 'package:daily_tarot_focus/application/tarot/tarot_bloc.dart';
 import 'package:daily_tarot_focus/application/tarot_localization/tarot_localization_cubit.dart';
 import 'package:daily_tarot_focus/core/util/haptic_feedback_helper.dart';
 import 'package:daily_tarot_focus/core/util/locale_extensions.dart';
@@ -6,6 +7,7 @@ import 'package:daily_tarot_focus/core/util/tarot_app_sizes.dart';
 import 'package:daily_tarot_focus/core/util/text_style_helper.dart';
 import 'package:daily_tarot_focus/core/widgets/tarot_app_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:mobile_boilerplate/application/auth/auth_cubit.dart';
 import 'package:mobile_boilerplate/common_dependencies.dart';
 import 'package:mobile_boilerplate/presentation/extensions/build_context_theme_ext.dart';
 import 'package:mobile_boilerplate/presentation/widgets/scaling_container.dart';
@@ -128,9 +130,17 @@ class SettingsPage extends StatelessWidget {
                 isSelected: context.isLocaleEn,
                 onTap: () async {
                   await context.setLocale(context.localeEn);
+                  final langCode = LocaleLanguage.en.value;
+
                   if (context.mounted) {
-                    final langCode = Localizations.localeOf(context).languageCode;
                     await context.read<TarotLocalizationCubit>().refreshCards(langCode);
+                    if (context.mounted) {
+                      final session = context.read<AuthCubit>().state.sessionOrCrash;
+                      context.read<TarotBloc>().addDailyCardsFetched(
+                        session: session,
+                        languageCode: langCode,
+                      );
+                    }
                   }
                   await HapticFeedbackHelper.selectionClick();
                   if (context.mounted) Navigator.pop(context);
@@ -143,9 +153,17 @@ class SettingsPage extends StatelessWidget {
                 isSelected: context.isLocaleTr,
                 onTap: () async {
                   await context.setLocale(context.localeTr);
+                  final langCode = LocaleLanguage.tr.value;
+
                   if (context.mounted) {
-                    final langCode = Localizations.localeOf(context).languageCode;
                     await context.read<TarotLocalizationCubit>().refreshCards(langCode);
+                    if (context.mounted) {
+                      final session = context.read<AuthCubit>().state.sessionOrCrash;
+                      context.read<TarotBloc>().addDailyCardsFetched(
+                        session: session,
+                        languageCode: langCode,
+                      );
+                    }
                   }
                   await HapticFeedbackHelper.selectionClick();
                   if (context.mounted) Navigator.pop(context);

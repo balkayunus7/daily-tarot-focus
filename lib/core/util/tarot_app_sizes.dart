@@ -129,11 +129,9 @@ class Spacing {
     vertical: SpacingConsts.tiny,
   );
 
-  static double screenWidth(BuildContext context) =>
-      MediaQuery.of(context).size.width;
+  static double screenWidth(BuildContext context) => MediaQuery.of(context).size.width;
 
-  static double screenHeight(BuildContext context) =>
-      MediaQuery.of(context).size.height;
+  static double screenHeight(BuildContext context) => MediaQuery.of(context).size.height;
 
   static double get buttonHeight => 54;
   static double get contHeight => 54;

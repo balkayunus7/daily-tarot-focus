@@ -1,4 +1,3 @@
-import 'package:daily_tarot_focus/core/widgets/custom_loading_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile_boilerplate/common_dependencies.dart';
 import 'package:mobile_boilerplate/presentation/extensions/build_context_theme_ext.dart';
@@ -26,7 +25,7 @@ class CustomCacheNetworkImage extends StatelessWidget {
       width: width,
       height: height,
       placeholder: (context, url) {
-        return CustomLoadingIndicator(indicatorSize: indicatorSize);
+        return CircularProgressIndicator(value: indicatorSize);
       },
       errorWidget: (context, url, error) {
         return Container(

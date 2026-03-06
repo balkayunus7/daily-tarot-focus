@@ -1,6 +1,5 @@
 import 'package:daily_tarot_focus/core/util/tarot_app_sizes.dart';
 import 'package:daily_tarot_focus/core/util/text_style_helper.dart';
-import 'package:daily_tarot_focus/core/widgets/custom_loading_indicator.dart';
 import 'package:daily_tarot_focus/core/widgets/fancy_container.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -55,7 +54,7 @@ class FancyButton extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             if (isLoading) ...[
-              CustomLoadingIndicator(indicatorSize: 28, color: context.colors.background),
+              const CircularProgressIndicator(value: 28),
             ] else ...[
               if (icon != null) ...[icon!],
               if (text != null) ...[

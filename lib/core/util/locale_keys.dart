@@ -78,6 +78,7 @@ class LocaleKeys {
 
   // Navbar
   static const navbarExplore = 'navbar.explore';
+  static const navbarDailyTarots = 'navbar.daily_tarots';
   static const navbarProfile = 'navbar.profile';
 
   // Common
@@ -116,4 +117,10 @@ class LocaleKeys {
   static const failureForbidden = 'failure.forbidden_message';
   static const failureRateLimit = 'failure.rate_limit_message';
   static const failureUnexpected = 'failure.unexpected_message';
+
+  // Tarot Daily
+  static const tarotDailyTitle = 'tarot_daily.title';
+  static const tarotDailySubtitle = 'tarot_daily.subtitle';
+  static const tarotDailyErrorDesc = 'tarot_daily.error_desc';
+  static const tarotDailyEmptyDesc = 'tarot_daily.empty_desc';
 }

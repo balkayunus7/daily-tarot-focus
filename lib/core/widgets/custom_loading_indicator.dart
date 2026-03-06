@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:mobile_boilerplate/presentation/extensions/build_context_theme_ext.dart';
 
 class CustomLoadingIndicator extends StatelessWidget {
@@ -10,9 +9,9 @@ class CustomLoadingIndicator extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: SpinKitFadingCircle(
+      child: CircularProgressIndicator(
         color: color ?? context.colors.primary,
-        size: indicatorSize ?? 48.0,
+        value: indicatorSize ?? 48.0,
       ),
     );
   }

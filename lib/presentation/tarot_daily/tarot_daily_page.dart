@@ -1,5 +1,6 @@
 import 'package:daily_tarot_focus/application/tarot/tarot_bloc.dart';
 import 'package:daily_tarot_focus/application/tarot/tarot_state.dart';
+import 'package:daily_tarot_focus/core/util/locale_keys.dart';
 import 'package:daily_tarot_focus/core/util/tarot_app_assets.dart';
 import 'package:daily_tarot_focus/core/util/tarot_app_sizes.dart';
 import 'package:daily_tarot_focus/core/util/text_style_helper.dart';
@@ -32,10 +33,10 @@ class _TarotDailyPageState extends State<TarotDailyPage> {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text('Daily Tarots', style: m20w700(context)),
+                      Text(LocaleKeys.tarotDailyTitle.tr(), style: m20w700(context)),
                       Spacing.xsmallH,
                       Text(
-                        'YOUR SPIRITUAL JOURNEY',
+                        LocaleKeys.tarotDailySubtitle.tr(),
                         style: m10w600(context).copyWith(
                           color: context.colors.primary,
                           letterSpacing: 1.5,
@@ -69,7 +70,7 @@ class _TarotDailyPageState extends State<TarotDailyPage> {
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text('Kartlar yüklenemedi', style: m14w600(context)),
+                          Text(LocaleKeys.tarotDailyErrorDesc.tr(), style: m14w600(context)),
                           Spacing.mediumH,
                         ],
                       ),
@@ -79,7 +80,9 @@ class _TarotDailyPageState extends State<TarotDailyPage> {
                   if (state.hasFetchedDailyCardsSucceeded) {
                     final cards = state.dailyCardsOrEmpty;
                     if (cards.isEmpty()) {
-                      return Center(child: Text('Henüz kart çekilmedi', style: m14w600(context)));
+                      return Center(
+                        child: Text(LocaleKeys.tarotDailyEmptyDesc.tr(), style: m14w600(context)),
+                      );
                     }
 
                     return ListView.builder(

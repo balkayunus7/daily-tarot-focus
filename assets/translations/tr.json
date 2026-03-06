@@ -74,6 +74,7 @@
     },
     "navbar": {
         "explore": "Keşfet",
+        "daily_tarots": "Günlük Tarot",
         "profile": "Profil"
     },
     "common": {
@@ -126,5 +127,11 @@
         "capricorn": "Oğlak",
         "aquarius": "Kova",
         "pisces": "Balık"
+    },
+    "tarot_daily": {
+        "title": "Günlük Tarotlar",
+        "subtitle": "SENİN RUHSAL YOLCULUĞUM",
+        "error_desc": "Kartlar yüklenemedi",
+        "empty_desc": "Henüz kart çekilmedi"
     }
 }

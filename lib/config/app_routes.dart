@@ -1,6 +1,18 @@
 class AppRoutes {
   AppRoutes._();
 
+  /// Auth not required routes
+  static const Set<String> publicRoutes = {
+    AppRoutes.splash,
+  };
+
+  /// Auth required routes
+  static const Set<String> registerRoutes = {
+    AppRoutes.registerStepZodiac,
+    AppRoutes.registerStepRelationship,
+    AppRoutes.registerStepBirthdate,
+  };
+
   // Auth routes
   static const String splash = '/';
   static const String registerStepZodiac = '/register-step-zodiac';

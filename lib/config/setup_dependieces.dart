@@ -23,6 +23,7 @@ import 'package:mobile_boilerplate/application/purchases/purchases_bloc.dart';
 import 'package:mobile_boilerplate/application/remote_notification/remote_notification_cubit.dart';
 import 'package:mobile_boilerplate/application/remote_notification/remote_notification_token_cubit.dart';
 import 'package:mobile_boilerplate/common_dependencies.dart';
+import 'package:mobile_boilerplate/domain/common/rate_limiter.dart';
 import 'package:mobile_boilerplate/infrastructure/analytics/impl_analytics_service.dart';
 import 'package:mobile_boilerplate/infrastructure/app_tracking/impl_app_tracking_service.dart';
 import 'package:mobile_boilerplate/infrastructure/auth/store_checker_service.dart';
@@ -66,6 +67,10 @@ Future<void> setupDependencies() async {
     ..registerSingleton<PackageInfo>(await PackageInfo.fromPlatform())
     ..registerSingleton<PurchasesWrapper>(PurchasesWrapper())
     ..registerSingleton<HttpFailureHandler>(const HttpFailureHandler())
+    ..registerSingleton<RateLimiter>(
+      RateLimiter(maxAttempts: 3, window: const Duration(seconds: 60)),
+    )
+    ..registerSingleton<FlutterSecureStorage>(const FlutterSecureStorage())
     ..registerSingleton<GoogleSignIn>(GoogleSignIn())
     ..registerSingleton<SignInWithAppleWrapper>(SignInWithAppleWrapper())
     ..registerSingleton<UrlLauncherWrapper>(UrlLauncherWrapper())
@@ -80,8 +85,9 @@ Future<void> setupDependencies() async {
     ..registerSingleton<ImplAuthService>(
       ImplAuthService(
         getIt<SupabaseClient>(),
-        getIt<SharedPreferences>(),
+        getIt<FlutterSecureStorage>(),
         getIt<HttpFailureHandler>(),
+        getIt<RateLimiter>(),
       ),
     )
     ..registerSingleton<ImplUserRepository>(

@@ -1,5 +1,6 @@
 import 'package:daily_tarot_focus/application/tarot_localization/tarot_localization_cubit.dart';
 import 'package:daily_tarot_focus/config/app_routes.dart';
+import 'package:daily_tarot_focus/domain/auth/tarot_user.dart';
 import 'package:daily_tarot_focus/domain/tarot/tarot_data.dart';
 import 'package:daily_tarot_focus/presentation/auth/pages/register_step_birthdate_page.dart';
 import 'package:daily_tarot_focus/presentation/auth/pages/register_step_relationship_page.dart';
@@ -14,6 +15,7 @@ import 'package:daily_tarot_focus/presentation/tarot_reveal/pages/tarot_reveal_d
 import 'package:daily_tarot_focus/presentation/tarot_reveal/pages/tarot_reveal_page.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:mobile_boilerplate/application/auth/auth_cubit.dart';
 import 'package:mobile_boilerplate/common_dependencies.dart';
 
 final GlobalKey<NavigatorState> rootNavigatorKey = GlobalKey<NavigatorState>();
@@ -22,6 +24,38 @@ final appRouter = GoRouter(
   navigatorKey: rootNavigatorKey,
   initialLocation: AppRoutes.splash,
   debugLogDiagnostics: true,
+  redirect: (context, state) {
+    final navigatorContext = rootNavigatorKey.currentContext;
+    if (navigatorContext == null) return null;
+
+    final authCubit = navigatorContext.read<AuthCubit>();
+    final authState = authCubit.state;
+    final location = state.matchedLocation;
+    final isPublicRoute = AppRoutes.publicRoutes.contains(location);
+    final isRegisterRoute = AppRoutes.registerRoutes.contains(location);
+
+    if (authState.isInitial) return null;
+
+    if (!authState.isAuthenticated && !isPublicRoute) {
+      return AppRoutes.splash;
+    }
+
+    if (authState.isAuthenticated && !isPublicRoute && !isRegisterRoute) {
+      final user = authState.userOrCrash;
+      if (user is TarotUser && !user.isProfileComplete) {
+        return AppRoutes.registerStepZodiac;
+      }
+    }
+
+    if (authState.isAuthenticated && isPublicRoute) {
+      final user = authState.userOrCrash;
+      if (user is TarotUser && user.isProfileComplete) {
+        return AppRoutes.tarotExplore;
+      }
+    }
+
+    return null;
+  },
   routes: [
     GoRoute(
       path: AppRoutes.splash,

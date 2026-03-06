@@ -7,17 +7,19 @@ import 'package:mobile_boilerplate/domain/auth/auth_provider.dart' as domain;
 import 'package:mobile_boilerplate/domain/auth/i_auth_service.dart';
 import 'package:mobile_boilerplate/domain/auth/session.dart';
 import 'package:mobile_boilerplate/domain/common/failure.dart';
+import 'package:mobile_boilerplate/domain/common/rate_limiter.dart';
 import 'package:mobile_boilerplate/infrastructure/auth/device_id_mixin.dart';
 import 'package:mobile_boilerplate/infrastructure/http/http_failure_handler.dart';
-import 'package:supabase/supabase.dart' hide Session;
+import 'package:mobile_boilerplate/infrastructure_dependencies.dart' hide User;
 import 'package:supabase/supabase.dart' as supabase show Session;
+import 'package:supabase/supabase.dart' hide Session;
 
-class ImplAuthService extends IAuthService
-    with HttpFailureHandlerMixin, DeviceIdMixin {
+class ImplAuthService extends IAuthService with HttpFailureHandlerMixin, DeviceIdMixin {
   ImplAuthService(
     this._supabaseClient,
-    this._sharedPreferences,
+    this._secureStorage,
     this._httpFailureHandler,
+    this._rateLimiter,
   );
 
   static const _sessionKey = 'session';
@@ -42,14 +44,12 @@ class ImplAuthService extends IAuthService
         return right(_toSession(currentSupabaseSession));
       }
 
-      final sessionJson = _sharedPreferences.getString(
-        _sessionKey,
-      );
+      final sessionJson = await secureStorage.read(key: _sessionKey);
+
       if (sessionJson != null) {
         try {
-          final response = await supabaseClient.auth.recoverSession(
-            sessionJson,
-          );
+          final response = await supabaseClient.auth.recoverSession(sessionJson);
+
           final freshToken = response.session?.accessToken;
           if (freshToken != null && freshToken.isNotEmpty) {
             final recoveredSession = response.session!;
@@ -57,7 +57,7 @@ class ImplAuthService extends IAuthService
             return right(_toSession(recoveredSession));
           }
         } on AuthException {
-          await _sharedPreferences.remove(_sessionKey);
+          await secureStorage.delete(key: _sessionKey);
         }
       }
 
@@ -79,8 +79,9 @@ class ImplAuthService extends IAuthService
   @override
   Future<FailureOr<Unit>> clearSession() async {
     try {
-      await _sharedPreferences.remove(_sessionKey);
+      await secureStorage.delete(key: _sessionKey);
       unawaited(_authSubscription?.cancel());
+
       return clearDeviceId();
     } on Exception {
       return left(const UnknownFailure());
@@ -89,6 +90,11 @@ class ImplAuthService extends IAuthService
 
   @override
   Future<FailureOr<Session>> signInAnonymously() async {
+    if (!rateLimiter.canProceed) {
+      return left(const CancelledFailure());
+    }
+    rateLimiter.recordAttempt();
+
     try {
       final deviceIdResult = await getDeviceId();
       final deviceId = deviceIdResult.fold((l) => null, (r) => r);
@@ -105,6 +111,7 @@ class ImplAuthService extends IAuthService
         await _saveSession(session);
       }
 
+      rateLimiter.reset();
       return right(_toSession(session, user));
     } on PlatformException catch (e) {
       if (e.code == 'sign_in_canceled') {
@@ -119,7 +126,7 @@ class ImplAuthService extends IAuthService
   @override
   Future<FailureOr<Unit>> signOutAnonymously() async {
     try {
-      await _sharedPreferences.remove(_sessionKey);
+      await secureStorage.delete(key: _sessionKey);
       return right(unit);
     } on Exception {
       return left(const UnknownFailure());
@@ -148,6 +155,7 @@ class ImplAuthService extends IAuthService
 
   Session _toSession(supabase.Session? session, [User? user]) {
     final resolvedUser = user ?? session!.user;
+
     return Session(
       userId: resolvedUser.id,
       idToken: session?.accessToken ?? '',
@@ -156,16 +164,20 @@ class ImplAuthService extends IAuthService
     );
   }
 
-  Future<bool> _saveSession(supabase.Session session) {
+  Future<void> _saveSession(supabase.Session session) {
     final jsonStr = jsonEncode(session.toJson());
-    return _sharedPreferences.setString(_sessionKey, jsonStr);
+    return _secureStorage.write(key: _sessionKey, value: jsonStr);
   }
 
   @override
+  FlutterSecureStorage get secureStorage => _secureStorage;
+  @override
   HttpFailureHandler get httpFailureHandler => _httpFailureHandler;
   SupabaseClient get supabaseClient => _supabaseClient;
+  RateLimiter get rateLimiter => _rateLimiter;
 
   final HttpFailureHandler _httpFailureHandler;
-  final SharedPreferences _sharedPreferences;
+  final FlutterSecureStorage _secureStorage;
   final SupabaseClient _supabaseClient;
+  final RateLimiter _rateLimiter;
 }

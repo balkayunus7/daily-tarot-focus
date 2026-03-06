@@ -5,7 +5,6 @@ import 'package:daily_tarot_focus/application/tarot/tarot_state.dart';
 import 'package:daily_tarot_focus/application/tarot_localization/tarot_localization_cubit.dart';
 import 'package:daily_tarot_focus/config/app_routes.dart';
 import 'package:daily_tarot_focus/core/util/tarot_app_assets.dart';
-import 'package:daily_tarot_focus/domain/auth/tarot_user.dart';
 import 'package:daily_tarot_focus/presentation/auth/widgets/splash_view.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -39,18 +38,6 @@ class _SplashPageState extends State<SplashPage>
     });
   }
 
-  Future<void> routeOnAuthenticated() async {
-    final authState = context.read<AuthCubit>().state;
-    final user = authState.userOrCrash;
-    if (user is! TarotUser) return;
-
-    if (user.isProfileComplete) {
-      context.go(AppRoutes.tarotExplore);
-    } else {
-      context.go(AppRoutes.registerStepZodiac);
-    }
-  }
-
   Future<void> _fetchDailyCards() async {
     final authState = context.read<AuthCubit>().state;
     final langCode = Localizations.localeOf(context).languageCode;
@@ -70,8 +57,8 @@ class _SplashPageState extends State<SplashPage>
             listenWhen: (previous, current) {
               return previous.hasFetchedDailyCards != current.hasFetchedDailyCards;
             },
-            listener: (context, state) async {
-              await routeOnAuthenticated();
+            listener: (context, state) {
+              context.go(AppRoutes.tarotExplore);
             },
           ),
           BlocListener<AuthCubit, AuthState>(

@@ -3,7 +3,7 @@ import 'package:daily_tarot_focus/core/util/tarot_routes.dart';
 import 'package:daily_tarot_focus/domain/tarot/daily_tarot_record.dart';
 import 'package:daily_tarot_focus/domain/tarot/i_tarot_repository.dart';
 import 'package:mobile_boilerplate/common_dependencies.dart';
-import 'package:mobile_boilerplate/domain/auth/session.dart';
+import 'package:mobile_boilerplate/domain/auth/tarot_session.dart';
 import 'package:mobile_boilerplate/domain/common/failure.dart';
 import 'package:mobile_boilerplate/domain/common/http_utilities.dart';
 import 'package:mobile_boilerplate/extensions.dart';
@@ -15,7 +15,7 @@ class ImplTarotRepository extends ITarotRepository with HttpFailureHandlerMixin 
 
   @override
   Future<FailureOr<Unit>> saveDailyCard({
-    required Session session,
+    required TarotSession session,
     required String cardId,
   }) async {
     try {
@@ -23,6 +23,7 @@ class ImplTarotRepository extends ITarotRepository with HttpFailureHandlerMixin 
         route: SAVE_DAILY_CARD,
         method: HttpMethod.post,
         body: {'card_id': cardId},
+        session: session,
       );
       if (responseOrFail.isLeft()) return left(const UnknownFailure());
       final response = responseOrFail.getRightOrCrash();
@@ -39,10 +40,13 @@ class ImplTarotRepository extends ITarotRepository with HttpFailureHandlerMixin 
 
   @override
   Future<FailureOr<List<DailyTarotRecord>>> getDailyCards({
-    required Session session,
+    required TarotSession session,
   }) async {
     try {
-      final responseOrFail = await supabaseClient.secureInvoke(route: GET_DAILY_CARDS);
+      final responseOrFail = await supabaseClient.secureInvoke(
+        route: GET_DAILY_CARDS,
+        session: session,
+      );
       if (responseOrFail.isLeft()) return left(const UnknownFailure());
       final response = responseOrFail.getRightOrCrash();
 

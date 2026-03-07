@@ -4,7 +4,7 @@ import 'package:daily_tarot_focus/domain/auth/tarot_user.dart';
 import 'package:daily_tarot_focus/domain/auth/tarot_user_properties.dart';
 import 'package:mobile_boilerplate/common_dependencies.dart';
 import 'package:mobile_boilerplate/domain/auth/i_user_repository.dart';
-import 'package:mobile_boilerplate/domain/auth/session.dart';
+import 'package:mobile_boilerplate/domain/auth/tarot_session.dart';
 import 'package:mobile_boilerplate/domain/auth/user.dart';
 import 'package:mobile_boilerplate/domain/common/failure.dart';
 import 'package:mobile_boilerplate/domain/common/http_utilities.dart';
@@ -16,9 +16,12 @@ class ImplUserRepository extends IUserRepository with HttpFailureHandlerMixin {
   ImplUserRepository(this._supabaseClient, this._httpFailureHandler);
 
   @override
-  Future<FailureOr<User>> getUser({required Session session}) async {
+  Future<FailureOr<User>> getUser({required TarotSession session}) async {
     try {
-      final responseOrFail = await supabaseClient.secureInvoke(route: GET_USER);
+      final responseOrFail = await supabaseClient.secureInvoke(
+        route: GET_USER,
+        session: session,
+      );
       if (responseOrFail.isLeft()) return left(const UnknownFailure());
       final response = responseOrFail.getRightOrCrash();
 
@@ -32,7 +35,7 @@ class ImplUserRepository extends IUserRepository with HttpFailureHandlerMixin {
   }
 
   @override
-  Future<FailureOr<Unit>> deleteUser({required Session session}) async {
+  Future<FailureOr<Unit>> deleteUser({required TarotSession session}) async {
     try {
       return right(unit);
     } on Exception {
@@ -42,7 +45,7 @@ class ImplUserRepository extends IUserRepository with HttpFailureHandlerMixin {
 
   @override
   Future<FailureOr<Unit>> setFcmToken({
-    required Session session,
+    required TarotSession session,
     required String fcmToken,
   }) async {
     return right(unit);
@@ -50,7 +53,7 @@ class ImplUserRepository extends IUserRepository with HttpFailureHandlerMixin {
 
   @override
   Future<FailureOr<Unit>> updateUser({
-    required Session session,
+    required TarotSession session,
     required covariant TarotUserProperties properties,
   }) async {
     try {
@@ -58,6 +61,7 @@ class ImplUserRepository extends IUserRepository with HttpFailureHandlerMixin {
         route: UPDATE_USER,
         body: properties.toMap(),
         method: HttpMethod.patch,
+        session: session,
       );
       if (responseOrFail.isLeft()) return left(const UnknownFailure());
       final response = responseOrFail.getRightOrCrash();

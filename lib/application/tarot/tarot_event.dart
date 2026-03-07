@@ -1,4 +1,4 @@
-import 'package:mobile_boilerplate/domain/auth/session.dart';
+import 'package:mobile_boilerplate/domain/auth/tarot_session.dart';
 
 sealed class TarotEvent {
   const TarotEvent();
@@ -8,7 +8,7 @@ sealed class TarotEvent {
 
 final class TarotDailyCardsFetched extends TarotEvent {
   const TarotDailyCardsFetched({required this.session, required this.languageCode});
-  final Session session;
+  final TarotSession session;
   final String languageCode;
 
   @override
@@ -22,7 +22,7 @@ final class TarotDailyCardSaved extends TarotEvent {
     required this.languageCode,
   });
   final String tarotCardId;
-  final Session session;
+  final TarotSession session;
   final String languageCode;
 
   @override

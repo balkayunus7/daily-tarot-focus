@@ -5,7 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:mobile_boilerplate/common_dependencies.dart';
 import 'package:mobile_boilerplate/domain/auth/auth_provider.dart' as domain;
 import 'package:mobile_boilerplate/domain/auth/i_auth_service.dart';
-import 'package:mobile_boilerplate/domain/auth/session.dart';
+import 'package:mobile_boilerplate/domain/auth/tarot_session.dart';
 import 'package:mobile_boilerplate/domain/common/failure.dart';
 import 'package:mobile_boilerplate/domain/common/rate_limiter.dart';
 import 'package:mobile_boilerplate/infrastructure/auth/device_id_mixin.dart';
@@ -26,22 +26,23 @@ class ImplAuthService extends IAuthService with HttpFailureHandlerMixin, DeviceI
   StreamSubscription<AuthState>? _authSubscription;
 
   @override
-  Future<void> listenAuthChanges() async {
+  Future<void> listenAuthChanges({SessionRefreshCallback? onSessionRefreshed}) async {
     await _authSubscription?.cancel();
     _authSubscription = _supabaseClient.auth.onAuthStateChange.listen((data) {
       final session = data.session;
       if (session != null) {
         unawaited(_saveSession(session));
+        onSessionRefreshed?.call(_toTarotSession(session));
       }
     });
   }
 
   @override
-  Future<FailureOr<Session>> getCurrentSession() async {
+  Future<FailureOr<TarotSession>> getCurrentSession() async {
     try {
       final currentSupabaseSession = supabaseClient.auth.currentSession;
       if (currentSupabaseSession != null) {
-        return right(_toSession(currentSupabaseSession));
+        return right(_toTarotSession(currentSupabaseSession));
       }
 
       final sessionJson = await secureStorage.read(key: _sessionKey);
@@ -54,7 +55,7 @@ class ImplAuthService extends IAuthService with HttpFailureHandlerMixin, DeviceI
           if (freshToken != null && freshToken.isNotEmpty) {
             final recoveredSession = response.session!;
             await _saveSession(recoveredSession);
-            return right(_toSession(recoveredSession));
+            return right(_toTarotSession(recoveredSession));
           }
         } on AuthException {
           await secureStorage.delete(key: _sessionKey);
@@ -62,15 +63,6 @@ class ImplAuthService extends IAuthService with HttpFailureHandlerMixin, DeviceI
       }
 
       return left(const NotFoundFailure());
-    } on Exception {
-      return left(const UnknownFailure());
-    }
-  }
-
-  @override
-  Future<FailureOr<Session>> updateSession(Session session) async {
-    try {
-      return right(session);
     } on Exception {
       return left(const UnknownFailure());
     }
@@ -89,7 +81,7 @@ class ImplAuthService extends IAuthService with HttpFailureHandlerMixin, DeviceI
   }
 
   @override
-  Future<FailureOr<Session>> signInAnonymously() async {
+  Future<FailureOr<TarotSession>> signInAnonymously() async {
     if (!rateLimiter.canProceed) {
       return left(const CancelledFailure());
     }
@@ -112,7 +104,7 @@ class ImplAuthService extends IAuthService with HttpFailureHandlerMixin, DeviceI
       }
 
       rateLimiter.reset();
-      return right(_toSession(session, user));
+      return right(_toTarotSession(session, user));
     } on PlatformException catch (e) {
       if (e.code == 'sign_in_canceled') {
         return left(const CancelledFailure());
@@ -134,12 +126,12 @@ class ImplAuthService extends IAuthService with HttpFailureHandlerMixin, DeviceI
   }
 
   @override
-  Future<FailureOr<Session>> signInWithApple() async {
+  Future<FailureOr<TarotSession>> signInWithApple() async {
     throw UnimplementedError();
   }
 
   @override
-  Future<FailureOr<Session>> signInWithGoogle() async {
+  Future<FailureOr<TarotSession>> signInWithGoogle() async {
     throw UnimplementedError();
   }
 
@@ -153,13 +145,12 @@ class ImplAuthService extends IAuthService with HttpFailureHandlerMixin, DeviceI
     throw UnimplementedError();
   }
 
-  Session _toSession(supabase.Session? session, [User? user]) {
+  TarotSession _toTarotSession(supabase.Session? session, [User? user]) {
     final resolvedUser = user ?? session!.user;
 
-    return Session(
+    return TarotSession(
       userId: resolvedUser.id,
       idToken: session?.accessToken ?? '',
-      isNewUser: false,
       provider: domain.AuthProvider.anonymous,
     );
   }

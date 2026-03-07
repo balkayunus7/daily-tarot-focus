@@ -3,8 +3,8 @@ import 'package:daily_tarot_focus/core/util/tarot_routes.dart';
 import 'package:daily_tarot_focus/domain/auth/tarot_user.dart';
 import 'package:daily_tarot_focus/domain/auth/tarot_user_properties.dart';
 import 'package:mobile_boilerplate/common_dependencies.dart';
+import 'package:mobile_boilerplate/domain/auth/auth_session.dart';
 import 'package:mobile_boilerplate/domain/auth/i_user_repository.dart';
-import 'package:mobile_boilerplate/domain/auth/tarot_session.dart';
 import 'package:mobile_boilerplate/domain/auth/user.dart';
 import 'package:mobile_boilerplate/domain/common/failure.dart';
 import 'package:mobile_boilerplate/domain/common/http_utilities.dart';
@@ -16,7 +16,7 @@ class ImplUserRepository extends IUserRepository with HttpFailureHandlerMixin {
   ImplUserRepository(this._supabaseClient, this._httpFailureHandler);
 
   @override
-  Future<FailureOr<User>> getUser({required TarotSession session}) async {
+  Future<FailureOr<User>> getUser({required AuthSession session}) async {
     try {
       final responseOrFail = await supabaseClient.secureInvoke(
         route: GET_USER,
@@ -35,7 +35,7 @@ class ImplUserRepository extends IUserRepository with HttpFailureHandlerMixin {
   }
 
   @override
-  Future<FailureOr<Unit>> deleteUser({required TarotSession session}) async {
+  Future<FailureOr<Unit>> deleteUser({required AuthSession session}) async {
     try {
       return right(unit);
     } on Exception {
@@ -45,7 +45,7 @@ class ImplUserRepository extends IUserRepository with HttpFailureHandlerMixin {
 
   @override
   Future<FailureOr<Unit>> setFcmToken({
-    required TarotSession session,
+    required AuthSession session,
     required String fcmToken,
   }) async {
     return right(unit);
@@ -53,7 +53,7 @@ class ImplUserRepository extends IUserRepository with HttpFailureHandlerMixin {
 
   @override
   Future<FailureOr<Unit>> updateUser({
-    required TarotSession session,
+    required AuthSession session,
     required covariant TarotUserProperties properties,
   }) async {
     try {

@@ -4,7 +4,7 @@ import 'package:daily_tarot_focus/domain/tarot/i_tarot_repository.dart';
 import 'package:daily_tarot_focus/domain/tarot/tarot_data.dart';
 import 'package:daily_tarot_focus/infrastructure/tarot/impl_tarot_localization_service.dart';
 import 'package:mobile_boilerplate/common_dependencies.dart';
-import 'package:mobile_boilerplate/domain/auth/tarot_session.dart';
+import 'package:mobile_boilerplate/domain/auth/auth_session.dart';
 
 class TarotBloc extends Bloc<TarotEvent, TarotState> {
   TarotBloc(this._tarotRepository, this._localizationService) : super(TarotState.initial()) {
@@ -17,12 +17,12 @@ class TarotBloc extends Bloc<TarotEvent, TarotState> {
     }, transformer: sequential());
   }
 
-  void addDailyCardsFetched({required TarotSession session, required String languageCode}) {
+  void addDailyCardsFetched({required AuthSession session, required String languageCode}) {
     add(TarotDailyCardsFetched(session: session, languageCode: languageCode));
   }
 
   void addDailyCardSaved({
-    required TarotSession session,
+    required AuthSession session,
     required String tarotCardId,
     required String languageCode,
   }) {

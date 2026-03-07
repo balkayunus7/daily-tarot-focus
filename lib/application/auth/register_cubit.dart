@@ -3,8 +3,8 @@ import 'package:daily_tarot_focus/domain/auth/tarot_user_properties.dart';
 import 'package:daily_tarot_focus/domain/auth/tarot_user_relations_enum.dart';
 import 'package:daily_tarot_focus/domain/auth/tarot_user_zodiac_enum.dart';
 import 'package:mobile_boilerplate/common_dependencies.dart';
+import 'package:mobile_boilerplate/domain/auth/auth_session.dart';
 import 'package:mobile_boilerplate/domain/auth/i_user_repository.dart';
-import 'package:mobile_boilerplate/domain/auth/tarot_session.dart';
 import 'package:mobile_boilerplate/domain/common/failure.dart';
 
 part 'register_state.dart';
@@ -24,7 +24,7 @@ class RegisterCubit extends Cubit<RegisterState> {
     emit(state.copyWith(birthDate: birthDate));
   }
 
-  Future<void> submitRegistration(TarotSession session) async {
+  Future<void> submitRegistration(AuthSession session) async {
     if (state.isRegisterNotCompleted) {
       emit(
         state.copyWith(

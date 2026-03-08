@@ -47,7 +47,10 @@ class HomeBottomNavbar extends StatelessWidget {
                 onTap: () => onTap(index),
                 child: Container(
                   margin: const EdgeInsets.symmetric(horizontal: 4),
-                  padding: const EdgeInsets.symmetric(vertical: 6),
+                  padding:
+                      path == TarotAppAssets.tarotIcon.path
+                          ? const EdgeInsets.symmetric(vertical: 2)
+                          : const EdgeInsets.symmetric(vertical: 6),
                   decoration: BoxDecoration(
                     color: isSelected ? context.colors.primary : Colors.transparent,
                     borderRadius: BorderRadius.circular(100),

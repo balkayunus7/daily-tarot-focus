@@ -7,6 +7,10 @@ enum TarotAppAssets {
   maskotDaily._('assets/png/maskot_daily.png'),
   library._('assets/png/library.png'),
   askQuestion._('assets/png/ask_question.png'),
+  career._('assets/png/career.png'),
+  love._('assets/png/love.png'),
+  general._('assets/png/general.png'),
+  spirit._('assets/png/spirit.png'),
   /////SVG///////////////////////
   crown._('assets/svg/crown.svg'),
   fish._('assets/svg/fish.svg'),

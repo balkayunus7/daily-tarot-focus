@@ -13,15 +13,12 @@ import 'package:mobile_boilerplate/presentation/extensions/build_context_theme_e
 
 class TarotDataDetailPage extends StatelessWidget {
   const TarotDataDetailPage({required this.tarotId, super.key});
-
-  /// Card title used to look up the latest localized version from the cubit.
   final String tarotId;
 
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<TarotLocalizationCubit, TarotLocalizationState>(
       builder: (context, locState) {
-        // Always resolve card from cubit so language changes are reflected.
         final cubit = context.read<TarotLocalizationCubit>();
         final tarot =
             cubit.getByTitle(tarotId) ??

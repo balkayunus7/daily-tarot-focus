@@ -107,7 +107,7 @@ class TarotAppBar extends StatelessWidget implements PreferredSizeWidget {
             onTap: onBackIconTap ?? () => context.pop(),
             child: Center(
               child: Icon(
-                backIcon ?? Icons.arrow_back_ios,
+                backIcon ?? Icons.arrow_back,
                 size: 20,
                 color: context.colors.textPrimary,
               ),
@@ -126,7 +126,7 @@ class TarotAppBar extends StatelessWidget implements PreferredSizeWidget {
               child: Center(
                 child: Icon(
                   trailingIcon,
-                  size: 20,
+                  size: 16,
                   color: context.colors.textPrimary,
                 ),
               ),

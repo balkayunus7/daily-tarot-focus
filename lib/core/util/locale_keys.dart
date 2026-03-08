@@ -8,9 +8,9 @@ class LocaleKeys {
   static const exploreAskQuestion = 'explore_page.ask_question';
   static const exploreLibrary = 'explore_page.library';
   static const exploreDiscoverDaily = 'explore_page.discover_daily';
+  static const exploreAskQuestionTitle = 'explore_page.ask_question_title';
+  static const exploreAskQuestionButton = 'explore_page.ask_question_button';
   static const exploreDailyCard = 'explore_page.daily_card';
-  static const exploreDailyCardTitle = 'explore_page.daily_card_title';
-  static const exploreCardButton = 'explore_page.explore_card_button';
   static const exploreGoPremium = 'explore_page.go_premium';
   static const exploreUnlockAllFeatures = 'explore_page.unlock_all_features';
   static const exploreGetPro = 'explore_page.get_pro';

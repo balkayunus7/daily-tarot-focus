@@ -1,0 +1,120 @@
+import 'package:daily_tarot_focus/application/tarot/tarot_bloc.dart';
+import 'package:daily_tarot_focus/application/tarot/tarot_state.dart';
+import 'package:daily_tarot_focus/core/util/locale_keys.dart';
+import 'package:daily_tarot_focus/core/util/tarot_app_assets.dart';
+import 'package:daily_tarot_focus/core/util/tarot_app_sizes.dart';
+import 'package:daily_tarot_focus/core/util/text_style_helper.dart';
+import 'package:daily_tarot_focus/domain/tarot/tarot_data.dart';
+import 'package:daily_tarot_focus/presentation/tarot_daily/helpers/daily_page_date_range_sheet.dart';
+import 'package:daily_tarot_focus/presentation/tarot_daily/helpers/daily_page_mixin.dart';
+import 'package:flutter/material.dart';
+import 'package:mobile_boilerplate/common_dependencies.dart';
+import 'package:mobile_boilerplate/presentation/extensions/build_context_theme_ext.dart';
+import 'package:mobile_boilerplate/presentation/extensions/date_time_ext.dart';
+import 'package:mobile_boilerplate/presentation/widgets/scaling_container.dart';
+
+part '../widgets/daily_list_item.dart';
+part '../widgets/daily_date_range_badge.dart';
+part '../widgets/daily_header.dart';
+
+class TarotDailyPage extends StatefulWidget {
+  const TarotDailyPage({super.key});
+
+  @override
+  State<TarotDailyPage> createState() => _TarotDailyPageState();
+}
+
+class _TarotDailyPageState extends State<TarotDailyPage>
+    with DailyPageMixin, DailyPageDateRangeSheet {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: SafeArea(
+        bottom: false,
+        child: Column(
+          children: [
+            DailyHeader(showFilterSheet: showFilterBottomSheet),
+            ValueListenableBuilder(
+              valueListenable: selectedFilter,
+              builder: (context, filter, _) {
+                return ValueListenableBuilder(
+                  valueListenable: customDateRange,
+                  builder: (context, range, _) {
+                    if (filter == TarotDailyDateFilter.allTime) return const SizedBox.shrink();
+                    return DateRangeBadge(filterLabel: filterLabel, clearFilter: clearFilter);
+                  },
+                );
+              },
+            ),
+            Expanded(
+              child: ValueListenableBuilder(
+                valueListenable: selectedFilter,
+                builder: (context, filter, _) {
+                  return ValueListenableBuilder(
+                    valueListenable: customDateRange,
+                    builder: (context, range, _) {
+                      return BlocBuilder<TarotBloc, TarotState>(
+                        builder: (context, state) {
+                          if (state.isFetchingDailyCards) {
+                            return const Center(child: CircularProgressIndicator());
+                          }
+
+                          if (state.hasFetchedDailyCardsFailed) {
+                            return Center(
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    LocaleKeys.tarotDailyErrorDesc.tr(),
+                                    style: m14w600(context),
+                                  ),
+                                  Spacing.mediumH,
+                                ],
+                              ),
+                            );
+                          }
+
+                          if (state.hasFetchedDailyCardsSucceeded) {
+                            final allCards = state.dailyCardsOrEmpty.asList();
+                            final cards = filteredCards(
+                              filter: filter,
+                              allCards: allCards,
+                              range: range,
+                            );
+
+                            if (cards.isEmpty) {
+                              return Center(
+                                child: Text(
+                                  LocaleKeys.tarotDailyEmptyDesc.tr(),
+                                  style: m14w600(context),
+                                ),
+                              );
+                            }
+
+                            return ListView.builder(
+                              padding: const EdgeInsets.symmetric(vertical: 16),
+                              itemCount: cards.length,
+                              itemBuilder: (context, index) {
+                                final card = cards[index];
+                                return _DailyCardListItem(
+                                  card: card,
+                                  isFirst: index == 0,
+                                  isLast: index == cards.length - 1,
+                                );
+                              },
+                            );
+                          }
+                          return const SizedBox.shrink();
+                        },
+                      );
+                    },
+                  );
+                },
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}

@@ -1,19 +1,24 @@
 import 'package:daily_tarot_focus/core/util/haptic_feedback_helper.dart';
 import 'package:daily_tarot_focus/presentation/home/widgets/home_bottom_navbar.dart';
 import 'package:daily_tarot_focus/presentation/settings/pages/settings_page.dart';
-import 'package:daily_tarot_focus/presentation/tarot_daily/tarot_daily_page.dart';
+import 'package:daily_tarot_focus/presentation/tarot_daily/page/tarot_daily_page.dart';
 import 'package:daily_tarot_focus/presentation/tarot_explore/pages/tarot_explore_page.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile_boilerplate/presentation/routing/route_arguments.dart';
 import 'package:mobile_boilerplate/presentation/routing/route_aware_analytics_mixin.dart';
 
 class HomePageArguments extends RouteArguments {
-  const HomePageArguments(super.context, {this.initialTabIndex = 0});
+  HomePageArguments(super.context, {this.initialTabIndex = 0, this.forceUpdateKey});
   final int initialTabIndex;
+  final String? forceUpdateKey;
 
   @override
   Map<String, dynamic> toMap() {
-    return {...super.toMap(), 'initial_tab_index': initialTabIndex};
+    return {
+      ...super.toMap(),
+      'initial_tab_index': initialTabIndex,
+      'force_update_key': forceUpdateKey,
+    };
   }
 }
 
@@ -45,6 +50,30 @@ class _HomePageState extends State<HomePage>
     final initialTab = widget.arguments.initialTabIndex;
     pageController = PageController(initialPage: initialTab);
     currentIndex = initialTab;
+  }
+
+  @override
+  void didUpdateWidget(covariant HomePage oldWidget) {
+    super.didUpdateWidget(oldWidget);
+
+    final newArgs = widget.arguments;
+    final oldArgs = oldWidget.arguments;
+
+    var shouldJump = false;
+    if (newArgs.forceUpdateKey != null && newArgs.forceUpdateKey != oldArgs.forceUpdateKey) {
+      shouldJump = true;
+    } else if (newArgs.initialTabIndex != oldArgs.initialTabIndex) {
+      shouldJump = true;
+    }
+
+    if (shouldJump && currentIndex != newArgs.initialTabIndex) {
+      setState(() {
+        currentIndex = newArgs.initialTabIndex;
+      });
+      if (pageController.hasClients) {
+        pageController.jumpToPage(currentIndex);
+      }
+    }
   }
 
   @override

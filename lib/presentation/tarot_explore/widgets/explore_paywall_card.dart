@@ -71,9 +71,7 @@ class _PremiumButton extends StatelessWidget {
       child: TarotButton(
         height: buttonHeight,
         width: buttonWidth,
-        onTap: () {
-          // TODO: Paywall sayfasına yönlendirme veya bottom sheet tetikleme
-        },
+        onTap: () {},
         buttonText: LocaleKeys.exploreGetPro.tr(),
         bgColor: colors.accent,
         buttonTextStyle: m12w600(context),

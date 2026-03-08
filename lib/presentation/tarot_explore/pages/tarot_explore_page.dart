@@ -16,7 +16,7 @@ import 'package:mobile_boilerplate/presentation/extensions/build_context_time_ex
 import 'package:mobile_boilerplate/presentation/extensions/date_time_ext.dart';
 import 'package:mobile_boilerplate/presentation/widgets/scaling_container.dart';
 
-part '../widgets/explore_daily_card.dart';
+part '../widgets/explore_ask_question_card.dart';
 part '../widgets/explore_feature_card.dart';
 part '../widgets/explore_header.dart';
 part '../widgets/explore_paywall_card.dart';
@@ -38,7 +38,7 @@ class TarotExplorePage extends StatelessWidget {
             children: [
               const ExploreHeader(),
               Spacing.largeH,
-              const ExploreDailyCard(),
+              const ExploreAskQuestionCard(),
               Spacing.largeH,
               const ExplorePaywallCard(),
               Spacing.largeH,
@@ -48,9 +48,9 @@ class TarotExplorePage extends StatelessWidget {
                 children: [
                   Expanded(
                     child: ExploreFeatureCard(
-                      title: LocaleKeys.exploreAskQuestion.tr(),
+                      title: LocaleKeys.exploreDailyCard.tr(),
                       imagePath: TarotAppAssets.askQuestion.path,
-                      onTap: () => context.push(AppRoutes.tarotQuestion),
+                      onTap: () => context.push(AppRoutes.tarotReveal),
                     ),
                   ),
                   Spacing.mediumW,

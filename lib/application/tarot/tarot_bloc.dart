@@ -69,6 +69,8 @@ class TarotBloc extends Bloc<TarotEvent, TarotState> {
           }
         }
 
+        cards.sort((a, b) => (b.savedAt ?? DateTime(0)).compareTo(a.savedAt ?? DateTime(0)));
+
         return state.copyWith(
           fetchFailureOrDailyCards: some(right(KtList.from(cards))),
           isFetchingDailyCards: false,

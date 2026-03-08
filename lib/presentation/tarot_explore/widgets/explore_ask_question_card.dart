@@ -1,7 +1,7 @@
 part of '../pages/tarot_explore_page.dart';
 
-class ExploreDailyCard extends StatelessWidget {
-  const ExploreDailyCard({super.key});
+class ExploreAskQuestionCard extends StatelessWidget {
+  const ExploreAskQuestionCard({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -10,7 +10,7 @@ class ExploreDailyCard extends StatelessWidget {
     final colors = context.colors;
 
     return ScalingContainer(
-      onTap: () => context.push(AppRoutes.tarotReveal),
+      onTap: () => context.push(AppRoutes.tarotQuestion),
       child: Container(
         width: double.infinity,
         height: cardHeight,
@@ -50,7 +50,7 @@ class _CardContent extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            LocaleKeys.exploreDailyCardTitle.tr(),
+            LocaleKeys.exploreAskQuestionTitle.tr(),
             style: m18w600(context),
           ),
           Spacing.mediumH,
@@ -61,7 +61,7 @@ class _CardContent extends StatelessWidget {
                 height: buttonHeight,
                 width: buttonWidth,
                 onTap: () {},
-                buttonText: LocaleKeys.exploreCardButton.tr(),
+                buttonText: LocaleKeys.exploreAskQuestionButton.tr(),
                 bgColor: context.colors.accent,
                 buttonTextStyle: m12w600(context),
               ),

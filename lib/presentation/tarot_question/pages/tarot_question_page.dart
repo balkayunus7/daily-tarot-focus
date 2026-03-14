@@ -1,7 +1,8 @@
 import 'package:daily_tarot_focus/core/util/locale_keys.dart';
+import 'package:daily_tarot_focus/core/util/tarot_app_assets.dart';
 import 'package:daily_tarot_focus/core/util/tarot_app_sizes.dart';
 import 'package:daily_tarot_focus/core/util/text_style_helper.dart';
-import 'package:daily_tarot_focus/core/widgets/base_gradient_layout.dart';
+import 'package:daily_tarot_focus/core/widgets/fancy_container.dart';
 import 'package:daily_tarot_focus/core/widgets/tarot_app_bar.dart';
 import 'package:daily_tarot_focus/core/widgets/tarot_button.dart';
 import 'package:daily_tarot_focus/presentation/tarot_question/helpers/question_page_mixin.dart';
@@ -27,9 +28,9 @@ class _TarotQuestionPageState extends State<TarotQuestionPage> with QuestionPage
   Widget build(BuildContext context) {
     final colors = context.colors;
 
-    return BaseGradientLayout(
+    return Scaffold(
       appBar: TarotAppBar(title: LocaleKeys.questionTitle.tr()),
-      child: SafeArea(
+      body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: SpacingConsts.large),
           child: Column(
@@ -86,21 +87,21 @@ class _TarotQuestionPageState extends State<TarotQuestionPage> with QuestionPage
                     children: [
                       QuestionTopicCard(
                         title: LocaleKeys.questionCareerTopic.tr(),
-                        icon: Icons.business,
+                        svgIconPath: TarotAppAssets.careerIcon.path,
                         onTap: () => topic = QuestionTopic.career,
                         isSelected: value!.isCareer,
                       ),
                       Spacing.mediumW,
                       QuestionTopicCard(
                         title: LocaleKeys.questionLoveTopic.tr(),
-                        icon: Icons.heart_broken,
+                        svgIconPath: TarotAppAssets.loveIcon.path,
                         onTap: () => topic = QuestionTopic.love,
                         isSelected: value.isLove,
                       ),
                       Spacing.mediumW,
                       QuestionTopicCard(
                         title: LocaleKeys.questionHealthTopic.tr(),
-                        icon: Icons.health_and_safety,
+                        svgIconPath: TarotAppAssets.healthIcon.path,
                         onTap: () => topic = QuestionTopic.health,
                         isSelected: value.isHealth,
                       ),

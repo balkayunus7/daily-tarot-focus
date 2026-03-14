@@ -1,5 +1,4 @@
 import 'package:daily_tarot_focus/application/tarot_localization/tarot_localization_cubit.dart';
-import 'package:daily_tarot_focus/core/widgets/base_gradient_layout.dart';
 import 'package:daily_tarot_focus/core/widgets/tarot_app_bar.dart';
 import 'package:daily_tarot_focus/core/widgets/tarot_detail_content.dart';
 import 'package:daily_tarot_focus/domain/tarot/tarot_data.dart';
@@ -20,9 +19,9 @@ class TarotDataDetailPage extends StatelessWidget {
             (locState.allCards.isNotEmpty ? locState.allCards.first : null);
 
         if (tarot == null) {
-          return BaseGradientLayout(
+          return Scaffold(
             appBar: TarotAppBar(title: tarotId),
-            child: const Center(child: CircularProgressIndicator()),
+            body: const Center(child: CircularProgressIndicator()),
           );
         }
 
@@ -38,9 +37,9 @@ class _TarotDetailContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BaseGradientLayout(
+    return Scaffold(
       appBar: TarotAppBar(title: tarot.title),
-      child: SafeArea(
+      body: SafeArea(
         child: SingleChildScrollView(
           child: SharedTarotDetailPageContent(tarot: tarot),
         ),

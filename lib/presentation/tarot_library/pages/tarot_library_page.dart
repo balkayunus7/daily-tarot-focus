@@ -3,7 +3,6 @@ import 'package:daily_tarot_focus/config/app_routes.dart';
 import 'package:daily_tarot_focus/core/util/locale_keys.dart';
 import 'package:daily_tarot_focus/core/util/tarot_app_sizes.dart';
 import 'package:daily_tarot_focus/core/util/text_style_helper.dart';
-import 'package:daily_tarot_focus/core/widgets/base_gradient_layout.dart';
 import 'package:daily_tarot_focus/core/widgets/tarot_app_bar.dart';
 import 'package:daily_tarot_focus/domain/tarot/tarot_category_enum.dart';
 import 'package:daily_tarot_focus/domain/tarot/tarot_data.dart';
@@ -30,9 +29,9 @@ class _TarotDataPageState extends State<TarotDataPage> with LibraryPageStateMixi
   Widget build(BuildContext context) {
     return LibraryPageScope(
       state: this,
-      child: BaseGradientLayout(
+      child: Scaffold(
         appBar: TarotAppBar(title: LocaleKeys.libraryTitle.tr()),
-        child: SafeArea(
+        body: SafeArea(
           child: BlocBuilder<TarotLocalizationCubit, TarotLocalizationState>(
             builder: (context, state) {
               if (state.isLoading) {

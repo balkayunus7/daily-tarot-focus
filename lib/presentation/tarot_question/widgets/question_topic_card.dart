@@ -3,14 +3,14 @@ part of '../pages/tarot_question_page.dart';
 class QuestionTopicCard extends StatelessWidget {
   const QuestionTopicCard({
     required this.title,
-    required this.icon,
+    required this.svgIconPath,
     required this.onTap,
     required this.isSelected,
     super.key,
   });
 
   final String title;
-  final IconData icon;
+  final String svgIconPath;
   final VoidCallback onTap;
   final bool isSelected;
 
@@ -23,20 +23,25 @@ class QuestionTopicCard extends StatelessWidget {
 
     return ScalingContainer(
       onTap: onTap,
-      child: Container(
+      child: FancyContainer(
         padding: Spacing.hMediumVSmallPad,
         width: cardWidth,
         height: cardWidth * 1.2,
-        decoration: BoxDecoration(
-          borderRadius: Spacing.smallBorderRadius,
-          border: Border.all(color: primaryColor),
-        ),
+        borderRadius: Spacing.smallBorderRadius,
+        borderType: isSelected ? BorderType.high : BorderType.low,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(icon, color: primaryColor),
+            SizedBox(
+              width: 32,
+              height: 32,
+              child: SvgPicture.asset(
+                svgIconPath,
+                colorFilter: ColorFilter.mode(primaryColor, BlendMode.srcIn),
+              ),
+            ),
             Spacing.smallH,
-            Text(title, style: m16w500(context), textAlign: TextAlign.center),
+            Text(title, style: m16w600(context), textAlign: TextAlign.center),
           ],
         ),
       ),

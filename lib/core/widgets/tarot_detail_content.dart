@@ -4,6 +4,7 @@ import 'package:daily_tarot_focus/core/util/tarot_app_assets.dart';
 import 'package:daily_tarot_focus/core/util/tarot_app_sizes.dart';
 import 'package:daily_tarot_focus/core/util/tarot_mock_data.dart';
 import 'package:daily_tarot_focus/core/util/text_style_helper.dart';
+import 'package:daily_tarot_focus/core/widgets/fancy_container.dart';
 import 'package:daily_tarot_focus/domain/tarot/tarot_data.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile_boilerplate/common_dependencies.dart';
@@ -71,12 +72,9 @@ class _MeaningCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return FancyContainer(
       padding: Spacing.defaultPadding,
-      decoration: BoxDecoration(
-        color: context.colors.surface.withValues(alpha: 0.4),
-        borderRadius: Spacing.xlargeBorderRadius,
-      ),
+      borderRadius: Spacing.xlargeBorderRadius,
       child: LayoutBuilder(
         builder: (context, constraints) {
           final itemWidth = constraints.maxWidth / 3.2;
@@ -143,25 +141,25 @@ class _MeaningForDaySection extends StatelessWidget {
 
     final items = <_GridItemData>[
       _GridItemData(
-        iconPath: TarotAppAssets.general.path,
+        iconPath: TarotAppAssets.generalIcon.path,
         color: primary,
         title: 'General',
         description: meanings.isNotEmpty ? meanings[0] : '',
       ),
       _GridItemData(
-        iconPath: TarotAppAssets.career.path,
+        iconPath: TarotAppAssets.careerIcon.path,
         color: primary,
         title: 'Career',
         description: meanings.length > 1 ? meanings[1] : '',
       ),
       _GridItemData(
-        iconPath: TarotAppAssets.love.path,
+        iconPath: TarotAppAssets.loveIcon.path,
         color: primary,
         title: 'Love',
         description: meanings.length > 2 ? meanings[2] : '',
       ),
       _GridItemData(
-        iconPath: TarotAppAssets.spirit.path,
+        iconPath: TarotAppAssets.spiritIcon.path,
         color: primary,
         title: 'Spirit',
         description: meanings.length > 3 ? meanings[3] : '',
@@ -208,18 +206,21 @@ class _MeaningGridTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return FancyContainer(
       padding: Spacing.defaultPadding,
-      decoration: BoxDecoration(
-        color: context.colors.surface.withValues(alpha: 0.4),
-        borderRadius: Spacing.xlargeBorderRadius,
-      ),
+      borderRadius: Spacing.xlargeBorderRadius,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
             children: [
-              Image.asset(data.iconPath, width: 28, height: 28),
+              SvgPicture.asset(
+                data.iconPath,
+                width: 26,
+                height: 26,
+                colorFilter: ColorFilter.mode(data.color, BlendMode.srcIn),
+              ),
               Spacing.xsmallW,
               Text(data.title, style: m18w600(context)),
             ],
@@ -260,12 +261,9 @@ class _MeaningsCardSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return FancyContainer(
       width: double.infinity,
-      decoration: BoxDecoration(
-        color: context.colors.surface.withValues(alpha: 0.4),
-        borderRadius: Spacing.xlargeBorderRadius,
-      ),
+      borderRadius: Spacing.xlargeBorderRadius,
       child: Padding(
         padding: Spacing.largePadding,
         child: Column(

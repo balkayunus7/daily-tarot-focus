@@ -22,18 +22,15 @@ class QuestionSpreadOptionCard extends StatelessWidget {
     final itemWidth = MediaQuery.of(context).size.width / 2 - 28;
     final itemHeight = itemWidth + SpacingConsts.medium;
     final selectedColor = isSelected ? colors.primary : colors.surfaceSecondary;
-    final cardWidth = itemHeight / 5;
-    final cardHeight = itemHeight / 3;
+    final cardWidth = itemHeight / 4;
 
     return ScalingContainer(
       onTap: onTap,
-      child: Container(
+      child: FancyContainer(
         height: itemHeight,
         width: itemWidth,
-        decoration: BoxDecoration(
-          borderRadius: Spacing.defaultBorderRadius,
-          border: Border.all(color: selectedColor, width: 2),
-        ),
+        borderRadius: Spacing.defaultBorderRadius,
+        borderType: isSelected ? BorderType.high : BorderType.low,
         child: Padding(
           padding: Spacing.xsmallPadding,
           child: Column(
@@ -43,21 +40,18 @@ class QuestionSpreadOptionCard extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: List.generate(
                   cardCount,
-                  (index) => Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: SpacingConsts.tiny),
-                    child: Container(
-                      width: cardWidth,
-                      height: cardHeight,
-                      decoration: BoxDecoration(
-                        borderRadius: Spacing.xsmallBorderRadius,
-                        border: Border.all(color: selectedColor),
-                      ),
+                  (index) => SizedBox(
+                    width: cardWidth,
+                    height: cardWidth,
+                    child: SvgPicture.asset(
+                      TarotAppAssets.card.path,
+                      colorFilter: ColorFilter.mode(selectedColor, BlendMode.srcIn),
                     ),
                   ),
                 ),
               ),
               Spacing.mediumH,
-              Text(title, style: m16w500(context)),
+              Text(title, style: m16w600(context)),
               Spacing.tinyH,
               Text(
                 subtitle,

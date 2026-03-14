@@ -1,6 +1,19 @@
 import 'package:flutter/material.dart' hide BoxDecoration, BoxShadow;
 import 'package:flutter_inset_shadow/flutter_inset_shadow.dart';
 import 'package:gradient_borders/box_borders/gradient_box_border.dart';
+import 'package:mobile_boilerplate/presentation/extensions/build_context_theme_ext.dart';
+
+enum BorderType {
+  high(0.9),
+  medium(0.6),
+  low(0.2);
+
+  const BorderType(this.value);
+  final double value;
+
+  Border getBorder(BuildContext context) =>
+      Border.all(color: context.colors.primary.withValues(alpha: value), width: value);
+}
 
 class FancyContainer extends StatelessWidget {
   const FancyContainer({
@@ -14,6 +27,7 @@ class FancyContainer extends StatelessWidget {
     this.child,
     this.gradient,
     this.image,
+    this.borderType = BorderType.low,
   });
 
   final Widget? child;
@@ -25,6 +39,7 @@ class FancyContainer extends StatelessWidget {
   final EdgeInsets? margin;
   final double? width;
   final double? height;
+  final BorderType borderType;
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +51,7 @@ class FancyContainer extends StatelessWidget {
         color: color,
         gradient: gradient,
         borderRadius: borderRadius,
-        border: Border.all(color: Colors.black.withValues(alpha: 0.1)),
+        border: borderType.getBorder(context),
         image: image != null ? DecorationImage(image: image!, fit: BoxFit.cover) : null,
       ),
       child: Container(
@@ -46,9 +61,9 @@ class FancyContainer extends StatelessWidget {
           gradient: gradient,
           boxShadow: [
             BoxShadow(
-              color: Colors.white.withValues(alpha: 0.25),
-              blurRadius: 10,
-              spreadRadius: 2,
+              color: context.colors.primary.withValues(alpha: 0.25),
+              blurRadius: 5,
+              spreadRadius: 1,
               inset: true,
             ),
           ],
@@ -57,11 +72,11 @@ class FancyContainer extends StatelessWidget {
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
               colors: [
-                Colors.white.withValues(alpha: 0.3),
-                Colors.white.withValues(alpha: 0.7),
-                Colors.white.withValues(alpha: 0.1),
-                Colors.white.withValues(alpha: 0.05),
-                Colors.white.withValues(alpha: 0),
+                context.colors.primary.withValues(alpha: 0.3),
+                context.colors.primary.withValues(alpha: 0.7),
+                context.colors.primary.withValues(alpha: 0.1),
+                context.colors.primary.withValues(alpha: 0.05),
+                context.colors.primary.withValues(alpha: 0),
               ],
               stops: const [0.0, 0.1, 0.5, 0.8, 1.0],
             ),

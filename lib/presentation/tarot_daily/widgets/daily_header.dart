@@ -18,10 +18,7 @@ class DailyHeader extends StatelessWidget {
               Spacing.xsmallH,
               Text(
                 LocaleKeys.tarotDailySubtitle.tr(),
-                style: m10w600(context).copyWith(
-                  color: context.colors.primary,
-                  letterSpacing: 1.5,
-                ),
+                style: m10w600(context).copyWith(color: context.colors.primary, letterSpacing: 1.5),
               ),
             ],
           ),
@@ -30,10 +27,7 @@ class DailyHeader extends StatelessWidget {
             child: Container(
               width: 48,
               height: 48,
-              decoration: BoxDecoration(
-                color: context.colors.surface,
-                shape: BoxShape.circle,
-              ),
+              decoration: BoxDecoration(color: context.colors.surface, shape: BoxShape.circle),
               child: Center(
                 child: Icon(Icons.filter_list, color: context.colors.primary),
               ),

@@ -1,3 +1,7 @@
+import 'dart:async';
+
+import 'package:daily_tarot_focus/application/tarot/tarot_bloc.dart';
+import 'package:daily_tarot_focus/application/tarot/tarot_state.dart';
 import 'package:daily_tarot_focus/config/app_routes.dart';
 import 'package:daily_tarot_focus/core/util/locale_keys.dart';
 import 'package:daily_tarot_focus/core/util/shadow_extensions.dart';
@@ -20,6 +24,7 @@ part '../widgets/explore_ask_question_card.dart';
 part '../widgets/explore_feature_card.dart';
 part '../widgets/explore_header.dart';
 part '../widgets/explore_paywall_card.dart';
+part '../widgets/explore_daily_card_cooldown.dart';
 
 class TarotExplorePage extends StatelessWidget {
   const TarotExplorePage({super.key});
@@ -46,13 +51,7 @@ class TarotExplorePage extends StatelessWidget {
               Spacing.mediumH,
               Row(
                 children: [
-                  Expanded(
-                    child: ExploreFeatureCard(
-                      title: LocaleKeys.exploreDailyCard.tr(),
-                      imagePath: TarotAppAssets.askQuestion.path,
-                      onTap: () => context.push(AppRoutes.tarotReveal),
-                    ),
-                  ),
+                  const Expanded(child: ExploreDailyCardWithCooldown()),
                   Spacing.mediumW,
                   Expanded(
                     child: ExploreFeatureCard(

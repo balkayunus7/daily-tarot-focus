@@ -12,6 +12,12 @@ enum TarotAppAssets {
   general._('assets/png/general.png'),
   spirit._('assets/png/spirit.png'),
   /////SVG///////////////////////
+  healthIcon._('assets/svg/health.svg'),
+  loveIcon._('assets/svg/love.svg'),
+  careerIcon._('assets/svg/career.svg'),
+  generalIcon._('assets/svg/general.svg'),
+  spiritIcon._('assets/svg/spirit.svg'),
+  card._('assets/svg/card.svg'),
   crown._('assets/svg/crown.svg'),
   fish._('assets/svg/fish.svg'),
   explore._('assets/svg/explore.svg'),

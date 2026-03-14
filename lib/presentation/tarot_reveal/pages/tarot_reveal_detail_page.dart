@@ -1,7 +1,6 @@
 import 'package:daily_tarot_focus/application/tarot/tarot_bloc.dart';
 import 'package:daily_tarot_focus/application/tarot/tarot_state.dart';
 import 'package:daily_tarot_focus/config/app_routes.dart';
-import 'package:daily_tarot_focus/core/widgets/base_gradient_layout.dart';
 import 'package:daily_tarot_focus/core/widgets/tarot_app_bar.dart';
 import 'package:daily_tarot_focus/core/widgets/tarot_detail_content.dart';
 import 'package:daily_tarot_focus/domain/tarot/tarot_data.dart';
@@ -47,19 +46,19 @@ class TarotRevealDetailPage extends StatelessWidget {
       },
       builder: (context, state) {
         final isSaving = state.isSavingDailyCard;
-        return BaseGradientLayout(
+        return Scaffold(
           appBar: TarotAppBar(
             title: tarot.title,
-            onBackIconTap: () => context.go(AppRoutes.tarotExplore),
+            onBackIconTap: () {
+              context.go(AppRoutes.tarotExplore, extra: HomePageArguments(context));
+            },
+            backIcon: Icons.close,
             trailingIcon: isSaving ? FontAwesomeIcons.spinner : FontAwesomeIcons.floppyDisk,
             onIconTap: () => saveDailyCard(context, isSaving: isSaving),
           ),
-          child: SafeArea(
+          body: SafeArea(
             child: SingleChildScrollView(
-              child: SharedTarotDetailPageContent(
-                tarot: tarot,
-                showMeaningForDay: true,
-              ),
+              child: SharedTarotDetailPageContent(tarot: tarot, showMeaningForDay: true),
             ),
           ),
         );

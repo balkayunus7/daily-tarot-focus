@@ -8,6 +8,7 @@ import 'package:daily_tarot_focus/presentation/auth/pages/register_step_zodiac_p
 import 'package:daily_tarot_focus/presentation/auth/pages/splash_page.dart';
 import 'package:daily_tarot_focus/presentation/home/pages/home_page.dart';
 import 'package:daily_tarot_focus/presentation/settings/pages/settings_page.dart';
+import 'package:daily_tarot_focus/presentation/tarot_daily/page/tarot_daily_detail_page.dart';
 import 'package:daily_tarot_focus/presentation/tarot_library/pages/tarot_library_detail_page.dart';
 import 'package:daily_tarot_focus/presentation/tarot_library/pages/tarot_library_page.dart';
 import 'package:daily_tarot_focus/presentation/tarot_question/pages/tarot_question_page.dart';
@@ -112,15 +113,9 @@ final appRouter = GoRouter(
       path: AppRoutes.tarotReveal,
       name: AppRoutes.tarotReveal,
       pageBuilder: (context, state) {
-        return CustomTransitionPage(
+        return MaterialPage(
           key: state.pageKey,
           child: const TarotRevealPage(),
-          transitionsBuilder: (context, animation, secondaryAnimation, child) {
-            return FadeTransition(
-              opacity: animation,
-              child: child,
-            );
-          },
         );
       },
     ),
@@ -131,12 +126,9 @@ final appRouter = GoRouter(
         // Try to get tarot from extra first, fallback to cubit lookup
         final extraTarot = state.extra as TarotCard?;
         if (extraTarot != null) {
-          return CustomTransitionPage(
+          return MaterialPage(
             key: state.pageKey,
             child: TarotRevealDetailPage(tarot: extraTarot),
-            transitionsBuilder: (context, animation, secondaryAnimation, child) {
-              return child;
-            },
           );
         }
 
@@ -144,14 +136,11 @@ final appRouter = GoRouter(
         final cubit = context.read<TarotLocalizationCubit>();
         final tarot = tarotId != null ? cubit.getByTitle(tarotId) : cubit.getRandomCard();
 
-        return CustomTransitionPage(
+        return MaterialPage(
           key: state.pageKey,
           child: TarotRevealDetailPage(
             tarot: tarot ?? cubit.state.allCards.first,
           ),
-          transitionsBuilder: (context, animation, secondaryAnimation, child) {
-            return child;
-          },
         );
       },
     ),
@@ -184,6 +173,17 @@ final appRouter = GoRouter(
         return MaterialPage(
           key: state.pageKey,
           child: const TarotQuestionPage(),
+        );
+      },
+    ),
+    GoRoute(
+      path: AppRoutes.tarotDailyDetail,
+      name: AppRoutes.tarotDailyDetail,
+      pageBuilder: (context, state) {
+        final tarot = state.extra! as TarotCard;
+        return MaterialPage(
+          key: state.pageKey,
+          child: TarotDailyDetailPage(tarot: tarot),
         );
       },
     ),

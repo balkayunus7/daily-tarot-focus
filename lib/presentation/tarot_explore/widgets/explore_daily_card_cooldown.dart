@@ -99,7 +99,7 @@ class _ExploreDailyCardWithCooldownState extends State<ExploreDailyCardWithCoold
               title: LocaleKeys.exploreDailyCard.tr(),
               imagePath: TarotAppAssets.askQuestion.path,
               onTap: () => context.push(AppRoutes.tarotReveal),
-              isDisabled: false,
+              isDisabled: onCooldown,
               countdownText: onCooldown ? formatDuration(remainingValue) : null,
             );
           },

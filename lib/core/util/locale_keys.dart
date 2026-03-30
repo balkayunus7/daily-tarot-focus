@@ -123,4 +123,9 @@ class LocaleKeys {
   static const tarotDailySubtitle = 'tarot_daily.subtitle';
   static const tarotDailyErrorDesc = 'tarot_daily.error_desc';
   static const tarotDailyEmptyDesc = 'tarot_daily.empty_desc';
+
+  // Paywall
+  static const paywallUnlimitedReadings = 'paywall.unlimited_readings';
+  static const paywallUnlimitedQuestions = 'paywall.unlimited_questions';
+  static const paywallNoAds = 'paywall.no_ads';
 }

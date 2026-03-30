@@ -8,6 +8,7 @@ import 'package:daily_tarot_focus/presentation/auth/pages/register_step_zodiac_p
 import 'package:daily_tarot_focus/presentation/auth/pages/splash_page.dart';
 import 'package:daily_tarot_focus/presentation/home/pages/home_page.dart';
 import 'package:daily_tarot_focus/presentation/settings/pages/settings_page.dart';
+import 'package:daily_tarot_focus/presentation/subscription/pages/subscription_paywall_page.dart';
 import 'package:daily_tarot_focus/presentation/tarot_daily/page/tarot_daily_detail_page.dart';
 import 'package:daily_tarot_focus/presentation/tarot_library/pages/tarot_library_detail_page.dart';
 import 'package:daily_tarot_focus/presentation/tarot_library/pages/tarot_library_page.dart';
@@ -18,6 +19,8 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mobile_boilerplate/application/auth/auth_cubit.dart';
 import 'package:mobile_boilerplate/common_dependencies.dart';
+import 'package:mobile_boilerplate/domain/purchases/subscription_plan.dart';
+import 'package:mobile_boilerplate/presentation/routing/route_arguments.dart';
 
 final GlobalKey<NavigatorState> rootNavigatorKey = GlobalKey<NavigatorState>();
 
@@ -184,6 +187,21 @@ final appRouter = GoRouter(
         return MaterialPage(
           key: state.pageKey,
           child: TarotDailyDetailPage(tarot: tarot),
+        );
+      },
+    ),
+    GoRoute(
+      path: AppRoutes.subscriptionPaywall,
+      name: AppRoutes.subscriptionPaywall,
+      pageBuilder: (context, state) {
+        final params = state.extra as SubscriptionPaywallPageParams? ??
+            SubscriptionPaywallPageParams(
+              context,
+              subsPlan: SubscriptionPlan.premium,
+            );
+        return MaterialPage(
+          key: state.pageKey,
+          child: TarotSubscriptionPaywallPage(params: params),
         );
       },
     ),

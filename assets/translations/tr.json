@@ -133,5 +133,32 @@
         "subtitle": "SENİN RUHSAL YOLCULUĞUM",
         "error_desc": "Kartlar yüklenemedi",
         "empty_desc": "Henüz kart çekilmedi"
+    },
+    "paywall": {
+        "unlimited_readings": "Sınırsız Tarot Okuma",
+        "unlimited_questions": "Sınırsız Soru Sorma",
+        "no_ads": "Reklamsız Deneyim"
+    },
+    "subscription_paywall_page": {
+        "app_bar": "Premium",
+        "title": "Premium'a Geç",
+        "subtitle": "Tüm özelliklerin kilidini aç",
+        "footer_text": "Abonelik otomatik olarak yenilenir. İstediğin zaman iptal edebilirsin. ",
+        "terms_of_service": "Kullanım Koşulları",
+        "failed_fetch_packages": "Paketler yüklenemedi",
+        "no_packages": "Uygun paket bulunamadı",
+        "package_card_period": "{} {}",
+        "subscribe_placeholder_button": "Abone Ol",
+        "retry_button": "Tekrar Dene",
+        "restore_button": "Satın Alımları Geri Yükle",
+        "subscribe_button": "{} / {}"
+    },
+    "subscription_period_month": "{count} Ay",
+    "subscription_period_week": "{count} Hafta",
+    "subscription_period_lifetime": "Ömür Boyu",
+    "subscription_period_price": {
+        "month": "ay",
+        "week": "hafta",
+        "lifetime": "ömür boyu"
     }
 }

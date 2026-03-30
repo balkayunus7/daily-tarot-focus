@@ -26,14 +26,13 @@ class TarotUser extends User {
               )
               : null,
       purchaser: Purchaser(
-        id: (map['revenuecat_id'] as String?) ?? 'unknown',
+        id: (map['revenuecat_id'] as String?) ?? map['user_id'] as String,
         offerings: PurchaseOfferings(
-          subscriptionOfferingIds: KtMap.from({
-            SubscriptionPlan.premium: 'premium',
-          }),
+          subscriptionOfferingIds: KtMap.from({SubscriptionPlan.premium: 'premium'}),
         ),
       ),
-      zodiac: map['zodiac_sign'] != null ? ZodiacSign.fromString(map['zodiac_sign'] as String) : null,
+      zodiac:
+          map['zodiac_sign'] != null ? ZodiacSign.fromString(map['zodiac_sign'] as String) : null,
       relationshipStatus:
           map['relationship_status'] != null
               ? RelationshipStatus.fromString(
@@ -53,7 +52,8 @@ class TarotUser extends User {
     if (birthDate == null) return null;
     final today = DateTime.now();
     var age = today.year - birthDate!.year;
-    if (today.month < birthDate!.month || (today.month == birthDate!.month && today.day < birthDate!.day)) {
+    if (today.month < birthDate!.month ||
+        (today.month == birthDate!.month && today.day < birthDate!.day)) {
       age--;
     }
     return age;

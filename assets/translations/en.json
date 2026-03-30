@@ -133,5 +133,32 @@
         "subtitle": "YOUR SPIRITUAL JOURNEY",
         "error_desc": "Cards could not be loaded",
         "empty_desc": "No cards have been drawn yet"
+    },
+    "paywall": {
+        "unlimited_readings": "Unlimited Tarot Readings",
+        "unlimited_questions": "Unlimited Questions",
+        "no_ads": "Ad-Free Experience"
+    },
+    "subscription_paywall_page": {
+        "app_bar": "Premium",
+        "title": "Go Premium",
+        "subtitle": "Unlock all features",
+        "footer_text": "Subscription automatically renews. Cancel anytime. ",
+        "terms_of_service": "Terms of Service",
+        "failed_fetch_packages": "Failed to load packages",
+        "no_packages": "No packages available",
+        "package_card_period": "{} {}",
+        "subscribe_placeholder_button": "Subscribe",
+        "retry_button": "Retry",
+        "restore_button": "Restore Purchases",
+        "subscribe_button": "{} / {}"
+    },
+    "subscription_period_month": "{count} Month",
+    "subscription_period_week": "{count} Week",
+    "subscription_period_lifetime": "Lifetime",
+    "subscription_period_price": {
+        "month": "month",
+        "week": "week",
+        "lifetime": "lifetime"
     }
 }

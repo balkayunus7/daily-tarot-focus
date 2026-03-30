@@ -15,16 +15,18 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mobile_boilerplate/application/auth/auth_cubit.dart';
 import 'package:mobile_boilerplate/common_dependencies.dart';
+import 'package:mobile_boilerplate/domain/purchases/subscription_plan.dart';
 import 'package:mobile_boilerplate/presentation/extensions/build_context_theme_ext.dart';
 import 'package:mobile_boilerplate/presentation/extensions/build_context_time_ext.dart';
 import 'package:mobile_boilerplate/presentation/extensions/date_time_ext.dart';
+import 'package:mobile_boilerplate/presentation/routing/route_arguments.dart';
 import 'package:mobile_boilerplate/presentation/widgets/scaling_container.dart';
 
 part '../widgets/explore_ask_question_card.dart';
+part '../widgets/explore_daily_card_cooldown.dart';
 part '../widgets/explore_feature_card.dart';
 part '../widgets/explore_header.dart';
 part '../widgets/explore_paywall_card.dart';
-part '../widgets/explore_daily_card_cooldown.dart';
 
 class TarotExplorePage extends StatelessWidget {
   const TarotExplorePage({super.key});

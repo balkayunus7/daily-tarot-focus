@@ -37,6 +37,9 @@ class AppRoutes {
   // Tarot daily
   static const String tarotDailyDetail = '/tarot-daily-detail';
 
+  // Subscription
+  static const String subscriptionPaywall = '/subscription-paywall';
+
   // Settings
   static const String settings = '/settings';
 }

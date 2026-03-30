@@ -8,7 +8,13 @@ class ExplorePaywallCard extends StatelessWidget {
     final colors = context.colors;
 
     return ScalingContainer(
-      onTap: () async {},
+      onTap: () => context.push(
+        AppRoutes.subscriptionPaywall,
+        extra: SubscriptionPaywallPageParams(
+          context,
+          subsPlan: SubscriptionPlan.premium,
+        ),
+      ),
       child: Container(
         padding: Spacing.hLargeVMediumPad,
         decoration: BoxDecoration(

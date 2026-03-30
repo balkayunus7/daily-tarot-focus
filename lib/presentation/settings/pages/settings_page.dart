@@ -8,6 +8,7 @@ import 'package:daily_tarot_focus/core/util/text_style_helper.dart';
 import 'package:daily_tarot_focus/core/widgets/tarot_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile_boilerplate/application/auth/auth_cubit.dart';
+import 'package:mobile_boilerplate/application/purchases/purchases_bloc.dart';
 import 'package:mobile_boilerplate/common_dependencies.dart';
 import 'package:mobile_boilerplate/presentation/extensions/build_context_theme_ext.dart';
 import 'package:mobile_boilerplate/presentation/widgets/scaling_container.dart';
@@ -48,7 +49,16 @@ class SettingsPage extends StatelessWidget {
                   _SettingsTile(
                     icon: Icons.restore,
                     title: LocaleKeys.settingsRestorePurchases.tr(),
-                    onTap: () {},
+                    onTap: () {
+                      final authState = context.read<AuthCubit>().state;
+                      if (authState.isAuthenticated) {
+                        final purchaser = authState.userOrCrash.purchaser;
+                        context.read<PurchasesBloc>().addPurchasesRestored(
+                          purchaser: purchaser,
+                          trackingIds: authState.trackingIdsOrNull,
+                        );
+                      }
+                    },
                   ),
                 ],
               ),

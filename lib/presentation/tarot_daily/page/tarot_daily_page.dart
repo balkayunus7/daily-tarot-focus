@@ -60,7 +60,6 @@ class _TarotDailyPageState extends State<TarotDailyPage>
                           if (state.isFetchingDailyCards) {
                             return const Center(child: CircularProgressIndicator());
                           }
-
                           if (state.hasFetchedDailyCardsFailed) {
                             return Center(
                               child: Column(
@@ -75,7 +74,6 @@ class _TarotDailyPageState extends State<TarotDailyPage>
                               ),
                             );
                           }
-
                           if (state.hasFetchedDailyCardsSucceeded) {
                             final allCards = state.dailyCardsOrEmpty.asList();
                             final cards = filteredCards(
@@ -83,7 +81,6 @@ class _TarotDailyPageState extends State<TarotDailyPage>
                               allCards: allCards,
                               range: range,
                             );
-
                             if (cards.isEmpty) {
                               return Center(
                                 child: Text(
@@ -92,7 +89,6 @@ class _TarotDailyPageState extends State<TarotDailyPage>
                                 ),
                               );
                             }
-
                             return ListView.builder(
                               padding: const EdgeInsets.symmetric(vertical: 16),
                               itemCount: cards.length,

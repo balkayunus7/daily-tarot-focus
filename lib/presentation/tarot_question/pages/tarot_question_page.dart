@@ -29,7 +29,7 @@ class _TarotQuestionPageState extends State<TarotQuestionPage> with QuestionPage
     final colors = context.colors;
 
     return Scaffold(
-      appBar: TarotAppBar(title: LocaleKeys.explore_page_ask_question_title.tr()),
+      appBar: TarotAppBar(title: LocaleKeys.question_page_title.tr()),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: SpacingConsts.large),

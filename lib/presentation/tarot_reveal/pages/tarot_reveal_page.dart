@@ -7,6 +7,7 @@ import 'package:daily_tarot_focus/core/util/tarot_app_assets.dart';
 import 'package:daily_tarot_focus/core/util/tarot_app_sizes.dart';
 import 'package:daily_tarot_focus/core/util/tarot_mock_data.dart';
 import 'package:daily_tarot_focus/core/util/text_style_helper.dart';
+import 'package:daily_tarot_focus/core/widgets/scaleable_image.dart';
 import 'package:daily_tarot_focus/core/widgets/tarot_app_bar.dart';
 import 'package:daily_tarot_focus/domain/tarot/tarot_data.dart';
 import 'package:daily_tarot_focus/presentation/tarot_reveal/helpers/reveal_page_mixin.dart';
@@ -44,8 +45,11 @@ class _TarotRevealPageState extends State<TarotRevealPage>
             return Stack(
               fit: StackFit.expand,
               children: [
-                Align(
-                  alignment: Alignment.topCenter,
+                ScaleableImage(imagePath: TarotAppAssets.dailyPickBg.path),
+                Positioned(
+                  left: 0,
+                  right: 0,
+                  height: MediaQuery.of(context).size.height * 0.5,
                   child: Image.asset(TarotAppAssets.dailyPickBg.path, fit: BoxFit.cover),
                 ),
                 AnimatedOpacity(

@@ -1,8 +1,6 @@
 // DO NOT EDIT. This is code generated via package:easy_localization/generate.dart
 
-// ignore_for_file: constant_identifier_names
-
-abstract class  LocaleKeys {
+abstract class LocaleKeys {
   static const explore_page_spiritual_guide = 'explore_page.spiritual_guide';
   static const explore_page_ask_question = 'explore_page.ask_question';
   static const explore_page_library = 'explore_page.library';
@@ -133,14 +131,20 @@ abstract class  LocaleKeys {
   static const subscription_paywall_page_title = 'subscription_paywall_page.title';
   static const subscription_paywall_page_subtitle = 'subscription_paywall_page.subtitle';
   static const subscription_paywall_page_footer_text = 'subscription_paywall_page.footer_text';
-  static const subscription_paywall_page_terms_of_service = 'subscription_paywall_page.terms_of_service';
-  static const subscription_paywall_page_failed_fetch_packages = 'subscription_paywall_page.failed_fetch_packages';
+  static const subscription_paywall_page_terms_of_service =
+      'subscription_paywall_page.terms_of_service';
+  static const subscription_paywall_page_failed_fetch_packages =
+      'subscription_paywall_page.failed_fetch_packages';
   static const subscription_paywall_page_no_packages = 'subscription_paywall_page.no_packages';
-  static const subscription_paywall_page_package_card_period = 'subscription_paywall_page.package_card_period';
-  static const subscription_paywall_page_subscribe_placeholder_button = 'subscription_paywall_page.subscribe_placeholder_button';
+  static const subscription_paywall_page_package_card_period =
+      'subscription_paywall_page.package_card_period';
+  static const subscription_paywall_page_subscribe_placeholder_button =
+      'subscription_paywall_page.subscribe_placeholder_button';
   static const subscription_paywall_page_retry_button = 'subscription_paywall_page.retry_button';
-  static const subscription_paywall_page_restore_button = 'subscription_paywall_page.restore_button';
-  static const subscription_paywall_page_subscribe_button = 'subscription_paywall_page.subscribe_button';
+  static const subscription_paywall_page_restore_button =
+      'subscription_paywall_page.restore_button';
+  static const subscription_paywall_page_subscribe_button =
+      'subscription_paywall_page.subscribe_button';
   static const subscription_paywall_page = 'subscription_paywall_page';
   static const subscription_period_month = 'subscription_period_month';
   static const subscription_period_week = 'subscription_period_week';
@@ -149,5 +153,4 @@ abstract class  LocaleKeys {
   static const subscription_period_price_week = 'subscription_period_price.week';
   static const subscription_period_price_year = 'subscription_period_price.year';
   static const subscription_period_price = 'subscription_period_price';
-
 }

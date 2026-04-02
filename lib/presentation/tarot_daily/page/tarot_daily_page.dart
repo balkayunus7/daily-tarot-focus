@@ -5,6 +5,8 @@ import 'package:daily_tarot_focus/core/util/locale_keys.dart';
 import 'package:daily_tarot_focus/core/util/tarot_app_assets.dart';
 import 'package:daily_tarot_focus/core/util/tarot_app_sizes.dart';
 import 'package:daily_tarot_focus/core/util/text_style_helper.dart';
+
+import 'package:daily_tarot_focus/core/widgets/tarot_button.dart';
 import 'package:daily_tarot_focus/domain/tarot/tarot_data.dart';
 import 'package:daily_tarot_focus/presentation/tarot_daily/helpers/daily_page_date_range_sheet.dart';
 import 'package:daily_tarot_focus/presentation/tarot_daily/helpers/daily_page_mixin.dart';
@@ -81,14 +83,30 @@ class _TarotDailyPageState extends State<TarotDailyPage>
                               allCards: allCards,
                               range: range,
                             );
+
                             if (cards.isEmpty) {
-                              return Center(
-                                child: Text(
-                                  LocaleKeys.tarot_daily_empty_desc.tr(),
-                                  style: m14w600(context),
-                                ),
+                              return Column(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: [
+                                  TarotButton(
+                                    onTap: () => context.push(AppRoutes.tarotReveal),
+                                    buttonText: LocaleKeys.tarot_daily_empty_desc.tr(),
+                                    paddingHorizontal: 20,
+                                    width: 144,
+                                    height: 48,
+                                    buttonTextStyle: m10w600(context),
+                                    borderRadius: Spacing.xlargeBorderRadius,
+                                  ),
+                                  Spacing.xxlargeH,
+                                  Image.asset(
+                                    TarotAppAssets.empty.path,
+                                    height: MediaQuery.of(context).size.height * 0.3,
+                                    fit: BoxFit.contain,
+                                  ),
+                                ],
                               );
                             }
+
                             return ListView.builder(
                               padding: const EdgeInsets.symmetric(vertical: 16),
                               itemCount: cards.length,

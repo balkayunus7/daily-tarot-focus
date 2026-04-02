@@ -18,6 +18,7 @@ class TarotButton extends StatelessWidget {
     this.svgIcon,
     this.svgIconSize,
     this.buttonTextStyle,
+    this.borderRadius,
   });
 
   final VoidCallback onTap;
@@ -31,6 +32,7 @@ class TarotButton extends StatelessWidget {
   final Size? svgIconSize;
   final double height;
   final TextStyle? buttonTextStyle;
+  final BorderRadius? borderRadius;
 
   @override
   Widget build(BuildContext context) {
@@ -49,6 +51,7 @@ class TarotButton extends StatelessWidget {
               textStyle: buttonTextStyle,
               onPressed: onTap,
               backgroundColor: bgColor ?? context.colors.primary,
+              borderRadius: borderRadius,
               isLoading: isLoading,
               icon: svgIcon != null && svgIcon!.isNotEmpty ? SvgPicture.asset(svgIcon!) : null,
             ),

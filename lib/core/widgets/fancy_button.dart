@@ -19,6 +19,7 @@ class FancyButton extends StatelessWidget {
     this.height,
     this.textStyle,
     this.isLoading = false,
+    this.borderRadius,
   }) : assert(
          textColor == null || textStyle == null,
          'Cannot provide both textColor and textStyle',
@@ -34,6 +35,7 @@ class FancyButton extends StatelessWidget {
   final double? height;
   final double? width;
   final bool isLoading;
+  final BorderRadius? borderRadius;
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +48,7 @@ class FancyButton extends StatelessWidget {
       },
       child: FancyContainer(
         color: buttonColor,
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: borderRadius ?? BorderRadius.circular(16),
         padding: padding ?? const EdgeInsets.symmetric(horizontal: 12, vertical: 7),
         width: width,
         height: height,

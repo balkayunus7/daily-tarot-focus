@@ -6,19 +6,21 @@ import 'package:mobile_boilerplate/presentation/purchases/subscription_paywall_p
 import 'package:mobile_boilerplate/presentation/routing/route_arguments.dart';
 
 class TarotSubscriptionPaywallPage extends StatelessWidget {
-  const TarotSubscriptionPaywallPage({this.params, super.key});
-  final SubscriptionPaywallPageParams? params;
+  const TarotSubscriptionPaywallPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return SubscriptionPaywallPage(
-      params: params ?? SubscriptionPaywallPageParams(context, subsPlan: SubscriptionPlan.premium),
-      headerImage: Image.asset(
-        TarotAppAssets.paywall.path,
-        fit: BoxFit.cover,
-        alignment: Alignment.topCenter,
+    return PopScope(
+      canPop: false,
+      child: SubscriptionPaywallPage(
+        params: SubscriptionPaywallPageParams(context, subsPlan: SubscriptionPlan.premium),
+        headerImage: Image.asset(
+          TarotAppAssets.paywall.path,
+          fit: BoxFit.cover,
+          alignment: Alignment.topCenter,
+        ),
+        privileges: const TarotPaywallPrivileges(),
       ),
-      privileges: const TarotPaywallPrivileges(),
     );
   }
 }

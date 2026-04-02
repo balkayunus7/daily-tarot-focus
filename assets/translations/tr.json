@@ -132,7 +132,7 @@
         "title": "Günlük Tarotlar",
         "subtitle": "SENİN RUHSAL YOLCULUĞUM",
         "error_desc": "Kartlar yüklenemedi",
-        "empty_desc": "Henüz kart çekilmedi"
+        "empty_desc": "İlk kartını çek"
     },
     "paywall": {
         "unlimited_readings": "Sınırsız Tarot Açılımı",

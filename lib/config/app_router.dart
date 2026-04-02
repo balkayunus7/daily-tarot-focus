@@ -19,8 +19,6 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mobile_boilerplate/application/auth/auth_cubit.dart';
 import 'package:mobile_boilerplate/common_dependencies.dart';
-import 'package:mobile_boilerplate/domain/purchases/subscription_plan.dart';
-import 'package:mobile_boilerplate/presentation/routing/route_arguments.dart';
 
 final GlobalKey<NavigatorState> rootNavigatorKey = GlobalKey<NavigatorState>();
 
@@ -194,12 +192,9 @@ final appRouter = GoRouter(
       path: AppRoutes.subscriptionPaywall,
       name: AppRoutes.subscriptionPaywall,
       pageBuilder: (context, state) {
-        final params =
-            state.extra as SubscriptionPaywallPageParams? ??
-            SubscriptionPaywallPageParams(context, subsPlan: SubscriptionPlan.premium);
         return MaterialPage(
           key: state.pageKey,
-          child: TarotSubscriptionPaywallPage(params: params),
+          child: const TarotSubscriptionPaywallPage(),
         );
       },
     ),

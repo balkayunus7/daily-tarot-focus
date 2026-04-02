@@ -132,7 +132,7 @@
         "title": "Daily Tarots",
         "subtitle": "YOUR SPIRITUAL JOURNEY",
         "error_desc": "Cards could not be loaded",
-        "empty_desc": "No cards have been drawn yet"
+        "empty_desc": "Draw your first card"
     },
     "paywall": {
         "unlimited_readings": "Unlimited Tarot Readings",

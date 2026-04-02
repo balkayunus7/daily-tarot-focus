@@ -1,64 +1,69 @@
 import 'package:daily_tarot_focus/core/util/locale_keys.dart';
-import 'package:daily_tarot_focus/core/util/text_style_helper.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:mobile_boilerplate/presentation/app_text_styles.dart';
 import 'package:mobile_boilerplate/presentation/extensions/build_context_theme_ext.dart';
 import 'package:mobile_boilerplate/presentation/spacing.dart';
 
-/// Premium abonelik ayrıcalıklarını listeleyen widget.
 class TarotPaywallPrivileges extends StatelessWidget {
   const TarotPaywallPrivileges({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return Row(
       children: [
-        _PrivilegeRow(
+        _PrivilegeCard(
           icon: Icons.all_inclusive,
-          label: LocaleKeys.paywallUnlimitedReadings.tr(),
+          label: LocaleKeys.paywall_unlimited_readings.tr(),
         ),
-        const SizedBox(height: Spacing.small),
-        _PrivilegeRow(
+        const SizedBox(width: Spacing.small),
+        _PrivilegeCard(
           icon: Icons.question_answer_rounded,
-          label: LocaleKeys.paywallUnlimitedQuestions.tr(),
+          label: LocaleKeys.paywall_limited_question.tr(),
         ),
-        const SizedBox(height: Spacing.small),
-        _PrivilegeRow(
+        const SizedBox(width: Spacing.small),
+        _PrivilegeCard(
           icon: Icons.block,
-          label: LocaleKeys.paywallNoAds.tr(),
+          label: LocaleKeys.paywall_no_ads.tr(),
         ),
       ],
     );
   }
 }
 
-class _PrivilegeRow extends StatelessWidget {
-  const _PrivilegeRow({required this.icon, required this.label});
-
+class _PrivilegeCard extends StatelessWidget {
+  const _PrivilegeCard({required this.icon, required this.label});
   final IconData icon;
   final String label;
 
   @override
   Widget build(BuildContext context) {
     final colors = context.colors;
-
-    return Row(
-      children: [
-        Container(
-          width: 36,
-          height: 36,
-          decoration: BoxDecoration(
-            color: colors.primary.withValues(alpha: 0.15),
-            borderRadius: BorderRadius.circular(10),
-          ),
-          child: Icon(icon, color: colors.primary, size: 18),
+    return Expanded(
+      child: Container(
+        padding: const EdgeInsets.symmetric(
+          vertical: Spacing.medium,
+          horizontal: Spacing.small,
         ),
-        const SizedBox(width: Spacing.small),
-        Expanded(
-          child: Text(label, style: m16w500(context)),
+        decoration: BoxDecoration(
+          color: colors.surface,
+          borderRadius: BorderRadius.circular(16),
         ),
-        Icon(Icons.check_circle_rounded, color: colors.primary, size: 20),
-      ],
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(icon, color: colors.primary, size: 26),
+            const SizedBox(height: Spacing.small),
+            Text(
+              label,
+              textAlign: TextAlign.center,
+              style: AppTextStyles.bodySmall(context).copyWith(
+                color: colors.textSecondary,
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

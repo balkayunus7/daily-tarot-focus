@@ -56,7 +56,7 @@ class RevealCardWheel extends StatelessWidget {
             color: context.colors.primary,
           ),
           Text(
-            LocaleKeys.revealDragToMove.tr(),
+            LocaleKeys.reveal_page_drag_to_move.tr(),
             style: m12w500(context).copyWith(color: context.colors.textSecondary),
           ),
           Spacing.mediumH,

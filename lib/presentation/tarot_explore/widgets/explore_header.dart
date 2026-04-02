@@ -7,8 +7,8 @@ class ExploreHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     final colors = context.colors;
     final isNight = context.networkNow().isNight();
-    final exploreMoonEnergy = LocaleKeys.exploreMoonEnergy.tr();
-    final exploreDayEnergy = LocaleKeys.exploreDayEnergy.tr();
+    final exploreMoonEnergy = LocaleKeys.explore_page_moon_energy.tr();
+    final exploreDayEnergy = LocaleKeys.explore_page_day_energy.tr();
     final timeIcon = isNight ? Icons.nightlight_round : Icons.sunny;
     final timeGreeting = isNight ? exploreMoonEnergy : exploreDayEnergy;
 
@@ -31,7 +31,7 @@ class ExploreHeader extends StatelessWidget {
             Spacing.smallH,
             if (userZodiac != null) ...[
               Text(
-                LocaleKeys.exploreIntuitionGuide.tr(args: [userZodiac.value]),
+                LocaleKeys.explore_page_intuition_guide.tr(args: [userZodiac.value]),
                 style: m14w500(context).copyWith(color: colors.textSecondary),
               ),
             ],

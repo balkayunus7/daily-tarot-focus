@@ -50,7 +50,7 @@ class _CardContent extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            LocaleKeys.exploreAskQuestionTitle.tr(),
+            LocaleKeys.explore_page_ask_question_title.tr(),
             style: m18w600(context),
           ),
           Spacing.mediumH,
@@ -62,7 +62,7 @@ class _CardContent extends StatelessWidget {
                 width: buttonWidth,
                 onTap: () {},
                 bgColor: context.colors.accent,
-                buttonText: LocaleKeys.exploreAskQuestionButton.tr(),
+                buttonText: LocaleKeys.explore_page_ask_question_button.tr(),
                 buttonTextStyle: m12w600(context),
               ),
             ),

@@ -15,11 +15,9 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mobile_boilerplate/application/auth/auth_cubit.dart';
 import 'package:mobile_boilerplate/common_dependencies.dart';
-import 'package:mobile_boilerplate/domain/purchases/subscription_plan.dart';
 import 'package:mobile_boilerplate/presentation/extensions/build_context_theme_ext.dart';
 import 'package:mobile_boilerplate/presentation/extensions/build_context_time_ext.dart';
 import 'package:mobile_boilerplate/presentation/extensions/date_time_ext.dart';
-import 'package:mobile_boilerplate/presentation/routing/route_arguments.dart';
 import 'package:mobile_boilerplate/presentation/widgets/scaling_container.dart';
 
 part '../widgets/explore_ask_question_card.dart';
@@ -49,7 +47,7 @@ class TarotExplorePage extends StatelessWidget {
               Spacing.largeH,
               const ExplorePaywallCard(),
               Spacing.largeH,
-              Text(LocaleKeys.exploreSpiritualGuide.tr(), style: m16w500(context)),
+              Text(LocaleKeys.explore_page_spiritual_guide.tr(), style: m16w500(context)),
               Spacing.mediumH,
               Row(
                 children: [
@@ -57,7 +55,7 @@ class TarotExplorePage extends StatelessWidget {
                   Spacing.mediumW,
                   Expanded(
                     child: ExploreFeatureCard(
-                      title: LocaleKeys.exploreLibrary.tr(),
+                      title: LocaleKeys.explore_page_library.tr(),
                       imagePath: TarotAppAssets.library.path,
                       onTap: () => context.push(AppRoutes.tarotLibrary),
                     ),

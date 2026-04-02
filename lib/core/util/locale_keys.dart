@@ -1,131 +1,153 @@
-/// Generated locale keys for type-safe access to translation strings.
-/// Usage: LocaleKeys.exploreSpiritualGuide.tr()
-class LocaleKeys {
-  LocaleKeys._();
+// DO NOT EDIT. This is code generated via package:easy_localization/generate.dart
 
-  // Explore Page
-  static const exploreSpiritualGuide = 'explore_page.spiritual_guide';
-  static const exploreAskQuestion = 'explore_page.ask_question';
-  static const exploreLibrary = 'explore_page.library';
-  static const exploreDiscoverDaily = 'explore_page.discover_daily';
-  static const exploreAskQuestionTitle = 'explore_page.ask_question_title';
-  static const exploreAskQuestionButton = 'explore_page.ask_question_button';
-  static const exploreDailyCard = 'explore_page.daily_card';
-  static const exploreGoPremium = 'explore_page.go_premium';
-  static const exploreUnlockAllFeatures = 'explore_page.unlock_all_features';
-  static const exploreGetPro = 'explore_page.get_pro';
-  static const exploreDayEnergy = 'explore_page.day_energy';
-  static const exploreMoonEnergy = 'explore_page.moon_energy';
-  static const exploreIntuitionGuide = 'explore_page.intuition_guide';
+// ignore_for_file: constant_identifier_names
 
-  // Library Page
-  static const libraryTitle = 'library_page.title';
-  static const libraryMeaningForDay = 'library_page.meaning_for_day';
-  static const libraryUprightMeanings = 'library_page.upright_meanings';
-  static const libraryReversedMeanings = 'library_page.reversed_meanings';
+abstract class  LocaleKeys {
+  static const explore_page_spiritual_guide = 'explore_page.spiritual_guide';
+  static const explore_page_ask_question = 'explore_page.ask_question';
+  static const explore_page_library = 'explore_page.library';
+  static const explore_page_discover_daily = 'explore_page.discover_daily';
+  static const explore_page_daily_card = 'explore_page.daily_card';
+  static const explore_page_ask_question_title = 'explore_page.ask_question_title';
+  static const explore_page_ask_question_button = 'explore_page.ask_question_button';
+  static const explore_page_go_premium = 'explore_page.go_premium';
+  static const explore_page_unlock_all_features = 'explore_page.unlock_all_features';
+  static const explore_page_get_pro = 'explore_page.get_pro';
+  static const explore_page_day_energy = 'explore_page.day_energy';
+  static const explore_page_moon_energy = 'explore_page.moon_energy';
+  static const explore_page_intuition_guide = 'explore_page.intuition_guide';
+  static const explore_page = 'explore_page';
+  static const library_page_title = 'library_page.title';
+  static const library_page_meaning_for_day = 'library_page.meaning_for_day';
+  static const library_page_upright_meanings = 'library_page.upright_meanings';
+  static const library_page_reversed_meanings = 'library_page.reversed_meanings';
+  static const library_page = 'library_page';
+  static const reveal_page_tap_to_pick = 'reveal_page.tap_to_pick';
+  static const reveal_page_drag_to_move = 'reveal_page.drag_to_move';
+  static const reveal_page = 'reveal_page';
+  static const question_page_title = 'question_page.title';
+  static const question_page_hint_text = 'question_page.hint_text';
+  static const question_page_choose_topic = 'question_page.choose_topic';
+  static const question_page_choose_card_count = 'question_page.choose_card_count';
+  static const question_page_career_topic = 'question_page.career_topic';
+  static const question_page_love_topic = 'question_page.love_topic';
+  static const question_page_health_topic = 'question_page.health_topic';
+  static const question_page_single_card = 'question_page.single_card';
+  static const question_page_single_card_desc = 'question_page.single_card_desc';
+  static const question_page_multiple_cards = 'question_page.multiple_cards';
+  static const question_page_multiple_cards_desc = 'question_page.multiple_cards_desc';
+  static const question_page_suggested_questions_title = 'question_page.suggested_questions_title';
+  static const question_page_suggested_question_1 = 'question_page.suggested_question_1';
+  static const question_page_suggested_question_2 = 'question_page.suggested_question_2';
+  static const question_page_suggested_question_3 = 'question_page.suggested_question_3';
+  static const question_page_suggested_question_4 = 'question_page.suggested_question_4';
+  static const question_page_suggested_question_5 = 'question_page.suggested_question_5';
+  static const question_page_suggested_question_6 = 'question_page.suggested_question_6';
+  static const question_page_suggested_question_7 = 'question_page.suggested_question_7';
+  static const question_page_suggested_question_8 = 'question_page.suggested_question_8';
+  static const question_page_suggested_question_9 = 'question_page.suggested_question_9';
+  static const question_page_suggested_question_10 = 'question_page.suggested_question_10';
+  static const question_page_suggested_question_11 = 'question_page.suggested_question_11';
+  static const question_page_suggested_question_12 = 'question_page.suggested_question_12';
+  static const question_page_suggested_question_13 = 'question_page.suggested_question_13';
+  static const question_page_suggested_question_14 = 'question_page.suggested_question_14';
+  static const question_page_suggested_question_15 = 'question_page.suggested_question_15';
+  static const question_page_suggested_question_16 = 'question_page.suggested_question_16';
+  static const question_page_suggested_question_17 = 'question_page.suggested_question_17';
+  static const question_page_suggested_question_18 = 'question_page.suggested_question_18';
+  static const question_page_suggested_question_19 = 'question_page.suggested_question_19';
+  static const question_page_suggested_question_20 = 'question_page.suggested_question_20';
+  static const question_page_start_question = 'question_page.start_question';
+  static const question_page = 'question_page';
+  static const register_page_step_1_of_3 = 'register_page.step_1_of_3';
+  static const register_page_step_2_of_3 = 'register_page.step_2_of_3';
+  static const register_page_step_3_of_3 = 'register_page.step_3_of_3';
+  static const register_page_zodiac_title = 'register_page.zodiac_title';
+  static const register_page_zodiac_subtitle = 'register_page.zodiac_subtitle';
+  static const register_page_relationship_title = 'register_page.relationship_title';
+  static const register_page_relationship_subtitle = 'register_page.relationship_subtitle';
+  static const register_page_birthdate_title = 'register_page.birthdate_title';
+  static const register_page_birthdate_subtitle = 'register_page.birthdate_subtitle';
+  static const register_page_continue_button = 'register_page.continue_button';
+  static const register_page_complete_registration = 'register_page.complete_registration';
+  static const register_page = 'register_page';
+  static const navbar_explore = 'navbar.explore';
+  static const navbar_daily_tarots = 'navbar.daily_tarots';
+  static const navbar_profile = 'navbar.profile';
+  static const navbar = 'navbar';
+  static const common_cancel = 'common.cancel';
+  static const common_confirm = 'common.confirm';
+  static const common_save = 'common.save';
+  static const common_delete = 'common.delete';
+  static const common_back = 'common.back';
+  static const common = 'common';
+  static const settings_page_app_bar = 'settings_page.app_bar';
+  static const settings_page_account = 'settings_page.account';
+  static const settings_page_profile = 'settings_page.profile';
+  static const settings_page_language = 'settings_page.language';
+  static const settings_page_rate_us = 'settings_page.rate_us';
+  static const settings_page_restore_purchases = 'settings_page.restore_purchases';
+  static const settings_page_terms_of_service = 'settings_page.terms_of_service';
+  static const settings_page_privacy_policy = 'settings_page.privacy_policy';
+  static const settings_page_signout = 'settings_page.signout';
+  static const settings_page_delete_account = 'settings_page.delete_account';
+  static const settings_page_choose_language = 'settings_page.choose_language';
+  static const settings_page_english = 'settings_page.english';
+  static const settings_page_turkish = 'settings_page.turkish';
+  static const settings_page = 'settings_page';
+  static const delete_account_popup_title = 'delete_account_popup.title';
+  static const delete_account_popup_desc = 'delete_account_popup.desc';
+  static const delete_account_popup_delete_button = 'delete_account_popup.delete_button';
+  static const delete_account_popup = 'delete_account_popup';
+  static const popup_cancel_button = 'popup.cancel_button';
+  static const popup_confirm_button = 'popup.confirm_button';
+  static const popup = 'popup';
+  static const failure_connection_message = 'failure.connection_message';
+  static const failure_forbidden_message = 'failure.forbidden_message';
+  static const failure_rate_limit_message = 'failure.rate_limit_message';
+  static const failure_unexpected_message = 'failure.unexpected_message';
+  static const failure = 'failure';
+  static const zodiac_aries = 'zodiac.aries';
+  static const zodiac_taurus = 'zodiac.taurus';
+  static const zodiac_gemini = 'zodiac.gemini';
+  static const zodiac_cancer = 'zodiac.cancer';
+  static const zodiac_leo = 'zodiac.leo';
+  static const zodiac_virgo = 'zodiac.virgo';
+  static const zodiac_libra = 'zodiac.libra';
+  static const zodiac_scorpio = 'zodiac.scorpio';
+  static const zodiac_sagittarius = 'zodiac.sagittarius';
+  static const zodiac_capricorn = 'zodiac.capricorn';
+  static const zodiac_aquarius = 'zodiac.aquarius';
+  static const zodiac_pisces = 'zodiac.pisces';
+  static const zodiac = 'zodiac';
+  static const tarot_daily_title = 'tarot_daily.title';
+  static const tarot_daily_subtitle = 'tarot_daily.subtitle';
+  static const tarot_daily_error_desc = 'tarot_daily.error_desc';
+  static const tarot_daily_empty_desc = 'tarot_daily.empty_desc';
+  static const tarot_daily = 'tarot_daily';
+  static const paywall_unlimited_readings = 'paywall.unlimited_readings';
+  static const paywall_limited_question = 'paywall.limited_question';
+  static const paywall_no_ads = 'paywall.no_ads';
+  static const paywall = 'paywall';
+  static const subscription_paywall_page_app_bar = 'subscription_paywall_page.app_bar';
+  static const subscription_paywall_page_title = 'subscription_paywall_page.title';
+  static const subscription_paywall_page_subtitle = 'subscription_paywall_page.subtitle';
+  static const subscription_paywall_page_footer_text = 'subscription_paywall_page.footer_text';
+  static const subscription_paywall_page_terms_of_service = 'subscription_paywall_page.terms_of_service';
+  static const subscription_paywall_page_failed_fetch_packages = 'subscription_paywall_page.failed_fetch_packages';
+  static const subscription_paywall_page_no_packages = 'subscription_paywall_page.no_packages';
+  static const subscription_paywall_page_package_card_period = 'subscription_paywall_page.package_card_period';
+  static const subscription_paywall_page_subscribe_placeholder_button = 'subscription_paywall_page.subscribe_placeholder_button';
+  static const subscription_paywall_page_retry_button = 'subscription_paywall_page.retry_button';
+  static const subscription_paywall_page_restore_button = 'subscription_paywall_page.restore_button';
+  static const subscription_paywall_page_subscribe_button = 'subscription_paywall_page.subscribe_button';
+  static const subscription_paywall_page = 'subscription_paywall_page';
+  static const subscription_period_month = 'subscription_period_month';
+  static const subscription_period_week = 'subscription_period_week';
+  static const subscription_period_year = 'subscription_period_year';
+  static const subscription_period_price_month = 'subscription_period_price.month';
+  static const subscription_period_price_week = 'subscription_period_price.week';
+  static const subscription_period_price_year = 'subscription_period_price.year';
+  static const subscription_period_price = 'subscription_period_price';
 
-  // Reveal Page
-  static const revealTapToPick = 'reveal_page.tap_to_pick';
-  static const revealDragToMove = 'reveal_page.drag_to_move';
-
-  // Question Page
-  static const questionTitle = 'question_page.title';
-  static const questionHintText = 'question_page.hint_text';
-  static const questionChooseTopic = 'question_page.choose_topic';
-  static const questionChooseCardCount = 'question_page.choose_card_count';
-  static const questionCareerTopic = 'question_page.career_topic';
-  static const questionLoveTopic = 'question_page.love_topic';
-  static const questionHealthTopic = 'question_page.health_topic';
-  static const questionSingleCard = 'question_page.single_card';
-  static const questionSingleCardDesc = 'question_page.single_card_desc';
-  static const questionMultipleCards = 'question_page.multiple_cards';
-  static const questionMultipleCardsDesc = 'question_page.multiple_cards_desc';
-  static const questionSuggestedQuestionsTitle = 'question_page.suggested_questions_title';
-  static const questionSuggestedQuestion1 = 'question_page.suggested_question_1';
-  static const questionSuggestedQuestion2 = 'question_page.suggested_question_2';
-  static const questionSuggestedQuestion3 = 'question_page.suggested_question_3';
-  static const questionSuggestedQuestion4 = 'question_page.suggested_question_4';
-  static const questionSuggestedQuestion5 = 'question_page.suggested_question_5';
-  static const questionSuggestedQuestion6 = 'question_page.suggested_question_6';
-  static const questionSuggestedQuestion7 = 'question_page.suggested_question_7';
-  static const questionSuggestedQuestion8 = 'question_page.suggested_question_8';
-  static const questionSuggestedQuestion9 = 'question_page.suggested_question_9';
-  static const questionSuggestedQuestion10 = 'question_page.suggested_question_10';
-  static const questionSuggestedQuestion11 = 'question_page.suggested_question_11';
-  static const questionSuggestedQuestion12 = 'question_page.suggested_question_12';
-  static const questionSuggestedQuestion13 = 'question_page.suggested_question_13';
-  static const questionSuggestedQuestion14 = 'question_page.suggested_question_14';
-  static const questionSuggestedQuestion15 = 'question_page.suggested_question_15';
-  static const questionSuggestedQuestion16 = 'question_page.suggested_question_16';
-  static const questionSuggestedQuestion17 = 'question_page.suggested_question_17';
-  static const questionSuggestedQuestion18 = 'question_page.suggested_question_18';
-  static const questionSuggestedQuestion19 = 'question_page.suggested_question_19';
-  static const questionSuggestedQuestion20 = 'question_page.suggested_question_20';
-  static const questionStartQuestion = 'question_page.start_question';
-
-  // Register Page
-  static const registerStep1Of3 = 'register_page.step_1_of_3';
-  static const registerStep2Of3 = 'register_page.step_2_of_3';
-  static const registerStep3Of3 = 'register_page.step_3_of_3';
-  static const registerZodiacTitle = 'register_page.zodiac_title';
-  static const registerZodiacSubtitle = 'register_page.zodiac_subtitle';
-  static const registerRelationshipTitle = 'register_page.relationship_title';
-  static const registerRelationshipSubtitle = 'register_page.relationship_subtitle';
-  static const registerBirthdateTitle = 'register_page.birthdate_title';
-  static const registerBirthdateSubtitle = 'register_page.birthdate_subtitle';
-  static const registerContinueButton = 'register_page.continue_button';
-  static const registerCompleteRegistration = 'register_page.complete_registration';
-
-  // Navbar
-  static const navbarExplore = 'navbar.explore';
-  static const navbarDailyTarots = 'navbar.daily_tarots';
-  static const navbarProfile = 'navbar.profile';
-
-  // Common
-  static const commonCancel = 'common.cancel';
-  static const commonConfirm = 'common.confirm';
-  static const commonSave = 'common.save';
-  static const commonDelete = 'common.delete';
-  static const commonBack = 'common.back';
-
-  // Settings Page
-  static const settingsAppBar = 'settings_page.app_bar';
-  static const settingsAccount = 'settings_page.account';
-  static const settingsProfile = 'settings_page.profile';
-  static const settingsLanguage = 'settings_page.language';
-  static const settingsRateUs = 'settings_page.rate_us';
-  static const settingsRestorePurchases = 'settings_page.restore_purchases';
-  static const settingsTermsOfService = 'settings_page.terms_of_service';
-  static const settingsPrivacyPolicy = 'settings_page.privacy_policy';
-  static const settingsSignout = 'settings_page.signout';
-  static const settingsDeleteAccount = 'settings_page.delete_account';
-  static const settingsChooseLanguage = 'settings_page.choose_language';
-  static const settingsEnglish = 'settings_page.english';
-  static const settingsTurkish = 'settings_page.turkish';
-
-  // Delete Account Popup
-  static const deleteAccountTitle = 'delete_account_popup.title';
-  static const deleteAccountDesc = 'delete_account_popup.desc';
-  static const deleteAccountButton = 'delete_account_popup.delete_button';
-
-  // Popup
-  static const popupCancelButton = 'popup.cancel_button';
-  static const popupConfirmButton = 'popup.confirm_button';
-
-  // Failure Messages
-  static const failureConnection = 'failure.connection_message';
-  static const failureForbidden = 'failure.forbidden_message';
-  static const failureRateLimit = 'failure.rate_limit_message';
-  static const failureUnexpected = 'failure.unexpected_message';
-
-  // Tarot Daily
-  static const tarotDailyTitle = 'tarot_daily.title';
-  static const tarotDailySubtitle = 'tarot_daily.subtitle';
-  static const tarotDailyErrorDesc = 'tarot_daily.error_desc';
-  static const tarotDailyEmptyDesc = 'tarot_daily.empty_desc';
-
-  // Paywall
-  static const paywallUnlimitedReadings = 'paywall.unlimited_readings';
-  static const paywallUnlimitedQuestions = 'paywall.unlimited_questions';
-  static const paywallNoAds = 'paywall.no_ads';
 }

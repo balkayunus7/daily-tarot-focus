@@ -46,7 +46,7 @@ class _RegisterStepBirthdatePageState extends State<RegisterStepBirthdatePage> w
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  LocaleKeys.registerStep3Of3.tr(),
+                  LocaleKeys.register_page_step_3_of_3.tr(),
                   style: TextStyle(
                     color: colors.textSecondary,
                     fontSize: 14,
@@ -55,7 +55,7 @@ class _RegisterStepBirthdatePageState extends State<RegisterStepBirthdatePage> w
                 ),
                 Spacing.xsmallH,
                 Text(
-                  LocaleKeys.registerBirthdateTitle.tr(),
+                  LocaleKeys.register_page_birthdate_title.tr(),
                   style: TextStyle(
                     color: colors.textPrimary,
                     fontSize: 32,
@@ -64,7 +64,7 @@ class _RegisterStepBirthdatePageState extends State<RegisterStepBirthdatePage> w
                 ),
                 Spacing.xsmallH,
                 Text(
-                  LocaleKeys.registerBirthdateSubtitle.tr(),
+                  LocaleKeys.register_page_birthdate_subtitle.tr(),
                   style: TextStyle(
                     color: colors.textSecondary,
                     fontSize: 16,
@@ -100,7 +100,7 @@ class _RegisterStepBirthdatePageState extends State<RegisterStepBirthdatePage> w
                 BlocBuilder<RegisterCubit, RegisterState>(
                   builder: (context, state) {
                     return TarotButton(
-                      buttonText: LocaleKeys.registerCompleteRegistration.tr(),
+                      buttonText: LocaleKeys.register_page_complete_registration.tr(),
                       onTap: () async {
                         final authState = context.read<AuthCubit>().state;
                         await context.read<RegisterCubit>().submitRegistration(

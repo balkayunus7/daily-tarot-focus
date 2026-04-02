@@ -30,17 +30,17 @@ class RegisterStepZodiacPage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                LocaleKeys.registerStep1Of3.tr(),
+                LocaleKeys.register_page_step_1_of_3.tr(),
                 style: m14w400(context).copyWith(color: colors.textSecondary),
               ),
               Spacing.xsmallH,
               Text(
-                LocaleKeys.registerZodiacTitle.tr(),
+                LocaleKeys.register_page_zodiac_title.tr(),
                 style: m32w600(context),
               ),
               Spacing.xsmallH,
               Text(
-                LocaleKeys.registerZodiacSubtitle.tr(),
+                LocaleKeys.register_page_zodiac_subtitle.tr(),
                 style: m16w400(context).copyWith(color: colors.textSecondary),
               ),
               Spacing.smallH,
@@ -54,7 +54,7 @@ class RegisterStepZodiacPage extends StatelessWidget {
               BlocBuilder<RegisterCubit, RegisterState>(
                 builder: (context, state) {
                   return TarotButton(
-                    buttonText: LocaleKeys.registerContinueButton.tr(),
+                    buttonText: LocaleKeys.register_page_continue_button.tr(),
                     onTap: () async {
                       await context.push(AppRoutes.registerStepRelationship);
                     },

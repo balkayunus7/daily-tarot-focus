@@ -136,29 +136,38 @@
     },
     "paywall": {
         "unlimited_readings": "Unlimited Tarot Readings",
-        "unlimited_questions": "Unlimited Questions",
-        "no_ads": "Ad-Free Experience"
+        "limited_question": "Weekly 10 Questions",
+        "no_ads": "Monthly Energy Analysis & Charts"
     },
     "subscription_paywall_page": {
         "app_bar": "Premium",
-        "title": "Go Premium",
-        "subtitle": "Unlock all features",
-        "footer_text": "Subscription automatically renews. Cancel anytime. ",
+        "title": "Exclusive Experience",
+        "subtitle": "Unlock all the doors of your destiny",
+        "footer_text": "Subscription renews automatically; cancel anytime.",
         "terms_of_service": "Terms of Service",
         "failed_fetch_packages": "Failed to load packages",
-        "no_packages": "No packages available",
-        "package_card_period": "{} {}",
-        "subscribe_placeholder_button": "Subscribe",
-        "retry_button": "Retry",
+        "no_packages": "No packages available to show",
+        "package_card_period": "{period}",
+        "subscribe_placeholder_button": "Get Started Now",
+        "retry_button": "Try Again",
         "restore_button": "Restore Purchases",
-        "subscribe_button": "{} / {}"
+        "subscribe_button": "{price} / {period}"
     },
-    "subscription_period_month": "{count} Month",
-    "subscription_period_week": "{count} Week",
-    "subscription_period_lifetime": "Lifetime",
+    "subscription_period_month": {
+        "one": "1 Month",
+        "other": "{} Months"
+    },
+    "subscription_period_week": {
+        "one": "1 Week",
+        "other": "{} Weeks"
+    },
+    "subscription_period_year": {
+        "one": "1 Year",
+        "other": "{} Years"
+    },
     "subscription_period_price": {
-        "month": "month",
-        "week": "week",
-        "lifetime": "lifetime"
+        "month": "{price} / month",
+        "week": "{price} / week",
+        "year": "{price} / year"
     }
 }

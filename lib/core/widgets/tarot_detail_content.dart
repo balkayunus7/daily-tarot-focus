@@ -43,7 +43,7 @@ class SharedTarotDetailPageContent extends StatelessWidget {
           ],
           Spacing.xlargeH,
           _MeaningsCardSection(
-            title: LocaleKeys.libraryUprightMeanings.tr(),
+            title: LocaleKeys.library_page_upright_meanings.tr(),
             descriptions: tarot.uprightMeanings,
             headerIcon: Icons.arrow_upward_rounded,
             glowColor: Colors.green,
@@ -52,7 +52,7 @@ class SharedTarotDetailPageContent extends StatelessWidget {
           ),
           Spacing.largeH,
           _MeaningsCardSection(
-            title: LocaleKeys.libraryReversedMeanings.tr(),
+            title: LocaleKeys.library_page_reversed_meanings.tr(),
             descriptions: tarot.reversedMeanings,
             headerIcon: Icons.arrow_downward_rounded,
             glowColor: context.colors.primary,
@@ -171,7 +171,7 @@ class _MeaningForDaySection extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(LocaleKeys.libraryMeaningForDay.tr(), style: m16w600(context)),
+        Text(LocaleKeys.library_page_meaning_for_day.tr(), style: m16w600(context)),
         Spacing.mediumH,
         GridView.count(
           shrinkWrap: true,

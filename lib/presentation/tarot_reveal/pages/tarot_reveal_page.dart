@@ -62,7 +62,7 @@ class _TarotRevealPageState extends State<TarotRevealPage>
                           ),
                           Spacing.mediumH,
                           Text(
-                            LocaleKeys.revealTapToPick.tr(),
+                            LocaleKeys.reveal_page_tap_to_pick.tr(),
                             style: m14w500(context).copyWith(color: context.colors.textSecondary),
                           ),
                         ],

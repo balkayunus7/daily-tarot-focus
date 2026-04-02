@@ -8,9 +8,9 @@ import 'package:easy_localization/easy_localization.dart';
 /// Note: Actual tarot card data is now loaded from JSON files via TarotCardService.
 class TarotMockData {
   static List<Map<String, String>> get navbarItems => [
-    {'path': TarotAppAssets.explore.path, 'label': LocaleKeys.navbarExplore.tr()},
-    {'path': TarotAppAssets.tarotIcon.path, 'label': LocaleKeys.navbarDailyTarots.tr()},
-    {'path': TarotAppAssets.settings.path, 'label': LocaleKeys.navbarProfile.tr()},
+    {'path': TarotAppAssets.explore.path, 'label': LocaleKeys.navbar_explore.tr()},
+    {'path': TarotAppAssets.tarotIcon.path, 'label': LocaleKeys.navbar_daily_tarots.tr()},
+    {'path': TarotAppAssets.settings.path, 'label': LocaleKeys.navbar_profile.tr()},
   ];
 
   static const String dailyTarotCardHeroTag = 'daily_tarot_card_hero';

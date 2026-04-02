@@ -96,7 +96,7 @@ class _ExploreDailyCardWithCooldownState extends State<ExploreDailyCardWithCoold
           valueListenable: remaining,
           builder: (context, remainingValue, _) {
             return ExploreFeatureCard(
-              title: LocaleKeys.exploreDailyCard.tr(),
+              title: LocaleKeys.explore_page_daily_card.tr(),
               imagePath: TarotAppAssets.askQuestion.path,
               onTap: () => context.push(AppRoutes.tarotReveal),
               isDisabled: onCooldown,

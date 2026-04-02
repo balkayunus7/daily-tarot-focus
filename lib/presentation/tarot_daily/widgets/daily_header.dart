@@ -14,10 +14,10 @@ class DailyHeader extends StatelessWidget {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(LocaleKeys.tarotDailyTitle.tr(), style: m20w700(context)),
+              Text(LocaleKeys.tarot_daily_title.tr(), style: m20w700(context)),
               Spacing.xsmallH,
               Text(
-                LocaleKeys.tarotDailySubtitle.tr(),
+                LocaleKeys.tarot_daily_subtitle.tr(),
                 style: m10w600(context).copyWith(color: context.colors.primary, letterSpacing: 1.5),
               ),
             ],

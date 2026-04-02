@@ -67,7 +67,7 @@ class _TarotDailyPageState extends State<TarotDailyPage>
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   Text(
-                                    LocaleKeys.tarotDailyErrorDesc.tr(),
+                                    LocaleKeys.tarot_daily_error_desc.tr(),
                                     style: m14w600(context),
                                   ),
                                   Spacing.mediumH,
@@ -87,7 +87,7 @@ class _TarotDailyPageState extends State<TarotDailyPage>
                             if (cards.isEmpty) {
                               return Center(
                                 child: Text(
-                                  LocaleKeys.tarotDailyEmptyDesc.tr(),
+                                  LocaleKeys.tarot_daily_empty_desc.tr(),
                                   style: m14w600(context),
                                 ),
                               );

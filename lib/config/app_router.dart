@@ -8,7 +8,7 @@ import 'package:daily_tarot_focus/presentation/auth/pages/register_step_zodiac_p
 import 'package:daily_tarot_focus/presentation/auth/pages/splash_page.dart';
 import 'package:daily_tarot_focus/presentation/home/pages/home_page.dart';
 import 'package:daily_tarot_focus/presentation/settings/pages/settings_page.dart';
-import 'package:daily_tarot_focus/presentation/subscription/pages/subscription_paywall_page.dart';
+import 'package:daily_tarot_focus/presentation/subscription/pages/tarot_subscription_paywall_page.dart';
 import 'package:daily_tarot_focus/presentation/tarot_daily/page/tarot_daily_detail_page.dart';
 import 'package:daily_tarot_focus/presentation/tarot_library/pages/tarot_library_detail_page.dart';
 import 'package:daily_tarot_focus/presentation/tarot_library/pages/tarot_library_page.dart';
@@ -194,11 +194,9 @@ final appRouter = GoRouter(
       path: AppRoutes.subscriptionPaywall,
       name: AppRoutes.subscriptionPaywall,
       pageBuilder: (context, state) {
-        final params = state.extra as SubscriptionPaywallPageParams? ??
-            SubscriptionPaywallPageParams(
-              context,
-              subsPlan: SubscriptionPlan.premium,
-            );
+        final params =
+            state.extra as SubscriptionPaywallPageParams? ??
+            SubscriptionPaywallPageParams(context, subsPlan: SubscriptionPlan.premium);
         return MaterialPage(
           key: state.pageKey,
           child: TarotSubscriptionPaywallPage(params: params),

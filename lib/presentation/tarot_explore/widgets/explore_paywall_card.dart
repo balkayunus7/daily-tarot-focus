@@ -8,13 +8,7 @@ class ExplorePaywallCard extends StatelessWidget {
     final colors = context.colors;
 
     return ScalingContainer(
-      onTap: () => context.push(
-        AppRoutes.subscriptionPaywall,
-        extra: SubscriptionPaywallPageParams(
-          context,
-          subsPlan: SubscriptionPlan.premium,
-        ),
-      ),
+      onTap: () => context.push(AppRoutes.subscriptionPaywall),
       child: Container(
         padding: Spacing.hLargeVMediumPad,
         decoration: BoxDecoration(
@@ -54,9 +48,9 @@ class _PaywallTextContent extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
         children: [
-          Text(LocaleKeys.exploreGoPremium.tr(), style: m16w600(context)),
+          Text(LocaleKeys.explore_page_go_premium.tr(), style: m16w600(context)),
           Spacing.tinyH,
-          Text(LocaleKeys.exploreUnlockAllFeatures.tr(), style: m11w500(context)),
+          Text(LocaleKeys.explore_page_unlock_all_features.tr(), style: m11w500(context)),
         ],
       ),
     );
@@ -78,7 +72,7 @@ class _PremiumButton extends StatelessWidget {
         height: buttonHeight,
         width: buttonWidth,
         onTap: () {},
-        buttonText: LocaleKeys.exploreGetPro.tr(),
+        buttonText: LocaleKeys.explore_page_get_pro.tr(),
         bgColor: colors.accent,
         buttonTextStyle: m12w600(context),
       ),

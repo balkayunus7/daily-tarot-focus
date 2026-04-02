@@ -23,7 +23,7 @@ class SettingsPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: colors.background,
       appBar: TarotAppBar(
-        title: LocaleKeys.settingsAppBar.tr(),
+        title: LocaleKeys.settings_page_app_bar.tr(),
         showBackIcon: false,
       ),
       body: SafeArea(
@@ -34,21 +34,21 @@ class SettingsPage extends StatelessWidget {
             children: [
               Spacing.largeH,
               _SettingsSection(
-                title: LocaleKeys.settingsAccount.tr(),
+                title: LocaleKeys.settings_page_account.tr(),
                 children: [
                   _SettingsTile(
                     icon: Icons.language,
-                    title: LocaleKeys.settingsLanguage.tr(),
+                    title: LocaleKeys.settings_page_language.tr(),
                     onTap: () => _showLanguageBottomSheet(context),
                   ),
                   _SettingsTile(
                     icon: Icons.star_rate,
-                    title: LocaleKeys.settingsRateUs.tr(),
+                    title: LocaleKeys.settings_page_rate_us.tr(),
                     onTap: () {},
                   ),
                   _SettingsTile(
                     icon: Icons.restore,
-                    title: LocaleKeys.settingsRestorePurchases.tr(),
+                    title: LocaleKeys.settings_page_restore_purchases.tr(),
                     onTap: () {
                       final authState = context.read<AuthCubit>().state;
                       if (authState.isAuthenticated) {
@@ -68,12 +68,12 @@ class SettingsPage extends StatelessWidget {
                 children: [
                   _SettingsTile(
                     icon: Icons.description,
-                    title: LocaleKeys.settingsTermsOfService.tr(),
+                    title: LocaleKeys.settings_page_terms_of_service.tr(),
                     onTap: () {},
                   ),
                   _SettingsTile(
                     icon: Icons.privacy_tip,
-                    title: LocaleKeys.settingsPrivacyPolicy.tr(),
+                    title: LocaleKeys.settings_page_privacy_policy.tr(),
                     onTap: () {},
                   ),
                 ],
@@ -83,12 +83,12 @@ class SettingsPage extends StatelessWidget {
                 children: [
                   _SettingsTile(
                     icon: Icons.logout,
-                    title: LocaleKeys.settingsSignout.tr(),
+                    title: LocaleKeys.settings_page_signout.tr(),
                     onTap: () {},
                   ),
                   _SettingsTile(
                     icon: Icons.delete_forever,
-                    title: LocaleKeys.settingsDeleteAccount.tr(),
+                    title: LocaleKeys.settings_page_delete_account.tr(),
                     onTap: () {},
                     isDestructive: true,
                   ),
@@ -130,12 +130,12 @@ class SettingsPage extends StatelessWidget {
               ),
               Spacing.largeH,
               Text(
-                LocaleKeys.settingsChooseLanguage.tr(),
+                LocaleKeys.settings_page_choose_language.tr(),
                 style: m20w600(context),
               ),
               Spacing.largeH,
               _LanguageOption(
-                title: LocaleKeys.settingsEnglish.tr(),
+                title: LocaleKeys.settings_page_english.tr(),
                 locale: context.localeEn,
                 isSelected: context.isLocaleEn,
                 onTap: () async {
@@ -158,7 +158,7 @@ class SettingsPage extends StatelessWidget {
               ),
               Spacing.mediumH,
               _LanguageOption(
-                title: LocaleKeys.settingsTurkish.tr(),
+                title: LocaleKeys.settings_page_turkish.tr(),
                 locale: context.localeTr,
                 isSelected: context.isLocaleTr,
                 onTap: () async {

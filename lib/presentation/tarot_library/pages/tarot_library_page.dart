@@ -30,7 +30,7 @@ class _TarotDataPageState extends State<TarotDataPage> with LibraryPageStateMixi
     return LibraryPageScope(
       state: this,
       child: Scaffold(
-        appBar: TarotAppBar(title: LocaleKeys.libraryTitle.tr()),
+        appBar: TarotAppBar(title: LocaleKeys.library_page_title.tr()),
         body: SafeArea(
           child: BlocBuilder<TarotLocalizationCubit, TarotLocalizationState>(
             builder: (context, state) {

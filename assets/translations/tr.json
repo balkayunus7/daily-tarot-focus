@@ -135,30 +135,39 @@
         "empty_desc": "Henüz kart çekilmedi"
     },
     "paywall": {
-        "unlimited_readings": "Sınırsız Tarot Okuma",
-        "unlimited_questions": "Sınırsız Soru Sorma",
-        "no_ads": "Reklamsız Deneyim"
+        "unlimited_readings": "Sınırsız Tarot Açılımı",
+        "limited_question": "Haftalık 10 Soru",
+        "no_ads": "Aylık Enerji Analizi & Grafik"
     },
     "subscription_paywall_page": {
         "app_bar": "Premium",
-        "title": "Premium'a Geç",
-        "subtitle": "Tüm özelliklerin kilidini aç",
-        "footer_text": "Abonelik otomatik olarak yenilenir. İstediğin zaman iptal edebilirsin. ",
+        "title": "Ayrıcalıklı Deneyim",
+        "subtitle": "Kaderinin tüm kapılarını arala",
+        "footer_text": "Abonelik otomatik yenilenir, dilediğin an iptal edebilirsin.",
         "terms_of_service": "Kullanım Koşulları",
-        "failed_fetch_packages": "Paketler yüklenemedi",
-        "no_packages": "Uygun paket bulunamadı",
-        "package_card_period": "{} {}",
-        "subscribe_placeholder_button": "Abone Ol",
+        "failed_fetch_packages": "Paketler şu an yüklenemedi",
+        "no_packages": "Gösterilecek paket bulunamadı",
+        "package_card_period": "{period}",
+        "subscribe_placeholder_button": "Hemen Başla",
         "retry_button": "Tekrar Dene",
         "restore_button": "Satın Alımları Geri Yükle",
-        "subscribe_button": "{} / {}"
+        "subscribe_button": "{price} / {period}"
     },
-    "subscription_period_month": "{count} Ay",
-    "subscription_period_week": "{count} Hafta",
-    "subscription_period_lifetime": "Ömür Boyu",
+    "subscription_period_month": {
+        "one": "1 Ay",
+        "other": "{} Ay"
+    },
+    "subscription_period_week": {
+        "one": "1 Hafta",
+        "other": "{} Hafta"
+    },
+    "subscription_period_year": {
+        "one": "1 Yıl",
+        "other": "{} Yıl"
+    },
     "subscription_period_price": {
-        "month": "ay",
-        "week": "hafta",
-        "lifetime": "ömür boyu"
+        "month": "{price} / ay",
+        "week": "{price} / hafta",
+        "year": "{price} / yıl"
     }
 }

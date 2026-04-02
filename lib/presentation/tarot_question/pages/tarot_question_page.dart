@@ -29,7 +29,7 @@ class _TarotQuestionPageState extends State<TarotQuestionPage> with QuestionPage
     final colors = context.colors;
 
     return Scaffold(
-      appBar: TarotAppBar(title: LocaleKeys.questionTitle.tr()),
+      appBar: TarotAppBar(title: LocaleKeys.explore_page_ask_question_title.tr()),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: SpacingConsts.large),
@@ -53,7 +53,7 @@ class _TarotQuestionPageState extends State<TarotQuestionPage> with QuestionPage
                         borderRadius: Spacing.smallBorderRadius,
                         borderSide: BorderSide(color: colors.primary, width: 2),
                       ),
-                      hintText: LocaleKeys.questionHintText.tr(),
+                      hintText: LocaleKeys.question_page_hint_text.tr(),
                       alignLabelWithHint: true,
                     ),
                   ),
@@ -77,7 +77,7 @@ class _TarotQuestionPageState extends State<TarotQuestionPage> with QuestionPage
               Spacing.xxlargeH,
               QuestionSectionHeader(
                 icon: FontAwesomeIcons.handSparkles,
-                title: LocaleKeys.questionChooseTopic.tr(),
+                title: LocaleKeys.question_page_choose_topic.tr(),
               ),
               Spacing.mediumH,
               ValueListenableBuilder(
@@ -86,21 +86,21 @@ class _TarotQuestionPageState extends State<TarotQuestionPage> with QuestionPage
                   return Row(
                     children: [
                       QuestionTopicCard(
-                        title: LocaleKeys.questionCareerTopic.tr(),
+                        title: LocaleKeys.question_page_career_topic.tr(),
                         svgIconPath: TarotAppAssets.careerIcon.path,
                         onTap: () => topic = QuestionTopic.career,
                         isSelected: value!.isCareer,
                       ),
                       Spacing.mediumW,
                       QuestionTopicCard(
-                        title: LocaleKeys.questionLoveTopic.tr(),
+                        title: LocaleKeys.question_page_love_topic.tr(),
                         svgIconPath: TarotAppAssets.loveIcon.path,
                         onTap: () => topic = QuestionTopic.love,
                         isSelected: value.isLove,
                       ),
                       Spacing.mediumW,
                       QuestionTopicCard(
-                        title: LocaleKeys.questionHealthTopic.tr(),
+                        title: LocaleKeys.question_page_health_topic.tr(),
                         svgIconPath: TarotAppAssets.healthIcon.path,
                         onTap: () => topic = QuestionTopic.health,
                         isSelected: value.isHealth,
@@ -112,7 +112,7 @@ class _TarotQuestionPageState extends State<TarotQuestionPage> with QuestionPage
               Spacing.xxlargeH,
               QuestionSectionHeader(
                 icon: FontAwesomeIcons.accusoft,
-                title: LocaleKeys.questionChooseCardCount.tr(),
+                title: LocaleKeys.question_page_choose_card_count.tr(),
               ),
               Spacing.mediumH,
               ValueListenableBuilder(
@@ -125,16 +125,16 @@ class _TarotQuestionPageState extends State<TarotQuestionPage> with QuestionPage
                     children: [
                       QuestionSpreadOptionCard(
                         cardCount: singleCardCount.value,
-                        title: LocaleKeys.questionSingleCard.tr(),
-                        subtitle: LocaleKeys.questionSingleCardDesc.tr(),
+                        title: LocaleKeys.question_page_single_card.tr(),
+                        subtitle: LocaleKeys.question_page_single_card_desc.tr(),
                         isSelected: value == singleCardCount,
                         onTap: () => cardCount = singleCardCount,
                       ),
                       Spacing.mediumW,
                       QuestionSpreadOptionCard(
                         cardCount: multipleCardCount.value,
-                        title: LocaleKeys.questionMultipleCards.tr(),
-                        subtitle: LocaleKeys.questionMultipleCardsDesc.tr(),
+                        title: LocaleKeys.question_page_multiple_cards.tr(),
+                        subtitle: LocaleKeys.question_page_multiple_cards_desc.tr(),
                         isSelected: value == multipleCardCount,
                         onTap: () => cardCount = multipleCardCount,
                       ),
@@ -144,7 +144,7 @@ class _TarotQuestionPageState extends State<TarotQuestionPage> with QuestionPage
               ),
               const Spacer(),
               TarotButton(
-                buttonText: LocaleKeys.questionStartQuestion.tr(),
+                buttonText: LocaleKeys.question_page_start_question.tr(),
                 onTap: () {},
                 bgColor: colors.accent,
                 buttonTextStyle: m16w700(context),

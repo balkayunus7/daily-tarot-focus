@@ -16,7 +16,6 @@ class SharedTarotDetailPageContent extends StatelessWidget {
     this.showMeaningForDay = false,
     super.key,
   });
-
   final TarotCard tarot;
   final bool showMeaningForDay;
 
@@ -36,38 +35,26 @@ class SharedTarotDetailPageContent extends StatelessWidget {
             ),
           ),
           Spacing.largeH,
-          _MeaningCard(tarot: tarot),
-          if (showMeaningForDay) ...[
-            Spacing.xlargeH,
-            _MeaningForDaySection(tarot: tarot),
-          ],
-          Spacing.xlargeH,
-          _MeaningsCardSection(
-            title: LocaleKeys.library_page_upright_meanings.tr(),
-            descriptions: tarot.uprightMeanings,
-            headerIcon: Icons.arrow_upward_rounded,
-            glowColor: Colors.green,
-            bulletIcon: Icons.check_circle,
-            bulletColor: Colors.green,
-          ),
+          _MottoCard(tarot: tarot),
           Spacing.largeH,
-          _MeaningsCardSection(
-            title: LocaleKeys.library_page_reversed_meanings.tr(),
-            descriptions: tarot.reversedMeanings,
-            headerIcon: Icons.arrow_downward_rounded,
-            glowColor: context.colors.primary,
-            bulletIcon: Icons.warning_rounded,
-            bulletColor: context.colors.primary,
-          ),
-          Spacing.xlargeH,
+          if (showMeaningForDay) ...[
+            _AdviceCard(tarot: tarot),
+            Spacing.largeH,
+          ],
+          _ContextualMeaningsGrid(tarot: tarot),
+          Spacing.largeH,
+          if (showMeaningForDay) ...[
+            _AffirmationCard(tarot: tarot),
+            Spacing.largeH,
+          ],
         ],
       ),
     );
   }
 }
 
-class _MeaningCard extends StatelessWidget {
-  const _MeaningCard({required this.tarot});
+class _MottoCard extends StatelessWidget {
+  const _MottoCard({required this.tarot});
   final TarotCard tarot;
 
   @override
@@ -77,7 +64,7 @@ class _MeaningCard extends StatelessWidget {
       borderRadius: Spacing.xlargeBorderRadius,
       child: LayoutBuilder(
         builder: (context, constraints) {
-          final itemWidth = constraints.maxWidth / 3.2;
+          final itemWidth = constraints.maxWidth / 3.5;
           final itemHeight = itemWidth * 1.5;
 
           return Row(
@@ -108,13 +95,13 @@ class _MeaningCard extends StatelessWidget {
                   children: [
                     Spacing.smallH,
                     Text(
-                      'Meaning',
+                      tarot.title,
                       style: m18w700(context).copyWith(color: context.colors.primary),
                     ),
                     Spacing.smallH,
                     Text(
-                      tarot.description,
-                      style: m13w500(context).copyWith(
+                      tarot.motto,
+                      style: m15w500(context).copyWith(
                         color: context.colors.textPrimary.withValues(alpha: 0.8),
                         height: 1.5,
                       ),
@@ -130,59 +117,50 @@ class _MeaningCard extends StatelessWidget {
   }
 }
 
-class _MeaningForDaySection extends StatelessWidget {
-  const _MeaningForDaySection({required this.tarot});
+class _ContextualMeaningsGrid extends StatelessWidget {
+  const _ContextualMeaningsGrid({required this.tarot});
   final TarotCard tarot;
 
   @override
   Widget build(BuildContext context) {
-    final meanings = tarot.meanings;
-    final primary = context.colors.primary;
+    final meanings = tarot.contextualMeanings;
 
     final items = <_GridItemData>[
-      _GridItemData(
-        iconPath: TarotAppAssets.generalIcon.path,
-        color: primary,
-        title: 'General',
-        description: meanings.isNotEmpty ? meanings[0] : '',
-      ),
-      _GridItemData(
-        iconPath: TarotAppAssets.careerIcon.path,
-        color: primary,
-        title: 'Career',
-        description: meanings.length > 1 ? meanings[1] : '',
-      ),
-      _GridItemData(
-        iconPath: TarotAppAssets.loveIcon.path,
-        color: primary,
-        title: 'Love',
-        description: meanings.length > 2 ? meanings[2] : '',
-      ),
-      _GridItemData(
-        iconPath: TarotAppAssets.spiritIcon.path,
-        color: primary,
-        title: 'Spirit',
-        description: meanings.length > 3 ? meanings[3] : '',
-      ),
+      if (meanings.general.isNotEmpty)
+        _GridItemData(
+          iconPath: TarotAppAssets.generalIcon.path,
+          title: LocaleKeys.tarot_detail_general.tr(),
+          description: meanings.general,
+        ),
+      if (meanings.love.isNotEmpty)
+        _GridItemData(
+          iconPath: TarotAppAssets.loveIcon.path,
+          title: LocaleKeys.tarot_detail_love.tr(),
+          description: meanings.love,
+        ),
+      if (meanings.career.isNotEmpty)
+        _GridItemData(
+          iconPath: TarotAppAssets.careerIcon.path,
+          title: LocaleKeys.tarot_detail_career.tr(),
+          description: meanings.career,
+        ),
+      if (meanings.spirituality.isNotEmpty)
+        _GridItemData(
+          iconPath: TarotAppAssets.spiritIcon.path,
+          title: LocaleKeys.tarot_detail_spirituality.tr(),
+          description: meanings.spirituality,
+        ),
     ];
 
-    final valid = items.where((i) => i.description.isNotEmpty).toList();
+    if (items.isEmpty) return const SizedBox.shrink();
 
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(LocaleKeys.library_page_meaning_for_day.tr(), style: m16w600(context)),
-        Spacing.mediumH,
-        GridView.count(
-          shrinkWrap: true,
-          physics: const NeverScrollableScrollPhysics(),
-          crossAxisCount: 2,
-          mainAxisSpacing: 12,
-          crossAxisSpacing: 12,
-          childAspectRatio: 1.4,
-          children: valid.map((d) => _MeaningGridTile(data: d)).toList(),
-        ),
-      ],
+    return GridView.count(
+      shrinkWrap: true,
+      physics: const NeverScrollableScrollPhysics(),
+      crossAxisCount: 2,
+      mainAxisSpacing: 12,
+      crossAxisSpacing: 12,
+      children: items.map((d) => _MeaningGridTile(data: d)).toList(),
     );
   }
 }
@@ -190,12 +168,10 @@ class _MeaningForDaySection extends StatelessWidget {
 class _GridItemData {
   const _GridItemData({
     required this.iconPath,
-    required this.color,
     required this.title,
     required this.description,
   });
   final String iconPath;
-  final Color color;
   final String title;
   final String description;
 }
@@ -210,22 +186,21 @@ class _MeaningGridTile extends StatelessWidget {
       padding: Spacing.defaultPadding,
       borderRadius: Spacing.xlargeBorderRadius,
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
             children: [
               SvgPicture.asset(
                 data.iconPath,
-                width: 26,
-                height: 26,
-                colorFilter: ColorFilter.mode(data.color, BlendMode.srcIn),
+                width: 24,
+                height: 24,
+                colorFilter: ColorFilter.mode(context.colors.primary, BlendMode.srcIn),
               ),
               Spacing.xsmallW,
-              Text(data.title, style: m18w600(context)),
+              Text(data.title, style: m14w700(context)),
             ],
           ),
-          Spacing.xsmallH,
+          Spacing.smallH,
           Expanded(
             child: Text(
               data.description,
@@ -233,7 +208,7 @@ class _MeaningGridTile extends StatelessWidget {
                 color: context.colors.textPrimary.withValues(alpha: 0.7),
                 height: 1.5,
               ),
-              maxLines: 3,
+              maxLines: 5,
               overflow: TextOverflow.ellipsis,
             ),
           ),
@@ -243,21 +218,9 @@ class _MeaningGridTile extends StatelessWidget {
   }
 }
 
-class _MeaningsCardSection extends StatelessWidget {
-  const _MeaningsCardSection({
-    required this.title,
-    required this.descriptions,
-    required this.headerIcon,
-    required this.glowColor,
-    required this.bulletIcon,
-    required this.bulletColor,
-  });
-  final String title;
-  final List<String> descriptions;
-  final IconData headerIcon;
-  final Color glowColor;
-  final IconData bulletIcon;
-  final Color bulletColor;
+class _AdviceCard extends StatelessWidget {
+  const _AdviceCard({required this.tarot});
+  final TarotCard tarot;
 
   @override
   Widget build(BuildContext context) {
@@ -265,38 +228,64 @@ class _MeaningsCardSection extends StatelessWidget {
       width: double.infinity,
       borderRadius: Spacing.xlargeBorderRadius,
       child: Padding(
-        padding: Spacing.largePadding,
+        padding: Spacing.hLargeVMediumPad,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Row(
               children: [
-                Icon(headerIcon, size: 20, color: glowColor),
+                Icon(Icons.lightbulb_outline_rounded, size: 20, color: context.colors.primary),
                 Spacing.smallW,
                 Expanded(
-                  child: Text(title, style: m16w700(context)),
+                  child: Text(LocaleKeys.tarot_detail_advice.tr(), style: m16w700(context)),
                 ),
               ],
             ),
-            Spacing.mediumH,
-            ...descriptions.map(
-              (desc) => Padding(
-                padding: const EdgeInsets.only(bottom: SpacingConsts.small),
-                child: Row(
-                  children: [
-                    Icon(bulletIcon, size: 18, color: bulletColor),
-                    Spacing.smallW,
-                    Expanded(
-                      child: Text(
-                        desc,
-                        style: m14w400(context).copyWith(
-                          color: context.colors.textPrimary.withValues(alpha: 0.8),
-                          height: 1.45,
-                        ),
-                      ),
-                    ),
-                  ],
+            Spacing.xsmallH,
+            Text(
+              tarot.advice,
+              style: m13w500(context).copyWith(
+                color: context.colors.textPrimary.withValues(alpha: 0.8),
+                height: 1.45,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _AffirmationCard extends StatelessWidget {
+  const _AffirmationCard({required this.tarot});
+  final TarotCard tarot;
+
+  @override
+  Widget build(BuildContext context) {
+    return FancyContainer(
+      width: double.infinity,
+      borderRadius: Spacing.xlargeBorderRadius,
+      child: Padding(
+        padding: Spacing.hLargeVMediumPad,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              children: [
+                Icon(Icons.self_improvement_rounded, size: 20, color: context.colors.primary),
+                Spacing.smallW,
+                Expanded(
+                  child: Text(LocaleKeys.tarot_detail_affirmation.tr(), style: m16w700(context)),
                 ),
+              ],
+            ),
+            Spacing.xsmallH,
+            Text(
+              tarot.affirmation,
+              style: m13w500(context).copyWith(
+                color: context.colors.textPrimary.withValues(alpha: 0.8),
+                height: 1.45,
+                fontStyle: FontStyle.italic,
               ),
             ),
           ],

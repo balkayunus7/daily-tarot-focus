@@ -20,6 +20,14 @@
         "upright_meanings": "Düz Anlamlar",
         "reversed_meanings": "Ters Anlamlar"
     },
+    "tarot_detail": {
+        "general": "Genel Bakış",
+        "love": "Aşk & İlişkiler",
+        "career": "Kariyer & Para",
+        "spirituality": "Ruhsal",
+        "advice": "Tavsiye",
+        "affirmation": "Olumlamalar"
+    },
     "reveal_page": {
         "tap_to_pick": "Kartını seçmek için dokun",
         "drag_to_move": "Kaydırmak için sürükle"

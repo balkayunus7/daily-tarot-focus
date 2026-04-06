@@ -1,2420 +1,1016 @@
 [
   {
-    "id": "death",
-    "title": "Death",
-    "description": "Represents essential endings, transformation, major change, and making room for new beginnings. It's about the end of a phase, not physical death.",
-    "meanings": [
-      "Ending, transformation, inevitable change.",
-      "End of a job, radical career direction change.",
-      "End of a relationship, transition to a new form.",
-      "Rebirth, Release, Fundamental Change."
-    ],
-    "uprightMeanings": [
-      "An inevitable and necessary ending.",
-      "The need to let go of the old to start anew.",
-      "A process of great transformation and change."
-    ],
-    "reversedMeanings": [
-      "Resistance to change, stagnation.",
-      "Fear of small changes, standing still.",
-      "Painful prolongation of a necessary ending."
-    ],
-    "advices": [
-      "Embrace change and let go of what no longer serves you.",
-      "Trust that endings lead to new beginnings.",
-      "Use this time for personal transformation."
-    ],
-    "warnings": [
-      "Avoid resisting necessary changes.",
-      "Don't cling to the past.",
-      "Beware of stagnation."
-    ]
-  },
-  {
-    "id": "judgement",
-    "title": "Judgement",
-    "description": "Represents rebirth, reflection, important decisions, and forgiveness. Facing the consequences of past actions.",
-    "meanings": [
-      "Reflection, calling, judgment, reawakening.",
-      "An important job offer, career evaluation.",
-      "Making a final decision about a relationship.",
-      "Evaluation, Forgiveness, Second Chance."
-    ],
-    "uprightMeanings": [
-      "Facing the consequences of your past actions.",
-      "A great calling or a decision that will change your life.",
-      "Rebirth and self-forgiveness."
-    ],
-    "reversedMeanings": [
-      "Self-blame, doubt, and fear of judgment.",
-      "Postponing or refusing an important decision.",
-      "A bad decision or remorse."
-    ],
-    "advices": [
-      "Reflect on your past actions and learn from them.",
-      "Be ready for a fresh start.",
-      "Listen to your higher calling."
-    ],
-    "warnings": [
-      "Don't ignore lessons from your past.",
-      "Avoid harsh self-criticism.",
-      "Don't postpone important decisions."
-    ]
-  },
-  {
-    "id": "justice",
-    "title": "Justice",
-    "description": "Represents justice, balance, truth, and legal matters. The card of cause and effect.",
-    "meanings": [
-      "Justice, balance, truth, legal processes.",
-      "Contracts, fair agreements, legal proceedings.",
-      "Honesty, equality, and balance in relationships.",
-      "Law, Cause-Effect, Accountability."
-    ],
-    "uprightMeanings": [
-      "Fair outcomes, honesty, and the emergence of truth.",
-      "A legal matter resolving in your favor.",
-      "Being responsible for your actions and maintaining balance."
-    ],
-    "reversedMeanings": [
-      "Injustice, legal delays, or prejudice.",
-      "Making wrong decisions or avoiding responsibility.",
-      "Imbalance and corruption."
-    ],
-    "advices": [
-      "Act with fairness and integrity.",
-      "Consider all sides before making decisions.",
-      "Take responsibility for your actions."
-    ],
-    "warnings": [
-      "Dishonesty will catch up with you.",
-      "Don't avoid accountability.",
-      "Beware of biased judgments."
-    ]
-  },
-  {
-    "id": "the_star",
-    "title": "The Star",
-    "description": "Symbolizes hope, inspiration, renewal, and serenity. Feeling blessed by the universe.",
-    "meanings": [
-      "Hope, inspiration, renewal, spiritual connection.",
-      "Health/Spirit: Healing, emotional balance, peace.",
-      "Creativity: New ideas, optimism about the future.",
-      "Serenity, Optimism, Universal Love."
-    ],
-    "uprightMeanings": [
-      "Return of hope and inspiration.",
-      "Healing, peace, and spiritual tranquility.",
-      "A bright and optimistic view of the future."
-    ],
-    "reversedMeanings": [
-      "Hopelessness, pessimism, and lack of faith.",
-      "Loss of inspiration, insecurity.",
-      "Delay in healing, spiritual blockages."
-    ],
-    "advices": [
-      "Have faith in the future.",
-      "Allow yourself to heal.",
-      "Stay optimistic and trust the universe."
-    ],
-    "warnings": [
-      "Don't give up hope.",
-      "Avoid pessimistic thinking.",
-      "Don't disconnect from your spiritual side."
-    ]
-  },
-  {
-    "id": "strength",
-    "title": "Strength",
-    "description": "Represents inner strength, courage, compassion, and patience. Using internal rather than external strength.",
-    "meanings": [
-      "Courage, inner strength, compassion.",
-      "Health/Spirit: Physical and spiritual strength, confidence.",
-      "Patience, Persuasion, Sensitivity.",
-      "Animal spirit, Compassion, Heart."
-    ],
-    "uprightMeanings": [
-      "Overcoming challenges with inner strength and courage.",
-      "Managing a difficult situation with patience and compassion.",
-      "Facing fears and increasing self-confidence."
-    ],
-    "reversedMeanings": [
-      "Lack of self-confidence, weakness, or fear.",
-      "Misusing power or applying brute force.",
-      "Self-doubt, suppressing inner strength."
-    ],
-    "advices": [
-      "Use patience and compassion.",
-      "Trust your inner strength.",
-      "Approach challenges with courage."
-    ],
-    "warnings": [
-      "Don't use force to solve problems.",
-      "Avoid losing your temper.",
-      "Don't underestimate yourself."
-    ]
-  },
-  {
-    "id": "temperance",
-    "title": "Temperance",
-    "description": "Represents balance, moderation, patience, and harmony. The need to blend different aspects of life.",
-    "meanings": [
-      "Balance, moderation, patience, harmony.",
-      "Health/Spirit: Healing, chemistry, blending energies.",
-      "Middle Path, Cooperation, Common Sense.",
-      "Adaptation, Delicate Control."
-    ],
-    "uprightMeanings": [
-      "Perfect balance between different aspects of life.",
-      "Progress with patience and moderation, avoiding extremes.",
-      "Successful combination of different ideas and energies."
-    ],
-    "reversedMeanings": [
-      "Imbalance, excess, and lack of moderation.",
-      "Discord and conflict, impatience.",
-      "Inconsistency hindering progress."
-    ],
-    "advices": [
-      "Seek balance in all areas of life.",
-      "Practice moderation.",
-      "Be patient with the process."
-    ],
-    "warnings": [
-      "Avoid extremes.",
-      "Don't rush important matters.",
-      "Beware of imbalance."
-    ]
-  },
-  {
-    "id": "the_devil",
-    "title": "The Devil",
-    "description": "Represents attachment, material traps, addictions, and feeling restricted. Usually self-imposed limitations.",
-    "meanings": [
-      "Addiction, restriction, materialism, shadow self.",
-      "Finance/Material: Material traps, overconsumption, greed.",
-      "Unhealthy obsessions, sexual addiction.",
-      "Bondage, Addiction, Self-Restriction."
-    ],
-    "uprightMeanings": [
-      "Facing material addictions and restrictions.",
-      "The need to break free from self-created bondage.",
-      "Becoming aware of fear and your shadow self."
-    ],
-    "reversedMeanings": [
-      "Breaking free from addictions and liberation.",
-      "Overcoming restrictions and gaining strength.",
-      "Reclaiming your inner power."
-    ],
-    "advices": [
-      "Recognize unhealthy attachments.",
-      "Break free from limiting patterns.",
-      "Face your shadows."
-    ],
-    "warnings": [
-      "Don't let material things control you.",
-      "Avoid addictive behaviors.",
-      "Beware of toxic relationships."
-    ]
-  },
-  {
-    "id": "the_emperor",
-    "title": "The Emperor",
-    "description": "Represents authority, structure, control, and the father figure. A card of establishing order and discipline.",
-    "meanings": [
-      "Authority, order, control, fatherhood.",
-      "Leadership position, rule-maker, building a solid structure.",
-      "Finance/Health: Financial security, disciplined health regime.",
-      "Stability, Logic, Structure."
-    ],
-    "uprightMeanings": [
-      "Taking charge of discipline, logic, and control.",
-      "Emergence of a strong leadership and authority figure.",
-      "Building structures for long-term stability and security."
-    ],
-    "reversedMeanings": [
-      "Authoritarianism, excessive control, or rigidity.",
-      "Disregard for rules, lack of discipline, or weak leadership.",
-      "Destructive power, acting with ego instead of logic."
-    ],
-    "advices": [
-      "Establish structure and order.",
-      "Be a strong leader.",
-      "Act with discipline and logic."
-    ],
-    "warnings": [
-      "Avoid being too controlling.",
-      "Don't let ego rule decisions.",
-      "Beware of rigidity."
-    ]
-  },
-  {
     "id": "the_fool",
     "title": "The Fool",
-    "description": "Represents new beginnings, innocence, adventure, and stepping into the unknown. Purity and unlimited potential.",
-    "meanings": [
-      "New Beginnings, Innocence, Adventure.",
-      "Starting a new venture, taking risks.",
-      "Potential, Optimism, Spontaneous Action.",
-      "Leap of Faith, Trust."
-    ],
-    "uprightMeanings": [
-      "Being ready for new beginnings, stepping into the unknown.",
-      "Optimism, innocence, and unlimited potential.",
-      "Enjoying life, being spontaneous and free."
-    ],
-    "reversedMeanings": [
-      "Carelessness, recklessness, or foolishness.",
-      "Fear of taking risks, wasting potential.",
-      "Making a wrong decision or inappropriate naivety."
-    ],
-    "advices": [
-      "Take the leap of faith.",
-      "Embrace new beginnings.",
-      "Trust your journey."
-    ],
-    "warnings": [
-      "Don't be reckless.",
-      "Consider the consequences.",
-      "Avoid naivety."
-    ]
-  },
-  {
-    "id": "the_hanged_man",
-    "title": "The Hanged Man",
-    "description": "Calls for a different perspective, sacrifice, postponement, and surrender. Suspended action.",
-    "meanings": [
-      "Postponement, different perspective, surrender.",
-      "Sacrifice, Stagnation, Reevaluation.",
-      "Spirituality: Enlightenment, making sacrifices.",
-      "Stillness, Waiting."
-    ],
-    "uprightMeanings": [
-      "The need to look at a situation from a different perspective.",
-      "Voluntary sacrifice or postponing action.",
-      "Surrender and letting go of control."
-    ],
-    "reversedMeanings": [
-      "Helplessness, unnecessary sacrifice, or stubbornness.",
-      "Wasting oneself, trying to control the situation.",
-      "Refusing to learn an important lesson."
-    ],
-    "advices": [
-      "Try a new perspective.",
-      "Practice surrender.",
-      "Pause before acting."
-    ],
-    "warnings": [
-      "Don't resist necessary sacrifices.",
-      "Avoid feeling like a victim.",
-      "Don't refuse to learn life's lessons."
-    ]
-  },
-  {
-    "id": "the_hermit",
-    "title": "The Hermit",
-    "description": "Represents solitude, introspection, seeking, and quest for wisdom. The need to withdraw from the external world.",
-    "meanings": [
-      "Solitude, introspection, wisdom.",
-      "Learning/Seeking: Seeking guidance, deep thinking, contemplation.",
-      "Light, Withdrawal, Conscious Solitude.",
-      "Patience, Self-Focus."
-    ],
-    "uprightMeanings": [
-      "Withdrawal for introspection, solitude, and personal growth.",
-      "A spiritual quest or finding guidance.",
-      "Seeking wisdom and inner truth."
-    ],
-    "reversedMeanings": [
-      "Fear of solitude, social isolation.",
-      "Avoiding wisdom, refusing to withdraw.",
-      "Being excessively skeptical and distrustful."
-    ],
-    "advices": [
-      "Take time for self-reflection.",
-      "Seek inner wisdom.",
-      "Embrace solitude for growth."
-    ],
-    "warnings": [
-      "Don't isolate yourself completely.",
-      "Avoid becoming too skeptical.",
-      "Don't ignore guidance."
-    ]
-  },
-  {
-    "id": "the_hierophant",
-    "title": "The Hierophant",
-    "description": "Represents tradition, institutions, spiritual guidance, and conformity. Following rules to find the right path.",
-    "meanings": [
-      "Tradition, institution, religious or spiritual guidance.",
-      "Education/Institution: Teacher, counselor, traditional learning.",
-      "Institutional marriage, traditional values.",
-      "Conformity, Learning, Rules."
-    ],
-    "uprightMeanings": [
-      "Receiving formal counseling or guidance.",
-      "Adapting to traditional values and institutions.",
-      "An important ritual, wedding, or spiritual ceremony."
-    ],
-    "reversedMeanings": [
-      "Rebelling against traditions, feeling restricted.",
-      "Wrong advice, seeking non-traditional paths.",
-      "Desire to create your own rules, dogmatism."
-    ],
-    "advices": [
-      "Seek spiritual guidance.",
-      "Honor traditions that serve you.",
-      "Learn from teachers and mentors."
-    ],
-    "warnings": [
-      "Don't blindly follow rules.",
-      "Avoid being too dogmatic.",
-      "Question outdated beliefs."
-    ]
-  },
-  {
-    "id": "the_high_priestess",
-    "title": "The High Priestess",
-    "description": "Represents mystery, intuition, the unknown, and passive knowledge. Indicates that you need to trust your instincts.",
-    "meanings": [
-      "Mystery, intuition, subconscious.",
-      "Health/Spirit: Inner wisdom, meditation, hidden truths.",
-      "A secret relationship, intuitive bond, emotional depth.",
-      "Patience, Passivity, Secret."
-    ],
-    "uprightMeanings": [
-      "Trust your intuition, listen to your inner voice.",
-      "Hidden information or secrets waiting to emerge.",
-      "Time for passivity, silence, and deep reflection."
-    ],
-    "reversedMeanings": [
-      "Rejecting instincts, emotional superficiality.",
-      "Hidden enemies, secrets coming to surface.",
-      "Excessive passivity, lack of knowledge, or wrong intuitions."
-    ],
-    "advices": [
-      "Trust your intuition.",
-      "Listen to your inner voice.",
-      "Embrace the mysteries of life."
-    ],
-    "warnings": [
-      "Don't ignore your instincts.",
-      "Avoid emotional superficiality.",
-      "Beware of hidden information."
-    ]
+    "motto": "Step into the unknown with confidence.",
+    "contextual_meanings": {
+      "general": "New beginnings, innocence, and limitless potential. Time to take a risk.",
+      "love": "A new and exciting flirtation. A free-spirited relationship without rules.",
+      "career": "Entering a new field. Progressing with the courage of inexperience.",
+      "spirituality": "A leap of faith. Trusting the universe and surrendering to the spiritual journey."
+    },
+    "advice": "Listen to your inner child and embark on the adventure.",
+    "affirmation": "I trust that the universe supports me and I take the first step."
   },
   {
     "id": "the_magician",
     "title": "The Magician",
-    "description": "Represents potential, action, resources, and willpower. Time to use your talents.",
-    "meanings": [
-      "Creativity, concentration, having resources.",
-      "Starting a new project, showcasing talents, entrepreneurship.",
-      "A charming new relationship, willingly starting a relationship.",
-      "Willpower, Focus, Talent."
-    ],
-    "uprightMeanings": [
-      "The power to take action, having talent and resources.",
-      "The right time for new beginnings, self-confidence.",
-      "Masterful use of willpower and intelligence."
-    ],
-    "reversedMeanings": [
-      "Wasting talents, trickery, or manipulation.",
-      "Lack of self-confidence, missing opportunities.",
-      "Misdirected energy and aimlessness."
-    ],
-    "advices": [
-      "Use your talents and resources.",
-      "Take action on your ideas.",
-      "Believe in your abilities."
-    ],
-    "warnings": [
-      "Don't waste your potential.",
-      "Avoid manipulation.",
-      "Beware of trickery from others."
-    ]
+    "motto": "Everything you need is already within you.",
+    "contextual_meanings": {
+      "general": "Willpower and the manifestation of skills. Time to manifest.",
+      "love": "Meeting a charismatic partner. Solving problems through the power of communication.",
+      "career": "Success in creative projects. Potential to start your own business.",
+      "spirituality": "Manifestation of inner power. Connecting the divine with the material world."
+    },
+    "advice": "Do not hesitate to show your talents; you hold the strings.",
+    "affirmation": "I have the power to turn my thoughts into reality."
   },
   {
-    "id": "the_moon",
-    "title": "The Moon",
-    "description": "Represents fear, illusion, the subconscious, and intuition. Situations are not clear and there is doubt.",
-    "meanings": [
-      "Fear, illusion, subconscious, intuition.",
-      "Mystery: Hidden enemies, illusion, uncertainty.",
-      "Spirit: Deep emotions, dreams, instinct.",
-      "Insecurity, Confusion."
-    ],
-    "uprightMeanings": [
-      "Fear, subconscious worries, and illusions.",
-      "Situations are unclear, confusion and doubt.",
-      "Hidden enemies or deceptions."
-    ],
-    "reversedMeanings": [
-      "Overcoming fears and gaining clarity.",
-      "Hidden truths gradually emerging.",
-      "Resolution of misunderstandings."
-    ],
-    "advices": [
-      "Trust your subconscious messages.",
-      "Face your fears.",
-      "Navigate through uncertainty with intuition."
-    ],
-    "warnings": [
-      "Don't be deceived by illusions.",
-      "Avoid making decisions in confusion.",
-      "Beware of hidden enemies."
-    ]
-  },
-  {
-    "id": "the_sun",
-    "title": "The Sun",
-    "description": "Represents joy, success, vitality, and confidence. The brightest and most positive aspects of life.",
-    "meanings": [
-      "Joy, success, vitality, confidence.",
-      "Harmonious relationships, happiness, true love.",
-      "Recognition, great opportunities, inspiration.",
-      "Enlightenment, Clarity, Life Force."
-    ],
-    "uprightMeanings": [
-      "Absolute success, joy, and positive energy.",
-      "Clarity, brightness, and increasing confidence.",
-      "A period when everything is going well."
-    ],
-    "reversedMeanings": [
-      "Temporary disappointment or delayed success.",
-      "Lack of joy, pessimism, or self-doubt.",
-      "Inability to see an important truth."
-    ],
-    "advices": [
-      "Embrace joy and positivity.",
-      "Celebrate your successes.",
-      "Let your light shine."
-    ],
-    "warnings": [
-      "Don't let pessimism dim your spirit.",
-      "Avoid false modesty.",
-      "Don't ignore your achievements."
-    ]
-  },
-  {
-    "id": "the_tower",
-    "title": "The Tower",
-    "description": "Represents sudden destruction, fundamental change, crisis, and liberation. A necessary awakening.",
-    "meanings": [
-      "Destruction, crisis, sudden change, revelation.",
-      "Shock: Collapse of life's basic structures.",
-      "Release, Awakening, Emerging Truth.",
-      "Catastrophe, Change."
-    ],
-    "uprightMeanings": [
-      "A sudden and destructive crisis or change.",
-      "Destruction of structures that no longer work.",
-      "A necessary awakening and liberation."
-    ],
-    "reversedMeanings": [
-      "Preventing change, postponing disaster.",
-      "Small but important crises.",
-      "Inevitable change happening more gently."
-    ],
-    "advices": [
-      "Accept necessary destruction.",
-      "See crisis as liberation.",
-      "Rebuild on stronger foundations."
-    ],
-    "warnings": [
-      "Don't resist inevitable changes.",
-      "Avoid clinging to unstable structures.",
-      "Prepare for sudden revelations."
-    ]
-  },
-  {
-    "id": "wheel_of_fortune",
-    "title": "Wheel of Fortune",
-    "description": "Represents fate, luck, cycles, and turning points. A major turning point in your life.",
-    "meanings": [
-      "Fate, luck, turning point, cycle.",
-      "Finance: Good luck, unexpected gain.",
-      "Change, Movement, Good Fortune.",
-      "Turning of the Wheel, Cause-Effect."
-    ],
-    "uprightMeanings": [
-      "Good luck, fate turning in your favor.",
-      "A major turning point or significant change.",
-      "Karmic events and completion of cycles."
-    ],
-    "reversedMeanings": [
-      "Bad luck, setbacks, or delays.",
-      "Cyclical problems, misfortune.",
-      "External factors beyond your control."
-    ],
-    "advices": [
-      "Accept life's cycles.",
-      "Seize opportunities when luck favors you.",
-      "Trust that the wheel always turns."
-    ],
-    "warnings": [
-      "Don't rely solely on luck.",
-      "Prepare for life's ups and downs.",
-      "Avoid complacency."
-    ]
-  },
-  {
-    "id": "the_chariot",
-    "title": "The Chariot",
-    "description": "Represents willpower, victory, control, determination, and swift progress. Reaching the goal by overcoming obstacles.",
-    "meanings": [
-      "Victory, control, determination, travel.",
-      "Business trip, rapid career progress, success.",
-      "Willpower, Success, Direction.",
-      "Movement, Speed, Self-Control."
-    ],
-    "uprightMeanings": [
-      "Victory of will, achieving success by overcoming obstacles.",
-      "Determined and swift progress toward your goal.",
-      "Progress through self-control and discipline."
-    ],
-    "reversedMeanings": [
-      "Lack of direction, losing control, or defeat.",
-      "Drifting aimlessly or acting hastily.",
-      "Inability to establish balance and inner conflicts."
-    ],
-    "advices": [
-      "Stay focused on your goals.",
-      "Use willpower to overcome obstacles.",
-      "Take control of the situation."
-    ],
-    "warnings": [
-      "Don't lose direction.",
-      "Avoid reckless actions.",
-      "Beware of internal conflicts."
-    ]
+    "id": "the_high_priestess",
+    "title": "The High Priestess",
+    "motto": "The answers are hidden in the silence within you.",
+    "contextual_meanings": {
+      "general": "Intuition, mystery, and the subconscious. The wisdom of passive waiting.",
+      "love": "Hidden feelings or a platonic bond. You must trust your intuition.",
+      "career": "Not the right time to share information; keep your strategy hidden.",
+      "spirituality": "Accessing subconscious wisdom. Trusting inner knowing and dreams."
+    },
+    "advice": "Decide with your feelings, not your logic.",
+    "affirmation": "I trust my inner voice and embrace the mystery of life."
   },
   {
     "id": "the_empress",
     "title": "The Empress",
-    "description": "Symbolizes fertility, motherhood, creativity, sensuality, and the power of nature. Represents abundance and growth.",
-    "meanings": [
-      "Fertility, motherhood, sensuality, luxury.",
-      "Finance/Creativity: Material abundance, growth in creative projects.",
-      "Family, comfort, fertility, loving care.",
-      "Fertility, Nurturing, Beauty."
-    ],
-    "uprightMeanings": [
-      "Enjoying abundance and prosperity, a period of growth.",
-      "Fertility (ideas, art, or baby), creativity.",
-      "Self-care, enjoying luxury and comfort."
-    ],
-    "reversedMeanings": [
-      "Creative block, scarcity, or financial problems.",
-      "Excessive dependence on others or neglect.",
-      "Infertility or emotional coldness."
-    ],
-    "advices": [
-      "Nurture creativity and growth.",
-      "Connect with nature.",
-      "Embrace abundance."
-    ],
-    "warnings": [
-      "Don't neglect self-care.",
-      "Avoid creative blocks.",
-      "Beware of overindulgence."
-    ]
+    "motto": "Abundance and prosperity are in your nature.",
+    "contextual_meanings": {
+      "general": "Creativity, fertility, and the healing of nature. Comfort and luxury.",
+      "love": "A loving, nurturing relationship. News of marriage or pregnancy.",
+      "career": "Productive projects, financial growth, and artistic success.",
+      "spirituality": "Connecting with Mother Earth. Nurturing the soul and embracing divine femininity."
+    },
+    "advice": "Nourish yourself and your surroundings with love; growth will come naturally.",
+    "affirmation": "I deserve all the beauty and abundance life has to offer."
+  },
+  {
+    "id": "the_emperor",
+    "title": "The Emperor",
+    "motto": "Order and discipline are the foundation of success.",
+    "contextual_meanings": {
+      "general": "Authority, structure, and control. Logical and strategic progress.",
+      "love": "A serious, protective, but sometimes rigid partner. A stable bond.",
+      "career": "Leadership position, corporate success, and support from authority figures.",
+      "spirituality": "Establishing spiritual boundaries. Creating order in your inner world."
+    },
+    "advice": "Set your emotions aside and create a logical plan.",
+    "affirmation": "I manage my life with discipline and strength."
+  },
+  {
+    "id": "the_hierophant",
+    "title": "The Hierophant",
+    "motto": "Listen to the wisdom of traditions.",
+    "contextual_meanings": {
+      "general": "Spiritual guidance, social rules, and education.",
+      "love": "A traditional relationship, engagement, or wedding plans. Harmony of values.",
+      "career": "Corporate training, receiving mentorship, or commitment to an institution.",
+      "spirituality": "Seeking spiritual guidance. Honoring traditions and ancient wisdom."
+    },
+    "advice": "Following experienced paths is the safest bet right now.",
+    "affirmation": "My beliefs and values guide my way."
   },
   {
     "id": "the_lovers",
     "title": "The Lovers",
-    "description": "Represents love, relationships, values, and an important choice. Symbolizes the decision between two paths.",
-    "meanings": [
-      "Love, harmony, relationship, values.",
-      "A deep love bond, soulmate, sexual harmony.",
-      "Decision: Making an important choice, crossroads.",
-      "Making Connections, Values, Commitment."
-    ],
-    "uprightMeanings": [
-      "Love, harmony, and perfect union.",
-      "Making a big and important choice from the heart.",
-      "A test of your values and beliefs."
-    ],
-    "reversedMeanings": [
-      "Incompatibility, conflict, or end of relationship.",
-      "Wrong choices, indecision, or dilemma.",
-      "Conflicts about values, infidelity."
-    ],
-    "advices": [
-      "Follow your heart.",
-      "Make choices aligned with your values.",
-      "Cultivate harmony in relationships."
-    ],
-    "warnings": [
-      "Avoid making decisions based on desire alone.",
-      "Don't ignore relationship issues.",
-      "Beware of temptation."
-    ]
+    "motto": "Choose the voice of your heart.",
+    "contextual_meanings": {
+      "general": "An important crossroad and a choice between values. Harmony and unity.",
+      "love": "Soulmate connection, deep passion, and romantic decisions.",
+      "career": "Harmony in business partnerships. Choosing a job aligned with personal values.",
+      "spirituality": "Divine union. Aligning your higher self with your personal choices."
+    },
+    "advice": "Choose not only what you desire, but what aligns with your values.",
+    "affirmation": "I choose with love and live in harmony."
+  },
+  {
+    "id": "the_chariot",
+    "title": "The Chariot",
+    "motto": "With your willpower, you can overcome all obstacles.",
+    "contextual_meanings": {
+      "general": "Victory, control, and determination. The power to manage conflicting emotions.",
+      "love": "Focusing on goals in the relationship. Movement in long-distance relationships.",
+      "career": "Rapid progress, getting ahead of the competition, and success through determination.",
+      "spirituality": "Spiritual victory. Mastering conflicting energies to reach enlightenment."
+    },
+    "advice": "Do not lose your focus and hold the reins tightly.",
+    "affirmation": "With my determination, I overcome every challenge."
+  },
+  {
+    "id": "strength",
+    "title": "Strength",
+    "motto": "True strength lies in kindness and patience.",
+    "contextual_meanings": {
+      "general": "Inner courage, compassion, and resilience. Taming wild emotions.",
+      "love": "A bond strengthened by patience and compassion. Managing passion with love.",
+      "career": "Handling difficult tasks calmly. The victory of diplomacy.",
+      "spirituality": "Inner resilience. Taming the ego and leading with unconditional love."
+    },
+    "advice": "Approach with a gentle touch, not brute force.",
+    "affirmation": "I trust the infinite strength and patience within me."
+  },
+  {
+    "id": "the_hermit",
+    "title": "The Hermit",
+    "motto": "Light your own lamp.",
+    "contextual_meanings": {
+      "general": "Turning inward, solitude, and a wise quest. Spiritual enlightenment.",
+      "love": "Taking a break from relationships or establishing a deep, silent bond with a partner.",
+      "career": "Strategic retreat, in-depth research, and independent work.",
+      "spirituality": "Soul searching. Finding the inner light through solitude and meditation."
+    },
+    "advice": "Silence the noise of the outside world and look at your own truth.",
+    "affirmation": "All the answers I seek are present within myself."
+  },
+  {
+    "id": "wheel_of_fortune",
+    "title": "Wheel of Fortune",
+    "motto": "Life is a cycle, trust the flow.",
+    "contextual_meanings": {
+      "general": "Destined changes, luck, and turning points. Developments out of your control.",
+      "love": "Unexpected encounters. Transitioning to a new and positive phase in the relationship.",
+      "career": "A sudden opportunity, a job change, or a destined success.",
+      "spirituality": "Karmic cycles. Accepting the flow of destiny and universal timing."
+    },
+    "advice": "Do not fear change; the wheel is turning for you right now.",
+    "affirmation": "I am open to the auspicious cycles the universe has prepared for me."
+  },
+  {
+    "id": "justice",
+    "title": "Justice",
+    "motto": "You reap what you sow.",
+    "contextual_meanings": {
+      "general": "Balance, honesty, and cause-and-effect. Justice is served.",
+      "love": "A relationship based on honesty. A period where mutual rights are protected.",
+      "career": "Legal victories, fair contracts, and a deserved salary increase.",
+      "spirituality": "Karmic balance. Seeking truth and aligning with universal laws."
+    },
+    "advice": "Remain impartial and do not compromise your integrity.",
+    "affirmation": "I act with justice and maintain the balance of my life."
+  },
+  {
+    "id": "the_hanged_man",
+    "title": "The Hanged Man",
+    "motto": "Look differently to see the truth.",
+    "contextual_meanings": {
+      "general": "Sacrifice, waiting, and a shift in perspective. Surrender.",
+      "love": "Suspended situations in the relationship. The need to see through the other's eyes.",
+      "career": "Stagnation of projects. Time to develop a strategy instead of taking action.",
+      "spirituality": "Spiritual surrender. Gaining enlightenment through a new perspective."
+    },
+    "advice": "Stop struggling and try looking at the situation from another angle.",
+    "affirmation": "I see the wisdom in my waiting and surrender to the flow."
+  },
+  {
+    "id": "death",
+    "title": "Death",
+    "motto": "Everything that ends makes room for something new.",
+    "contextual_meanings": {
+      "general": "Radical change, endings, and rebirth. Releasing the old.",
+      "love": "The end of a relationship or its evolution into a completely new dimension.",
+      "career": "Leaving a job or a radical shift in your career path.",
+      "spirituality": "Spiritual transformation. Shedding the ego to allow a new spiritual dawn."
+    },
+    "advice": "Do not cling to the past; allow the transformation.",
+    "affirmation": "I embrace change and renew myself with love."
+  },
+  {
+    "id": "temperance",
+    "title": "Temperance",
+    "motto": "Find the middle ground to reach peace.",
+    "contextual_meanings": {
+      "general": "Moderation, harmony, and patience. The alchemy of different energies.",
+      "love": "A harmonious, calm, and nurturing relationship. Reaching a compromise.",
+      "career": "Establishing balance in the workplace, success in teamwork, and patient growth.",
+      "spirituality": "Spiritual alchemy. Finding peace through inner balance and healing."
+    },
+    "advice": "Do not rush; find balance by uniting opposites.",
+    "affirmation": "I choose balance and peace in all areas of my life."
+  },
+  {
+    "id": "the_devil",
+    "title": "The Devil",
+    "motto": "The chains are actually in your mind.",
+    "contextual_meanings": {
+      "general": "Addictions, material ambitions, and the shadow self. Feeling restricted.",
+      "love": "Obsessive passion, toxic bonds, or relationships overly focused on materialism.",
+      "career": "Ambition for power, unethical paths, or workaholism.",
+      "spirituality": "Shadow work. Confronting inner demons and releasing spiritual blockages."
+    },
+    "advice": "Recognize what restricts you and break your chains.",
+    "affirmation": "I choose to free myself from all my addictions."
+  },
+  {
+    "id": "the_tower",
+    "title": "The Tower",
+    "motto": "Destruction is the beginning of awakening.",
+    "contextual_meanings": {
+      "general": "Sudden change, shocking truths, and liberation. The collapse of false structures.",
+      "love": "An unexpected breakup or a bond shaken by the revelation of a great secret.",
+      "career": "Job loss or the sudden disruption of plans. However, this provides a new foundation.",
+      "spirituality": "Spiritual awakening. Shattering false beliefs to reveal the raw truth."
+    },
+    "advice": "Do not mourn what is destroyed; you have found a chance to lay a stronger foundation.",
+    "affirmation": "Tremors carry me to a stronger and more authentic place."
+  },
+  {
+    "id": "the_star",
+    "title": "The Star",
+    "motto": "Hope always shines.",
+    "contextual_meanings": {
+      "general": "Hope, inspiration, and spiritual healing. Being filled with universal love.",
+      "love": "Renewed faith in love. A bright, peaceful relationship in the future.",
+      "career": "The peak of creative inspiration. Getting one step closer to the dream job.",
+      "spirituality": "Divine hope. Connecting with cosmic energy and experiencing profound healing."
+    },
+    "advice": "Trust the universe and let your light shine.",
+    "affirmation": "I look to my future with hope and flow in harmony with the universe."
+  },
+  {
+    "id": "the_moon",
+    "title": "The Moon",
+    "motto": "Face your fears, trust your intuition.",
+    "contextual_meanings": {
+      "general": "Uncertainty, illusions, and subconscious fears. Hidden situations.",
+      "love": "Confusion, uncertain feelings, or hidden matters.",
+      "career": "Inability to see the path ahead, deceptive job offers, or strategic uncertainty.",
+      "spirituality": "Subconscious exploration. Navigating through illusions and trusting intuition."
+    },
+    "advice": "Do not believe everything you see; use the guidance of your intuition.",
+    "affirmation": "I choose to reach the truth beyond my fears."
+  },
+  {
+    "id": "the_sun",
+    "title": "The Sun",
+    "motto": "Joy and success are with you.",
+    "contextual_meanings": {
+      "general": "Happiness, clarity, and vitality. A period where everything illuminates.",
+      "love": "An open, honest, and joyful relationship. A happy union.",
+      "career": "Great success, recognition, and victorious completion of projects.",
+      "spirituality": "Spiritual enlightenment. Radiating pure joy and connecting with the divine light."
+    },
+    "advice": "Do not be afraid to radiate your light; it is time to celebrate success.",
+    "affirmation": "I embrace the joy and brightness of life."
+  },
+  {
+    "id": "judgement",
+    "title": "Judgement",
+    "motto": "Hear the call of rebirth.",
+    "contextual_meanings": {
+      "general": "Reckoning, awakening, and an important decision. Liberation from the past.",
+      "love": "Gaining clarity in the relationship, forgiveness, and turning a new page.",
+      "career": "A turning point in your career, a promotion, or the arrival of a deserved reward.",
+      "spirituality": "Higher calling. A period of spiritual rebirth and deep inner reckoning."
+    },
+    "advice": "Learn from the past and listen to your higher calling.",
+    "affirmation": "I forgive myself and awaken to a new life."
   },
   {
     "id": "the_world",
     "title": "The World",
-    "description": "Represents completion, success, wholeness, and harmony. The end of a cycle and celebration.",
-    "meanings": [
-      "Completion, Success, Wholeness, Harmony.",
-      "Travel: World travel, global success.",
-      "End of Cycle, Success, Reward, Celebration.",
-      "Reaching Goals, Universal Consciousness."
-    ],
-    "uprightMeanings": [
-      "Success and reaching goals, completion of a cycle.",
-      "Wholeness, harmony, and connection with the universe.",
-      "Happy ending of a long journey or project."
-    ],
-    "reversedMeanings": [
-      "Incompleteness, delays, or obstacles.",
-      "Refusing to celebrate success.",
-      "Inability to reach goals or feeling inadequate."
-    ],
-    "advices": [
-      "Celebrate your achievements.",
-      "Embrace completion.",
-      "Prepare for new cycles."
-    ],
-    "warnings": [
-      "Don't avoid closure.",
-      "Finish what you started.",
-      "Avoid feeling incomplete."
-    ]
-  },
-  {
-    "id": "ace_of_cups",
-    "title": "Ace of Cups",
-    "description": "Symbolizes the beginning of emotional abundance, new love, or spiritual awakening. Your heart overflowing.",
-    "meanings": [
-      "New and deep love, emotional fulfillment, great joy.",
-      "Inspiration in creative projects, passion for work.",
-      "Finance/Health: Emotional healing and balance, generosity.",
-      "Intuition, Inner Peace, New Emotional Beginnings."
-    ],
-    "uprightMeanings": [
-      "New beginnings, great joy, and emotional excitement.",
-      "Deep happiness and spiritual fulfillment.",
-      "Love, compassion, and healing power."
-    ],
-    "reversedMeanings": [
-      "Suppressed emotions, emotional blockages, or disappointment.",
-      "Feeling of inner emptiness or not receiving love in return.",
-      "Emotional overflow, hypersensitivity, or love becoming toxic."
-    ],
-    "advices": [
-      "Trust your emotions.",
-      "Stay connected with your feelings.",
-      "Let love guide you."
-    ],
-    "warnings": [
-      "Avoid emotional suppression.",
-      "Don't be overly sensitive.",
-      "Beware of emotional manipulation."
-    ]
-  },
-  {
-    "id": "two_of_cups",
-    "title": "Two of Cups",
-    "description": "Represents unity, harmony, partnership, and mutual attraction. A loving relationship or agreement.",
-    "meanings": [
-      "Strong attraction, new love, soulmate connection.",
-      "Successful partnership, good collaboration.",
-      "Harmony, Equality, Respect.",
-      "Balance, Commitment."
-    ],
-    "uprightMeanings": [
-      "Mutual love, respect, and harmony.",
-      "A strong partnership or union.",
-      "Creating spiritual and emotional bonds."
-    ],
-    "reversedMeanings": [
-      "Incompatibility, imbalance, or separation.",
-      "Problems in partnership, lack of mutual respect.",
-      "Deterioration of love or relationship."
-    ],
-    "advices": [
-      "Trust your emotions.",
-      "Stay connected with your feelings.",
-      "Let love guide you."
-    ],
-    "warnings": [
-      "Avoid emotional suppression.",
-      "Don't be overly sensitive.",
-      "Beware of emotional manipulation."
-    ]
-  },
-  {
-    "id": "three_of_cups",
-    "title": "Three of Cups",
-    "description": "Represents celebration, friendship, community, and success. Time to celebrate success with friends.",
-    "meanings": [
-      "Celebration, wedding, strong friendships.",
-      "Successful completion of project and team celebration.",
-      "Joy, Community, Productivity.",
-      "Socializing, Unity."
-    ],
-    "uprightMeanings": [
-      "Celebration, joy, and good friendships.",
-      "Sharing success and social harmony.",
-      "Productivity and reaching goals."
-    ],
-    "reversedMeanings": [
-      "Excess, gossip, or scandal.",
-      "Social incompatibility or post-party blues.",
-      "Cancellation of a celebration."
-    ],
-    "advices": [
-      "Trust your emotions.",
-      "Stay connected with your feelings.",
-      "Let love guide you."
-    ],
-    "warnings": [
-      "Avoid emotional suppression.",
-      "Don't be overly sensitive.",
-      "Beware of emotional manipulation."
-    ]
-  },
-  {
-    "id": "four_of_cups",
-    "title": "Four of Cups",
-    "description": "Symbolizes saturation, indifference, or reluctance toward new offers. Ignoring an offered opportunity.",
-    "meanings": [
-      "Boredom in a relationship, emotional stagnation.",
-      "Reluctance toward new job offers, lack of motivation.",
-      "Finance/Health: Indifference to financial matters, low energy.",
-      "Saturation, Boredom, Ingratitude."
-    ],
-    "uprightMeanings": [
-      "Indifference, boredom, and saturation.",
-      "Rejecting new offers or opportunities.",
-      "Reluctance to take action to improve the situation."
-    ],
-    "reversedMeanings": [
-      "Regaining motivation and willingness.",
-      "Embracing a new opportunity and feeling energetic.",
-      "Breaking free from complacency and opening up to surroundings."
-    ],
-    "advices": [
-      "Trust your emotions.",
-      "Stay connected with your feelings.",
-      "Let love guide you."
-    ],
-    "warnings": [
-      "Avoid emotional suppression.",
-      "Don't be overly sensitive.",
-      "Beware of emotional manipulation."
-    ]
-  },
-  {
-    "id": "five_of_cups",
-    "title": "Five of Cups",
-    "description": "The card of loss, grief, and regret. Usually about focusing on three spilled cups and not seeing two still standing.",
-    "meanings": [
-      "Mourning after separation, regret, missing the past.",
-      "Pessimism after failures or losses.",
-      "Finance/Health: Financial losses, inability to focus on recovery.",
-      "Grief, Regret, Disappointment."
-    ],
-    "uprightMeanings": [
-      "Loss and sorrow, being stuck in the past.",
-      "Missing opportunities or not appreciating what you have.",
-      "Need to accept the period of sorrow and regret."
-    ],
-    "reversedMeanings": [
-      "Accepting the loss and beginning to heal.",
-      "Finding hope again and looking forward.",
-      "Peaceful resolution of a past relationship or situation."
-    ],
-    "advices": [
-      "Trust your emotions.",
-      "Stay connected with your feelings.",
-      "Let love guide you."
-    ],
-    "warnings": [
-      "Avoid emotional suppression.",
-      "Don't be overly sensitive.",
-      "Beware of emotional manipulation."
-    ]
-  },
-  {
-    "id": "six_of_cups",
-    "title": "Six of Cups",
-    "description": "Represents the past, nostalgia, childhood, and innocence. Symbolizes a gift or person from the past.",
-    "meanings": [
-      "A love from the past, childhood friend, nostalgia.",
-      "Memories: Longing for the past, childhood memories.",
-      "Generosity, Kindness, Innocence.",
-      "Home, Familiar Places."
-    ],
-    "uprightMeanings": [
-      "Beautiful memories from the past and nostalgia.",
-      "Reuniting with an old friend or love.",
-      "Being generous and doing good."
-    ],
-    "reversedMeanings": [
-      "Being stuck in the past, refusing to progress.",
-      "Childhood traumas or issues.",
-      "Restlessness, difficulty breaking free from the past."
-    ],
-    "advices": [
-      "Trust your emotions.",
-      "Stay connected with your feelings.",
-      "Let love guide you."
-    ],
-    "warnings": [
-      "Avoid emotional suppression.",
-      "Don't be overly sensitive.",
-      "Beware of emotional manipulation."
-    ]
-  },
-  {
-    "id": "seven_of_cups",
-    "title": "Seven of Cups",
-    "description": "Represents options, dreams, illusions, and confusion. Unrealistic expectations.",
-    "meanings": [
-      "Dreams, illusions, countless options.",
-      "Confusion, Difficulty Choosing, Fantasy.",
-      "Unrealistic expectations, Excessive Daydreaming.",
-      "Willpower, Lack of Discipline."
-    ],
-    "uprightMeanings": [
-      "Countless options and difficulty making decisions.",
-      "Unrealistic dreams and illusions.",
-      "Getting lost among possibilities."
-    ],
-    "reversedMeanings": [
-      "Elimination of confusion and clarity.",
-      "Setting a realistic goal and taking action.",
-      "Breaking free from a major illusion."
-    ],
-    "advices": [
-      "Trust your emotions.",
-      "Stay connected with your feelings.",
-      "Let love guide you."
-    ],
-    "warnings": [
-      "Avoid emotional suppression.",
-      "Don't be overly sensitive.",
-      "Beware of emotional manipulation."
-    ]
-  },
-  {
-    "id": "eight_of_cups",
-    "title": "Eight of Cups",
-    "description": "Represents leaving a situation, relationship, or place due to emotional dissatisfaction. Search for deeper meaning.",
-    "meanings": [
-      "Deciding to end an unsatisfying relationship.",
-      "Leaving a career that no longer has meaning.",
-      "Finance/Health: Feeling of inner emptiness despite financial situation.",
-      "Departure, Fatigue, Search for Something More Meaningful."
-    ],
-    "uprightMeanings": [
-      "Quietly withdrawing from a situation or relationship.",
-      "Search for emotional fulfillment and spiritual meaning.",
-      "Decision to leave, but it's a choice rather than a necessity."
-    ],
-    "reversedMeanings": [
-      "Decision to return or hesitation to leave.",
-      "Avoidance or not having the courage to end a situation.",
-      "Getting stuck in repeating emotional cycles."
-    ],
-    "advices": [
-      "Trust your emotions.",
-      "Stay connected with your feelings.",
-      "Let love guide you."
-    ],
-    "warnings": [
-      "Avoid emotional suppression.",
-      "Don't be overly sensitive.",
-      "Beware of emotional manipulation."
-    ]
-  },
-  {
-    "id": "nine_of_cups",
-    "title": "Nine of Cups",
-    "description": "Symbolizes wishes coming true, emotional fulfillment, and happiness. Often known as the 'Wish Card'.",
-    "meanings": [
-      "Great happiness in relationship, finding soulmate.",
-      "Success at work, reaching a satisfying position.",
-      "Finance/Health: Material comfort and security, good physical health.",
-      "Enjoyment, Luxury, Satisfaction and Confidence."
-    ],
-    "uprightMeanings": [
-      "Wishes coming true and happiness.",
-      "Self-confidence and emotional fulfillment.",
-      "Feeling good materially and spiritually."
-    ],
-    "reversedMeanings": [
-      "Unfulfilled wishes or disappointment.",
-      "Excessive indulgence, arrogance, or complacency.",
-      "Emotional emptiness despite material gain."
-    ],
-    "advices": [
-      "Trust your emotions.",
-      "Stay connected with your feelings.",
-      "Let love guide you."
-    ],
-    "warnings": [
-      "Avoid emotional suppression.",
-      "Don't be overly sensitive.",
-      "Beware of emotional manipulation."
-    ]
-  },
-  {
-    "id": "ten_of_cups",
-    "title": "Ten of Cups",
-    "description": "Represents absolute happiness, lasting harmony, family, and the peak of emotional fulfillment. Dreams realized.",
-    "meanings": [
-      "Family happiness, marriage, peaceful home.",
-      "Harmony, Joy, Eternal Happiness.",
-      "Children and Home, Lasting Peace.",
-      "Emotional Completion."
-    ],
-    "uprightMeanings": [
-      "The highest level of family and emotional happiness.",
-      "Lasting harmony and peace.",
-      "Emotional completion of your life."
-    ],
-    "reversedMeanings": [
-      "Family conflict, incompatibility, or deterioration.",
-      "Happiness being temporary or fake.",
-      "Losing family support."
-    ],
-    "advices": [
-      "Trust your emotions.",
-      "Stay connected with your feelings.",
-      "Let love guide you."
-    ],
-    "warnings": [
-      "Avoid emotional suppression.",
-      "Don't be overly sensitive.",
-      "Beware of emotional manipulation."
-    ]
-  },
-  {
-    "id": "page_of_cups",
-    "title": "Page of Cups",
-    "description": "Represents emotional news, intuition, artistic inspiration, and creative offers. A young, sensitive person.",
-    "meanings": [
-      "New romantic invitation, a sensitive person.",
-      "A creative offer or inspiring idea.",
-      "News: An emotional message, intuitive awakening.",
-      "Artistic Talent, Dreamer."
-    ],
-    "uprightMeanings": [
-      "New emotional news or offer.",
-      "Creative inspiration and discovery of artistic talents.",
-      "A sensitive, dreamy, and intuitive person."
-    ],
-    "reversedMeanings": [
-      "Bad news, emotional immaturity.",
-      "Creative block, disappointment.",
-      "Unrealistic promises, emotional manipulation."
-    ],
-    "advices": [
-      "Trust your emotions.",
-      "Stay connected with your feelings.",
-      "Let love guide you."
-    ],
-    "warnings": [
-      "Avoid emotional suppression.",
-      "Don't be overly sensitive.",
-      "Beware of emotional manipulation."
-    ]
-  },
-  {
-    "id": "knight_of_cups",
-    "title": "Knight of Cups",
-    "description": "Represents romance, offers, invitations, and a dreamy action. An emotional messenger.",
-    "meanings": [
-      "Romantic offer, attractive flirtation.",
-      "A creative job offer or invitation.",
-      "News: An emotional offer or invitation.",
-      "Romance, Elegance, Dreaminess."
-    ],
-    "uprightMeanings": [
-      "The arrival of an invitation or romantic offer.",
-      "Approach of a sensitive, attractive, and romantic person.",
-      "Putting creative ideas into action."
-    ],
-    "reversedMeanings": [
-      "Wrong offers, disappointment, or emotional confusion.",
-      "A person with low mood, pessimistic, or insecure.",
-      "Inconsistency in love or relationship."
-    ],
-    "advices": [
-      "Trust your emotions.",
-      "Stay connected with your feelings.",
-      "Let love guide you."
-    ],
-    "warnings": [
-      "Avoid emotional suppression.",
-      "Don't be overly sensitive.",
-      "Beware of emotional manipulation."
-    ]
-  },
-  {
-    "id": "queen_of_cups",
-    "title": "Queen of Cups",
-    "description": "Represents intuition, compassion, emotional stability, and artistic talent. A sensitive figure.",
-    "meanings": [
-      "A loving, compassionate, and intuitive woman.",
-      "Success in work requiring creativity.",
-      "Intuition, Emotionality, Healing.",
-      "Nurturing, Loving Counselor."
-    ],
-    "uprightMeanings": [
-      "A compassionate, loving, and emotionally stable woman.",
-      "Strong intuition and psychic abilities.",
-      "Providing emotional support to others."
-    ],
-    "reversedMeanings": [
-      "Emotional instability, dependency, or hypersensitivity.",
-      "Jealousy, moodiness, or insecurity.",
-      "Emotional manipulation."
-    ],
-    "advices": [
-      "Trust your emotions.",
-      "Stay connected with your feelings.",
-      "Let love guide you."
-    ],
-    "warnings": [
-      "Avoid emotional suppression.",
-      "Don't be overly sensitive.",
-      "Beware of emotional manipulation."
-    ]
-  },
-  {
-    "id": "king_of_cups",
-    "title": "King of Cups",
-    "description": "Represents emotional maturity, compassion, control, and balance. A wise leader figure.",
-    "meanings": [
-      "An emotionally mature, balanced man.",
-      "Leader in art, counseling, or healing fields.",
-      "Compassion, Balance, Control.",
-      "Wisdom, Tolerance."
-    ],
-    "uprightMeanings": [
-      "Emotional control and maturity.",
-      "A compassionate and loving leader or figure.",
-      "Ability to manage emotions with wisdom."
-    ],
-    "reversedMeanings": [
-      "Emotional manipulation, instability.",
-      "Restlessness, emotional escape, or alcoholism.",
-      "A moody and changeable temperament."
-    ],
-    "advices": [
-      "Trust your emotions.",
-      "Stay connected with your feelings.",
-      "Let love guide you."
-    ],
-    "warnings": [
-      "Avoid emotional suppression.",
-      "Don't be overly sensitive.",
-      "Beware of emotional manipulation."
-    ]
-  },
-  {
-    "id": "ace_of_swords",
-    "title": "Ace of Swords",
-    "description": "Represents mental clarity, new ideas, breakthroughs, and truth. The power of the mind.",
-    "meanings": [
-      "Mental Clarity, New Ideas, Breakthrough.",
-      "A new business idea, a legal victory.",
-      "Truth, Justice, Power of Intelligence.",
-      "Clear Thinking, Discipline."
-    ],
-    "uprightMeanings": [
-      "Mental clarity, the birth of a new idea.",
-      "Ability to overcome difficulties, victory.",
-      "Seeing the truth and honesty."
-    ],
-    "reversedMeanings": [
-      "Confusion, misdirected energy.",
-      "Bad intentions, cruel criticism, or destruction.",
-      "Mental fatigue and obstacles."
-    ],
-    "advices": [
-      "Think clearly before acting.",
-      "Communicate honestly.",
-      "Use logic wisely."
-    ],
-    "warnings": [
-      "Avoid harsh words.",
-      "Don't overthink.",
-      "Beware of mental exhaustion."
-    ]
-  },
-  {
-    "id": "two_of_swords",
-    "title": "Two of Swords",
-    "description": "Represents indecision, deadlock, defense, and avoidance. Avoiding a difficult choice.",
-    "meanings": [
-      "Indecision, Deadlock, Defense.",
-      "Blocked Emotions, Avoiding Choice.",
-      "Balance: Being between two views.",
-      "Blind Spot, Seeking Peaceful Resolution."
-    ],
-    "uprightMeanings": [
-      "Facing a difficult choice or indecision.",
-      "Defense and emotional withdrawal.",
-      "Ignoring emotional truths."
-    ],
-    "reversedMeanings": [
-      "End of indecision, taking action.",
-      "Emergence of wrong information.",
-      "Consequences of postponing a difficult decision."
-    ],
-    "advices": [
-      "Think clearly before acting.",
-      "Communicate honestly.",
-      "Use logic wisely."
-    ],
-    "warnings": [
-      "Avoid harsh words.",
-      "Don't overthink.",
-      "Beware of mental exhaustion."
-    ]
-  },
-  {
-    "id": "three_of_swords",
-    "title": "Three of Swords",
-    "description": "Represents sorrow, heartbreak, loss, and betrayal. Emotional pain.",
-    "meanings": [
-      "Heartbreak, separation, betrayal.",
-      "Loss, sorrow, pain.",
-      "Disappointment, Grief, Tears.",
-      "Isolation, Exclusion."
-    ],
-    "uprightMeanings": [
-      "A great heartbreak and emotional pain.",
-      "Betrayal, separation, or deep loss.",
-      "Accepting disappointing truths."
-    ],
-    "reversedMeanings": [
-      "Easing of pain, healing process.",
-      "Recovering from an old wound.",
-      "Avoiding the cycle of repeated heartbreaks."
-    ],
-    "advices": [
-      "Think clearly before acting.",
-      "Communicate honestly.",
-      "Use logic wisely."
-    ],
-    "warnings": [
-      "Avoid harsh words.",
-      "Don't overthink.",
-      "Beware of mental exhaustion."
-    ]
-  },
-  {
-    "id": "four_of_swords",
-    "title": "Four of Swords",
-    "description": "Represents rest, healing, meditation, and withdrawal. Time to recover before taking action.",
-    "meanings": [
-      "Health/Spirit: Healing, rest, mental detox.",
-      "Taking time off work, withdrawal.",
-      "Meditation, Peace, Solitude.",
-      "Healing Process, Stillness."
-    ],
-    "uprightMeanings": [
-      "Rest, healing, and mental recovery.",
-      "Introspection before taking action.",
-      "Tranquility, silence, and mental peace."
-    ],
-    "reversedMeanings": [
-      "Rushing, refusing to rest.",
-      "Burnout, prolonged withdrawal.",
-      "Constant need to move, restlessness."
-    ],
-    "advices": [
-      "Think clearly before acting.",
-      "Communicate honestly.",
-      "Use logic wisely."
-    ],
-    "warnings": [
-      "Avoid harsh words.",
-      "Don't overthink.",
-      "Beware of mental exhaustion."
-    ]
-  },
-  {
-    "id": "five_of_swords",
-    "title": "Five of Swords",
-    "description": "Represents defeat, shame, an empty victory, and winning at a cost. A conflict where everyone loses.",
-    "meanings": [
-      "Defeat, Shame, Loss, Empty Victory.",
-      "Bad Blood, Disagreement, Humiliation.",
-      "Win-Lose Situation, Loss of Honor.",
-      "Damage in Relationships."
-    ],
-    "uprightMeanings": [
-      "Defeat or a shameful loss.",
-      "A victory won but where everyone loses.",
-      "Disagreement, bad intentions, or conflict."
-    ],
-    "reversedMeanings": [
-      "End of conflicts, reconciliation.",
-      "Letting go of past hostilities.",
-      "Learning from defeat and forgiving yourself."
-    ],
-    "advices": [
-      "Think clearly before acting.",
-      "Communicate honestly.",
-      "Use logic wisely."
-    ],
-    "warnings": [
-      "Avoid harsh words.",
-      "Don't overthink.",
-      "Beware of mental exhaustion."
-    ]
-  },
-  {
-    "id": "six_of_swords",
-    "title": "Six of Swords",
-    "description": "Represents moving away from a difficult situation, transition, healing, and travel. Moving toward better waters.",
-    "meanings": [
-      "Transition, Travel, Healing.",
-      "Moving Away, Escaping a Difficult Situation.",
-      "Better Waters, Slow Movement.",
-      "Transportation, Change of Location."
-    ],
-    "uprightMeanings": [
-      "Slowly moving away from a difficult situation.",
-      "A period of physical or emotional transition.",
-      "Healing and progress toward a better future."
-    ],
-    "reversedMeanings": [
-      "Delay in transition, avoidance, or returning.",
-      "Being stuck in old problems.",
-      "Cancellation of travel plans."
-    ],
-    "advices": [
-      "Think clearly before acting.",
-      "Communicate honestly.",
-      "Use logic wisely."
-    ],
-    "warnings": [
-      "Avoid harsh words.",
-      "Don't overthink.",
-      "Beware of mental exhaustion."
-    ]
-  },
-  {
-    "id": "seven_of_swords",
-    "title": "Seven of Swords",
-    "description": "Represents secrecy, deception, trickery, and escaping something. Secretly manipulating a situation.",
-    "meanings": [
-      "Secrecy, Deception, Trickery, Avoidance.",
-      "Self-Deception, Sneaky Behavior, Dishonor.",
-      "Loss, Theft, Dishonesty.",
-      "Theft, Risk-Taking."
-    ],
-    "uprightMeanings": [
-      "Secrecy, trickery, or deception.",
-      "Escaping responsibility or doing things secretly.",
-      "Manipulating a situation through dishonest means."
-    ],
-    "reversedMeanings": [
-      "Secrets being revealed, honesty.",
-      "Abandoning trickery and being honest.",
-      "Recovering something lost or finding what was stolen."
-    ],
-    "advices": [
-      "Think clearly before acting.",
-      "Communicate honestly.",
-      "Use logic wisely."
-    ],
-    "warnings": [
-      "Avoid harsh words.",
-      "Don't overthink.",
-      "Beware of mental exhaustion."
-    ]
-  },
-  {
-    "id": "eight_of_swords",
-    "title": "Eight of Swords",
-    "description": "Represents restriction, victim role, self-limitation, and feeling blocked. Prison of thoughts.",
-    "meanings": [
-      "Restriction, Victim Role, Feeling Blocked.",
-      "Self-Restriction, Feeling of Helplessness.",
-      "Prison, Limitation, Fears.",
-      "Negative Thought Cycles."
-    ],
-    "uprightMeanings": [
-      "Feeling restricted and trapped.",
-      "Playing the victim and helplessness.",
-      "Mental prison created by negative thoughts."
-    ],
-    "reversedMeanings": [
-      "Breaking free from restrictions and liberation.",
-      "Abandoning the victim role and taking responsibility.",
-      "Gaining a new perspective and seeing obstacles."
-    ],
-    "advices": [
-      "Think clearly before acting.",
-      "Communicate honestly.",
-      "Use logic wisely."
-    ],
-    "warnings": [
-      "Avoid harsh words.",
-      "Don't overthink.",
-      "Beware of mental exhaustion."
-    ]
-  },
-  {
-    "id": "nine_of_swords",
-    "title": "Nine of Swords",
-    "description": "Represents worry, nightmares, despair, and anxiety. Mental anguish that seems worse than reality.",
-    "meanings": [
-      "Worry, Nightmares, Despair, Anxiety.",
-      "Insomnia, Stress, Guilt.",
-      "Fear, Overthinking, Depression.",
-      "Night Terrors, Regret."
-    ],
-    "uprightMeanings": [
-      "Great worry, nightmares, and anxiety.",
-      "Insomnia and mental anguish.",
-      "A situation that seems worse than it actually is."
-    ],
-    "reversedMeanings": [
-      "Reduction of worries and relief.",
-      "Overcoming nightmares and fears.",
-      "Asking for help and recovery."
-    ],
-    "advices": [
-      "Think clearly before acting.",
-      "Communicate honestly.",
-      "Use logic wisely."
-    ],
-    "warnings": [
-      "Avoid harsh words.",
-      "Don't overthink.",
-      "Beware of mental exhaustion."
-    ]
-  },
-  {
-    "id": "ten_of_swords",
-    "title": "Ten of Swords",
-    "description": "Represents a sudden and devastating end, defeat, worst-case scenario, and painful ending of a cycle. But also symbolizes beginning.",
-    "meanings": [
-      "Devastating End, Betrayal, Heavy Loss.",
-      "Worst-Case Scenario, Defeat, Being a Victim.",
-      "Ending, Rock Bottom, Recovery.",
-      "Termination, Dramatic Crisis."
-    ],
-    "uprightMeanings": [
-      "A sudden and devastating end, betrayal, or heavy loss.",
-      "Realization of the worst-case scenario.",
-      "Reaching rock bottom and the necessity to start over."
-    ],
-    "reversedMeanings": [
-      "Escaping disaster, recovery.",
-      "Avoiding a worse situation.",
-      "Postponement or prolongation of the end."
-    ],
-    "advices": [
-      "Think clearly before acting.",
-      "Communicate honestly.",
-      "Use logic wisely."
-    ],
-    "warnings": [
-      "Avoid harsh words.",
-      "Don't overthink.",
-      "Beware of mental exhaustion."
-    ]
-  },
-  {
-    "id": "page_of_swords",
-    "title": "Page of Swords",
-    "description": "Represents new ideas, curiosity, quick thinking, and verbal communication. A thought messenger.",
-    "meanings": [
-      "New Ideas, Curiosity, Communication.",
-      "News: A mental challenge, careful information.",
-      "Clever, Lively, Analytical.",
-      "Asking Questions, Desire to Learn."
-    ],
-    "uprightMeanings": [
-      "Arrival of new and lively ideas.",
-      "A curious, smart, and energetic person.",
-      "A challenge that pushes boundaries."
-    ],
-    "reversedMeanings": [
-      "Verbal aggression, gossip, or rude words.",
-      "Ideas going to waste, lack of concentration.",
-      "Fake news or slow progress."
-    ],
-    "advices": [
-      "Think clearly before acting.",
-      "Communicate honestly.",
-      "Use logic wisely."
-    ],
-    "warnings": [
-      "Avoid harsh words.",
-      "Don't overthink.",
-      "Beware of mental exhaustion."
-    ]
-  },
-  {
-    "id": "knight_of_swords",
-    "title": "Knight of Swords",
-    "description": "Represents quick action, assertiveness, haste, and determination. An impulsive and courageous action.",
-    "meanings": [
-      "Quick Action, Haste, Courage.",
-      "Attack, Argument, Determination.",
-      "Speed, Impulsiveness, Warrior Spirit.",
-      "Conflict, Thoughtless Action."
-    ],
-    "uprightMeanings": [
-      "Quick and determined action, pushing forward.",
-      "Courage and assertiveness.",
-      "Risk of acting without thinking."
-    ],
-    "reversedMeanings": [
-      "Delay, blocked action, or slowness.",
-      "Anger, aggression, or thoughtless haste.",
-      "Verbal fights or bullying."
-    ],
-    "advices": [
-      "Think clearly before acting.",
-      "Communicate honestly.",
-      "Use logic wisely."
-    ],
-    "warnings": [
-      "Avoid harsh words.",
-      "Don't overthink.",
-      "Beware of mental exhaustion."
-    ]
-  },
-  {
-    "id": "queen_of_swords",
-    "title": "Queen of Swords",
-    "description": "Represents sharp intelligence, independence, honesty, and judgment. A figure who separates emotions with logic.",
-    "meanings": [
-      "Independence, Intelligence, Honesty, Analysis.",
-      "Sharp Mind, Impartiality, Widow/Separated Woman.",
-      "Clear Communication, Speaking the Truth.",
-      "Logic, Truthfulness."
-    ],
-    "uprightMeanings": [
-      "An independent, sharp-minded, and honest woman.",
-      "Non-emotional, logical decision-making.",
-      "Speaking the truth clearly and directly."
-    ],
-    "reversedMeanings": [
-      "Cruel criticism, coldness, or emotional manipulation.",
-      "Arrogance, jealousy, or lying.",
-      "Emotionlessness or excessive rationalism."
-    ],
-    "advices": [
-      "Think clearly before acting.",
-      "Communicate honestly.",
-      "Use logic wisely."
-    ],
-    "warnings": [
-      "Avoid harsh words.",
-      "Don't overthink.",
-      "Beware of mental exhaustion."
-    ]
-  },
-  {
-    "id": "king_of_swords",
-    "title": "King of Swords",
-    "description": "Represents intellectual authority, mental discipline, power, and truth. A fair but firm ruler.",
-    "meanings": [
-      "Intellectual Authority, Discipline, Power.",
-      "Legal Matters, Fair Judgment, Logic.",
-      "Lawyer, Government Figure, Intelligent Man.",
-      "Sharp Decision-Making."
-    ],
-    "uprightMeanings": [
-      "Intellectual authority and mental clarity.",
-      "Disciplined, fair, and logical decision-making.",
-      "Success in law or legal matters."
-    ],
-    "reversedMeanings": [
-      "Tyranny, cruelty, or unfair judgment.",
-      "Emotionlessness, destructive criticism.",
-      "Misused power or intellectual confusion."
-    ],
-    "advices": [
-      "Think clearly before acting.",
-      "Communicate honestly.",
-      "Use logic wisely."
-    ],
-    "warnings": [
-      "Avoid harsh words.",
-      "Don't overthink.",
-      "Beware of mental exhaustion."
-    ]
-  },
-  {
-    "id": "ace_of_pentacles",
-    "title": "Ace of Pentacles",
-    "description": "Represents a new material opportunity, prosperity, stability, and a concrete beginning. A material gift.",
-    "meanings": [
-      "Finance: New business opportunities, financial gain, security.",
-      "A concrete business project, a good start.",
-      "Prosperity, Stability, Success Potential.",
-      "Opportunity, Growth, Grounding."
-    ],
-    "uprightMeanings": [
-      "A new material opportunity or beginning.",
-      "Abundance, prosperity, and financial security.",
-      "Concrete success potential and stability."
-    ],
-    "reversedMeanings": [
-      "Financial loss, missed or cancelled opportunities.",
-      "Too much focus on material matters, greed.",
-      "Lack of security or instability."
-    ],
-    "advices": [
-      "Focus on practical matters.",
-      "Work diligently toward goals.",
-      "Manage resources wisely."
-    ],
-    "warnings": [
-      "Avoid materialism.",
-      "Don't neglect spiritual growth.",
-      "Beware of financial risks."
-    ]
-  },
-  {
-    "id": "two_of_pentacles",
-    "title": "Two of Pentacles",
-    "description": "Represents balancing, flexibility, managing priorities, and handling different aspects of life.",
-    "meanings": [
-      "Finance: Balancing budgets, two income sources.",
-      "Flexibility, Adaptation, Managing Priorities.",
-      "Maintaining Balance, Variability.",
-      "Movement, Fluidity."
-    ],
-    "uprightMeanings": [
-      "Balancing two different situations or responsibilities.",
-      "Adapting to life's ups and downs.",
-      "Managing priorities and flexibility."
-    ],
-    "reversedMeanings": [
-      "Imbalance, overload, or getting lost.",
-      "Financial confusion, debt.",
-      "Neglecting something important."
-    ],
-    "advices": [
-      "Focus on practical matters.",
-      "Work diligently toward goals.",
-      "Manage resources wisely."
-    ],
-    "warnings": [
-      "Avoid materialism.",
-      "Don't neglect spiritual growth.",
-      "Beware of financial risks."
-    ]
-  },
-  {
-    "id": "three_of_pentacles",
-    "title": "Three of Pentacles",
-    "description": "Represents teamwork, collaboration, showcasing skills, and mastery. Perfecting together.",
-    "meanings": [
-      "Teamwork, joint project success, training.",
-      "Finance: Earnings through collaboration, project approval.",
-      "Mastery, Quality, Showcasing Skills.",
-      "Harmony, Evaluation."
-    ],
-    "uprightMeanings": [
-      "Teamwork and successful collaboration.",
-      "Appreciation of your talents and striving for excellence.",
-      "Getting approval and progress on a project."
-    ],
-    "reversedMeanings": [
-      "Incompatibility within the team, competition, or incompetence.",
-      "Wrong advice, poor workmanship.",
-      "Wasting skills for material purposes."
-    ],
-    "advices": [
-      "Focus on practical matters.",
-      "Work diligently toward goals.",
-      "Manage resources wisely."
-    ],
-    "warnings": [
-      "Avoid materialism.",
-      "Don't neglect spiritual growth.",
-      "Beware of financial risks."
-    ]
-  },
-  {
-    "id": "four_of_pentacles",
-    "title": "Four of Pentacles",
-    "description": "Represents material security, possession, stinginess, and control. Held assets.",
-    "meanings": [
-      "Finance: Security, savings, acquiring property.",
-      "Stinginess, Need for Control, Setting Boundaries.",
-      "Holding Tight, Material Obsession.",
-      "Stability, Established Order."
-    ],
-    "uprightMeanings": [
-      "Material security, saving, and stability.",
-      "Possessiveness, stinginess, and need for control.",
-      "Setting boundaries and protection."
-    ],
-    "reversedMeanings": [
-      "Letting go of stinginess, generosity.",
-      "Financial losses, extravagance.",
-      "Fear of losing control, closed to new opportunities."
-    ],
-    "advices": [
-      "Focus on practical matters.",
-      "Work diligently toward goals.",
-      "Manage resources wisely."
-    ],
-    "warnings": [
-      "Avoid materialism.",
-      "Don't neglect spiritual growth.",
-      "Beware of financial risks."
-    ]
-  },
-  {
-    "id": "five_of_pentacles",
-    "title": "Five of Pentacles",
-    "description": "Represents material loss, poverty, exclusion, and health problems. Feeling excluded.",
-    "meanings": [
-      "Finance: Financial loss, poverty, unemployment.",
-      "Health: Illness, weakness, neglect.",
-      "Exclusion, Loss, Reluctance to Ask for Help.",
-      "Loneliness, Insecurity."
-    ],
-    "uprightMeanings": [
-      "Financial loss, difficulties, and insecurity.",
-      "Feeling excluded, unwanted, or alone.",
-      "Inability to see opportunities or help."
-    ],
-    "reversedMeanings": [
-      "Improvement of financial situation, new job.",
-      "End of a difficult period, renewed hope.",
-      "Accepting help and including yourself."
-    ],
-    "advices": [
-      "Focus on practical matters.",
-      "Work diligently toward goals.",
-      "Manage resources wisely."
-    ],
-    "warnings": [
-      "Avoid materialism.",
-      "Don't neglect spiritual growth.",
-      "Beware of financial risks."
-    ]
-  },
-  {
-    "id": "six_of_pentacles",
-    "title": "Six of Pentacles",
-    "description": "Represents generosity, charity, balance of giving and receiving. Financial justice.",
-    "meanings": [
-      "Finance: Grants, loans, generosity, lending.",
-      "Balance, Charity, Fair Distribution.",
-      "Receiving/Giving Support, Financial Balance.",
-      "Equality, Mutual Help."
-    ],
-    "uprightMeanings": [
-      "Generosity and charity.",
-      "Achieving financial balance, paying debts.",
-      "Receiving help from others or helping others."
-    ],
-    "reversedMeanings": [
-      "Inequality, injustice, or selfish generosity.",
-      "Poor debt management, greed.",
-      "Misuse or rejection of help."
-    ],
-    "advices": [
-      "Focus on practical matters.",
-      "Work diligently toward goals.",
-      "Manage resources wisely."
-    ],
-    "warnings": [
-      "Avoid materialism.",
-      "Don't neglect spiritual growth.",
-      "Beware of financial risks."
-    ]
-  },
-  {
-    "id": "seven_of_pentacles",
-    "title": "Seven of Pentacles",
-    "description": "Represents waiting, evaluation, patience, and waiting for investment results. Seeing the fruits of labor.",
-    "meanings": [
-      "Finance: Investment, long-term planning, waiting.",
-      "Seeing the fruits of labor, project evaluation.",
-      "Patience, Pause, Evaluation.",
-      "Waiting for Harvest, Disappointment."
-    ],
-    "uprightMeanings": [
-      "Patiently waiting for the fruits of labor.",
-      "Evaluating investment results.",
-      "Taking a break and reviewing progress."
-    ],
-    "reversedMeanings": [
-      "Impatience, fear of failure.",
-      "Poor investment results.",
-      "Expecting immediate results, hasty decisions."
-    ],
-    "advices": [
-      "Focus on practical matters.",
-      "Work diligently toward goals.",
-      "Manage resources wisely."
-    ],
-    "warnings": [
-      "Avoid materialism.",
-      "Don't neglect spiritual growth.",
-      "Beware of financial risks."
-    ]
-  },
-  {
-    "id": "eight_of_pentacles",
-    "title": "Eight of Pentacles",
-    "description": "Represents craftsmanship, skill, apprenticeship, and attention to detail. Dedication to self-improvement.",
-    "meanings": [
-      "Apprenticeship, gaining skills, focus on details.",
-      "Concentration, Diligence, Mastery.",
-      "Finance: Financial gain through diligence.",
-      "Practical Application, Quality."
-    ],
-    "uprightMeanings": [
-      "Skill, diligence, and dedication to self-improvement.",
-      "Attention to details and excellence.",
-      "Mastering a craft or job."
-    ],
-    "reversedMeanings": [
-      "Perfectionism, laziness, or failure.",
-      "Rushed and careless work.",
-      "Neglecting skills for material purposes."
-    ],
-    "advices": [
-      "Focus on practical matters.",
-      "Work diligently toward goals.",
-      "Manage resources wisely."
-    ],
-    "warnings": [
-      "Avoid materialism.",
-      "Don't neglect spiritual growth.",
-      "Beware of financial risks."
-    ]
-  },
-  {
-    "id": "nine_of_pentacles",
-    "title": "Nine of Pentacles",
-    "description": "Represents luxury, self-sufficiency, financial independence, and elegance. Reaping the fruits of labor.",
-    "meanings": [
-      "Finance: Financial independence, luxury, solid investment.",
-      "Confidence, Elegance, Self-Sufficiency.",
-      "Comfort, Security, Enjoyment.",
-      "Success, Reward."
-    ],
-    "uprightMeanings": [
-      "Financial independence and success.",
-      "Enjoying luxury and comfort.",
-      "Confidence, elegance, and self-reliance."
-    ],
-    "reversedMeanings": [
-      "Financial loss, failure, or extravagance.",
-      "Theft, insecurity.",
-      "Excessive dependence on others."
-    ],
-    "advices": [
-      "Focus on practical matters.",
-      "Work diligently toward goals.",
-      "Manage resources wisely."
-    ],
-    "warnings": [
-      "Avoid materialism.",
-      "Don't neglect spiritual growth.",
-      "Beware of financial risks."
-    ]
-  },
-  {
-    "id": "ten_of_pentacles",
-    "title": "Ten of Pentacles",
-    "description": "Represents lasting wealth, family heritage, stability, and long-term success. Generational wealth.",
-    "meanings": [
-      "Finance: Lasting wealth, inheritance, financial success.",
-      "Family: Family tradition, roots, security at home.",
-      "Stability, Success, Community.",
-      "Legacy, Wealth."
-    ],
-    "uprightMeanings": [
-      "Lasting financial security and wealth.",
-      "Family heritage, traditions, and roots.",
-      "Long-term success and stability."
-    ],
-    "reversedMeanings": [
-      "Financial loss, family conflict, or lost inheritance.",
-      "Family-related issues, insecurity.",
-      "Financial risk or failure."
-    ],
-    "advices": [
-      "Focus on practical matters.",
-      "Work diligently toward goals.",
-      "Manage resources wisely."
-    ],
-    "warnings": [
-      "Avoid materialism.",
-      "Don't neglect spiritual growth.",
-      "Beware of financial risks."
-    ]
-  },
-  {
-    "id": "page_of_pentacles",
-    "title": "Page of Pentacles",
-    "description": "Represents new material opportunities, career-related news, learning, and practical skills. A material student.",
-    "meanings": [
-      "Finance: Financial news, new job offers.",
-      "Learning a new skill, training opportunity.",
-      "News: Practical ideas, focus.",
-      "Potential, Diligence."
-    ],
-    "uprightMeanings": [
-      "New material opportunities or career news.",
-      "Learning and developing practical skills.",
-      "A diligent and focused person."
-    ],
-    "reversedMeanings": [
-      "Bad news, failure in education.",
-      "Missing opportunities, extravagance.",
-      "Laziness or lack of concentration."
-    ],
-    "advices": [
-      "Focus on practical matters.",
-      "Work diligently toward goals.",
-      "Manage resources wisely."
-    ],
-    "warnings": [
-      "Avoid materialism.",
-      "Don't neglect spiritual growth.",
-      "Beware of financial risks."
-    ]
-  },
-  {
-    "id": "knight_of_pentacles",
-    "title": "Knight of Pentacles",
-    "description": "Represents patience, diligence, reliability, and slow progress. Guaranteed but slow success.",
-    "meanings": [
-      "Finance: Slow but guaranteed investment.",
-      "Reliable employee, steady progress.",
-      "Patience, Diligence, Reliability.",
-      "Slowness, Practicality."
-    ],
-    "uprightMeanings": [
-      "Patience, diligence, and reliability.",
-      "Slow but guaranteed progress and success.",
-      "A practical and realistic approach."
-    ],
-    "reversedMeanings": [
-      "Laziness, stagnation, or irresponsibility.",
-      "Delays in progress, taking things too slow.",
-      "Boredom and lack of vision."
-    ],
-    "advices": [
-      "Focus on practical matters.",
-      "Work diligently toward goals.",
-      "Manage resources wisely."
-    ],
-    "warnings": [
-      "Avoid materialism.",
-      "Don't neglect spiritual growth.",
-      "Beware of financial risks."
-    ]
-  },
-  {
-    "id": "queen_of_pentacles",
-    "title": "Queen of Pentacles",
-    "description": "Represents generosity, motherhood, practicality, and material security. A nurturing and successful figure.",
-    "meanings": [
-      "Finance: A financially secure, generous woman.",
-      "Family: Maternal, nurturing, comfort at home.",
-      "Practicality, Generosity, Comfort.",
-      "Homemaker, Entrepreneur."
-    ],
-    "uprightMeanings": [
-      "A generous, practical, and nurturing woman.",
-      "Material security and comfort at home.",
-      "Balancing success and family."
-    ],
-    "reversedMeanings": [
-      "Financial insecurity, selfishness, or neglect.",
-      "Excessive possessiveness or anxiety.",
-      "Poor financial management."
-    ],
-    "advices": [
-      "Focus on practical matters.",
-      "Work diligently toward goals.",
-      "Manage resources wisely."
-    ],
-    "warnings": [
-      "Avoid materialism.",
-      "Don't neglect spiritual growth.",
-      "Beware of financial risks."
-    ]
-  },
-  {
-    "id": "king_of_pentacles",
-    "title": "King of Pentacles",
-    "description": "Represents material success, business acumen, stability, and power. A successful businessman or manager.",
-    "meanings": [
-      "Finance: Wealthy, successful, reliable investor.",
-      "Businessman, manager, material stability.",
-      "Reliability, Luxury, Business Acumen.",
-      "Wealth, Success, Generosity."
-    ],
-    "uprightMeanings": [
-      "Material success, wealth, and stability.",
-      "A reliable, successful leader or figure.",
-      "Financial security and generosity."
-    ],
-    "reversedMeanings": [
-      "Greed, extravagance, or financial failure.",
-      "Corruption, stubbornness, or materialism.",
-      "Unreliability and authoritarianism."
-    ],
-    "advices": [
-      "Focus on practical matters.",
-      "Work diligently toward goals.",
-      "Manage resources wisely."
-    ],
-    "warnings": [
-      "Avoid materialism.",
-      "Don't neglect spiritual growth.",
-      "Beware of financial risks."
-    ]
+    "motto": "Wholeness and victory are yours.",
+    "contextual_meanings": {
+      "general": "Completion, success, and travel. The happy ending of a cycle.",
+      "love": "Ultimate happiness in the relationship. A sense of harmony and wholeness.",
+      "career": "Reaching goals, global success, and the perfect completion of a project.",
+      "spirituality": "Spiritual completion. Achieving cosmic harmony and a sense of absolute wholeness."
+    },
+    "advice": "Celebrate your successes; you are complete.",
+    "affirmation": "I successfully complete all the cycles of life."
   },
   {
     "id": "ace_of_wands",
     "title": "Ace of Wands",
-    "description": "Symbolizes the beginning of creativity, a new venture, or an inspiring idea. A period full of energy and passion.",
-    "meanings": [
-      "New business opportunities, career breakthrough, creative projects.",
-      "New excitement entering a relationship, passion, or an energetic beginning.",
-      "Finance/Health: Increased energy and vitality, courage to start a new venture in financial matters.",
-      "Inspiration, Exciting New Idea, Emergence of Potential."
-    ],
-    "uprightMeanings": [
-      "New beginnings, inspiration, and desire to explore.",
-      "Gateway to a period of great energy and activity.",
-      "Courage to take initiative, passion, and enthusiasm."
-    ],
-    "reversedMeanings": [
-      "Delays in projects, obstacles, or lack of inspiration.",
-      "Burnout, procrastination, or misdirected energy.",
-      "Inability to see or capitalize on new opportunities."
-    ],
-    "advices": [
-      "Follow your passion.",
-      "Take inspired action.",
-      "Stay energized and motivated."
-    ],
-    "warnings": [
-      "Avoid burnout.",
-      "Don't act impulsively.",
-      "Beware of scattered energy."
-    ]
+    "motto": "Turn your passion into action.",
+    "contextual_meanings": {
+      "general": "Inspiration, new opportunities, and high energy. A creative spark.",
+      "love": "A new and passionate excitement. Rekindling the spark in a current relationship.",
+      "career": "An exciting new project, venture, or career opportunity.",
+      "spirituality": "A spark of divine inspiration. Igniting your spiritual passion."
+    },
+    "advice": "Follow the fire within you and take the first step.",
+    "affirmation": "My creative power grows with each new day."
   },
   {
     "id": "two_of_wands",
     "title": "Two of Wands",
-    "description": "Represents planning, progress, thinking about the future, and making bold decisions. Merging with the world.",
-    "meanings": [
-      "Planning, creating partnerships, looking to the future.",
-      "Courage, Individuality, Desire to Explore.",
-      "Expansion, Global Opportunities, Decision Making.",
-      "Control, Progress."
-    ],
-    "uprightMeanings": [
-      "Planning for the future and preparing for progress.",
-      "Making bold decisions and exploring new opportunities.",
-      "Success potential and control."
-    ],
-    "reversedMeanings": [
-      "Fear, delays or obstacles in progress.",
-      "Failure of plans, being overly cautious.",
-      "Reluctance to move forward."
-    ],
-    "advices": [
-      "Follow your passion.",
-      "Take inspired action.",
-      "Stay energized and motivated."
-    ],
-    "warnings": [
-      "Avoid burnout.",
-      "Don't act impulsively.",
-      "Beware of scattered energy."
-    ]
+    "motto": "Plan your future, look to the horizon.",
+    "contextual_meanings": {
+      "general": "Planning, decision-making, and preparing to step out of the comfort zone.",
+      "love": "Making long-term decisions about the future of the relationship.",
+      "career": "Business expansion, overseas opportunities, or entering new markets.",
+      "spirituality": "Expanding your spiritual horizon. Preparing for a new phase of inner growth."
+    },
+    "advice": "Keep your vision broad and do not hesitate to make bold decisions.",
+    "affirmation": "I plan my future with confidence and think big."
   },
   {
     "id": "three_of_wands",
     "title": "Three of Wands",
-    "description": "Represents long-term vision, expansion, opportunities, and progress on solid foundations. First stage of success.",
-    "meanings": [
-      "Trade, export, growth in partnership.",
-      "Vision, Future Plans, Expansion.",
-      "Horizon, Initial Success, Partnership.",
-      "Long-Term View."
-    ],
-    "uprightMeanings": [
-      "Long-term vision and realization of plans.",
-      "Expansion, international opportunities.",
-      "Progress and success on solid foundations."
-    ],
-    "reversedMeanings": [
-      "Delay, betrayal, or disappointment.",
-      "Missing opportunities, obstacles.",
-      "Lack of vision or pessimism."
-    ],
-    "advices": [
-      "Follow your passion.",
-      "Take inspired action.",
-      "Stay energized and motivated."
-    ],
-    "warnings": [
-      "Avoid burnout.",
-      "Don't act impulsively.",
-      "Beware of scattered energy."
-    ]
+    "motto": "Your ships are appearing on the horizon.",
+    "contextual_meanings": {
+      "general": "Progress, expansion, and receiving positive news that you have been waiting for.",
+      "love": "Looking to the future together. Travel plans or success in a long-distance relationship.",
+      "career": "Global connections, ventures beginning to bear fruit.",
+      "spirituality": "Spiritual foresight. Trusting that your energetic investments will bear fruit."
+    },
+    "advice": "Stay committed to your long-term goals; success is approaching.",
+    "affirmation": "I see the seeds I planted sprouting."
   },
   {
     "id": "four_of_wands",
     "title": "Four of Wands",
-    "description": "Symbolizes celebration, harmony, stability, and building a home. Peace following a successful period.",
-    "meanings": [
-      "Successful completion and celebration of a project.",
-      "Marriage, engagement, peace and happiness at home.",
-      "Finance/Health: Enjoying financial stability, good health.",
-      "Security, Harmony, Celebration Within Community."
-    ],
-    "uprightMeanings": [
-      "Homecoming, sense of home, and happiness.",
-      "Celebration of success and stability.",
-      "Harmony, community, and a safe harbor."
-    ],
-    "reversedMeanings": [
-      "Temporary instability or restlessness.",
-      "Postponement of celebrations or family discord.",
-      "A planned event ending in failure."
-    ],
-    "advices": [
-      "Follow your passion.",
-      "Take inspired action.",
-      "Stay energized and motivated."
-    ],
-    "warnings": [
-      "Avoid burnout.",
-      "Don't act impulsively.",
-      "Beware of scattered energy."
-    ]
+    "motto": "Celebration and joy are in your home.",
+    "contextual_meanings": {
+      "general": "Celebration, harmony, stability, and enjoying success.",
+      "love": "Happy milestones like a promise, engagement, marriage, or moving in together.",
+      "career": "Successful completion of a project and celebrating with the team.",
+      "spirituality": "A harmonious spirit. Finding a sense of spiritual homecoming and peace."
+    },
+    "advice": "Share your successes with loved ones and enjoy the moment.",
+    "affirmation": "I welcome the harmony and joy in my life with gratitude."
   },
   {
     "id": "five_of_wands",
     "title": "Five of Wands",
-    "description": "Represents minor conflicts, competition, or clashing energies. This is usually a constructive struggle.",
-    "meanings": [
-      "Office competition, idea conflicts, creative tension.",
-      "Fun but tiring arguments, minor disagreements.",
-      "Finance/Health: Energy dispersion, focus problems.",
-      "Collision of Various Views, Friendly Competition."
-    ],
-    "uprightMeanings": [
-      "Competition and struggle, but usually leads to constructive results.",
-      "Differences of opinion and different approaches within a group.",
-      "Need to direct energy toward the right goal."
-    ],
-    "reversedMeanings": [
-      "Avoiding conflicts or suppressed disagreements.",
-      "Pointless bickering that leads nowhere and restlessness.",
-      "Inability to unite energy to solve a problem."
-    ],
-    "advices": [
-      "Follow your passion.",
-      "Take inspired action.",
-      "Stay energized and motivated."
-    ],
-    "warnings": [
-      "Avoid burnout.",
-      "Don't act impulsively.",
-      "Beware of scattered energy."
-    ]
+    "motto": "Competition helps you grow.",
+    "contextual_meanings": {
+      "general": "Differences of opinion, minor conflicts, and a sweet rivalry.",
+      "love": "Ego battles or minor disagreements in communication.",
+      "career": "A competitive work environment, brainstorming, and clashing of different ideas.",
+      "spirituality": "Inner conflict. Overcoming spiritual growing pains through introspection."
+    },
+    "advice": "Instead of fighting, use competition as a tool for development.",
+    "affirmation": "I respectfully listen to different opinions and defend my own truth."
   },
   {
     "id": "six_of_wands",
     "title": "Six of Wands",
-    "description": "Represents victory, public recognition, success, and confidence. Honor following a challenge.",
-    "meanings": [
-      "Success, promotion, public appreciation.",
-      "Victory, Confidence, Recognition, News.",
-      "Celebrating Success, Good News.",
-      "Progress, Motivation."
-    ],
-    "uprightMeanings": [
-      "Public victory and recognition.",
-      "Success, confidence, and positive results.",
-      "Receiving good news and motivation."
-    ],
-    "reversedMeanings": [
-      "Delay, failure, or embarrassment.",
-      "Lack of confidence, bad news.",
-      "Success being temporary."
-    ],
-    "advices": [
-      "Follow your passion.",
-      "Take inspired action.",
-      "Stay energized and motivated."
-    ],
-    "warnings": [
-      "Avoid burnout.",
-      "Don't act impulsively.",
-      "Beware of scattered energy."
-    ]
+    "motto": "The victory is yours, walk with your head held high.",
+    "contextual_meanings": {
+      "general": "Success, victory, recognition, and self-confidence.",
+      "love": "A partner to be proud of. Successfully getting through a tough time in the relationship.",
+      "career": "Promotion, receiving an award, or public recognition.",
+      "spirituality": "Spiritual triumph. Acknowledging your inner growth and shining brightly."
+    },
+    "advice": "Embrace your successes and proudly accept the appreciation.",
+    "affirmation": "I reap the rewards of my labor with victory."
   },
   {
     "id": "seven_of_wands",
     "title": "Seven of Wands",
-    "description": "Represents challenge, competition, courage, and defending yourself. Standing up against difficulties.",
-    "meanings": [
-      "Competition, attacks, defense.",
-      "Challenge, Courage, Self-Defense.",
-      "Superiority, Resisting Failure.",
-      "Strong Position, Resistance."
-    ],
-    "uprightMeanings": [
-      "Defending yourself against challenges and competition.",
-      "Standing firm with courage and perseverance.",
-      "Being in a superior position and resisting."
-    ],
-    "reversedMeanings": [
-      "Giving up, cowardice, or surrender.",
-      "Lack of confidence, defeat.",
-      "Being overly defensive or tense."
-    ],
-    "advices": [
-      "Follow your passion.",
-      "Take inspired action.",
-      "Stay energized and motivated."
-    ],
-    "warnings": [
-      "Avoid burnout.",
-      "Don't act impulsively.",
-      "Beware of scattered energy."
-    ]
+    "motto": "Hold your ground and stand firm.",
+    "contextual_meanings": {
+      "general": "Standing strong against challenges, defending your boundaries.",
+      "love": "Protecting the relationship against external factors. Not compromising your values.",
+      "career": "The battle to maintain superiority against competitors. Performance under pressure.",
+      "spirituality": "Spiritual resilience. Standing firm in your beliefs against external pressure."
+    },
+    "advice": "Do not give up fighting for what you believe in.",
+    "affirmation": "I stand tall and unyielding in the face of challenges."
   },
   {
     "id": "eight_of_wands",
     "title": "Eight of Wands",
-    "description": "Symbolizes rapid movement, acceleration of events, and sudden communication. Things may develop faster than expected.",
-    "meanings": [
-      "Rapid completion of projects, urgent news, or fast developments.",
-      "A relationship suddenly accelerating, fast emotional communication.",
-      "Finance/Health: Need to make an important decision quickly, sudden improvements.",
-      "Movement, Travel, Quick Action."
-    ],
-    "uprightMeanings": [
-      "Speed of action, rapid progress, and acceleration of events.",
-      "Removal of all obstacles and free flow toward the goal.",
-      "Good news about communication and travel."
-    ],
-    "reversedMeanings": [
-      "Delays, frustrating slowdown, or blocked progress.",
-      "Errors resulting from impatience and hasty decisions.",
-      "Communication breakdowns or misdirected energy."
-    ],
-    "advices": [
-      "Follow your passion.",
-      "Take inspired action.",
-      "Stay energized and motivated."
-    ],
-    "warnings": [
-      "Avoid burnout.",
-      "Don't act impulsively.",
-      "Beware of scattered energy."
-    ]
+    "motto": "Events are picking up speed.",
+    "contextual_meanings": {
+      "general": "Rapid progress, sudden news, and the clearing of obstacles.",
+      "love": "A fast-developing romance or the sudden arrival of an awaited message.",
+      "career": "Gaining momentum in projects, urgent business trips, or fast approvals.",
+      "spirituality": "A rapid energetic shift. Experiencing sudden spiritual insights or awakenings."
+    },
+    "advice": "Keep up with the accelerating energy and seize opportunities instantly.",
+    "affirmation": "I allow the positive flow in my life to accelerate."
   },
   {
     "id": "nine_of_wands",
     "title": "Nine of Wands",
-    "description": "Represents resilience, courage, and ability to overcome one final obstacle. Being tired but ready.",
-    "meanings": [
-      "Reaching the final stage of a project, one last resistance.",
-      "Being defensive or skeptical in a relationship.",
-      "Finance/Health: Showing patience in the healing process, resisting financial difficulties.",
-      "One Last Stand, Inner Strength, Protecting Boundaries."
-    ],
-    "uprightMeanings": [
-      "Resistance, courage, and not giving up even when close to exhaustion.",
-      "Preparing for one last challenge and protecting boundaries.",
-      "Learning from experiences and using wisdom."
-    ],
-    "reversedMeanings": [
-      "Paranoia, being overly defensive, or distrust.",
-      "Succumbing to fatigue and giving up the fight.",
-      "Inability to recover from past wounds, wasting energy."
-    ],
-    "advices": [
-      "Follow your passion.",
-      "Take inspired action.",
-      "Stay energized and motivated."
-    ],
-    "warnings": [
-      "Avoid burnout.",
-      "Don't act impulsively.",
-      "Beware of scattered energy."
-    ]
+    "motto": "You are tired, but you won't give up.",
+    "contextual_meanings": {
+      "general": "Endurance, the courage to overcome the final obstacle despite fatigue.",
+      "love": "Being defensive due to past wounds. One last effort in the relationship.",
+      "career": "Exhaustion in the final phase of a difficult project, but the determination not to quit.",
+      "spirituality": "Spiritual endurance. Protecting your inner boundaries after a long journey."
+    },
+    "advice": "You are very close to the end; do not let your guard down.",
+    "affirmation": "My past experiences make me stronger and more resilient."
   },
   {
     "id": "ten_of_wands",
     "title": "Ten of Wands",
-    "description": "Represents overload, responsibility, pressure, and being weighed down. Time to let go of the burden.",
-    "meanings": [
-      "Excessive workload, stress, responsibility.",
-      "Pressure, Burden, Exhaustion.",
-      "Need to Let Go of the Burden, Sense of Duty.",
-      "Burnout, Stress."
-    ],
-    "uprightMeanings": [
-      "Overload, responsibility, and being under pressure.",
-      "Increased burnout and stress.",
-      "Need to let go of the burden you carry."
-    ],
-    "reversedMeanings": [
-      "Lightening the burden, relief.",
-      "Avoiding or losing responsibility.",
-      "Reaching the end of a project and being freed."
-    ],
-    "advices": [
-      "Follow your passion.",
-      "Take inspired action.",
-      "Stay energized and motivated."
-    ],
-    "warnings": [
-      "Avoid burnout.",
-      "Don't act impulsively.",
-      "Beware of scattered energy."
-    ]
+    "motto": "Drop the unnecessary burdens on your back.",
+    "contextual_meanings": {
+      "general": "Overwhelming responsibility, burnout, and a heavy burden to carry.",
+      "love": "The feeling of shouldering the entire burden of the relationship alone.",
+      "career": "Inability to delegate, overworking, and being crushed under stress.",
+      "spirituality": "Spiritual overload. Releasing karmic burdens that no longer serve you."
+    },
+    "advice": "You cannot do everything alone; ask for help or lighten your loads.",
+    "affirmation": "I release the burdens that do not belong to me."
   },
   {
     "id": "page_of_wands",
     "title": "Page of Wands",
-    "description": "Represents exciting news, beginnings, enthusiasm, and an adventurous spirit. An energetic messenger.",
-    "meanings": [
-      "News of a new opportunity, an inspiring idea.",
-      "Enthusiasm, Adventurous Spirit, Starting Potential.",
-      "Energetic Communication, Good News.",
-      "Taking Action, Exploration."
-    ],
-    "uprightMeanings": [
-      "New, exciting news or opportunities.",
-      "Enthusiasm, creativity, and desire for adventure.",
-      "Potential for starting a new path."
-    ],
-    "reversedMeanings": [
-      "Bad news, delays, or obstacles.",
-      "Lack of enthusiasm, indecision.",
-      "Misinformation or rumors."
-    ],
-    "advices": [
-      "Follow your passion.",
-      "Take inspired action.",
-      "Stay energized and motivated."
-    ],
-    "warnings": [
-      "Avoid burnout.",
-      "Don't act impulsively.",
-      "Beware of scattered energy."
-    ]
+    "motto": "Awaken to a new adventure.",
+    "contextual_meanings": {
+      "general": "Exciting news, enthusiasm, a desire for discovery, and a fresh start.",
+      "love": "A fun, flirtatious, and energetic new encounter. Youthful energy.",
+      "career": "Good news regarding a creative idea or a new job position.",
+      "spirituality": "A fresh spiritual curiosity. Exploring new philosophies or energetic paths."
+    },
+    "advice": "Do not suppress your excitement; follow your curiosity.",
+    "affirmation": "I start every new day with adventure and enthusiasm."
   },
   {
     "id": "knight_of_wands",
     "title": "Knight of Wands",
-    "description": "Represents a quick, impulsive, and adventurous call to action. Often symbolizes a journey or sudden departure.",
-    "meanings": [
-      "A quick job offer or sudden career change.",
-      "A fast-developing, passionate but not lasting relationship.",
-      "Finance/Health: Risky investments, accidents due to carelessness.",
-      "Adventurous, Eager, Impulsive and Bold."
-    ],
-    "uprightMeanings": [
-      "Quick and enthusiastic action, seeking adventure.",
-      "A great burst of energy and passionate progress.",
-      "News of going somewhere or an important event approaching."
-    ],
-    "reversedMeanings": [
-      "Delay, disappointment, and anger outbursts.",
-      "Haste, thoughtlessness, and not considering consequences of actions.",
-      "Breaking promises, unplanned departures or withdrawal."
-    ],
-    "advices": [
-      "Follow your passion.",
-      "Take inspired action.",
-      "Stay energized and motivated."
-    ],
-    "warnings": [
-      "Avoid burnout.",
-      "Don't act impulsively.",
-      "Beware of scattered energy."
-    ]
+    "motto": "Chase your passion.",
+    "contextual_meanings": {
+      "general": "Swift action, sudden changes, courage, and impulsiveness.",
+      "love": "A passionate but potentially short-lived romantic adventure.",
+      "career": "Taking risks in your career, business travels, and fast-developing opportunities.",
+      "spirituality": "Passionate spiritual pursuit. Moving swiftly toward your higher purpose."
+    },
+    "advice": "Taking action is great, but you must also consider the consequences.",
+    "affirmation": "I direct my energy and passion toward my goals."
   },
   {
     "id": "queen_of_wands",
     "title": "Queen of Wands",
-    "description": "Represents charm, confidence, courage, and creativity. An energetic and popular figure.",
-    "meanings": [
-      "Entrepreneur, creative leader, popularity.",
-      "Confidence, Joy, Charm.",
-      "Energetic, Courageous, Independent.",
-      "Friendship, Sociability."
-    ],
-    "uprightMeanings": [
-      "A confident, energetic, and creative woman.",
-      "Charm and popularity, inspiring others.",
-      "A strong social circle and friendship."
-    ],
-    "reversedMeanings": [
-      "Jealousy, moodiness, or demanding behavior.",
-      "Egoism, arrogance.",
-      "Creative block, lack of confidence."
-    ],
-    "advices": [
-      "Follow your passion.",
-      "Take inspired action.",
-      "Stay energized and motivated."
-    ],
-    "warnings": [
-      "Avoid burnout.",
-      "Don't act impulsively.",
-      "Beware of scattered energy."
-    ]
+    "motto": "Illuminate your surroundings with your own light.",
+    "contextual_meanings": {
+      "general": "Charm, self-confidence, independence, and extroversion.",
+      "love": "A confident, warm, and loyal partner. A strong attraction.",
+      "career": "Shining with leadership skills. A visionary and supportive manager.",
+      "spirituality": "Radiant inner fire. Embracing your spiritual confidence and inspiring others."
+    },
+    "advice": "Arm yourself with confidence and take the stage; people will listen to you.",
+    "affirmation": "I generously share my light and charisma with the world."
   },
   {
     "id": "king_of_wands",
     "title": "King of Wands",
-    "description": "Represents a charismatic, visionary, and energetic leader. Symbolizes creativity, entrepreneurship, and natural authority.",
-    "meanings": [
-      "A strong leader, visionary boss, or entrepreneur.",
-      "A passionate, enthusiastic, and dominant partner.",
-      "Finance/Health: Willingness to take financial risks, strong life energy.",
-      "Authority, Inspiring, Honest and Honorable Person."
-    ],
-    "uprightMeanings": [
-      "Natural leadership, confidence, and charisma.",
-      "Ability to turn big visions into reality.",
-      "Being a man of action and moving with strong passion."
-    ],
-    "reversedMeanings": [
-      "Tyrannical, overly demanding, or dictatorial behavior.",
-      "Self-sabotage, lack of vision, or aimlessness.",
-      "Intolerance or haste hindering progress."
-    ],
-    "advices": [
-      "Follow your passion.",
-      "Take inspired action.",
-      "Stay energized and motivated."
-    ],
-    "warnings": [
-      "Avoid burnout.",
-      "Don't act impulsively.",
-      "Beware of scattered energy."
-    ]
+    "motto": "Lead your vision with courage.",
+    "contextual_meanings": {
+      "general": "Charismatic leadership, entrepreneurial spirit, and seeing the big picture.",
+      "love": "A passionate, protective, and guiding partner. Taking the lead in the relationship.",
+      "career": "Managing large projects, being a respected authority figure.",
+      "spirituality": "Spiritual leadership. Mastering your inner fire and living your true vision."
+    },
+    "advice": "Believe in your ideas and lead by inspiring those around you.",
+    "affirmation": "I am the leader of my life and I courageously realize my vision."
+  },
+  {
+    "id": "ace_of_cups",
+    "title": "Ace of Cups",
+    "motto": "My heart is overflowing with love.",
+    "contextual_meanings": {
+      "general": "The pure essence of emotional abundance, a new love, or a spiritual awakening.",
+      "love": "The beginning of a new and deep love. Emotional peak in a current relationship.",
+      "career": "A job offer you will do with passion. The arrival of creative inspiration.",
+      "spirituality": "An overflowing of divine love. Experiencing a profound spiritual awakening."
+    },
+    "advice": "Open your heart fully to new possibilities and love.",
+    "affirmation": "I deserve all the love the world has to offer."
+  },
+  {
+    "id": "two_of_cups",
+    "title": "Two of Cups",
+    "motto": "The meeting of souls.",
+    "contextual_meanings": {
+      "general": "Mutual love, harmony, a strong partnership, and balance.",
+      "love": "A true soulmate connection. Mutual respect and a romantic proposal.",
+      "career": "A successful and harmonious business partnership or the signing of a contract.",
+      "spirituality": "A soulmate connection. Balancing yin and yang energies within yourself."
+    },
+    "advice": "Hold the hand offered to you; this union will be good for you.",
+    "affirmation": "I attract loving and harmonious relationships into my life."
+  },
+  {
+    "id": "three_of_cups",
+    "title": "Three of Cups",
+    "motto": "Share the joy, celebrate friendship.",
+    "contextual_meanings": {
+      "general": "Celebration, community, socializing, and strong friendships.",
+      "love": "Meeting at a celebration, social events like engagements/weddings.",
+      "career": "Celebrating the completion of a project with teammates.",
+      "spirituality": "Joyful spiritual communion. Finding spiritual support within a community."
+    },
+    "advice": "Socialize, make time for friends, and celebrate your successes.",
+    "affirmation": "I am surrounded by the love of my friends and I share my happiness."
+  },
+  {
+    "id": "four_of_cups",
+    "title": "Four of Cups",
+    "motto": "Open your eyes, do not miss the opportunities.",
+    "contextual_meanings": {
+      "general": "Emotional saturation, boredom, and rejecting what is offered.",
+      "love": "Falling into a routine in the relationship, getting bored, or ignoring a new offer.",
+      "career": "Dissatisfaction with work and reluctance towards new opportunities.",
+      "spirituality": "Spiritual stagnation. Missing divine signs due to inner withdrawal."
+    },
+    "advice": "Stop withdrawing; look closely at the beauty around you.",
+    "affirmation": "I lovingly accept the new blessings the universe offers me."
+  },
+  {
+    "id": "five_of_cups",
+    "title": "Five of Cups",
+    "motto": "Focus on what remains behind your losses.",
+    "contextual_meanings": {
+      "general": "Grief, regret, and being stuck in the past. A sense of loss.",
+      "love": "The pain of a breakup or the regret of a past mistake.",
+      "career": "Unmet expectations or the failure of a project.",
+      "spirituality": "Healing from spiritual grief. Learning to let go of past emotional pain."
+    },
+    "advice": "Stop crying over what is spilled; you still have cups standing strong.",
+    "affirmation": "I forgive the past and am grateful for the beauty I still hold."
+  },
+  {
+    "id": "six_of_cups",
+    "title": "Six of Cups",
+    "motto": "Embrace the beautiful memories of the past.",
+    "contextual_meanings": {
+      "general": "Nostalgia, childhood memories, innocence, and gifts from the past.",
+      "love": "The return of an ex-lover or encountering a childhood crush.",
+      "career": "Past business connections providing benefits to you today.",
+      "spirituality": "Inner child healing. Reconnecting with the pure, innocent part of your soul."
+    },
+    "advice": "Protect your innocence and accept the goodness from the past.",
+    "affirmation": "I love the child within me and make peace with my past."
+  },
+  {
+    "id": "seven_of_cups",
+    "title": "Seven of Cups",
+    "motto": "Do not let your dreams turn into illusions.",
+    "contextual_meanings": {
+      "general": "A multitude of choices, confusion, and unrealistic dreams.",
+      "love": "Indecision between multiple candidates or projecting unrealistic expectations onto a partner.",
+      "career": "Having many ideas or offers but none of them materializing clearly.",
+      "spirituality": "Spiritual illusions. Needing to ground yourself amidst confusing visions."
+    },
+    "advice": "Come down from the clouds and focus on a concrete, single goal.",
+    "affirmation": "I take clear steps to turn my dreams into reality."
+  },
+  {
+    "id": "eight_of_cups",
+    "title": "Eight of Cups",
+    "motto": "Give up for a deeper meaning.",
+    "contextual_meanings": {
+      "general": "Leaving a situation or person due to emotional dissatisfaction.",
+      "love": "Walking away from a relationship that no longer serves or fulfills your heart.",
+      "career": "Deciding to leave a job that looks good but does not satisfy your soul.",
+      "spirituality": "A spiritual quest. Leaving the material comfort to find deeper meaning."
+    },
+    "advice": "Find the courage to leave the place that makes you feel incomplete.",
+    "affirmation": "For my spiritual peace, I leave behind everything that does not suit me."
+  },
+  {
+    "id": "nine_of_cups",
+    "title": "Nine of Cups",
+    "motto": "Your wishes are coming true.",
+    "contextual_meanings": {
+      "general": "Fulfillment of wishes, emotional satisfaction, self-confidence, and gratitude.",
+      "love": "A happy, fulfilling, and joyful union.",
+      "career": "Reaping the rewards of your labor, appreciation at work, and financial comfort.",
+      "spirituality": "Spiritual contentment. Feeling a deep sense of gratitude and universal joy."
+    },
+    "advice": "Enjoy your happiness; you have earned it.",
+    "affirmation": "My dreams are coming true, and I am filled with happiness."
+  },
+  {
+    "id": "ten_of_cups",
+    "title": "Ten of Cups",
+    "motto": "Harmony and love are eternal.",
+    "contextual_meanings": {
+      "general": "Lasting happiness, family harmony, wholeness, and inner peace.",
+      "love": "Marriage, building a peaceful home with a soulmate, and complete trust.",
+      "career": "Feeling at home in a supportive team and work environment.",
+      "spirituality": "Divine harmony. Achieving absolute peace and emotional alignment with the universe."
+    },
+    "advice": "Be grateful for the circle of love you have.",
+    "affirmation": "My life is full of love, joy, and lasting harmony."
+  },
+  {
+    "id": "page_of_cups",
+    "title": "Page of Cups",
+    "motto": "Be open to emotional surprises.",
+    "contextual_meanings": {
+      "general": "Intuitive news, an emotional awakening, and fresh inspiration.",
+      "love": "A sweet flirtation, a romantic message, or a naive confession of love.",
+      "career": "Creative projects or a pleasant job opportunity related to the arts.",
+      "spirituality": "Intuitive whispers. Being open to spiritual messages and synchronicities."
+    },
+    "advice": "Listen to your inner voice and let your imagination run free.",
+    "affirmation": "I am not afraid to express my emotions."
+  },
+  {
+    "id": "knight_of_cups",
+    "title": "Knight of Cups",
+    "motto": "Romance is knocking at your door.",
+    "contextual_meanings": {
+      "general": "An invitation, a romantic proposal, and putting feelings into action.",
+      "love": "The arrival of a romantic, thoughtful partner, or a marriage proposal.",
+      "career": "Progressing by using your creative talents, diplomatic success.",
+      "spirituality": "Following the heart's calling. A romantic, deeply spiritual inner journey."
+    },
+    "advice": "Follow the compass of your heart, but keep your feet on the ground.",
+    "affirmation": "I invite love and grace into my life."
+  },
+  {
+    "id": "queen_of_cups",
+    "title": "Queen of Cups",
+    "motto": "Compassion and intuition are your guides.",
+    "contextual_meanings": {
+      "general": "Emotional depth, empathy, compassion, and subconscious wisdom.",
+      "love": "A loving, supportive relationship with a strong spiritual bond.",
+      "career": "Success in professions that help others, supporting colleagues.",
+      "spirituality": "Intuitive mastery. Trusting your psychic abilities and deep emotional wisdom."
+    },
+    "advice": "Trust your intuition and show compassion to both yourself and others.",
+    "affirmation": "My emotions are my greatest strength."
+  },
+  {
+    "id": "king_of_cups",
+    "title": "King of Cups",
+    "motto": "Manage your emotions with wisdom.",
+    "contextual_meanings": {
+      "general": "Emotional balance, control, compassion, and spiritual maturity.",
+      "love": "A mature and reliable partner who calms emotional storms in the relationship.",
+      "career": "Successfully resolving crises that require diplomacy, fair leadership.",
+      "spirituality": "Emotional alchemy. Remaining spiritually centered amidst life's emotional waves."
+    },
+    "advice": "Do not react impulsively; maintain your calm and balance.",
+    "affirmation": "I am the master of my emotions and I bring peace to my world."
+  },
+  {
+    "id": "ace_of_swords",
+    "title": "Ace of Swords",
+    "motto": "The truth shines with full clarity.",
+    "contextual_meanings": {
+      "general": "Mental clarity, a new idea, the revelation of truths, and a breakthrough.",
+      "love": "Solving a relationship issue through communication, mental harmony, and frankness.",
+      "career": "A brilliant business idea, the power of focus, and a decision that cuts through difficulties.",
+      "spirituality": "A breakthrough in spiritual truth. Cutting through illusions with mental clarity."
+    },
+    "advice": "Put your emotions aside and rely solely on your logic.",
+    "affirmation": "My mind is clear and I am ready to see the truth."
+  },
+  {
+    "id": "two_of_swords",
+    "title": "Two of Swords",
+    "motto": "It is time to make the decision you have been avoiding.",
+    "contextual_meanings": {
+      "general": "Indecision, ignoring facts, a dead end, and defensiveness.",
+      "love": "Being stuck between two choices or turning a blind eye to relationship problems.",
+      "career": "Avoiding a difficult choice or a battle for balance/neutrality at work.",
+      "spirituality": "Spiritual crossroads. Finding inner stillness to hear your true intuition."
+    },
+    "advice": "Take off your blindfold; the decision you postpone will not resolve itself.",
+    "affirmation": "I face my fears and make the decision that is right for me."
+  },
+  {
+    "id": "three_of_swords",
+    "title": "Three of Swords",
+    "motto": "Pain is temporary, healing is near.",
+    "contextual_meanings": {
+      "general": "Heartbreak, grief, tears, betrayal, or a painful epiphany.",
+      "love": "Breakup, involvement of a third party, or hearing hurtful words.",
+      "career": "The collapse of a partnership, job loss, or receiving severe criticism.",
+      "spirituality": "Healing a spiritual wound. Embracing pain as a catalyst for soul growth."
+    },
+    "advice": "Experience your pain and do not suppress it; this is how the healing process will begin.",
+    "affirmation": "I heal my broken heart and transform my pain with love."
+  },
+  {
+    "id": "four_of_swords",
+    "title": "Four of Swords",
+    "motto": "Rest and gather your mind.",
+    "contextual_meanings": {
+      "general": "Mental fatigue, the need for a break, meditation, and retreat.",
+      "love": "Taking a break in the relationship, stepping away from arguments to calm down.",
+      "career": "Taking time off to escape work stress or temporarily suspending a project.",
+      "spirituality": "Spiritual retreat. Needing meditation and silence to restore your soul's energy."
+    },
+    "advice": "You cannot keep fighting; give yourself time to gather strength.",
+    "affirmation": "My mind and body have the right to rest."
+  },
+  {
+    "id": "five_of_swords",
+    "title": "Five of Swords",
+    "motto": "Not every war is worth winning.",
+    "contextual_meanings": {
+      "general": "Conflict, an empty victory, hostility, and experiencing loss for the sake of pride.",
+      "love": "Hurting a partner just to be right in the relationship, toxic arguments.",
+      "career": "Office gossip, unfair competition, or a win-lose situation.",
+      "spirituality": "Ego clashes. Learning to walk away from spiritual battles that drain you."
+    },
+    "advice": "Put your ego aside; sometimes stepping back is the greatest victory.",
+    "affirmation": "I prefer my own peace over being proven right."
+  },
+  {
+    "id": "six_of_swords",
+    "title": "Six of Swords",
+    "motto": "You are moving to calmer waters.",
+    "contextual_meanings": {
+      "general": "Moving away from a difficult period, transition, physical or mental travel.",
+      "love": "Leaving a troubled relationship behind or finding peace by overcoming problems together.",
+      "career": "Transitioning to a better work environment or a change that leaves stress behind.",
+      "spirituality": "A spiritual transition. Moving gracefully from turbulence to inner peace."
+    },
+    "advice": "Let go of the burdens of the past; your healing process has already begun.",
+    "affirmation": "Life always carries me to better and safer places."
+  },
+  {
+    "id": "seven_of_swords",
+    "title": "Seven of Swords",
+    "motto": "Strategy, or escape?",
+    "contextual_meanings": {
+      "general": "Secrecy, trickery, avoidance, acting alone, and strategic intelligence.",
+      "love": "Keeping secrets, suspicion of infidelity, or distancing oneself by running from problems.",
+      "career": "Behind-the-scenes dealings, idea theft, or an attempt to handle a matter secretly.",
+      "spirituality": "Spiritual evasion. Facing the truths you have been hiding from yourself."
+    },
+    "advice": "Do not stray from honesty; the problems you run from will catch up with you one day.",
+    "affirmation": "I only allow honest and pure energies into my life."
+  },
+  {
+    "id": "eight_of_swords",
+    "title": "Eight of Swords",
+    "motto": "What binds you are your own thoughts.",
+    "contextual_meanings": {
+      "general": "Self-imposed restrictions, victim mentality, and a feeling of helplessness.",
+      "love": "Feeling trapped in a toxic relationship, unable to see a way out.",
+      "career": "Hating your current job but being unable to leave due to a lack of courage.",
+      "spirituality": "Self-imposed spiritual exile. Realizing your limits are only illusions of the mind."
+    },
+    "advice": "Remove the blindfold; you are not as helpless as you think; there is a way out.",
+    "affirmation": "I release all the boundaries created by my mind."
+  },
+  {
+    "id": "nine_of_swords",
+    "title": "Nine of Swords",
+    "motto": "Your fears grow in the dark.",
+    "contextual_meanings": {
+      "general": "Nightmares, excessive worry, feelings of guilt, and sleepless nights.",
+      "love": "Deep anxiety about the relationship or a guilty conscience from past mistakes.",
+      "career": "Immense work stress and panic caused by the fear of failure.",
+      "spirituality": "Dark night of the soul. Overcoming spiritual anxiety through inner light."
+    },
+    "advice": "The situation is not as bad as you make it out to be in your mind; don't hesitate to ask for help.",
+    "affirmation": "I release my worries with love and sleep peacefully."
+  },
+  {
+    "id": "ten_of_swords",
+    "title": "Ten of Swords",
+    "motto": "The worst is behind you.",
+    "contextual_meanings": {
+      "general": "A devastating end, hitting rock bottom, being stabbed in the back, and feeling like a victim.",
+      "love": "The painful and final end of a relationship, betrayal, or a massive disappointment.",
+      "career": "The collapse of projects, getting fired, or extreme burnout.",
+      "spirituality": "Ego death. A painful but necessary ending that clears the path for rebirth."
+    },
+    "advice": "There is no further down from here. Now is the time to stand up and start over.",
+    "affirmation": "I know that every ended cycle prepares me for a new and better dawn."
+  },
+  {
+    "id": "page_of_swords",
+    "title": "Page of Swords",
+    "motto": "Keep your mind open, learn the truth.",
+    "contextual_meanings": {
+      "general": "Curiosity, new ideas, being alert, and quick, sharp communication.",
+      "love": "Stalking on social media, a sharp-witted but sometimes tactless communication.",
+      "career": "Gathering information, learning new skills, and the courage to ask tough questions.",
+      "spirituality": "Spiritual curiosity. Seeking truth and questioning old belief systems."
+    },
+    "advice": "Listen before you speak; your words can be as sharp as a sword.",
+    "affirmation": "I seek the truth and express my opinions honestly."
+  },
+  {
+    "id": "knight_of_swords",
+    "title": "Knight of Swords",
+    "motto": "Advance rapidly toward the goal.",
+    "contextual_meanings": {
+      "general": "Fast, assertive, logic-driven movement. Aggressively defending your ideas.",
+      "love": "Impatience in the relationship, being dominant in arguments, or a fast-developing interest.",
+      "career": "Diving quickly into competition, an ambitious project presentation, or hasty decisions.",
+      "spirituality": "A relentless pursuit of truth. Cutting away falsehoods with sharp logic."
+    },
+    "advice": "Weigh the consequences before acting impulsively; not everyone may be at your speed.",
+    "affirmation": "I use my determination and logic for my highest good."
+  },
+  {
+    "id": "queen_of_swords",
+    "title": "Queen of Swords",
+    "motto": "See the truth with a clear mind.",
+    "contextual_meanings": {
+      "general": "Sharp intellect, independence, separating emotions from logic, and honesty.",
+      "love": "An independent partner who demands open communication and acts with logic.",
+      "career": "The ability to make objective criticisms, a fair and clear management style.",
+      "spirituality": "Clear spiritual discernment. Viewing your path with unbiased, higher wisdom."
+    },
+    "advice": "Remain objective without getting carried away by emotion and draw your boundaries clearly.",
+    "affirmation": "Learning from my experiences, I live my own truth fearlessly."
+  },
+  {
+    "id": "king_of_swords",
+    "title": "King of Swords",
+    "motto": "Logic and justice are your strengths.",
+    "contextual_meanings": {
+      "general": "Intellectual authority, analytical thinking, discipline, and fair judgment.",
+      "love": "A period prioritizing mutual respect and intelligence over romance in the relationship.",
+      "career": "Logic-focused leadership, achieving success in a legal/official matter.",
+      "spirituality": "Spiritual authority. Governing your mind and staying aligned with absolute truth."
+    },
+    "advice": "Be fair, act ethically, and do not let emotions cloud your decisions.",
+    "affirmation": "My thoughts are clear, my decisions are fair."
+  },
+  {
+    "id": "ace_of_pentacles",
+    "title": "Ace of Pentacles",
+    "motto": "My labor is bearing fruit.",
+    "contextual_meanings": {
+      "general": "A new beginning in the material world, abundance, and concrete achievements.",
+      "love": "A period of trust and loyalty in the relationship. Serious and concrete steps toward the future.",
+      "career": "A new job offer, promotion, profitable investment, or financial security.",
+      "spirituality": "Grounding your spiritual energy. Finding the divine in the physical world."
+    },
+    "advice": "Turn the opportunity in front of you into a concrete plan and take practical steps.",
+    "affirmation": "Abundance and prosperity flow into my life."
+  },
+  {
+    "id": "two_of_pentacles",
+    "title": "Two of Pentacles",
+    "motto": "Find the balance and stay in the flow.",
+    "contextual_meanings": {
+      "general": "Managing multiple responsibilities, flexibility, time or money management.",
+      "love": "Trying to balance work and love life, joint budget decisions.",
+      "career": "Juggling between two different projects or income sources.",
+      "spirituality": "Balancing spiritual and earthly realms. Maintaining grace in daily life."
+    },
+    "advice": "Do not be rigid; maintain your balance by adapting to changing conditions.",
+    "affirmation": "I can remain flexible through life's ups and downs."
+  },
+  {
+    "id": "three_of_pentacles",
+    "title": "Three of Pentacles",
+    "motto": "Unity is strength.",
+    "contextual_meanings": {
+      "general": "Teamwork, mastery, appreciation of skills, and collaboration.",
+      "love": "Running the relationship like a 'team', building concrete plans together.",
+      "career": "Working successfully on a project, having your expertise recognized and approved.",
+      "spirituality": "Co-creating with the universe. Mastering your spiritual gifts through practice."
+    },
+    "advice": "Benefit from the expertise of others; you can do better together.",
+    "affirmation": "I share my talents and work in harmony with my surroundings."
+  },
+  {
+    "id": "four_of_pentacles",
+    "title": "Four of Pentacles",
+    "motto": "If you don't let go, you can't hold onto new things.",
+    "contextual_meanings": {
+      "general": "Financial security, savings, drawing boundaries, but also over-possessiveness/stinginess.",
+      "love": "Jealousy towards a partner, the desire to control the relationship, or building walls.",
+      "career": "Clinging tightly to a current job, avoiding risks, and hoarding resources.",
+      "spirituality": "Spiritual hoarding. Needing to open your heart chakra and release control."
+    },
+    "advice": "Without compromising your security, try to be a bit more generous.",
+    "affirmation": "I am safe and not afraid to be generous towards life."
+  },
+  {
+    "id": "five_of_pentacles",
+    "title": "Five of Pentacles",
+    "motto": "Even in the dark, there is a light.",
+    "contextual_meanings": {
+      "general": "Financial loss, a feeling of exclusion, temporary poverty, or isolation.",
+      "love": "Going through hard times in the relationship, feeling lonely, or being excluded.",
+      "career": "Job loss, financial difficulties, or feeling unsupported in the office.",
+      "spirituality": "Spiritual isolation. Remembering that divine help is always available if asked."
+    },
+    "advice": "Do not let pride stop you from asking for help; support is right beside you.",
+    "affirmation": "Hardships are temporary; I am reconnecting to the abundance of the universe."
+  },
+  {
+    "id": "six_of_pentacles",
+    "title": "Six of Pentacles",
+    "motto": "Establish the balance of giving and receiving.",
+    "contextual_meanings": {
+      "general": "Generosity, philanthropy, receiving or giving financial support, equality.",
+      "love": "Emotional and material equality in the relationship. Mutual support.",
+      "career": "Receiving an expected payment, a salary raise, or finding mentorship support.",
+      "spirituality": "Karmic exchange. Understanding the spiritual law of giving and receiving."
+    },
+    "advice": "If you have it, share; if you need it, do not hesitate to ask.",
+    "affirmation": "I am in harmony with life's cycle of giving and receiving."
+  },
+  {
+    "id": "seven_of_pentacles",
+    "title": "Seven of Pentacles",
+    "motto": "The seeds you planted will grow, be patient.",
+    "contextual_meanings": {
+      "general": "Waiting for the results of your labor, patience, long-term investment, and evaluation.",
+      "love": "Reviewing the course of the relationship, a process of being patient.",
+      "career": "Waiting for investments to mature, analyzing whether a strategy is working.",
+      "spirituality": "Spiritual patience. Trusting the timing of your inner growth and evolution."
+    },
+    "advice": "Do not rush; allow nature to work at its own pace.",
+    "affirmation": "I trust that my efforts will result in the most beautiful way."
+  },
+  {
+    "id": "eight_of_pentacles",
+    "title": "Eight of Pentacles",
+    "motto": "Mastery comes with attention to detail.",
+    "contextual_meanings": {
+      "general": "Diligence, education, mastering a new skill, and focus.",
+      "love": "Putting effort into the relationship, taking practical steps to solve problems.",
+      "career": "Vocational training, hard work, and steady growth in your career.",
+      "spirituality": "Spiritual dedication. Committing deeply to your personal soul work."
+    },
+    "advice": "Do not get distracted and keep practicing to improve your quality.",
+    "affirmation": "I create my own luck with my diligence and perseverance."
+  },
+  {
+    "id": "nine_of_pentacles",
+    "title": "Nine of Pentacles",
+    "motto": "Enjoy luxury and independence.",
+    "contextual_meanings": {
+      "general": "Financial freedom, self-sufficiency, success, and harmony with nature.",
+      "love": "A period where being single is golden, or having a strong, independent partner.",
+      "career": "Wealth, promotion, and happily enjoying the fruits of your working life.",
+      "spirituality": "Spiritual independence. Enjoying the peace and abundance of an aligned soul."
+    },
+    "advice": "Celebrate your success, value yourself, and relax.",
+    "affirmation": "I live in abundance and am proud of my independence."
+  },
+  {
+    "id": "ten_of_pentacles",
+    "title": "Ten of Pentacles",
+    "motto": "The deeper your roots, the stronger you are.",
+    "contextual_meanings": {
+      "general": "Lasting wealth, family legacy, traditions, security, and a solid future.",
+      "love": "Families meeting, a secure partnership with deep roots that culminates in marriage.",
+      "career": "Success in a family business, retirement security, or rising in an established institution.",
+      "spirituality": "Spiritual legacy. Realizing your deep connection to ancestors and earth wisdom."
+    },
+    "advice": "Make decisions considering future generations and lasting values.",
+    "affirmation": "I honor the lasting wealth and family in my life."
+  },
+  {
+    "id": "page_of_pentacles",
+    "title": "Page of Pentacles",
+    "motto": "Discover a new talent.",
+    "contextual_meanings": {
+      "general": "Practical steps, educational opportunities, a reliable start, and financial news.",
+      "love": "A new romance potential that is reassuring, loyal, and takes concrete steps.",
+      "career": "A new business plan, internship, starting an education, or finding a scholarship.",
+      "spirituality": "Grounded spiritual learning. Taking practical steps in your spiritual journey."
+    },
+    "advice": "Start making concrete plans to turn your dreams into reality.",
+    "affirmation": "I am eager to learn and grow."
+  },
+  {
+    "id": "knight_of_pentacles",
+    "title": "Knight of Pentacles",
+    "motto": "Advance with slow but steady steps.",
+    "contextual_meanings": {
+      "general": "Reliability, routine, patient work, practicality, and stability.",
+      "love": "A calm, unadventurous but extremely loyal and supportive relationship.",
+      "career": "A sense of duty, steady progress, and reaching the result through disciplined work.",
+      "spirituality": "Steadfast spiritual practice. Committing to a daily routine of inner growth."
+    },
+    "advice": "Do not look for shortcuts; stick to your routine and get the job done.",
+    "affirmation": "I walk towards my goals with determination, resolute and confident steps."
+  },
+  {
+    "id": "queen_of_pentacles",
+    "title": "Queen of Pentacles",
+    "motto": "Your generosity and practicality elevate you.",
+    "contextual_meanings": {
+      "general": "Maternal affection, practical intelligence, comfort in home life, love for nature, and abundance.",
+      "love": "A warm and reliable relationship dynamic, supporting the partner in every sense.",
+      "career": "Balancing work and personal life, the figure of a successful businesswoman.",
+      "spirituality": "Nurturing the soul. Finding spiritual comfort in nature and self-care."
+    },
+    "advice": "Take good care of yourself and your loved ones; create your comfort.",
+    "affirmation": "I manage my life with love, practical intelligence, and abundance."
+  },
+  {
+    "id": "king_of_pentacles",
+    "title": "King of Pentacles",
+    "motto": "You have built the empire of your labor.",
+    "contextual_meanings": {
+      "general": "Material success, business acumen, stability, wealth, and solid power.",
+      "love": "A loyal and protective partner who offers material and spiritual security.",
+      "career": "Reaching the top, an excellent financial picture, respected leadership.",
+      "spirituality": "Material and spiritual mastery. Embodying divine energy in a physical form."
+    },
+    "advice": "Protect the power you have achieved and nobly enjoy your successes.",
+    "affirmation": "I am successful, secure, and hold the infinite abundance of the universe."
   }
 ]

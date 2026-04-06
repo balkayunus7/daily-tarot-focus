@@ -104,18 +104,14 @@ class ImplTarotLocalizationService implements ITarotLocalizationService {
     return TarotCard(
       id: id,
       title: translation['title'] as String,
-      description: translation['description'] as String,
+      motto: translation['motto'] as String? ?? '',
       imagePath: base['imagePath'] as String,
       category: TarotCategory.fromString(base['category'] as String),
-      meanings: List<String>.from(translation['meanings'] as List),
-      uprightMeanings: List<String>.from(
-        translation['uprightMeanings'] as List,
+      contextualMeanings: ContextualMeanings.fromMap(
+        translation['contextual_meanings'] as Map<String, dynamic>? ?? {},
       ),
-      reversedMeanings: List<String>.from(
-        translation['reversedMeanings'] as List,
-      ),
-      advices: List<String>.from(translation['advices'] as List),
-      warnings: List<String>.from(translation['warnings'] as List),
+      advice: translation['advice'] as String? ?? '',
+      affirmation: translation['affirmation'] as String? ?? '',
     );
   }
 

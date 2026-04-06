@@ -113,7 +113,7 @@ class _DailyCardListItem extends StatelessWidget {
                           children: [
                             Text(card.title, style: m14w700(context)),
                             Spacing.smallH,
-                            if (card.uprightMeanings.isNotEmpty) ...[
+                            if (card.motto.isNotEmpty) ...[
                               Container(
                                 padding: Spacing.smallPadding,
                                 decoration: BoxDecoration(
@@ -121,7 +121,7 @@ class _DailyCardListItem extends StatelessWidget {
                                   borderRadius: Spacing.xsmallBorderRadius,
                                 ),
                                 child: Text(
-                                  card.uprightMeanings.first,
+                                  card.motto,
                                   style: m10w600(context).copyWith(
                                     color: dotColor,
                                     letterSpacing: 0.2,

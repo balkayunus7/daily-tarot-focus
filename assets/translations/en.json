@@ -20,6 +20,14 @@
         "upright_meanings": "Upright Meanings",
         "reversed_meanings": "Reversed Meanings"
     },
+    "tarot_detail": {
+        "general": "General",
+        "love": "Love",
+        "career": "Career",
+        "spirituality": "Spirituality",
+        "advice": "Advice",
+        "affirmation": "Affirmation"
+    },
     "reveal_page": {
         "tap_to_pick": "Tap to pick your card",
         "drag_to_move": "Drag to move"

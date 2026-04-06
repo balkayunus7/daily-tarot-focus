@@ -20,6 +20,13 @@ abstract class LocaleKeys {
   static const library_page_upright_meanings = 'library_page.upright_meanings';
   static const library_page_reversed_meanings = 'library_page.reversed_meanings';
   static const library_page = 'library_page';
+  static const tarot_detail_general = 'tarot_detail.general';
+  static const tarot_detail_love = 'tarot_detail.love';
+  static const tarot_detail_career = 'tarot_detail.career';
+  static const tarot_detail_spirituality = 'tarot_detail.spirituality';
+  static const tarot_detail_advice = 'tarot_detail.advice';
+  static const tarot_detail_affirmation = 'tarot_detail.affirmation';
+  static const tarot_detail = 'tarot_detail';
   static const reveal_page_tap_to_pick = 'reveal_page.tap_to_pick';
   static const reveal_page_drag_to_move = 'reveal_page.drag_to_move';
   static const reveal_page = 'reveal_page';

@@ -11,6 +11,7 @@ import 'package:daily_tarot_focus/domain/tarot/tarot_data.dart';
 import 'package:daily_tarot_focus/presentation/tarot_daily/helpers/daily_page_date_range_sheet.dart';
 import 'package:daily_tarot_focus/presentation/tarot_daily/helpers/daily_page_mixin.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mobile_boilerplate/common_dependencies.dart';
 import 'package:mobile_boilerplate/presentation/extensions/build_context_theme_ext.dart';
@@ -60,7 +61,9 @@ class _TarotDailyPageState extends State<TarotDailyPage>
                       return BlocBuilder<TarotBloc, TarotState>(
                         builder: (context, state) {
                           if (state.isFetchingDailyCards) {
-                            return const Center(child: CircularProgressIndicator());
+                            return Center(
+                              child: SpinKitFadingCircle(color: context.colors.primary, size: 32),
+                            );
                           }
                           if (state.hasFetchedDailyCardsFailed) {
                             return Center(

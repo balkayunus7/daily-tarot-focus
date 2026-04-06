@@ -3,7 +3,9 @@ import 'package:daily_tarot_focus/core/widgets/tarot_app_bar.dart';
 import 'package:daily_tarot_focus/core/widgets/tarot_detail_content.dart';
 import 'package:daily_tarot_focus/domain/tarot/tarot_data.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:mobile_boilerplate/common_dependencies.dart';
+import 'package:mobile_boilerplate/presentation/extensions/build_context_theme_ext.dart';
 
 class TarotDataDetailPage extends StatelessWidget {
   const TarotDataDetailPage({required this.tarotId, super.key});
@@ -21,7 +23,7 @@ class TarotDataDetailPage extends StatelessWidget {
         if (tarot == null) {
           return Scaffold(
             appBar: TarotAppBar(title: tarotId),
-            body: const Center(child: CircularProgressIndicator()),
+            body: Center(child: SpinKitFadingCircle(color: context.colors.primary, size: 32)),
           );
         }
 

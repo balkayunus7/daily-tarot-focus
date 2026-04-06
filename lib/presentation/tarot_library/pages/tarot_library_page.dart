@@ -8,6 +8,7 @@ import 'package:daily_tarot_focus/domain/tarot/tarot_category_enum.dart';
 import 'package:daily_tarot_focus/domain/tarot/tarot_data.dart';
 import 'package:daily_tarot_focus/presentation/tarot_library/helpers/library_page_scope.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mobile_boilerplate/common_dependencies.dart';
 import 'package:mobile_boilerplate/presentation/extensions/build_context_theme_ext.dart';
@@ -35,7 +36,7 @@ class _TarotDataPageState extends State<TarotDataPage> with LibraryPageStateMixi
           child: BlocBuilder<TarotLocalizationCubit, TarotLocalizationState>(
             builder: (context, state) {
               if (state.isLoading) {
-                return const Center(child: CircularProgressIndicator());
+                return Center(child: SpinKitFadingCircle(color: context.colors.primary, size: 32));
               }
 
               if (state.hasError) {

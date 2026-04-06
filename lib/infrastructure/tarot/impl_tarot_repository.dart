@@ -3,6 +3,7 @@ import 'package:daily_tarot_focus/core/util/tarot_routes.dart';
 import 'package:daily_tarot_focus/domain/tarot/daily_tarot_record.dart';
 import 'package:daily_tarot_focus/domain/tarot/i_tarot_repository.dart';
 import 'package:daily_tarot_focus/domain/tarot/tarot_question_data.dart';
+import 'package:daily_tarot_focus/domain/tarot/tarot_reading_response.dart';
 import 'package:mobile_boilerplate/common_dependencies.dart';
 import 'package:mobile_boilerplate/domain/auth/auth_session.dart';
 import 'package:mobile_boilerplate/domain/common/failure.dart';
@@ -64,7 +65,7 @@ class ImplTarotRepository extends ITarotRepository with HttpFailureHandlerMixin 
   }
 
   @override
-  Future<FailureOr<Unit>> askQuestion({
+  Future<FailureOr<TarotReadingResponse>> askQuestion({
     required AuthSession session,
     required TarotQuestionData data,
   }) async {
@@ -76,8 +77,14 @@ class ImplTarotRepository extends ITarotRepository with HttpFailureHandlerMixin 
         body: data.toMap(),
       );
       if (responseOrFail.isLeft()) return left(const UnknownFailure());
+      final response = responseOrFail.getRightOrCrash();
 
-      return right(unit);
+      final decoded = decodeSupabaseResponse(response.data);
+      final generalFailure = handleResult(response.status, decoded);
+      if (generalFailure != null) return left(generalFailure);
+
+      final tarotResponse = TarotReadingResponse.fromMap(decoded);
+      return right(tarotResponse);
     } on Exception {
       return left(const UnknownFailure());
     }

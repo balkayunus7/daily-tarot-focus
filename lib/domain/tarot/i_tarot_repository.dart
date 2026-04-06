@@ -1,5 +1,6 @@
 import 'package:daily_tarot_focus/domain/tarot/daily_tarot_record.dart';
 import 'package:daily_tarot_focus/domain/tarot/tarot_question_data.dart';
+import 'package:daily_tarot_focus/domain/tarot/tarot_reading_response.dart';
 import 'package:mobile_boilerplate/common_dependencies.dart';
 import 'package:mobile_boilerplate/domain/auth/auth_session.dart';
 import 'package:mobile_boilerplate/domain/common/failure.dart';
@@ -14,7 +15,7 @@ abstract class ITarotRepository {
     required AuthSession session,
   });
 
-  Future<FailureOr<Unit>> askQuestion({
+  Future<FailureOr<TarotReadingResponse>> askQuestion({
     required AuthSession session,
     required TarotQuestionData data,
   });

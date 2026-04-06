@@ -147,25 +147,25 @@ class TarotBloc extends Bloc<TarotEvent, TarotState> {
     emit(
       state.copyWith(
         isAskingQuestion: true,
-        askQuestionFailureOrUnit: none(),
+        askQuestionFailureOrResponse: none(),
       ),
     );
 
-    final failOrUnit = await _tarotRepository.askQuestion(
+    final failOrResponse = await _tarotRepository.askQuestion(
       session: event.session,
       data: event.tarotQuestionData,
     );
 
-    final newState = await failOrUnit.fold(
+    final newState = await failOrResponse.fold(
       (failure) async {
         return state.copyWith(
-          askQuestionFailureOrUnit: some(left(failure)),
+          askQuestionFailureOrResponse: some(left(failure)),
           isAskingQuestion: false,
         );
       },
-      (unit) async {
+      (response) async {
         return state.copyWith(
-          askQuestionFailureOrUnit: some(right(unit)),
+          askQuestionFailureOrResponse: some(right(response)),
           isAskingQuestion: false,
         );
       },

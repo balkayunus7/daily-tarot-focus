@@ -94,9 +94,9 @@ class _DailyCardListItem extends StatelessWidget {
                                     child: SizedBox(
                                       width: 16,
                                       height: 16,
-                                      child: CircularProgressIndicator(
-                                        strokeWidth: 1.5,
+                                      child: SpinKitFadingCircle(
                                         color: dotColor.withValues(alpha: 0.4),
+                                        size: 16,
                                       ),
                                     ),
                                   ),

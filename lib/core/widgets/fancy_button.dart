@@ -3,6 +3,7 @@ import 'package:daily_tarot_focus/core/util/text_style_helper.dart';
 import 'package:daily_tarot_focus/core/widgets/fancy_container.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:mobile_boilerplate/presentation/extensions/build_context_theme_ext.dart';
 import 'package:mobile_boilerplate/presentation/widgets/scaling_container.dart';
 
@@ -56,7 +57,10 @@ class FancyButton extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             if (isLoading) ...[
-              const CircularProgressIndicator(value: 28),
+              SpinKitFadingCircle(
+                color: context.colors.primary,
+                size: 28,
+              ),
             ] else ...[
               if (icon != null) ...[icon!],
               if (text != null) ...[

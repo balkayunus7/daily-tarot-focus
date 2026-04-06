@@ -2,6 +2,7 @@ import 'package:daily_tarot_focus/application/tarot_localization/tarot_localizat
 import 'package:daily_tarot_focus/config/app_routes.dart';
 import 'package:daily_tarot_focus/domain/auth/tarot_user.dart';
 import 'package:daily_tarot_focus/domain/tarot/tarot_data.dart';
+
 import 'package:daily_tarot_focus/presentation/auth/pages/register_step_birthdate_page.dart';
 import 'package:daily_tarot_focus/presentation/auth/pages/register_step_relationship_page.dart';
 import 'package:daily_tarot_focus/presentation/auth/pages/register_step_zodiac_page.dart';
@@ -12,6 +13,7 @@ import 'package:daily_tarot_focus/presentation/subscription/pages/tarot_subscrip
 import 'package:daily_tarot_focus/presentation/tarot_daily/page/tarot_daily_detail_page.dart';
 import 'package:daily_tarot_focus/presentation/tarot_library/pages/tarot_library_detail_page.dart';
 import 'package:daily_tarot_focus/presentation/tarot_library/pages/tarot_library_page.dart';
+import 'package:daily_tarot_focus/presentation/tarot_question/pages/tarot_question_answer_page.dart';
 import 'package:daily_tarot_focus/presentation/tarot_question/pages/tarot_question_page.dart';
 import 'package:daily_tarot_focus/presentation/tarot_reveal/pages/tarot_reveal_detail_page.dart';
 import 'package:daily_tarot_focus/presentation/tarot_reveal/pages/tarot_reveal_page.dart';
@@ -174,6 +176,16 @@ final appRouter = GoRouter(
         return MaterialPage(
           key: state.pageKey,
           child: const TarotQuestionPage(),
+        );
+      },
+    ),
+    GoRoute(
+      path: AppRoutes.tarotQuestionAnswer,
+      name: AppRoutes.tarotQuestionAnswer,
+      pageBuilder: (context, state) {
+        return MaterialPage(
+          key: state.pageKey,
+          child: const TarotQuestionAnswerPage(),
         );
       },
     ),

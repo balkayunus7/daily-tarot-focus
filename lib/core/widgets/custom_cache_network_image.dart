@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:mobile_boilerplate/common_dependencies.dart';
 import 'package:mobile_boilerplate/presentation/extensions/build_context_theme_ext.dart';
 
@@ -25,7 +26,7 @@ class CustomCacheNetworkImage extends StatelessWidget {
       width: width,
       height: height,
       placeholder: (context, url) {
-        return CircularProgressIndicator(value: indicatorSize);
+        return SpinKitFadingCircle(color: context.colors.primary, size: indicatorSize ?? 24);
       },
       errorWidget: (context, url, error) {
         return Container(

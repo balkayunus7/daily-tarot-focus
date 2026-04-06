@@ -2,6 +2,7 @@ import 'package:daily_tarot_focus/core/util/supabase_helper.dart';
 import 'package:daily_tarot_focus/core/util/tarot_routes.dart';
 import 'package:daily_tarot_focus/domain/tarot/daily_tarot_record.dart';
 import 'package:daily_tarot_focus/domain/tarot/i_tarot_repository.dart';
+import 'package:daily_tarot_focus/domain/tarot/tarot_question_data.dart';
 import 'package:mobile_boilerplate/common_dependencies.dart';
 import 'package:mobile_boilerplate/domain/auth/auth_session.dart';
 import 'package:mobile_boilerplate/domain/common/failure.dart';
@@ -57,6 +58,26 @@ class ImplTarotRepository extends ITarotRepository with HttpFailureHandlerMixin 
               .toList();
 
       return right(records);
+    } on Exception {
+      return left(const UnknownFailure());
+    }
+  }
+
+  @override
+  Future<FailureOr<Unit>> askQuestion({
+    required AuthSession session,
+    required TarotQuestionData data,
+  }) async {
+    try {
+      final responseOrFail = await supabaseClient.secureInvoke(
+        route: ASK_QUESTION,
+        method: HttpMethod.post,
+        session: session,
+        body: data.toMap(),
+      );
+      if (responseOrFail.isLeft()) return left(const UnknownFailure());
+
+      return right(unit);
     } on Exception {
       return left(const UnknownFailure());
     }

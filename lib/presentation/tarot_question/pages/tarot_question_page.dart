@@ -1,3 +1,5 @@
+import 'package:daily_tarot_focus/application/tarot/tarot_bloc.dart';
+import 'package:daily_tarot_focus/application/tarot_localization/tarot_localization_cubit.dart';
 import 'package:daily_tarot_focus/core/util/locale_keys.dart';
 import 'package:daily_tarot_focus/core/util/tarot_app_assets.dart';
 import 'package:daily_tarot_focus/core/util/tarot_app_sizes.dart';
@@ -5,9 +7,12 @@ import 'package:daily_tarot_focus/core/util/text_style_helper.dart';
 import 'package:daily_tarot_focus/core/widgets/fancy_container.dart';
 import 'package:daily_tarot_focus/core/widgets/tarot_app_bar.dart';
 import 'package:daily_tarot_focus/core/widgets/tarot_button.dart';
+import 'package:daily_tarot_focus/domain/auth/tarot_user.dart';
+import 'package:daily_tarot_focus/domain/tarot/tarot_question_data.dart';
 import 'package:daily_tarot_focus/presentation/tarot_question/helpers/question_page_mixin.dart';
 import 'package:daily_tarot_focus/presentation/tarot_question/helpers/question_topic_enum.dart';
 import 'package:flutter/material.dart';
+import 'package:mobile_boilerplate/application/auth/auth_cubit.dart';
 import 'package:mobile_boilerplate/common_dependencies.dart';
 import 'package:mobile_boilerplate/presentation/extensions/build_context_theme_ext.dart';
 import 'package:mobile_boilerplate/presentation/widgets/scaling_container.dart';
@@ -145,7 +150,26 @@ class _TarotQuestionPageState extends State<TarotQuestionPage> with QuestionPage
               const Spacer(),
               TarotButton(
                 buttonText: LocaleKeys.question_page_start_question.tr(),
-                onTap: () {},
+                onTap: () {
+                  final tarotBloc = context.read<TarotBloc>();
+                  final lclCubit = context.read<TarotLocalizationCubit>();
+                  final authState = context.read<AuthCubit>().state;
+                  final session = authState.sessionOrCrash;
+
+                  final tarotQuestionData = TarotQuestionData(
+                    user: authState.userOrCrash as TarotUser,
+                    topic: selectedTopic.value!.value,
+                    question: questionController.text,
+                    drawnCards: lclCubit.getRandomCards(selectedCardCount.value!.value),
+                    language: context.locale.languageCode,
+                  );
+
+                  tarotBloc.addQuestionAsked(
+                    session: session,
+                    tarotQuestionData: tarotQuestionData,
+                    languageCode: context.locale.languageCode,
+                  );
+                },
                 bgColor: colors.accent,
                 buttonTextStyle: m16w700(context),
                 isDisabled: questionController.text.isEmpty,

@@ -31,7 +31,7 @@ class ExploreHeader extends StatelessWidget {
             Spacing.smallH,
             if (userZodiac != null) ...[
               Text(
-                LocaleKeys.explore_page_intuition_guide.tr(args: [userZodiac.value]),
+                LocaleKeys.explore_page_intuition_guide.tr(args: [userZodiac.localizedName]),
                 style: m14w500(context).copyWith(color: colors.textSecondary),
               ),
             ],

@@ -2,6 +2,7 @@ import 'package:daily_tarot_focus/application/tarot/tarot_event.dart';
 import 'package:daily_tarot_focus/application/tarot/tarot_state.dart';
 import 'package:daily_tarot_focus/domain/tarot/i_tarot_repository.dart';
 import 'package:daily_tarot_focus/domain/tarot/tarot_data.dart';
+import 'package:daily_tarot_focus/domain/tarot/tarot_question_data.dart';
 import 'package:daily_tarot_focus/infrastructure/tarot/impl_tarot_localization_service.dart';
 import 'package:mobile_boilerplate/common_dependencies.dart';
 import 'package:mobile_boilerplate/domain/auth/auth_session.dart';
@@ -13,6 +14,8 @@ class TarotBloc extends Bloc<TarotEvent, TarotState> {
         await _onDailyCardsFetched(event, emit);
       } else if (event is TarotDailyCardSaved) {
         await _onDailyCardSaved(event, emit);
+      } else if (event is TarotQuestionAsked) {
+        await _onQuestionAsked(event, emit);
       }
     }, transformer: sequential());
   }
@@ -30,6 +33,20 @@ class TarotBloc extends Bloc<TarotEvent, TarotState> {
       TarotDailyCardSaved(
         tarotCardId: tarotCardId,
         session: session,
+        languageCode: languageCode,
+      ),
+    );
+  }
+
+  void addQuestionAsked({
+    required AuthSession session,
+    required TarotQuestionData tarotQuestionData,
+    required String languageCode,
+  }) {
+    add(
+      TarotQuestionAsked(
+        session: session,
+        tarotQuestionData: tarotQuestionData,
         languageCode: languageCode,
       ),
     );
@@ -121,6 +138,40 @@ class TarotBloc extends Bloc<TarotEvent, TarotState> {
         ),
       );
     }
+  }
+
+  Future<void> _onQuestionAsked(
+    TarotQuestionAsked event,
+    Emitter<TarotState> emit,
+  ) async {
+    emit(
+      state.copyWith(
+        isAskingQuestion: true,
+        askQuestionFailureOrUnit: none(),
+      ),
+    );
+
+    final failOrUnit = await _tarotRepository.askQuestion(
+      session: event.session,
+      data: event.tarotQuestionData,
+    );
+
+    final newState = await failOrUnit.fold(
+      (failure) async {
+        return state.copyWith(
+          askQuestionFailureOrUnit: some(left(failure)),
+          isAskingQuestion: false,
+        );
+      },
+      (unit) async {
+        return state.copyWith(
+          askQuestionFailureOrUnit: some(right(unit)),
+          isAskingQuestion: false,
+        );
+      },
+    );
+
+    emit(newState);
   }
 
   final ITarotRepository _tarotRepository;

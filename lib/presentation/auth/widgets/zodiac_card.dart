@@ -34,7 +34,7 @@ class ZodiacCard extends StatelessWidget {
             Text(zodiac.emoji, style: m32w600(context)),
             Spacing.xsmallH,
             Text(
-              zodiac.value,
+              zodiac.localizedName,
               style: m12w600(context).copyWith(color: textColor),
               textAlign: TextAlign.center,
             ),

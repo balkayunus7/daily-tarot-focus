@@ -39,6 +39,12 @@ class TarotLocalizationCubit extends Cubit<TarotLocalizationState> {
     return shuffled.first;
   }
 
+  List<TarotCard> getRandomCards(int count) {
+    if (state.allCards.isEmpty) return [];
+    final shuffled = List<TarotCard>.from(state.allCards)..shuffle();
+    return shuffled.take(count).toList();
+  }
+
   TarotCard? getByTitle(String title) {
     if (state.allCards.isEmpty) return null;
     final matching = state.allCards.where(

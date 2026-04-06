@@ -1,3 +1,4 @@
+import 'package:daily_tarot_focus/domain/tarot/tarot_question_data.dart';
 import 'package:mobile_boilerplate/domain/auth/auth_session.dart';
 
 sealed class TarotEvent {
@@ -27,4 +28,18 @@ final class TarotDailyCardSaved extends TarotEvent {
 
   @override
   List<Object?> get props => [tarotCardId, session, languageCode];
+}
+
+final class TarotQuestionAsked extends TarotEvent {
+  const TarotQuestionAsked({
+    required this.session,
+    required this.tarotQuestionData,
+    required this.languageCode,
+  });
+  final AuthSession session;
+  final TarotQuestionData tarotQuestionData;
+  final String languageCode;
+
+  @override
+  List<Object?> get props => [session, tarotQuestionData, languageCode];
 }

@@ -32,6 +32,15 @@ class ContextualMeanings with EquatableMixin {
   final String career;
   final String spirituality;
 
+  String byTopic(String topic) {
+    return switch (topic.toLowerCase()) {
+      'love' => love,
+      'career' => career,
+      'spirituality' => spirituality,
+      'general' || _ => general,
+    };
+  }
+
   @override
   List<Object?> get props => [general, love, career, spirituality];
 }

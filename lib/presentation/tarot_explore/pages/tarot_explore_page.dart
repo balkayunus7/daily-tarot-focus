@@ -35,36 +35,46 @@ class TarotExplorePage extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: colors.background,
-      body: SafeArea(
-        child: Padding(
-          padding: Spacing.largePadding,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const ExploreHeader(),
-              Spacing.largeH,
-              const ExploreAskQuestionCard(),
-              Spacing.largeH,
-              const ExplorePaywallCard(),
-              Spacing.largeH,
-              Text(LocaleKeys.explore_page_spiritual_guide.tr(), style: m16w500(context)),
-              Spacing.mediumH,
-              Row(
+      body: BlocBuilder<AuthCubit, AuthState>(
+        buildWhen: (previous, current) => current.isAuthenticated,
+        builder: (context, state) {
+          final networkTime = context.networkNow();
+          final isPremium = state.userOrCrash.isSubscribed(networkTime: networkTime);
+
+          return SafeArea(
+            child: Padding(
+              padding: Spacing.largePadding,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Expanded(child: ExploreDailyCardWithCooldown()),
-                  Spacing.mediumW,
-                  Expanded(
-                    child: ExploreFeatureCard(
-                      title: LocaleKeys.explore_page_library.tr(),
-                      imagePath: TarotAppAssets.library.path,
-                      onTap: () => context.push(AppRoutes.tarotLibrary),
-                    ),
+                  const ExploreHeader(),
+                  Spacing.largeH,
+                  const ExploreAskQuestionCard(),
+                  Spacing.largeH,
+                  if (!isPremium) ...[
+                    const ExplorePaywallCard(),
+                    Spacing.largeH,
+                  ],
+                  Text(LocaleKeys.explore_page_spiritual_guide.tr(), style: m16w500(context)),
+                  Spacing.mediumH,
+                  Row(
+                    children: [
+                      const Expanded(child: ExploreDailyCardWithCooldown()),
+                      Spacing.mediumW,
+                      Expanded(
+                        child: ExploreFeatureCard(
+                          title: LocaleKeys.explore_page_library.tr(),
+                          imagePath: TarotAppAssets.library.path,
+                          onTap: () => context.push(AppRoutes.tarotLibrary),
+                        ),
+                      ),
+                    ],
                   ),
                 ],
               ),
-            ],
-          ),
-        ),
+            ),
+          );
+        },
       ),
     );
   }

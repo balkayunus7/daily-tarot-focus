@@ -1,5 +1,7 @@
 part of '../pages/tarot_library_page.dart';
 
+const int _kFreeCardCount = 5;
+
 class LibraryCardGridView extends StatelessWidget {
   const LibraryCardGridView({required this.filteredCards, super.key});
   final List<TarotCard> filteredCards;
@@ -19,7 +21,8 @@ class LibraryCardGridView extends StatelessWidget {
           itemCount: filteredCards.length,
           itemBuilder: (context, index) {
             final card = filteredCards[index];
-            return _LibraryCard(card: card);
+            final isPremium = index >= _kFreeCardCount;
+            return _LibraryCard(card: card, isPremium: isPremium);
           },
         ),
       ),
@@ -28,46 +31,98 @@ class LibraryCardGridView extends StatelessWidget {
 }
 
 class _LibraryCard extends StatelessWidget {
-  const _LibraryCard({required this.card});
-
+  const _LibraryCard({required this.card, required this.isPremium});
   final TarotCard card;
+  final bool isPremium;
 
   @override
   Widget build(BuildContext context) {
     final colors = context.colors;
 
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Expanded(
-          child: ScalingContainer(
-            onTap: () async {
-              await context.pushNamed(
-                AppRoutes.tarotLibraryDetail,
-                pathParameters: {'tarotId': card.title},
-              );
-            },
-            child: Container(
-              decoration: BoxDecoration(
-                borderRadius: Spacing.xsmallBorderRadius,
-                border: Border.all(color: colors.primary, width: 4),
-              ),
-              child: ClipRRect(
-                borderRadius: Spacing.tinyBorderRadius,
-                child: Image.asset(
-                  card.imagePath,
-                  fit: BoxFit.cover,
-                  gaplessPlayback: true,
-                  frameBuilder: (_, child, frame, _) {
-                    if (frame != null) return child;
-                    return const _ImageLoadingShimmer();
-                  },
+    return BlocBuilder<AuthCubit, AuthState>(
+      buildWhen: (previous, current) => current.isAuthenticated,
+      builder: (context, state) {
+        final networkTime = context.networkNow();
+        final isSubscribed = state.userOrCrash.isSubscribed(networkTime: networkTime);
+        final showLock = isPremium && !isSubscribed;
+
+        return Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Expanded(
+              child: ScalingContainer(
+                onTap: () async {
+                  if (showLock) {
+                    await context.push(AppRoutes.subscriptionPaywall);
+                  } else {
+                    await context.pushNamed(
+                      AppRoutes.tarotLibraryDetail,
+                      pathParameters: {'tarotId': card.title},
+                    );
+                  }
+                },
+                child: Stack(
+                  fit: StackFit.expand,
+                  children: [
+                    Container(
+                      decoration: BoxDecoration(
+                        borderRadius: Spacing.xsmallBorderRadius,
+                        border: Border.all(
+                          color: showLock ? colors.primary.withValues(alpha: 0.4) : colors.primary,
+                          width: 4,
+                        ),
+                      ),
+                      child: ClipRRect(
+                        borderRadius: Spacing.tinyBorderRadius,
+                        child: Image.asset(
+                          card.imagePath,
+                          fit: BoxFit.cover,
+                          gaplessPlayback: true,
+                          frameBuilder: (_, child, frame, _) {
+                            if (frame != null) return child;
+                            return const _ImageLoadingShimmer();
+                          },
+                        ),
+                      ),
+                    ),
+
+                    if (showLock) ...[
+                      ClipRRect(
+                        borderRadius: Spacing.tinyBorderRadius,
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: Colors.black.withValues(alpha: 0.3),
+                            borderRadius: Spacing.tinyBorderRadius,
+                          ),
+                        ),
+                      ),
+
+                      Positioned(
+                        top: 8,
+                        right: 8,
+                        child: Container(
+                          padding: Spacing.tinyPadding,
+                          decoration: BoxDecoration(
+                            color: context.colors.primary,
+                            borderRadius: Spacing.xsmallBorderRadius,
+                            boxShadow: context.colors.primary.mediumShadow,
+                          ),
+                          child: SvgPicture.asset(
+                            TarotAppAssets.crown.path,
+                            width: 12,
+                            height: 12,
+                            colorFilter: ColorFilter.mode(colors.textPrimary, BlendMode.srcIn),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ],
                 ),
               ),
             ),
-          ),
-        ),
-      ],
+          ],
+        );
+      },
     );
   }
 }

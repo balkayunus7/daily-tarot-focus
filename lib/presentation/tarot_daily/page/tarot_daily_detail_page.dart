@@ -17,10 +17,7 @@ class TarotDailyDetailPage extends StatelessWidget {
       ),
       body: SafeArea(
         child: SingleChildScrollView(
-          child: SharedTarotDetailPageContent(
-            tarot: tarot,
-            showMeaningForDay: true,
-          ),
+          child: SharedTarotDetailPageContent(tarot: tarot, showMeaningForDay: true),
         ),
       ),
     );

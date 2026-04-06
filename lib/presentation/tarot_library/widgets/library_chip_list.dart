@@ -45,11 +45,7 @@ class LibraryChipList extends StatelessWidget {
 }
 
 class _CategoryChip extends StatelessWidget {
-  const _CategoryChip({
-    required this.label,
-    required this.isSelected,
-    required this.onTap,
-  });
+  const _CategoryChip({required this.label, required this.isSelected, required this.onTap});
   final String label;
   final bool isSelected;
   final VoidCallback onTap;
@@ -71,10 +67,7 @@ class _CategoryChip extends StatelessWidget {
           borderRadius: Spacing.largeBorderRadius,
           border: Border.all(color: borderColor),
         ),
-        child: Text(
-          label,
-          style: m12w600(context).copyWith(color: textColor),
-        ),
+        child: Text(label, style: m12w600(context).copyWith(color: textColor)),
       ),
     );
   }

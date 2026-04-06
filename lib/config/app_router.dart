@@ -153,7 +153,7 @@ final appRouter = GoRouter(
       pageBuilder: (context, state) {
         return MaterialPage(
           key: state.pageKey,
-          child: const TarotDataPage(),
+          child: const TarotLibraryPage(),
         );
       },
     ),

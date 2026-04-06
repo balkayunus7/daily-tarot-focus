@@ -13,6 +13,7 @@ import 'package:daily_tarot_focus/presentation/tarot_daily/helpers/daily_page_mi
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:go_router/go_router.dart';
+import 'package:mobile_boilerplate/application/auth/auth_cubit.dart';
 import 'package:mobile_boilerplate/common_dependencies.dart';
 import 'package:mobile_boilerplate/presentation/extensions/build_context_theme_ext.dart';
 import 'package:mobile_boilerplate/presentation/extensions/date_time_ext.dart';
@@ -21,6 +22,7 @@ import 'package:mobile_boilerplate/presentation/widgets/scaling_container.dart';
 part '../widgets/daily_list_item.dart';
 part '../widgets/daily_date_range_badge.dart';
 part '../widgets/daily_header.dart';
+part '../widgets/daily_retry_widget.dart';
 
 class TarotDailyPage extends StatefulWidget {
   const TarotDailyPage({super.key});
@@ -66,17 +68,16 @@ class _TarotDailyPageState extends State<TarotDailyPage>
                             );
                           }
                           if (state.hasFetchedDailyCardsFailed) {
-                            return Center(
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text(
-                                    LocaleKeys.tarot_daily_error_desc.tr(),
-                                    style: m14w600(context),
-                                  ),
-                                  Spacing.mediumH,
-                                ],
-                              ),
+                            return DailyEmptyWidget(
+                              message: LocaleKeys.tarot_daily_error_desc.tr(),
+                              onTap: () {
+                                final session = context.read<AuthCubit>().state.sessionOrCrash;
+                                final languageCode = context.locale.languageCode;
+                                context.read<TarotBloc>().addDailyCardsFetched(
+                                  session: session,
+                                  languageCode: languageCode,
+                                );
+                              },
                             );
                           }
                           if (state.hasFetchedDailyCardsSucceeded) {
@@ -88,25 +89,9 @@ class _TarotDailyPageState extends State<TarotDailyPage>
                             );
 
                             if (cards.isEmpty) {
-                              return Column(
-                                mainAxisAlignment: MainAxisAlignment.end,
-                                children: [
-                                  TarotButton(
-                                    onTap: () => context.push(AppRoutes.tarotReveal),
-                                    buttonText: LocaleKeys.tarot_daily_empty_desc.tr(),
-                                    paddingHorizontal: 20,
-                                    width: 144,
-                                    height: 48,
-                                    buttonTextStyle: m10w600(context),
-                                    borderRadius: Spacing.xlargeBorderRadius,
-                                  ),
-                                  Spacing.xxlargeH,
-                                  Image.asset(
-                                    TarotAppAssets.empty.path,
-                                    height: MediaQuery.of(context).size.height * 0.3,
-                                    fit: BoxFit.contain,
-                                  ),
-                                ],
+                              return DailyEmptyWidget(
+                                message: LocaleKeys.tarot_daily_empty_desc.tr(),
+                                onTap: () => context.push(AppRoutes.tarotReveal),
                               );
                             }
 

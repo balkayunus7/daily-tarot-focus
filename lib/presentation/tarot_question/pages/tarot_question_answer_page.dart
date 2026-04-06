@@ -7,6 +7,7 @@ import 'package:daily_tarot_focus/core/widgets/fancy_container.dart';
 import 'package:daily_tarot_focus/core/widgets/tarot_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:go_router/go_router.dart';
 import 'package:mobile_boilerplate/common_dependencies.dart';
 import 'package:mobile_boilerplate/presentation/extensions/build_context_theme_ext.dart';
 
@@ -18,12 +19,17 @@ class TarotQuestionAnswerPage extends StatelessWidget {
     final colors = context.colors;
 
     return Scaffold(
-      appBar: TarotAppBar(title: LocaleKeys.question_page_title.tr()),
+      appBar: TarotAppBar(
+        title: 'Cevaplar',
+        backIcon: Icons.close,
+        onBackIconTap: () {
+          context.pop();
+        },
+      ),
       body: SafeArea(
         child: BlocBuilder<TarotBloc, TarotState>(
           builder: (context, state) {
-            if (state.isAskingQuestion ||
-                (!state.hasAskedQuestionFailed && !state.hasAskedQuestionSucceeded)) {
+            if (state.isAskingQuestion) {
               return Center(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -40,16 +46,15 @@ class TarotQuestionAnswerPage extends StatelessWidget {
             }
 
             if (state.hasAskedQuestionFailed) {
-              final errorColor = Theme.of(context).colorScheme.error;
               return Center(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Icon(Icons.error_outline, size: 48, color: errorColor),
+                    const Icon(Icons.error_outline, size: 48, color: Colors.red),
                     Spacing.mediumH,
                     Text(
                       'Bir hata oluştu.',
-                      style: m16w700(context).copyWith(color: errorColor),
+                      style: m16w700(context).copyWith(color: Colors.red),
                     ),
                   ],
                 ),

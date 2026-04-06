@@ -153,34 +153,39 @@ class _TarotQuestionPageState extends State<TarotQuestionPage> with QuestionPage
               const Spacer(),
               BlocBuilder<TarotBloc, TarotState>(
                 builder: (context, state) {
-                  return TarotButton(
-                    buttonText: LocaleKeys.question_page_start_question.tr(),
-                    isLoading: true,
-                    onTap: () {
-                      final tarotBloc = context.read<TarotBloc>();
-                      final lclCubit = context.read<TarotLocalizationCubit>();
-                      final authState = context.read<AuthCubit>().state;
-                      final session = authState.sessionOrCrash;
+                  return ValueListenableBuilder(
+                    valueListenable: questionController,
+                    builder: (context, value, _) {
+                      return TarotButton(
+                        buttonText: LocaleKeys.question_page_see_answer.tr(),
+                        isLoading: state.isAskingQuestion,
+                        onTap: () {
+                          final tarotBloc = context.read<TarotBloc>();
+                          final lclCubit = context.read<TarotLocalizationCubit>();
+                          final authState = context.read<AuthCubit>().state;
+                          final session = authState.sessionOrCrash;
 
-                      final tarotQuestionData = TarotQuestionData(
-                        user: authState.userOrCrash as TarotUser,
-                        topic: selectedTopic.value!.value,
-                        question: questionController.text,
-                        drawnCards: lclCubit.getRandomCards(selectedCardCount.value!.value),
-                        language: context.locale.languageCode,
+                          final tarotQuestionData = TarotQuestionData(
+                            user: authState.userOrCrash as TarotUser,
+                            topic: selectedTopic.value!.value,
+                            question: questionController.text,
+                            drawnCards: lclCubit.getRandomCards(selectedCardCount.value!.value),
+                            language: context.locale.languageCode,
+                          );
+
+                          tarotBloc.addQuestionAsked(
+                            session: session,
+                            tarotQuestionData: tarotQuestionData,
+                            languageCode: context.locale.languageCode,
+                          );
+
+                          context.replace(AppRoutes.tarotQuestionAnswer);
+                        },
+                        bgColor: colors.accent,
+                        buttonTextStyle: m16w700(context),
+                        isDisabled: value.text.isEmpty || state.isAskingQuestion,
                       );
-
-                      tarotBloc.addQuestionAsked(
-                        session: session,
-                        tarotQuestionData: tarotQuestionData,
-                        languageCode: context.locale.languageCode,
-                      );
-
-                      context.go(AppRoutes.tarotQuestionAnswer);
                     },
-                    bgColor: colors.accent,
-                    buttonTextStyle: m16w700(context),
-                    isDisabled: questionController.text.isEmpty || state.isAskingQuestion,
                   );
                 },
               ),

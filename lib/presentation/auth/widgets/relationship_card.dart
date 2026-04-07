@@ -31,7 +31,7 @@ class RelationshipCard extends StatelessWidget {
           children: [
             Text(status.emoji, style: m28w600(context)),
             Spacing.mediumW,
-            Expanded(child: Text(status.value, style: m16w600(context))),
+            Expanded(child: Text(status.localizedName, style: m16w600(context))),
             if (isSelected) ...[
               Spacing.mediumW,
               Icon(

@@ -136,6 +136,14 @@
         "aquarius": "Kova",
         "pisces": "Balık"
     },
+    "relationship_status": {
+        "single": "Bekar",
+        "in_a_relationship": "Bir ilişkide",
+        "engaged": "Nişanlı",
+        "married": "Evli",
+        "its_complicated": "Karışık Durumda",
+        "prefer_not_to_say": "Belirtmek istemiyorum"
+    },
     "tarot_daily": {
         "title": "Günlük Tarotlar",
         "subtitle": "SENİN RUHSAL YOLCULUĞUM",

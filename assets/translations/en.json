@@ -136,6 +136,14 @@
         "aquarius": "Aquarius",
         "pisces": "Pisces"
     },
+    "relationship_status": {
+        "single": "Single",
+        "in_a_relationship": "In a relationship",
+        "engaged": "Engaged",
+        "married": "Married",
+        "its_complicated": "It's complicated",
+        "prefer_not_to_say": "Prefer not to say"
+    },
     "tarot_daily": {
         "title": "Daily Tarots",
         "subtitle": "YOUR SPIRITUAL JOURNEY",

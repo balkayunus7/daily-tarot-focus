@@ -1,13 +1,13 @@
 part of '../pages/tarot_library_page.dart';
 
-const int _kFreeCardCount = 5;
-
 class LibraryCardGridView extends StatelessWidget {
   const LibraryCardGridView({required this.filteredCards, super.key});
   final List<TarotCard> filteredCards;
 
   @override
   Widget build(BuildContext context) {
+    final scope = LibraryPageScope.of(context);
+
     return Expanded(
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -21,7 +21,7 @@ class LibraryCardGridView extends StatelessWidget {
           itemCount: filteredCards.length,
           itemBuilder: (context, index) {
             final card = filteredCards[index];
-            final isPremium = index >= _kFreeCardCount;
+            final isPremium = index >= scope.state.freeCardCount;
             return _LibraryCard(card: card, isPremium: isPremium);
           },
         ),
@@ -91,7 +91,7 @@ class _LibraryCard extends StatelessWidget {
                         borderRadius: Spacing.tinyBorderRadius,
                         child: Container(
                           decoration: BoxDecoration(
-                            color: Colors.black.withValues(alpha: 0.3),
+                            color: Colors.black.withValues(alpha: 0.5),
                             borderRadius: Spacing.tinyBorderRadius,
                           ),
                         ),

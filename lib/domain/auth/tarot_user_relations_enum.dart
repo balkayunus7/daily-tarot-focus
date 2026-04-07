@@ -1,3 +1,6 @@
+import 'package:daily_tarot_focus/core/util/locale_keys.dart';
+import 'package:easy_localization/easy_localization.dart';
+
 enum RelationshipStatus {
   single('Single'),
   inARelationship('In a relationship'),
@@ -8,7 +11,8 @@ enum RelationshipStatus {
 
   const RelationshipStatus(this.value);
 
-  factory RelationshipStatus.fromString(String value) => RelationshipStatus.values.firstWhere((e) => e.value == value);
+  factory RelationshipStatus.fromString(String value) =>
+      RelationshipStatus.values.firstWhere((e) => e.value == value);
 
   final String value;
 
@@ -18,6 +22,23 @@ enum RelationshipStatus {
   bool get isMarried => this == RelationshipStatus.married;
   bool get isItsComplicated => this == RelationshipStatus.itsComplicated;
   bool get isPreferNotToSay => this == RelationshipStatus.preferNotToSay;
+
+  String get localizedName {
+    switch (this) {
+      case RelationshipStatus.single:
+        return LocaleKeys.relationship_status_single.tr();
+      case RelationshipStatus.inARelationship:
+        return LocaleKeys.relationship_status_in_a_relationship.tr();
+      case RelationshipStatus.engaged:
+        return LocaleKeys.relationship_status_engaged.tr();
+      case RelationshipStatus.married:
+        return LocaleKeys.relationship_status_married.tr();
+      case RelationshipStatus.itsComplicated:
+        return LocaleKeys.relationship_status_its_complicated.tr();
+      case RelationshipStatus.preferNotToSay:
+        return LocaleKeys.relationship_status_prefer_not_to_say.tr();
+    }
+  }
 
   String get emoji => switch (this) {
     RelationshipStatus.single => '💫',

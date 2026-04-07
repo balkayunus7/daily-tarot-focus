@@ -7,6 +7,7 @@ class TarotQuestionData {
     required this.topic,
     required this.question,
     required this.drawnCards,
+    required this.drawnCardReversedStates,
     required this.language,
   });
 
@@ -14,6 +15,7 @@ class TarotQuestionData {
   final String topic;
   final String? question;
   final List<TarotCard> drawnCards;
+  final List<bool> drawnCardReversedStates;
   final String language;
 
   Map<String, dynamic> toMap() {
@@ -22,7 +24,7 @@ class TarotQuestionData {
     return {
       'user': {
         'zodiac': user.zodiac?.localizedName,
-        'relationship_status': user.relationshipStatus?.value,
+        'relationship_status': user.relationshipStatus?.localizedName,
         'birth_date': user.birthDate?.toIso8601String(),
         'age': user.age,
       },
@@ -32,11 +34,21 @@ class TarotQuestionData {
         'card_count': drawnCards.length,
         'cards': List.generate(drawnCards.length, (i) {
           final card = drawnCards[i];
+          final isReversed = i < drawnCardReversedStates.length && drawnCardReversedStates[i];
+
+          final topicKey = switch (topic.toLowerCase()) {
+            'love' => 'love',
+            'career' => 'career',
+            'health' || 'spirituality' => 'spirituality',
+            _ => 'general',
+          };
+
           return {
             'id': card.id,
             'title': card.title,
             'position': positions[i],
-            'contextual_meaning': card.contextualMeanings.byTopic(topic),
+            'is_reversed': isReversed,
+            'contextual_meaning': card.contextualMeanings.byTopic(topicKey),
             'advice': card.advice,
             'affirmation': card.affirmation,
           };

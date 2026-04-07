@@ -32,25 +32,29 @@ class _DailyCardListItem extends StatelessWidget {
                   ),
                 ),
                 Spacing.smallW,
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Center(
-                      child: SvgPicture.asset(
-                        TarotAppAssets.tarotIcon.path,
-                        colorFilter: ColorFilter.mode(dotColor, BlendMode.srcIn),
-                        width: 20,
-                        height: 20,
+                SizedBox(
+                  width: 45,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Center(
+                        child: SvgPicture.asset(
+                          TarotAppAssets.tarotIcon.path,
+                          colorFilter: ColorFilter.mode(dotColor, BlendMode.srcIn),
+                          width: 20,
+                          height: 20,
+                        ),
                       ),
-                    ),
-                    Spacing.tinyH,
-                    if (card.savedAt != null) ...[
-                      Text(
-                        card.savedAt!.dAmWithLastDays(context.locale),
-                        style: m10w600(context).copyWith(color: dotColor, letterSpacing: 0.5),
-                      ),
+                      Spacing.tinyH,
+                      if (card.savedAt != null) ...[
+                        Text(
+                          card.savedAt!.dAmWithLastDays(context.locale),
+                          style: m10w600(context).copyWith(color: dotColor, letterSpacing: 0.5),
+                          textAlign: TextAlign.center,
+                        ),
+                      ],
                     ],
-                  ],
+                  ),
                 ),
               ],
             ),

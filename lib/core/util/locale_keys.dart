@@ -127,6 +127,12 @@ abstract class  LocaleKeys {
   static const zodiac_aquarius = 'zodiac.aquarius';
   static const zodiac_pisces = 'zodiac.pisces';
   static const zodiac = 'zodiac';
+  static const tarot_category_major_arcana = 'tarot_category.major_arcana';
+  static const tarot_category_cups = 'tarot_category.cups';
+  static const tarot_category_wands = 'tarot_category.wands';
+  static const tarot_category_swords = 'tarot_category.swords';
+  static const tarot_category_pentacles = 'tarot_category.pentacles';
+  static const tarot_category = 'tarot_category';
   static const relationship_status_single = 'relationship_status.single';
   static const relationship_status_in_a_relationship = 'relationship_status.in_a_relationship';
   static const relationship_status_engaged = 'relationship_status.engaged';

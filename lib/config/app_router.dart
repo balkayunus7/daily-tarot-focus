@@ -1,23 +1,23 @@
-import 'package:daily_tarot_focus/application/tarot_localization/tarot_localization_cubit.dart';
 import 'package:daily_tarot_focus/config/app_routes.dart';
-import 'package:daily_tarot_focus/domain/auth/tarot_user.dart';
-import 'package:daily_tarot_focus/domain/tarot/tarot_data.dart';
-import 'package:daily_tarot_focus/domain/tarot/tarot_question_draft_data.dart';
-import 'package:daily_tarot_focus/presentation/auth/pages/register_step_birthdate_page.dart';
-import 'package:daily_tarot_focus/presentation/auth/pages/register_step_relationship_page.dart';
-import 'package:daily_tarot_focus/presentation/auth/pages/register_step_zodiac_page.dart';
-import 'package:daily_tarot_focus/presentation/auth/pages/splash_page.dart';
-import 'package:daily_tarot_focus/presentation/home/pages/home_page.dart';
-import 'package:daily_tarot_focus/presentation/settings/pages/settings_page.dart';
-import 'package:daily_tarot_focus/presentation/subscription/pages/tarot_subscription_paywall_page.dart';
-import 'package:daily_tarot_focus/presentation/tarot_daily/page/tarot_daily_detail_page.dart';
-import 'package:daily_tarot_focus/presentation/tarot_library/pages/tarot_library_detail_page.dart';
-import 'package:daily_tarot_focus/presentation/tarot_library/pages/tarot_library_page.dart';
-import 'package:daily_tarot_focus/presentation/tarot_question/pages/tarot_question_answer_page.dart';
-import 'package:daily_tarot_focus/presentation/tarot_question/pages/tarot_question_card_select_page.dart';
-import 'package:daily_tarot_focus/presentation/tarot_question/pages/tarot_question_page.dart';
-import 'package:daily_tarot_focus/presentation/tarot_reveal/pages/tarot_reveal_detail_page.dart';
-import 'package:daily_tarot_focus/presentation/tarot_reveal/pages/tarot_reveal_page.dart';
+import 'package:daily_tarot_focus/features/auth/domain/models/tarot_user.dart';
+import 'package:daily_tarot_focus/features/auth/presentation/pages/register_step_birthdate_page.dart';
+import 'package:daily_tarot_focus/features/auth/presentation/pages/register_step_relationship_page.dart';
+import 'package:daily_tarot_focus/features/auth/presentation/pages/register_step_zodiac_page.dart';
+import 'package:daily_tarot_focus/features/auth/presentation/pages/splash_page.dart';
+import 'package:daily_tarot_focus/features/core/home/home_page.dart';
+import 'package:daily_tarot_focus/features/core/settings/settings_page.dart';
+import 'package:daily_tarot_focus/features/core/subscription/pages/tarot_subscription_paywall_page.dart';
+import 'package:daily_tarot_focus/features/tarot/bloc/tarot_localization/tarot_localization_cubit.dart';
+import 'package:daily_tarot_focus/features/tarot/domain/models/reading_request_model.dart';
+import 'package:daily_tarot_focus/features/tarot/domain/models/tarot_card_model.dart';
+import 'package:daily_tarot_focus/features/tarot/presentation/tarot_daily/page/tarot_daily_detail_page.dart';
+import 'package:daily_tarot_focus/features/tarot/presentation/tarot_library/pages/tarot_library_detail_page.dart';
+import 'package:daily_tarot_focus/features/tarot/presentation/tarot_library/pages/tarot_library_page.dart';
+import 'package:daily_tarot_focus/features/tarot/presentation/tarot_question/pages/tarot_reading_page.dart';
+import 'package:daily_tarot_focus/features/tarot/presentation/tarot_question/pages/tarot_question_card_select_page.dart';
+import 'package:daily_tarot_focus/features/tarot/presentation/tarot_question/pages/tarot_question_page.dart';
+import 'package:daily_tarot_focus/features/tarot/presentation/tarot_reveal/pages/tarot_reveal_detail_page.dart';
+import 'package:daily_tarot_focus/features/tarot/presentation/tarot_reveal/pages/tarot_reveal_page.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mobile_boilerplate/application/auth/auth_cubit.dart';
@@ -128,7 +128,7 @@ final appRouter = GoRouter(
       name: AppRoutes.tarotRevealDetail,
       pageBuilder: (context, state) {
         // Try to get tarot from extra first, fallback to cubit lookup
-        final extraTarot = state.extra as TarotCard?;
+        final extraTarot = state.extra as TarotCardModel?;
         if (extraTarot != null) {
           return MaterialPage(
             key: state.pageKey,
@@ -186,7 +186,7 @@ final appRouter = GoRouter(
       pageBuilder: (context, state) {
         return MaterialPage(
           key: state.pageKey,
-          child: const TarotQuestionAnswerPage(),
+          child: const TarotReadingPage(),
         );
       },
     ),
@@ -205,7 +205,7 @@ final appRouter = GoRouter(
       path: AppRoutes.tarotDailyDetail,
       name: AppRoutes.tarotDailyDetail,
       pageBuilder: (context, state) {
-        final tarot = state.extra! as TarotCard;
+        final tarot = state.extra! as TarotCardModel;
         return MaterialPage(
           key: state.pageKey,
           child: TarotDailyDetailPage(tarot: tarot),

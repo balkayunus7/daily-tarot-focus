@@ -5,7 +5,7 @@ import 'package:daily_tarot_focus/core/util/tarot_app_sizes.dart';
 import 'package:daily_tarot_focus/core/util/tarot_mock_data.dart';
 import 'package:daily_tarot_focus/core/util/text_style_helper.dart';
 import 'package:daily_tarot_focus/core/widgets/fancy_container.dart';
-import 'package:daily_tarot_focus/domain/tarot/tarot_data.dart';
+import 'package:daily_tarot_focus/features/tarot/domain/models/tarot_card_model.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile_boilerplate/common_dependencies.dart';
 import 'package:mobile_boilerplate/presentation/extensions/build_context_theme_ext.dart';
@@ -16,7 +16,7 @@ class SharedTarotDetailPageContent extends StatelessWidget {
     this.showMeaningForDay = false,
     super.key,
   });
-  final TarotCard tarot;
+  final TarotCardModel tarot;
   final bool showMeaningForDay;
 
   @override
@@ -55,7 +55,7 @@ class SharedTarotDetailPageContent extends StatelessWidget {
 
 class _MottoCard extends StatelessWidget {
   const _MottoCard({required this.tarot});
-  final TarotCard tarot;
+  final TarotCardModel tarot;
 
   @override
   Widget build(BuildContext context) {
@@ -119,7 +119,7 @@ class _MottoCard extends StatelessWidget {
 
 class _ContextualMeaningsGrid extends StatelessWidget {
   const _ContextualMeaningsGrid({required this.tarot});
-  final TarotCard tarot;
+  final TarotCardModel tarot;
 
   @override
   Widget build(BuildContext context) {
@@ -220,7 +220,7 @@ class _MeaningGridTile extends StatelessWidget {
 
 class _AdviceCard extends StatelessWidget {
   const _AdviceCard({required this.tarot});
-  final TarotCard tarot;
+  final TarotCardModel tarot;
 
   @override
   Widget build(BuildContext context) {
@@ -258,7 +258,7 @@ class _AdviceCard extends StatelessWidget {
 
 class _AffirmationCard extends StatelessWidget {
   const _AffirmationCard({required this.tarot});
-  final TarotCard tarot;
+  final TarotCardModel tarot;
 
   @override
   Widget build(BuildContext context) {

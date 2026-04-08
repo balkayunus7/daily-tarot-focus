@@ -136,6 +136,13 @@
         "aquarius": "Aquarius",
         "pisces": "Pisces"
     },
+    "tarot_category": {
+        "major_arcana": "Major Arcana",
+        "cups": "Cups",
+        "wands": "Wands",
+        "swords": "Swords",
+        "pentacles": "Pentacles"
+    },
     "relationship_status": {
         "single": "Single",
         "in_a_relationship": "In a relationship",

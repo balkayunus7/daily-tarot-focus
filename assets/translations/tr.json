@@ -136,6 +136,13 @@
         "aquarius": "Kova",
         "pisces": "Balık"
     },
+    "tarot_category": {
+        "major_arcana": "Büyük Arkana",
+        "cups": "Kupalar",
+        "wands": "Asalar",
+        "swords": "Kılıçlar",
+        "pentacles": "Tılsımlar"
+    },
     "relationship_status": {
         "single": "Bekar",
         "in_a_relationship": "Bir ilişkide",

@@ -9,8 +9,10 @@ import 'package:daily_tarot_focus/features/tarot/bloc/tarot_localization/tarot_l
 import 'package:daily_tarot_focus/features/tarot/domain/models/fetch_daily_cards_request_model.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile_boilerplate/application/auth/auth_cubit.dart';
+import 'package:mobile_boilerplate/application/launcher/launcher.dart';
 import 'package:mobile_boilerplate/application/purchases/purchases_bloc.dart';
 import 'package:mobile_boilerplate/common_dependencies.dart';
+import 'package:mobile_boilerplate/core_app.dart';
 import 'package:mobile_boilerplate/presentation/common/loading_page.dart';
 import 'package:mobile_boilerplate/presentation/extensions/build_context_failure_ext.dart';
 import 'package:mobile_boilerplate/presentation/extensions/build_context_theme_ext.dart';
@@ -76,7 +78,9 @@ class SettingsPage extends StatelessWidget {
                     _SettingsTile(
                       icon: Icons.star_rate,
                       title: LocaleKeys.settings_page_rate_us.tr(),
-                      onTap: () {},
+                      onTap: () async {
+                        await context.read<Launcher>().launchUrl(url: appConfig.appStoreUrl);
+                      },
                     ),
                     _SettingsTile(
                       icon: Icons.restore,
@@ -101,12 +105,20 @@ class SettingsPage extends StatelessWidget {
                     _SettingsTile(
                       icon: Icons.description,
                       title: LocaleKeys.settings_page_terms_of_service.tr(),
-                      onTap: () {},
+                      onTap: () async {
+                        await context.read<Launcher>().launchUrlInAppView(
+                          url: appConfig.termsOfServiceUrl,
+                        );
+                      },
                     ),
                     _SettingsTile(
                       icon: Icons.privacy_tip,
                       title: LocaleKeys.settings_page_privacy_policy.tr(),
-                      onTap: () {},
+                      onTap: () async {
+                        await context.read<Launcher>().launchUrlInAppView(
+                          url: appConfig.privacyPolicyUrl,
+                        );
+                      },
                     ),
                   ],
                 ),

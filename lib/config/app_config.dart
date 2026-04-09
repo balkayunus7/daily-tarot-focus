@@ -14,10 +14,10 @@ class TarotAppConfig extends AppConfig {
         adjustSDK: envConfig.adjustSdkKey,
         androidRevenuecatKey: envConfig.revenuecatApiKey,
         mailToUrl: 'https://sites.google.com/view/contactinfoside/',
-        termsOfServiceUrl: 'https://sites.google.com/view/mindcheckanxietytracker/ana-sayfa',
+        termsOfServiceUrl: 'https://sites.google.com/view/tarotdailyfocustermsconditions',
         iosRevenuecatKey: envConfig.revenuecatApiKey,
-        privacyPolicyUrl: 'https://sites.google.com/view/mind-check-anxiety-tracker/ana-sayfa',
-        appStoreUrl: 'https://apps.apple.com/app/id6753744844?action=write-review',
+        privacyPolicyUrl: 'https://sites.google.com/view/tarot-daily-privacy-policy',
+        appStoreUrl: 'https://apps.apple.com/app/id6757164771?action=write-review',
         playStoreUrl: '',
       );
 }

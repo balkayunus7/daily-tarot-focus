@@ -11,75 +11,107 @@ import 'package:flutter/material.dart';
 import 'package:mobile_boilerplate/application/auth/auth_cubit.dart';
 import 'package:mobile_boilerplate/application/purchases/purchases_bloc.dart';
 import 'package:mobile_boilerplate/common_dependencies.dart';
+import 'package:mobile_boilerplate/presentation/common/loading_page.dart';
+import 'package:mobile_boilerplate/presentation/extensions/build_context_failure_ext.dart';
 import 'package:mobile_boilerplate/presentation/extensions/build_context_theme_ext.dart';
 import 'package:mobile_boilerplate/presentation/widgets/scaling_container.dart';
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage({super.key});
 
+  BlocListener<PurchasesBloc, PurchasesState> _restoringListener() =>
+      BlocListener<PurchasesBloc, PurchasesState>(
+        listenWhen: (p, c) => p.isRestoring != c.isRestoring,
+        listener: (context, state) async {
+          if (state.isRestoring) {
+            await LoadingPage.push(context);
+          } else {
+            Navigator.of(context).pop();
+          }
+        },
+      );
+
+  BlocListener<PurchasesBloc, PurchasesState> _restoredListener() =>
+      BlocListener<PurchasesBloc, PurchasesState>(
+        listenWhen: (p, c) => p.failureOrRestoredOption != c.failureOrRestoredOption,
+        listener: (context, state) async {
+          if (state.hasRestoredSuccessfully) {
+            await context.read<AuthCubit>().refetchUser();
+          } else if (state.hasRestoredFailed) {
+            await context.handleFailure(state.restoredFailOrCrash);
+          }
+        },
+      );
+
   @override
   Widget build(BuildContext context) {
     final colors = context.colors;
 
-    return Scaffold(
-      backgroundColor: colors.background,
-      appBar: TarotAppBar(
-        title: LocaleKeys.settings_page_app_bar.tr(),
-        showBackIcon: false,
-      ),
-      body: SafeArea(
-        child: Padding(
-          padding: Spacing.screenPadding,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Spacing.largeH,
-              _SettingsSection(
-                title: LocaleKeys.settings_page_account.tr(),
-                children: [
-                  _SettingsTile(
-                    icon: Icons.language,
-                    title: LocaleKeys.settings_page_language.tr(),
-                    onTap: () => _showLanguageBottomSheet(context),
-                  ),
-                  _SettingsTile(
-                    icon: Icons.star_rate,
-                    title: LocaleKeys.settings_page_rate_us.tr(),
-                    onTap: () {},
-                  ),
-                  _SettingsTile(
-                    icon: Icons.restore,
-                    title: LocaleKeys.settings_page_restore_purchases.tr(),
-                    onTap: () {
-                      final authState = context.read<AuthCubit>().state;
-                      if (authState.isAuthenticated) {
-                        final purchaser = authState.userOrCrash.purchaser;
-                        context.read<PurchasesBloc>().addPurchasesRestored(
-                          purchaser: purchaser,
-                          trackingIds: authState.trackingIdsOrNull,
-                        );
-                      }
-                    },
-                  ),
-                ],
-              ),
-              Spacing.largeH,
-              _SettingsSection(
-                title: 'Legal',
-                children: [
-                  _SettingsTile(
-                    icon: Icons.description,
-                    title: LocaleKeys.settings_page_terms_of_service.tr(),
-                    onTap: () {},
-                  ),
-                  _SettingsTile(
-                    icon: Icons.privacy_tip,
-                    title: LocaleKeys.settings_page_privacy_policy.tr(),
-                    onTap: () {},
-                  ),
-                ],
-              ),
-            ],
+    return MultiBlocListener(
+      listeners: [
+        _restoringListener(),
+        _restoredListener(),
+      ],
+      child: Scaffold(
+        backgroundColor: colors.background,
+        appBar: TarotAppBar(
+          title: LocaleKeys.settings_page_app_bar.tr(),
+          showBackIcon: false,
+        ),
+        body: SafeArea(
+          child: Padding(
+            padding: Spacing.screenPadding,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Spacing.largeH,
+                _SettingsSection(
+                  title: LocaleKeys.settings_page_account.tr(),
+                  children: [
+                    _SettingsTile(
+                      icon: Icons.language,
+                      title: LocaleKeys.settings_page_language.tr(),
+                      onTap: () => _showLanguageBottomSheet(context),
+                    ),
+                    _SettingsTile(
+                      icon: Icons.star_rate,
+                      title: LocaleKeys.settings_page_rate_us.tr(),
+                      onTap: () {},
+                    ),
+                    _SettingsTile(
+                      icon: Icons.restore,
+                      title: LocaleKeys.settings_page_restore_purchases.tr(),
+                      onTap: () {
+                        final authState = context.read<AuthCubit>().state;
+                        if (authState.isAuthenticated) {
+                          final purchaser = authState.userOrCrash.purchaser;
+                          context.read<PurchasesBloc>().addPurchasesRestored(
+                            purchaser: purchaser,
+                            trackingIds: authState.trackingIdsOrNull,
+                          );
+                        }
+                      },
+                    ),
+                  ],
+                ),
+                Spacing.largeH,
+                _SettingsSection(
+                  title: 'Legal',
+                  children: [
+                    _SettingsTile(
+                      icon: Icons.description,
+                      title: LocaleKeys.settings_page_terms_of_service.tr(),
+                      onTap: () {},
+                    ),
+                    _SettingsTile(
+                      icon: Icons.privacy_tip,
+                      title: LocaleKeys.settings_page_privacy_policy.tr(),
+                      onTap: () {},
+                    ),
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
       ),

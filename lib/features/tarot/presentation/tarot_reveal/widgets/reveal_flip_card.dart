@@ -13,15 +13,11 @@ class RevealFlipCard extends StatelessWidget {
       child: AnimatedBuilder(
         animation: scope.revealAnimController,
         builder: (context, child) {
-          // Even gentler curve for a more mystical feel
           final curvedValue = Curves.easeInOutSine.transform(
             scope.revealAnimController.value,
           );
-          // 3 rotations (6 * pi) over the now 10-second duration
           final rotateY = curvedValue * 6 * math.pi;
-          // Continuous growth from 0.7 (small/far) to 1.9 (large/close)
           final scale = 0.7 + (curvedValue * 1.2);
-          // Transition to front card closer to the end for the final reveal (0.9 threshold)
           final isFrontVisible = curvedValue >= 0.9;
 
           final transform =

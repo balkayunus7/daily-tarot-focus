@@ -1,5 +1,6 @@
 import 'dart:math' as math;
 
+import 'package:daily_tarot_focus/config/app_routes.dart';
 import 'package:daily_tarot_focus/core/util/tarot_app_assets.dart';
 import 'package:daily_tarot_focus/core/util/tarot_app_sizes.dart';
 import 'package:daily_tarot_focus/core/util/text_style_helper.dart';
@@ -13,6 +14,7 @@ import 'package:daily_tarot_focus/features/tarot/domain/models/tarot_card_model.
 import 'package:daily_tarot_focus/features/tarot/presentation/tarot_question/helpers/question_card_select_page_mixin.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:go_router/go_router.dart';
 import 'package:mobile_boilerplate/common_dependencies.dart';
 import 'package:mobile_boilerplate/presentation/extensions/build_context_theme_ext.dart';
 import 'package:mobile_boilerplate/presentation/widgets/scaling_container.dart';
@@ -31,7 +33,13 @@ class _TarotQuestionCardSelectPageState extends State<TarotQuestionCardSelectPag
   Widget build(BuildContext context) {
     final colors = context.colors;
     return Scaffold(
-      appBar: const TarotAppBar(title: 'Kart Seçimi'),
+      appBar: TarotAppBar(
+        title: 'Kart Seçimi',
+        backIcon: Icons.close,
+        onBackIconTap: () {
+          context.go(AppRoutes.tarotExplore);
+        },
+      ),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: SpacingConsts.large),
@@ -89,11 +97,11 @@ class _TarotQuestionCardSelectPageState extends State<TarotQuestionCardSelectPag
                 builder: (context, state) {
                   return TarotButton(
                     buttonText: 'Cevabı Gör',
-                    isLoading: state.isAskingQuestion,
+                    isLoading: state.isReading,
                     onTap: submitQuestion,
                     bgColor: colors.accent,
                     buttonTextStyle: m16w700(context),
-                    isDisabled: state.isAskingQuestion || !hasEnoughSelection,
+                    isDisabled: state.isReading || !hasEnoughSelection,
                   );
                 },
               ),

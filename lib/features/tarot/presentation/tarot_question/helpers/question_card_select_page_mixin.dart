@@ -17,6 +17,9 @@ mixin QuestionCardSelectPageStateMixin on State<TarotQuestionCardSelectPage> {
   List<QuestionDeckCardItem> deckCards = const [];
   final List<int> selectedDeckIndices = [];
 
+  TarotQuestionData? _tarotQuestionData;
+  TarotQuestionData? get tarotQuestionData => _tarotQuestionData;
+
   int get requiredCardCount => widget.draftData.cardCount;
   int get selectedCardCount => selectedDeckIndices.length;
   bool get hasEnoughSelection => selectedCardCount == requiredCardCount;
@@ -63,7 +66,7 @@ mixin QuestionCardSelectPageStateMixin on State<TarotQuestionCardSelectPage> {
     final authState = context.read<AuthCubit>().state;
     final session = authState.sessionOrCrash;
 
-    final tarotQuestionData = TarotQuestionData(
+    _tarotQuestionData = TarotQuestionData(
       user: authState.userOrCrash as TarotUser,
       topic: widget.draftData.topic,
       question: widget.draftData.question,
@@ -74,7 +77,7 @@ mixin QuestionCardSelectPageStateMixin on State<TarotQuestionCardSelectPage> {
     );
 
     tarotBloc.addReadingRequested(
-      request: ReadingRequest(session: session, data: tarotQuestionData),
+      request: ReadingRequest(session: session, data: _tarotQuestionData!),
     );
 
     context.replace(AppRoutes.tarotReading, extra: tarotQuestionData);

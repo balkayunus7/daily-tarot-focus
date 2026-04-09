@@ -10,6 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mobile_boilerplate/application/auth/auth_cubit.dart';
 import 'package:mobile_boilerplate/common_dependencies.dart';
+import 'package:mobile_boilerplate/presentation/extensions/build_context_toast_ext.dart';
 
 class TarotRevealDetailPage extends StatelessWidget {
   const TarotRevealDetailPage({required this.tarot, super.key});
@@ -36,19 +37,16 @@ class TarotRevealDetailPage extends StatelessWidget {
       listenWhen: (previous, current) => previous.hasRecordDailyCard != current.hasRecordDailyCard,
       listener: (context, state) {
         if (state.hasRecordDailyCardFailed) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text('Kart kaydedilemedi')),
-          );
+          context.showToastMessage('Kart Kaydedilemedi!!');
         }
         if (state.hasRecordDailyCardSucceeded) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text('Kart kaydedildi ✨')),
-          );
-          context.go(AppRoutes.tarotExplore, extra: HomePageArguments(context, initialTabIndex: 1));
+          context
+            ..showToastMessage('Kart Kaydedildi')
+            ..go(AppRoutes.tarotExplore, extra: HomePageArguments(context, initialTabIndex: 1));
         }
       },
       builder: (context, state) {
-        final isSaving = state.isSavingDailyCard;
+        final isSaving = state.isRecordDailyCard;
         return Scaffold(
           appBar: TarotAppBar(
             title: tarot.title,

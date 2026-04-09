@@ -181,6 +181,17 @@ final appRouter = GoRouter(
       },
     ),
     GoRoute(
+      path: AppRoutes.tarotQuestionCardSelect,
+      name: AppRoutes.tarotQuestionCardSelect,
+      pageBuilder: (context, state) {
+        final draftData = state.extra! as TarotQuestionDraftData;
+        return MaterialPage(
+          key: state.pageKey,
+          child: PopScope(canPop: false, child: TarotQuestionCardSelectPage(draftData: draftData)),
+        );
+      },
+    ),
+    GoRoute(
       path: AppRoutes.tarotReading,
       name: AppRoutes.tarotReading,
       pageBuilder: (context, state) {
@@ -188,21 +199,11 @@ final appRouter = GoRouter(
 
         return MaterialPage(
           key: state.pageKey,
-          child: TarotReadingPage(questionData: questionData),
+          child: PopScope(canPop: false, child: TarotReadingPage(questionData: questionData)),
         );
       },
     ),
-    GoRoute(
-      path: AppRoutes.tarotQuestionCardSelect,
-      name: AppRoutes.tarotQuestionCardSelect,
-      pageBuilder: (context, state) {
-        final draftData = state.extra! as TarotQuestionDraftData;
-        return MaterialPage(
-          key: state.pageKey,
-          child: TarotQuestionCardSelectPage(draftData: draftData),
-        );
-      },
-    ),
+
     GoRoute(
       path: AppRoutes.tarotDailyDetail,
       name: AppRoutes.tarotDailyDetail,

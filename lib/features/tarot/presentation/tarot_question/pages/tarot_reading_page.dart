@@ -1,3 +1,4 @@
+import 'package:daily_tarot_focus/config/app_routes.dart';
 import 'package:daily_tarot_focus/core/util/locale_keys.dart';
 import 'package:daily_tarot_focus/core/util/tarot_app_sizes.dart';
 import 'package:daily_tarot_focus/core/util/text_style_helper.dart';
@@ -25,53 +26,51 @@ class TarotReadingPage extends StatelessWidget {
 
     return Scaffold(
       appBar: TarotAppBar(
-        title: 'Cevaplar',
+        title: 'Yorumların',
         backIcon: Icons.close,
         onBackIconTap: () {
-          context.pop();
+          context.go(AppRoutes.tarotExplore);
         },
       ),
-      body: SafeArea(
-        child: BlocBuilder<TarotBloc, TarotState>(
-          builder: (context, state) {
-            if (state.isAskingQuestion) {
-              return Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    SpinKitFadingCircle(color: colors.primary, size: 32),
-                    Spacing.largeH,
-                    Text(
-                      'Kartlar yorumlanıyor...',
-                      style: m16w500(context).copyWith(color: colors.primary),
-                    ),
-                  ],
-                ),
-              );
-            }
+      body: BlocBuilder<TarotBloc, TarotState>(
+        builder: (context, state) {
+          if (state.isReading) {
+            return Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  SpinKitFadingCircle(color: colors.primary, size: 32),
+                  Spacing.largeH,
+                  Text(
+                    'Kartlar yorumlanıyor...',
+                    style: m16w500(context).copyWith(color: colors.primary),
+                  ),
+                ],
+              ),
+            );
+          }
 
-            final response = state.readingResponseOrNull;
-            if (response == null) return const SizedBox.shrink();
+          if (state.hasReadingQuestionFailed) {
+            return ReadingEmptyWidget(
+              message: 'Tekrar Dene',
+              onTap: () {
+                final tarotBloc = context.read<TarotBloc>();
+                final authState = context.read<AuthCubit>().state;
+                final session = authState.sessionOrCrash;
 
-            if (state.hasReadingQuestionFailed) {
-              return ReadingEmptyWidget(
-                message: 'Tekrar Dene',
-                onTap: () {
-                  final tarotBloc = context.read<TarotBloc>();
-                  final authState = context.read<AuthCubit>().state;
-                  final session = authState.sessionOrCrash;
+                tarotBloc.addReadingRequested(
+                  request: ReadingRequest(session: session, data: questionData),
+                );
+              },
+            );
+          }
 
-                  tarotBloc.addReadingRequested(
-                    request: ReadingRequest(session: session, data: questionData),
-                  );
-                },
-              );
-            }
+          final response = state.readingResponseOrNull;
+          if (response == null) return const SizedBox.shrink();
 
-            final data = response.data;
-            return _ReadingAnswerWidget(data: data);
-          },
-        ),
+          final data = response.data;
+          return _ReadingAnswerWidget(data: data);
+        },
       ),
     );
   }

@@ -1,6 +1,5 @@
 part of 'tarot_localization_cubit.dart';
 
-/// Status of tarot card loading
 enum TarotCardStatus {
   initial,
   loading,
@@ -8,7 +7,6 @@ enum TarotCardStatus {
   error,
 }
 
-/// State for TarotCardCubit
 class TarotLocalizationState extends Equatable {
   const TarotLocalizationState({
     required this.status,
@@ -57,7 +55,6 @@ class TarotLocalizationState extends Equatable {
     );
   }
 
-  /// Special copyWith to set selectedCard to null
   TarotLocalizationState copyWithNullSelectedCard() {
     return TarotLocalizationState(
       status: status,
@@ -68,7 +65,6 @@ class TarotLocalizationState extends Equatable {
     );
   }
 
-  /// Clear category filter and show all cards
   TarotLocalizationState copyWithClearedCategory() {
     return TarotLocalizationState(
       status: status,

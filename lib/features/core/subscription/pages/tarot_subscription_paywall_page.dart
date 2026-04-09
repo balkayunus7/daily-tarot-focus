@@ -8,10 +8,10 @@ import 'package:mobile_boilerplate/presentation/purchases/subscription_paywall_p
 class TarotSubscriptionPaywallPage extends StatelessWidget {
   const TarotSubscriptionPaywallPage({super.key});
 
-  PaywallComparisonTheme buildTheme(BuildContext context) {
+  PaywallPageTheme buildTheme(BuildContext context) {
     final colors = context.colors;
 
-    return PaywallComparisonTheme(
+    return PaywallPageTheme(
       background: colors.background,
       surface: colors.surface,
       tableRowAltBackground: colors.background,
@@ -51,7 +51,7 @@ class TarotSubscriptionPaywallPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SubscriptionPaywallComparisonPage(
+    return SubscriptionPaywallPage(
       plan: SubscriptionPlan.premium,
       title: 'Ayrıcalıklı Deneyim',
       subtitle: 'Kaderinin tüm kapılarını arala',

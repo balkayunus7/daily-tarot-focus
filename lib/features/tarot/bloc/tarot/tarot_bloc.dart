@@ -1,4 +1,3 @@
-// tarot_bloc.dart
 import 'package:daily_tarot_focus/features/tarot/bloc/tarot/tarot_event.dart';
 import 'package:daily_tarot_focus/features/tarot/bloc/tarot/tarot_state.dart';
 import 'package:daily_tarot_focus/features/tarot/data/tarot/tarot_repository.dart';
@@ -86,8 +85,8 @@ class TarotBloc extends Bloc<TarotEvent, TarotState> {
   ) async {
     emit(
       state.copyWith(
-        isSavingDailyCard: true,
-        saveDailyCardFailureOrUnit: none(),
+        isRecordDailyCard: true,
+        recordDailyCardFailureOrUnit: none(),
       ),
     );
 
@@ -95,12 +94,12 @@ class TarotBloc extends Bloc<TarotEvent, TarotState> {
 
     final newState = await failOrUnit.fold(
       (failure) async => state.copyWith(
-        saveDailyCardFailureOrUnit: some(left(failure)),
-        isSavingDailyCard: false,
+        recordDailyCardFailureOrUnit: some(left(failure)),
+        isRecordDailyCard: false,
       ),
       (response) async => state.copyWith(
-        saveDailyCardFailureOrUnit: some(right(unit)),
-        isSavingDailyCard: false,
+        recordDailyCardFailureOrUnit: some(right(unit)),
+        isRecordDailyCard: false,
       ),
     );
 
@@ -122,8 +121,8 @@ class TarotBloc extends Bloc<TarotEvent, TarotState> {
   ) async {
     emit(
       state.copyWith(
-        isAskingQuestion: true,
-        askQuestionFailureOrResponse: none(),
+        isReading: true,
+        readingFailureOrResponse: none(),
       ),
     );
 
@@ -131,12 +130,12 @@ class TarotBloc extends Bloc<TarotEvent, TarotState> {
 
     final newState = await failOrResponse.fold(
       (failure) async => state.copyWith(
-        askQuestionFailureOrResponse: some(left(failure)),
-        isAskingQuestion: false,
+        readingFailureOrResponse: some(left(failure)),
+        isReading: false,
       ),
       (response) async => state.copyWith(
-        askQuestionFailureOrResponse: some(right(response)),
-        isAskingQuestion: false,
+        readingFailureOrResponse: some(right(response)),
+        isReading: false,
       ),
     );
 

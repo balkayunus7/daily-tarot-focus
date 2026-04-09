@@ -10,8 +10,8 @@ class TarotState extends Equatable {
     required this.recordDailyCardFailureOrUnit,
     required this.readingFailureOrResponse,
     required this.isFetchingDailyCards,
-    required this.isSavingDailyCard,
-    required this.isAskingQuestion,
+    required this.isRecordDailyCard,
+    required this.isReading,
   });
 
   factory TarotState.initial() {
@@ -20,8 +20,8 @@ class TarotState extends Equatable {
       recordDailyCardFailureOrUnit: none(),
       readingFailureOrResponse: none(),
       isFetchingDailyCards: false,
-      isSavingDailyCard: false,
-      isAskingQuestion: false,
+      isRecordDailyCard: false,
+      isReading: false,
     );
   }
 
@@ -29,8 +29,8 @@ class TarotState extends Equatable {
   final Option<FailureOr<Unit>> recordDailyCardFailureOrUnit;
   final Option<FailureOr<ReadingResponse>> readingFailureOrResponse;
   final bool isFetchingDailyCards;
-  final bool isSavingDailyCard;
-  final bool isAskingQuestion;
+  final bool isRecordDailyCard;
+  final bool isReading;
 
   // RECORD DAILY CARD
   bool get hasRecordDailyCard {
@@ -66,13 +66,17 @@ class TarotState extends Equatable {
     return _dailyCardsOrNull ?? const KtList<TarotCardModel>.empty();
   }
 
-  // ASK QUESTION
-  bool get hasReadingQuestion {
+  // READING
+  bool get hasReading {
     return readingFailureOrResponse.getOrNull() != null;
   }
 
-  bool get hasReadingQuestionSucceeded {
+  bool get hasReadingSucceeded {
     return readingFailureOrResponse.getOrNull()?.isRight() != null;
+  }
+
+  Failure? get readingFailure {
+    return readingFailureOrResponse.getOrNull()?.getLeftOrNull();
   }
 
   bool get hasReadingQuestionFailed {
@@ -86,18 +90,19 @@ class TarotState extends Equatable {
   TarotState copyWith({
     Option<FailureOr<KtList<TarotCardModel>>>? fetchFailureOrDailyCards,
     bool? isFetchingDailyCards,
-    Option<FailureOr<Unit>>? saveDailyCardFailureOrUnit,
-    bool? isSavingDailyCard,
-    Option<FailureOr<ReadingResponse>>? askQuestionFailureOrResponse,
-    bool? isAskingQuestion,
+    Option<FailureOr<Unit>>? recordDailyCardFailureOrUnit,
+    bool? isRecordDailyCard,
+    Option<FailureOr<ReadingResponse>>? readingFailureOrResponse,
+    bool? isReading,
   }) {
     return TarotState(
       fetchFailureOrDailyCards: fetchFailureOrDailyCards ?? this.fetchFailureOrDailyCards,
       isFetchingDailyCards: isFetchingDailyCards ?? this.isFetchingDailyCards,
-      recordDailyCardFailureOrUnit: saveDailyCardFailureOrUnit ?? recordDailyCardFailureOrUnit,
-      isSavingDailyCard: isSavingDailyCard ?? this.isSavingDailyCard,
-      readingFailureOrResponse: askQuestionFailureOrResponse ?? readingFailureOrResponse,
-      isAskingQuestion: isAskingQuestion ?? this.isAskingQuestion,
+      recordDailyCardFailureOrUnit:
+          recordDailyCardFailureOrUnit ?? this.recordDailyCardFailureOrUnit,
+      isRecordDailyCard: isRecordDailyCard ?? this.isRecordDailyCard,
+      readingFailureOrResponse: readingFailureOrResponse ?? this.readingFailureOrResponse,
+      isReading: isReading ?? this.isReading,
     );
   }
 
@@ -106,8 +111,8 @@ class TarotState extends Equatable {
     fetchFailureOrDailyCards,
     isFetchingDailyCards,
     recordDailyCardFailureOrUnit,
-    isSavingDailyCard,
+    isRecordDailyCard,
     readingFailureOrResponse,
-    isAskingQuestion,
+    isReading,
   ];
 }

@@ -46,13 +46,13 @@ class _PrivilegeCard extends StatelessWidget {
         decoration: BoxDecoration(
           color: colors.surface,
           borderRadius: Spacing.defaultBorderRadius,
-          border: Border.all(color: colors.primary, width: 0.1),
+          border: Border.all(color: colors.primary, width: 0.3),
         ),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(icon, color: colors.primary, size: 26),
+            Icon(icon, color: colors.primary, size: 24),
             Spacing.smallH,
             Text(
               label,

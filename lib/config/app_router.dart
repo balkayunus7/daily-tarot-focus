@@ -13,9 +13,9 @@ import 'package:daily_tarot_focus/features/tarot/domain/models/tarot_card_model.
 import 'package:daily_tarot_focus/features/tarot/presentation/tarot_daily/page/tarot_daily_detail_page.dart';
 import 'package:daily_tarot_focus/features/tarot/presentation/tarot_library/pages/tarot_library_detail_page.dart';
 import 'package:daily_tarot_focus/features/tarot/presentation/tarot_library/pages/tarot_library_page.dart';
-import 'package:daily_tarot_focus/features/tarot/presentation/tarot_question/pages/tarot_reading_page.dart';
 import 'package:daily_tarot_focus/features/tarot/presentation/tarot_question/pages/tarot_question_card_select_page.dart';
 import 'package:daily_tarot_focus/features/tarot/presentation/tarot_question/pages/tarot_question_page.dart';
+import 'package:daily_tarot_focus/features/tarot/presentation/tarot_question/pages/tarot_reading_page.dart';
 import 'package:daily_tarot_focus/features/tarot/presentation/tarot_reveal/pages/tarot_reveal_detail_page.dart';
 import 'package:daily_tarot_focus/features/tarot/presentation/tarot_reveal/pages/tarot_reveal_page.dart';
 import 'package:flutter/material.dart';
@@ -181,12 +181,14 @@ final appRouter = GoRouter(
       },
     ),
     GoRoute(
-      path: AppRoutes.tarotQuestionAnswer,
-      name: AppRoutes.tarotQuestionAnswer,
+      path: AppRoutes.tarotReading,
+      name: AppRoutes.tarotReading,
       pageBuilder: (context, state) {
+        final questionData = state.extra! as TarotQuestionData;
+
         return MaterialPage(
           key: state.pageKey,
-          child: const TarotReadingPage(),
+          child: TarotReadingPage(questionData: questionData),
         );
       },
     ),

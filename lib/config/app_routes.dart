@@ -33,7 +33,7 @@ class AppRoutes {
   // Tarot question (soru sorma & cevap)
   static const String tarotQuestion = '/tarot-question';
   static const String tarotQuestionCardSelect = '/tarot-question-card-select';
-  static const String tarotQuestionAnswer = '/tarot-question-answer';
+  static const String tarotReading = '/tarot-question-answer';
 
   // Tarot daily
   static const String tarotDailyDetail = '/tarot-daily-detail';

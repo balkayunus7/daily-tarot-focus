@@ -106,7 +106,7 @@ class TarotBloc extends Bloc<TarotEvent, TarotState> {
 
     emit(newState);
 
-    if (newState.hasSavedDailyCardSucceeded) {
+    if (newState.hasRecordDailyCardSucceeded) {
       addFetchDailyCardsRequested(
         request: FetchDailyCardsRequest(
           session: event.request.session,

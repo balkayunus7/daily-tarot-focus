@@ -33,14 +33,14 @@ class TarotRevealDetailPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<TarotBloc, TarotState>(
-      listenWhen: (previous, current) => previous.hasSavedDailyCard != current.hasSavedDailyCard,
+      listenWhen: (previous, current) => previous.hasRecordDailyCard != current.hasRecordDailyCard,
       listener: (context, state) {
-        if (state.hasSavedDailyCardFailed) {
+        if (state.hasRecordDailyCardFailed) {
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(content: Text('Kart kaydedilemedi')),
           );
         }
-        if (state.hasSavedDailyCardSucceeded) {
+        if (state.hasRecordDailyCardSucceeded) {
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(content: Text('Kart kaydedildi ✨')),
           );

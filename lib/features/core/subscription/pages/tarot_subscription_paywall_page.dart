@@ -1,5 +1,4 @@
 import 'package:daily_tarot_focus/core/util/tarot_app_assets.dart';
-import 'package:daily_tarot_focus/features/core/subscription/widgets/paywall_privileges.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile_boilerplate/domain/purchases/subscription_plan.dart';
 import 'package:mobile_boilerplate/presentation/purchases/subscription_paywall_page.dart';
@@ -19,7 +18,6 @@ class TarotSubscriptionPaywallPage extends StatelessWidget {
           fit: BoxFit.cover,
           alignment: Alignment.topCenter,
         ),
-        privileges: const TarotPaywallPrivileges(),
       ),
     );
   }

@@ -77,7 +77,7 @@ mixin QuestionCardSelectPageStateMixin on State<TarotQuestionCardSelectPage> {
       request: ReadingRequest(session: session, data: tarotQuestionData),
     );
 
-    context.replace(AppRoutes.tarotQuestionAnswer);
+    context.replace(AppRoutes.tarotReading, extra: tarotQuestionData);
   }
 }
 

@@ -7,8 +7,8 @@ import 'package:mobile_boilerplate/extensions.dart';
 class TarotState extends Equatable {
   const TarotState({
     required this.fetchFailureOrDailyCards,
-    required this.saveDailyCardFailureOrUnit,
-    required this.askQuestionFailureOrResponse,
+    required this.recordDailyCardFailureOrUnit,
+    required this.readingFailureOrResponse,
     required this.isFetchingDailyCards,
     required this.isSavingDailyCard,
     required this.isAskingQuestion,
@@ -17,8 +17,8 @@ class TarotState extends Equatable {
   factory TarotState.initial() {
     return TarotState(
       fetchFailureOrDailyCards: none(),
-      saveDailyCardFailureOrUnit: none(),
-      askQuestionFailureOrResponse: none(),
+      recordDailyCardFailureOrUnit: none(),
+      readingFailureOrResponse: none(),
       isFetchingDailyCards: false,
       isSavingDailyCard: false,
       isAskingQuestion: false,
@@ -26,23 +26,23 @@ class TarotState extends Equatable {
   }
 
   final Option<FailureOr<KtList<TarotCardModel>>> fetchFailureOrDailyCards;
-  final Option<FailureOr<Unit>> saveDailyCardFailureOrUnit;
-  final Option<FailureOr<ReadingResponse>> askQuestionFailureOrResponse;
+  final Option<FailureOr<Unit>> recordDailyCardFailureOrUnit;
+  final Option<FailureOr<ReadingResponse>> readingFailureOrResponse;
   final bool isFetchingDailyCards;
   final bool isSavingDailyCard;
   final bool isAskingQuestion;
 
-  // SAVE DAILY CARD
-  bool get hasSavedDailyCard {
-    return saveDailyCardFailureOrUnit.getOrNull() != null;
+  // RECORD DAILY CARD
+  bool get hasRecordDailyCard {
+    return recordDailyCardFailureOrUnit.getOrNull() != null;
   }
 
-  bool get hasSavedDailyCardSucceeded {
-    return saveDailyCardFailureOrUnit.getOrNull()?.isRight() != null;
+  bool get hasRecordDailyCardSucceeded {
+    return recordDailyCardFailureOrUnit.getOrNull()?.isRight() != null;
   }
 
-  bool get hasSavedDailyCardFailed {
-    return saveDailyCardFailureOrUnit.getOrNull()?.getLeftOrNull() != null;
+  bool get hasRecordDailyCardFailed {
+    return recordDailyCardFailureOrUnit.getOrNull()?.getLeftOrNull() != null;
   }
 
   // FETCH DAILY CARDS
@@ -67,20 +67,20 @@ class TarotState extends Equatable {
   }
 
   // ASK QUESTION
-  bool get hasAskedQuestion {
-    return askQuestionFailureOrResponse.getOrNull() != null;
+  bool get hasReadingQuestion {
+    return readingFailureOrResponse.getOrNull() != null;
   }
 
-  bool get hasAskedQuestionSucceeded {
-    return askQuestionFailureOrResponse.getOrNull()?.isRight() != null;
+  bool get hasReadingQuestionSucceeded {
+    return readingFailureOrResponse.getOrNull()?.isRight() != null;
   }
 
-  bool get hasAskedQuestionFailed {
-    return askQuestionFailureOrResponse.getOrNull()?.getLeftOrNull() != null;
+  bool get hasReadingQuestionFailed {
+    return readingFailureOrResponse.getOrNull()?.getLeftOrNull() != null;
   }
 
-  ReadingResponse? get askedQuestionResponseOrNull {
-    return askQuestionFailureOrResponse.getOrNull()?.getRightOrNull();
+  ReadingResponse? get readingResponseOrNull {
+    return readingFailureOrResponse.getOrNull()?.getRightOrNull();
   }
 
   TarotState copyWith({
@@ -94,10 +94,9 @@ class TarotState extends Equatable {
     return TarotState(
       fetchFailureOrDailyCards: fetchFailureOrDailyCards ?? this.fetchFailureOrDailyCards,
       isFetchingDailyCards: isFetchingDailyCards ?? this.isFetchingDailyCards,
-      saveDailyCardFailureOrUnit: saveDailyCardFailureOrUnit ?? this.saveDailyCardFailureOrUnit,
+      recordDailyCardFailureOrUnit: saveDailyCardFailureOrUnit ?? recordDailyCardFailureOrUnit,
       isSavingDailyCard: isSavingDailyCard ?? this.isSavingDailyCard,
-      askQuestionFailureOrResponse:
-          askQuestionFailureOrResponse ?? this.askQuestionFailureOrResponse,
+      readingFailureOrResponse: askQuestionFailureOrResponse ?? readingFailureOrResponse,
       isAskingQuestion: isAskingQuestion ?? this.isAskingQuestion,
     );
   }
@@ -106,9 +105,9 @@ class TarotState extends Equatable {
   List<Object?> get props => [
     fetchFailureOrDailyCards,
     isFetchingDailyCards,
-    saveDailyCardFailureOrUnit,
+    recordDailyCardFailureOrUnit,
     isSavingDailyCard,
-    askQuestionFailureOrResponse,
+    readingFailureOrResponse,
     isAskingQuestion,
   ];
 }

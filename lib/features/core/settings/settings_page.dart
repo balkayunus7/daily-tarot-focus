@@ -79,23 +79,6 @@ class SettingsPage extends StatelessWidget {
                   ),
                 ],
               ),
-              const Spacer(),
-              _SettingsSection(
-                children: [
-                  _SettingsTile(
-                    icon: Icons.logout,
-                    title: LocaleKeys.settings_page_signout.tr(),
-                    onTap: () {},
-                  ),
-                  _SettingsTile(
-                    icon: Icons.delete_forever,
-                    title: LocaleKeys.settings_page_delete_account.tr(),
-                    onTap: () {},
-                    isDestructive: true,
-                  ),
-                ],
-              ),
-              Spacing.mediumH,
             ],
           ),
         ),
@@ -223,18 +206,16 @@ class _SettingsTile extends StatelessWidget {
     required this.icon,
     required this.title,
     required this.onTap,
-    this.isDestructive = false,
   });
 
   final IconData icon;
   final String title;
   final VoidCallback onTap;
-  final bool isDestructive;
 
   @override
   Widget build(BuildContext context) {
     final colors = context.colors;
-    final textColor = isDestructive ? Colors.red : colors.textPrimary;
+    final textColor = colors.textPrimary;
 
     return ScalingContainer(
       onTap: onTap,

@@ -125,7 +125,7 @@ class _QuestionFlipSelectableCard extends StatelessWidget {
     return ScalingContainer(
       onTap: onTap,
       child: TweenAnimationBuilder<double>(
-        duration: const Duration(milliseconds: 350),
+        duration: const Duration(milliseconds: 500),
         curve: Curves.easeInOutCubic,
         tween: Tween<double>(begin: 0, end: isFlipped ? 1 : 0),
         builder: (context, value, child) {

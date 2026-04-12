@@ -13,7 +13,9 @@ enum TarotCategory {
   /// Creates a TarotCategory from a string.
   /// Accepts both enum names (e.g., 'majorArcana') and display values (e.g., 'Major Arcana')
   factory TarotCategory.fromString(String value) => TarotCategory.values.firstWhere(
-    (e) => e.value == value || e.name == value,
+    (e) =>
+        e.value.toLowerCase() == value.toLowerCase() ||
+        e.name.toLowerCase() == value.toLowerCase(),
     orElse: () => TarotCategory.majorArcana,
   );
 

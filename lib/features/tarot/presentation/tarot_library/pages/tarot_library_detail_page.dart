@@ -40,7 +40,7 @@ class _TarotDetailContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: TarotAppBar(title: tarot.title),
+      appBar: TarotAppBar(title: tarot.name),
       body: SafeArea(
         child: SingleChildScrollView(
           child: SharedTarotDetailPageContent(tarot: tarot),

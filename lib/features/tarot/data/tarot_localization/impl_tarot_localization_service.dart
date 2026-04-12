@@ -6,8 +6,8 @@ import 'package:daily_tarot_focus/features/tarot/domain/models/tarot_category_en
 import 'package:flutter/services.dart';
 
 class ImplTarotLocalizationService implements ITarotLocalizationService {
-  static const _baseCardsPath = 'assets/data/tarot_cards.json';
-  static const _translationsPath = 'assets/data';
+  static const _imageCardsPath = 'assets/data/tarot_cards.json';
+  static const _tarotDataPath = 'assets/data/tarot_data.json';
 
   List<TarotCardModel>? _cachedCards;
   String? _cachedLocale;
@@ -16,7 +16,7 @@ class ImplTarotLocalizationService implements ITarotLocalizationService {
   Future<List<TarotCardModel>> getCards(String languageCode) async {
     if (_isLocaleCached(languageCode)) return _cachedCards!;
 
-    final cards = await _loadCardsWithTranslations(languageCode);
+    final cards = await _loadCards();
     _cacheCardsForLocale(cards, languageCode);
 
     return cards;
@@ -34,7 +34,7 @@ class ImplTarotLocalizationService implements ITarotLocalizationService {
     final cards = await getCards(languageCode);
     final normalizedTitle = title.toLowerCase();
 
-    return cards.where((card) => card.title.toLowerCase() == normalizedTitle).firstOrNull;
+    return cards.where((card) => card.name.toLowerCase() == normalizedTitle).firstOrNull;
   }
 
   @override
@@ -59,71 +59,69 @@ class ImplTarotLocalizationService implements ITarotLocalizationService {
   }
 
   // Private helper methods
-  Future<List<TarotCardModel>> _loadCardsWithTranslations(String locale) async {
-    final baseCards = await _loadCardStructures();
-    final translations = await _loadLocaleTranslations(locale);
-    final translationMap = _indexTranslationsById(translations);
 
-    return _buildTranslatedCards(baseCards, translationMap);
-  }
+  /// Loads all cards by combining tarot_data.json (content) with tarot_cards.json (image paths).
+  Future<List<TarotCardModel>> _loadCards() async {
+    final tarotData = await _loadTarotData();
+    final imageMap = await _loadImagePathMap();
 
-  Future<List<dynamic>> _loadCardStructures() async {
-    final jsonString = await rootBundle.loadString(_baseCardsPath);
-    return json.decode(jsonString) as List;
-  }
-
-  Future<List<dynamic>> _loadLocaleTranslations(String locale) async {
-    final fileName = _resolveTranslationFileName(locale);
-    final jsonString = await rootBundle.loadString('$_translationsPath/$fileName');
-    return json.decode(jsonString) as List;
-  }
-
-  Map<String, Map<String, dynamic>> _indexTranslationsById(List<dynamic> translations) {
-    return {
-      for (final translation in translations)
-        (translation as Map<String, dynamic>)['id'] as String: translation,
-    };
-  }
-
-  List<TarotCardModel> _buildTranslatedCards(
-    List<dynamic> baseCards,
-    Map<String, Map<String, dynamic>> translationMap,
-  ) {
-    return baseCards
+    return tarotData
         .cast<Map<String, dynamic>>()
-        .map((base) => _createCardWithTranslation(base, translationMap))
-        .whereType<TarotCardModel>()
+        .map((data) => _createCard(data, imageMap))
         .toList();
   }
 
-  TarotCardModel? _createCardWithTranslation(
-    Map<String, dynamic> base,
-    Map<String, Map<String, dynamic>> translationMap,
-  ) {
-    final id = base['id'] as String;
-    final translation = translationMap[id];
+  Future<List<dynamic>> _loadTarotData() async {
+    final jsonString = await rootBundle.loadString(_tarotDataPath);
+    return json.decode(jsonString) as List;
+  }
 
-    if (translation == null) return null;
+  /// Loads tarot_cards.json and returns a map of id → imagePath.
+  Future<Map<String, String>> _loadImagePathMap() async {
+    final jsonString = await rootBundle.loadString(_imageCardsPath);
+    final cards = json.decode(jsonString) as List;
+    return {
+      for (final card in cards)
+        (card as Map<String, dynamic>)['id'] as String:
+            card['imagePath'] as String,
+    };
+  }
+
+  TarotCardModel _createCard(
+    Map<String, dynamic> data,
+    Map<String, String> imageMap,
+  ) {
+    final id = data['id'] as String;
+    final imagePath = imageMap[id] ?? 'assets/jpg/${id.replaceAll('-', '_')}.jpg';
 
     return TarotCardModel(
       id: id,
-      title: translation['title'] as String,
-      motto: translation['motto'] as String? ?? '',
-      imagePath: base['imagePath'] as String,
-      category: TarotCategory.fromString(base['category'] as String),
-      contextualMeanings: ContextualMeaningsModel.fromMap(
-        translation['contextual_meanings'] as Map<String, dynamic>? ?? {},
+      name: data['name'] as String? ?? '',
+      imagePath: imagePath,
+      category: TarotCategory.fromString(data['category'] as String? ?? ''),
+      description: data['description'] as String? ?? '',
+      correspondences: CorrespondencesModel.fromMap(
+        data['correspondences'] as Map<String, dynamic>? ?? {},
       ),
-      advice: translation['advice'] as String? ?? '',
-      affirmation: translation['affirmation'] as String? ?? '',
+      symbols: (data['symbols'] as List<dynamic>?)
+              ?.map((s) => SymbolModel.fromMap(s as Map<String, dynamic>))
+              .toList() ??
+          [],
+      uprightKeywords: (data['upright_keywords'] as List<dynamic>?)
+              ?.map((e) => e as String)
+              .toList() ??
+          [],
+      reversedKeywords: (data['reversed_keywords'] as List<dynamic>?)
+              ?.map((e) => e as String)
+              .toList() ??
+          [],
+      upright: ReadingMeaningsModel.fromMap(
+        data['upright'] as Map<String, dynamic>? ?? {},
+      ),
+      reversed: ReadingMeaningsModel.fromMap(
+        data['reversed'] as Map<String, dynamic>? ?? {},
+      ),
     );
-  }
-
-  String _resolveTranslationFileName(String languageCode) {
-    return switch (languageCode) {
-      'tr' => 'tarot_cards_tr.json',
-      'en' || _ => 'tarot_cards_en.json',
-    };
   }
 
   bool _isLocaleCached(String currentLocale) {

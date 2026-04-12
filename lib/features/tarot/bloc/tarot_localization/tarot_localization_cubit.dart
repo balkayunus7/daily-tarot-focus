@@ -58,7 +58,7 @@ class TarotLocalizationCubit extends Cubit<TarotLocalizationState> {
   TarotCardModel? getByTitle(String title) {
     if (state.allCards.isEmpty) return null;
     return state.allCards
-        .where((card) => card.title.toLowerCase() == title.toLowerCase())
+        .where((card) => card.name.toLowerCase() == title.toLowerCase())
         .firstOrNull;
   }
 

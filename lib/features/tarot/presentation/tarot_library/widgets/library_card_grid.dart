@@ -57,7 +57,7 @@ class _LibraryCard extends StatelessWidget {
                   } else {
                     await context.pushNamed(
                       AppRoutes.tarotLibraryDetail,
-                      pathParameters: {'tarotId': card.title},
+                      pathParameters: {'tarotId': card.name},
                     );
                   }
                 },

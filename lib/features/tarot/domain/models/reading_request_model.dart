@@ -67,12 +67,14 @@ class TarotQuestionData {
 
       return {
         'id': card.id,
-        'title': card.title,
+        'name': card.name,
         'position': positions[i],
         'is_reversed': isReversed,
-        'contextual_meaning': card.contextualMeanings.byTopic(topicKey),
-        'advice': card.advice,
-        'affirmation': card.affirmation,
+        'contextual_meaning': isReversed
+            ? card.reversed.byTopic(topicKey)
+            : card.upright.byTopic(topicKey),
+        'upright_keywords': card.uprightKeywords,
+        'reversed_keywords': card.reversedKeywords,
       };
     });
   }

@@ -115,9 +115,9 @@ class _DailyCardListItem extends StatelessWidget {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(card.title, style: m14w700(context)),
+                            Text(card.name, style: m14w700(context)),
                             Spacing.smallH,
-                            if (card.motto.isNotEmpty) ...[
+                            if (card.uprightKeywords.isNotEmpty) ...[
                               Container(
                                 padding: Spacing.smallPadding,
                                 decoration: BoxDecoration(
@@ -125,7 +125,7 @@ class _DailyCardListItem extends StatelessWidget {
                                   borderRadius: Spacing.xsmallBorderRadius,
                                 ),
                                 child: Text(
-                                  card.motto,
+                                  card.uprightKeywords.take(3).join(' • '),
                                   style: m10w600(context).copyWith(
                                     color: dotColor,
                                     letterSpacing: 0.2,

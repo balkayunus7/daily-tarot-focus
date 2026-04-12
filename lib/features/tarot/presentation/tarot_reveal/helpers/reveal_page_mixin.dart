@@ -77,7 +77,7 @@ mixin RevealPageStateMixin on State<TarotRevealPage>, TickerProvider {
     if (mounted && selectedTarotCard.value != null) {
       await context.pushNamed(
         AppRoutes.tarotRevealDetail,
-        pathParameters: {'tarotId': selectedTarotCard.value!.title},
+        pathParameters: {'tarotId': selectedTarotCard.value!.name},
       );
     }
   }

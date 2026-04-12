@@ -49,7 +49,7 @@ class TarotRevealDetailPage extends StatelessWidget {
         final isSaving = state.isRecordDailyCard;
         return Scaffold(
           appBar: TarotAppBar(
-            title: tarot.title,
+            title: tarot.name,
             onBackIconTap: () {
               context.go(AppRoutes.tarotExplore, extra: HomePageArguments(context));
             },

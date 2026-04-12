@@ -12,7 +12,7 @@ class TarotDailyDetailPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: TarotAppBar(
-        title: tarot.title,
+        title: tarot.name,
         onBackIconTap: () => context.pop(),
       ),
       body: SafeArea(

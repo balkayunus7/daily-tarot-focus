@@ -14,8 +14,17 @@ TextStyle buildTextStyle(
   color: context.colors.textPrimary,
 );
 
+TextStyle m8w400(BuildContext context) =>
+    buildTextStyle(context, fontSize: 8, fontWeight: FontWeight.w400);
+
+TextStyle m8w700(BuildContext context) =>
+    buildTextStyle(context, fontSize: 8, fontWeight: FontWeight.w700);
+
 TextStyle m9w400(BuildContext context) =>
     buildTextStyle(context, fontSize: 9, fontWeight: FontWeight.w400);
+
+TextStyle m9w700(BuildContext context) =>
+    buildTextStyle(context, fontSize: 9, fontWeight: FontWeight.w700);
 
 TextStyle m10w500(BuildContext context) =>
     buildTextStyle(context, fontSize: 10, fontWeight: FontWeight.w500);
@@ -37,6 +46,9 @@ TextStyle m12w500(BuildContext context) =>
 
 TextStyle m12w600(BuildContext context) =>
     buildTextStyle(context, fontSize: 12, fontWeight: FontWeight.w600);
+
+TextStyle m13w400(BuildContext context) =>
+    buildTextStyle(context, fontSize: 13, fontWeight: FontWeight.w400);
 
 TextStyle m13w500(BuildContext context) =>
     buildTextStyle(context, fontSize: 13, fontWeight: FontWeight.w500);
@@ -109,6 +121,9 @@ TextStyle m28w600(BuildContext context) =>
 
 TextStyle m32w600(BuildContext context) =>
     buildTextStyle(context, fontSize: 32, fontWeight: FontWeight.w600);
+
+TextStyle m38w400(BuildContext context) =>
+    buildTextStyle(context, fontSize: 38, fontWeight: FontWeight.w400);
 
 TextStyle m64w700(BuildContext context) =>
     buildTextStyle(context, fontSize: 64, fontWeight: FontWeight.w700);

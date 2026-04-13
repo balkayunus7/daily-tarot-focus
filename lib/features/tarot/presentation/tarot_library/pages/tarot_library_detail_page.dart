@@ -1,3 +1,4 @@
+import 'package:daily_tarot_focus/core/util/text_style_helper.dart';
 import 'package:daily_tarot_focus/core/widgets/tarot_app_bar.dart';
 import 'package:daily_tarot_focus/core/widgets/tarot_detail_content.dart';
 import 'package:daily_tarot_focus/features/tarot/bloc/tarot_localization/tarot_localization_cubit.dart';
@@ -22,7 +23,13 @@ class TarotDataDetailPage extends StatelessWidget {
 
         if (tarot == null) {
           return Scaffold(
-            appBar: TarotAppBar(title: tarotId),
+            appBar: TarotAppBar(
+              title: 'The Ethereal Archive',
+              titleStyle: m18w600(context).copyWith(
+                fontStyle: FontStyle.italic,
+                color: context.colors.primary,
+              ),
+            ),
             body: Center(child: SpinKitFadingCircle(color: context.colors.primary, size: 32)),
           );
         }
@@ -40,12 +47,14 @@ class _TarotDetailContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: TarotAppBar(title: tarot.name),
-      body: SafeArea(
-        child: SingleChildScrollView(
-          child: SharedTarotDetailPageContent(tarot: tarot),
+      appBar: TarotAppBar(
+        title: 'The Ethereal Archive',
+        titleStyle: m18w600(context).copyWith(
+          fontStyle: FontStyle.italic,
+          color: context.colors.primary,
         ),
       ),
+      body: TarotDetailContent(tarot: tarot),
     );
   }
 }

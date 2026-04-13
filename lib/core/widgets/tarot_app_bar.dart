@@ -46,7 +46,7 @@ class TarotsProAppBar extends StatelessWidget implements PreferredSizeWidget {
                       width: 38,
                       height: 38,
                       decoration: BoxDecoration(
-                        color: context.colors.surfaceSecondary,
+                        color: context.colors.secondary,
                         borderRadius: BorderRadius.circular(100),
                       ),
                       child: Center(
@@ -105,10 +105,18 @@ class TarotAppBar extends StatelessWidget implements PreferredSizeWidget {
           return ScalingContainer(
             onTap: onBackIconTap ?? () => context.pop(),
             child: Center(
-              child: Icon(
-                backIcon ?? Icons.arrow_back,
-                size: 20,
-                color: context.colors.textPrimary,
+              child: Container(
+                width: 32,
+                height: 32,
+                decoration: BoxDecoration(
+                  color: context.colors.secondary.withValues(alpha: 0.1),
+                  shape: BoxShape.circle,
+                ),
+                child: Icon(
+                  backIcon ?? Icons.arrow_back,
+                  size: 20,
+                  color: context.colors.textPrimary,
+                ),
               ),
             ),
           );
@@ -119,13 +127,17 @@ class TarotAppBar extends StatelessWidget implements PreferredSizeWidget {
         if (trailingIcon != null) ...[
           ScalingContainer(
             onTap: onIconTap ?? () => context.pop(),
-            child: SizedBox(
-              width: 36,
-              height: 36,
-              child: Center(
+            child: Center(
+              child: Container(
+                width: 38,
+                height: 38,
+                decoration: BoxDecoration(
+                  color: context.colors.surfaceSecondary,
+                  shape: BoxShape.circle,
+                ),
                 child: Icon(
                   trailingIcon,
-                  size: 16,
+                  size: 20,
                   color: context.colors.textPrimary,
                 ),
               ),

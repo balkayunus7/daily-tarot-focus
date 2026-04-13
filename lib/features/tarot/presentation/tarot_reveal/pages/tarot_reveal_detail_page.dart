@@ -1,4 +1,5 @@
 import 'package:daily_tarot_focus/config/app_routes.dart';
+import 'package:daily_tarot_focus/core/util/text_style_helper.dart';
 import 'package:daily_tarot_focus/core/widgets/tarot_app_bar.dart';
 import 'package:daily_tarot_focus/core/widgets/tarot_detail_content.dart';
 import 'package:daily_tarot_focus/features/core/home/home_page.dart';
@@ -10,6 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mobile_boilerplate/application/auth/auth_cubit.dart';
 import 'package:mobile_boilerplate/common_dependencies.dart';
+import 'package:mobile_boilerplate/presentation/extensions/build_context_theme_ext.dart';
 import 'package:mobile_boilerplate/presentation/extensions/build_context_toast_ext.dart';
 
 class TarotRevealDetailPage extends StatelessWidget {
@@ -49,7 +51,11 @@ class TarotRevealDetailPage extends StatelessWidget {
         final isSaving = state.isRecordDailyCard;
         return Scaffold(
           appBar: TarotAppBar(
-            title: tarot.name,
+            title: 'The Ethereal Archive',
+            titleStyle: m18w600(context).copyWith(
+              fontStyle: FontStyle.italic,
+              color: context.colors.primary,
+            ),
             onBackIconTap: () {
               context.go(AppRoutes.tarotExplore, extra: HomePageArguments(context));
             },
@@ -57,11 +63,7 @@ class TarotRevealDetailPage extends StatelessWidget {
             trailingIcon: isSaving ? FontAwesomeIcons.spinner : FontAwesomeIcons.floppyDisk,
             onIconTap: () => saveDailyCard(context, isSaving: isSaving),
           ),
-          body: SafeArea(
-            child: SingleChildScrollView(
-              child: SharedTarotDetailPageContent(tarot: tarot, showMeaningForDay: true),
-            ),
-          ),
+          body: TarotDetailContent(tarot: tarot),
         );
       },
     );

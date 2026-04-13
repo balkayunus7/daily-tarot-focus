@@ -15,11 +15,7 @@ class TarotDailyDetailPage extends StatelessWidget {
         title: tarot.name,
         onBackIconTap: () => context.pop(),
       ),
-      body: SafeArea(
-        child: SingleChildScrollView(
-          child: SharedTarotDetailPageContent(tarot: tarot, showMeaningForDay: true),
-        ),
-      ),
+      body: TarotDetailContent(tarot: tarot),
     );
   }
 }

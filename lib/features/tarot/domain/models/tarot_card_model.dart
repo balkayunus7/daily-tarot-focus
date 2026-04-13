@@ -27,7 +27,8 @@ class TarotCardModel with EquatableMixin {
       correspondences: CorrespondencesModel.fromMap(
         map['correspondences'] as Map<String, dynamic>? ?? {},
       ),
-      symbols: (map['symbols'] as List<dynamic>?)
+      symbols:
+          (map['symbols'] as List<dynamic>?)
               ?.map((s) => SymbolModel.fromMap(s as Map<String, dynamic>))
               .toList() ??
           [],

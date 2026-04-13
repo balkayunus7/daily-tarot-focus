@@ -27,6 +27,10 @@ class QuestionTopicCard extends StatelessWidget {
         padding: Spacing.hMediumVSmallPad,
         width: cardWidth,
         height: cardWidth * 1.2,
+        color:
+            isSelected
+                ? colors.primary.withValues(alpha: 0.1)
+                : colors.secondary.withValues(alpha: 0.1),
         borderRadius: Spacing.smallBorderRadius,
         borderType: isSelected ? BorderType.high : BorderType.low,
         child: Column(

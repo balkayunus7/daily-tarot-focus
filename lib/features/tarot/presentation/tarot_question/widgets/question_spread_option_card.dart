@@ -29,6 +29,10 @@ class QuestionSpreadOptionCard extends StatelessWidget {
       child: FancyContainer(
         height: itemHeight,
         width: itemWidth,
+        color:
+            isSelected
+                ? colors.secondary.withValues(alpha: 0.9)
+                : colors.secondary.withValues(alpha: 0.1),
         borderRadius: Spacing.defaultBorderRadius,
         borderType: isSelected ? BorderType.high : BorderType.low,
         child: Padding(

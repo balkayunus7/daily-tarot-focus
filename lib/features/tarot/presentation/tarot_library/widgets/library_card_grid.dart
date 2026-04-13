@@ -67,7 +67,7 @@ class _LibraryCard extends StatelessWidget {
                     Container(
                       decoration: BoxDecoration(
                         borderRadius: Spacing.xsmallBorderRadius,
-                        border: Border.all(color: colors.border, width: 3),
+                        border: Border.all(color: colors.border, width: 2),
                       ),
                       child: ClipRRect(
                         borderRadius: Spacing.tinyBorderRadius,

@@ -1,12 +1,7 @@
 part of '../pages/tarot_question_page.dart';
 
 class QuestionSectionHeader extends StatelessWidget {
-  const QuestionSectionHeader({
-    required this.title,
-    required this.icon,
-    super.key,
-  });
-
+  const QuestionSectionHeader({required this.title, required this.icon, super.key});
   final IconData icon;
   final String title;
 

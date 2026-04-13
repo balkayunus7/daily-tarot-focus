@@ -67,10 +67,7 @@ class _LibraryCard extends StatelessWidget {
                     Container(
                       decoration: BoxDecoration(
                         borderRadius: Spacing.xsmallBorderRadius,
-                        border: Border.all(
-                          color: showLock ? colors.primary.withValues(alpha: 0.4) : colors.primary,
-                          width: 4,
-                        ),
+                        border: Border.all(color: colors.border, width: 3),
                       ),
                       child: ClipRRect(
                         borderRadius: Spacing.tinyBorderRadius,
@@ -91,7 +88,7 @@ class _LibraryCard extends StatelessWidget {
                         borderRadius: Spacing.tinyBorderRadius,
                         child: Container(
                           decoration: BoxDecoration(
-                            color: Colors.black.withValues(alpha: 0.5),
+                            color: context.colors.overlay,
                             borderRadius: Spacing.tinyBorderRadius,
                           ),
                         ),
@@ -103,7 +100,7 @@ class _LibraryCard extends StatelessWidget {
                         child: Container(
                           padding: Spacing.tinyPadding,
                           decoration: BoxDecoration(
-                            color: context.colors.primary,
+                            color: context.colors.secondary,
                             borderRadius: Spacing.xsmallBorderRadius,
                             boxShadow: context.colors.primary.mediumShadow,
                           ),
@@ -111,7 +108,10 @@ class _LibraryCard extends StatelessWidget {
                             TarotAppAssets.crown.path,
                             width: 12,
                             height: 12,
-                            colorFilter: ColorFilter.mode(colors.textPrimary, BlendMode.srcIn),
+                            colorFilter: ColorFilter.mode(
+                              colors.textOnPrimary.withValues(alpha: 0.5),
+                              BlendMode.srcIn,
+                            ),
                           ),
                         ),
                       ),
@@ -136,18 +136,13 @@ class _ImageLoadingShimmer extends StatelessWidget {
 
     return Shimmer(
       gradient: LinearGradient(
-        colors: [
-          colors.primary.withValues(alpha: 0.1),
-          colors.primary.withValues(alpha: 0.3),
-          colors.primary.withValues(alpha: 0.1),
-        ],
+        begin: Alignment.topLeft,
+        end: Alignment.bottomRight,
+        colors: [colors.primary, colors.gradientEnd, colors.background],
       ),
       child: SizedBox.expand(
         child: Container(
-          decoration: BoxDecoration(
-            borderRadius: Spacing.tinyBorderRadius,
-            color: colors.primary.withValues(alpha: 0.1),
-          ),
+          decoration: BoxDecoration(borderRadius: Spacing.tinyBorderRadius),
         ),
       ),
     );

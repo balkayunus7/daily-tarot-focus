@@ -23,7 +23,7 @@ class ExploreFeatureCard extends StatelessWidget {
     final cardHeight = screenHeight * 0.22;
 
     return AnimatedOpacity(
-      opacity: isDisabled ? 0.45 : 1.0,
+      opacity: isDisabled ? 0.65 : 1.0,
       duration: const Duration(milliseconds: 400),
       child: ScalingContainer(
         onTap: isDisabled ? null : onTap,
@@ -46,7 +46,7 @@ class ExploreFeatureCard extends StatelessWidget {
                         child: ClipRRect(
                           borderRadius: Spacing.smallBorderRadius,
                           child: Opacity(
-                            opacity: 0.8,
+                            opacity: 0.9,
                             child: Image.asset(imagePath, fit: BoxFit.cover),
                           ),
                         ),
@@ -58,9 +58,10 @@ class ExploreFeatureCard extends StatelessWidget {
                       child: FancyContainer(
                         borderRadius: Spacing.xlargeBorderRadius,
                         padding: Spacing.tinyPadding,
+                        borderColor: colors.textOnPrimary,
                         child: Icon(
                           isDisabled ? Icons.lock_outline : Icons.arrow_outward,
-                          color: colors.textPrimary,
+                          color: colors.textOnPrimary,
                           size: 16,
                         ),
                       ),

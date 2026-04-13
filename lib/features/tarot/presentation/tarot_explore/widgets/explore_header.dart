@@ -23,7 +23,7 @@ class ExploreHeader extends StatelessWidget {
           children: [
             Row(
               children: [
-                Icon(timeIcon, color: colors.primary, size: 28),
+                Icon(timeIcon, color: colors.secondary, size: 28),
                 Spacing.xsmallW,
                 Flexible(child: Text(timeGreeting, style: m18w700(context))),
               ],

@@ -21,7 +21,7 @@ class SpacingConsts {
   static const double contSize = 54;
 
   static const double flipCardHeight = 190;
-  static const double flipCardWidth = 120;
+  static const double flipCardWidth = 110;
   static const double cardWheelItemExtent = 140;
   static const double cardWheelDiameterRatio = 1.5;
   static const double cardWheelPerspective = 0.0008;
@@ -127,6 +127,11 @@ class Spacing {
   static const EdgeInsets hSmallVTinyPad = EdgeInsets.symmetric(
     horizontal: SpacingConsts.small,
     vertical: SpacingConsts.tiny,
+  );
+
+  static const EdgeInsets hMediumVXSmallPad = EdgeInsets.symmetric(
+    horizontal: SpacingConsts.medium,
+    vertical: SpacingConsts.xsmall,
   );
 
   static double screenWidth(BuildContext context) => MediaQuery.of(context).size.width;

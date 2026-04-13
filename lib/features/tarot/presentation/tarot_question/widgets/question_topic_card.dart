@@ -19,7 +19,7 @@ class QuestionTopicCard extends StatelessWidget {
     final colors = context.colors;
     final screenSize = Spacing.screenWidth(context);
     final cardWidth = (screenSize / 3) - 24;
-    final primaryColor = isSelected ? colors.primary : colors.surfaceSecondary;
+    final primaryColor = isSelected ? colors.primary : colors.textDisabled;
 
     return ScalingContainer(
       onTap: onTap,
@@ -41,7 +41,11 @@ class QuestionTopicCard extends StatelessWidget {
               ),
             ),
             Spacing.smallH,
-            Text(title, style: m16w600(context), textAlign: TextAlign.center),
+            Text(
+              title,
+              style: m16w600(context).copyWith(color: primaryColor),
+              textAlign: TextAlign.center,
+            ),
           ],
         ),
       ),

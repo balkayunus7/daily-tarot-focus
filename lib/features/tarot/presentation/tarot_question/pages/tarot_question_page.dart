@@ -50,11 +50,11 @@ class _TarotQuestionPageState extends State<TarotQuestionPage> with QuestionPage
                     decoration: InputDecoration(
                       border: OutlineInputBorder(
                         borderRadius: Spacing.smallBorderRadius,
-                        borderSide: BorderSide(color: colors.primary),
+                        borderSide: BorderSide(color: colors.inputBorderDefault),
                       ),
                       focusedBorder: OutlineInputBorder(
                         borderRadius: Spacing.smallBorderRadius,
-                        borderSide: BorderSide(color: colors.primary, width: 2),
+                        borderSide: BorderSide(color: colors.inputBorderFocus, width: 2),
                       ),
                       hintText: LocaleKeys.question_page_hint_text.tr(),
                       alignLabelWithHint: true,
@@ -69,7 +69,7 @@ class _TarotQuestionPageState extends State<TarotQuestionPage> with QuestionPage
                         padding: const EdgeInsets.all(SpacingConsts.small),
                         child: Icon(
                           FontAwesomeIcons.wandSparkles,
-                          color: colors.primary,
+                          color: colors.textSecondary,
                           size: SpacingConsts.large,
                         ),
                       ),
@@ -159,7 +159,6 @@ class _TarotQuestionPageState extends State<TarotQuestionPage> with QuestionPage
                       );
                       await context.push(AppRoutes.tarotQuestionCardSelect, extra: draftData);
                     },
-                    bgColor: colors.accent,
                     buttonTextStyle: m16w700(context),
                     isDisabled: value.text.isEmpty,
                   );

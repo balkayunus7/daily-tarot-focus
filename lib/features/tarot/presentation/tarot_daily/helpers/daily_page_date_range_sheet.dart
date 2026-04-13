@@ -122,7 +122,7 @@ mixin DailyPageDateRangeSheet on State<TarotDailyPage> {
                   onPrimary: context.colors.textPrimary,
                   surface: context.colors.surface,
                   onSurface: context.colors.textPrimary,
-                  onSurfaceVariant: context.colors.textPrimary.withValues(alpha: 0.7),
+                  onSurfaceVariant: context.colors.textSecondary,
                 ),
                 scaffoldBackgroundColor: context.colors.surface,
                 appBarTheme: AppBarTheme(

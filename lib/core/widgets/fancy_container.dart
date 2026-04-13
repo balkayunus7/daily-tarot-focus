@@ -1,6 +1,5 @@
-import 'package:flutter/material.dart' hide BoxDecoration, BoxShadow;
-import 'package:flutter_inset_shadow/flutter_inset_shadow.dart';
-import 'package:gradient_borders/box_borders/gradient_box_border.dart';
+import 'package:flutter/material.dart';
+import 'package:liquid_glass_renderer/liquid_glass_renderer.dart';
 import 'package:mobile_boilerplate/presentation/extensions/build_context_theme_ext.dart';
 
 enum BorderType {
@@ -11,8 +10,10 @@ enum BorderType {
   const BorderType(this.value);
   final double value;
 
-  Border getBorder(BuildContext context) =>
-      Border.all(color: context.colors.primary.withValues(alpha: value), width: value);
+  Border getBorder(BuildContext context, {Color? color}) => Border.all(
+    color: color ?? context.colors.textOnPrimary.withValues(alpha: value),
+    width: 0.5,
+  );
 }
 
 class FancyContainer extends StatelessWidget {
@@ -28,6 +29,7 @@ class FancyContainer extends StatelessWidget {
     this.gradient,
     this.image,
     this.borderType = BorderType.low,
+    this.borderColor,
   });
 
   final Widget? child;
@@ -40,51 +42,34 @@ class FancyContainer extends StatelessWidget {
   final double? width;
   final double? height;
   final BorderType borderType;
+  final Color? borderColor;
 
   @override
   Widget build(BuildContext context) {
+    final resolvedBorderRadius = borderRadius ?? BorderRadius.circular(12);
+    final shapeRadius = resolvedBorderRadius.topLeft.x;
+    final glassColor = color ?? context.colors.primary;
+
+    final glassChild = LiquidGlass.withOwnLayer(
+      settings: LiquidGlassSettings(
+        glassColor: glassColor.withValues(alpha: 0.25),
+        blur: 6,
+        thickness: 12,
+        chromaticAberration: 0.005,
+        refractiveIndex: 1.15,
+      ),
+      shape: LiquidRoundedSuperellipse(borderRadius: shapeRadius),
+      child: Padding(
+        padding: padding ?? EdgeInsets.zero,
+        child: child,
+      ),
+    );
+
     return Container(
       width: width,
       height: height,
       margin: margin,
-      decoration: BoxDecoration(
-        color: color,
-        gradient: gradient,
-        borderRadius: borderRadius,
-        border: borderType.getBorder(context),
-        image: image != null ? DecorationImage(image: image!, fit: BoxFit.cover) : null,
-      ),
-      child: Container(
-        decoration: BoxDecoration(
-          color: color,
-          borderRadius: borderRadius,
-          gradient: gradient,
-          boxShadow: [
-            BoxShadow(
-              color: context.colors.primary.withValues(alpha: 0.25),
-              blurRadius: 5,
-              spreadRadius: 1,
-              inset: true,
-            ),
-          ],
-          border: GradientBoxBorder(
-            gradient: LinearGradient(
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-              colors: [
-                context.colors.primary.withValues(alpha: 0.3),
-                context.colors.primary.withValues(alpha: 0.7),
-                context.colors.primary.withValues(alpha: 0.1),
-                context.colors.primary.withValues(alpha: 0.05),
-                context.colors.primary.withValues(alpha: 0),
-              ],
-              stops: const [0.0, 0.1, 0.5, 0.8, 1.0],
-            ),
-          ),
-        ),
-        padding: padding,
-        child: child,
-      ),
+      child: glassChild,
     );
   }
 }

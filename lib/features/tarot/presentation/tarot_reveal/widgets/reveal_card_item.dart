@@ -32,8 +32,8 @@ class RevealCardItem extends StatelessWidget {
             margin: EdgeInsets.symmetric(vertical: isSelected ? 0 : 2),
             decoration: BoxDecoration(
               borderRadius: Spacing.defaultBorderRadius,
-              border: Border.all(color: context.colors.surfaceSecondary),
-              boxShadow: isSelected ? context.colors.primary.highShadow : [],
+              border: Border.all(color: context.colors.border),
+              boxShadow: isSelected ? context.colors.primary.mediumShadow : [],
             ),
             child: ClipRRect(
               borderRadius: Spacing.defaultBorderRadius,

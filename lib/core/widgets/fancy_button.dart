@@ -1,9 +1,9 @@
 import 'package:daily_tarot_focus/core/util/tarot_app_sizes.dart';
 import 'package:daily_tarot_focus/core/util/text_style_helper.dart';
-import 'package:daily_tarot_focus/core/widgets/fancy_container.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:liquid_glass_renderer/liquid_glass_renderer.dart';
 import 'package:mobile_boilerplate/presentation/extensions/build_context_theme_ext.dart';
 import 'package:mobile_boilerplate/presentation/widgets/scaling_container.dart';
 
@@ -40,39 +40,65 @@ class FancyButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final buttonColor = backgroundColor ?? context.colors.primary;
+    final baseColor = backgroundColor ?? context.colors.primary;
+    final glassColorRef = baseColor.withValues(alpha: 0.35);
+    final borderColor = baseColor.withValues(alpha: 0.5);
+    final resolvedBorderRadius = borderRadius ?? BorderRadius.circular(16);
+    final shapeRadius = resolvedBorderRadius.topLeft.x;
 
     return ScalingContainer(
       onTap: () async {
         await HapticFeedback.lightImpact();
         onPressed();
       },
-      child: FancyContainer(
-        color: buttonColor,
-        borderRadius: borderRadius ?? BorderRadius.circular(16),
-        padding: padding ?? const EdgeInsets.symmetric(horizontal: 12, vertical: 7),
+      child: SizedBox(
         width: width,
         height: height,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            if (isLoading) ...[
-              SpinKitFadingCircle(
-                color: context.colors.primary,
-                size: 28,
-              ),
-            ] else ...[
-              if (icon != null) ...[icon!],
-              if (text != null) ...[
-                Spacing.tinyW,
-                Text(
-                  text!,
-                  overflow: TextOverflow.ellipsis,
-                  style: textStyle ?? m16w700(context).copyWith(color: context.colors.background),
+        child: LiquidGlass.withOwnLayer(
+          settings: LiquidGlassSettings(
+            glassColor: glassColorRef,
+            blur: 16,
+            thickness: 10,
+            lightIntensity: 1.1,
+          ),
+          shape: LiquidRoundedSuperellipse(borderRadius: shapeRadius),
+          child: Container(
+            decoration: BoxDecoration(
+              border: Border.all(color: borderColor),
+              borderRadius: BorderRadius.circular(shapeRadius),
+            ),
+            child: GlassGlow(
+              child: Padding(
+                padding: padding ?? const EdgeInsets.symmetric(horizontal: 12, vertical: 7),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    if (isLoading) ...[
+                      SpinKitFadingCircle(
+                        color: context.colors.primary,
+                        size: 28,
+                      ),
+                    ] else ...[
+                      if (icon != null) ...[icon!],
+                      if (text != null) ...[
+                        Spacing.tinyW,
+                        Text(
+                          text!,
+                          overflow: TextOverflow.ellipsis,
+                          style:
+                              textStyle ??
+                              m16w700(context).copyWith(
+                                color: context.colors.background,
+                              ),
+                        ),
+                      ],
+                    ],
+                  ],
                 ),
-              ],
-            ],
-          ],
+              ),
+            ),
+          ),
         ),
       ),
     );

@@ -67,7 +67,7 @@ class _TarotQuestionCardSelectPageState extends State<TarotQuestionCardSelectPag
                   'Kartlar yükleniyor...',
                   style: m14w500(
                     context,
-                  ).copyWith(color: colors.textPrimary.withValues(alpha: 0.75)),
+                  ).copyWith(color: colors.textSecondary),
                 ),
               ] else ...[
                 GridView.builder(
@@ -99,7 +99,6 @@ class _TarotQuestionCardSelectPageState extends State<TarotQuestionCardSelectPag
                     buttonText: 'Cevabı Gör',
                     isLoading: state.isReading,
                     onTap: submitQuestion,
-                    bgColor: colors.accent,
                     buttonTextStyle: m16w700(context),
                     isDisabled: state.isReading || !hasEnoughSelection,
                   );

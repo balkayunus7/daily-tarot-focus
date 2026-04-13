@@ -118,7 +118,7 @@ class _ReadingAnswerWidget extends StatelessWidget {
                   Text(
                     data.summary,
                     style: m14w500(context).copyWith(
-                      color: colors.textPrimary.withValues(alpha: 0.8),
+                      color: colors.textSecondary,
                       height: 1.45,
                     ),
                   ),
@@ -146,7 +146,7 @@ class _ReadingAnswerWidget extends StatelessWidget {
                       Text(
                         card.interpretation,
                         style: m14w500(context).copyWith(
-                          color: colors.textPrimary.withValues(alpha: 0.8),
+                          color: colors.textSecondary,
                           height: 1.45,
                         ),
                       ),
@@ -160,7 +160,7 @@ class _ReadingAnswerWidget extends StatelessWidget {
                         Text(
                           card.advice,
                           style: m13w500(context).copyWith(
-                            color: colors.textPrimary.withValues(alpha: 0.7),
+                            color: colors.textSecondary,
                             height: 1.45,
                             fontStyle: FontStyle.italic,
                           ),
@@ -200,7 +200,7 @@ class _ReadingAnswerWidget extends StatelessWidget {
                   Text(
                     data.overallMessage,
                     style: m14w500(context).copyWith(
-                      color: colors.textPrimary.withValues(alpha: 0.8),
+                      color: colors.textSecondary,
                       height: 1.45,
                     ),
                   ),
@@ -225,7 +225,7 @@ class _ReadingAnswerWidget extends StatelessWidget {
                   Text(
                     data.affirmation,
                     style: m13w500(context).copyWith(
-                      color: context.colors.textPrimary.withValues(alpha: 0.8),
+                      color: context.colors.textSecondary,
                       height: 1.45,
                       fontStyle: FontStyle.italic,
                     ),

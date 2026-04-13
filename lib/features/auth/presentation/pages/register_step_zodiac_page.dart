@@ -58,7 +58,6 @@ class RegisterStepZodiacPage extends StatelessWidget {
                     onTap: () async {
                       await context.push(AppRoutes.registerStepRelationship);
                     },
-                    bgColor: colors.primary,
                     buttonTextStyle: m16w700(context),
                     isDisabled: !state.isZodiacSelected,
                   );

@@ -91,7 +91,7 @@ class _SharedTarotDetailPageContentState extends State<SharedTarotDetailPageCont
                     Text(
                       tarot.description,
                       style: m13w500(context).copyWith(
-                        color: context.colors.textPrimary.withValues(alpha: 0.8),
+                        color: context.colors.textSecondary,
                         height: 1.5,
                       ),
                     ),
@@ -188,8 +188,8 @@ class _MeaningToggle extends StatelessWidget {
                           style: m14w700(context).copyWith(
                             color:
                                 isUprightValue
-                                    ? colors.surface
-                                    : colors.textPrimary.withValues(alpha: 0.5),
+                                    ? colors.textOnPrimary
+                                    : colors.textDisabled,
                           ),
                         ),
                       ),
@@ -213,8 +213,8 @@ class _MeaningToggle extends StatelessWidget {
                           style: m14w700(context).copyWith(
                             color:
                                 !isUprightValue
-                                    ? colors.surface
-                                    : colors.textPrimary.withValues(alpha: 0.5),
+                                    ? colors.textOnPrimary
+                                    : colors.textDisabled,
                           ),
                         ),
                       ),
@@ -327,7 +327,7 @@ class _CorrespondenceChip extends StatelessWidget {
             Text(
               label,
               style: m10w600(outerContext).copyWith(
-                color: outerContext.colors.textPrimary.withValues(alpha: 0.8),
+                color: outerContext.colors.textSecondary,
                 letterSpacing: 0.3,
               ),
               textAlign: TextAlign.center,
@@ -384,7 +384,7 @@ class _SymbolsList extends StatelessWidget {
                             TextSpan(
                               text: symbol.meaning,
                               style: m12w400(context).copyWith(
-                                color: context.colors.textPrimary.withValues(alpha: 0.7),
+                                color: context.colors.textSecondary,
                               ),
                             ),
                           ],
@@ -423,12 +423,12 @@ class _MeaningExpansionTile extends StatelessWidget {
     if (content.isEmpty) return const SizedBox.shrink();
 
     final previewStyle = m12w400(context).copyWith(
-      color: context.colors.textPrimary.withValues(alpha: 0.6),
+      color: context.colors.textDisabled,
       height: 1.4,
     );
 
     final fullStyle = m13w500(context).copyWith(
-      color: context.colors.textPrimary.withValues(alpha: 0.8),
+      color: context.colors.textSecondary,
       height: 1.5,
     );
 
@@ -455,8 +455,8 @@ class _MeaningExpansionTile extends StatelessWidget {
                 overflow: TextOverflow.ellipsis,
               ),
             ),
-            iconColor: context.colors.textPrimary.withValues(alpha: 0.6),
-            collapsedIconColor: context.colors.textPrimary.withValues(alpha: 0.4),
+            iconColor: context.colors.textDisabled,
+            collapsedIconColor: context.colors.textDisabled,
             children: [
               Text(content, style: fullStyle),
             ],

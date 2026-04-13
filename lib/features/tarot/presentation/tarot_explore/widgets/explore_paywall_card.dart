@@ -15,10 +15,10 @@ class ExplorePaywallCard extends StatelessWidget {
           gradient: LinearGradient(
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
-            colors: [colors.primary, colors.secondary, colors.accent],
+            colors: [colors.gradientStart, colors.gradientEnd, colors.background],
           ),
           borderRadius: Spacing.defaultBorderRadius,
-          border: Border.all(color: colors.primary.withValues(alpha: 0.5), width: 1.5),
+          border: Border.all(color: colors.border),
           boxShadow: colors.primary.mediumShadow,
         ),
         child: const Row(
@@ -34,7 +34,7 @@ class _PremiumIcon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Icon(Icons.star_rounded, color: context.colors.textPrimary, size: 28);
+    return Icon(Icons.star_rounded, color: context.colors.accent, size: 28);
   }
 }
 
@@ -48,9 +48,15 @@ class _PaywallTextContent extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
         children: [
-          Text(LocaleKeys.explore_page_go_premium.tr(), style: m16w600(context)),
+          Text(
+            LocaleKeys.explore_page_go_premium.tr(),
+            style: m16w600(context).copyWith(color: context.colors.textOnPrimary),
+          ),
           Spacing.tinyH,
-          Text(LocaleKeys.explore_page_unlock_all_features.tr(), style: m11w500(context)),
+          Text(
+            LocaleKeys.explore_page_unlock_all_features.tr(),
+            style: m11w500(context).copyWith(color: context.colors.textOnPrimary),
+          ),
         ],
       ),
     );
@@ -62,9 +68,8 @@ class _PremiumButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final colors = context.colors;
     final screenWidth = Spacing.screenWidth(context);
-    final buttonWidth = screenWidth * 0.25;
+    final buttonWidth = screenWidth * 0.22;
     final buttonHeight = buttonWidth * 0.4;
 
     return IgnorePointer(
@@ -73,7 +78,6 @@ class _PremiumButton extends StatelessWidget {
         width: buttonWidth,
         onTap: () {},
         buttonText: LocaleKeys.explore_page_get_pro.tr(),
-        bgColor: colors.accent,
         buttonTextStyle: m12w600(context),
       ),
     );

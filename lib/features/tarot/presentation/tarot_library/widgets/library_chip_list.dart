@@ -53,21 +53,30 @@ class _CategoryChip extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colors = context.colors;
-    final textPrimary = colors.textPrimary;
-    final bgColor = isSelected ? colors.primary : colors.textFieldBg;
-    final borderColor = isSelected ? colors.primary : colors.surfaceSecondary;
-    final textColor = isSelected ? textPrimary : textPrimary.withAlpha(500);
+    final glassColor = isSelected ? colors.secondary : colors.textOnPrimary;
+    final borderColor = isSelected ? colors.border : colors.accent;
+    final textColor = isSelected ? colors.textOnPrimary : colors.textPrimary;
 
-    return InkWell(
+    return ScalingContainer(
       onTap: onTap,
-      child: Container(
-        padding: Spacing.hMediumVSmallPad,
-        decoration: BoxDecoration(
-          color: bgColor,
-          borderRadius: Spacing.largeBorderRadius,
-          border: Border.all(color: borderColor),
+      child: LiquidGlass.withOwnLayer(
+        settings: LiquidGlassSettings(
+          glassColor: glassColor,
+          blur: 16,
+          thickness: 10,
+          lightIntensity: isSelected ? 1.1 : 0.7,
         ),
-        child: Text(label, style: m12w600(context).copyWith(color: textColor)),
+        shape: const LiquidRoundedSuperellipse(borderRadius: 16),
+        child: Container(
+          padding: Spacing.hMediumVXSmallPad,
+          decoration: BoxDecoration(
+            border: Border.all(color: borderColor),
+            borderRadius: BorderRadius.circular(16),
+          ),
+          child: GlassGlow(
+            child: Text(label, style: m12w600(context).copyWith(color: textColor)),
+          ),
+        ),
       ),
     );
   }

@@ -21,7 +21,7 @@ class QuestionSpreadOptionCard extends StatelessWidget {
     final colors = context.colors;
     final itemWidth = MediaQuery.of(context).size.width / 2 - 28;
     final itemHeight = itemWidth + SpacingConsts.medium;
-    final selectedColor = isSelected ? colors.primary : colors.surfaceSecondary;
+    final selectedColor = isSelected ? colors.primary : colors.textDisabled;
     final cardWidth = itemHeight / 4;
 
     return ScalingContainer(
@@ -51,12 +51,12 @@ class QuestionSpreadOptionCard extends StatelessWidget {
                 ),
               ),
               Spacing.mediumH,
-              Text(title, style: m16w600(context)),
+              Text(title, style: m16w600(context).copyWith(color: selectedColor)),
               Spacing.tinyH,
               Text(
                 subtitle,
                 textAlign: TextAlign.center,
-                style: m12w500(context).copyWith(color: colors.textSecondary),
+                style: m12w500(context).copyWith(color: selectedColor),
               ),
             ],
           ),

@@ -19,10 +19,10 @@ class ExploreAskQuestionCard extends StatelessWidget {
           gradient: LinearGradient(
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
-            colors: [colors.primary, colors.secondary, colors.accent],
+            colors: [colors.primary, colors.gradientEnd, colors.background],
           ),
           borderRadius: Spacing.largeBorderRadius,
-          border: Border.all(color: context.colors.borderSecondary, width: 0.5),
+          border: Border.all(color: context.colors.border, width: 0.5),
         ),
         child: const Stack(
           clipBehavior: Clip.none,
@@ -39,9 +39,9 @@ class _CardContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final screenWidth = Spacing.screenWidth(context);
-    final contentSize = screenWidth * 0.48;
+    final contentSize = screenWidth * 0.4;
     final buttonWidth = screenWidth * 0.3;
-    final buttonHeight = buttonWidth * 0.35;
+    final buttonHeight = buttonWidth * 0.32;
 
     return SizedBox(
       width: contentSize,
@@ -51,7 +51,7 @@ class _CardContent extends StatelessWidget {
         children: [
           Text(
             LocaleKeys.explore_page_ask_question_title.tr(),
-            style: m18w600(context),
+            style: m18w600(context).copyWith(color: context.colors.textOnPrimary),
           ),
           Spacing.mediumH,
           IgnorePointer(
@@ -61,7 +61,6 @@ class _CardContent extends StatelessWidget {
                 height: buttonHeight,
                 width: buttonWidth,
                 onTap: () {},
-                bgColor: context.colors.accent,
                 buttonText: LocaleKeys.explore_page_ask_question_button.tr(),
                 buttonTextStyle: m12w600(context),
               ),

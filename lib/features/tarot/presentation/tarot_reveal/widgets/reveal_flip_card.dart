@@ -13,9 +13,7 @@ class RevealFlipCard extends StatelessWidget {
       child: AnimatedBuilder(
         animation: scope.revealAnimController,
         builder: (context, child) {
-          final curvedValue = Curves.easeInOutSine.transform(
-            scope.revealAnimController.value,
-          );
+          final curvedValue = Curves.easeInOutSine.transform(scope.revealAnimController.value);
           final rotateY = curvedValue * 6 * math.pi;
           final scale = 0.7 + (curvedValue * 1.2);
           final isFrontVisible = curvedValue >= 0.9;
@@ -65,16 +63,10 @@ class _TarotFrontCard extends StatelessWidget {
       child: Container(
         width: SpacingConsts.flipCardWidth,
         height: SpacingConsts.flipCardHeight,
-        padding: Spacing.xsmallPadding,
         decoration: BoxDecoration(
           borderRadius: Spacing.xsmallBorderRadius,
-          border: Border.all(color: context.colors.primary, width: 2),
+          border: Border.all(color: context.colors.border, width: 2),
           boxShadow: context.colors.primary.mediumShadow,
-          gradient: LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-            colors: [context.colors.primary, context.colors.secondary, context.colors.accent],
-          ),
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -84,10 +76,6 @@ class _TarotFrontCard extends StatelessWidget {
                 borderRadius: Spacing.tinyBorderRadius,
                 child: Image.asset(imagePath, fit: BoxFit.cover),
               ),
-            ),
-            Container(
-              padding: Spacing.tinyPadding,
-              child: Text(title, style: m12w600(context)),
             ),
           ],
         ),
@@ -108,7 +96,7 @@ class _TarotBackCard extends StatelessWidget {
         height: SpacingConsts.flipCardHeight,
         decoration: BoxDecoration(
           borderRadius: Spacing.xsmallBorderRadius,
-          border: Border.all(color: context.colors.primary),
+          border: Border.all(color: context.colors.border),
           boxShadow: context.colors.primary.mediumShadow,
         ),
         child: ClipRRect(

@@ -12,48 +12,48 @@ enum SpreadCategoryType {
 
 class SpreadCategoryItem {
   const SpreadCategoryItem({
-    required this.title,
+    required this.categoryId,
     required this.icon,
     required this.type,
   });
-  final String title;
+  final String categoryId;
   final TarotAppAssets icon;
   final SpreadCategoryType type;
 }
 
 const List<SpreadCategoryItem> mockSpreadCategories = [
   SpreadCategoryItem(
-    title: '3 Kart Açılımları',
+    categoryId: 'cat_3_cards',
     icon: TarotAppAssets.cardsThree,
     type: SpreadCategoryType.threeCards,
   ),
   SpreadCategoryItem(
-    title: 'Hafta, Ay ve Ay Evreleri',
+    categoryId: 'cat_lunar_phases',
     icon: TarotAppAssets.moonStars,
     type: SpreadCategoryType.timeAndMoon,
   ),
   SpreadCategoryItem(
-    title: 'Aşk & İlişkiler',
+    categoryId: 'cat_love_relationships',
     icon: TarotAppAssets.heartHalf,
     type: SpreadCategoryType.loveAndRelationships,
   ),
   SpreadCategoryItem(
-    title: 'Finans',
+    categoryId: 'cat_finance',
     icon: TarotAppAssets.handCoins,
     type: SpreadCategoryType.finance,
   ),
   SpreadCategoryItem(
-    title: 'Kariyer & İş',
+    categoryId: 'cat_career_work',
     icon: TarotAppAssets.chartLine,
     type: SpreadCategoryType.career,
   ),
   SpreadCategoryItem(
-    title: 'Sağlık',
+    categoryId: 'cat_health',
     icon: TarotAppAssets.asclepius,
     type: SpreadCategoryType.health,
   ),
   SpreadCategoryItem(
-    title: 'Çocuk, Hamilelik & Annelik',
+    categoryId: 'cat_family_motherhood',
     icon: TarotAppAssets.babyIcon,
     type: SpreadCategoryType.familyAndMaternity,
   ),

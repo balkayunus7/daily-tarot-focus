@@ -32,6 +32,7 @@ class AppRoutes {
 
   // Tarot question (soru sorma & cevap)
   static const String tarotQuestion = '/tarot-question';
+  static const String tarotSpreadSelect = '/tarot-spread-select';
   static const String tarotQuestionCardSelect = '/tarot-question-card-select';
   static const String tarotReading = '/tarot-question-answer';
 

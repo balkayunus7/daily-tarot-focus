@@ -11,10 +11,12 @@ class SpreadCategoryCard extends StatelessWidget {
     required this.icon,
     required this.onTap,
     required this.title,
+    this.subtitle,
     super.key,
   });
 
   final String title;
+  final String? subtitle;
   final TarotAppAssets icon;
   final VoidCallback onTap;
 
@@ -45,14 +47,28 @@ class SpreadCategoryCard extends StatelessWidget {
                 height: 20,
               ),
             ),
-            Spacing.smallW,
+            Spacing.mediumW,
             Expanded(
-              child: Text(
-                title,
-                style: m14w600(context).copyWith(color: colors.textPrimary),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    title,
+                    style: m14w600(context).copyWith(color: colors.textPrimary),
+                  ),
+                  if (subtitle != null) ...[
+                    Spacing.tinyH,
+                    Text(
+                      subtitle!,
+                      style: m12w500(context).copyWith(
+                        color: colors.textSecondary.withValues(alpha: 0.6),
+                      ),
+                    ),
+                  ],
+                ],
               ),
             ),
-            Icon(FontAwesomeIcons.chevronRight, color: colors.textPrimary, size: 14),
           ],
         ),
       ),

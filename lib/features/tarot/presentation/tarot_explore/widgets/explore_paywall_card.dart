@@ -78,7 +78,7 @@ class _PremiumButton extends StatelessWidget {
         width: buttonWidth,
         onTap: () {},
         buttonText: LocaleKeys.explore_page_get_pro.tr(),
-        buttonTextStyle: m12w600(context),
+        buttonTextStyle: m12w600(context).copyWith(color: context.colors.textOnPrimary),
       ),
     );
   }

@@ -81,7 +81,7 @@ class _DailyCardListItem extends StatelessWidget {
                             card.imagePath,
                             width: 56,
                             height: 80,
-                            fit: BoxFit.cover,
+                            fit: BoxFit.fill,
                             frameBuilder: (context, child, frame, wasSynchronouslyLoaded) {
                               if (wasSynchronouslyLoaded || frame != null) {
                                 return child;

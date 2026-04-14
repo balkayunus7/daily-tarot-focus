@@ -62,7 +62,7 @@ class _CardContent extends StatelessWidget {
                 width: buttonWidth,
                 onTap: () {},
                 buttonText: LocaleKeys.explore_page_ask_question_button.tr(),
-                buttonTextStyle: m12w600(context),
+                buttonTextStyle: m12w600(context).copyWith(color: context.colors.textOnPrimary),
               ),
             ),
           ),

@@ -1,169 +1,66 @@
-import 'package:daily_tarot_focus/config/app_routes.dart';
-import 'package:daily_tarot_focus/core/util/locale_keys.dart';
-import 'package:daily_tarot_focus/core/util/tarot_app_assets.dart';
 import 'package:daily_tarot_focus/core/util/tarot_app_sizes.dart';
 import 'package:daily_tarot_focus/core/util/text_style_helper.dart';
-import 'package:daily_tarot_focus/core/widgets/fancy_container.dart';
 import 'package:daily_tarot_focus/core/widgets/tarot_app_bar.dart';
-import 'package:daily_tarot_focus/core/widgets/tarot_button.dart';
-import 'package:daily_tarot_focus/features/tarot/domain/models/reading_request_model.dart';
-import 'package:daily_tarot_focus/features/tarot/presentation/tarot_question/helpers/question_page_mixin.dart';
-import 'package:daily_tarot_focus/features/tarot/presentation/tarot_question/helpers/question_topic_enum.dart';
+import 'package:daily_tarot_focus/features/tarot/presentation/tarot_question/helpers/spread_category_model.dart';
+import 'package:daily_tarot_focus/features/tarot/presentation/tarot_question/widgets/guide_promo_card.dart';
+import 'package:daily_tarot_focus/features/tarot/presentation/tarot_question/widgets/spread_category_card.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
-import 'package:mobile_boilerplate/common_dependencies.dart';
 import 'package:mobile_boilerplate/presentation/extensions/build_context_theme_ext.dart';
-import 'package:mobile_boilerplate/presentation/widgets/scaling_container.dart';
 
-part '../widgets/question_section_header.dart';
-part '../widgets/question_topic_card.dart';
-part '../widgets/question_spread_option_card.dart';
-
-class TarotQuestionPage extends StatefulWidget {
+class TarotQuestionPage extends StatelessWidget {
   const TarotQuestionPage({super.key});
 
-  @override
-  State<TarotQuestionPage> createState() => _TarotQuestionPageState();
-}
-
-class _TarotQuestionPageState extends State<TarotQuestionPage> with QuestionPageStateMixin {
   @override
   Widget build(BuildContext context) {
     final colors = context.colors;
 
     return Scaffold(
-      appBar: TarotAppBar(title: LocaleKeys.question_page_title.tr()),
+      backgroundColor: colors.background,
+      appBar: TarotAppBar(
+        titleWidget: Column(
+          children: [
+            Text('Açılım Yolculuğu', style: m16w700(context)),
+            Spacing.tinyH,
+            Text(
+              'ADIM 1 / 4',
+              style: m10w500(context).copyWith(
+                color: colors.textSecondary,
+                letterSpacing: 1.5,
+              ),
+            ),
+          ],
+        ),
+      ),
       body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: SpacingConsts.large),
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.symmetric(horizontal: SpacingConsts.medium),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              Spacing.largeH,
-              Stack(
-                alignment: Alignment.bottomRight,
-                children: [
-                  TextFormField(
-                    controller: questionController,
-                    maxLines: 5,
-                    onTapOutside: (event) => FocusScope.of(context).unfocus(),
-                    cursorColor: colors.primary,
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(
-                        borderRadius: Spacing.smallBorderRadius,
-                        borderSide: BorderSide(color: colors.inputBorderDefault),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius: Spacing.smallBorderRadius,
-                        borderSide: BorderSide(color: colors.inputBorderFocus, width: 2),
-                      ),
-                      hintText: LocaleKeys.question_page_hint_text.tr(),
-                      alignLabelWithHint: true,
-                    ),
-                  ),
-                  Positioned(
-                    right: SpacingConsts.medium,
-                    bottom: SpacingConsts.medium,
-                    child: ScalingContainer(
-                      onTap: getSuggestedQuestion,
-                      child: Padding(
-                        padding: const EdgeInsets.all(SpacingConsts.small),
-                        child: Icon(
-                          FontAwesomeIcons.wandSparkles,
-                          color: colors.textSecondary,
-                          size: SpacingConsts.large,
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
+              Spacing.smallH,
+              Text(
+                'Bir odak noktası seçerek kehanetleri keşfet.',
+                style: m14w400(context).copyWith(color: colors.textSecondary),
+                textAlign: TextAlign.center,
               ),
+              Spacing.xlargeH,
+              ListView.separated(
+                physics: const NeverScrollableScrollPhysics(),
+                shrinkWrap: true,
+                itemCount: mockSpreadCategories.length,
+                separatorBuilder: (context, index) => Spacing.smallH,
+                itemBuilder: (context, index) {
+                  final category = mockSpreadCategories[index];
+                  return SpreadCategoryCard(
+                    title: category.title,
+                    icon: category.icon,
+                    onTap: () {},
+                  );
+                },
+              ),
+              Spacing.xlargeH,
+              GuidePromoCard(onTap: () {}),
               Spacing.xxlargeH,
-              QuestionSectionHeader(
-                icon: FontAwesomeIcons.handSparkles,
-                title: LocaleKeys.question_page_choose_topic.tr(),
-              ),
-              Spacing.mediumH,
-              ValueListenableBuilder(
-                valueListenable: selectedTopic,
-                builder: (context, value, child) {
-                  return Row(
-                    children: [
-                      QuestionTopicCard(
-                        title: LocaleKeys.question_page_career_topic.tr(),
-                        svgIconPath: TarotAppAssets.careerIcon.path,
-                        onTap: () => topic = QuestionTopic.career,
-                        isSelected: value!.isCareer,
-                      ),
-                      Spacing.mediumW,
-                      QuestionTopicCard(
-                        title: LocaleKeys.question_page_love_topic.tr(),
-                        svgIconPath: TarotAppAssets.loveIcon.path,
-                        onTap: () => topic = QuestionTopic.love,
-                        isSelected: value.isLove,
-                      ),
-                      Spacing.mediumW,
-                      QuestionTopicCard(
-                        title: LocaleKeys.question_page_health_topic.tr(),
-                        svgIconPath: TarotAppAssets.healthIcon.path,
-                        onTap: () => topic = QuestionTopic.health,
-                        isSelected: value.isHealth,
-                      ),
-                    ],
-                  );
-                },
-              ),
-              Spacing.xxlargeH,
-              QuestionSectionHeader(
-                icon: FontAwesomeIcons.accusoft,
-                title: LocaleKeys.question_page_choose_card_count.tr(),
-              ),
-              Spacing.mediumH,
-              ValueListenableBuilder(
-                valueListenable: selectedCardCount,
-                builder: (context, value, child) {
-                  const singleCardCount = QuestionCardCount.singleCardCount;
-                  const multipleCardCount = QuestionCardCount.multipleCardCount;
-
-                  return Row(
-                    children: [
-                      QuestionSpreadOptionCard(
-                        cardCount: singleCardCount.value,
-                        title: LocaleKeys.question_page_single_card.tr(),
-                        subtitle: LocaleKeys.question_page_single_card_desc.tr(),
-                        isSelected: value == singleCardCount,
-                        onTap: () => cardCount = singleCardCount,
-                      ),
-                      Spacing.mediumW,
-                      QuestionSpreadOptionCard(
-                        cardCount: multipleCardCount.value,
-                        title: LocaleKeys.question_page_multiple_cards.tr(),
-                        subtitle: LocaleKeys.question_page_multiple_cards_desc.tr(),
-                        isSelected: value == multipleCardCount,
-                        onTap: () => cardCount = multipleCardCount,
-                      ),
-                    ],
-                  );
-                },
-              ),
-              const Spacer(),
-              ValueListenableBuilder(
-                valueListenable: questionController,
-                builder: (context, value, _) {
-                  return TarotButton(
-                    buttonText: LocaleKeys.question_page_see_answer.tr(),
-                    onTap: () async {
-                      final draftData = TarotQuestionDraftData(
-                        topic: selectedTopic.value!.value,
-                        question: questionController.text,
-                        cardCount: selectedCardCount.value!.value,
-                      );
-                      await context.push(AppRoutes.tarotQuestionCardSelect, extra: draftData);
-                    },
-                    buttonTextStyle: m16w700(context),
-                    isDisabled: value.text.isEmpty,
-                  );
-                },
-              ),
             ],
           ),
         ),

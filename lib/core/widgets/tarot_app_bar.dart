@@ -76,9 +76,11 @@ class TarotAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.backIcon,
     this.centerTitle = true,
     this.titleStyle,
+    this.titleWidget,
   });
 
   final String? title;
+  final Widget? titleWidget;
   final bool showBackIcon;
   final IconData? trailingIcon;
   final Widget? subsWidget;
@@ -129,15 +131,15 @@ class TarotAppBar extends StatelessWidget implements PreferredSizeWidget {
             onTap: onIconTap ?? () => context.pop(),
             child: Center(
               child: Container(
-                width: 38,
-                height: 38,
+                width: 32,
+                height: 32,
                 decoration: BoxDecoration(
-                  color: context.colors.surfaceSecondary,
+                  color: context.colors.secondary.withValues(alpha: 0.1),
                   shape: BoxShape.circle,
                 ),
                 child: Icon(
                   trailingIcon,
-                  size: 20,
+                  size: 18,
                   color: context.colors.textPrimary,
                 ),
               ),
@@ -146,7 +148,7 @@ class TarotAppBar extends StatelessWidget implements PreferredSizeWidget {
         ],
         Spacing.mediumW,
       ],
-      title: Text(title ?? '', style: titleStyle ?? m21w600(context)),
+      title: titleWidget ?? Text(title ?? '', style: titleStyle ?? m21w600(context)),
     );
   }
 

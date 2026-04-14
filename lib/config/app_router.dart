@@ -13,7 +13,6 @@ import 'package:daily_tarot_focus/features/tarot/domain/models/tarot_card_model.
 import 'package:daily_tarot_focus/features/tarot/presentation/tarot_daily/page/tarot_daily_detail_page.dart';
 import 'package:daily_tarot_focus/features/tarot/presentation/tarot_library/pages/tarot_library_detail_page.dart';
 import 'package:daily_tarot_focus/features/tarot/presentation/tarot_library/pages/tarot_library_page.dart';
-import 'package:daily_tarot_focus/features/tarot/presentation/tarot_question/pages/tarot_question_card_select_page.dart';
 import 'package:daily_tarot_focus/features/tarot/presentation/tarot_question/pages/tarot_question_page.dart';
 import 'package:daily_tarot_focus/features/tarot/presentation/tarot_question/pages/tarot_reading_page.dart';
 import 'package:daily_tarot_focus/features/tarot/presentation/tarot_reveal/pages/tarot_reveal_detail_page.dart';
@@ -177,17 +176,6 @@ final appRouter = GoRouter(
         return MaterialPage(
           key: state.pageKey,
           child: const TarotQuestionPage(),
-        );
-      },
-    ),
-    GoRoute(
-      path: AppRoutes.tarotQuestionCardSelect,
-      name: AppRoutes.tarotQuestionCardSelect,
-      pageBuilder: (context, state) {
-        final draftData = state.extra! as TarotQuestionDraftData;
-        return MaterialPage(
-          key: state.pageKey,
-          child: PopScope(canPop: false, child: TarotQuestionCardSelectPage(draftData: draftData)),
         );
       },
     ),

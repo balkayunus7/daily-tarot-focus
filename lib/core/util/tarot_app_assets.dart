@@ -42,7 +42,14 @@ enum TarotAppAssets {
   tarot._('assets/json/tarot.json'),
   drag._('assets/json/drag.json'),
   spotify._('assets/svg/spotify.svg'),
-  tarotIcon._('assets/svg/tarot.svg');
+  tarotIcon._('assets/svg/tarot.svg'),
+  cardsThree._('assets/svg/cards-three.svg'),
+  moonStars._('assets/svg/moon-stars.svg'),
+  heartHalf._('assets/svg/heart-half.svg'),
+  handCoins._('assets/svg/hand-coins.svg'),
+  chartLine._('assets/svg/chart-line.svg'),
+  asclepius._('assets/svg/asclepius.svg'),
+  babyIcon._('assets/svg/baby.svg');
 
   const TarotAppAssets._(this.path);
   final String path;

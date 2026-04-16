@@ -19,7 +19,7 @@ mixin DailyPageDateRangeSheet on State<TarotDailyPage> {
       backgroundColor: context.colors.surface,
       buildWidget: (bottomSheetContext) {
         return Padding(
-          padding: Spacing.xsmallPadding,
+          padding: Sp.xsmall.padAllR,
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
@@ -27,7 +27,7 @@ mixin DailyPageDateRangeSheet on State<TarotDailyPage> {
                 'Filtrele',
                 style: m18w700(bottomSheetContext),
               ),
-              Spacing.mediumH,
+              Sp.medium.heightBox,
               ListTile(
                 leading: const Icon(Icons.all_inclusive),
                 shape: RoundedRectangleBorder(
@@ -35,7 +35,7 @@ mixin DailyPageDateRangeSheet on State<TarotDailyPage> {
                       selectedFilter.value == TarotDailyDateFilter.allTime
                           ? BorderSide(color: context.colors.border)
                           : BorderSide.none,
-                  borderRadius: Spacing.defaultBorderRadius,
+                  borderRadius: Sp.medium.radiusR,
                 ),
                 title: const Text('Tüm Zamanlar'),
                 onTap: () {
@@ -45,14 +45,14 @@ mixin DailyPageDateRangeSheet on State<TarotDailyPage> {
                 selected: selectedFilter.value == TarotDailyDateFilter.allTime,
                 selectedColor: bottomSheetContext.colors.primary,
               ),
-              Spacing.xsmallH,
+              Sp.xsmall.heightBox,
               ListTile(
                 shape: RoundedRectangleBorder(
                   side:
                       selectedFilter.value == TarotDailyDateFilter.lastWeek
                           ? BorderSide(color: context.colors.border)
                           : BorderSide.none,
-                  borderRadius: Spacing.defaultBorderRadius,
+                  borderRadius: Sp.medium.radiusR,
                 ),
                 leading: const Icon(Icons.view_week),
                 title: const Text('Son 1 Hafta'),
@@ -63,14 +63,14 @@ mixin DailyPageDateRangeSheet on State<TarotDailyPage> {
                 selected: selectedFilter.value == TarotDailyDateFilter.lastWeek,
                 selectedColor: bottomSheetContext.colors.primary,
               ),
-              Spacing.xsmallH,
+              Sp.xsmall.heightBox,
               ListTile(
                 shape: RoundedRectangleBorder(
                   side:
                       selectedFilter.value == TarotDailyDateFilter.lastMonth
                           ? BorderSide(color: context.colors.border)
                           : BorderSide.none,
-                  borderRadius: Spacing.defaultBorderRadius,
+                  borderRadius: Sp.medium.radiusR,
                 ),
                 leading: const Icon(Icons.calendar_month),
                 title: const Text('Son 1 Ay'),
@@ -81,14 +81,14 @@ mixin DailyPageDateRangeSheet on State<TarotDailyPage> {
                 selected: selectedFilter.value == TarotDailyDateFilter.lastMonth,
                 selectedColor: bottomSheetContext.colors.primary,
               ),
-              Spacing.xsmallH,
+              Sp.xsmall.heightBox,
               ListTile(
                 shape: RoundedRectangleBorder(
                   side:
                       selectedFilter.value == TarotDailyDateFilter.custom
                           ? BorderSide(color: context.colors.border)
                           : BorderSide.none,
-                  borderRadius: Spacing.defaultBorderRadius,
+                  borderRadius: Sp.medium.radiusR,
                 ),
                 leading: const Icon(Icons.date_range),
                 title: const Text('Tarih Seçimi'),

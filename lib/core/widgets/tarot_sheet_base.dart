@@ -17,7 +17,7 @@ Future<void> showTarotSheet(
     context: context,
     isScrollControlled: true,
     backgroundColor: Colors.transparent,
-    shape: RoundedRectangleBorder(borderRadius: Spacing.largeBorderRadius),
+    shape: RoundedRectangleBorder(borderRadius: Sp.large.radiusR),
     builder: (BuildContext context) {
       return GestureDetector(
         onTap: () async {
@@ -31,12 +31,12 @@ Future<void> showTarotSheet(
             constraints: BoxConstraints(
               maxHeight: MediaQuery.of(context).size.height * heightFactor,
             ),
-            margin: const EdgeInsets.fromLTRB(16, 16, 16, 32),
+            margin: 16.padSymR(v: 32),
             child: _SheetBase(
-              bodyPadding: hasBodyPadding ? Spacing.defaultPadding : EdgeInsets.zero,
+              bodyPadding: hasBodyPadding ? Sp.screen.padAllR : EdgeInsets.zero,
               body: [
                 Padding(
-                  padding: hasBodyPadding ? EdgeInsets.zero : Spacing.defaultPadding,
+                  padding: hasBodyPadding ? EdgeInsets.zero : Sp.screen.padAllR,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -54,12 +54,12 @@ Future<void> showTarotSheet(
                   ),
                 ),
                 if (hasBodyPadding) ...[
-                  Spacing.mediumH,
+                  Sp.medium.heightBox,
                 ] else ...[
                   const SizedBox.shrink(),
                 ],
                 ...body,
-                Spacing.smallH,
+                Sp.small.heightBox,
               ],
             ),
           ),
@@ -81,7 +81,7 @@ class _SheetBase extends StatelessWidget {
       clipBehavior: Clip.antiAlias,
       decoration: BoxDecoration(
         color: context.colors.background,
-        borderRadius: Spacing.xlargeBorderRadius,
+        borderRadius: Sp.xlarge.radiusR,
       ),
       child: Column(mainAxisSize: MainAxisSize.min, children: body),
     );

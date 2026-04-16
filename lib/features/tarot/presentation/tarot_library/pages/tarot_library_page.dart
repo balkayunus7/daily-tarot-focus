@@ -51,7 +51,7 @@ class _TarotLibraryPageState extends State<TarotLibraryPage> with LibraryPageSta
               return Column(
                 children: [
                   const LibraryChipList(),
-                  Spacing.mediumH,
+                  Sp.medium.heightBox,
                   LibraryCardGridView(filteredCards: state.filteredCards),
                 ],
               );

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+export 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class SpacingConsts {
+abstract final class Sp {
   static const double none = 0;
   static const double tiny = 4;
   static const double xsmall = 8;
@@ -12,132 +14,99 @@ class SpacingConsts {
   static const double xxxlarge = 48;
   static const double huge = 64;
 
-  static const double defaultPadding = medium;
-  static const double largePadding = large;
-  static const double xlargePadding = xlarge;
-  static const double screenPadding = large;
-  static const double buttonPadding = medium;
-  static const double inputPadding = small;
-  static const double contSize = 54;
-
-  static const double flipCardHeight = 190;
-  static const double flipCardWidth = 110;
-  static const double cardWheelItemExtent = 140;
-  static const double cardWheelDiameterRatio = 1.5;
-  static const double cardWheelPerspective = 0.0008;
-  static const double cardWheelSqueeze = 1.5;
-  static const int totalCards = 50;
-  static const Duration flipAnimationDuration = Duration(
-    milliseconds: 500,
-  );
-  static const Duration revealAnimationDuration = Duration(
-    milliseconds: 7500,
-  );
-  static const Duration wheelAnimationDuration = Duration(
-    milliseconds: 500,
-  );
-  static const Duration flipCardDuration = Duration(seconds: 3);
-  static const double cardShadowBlurRadius = 20;
-  static const double cardShadowSpreadRadius = 10;
-  static const double wheelCardSelectedWidth = 120;
-  static const double wheelCardSelectedHeight = 180;
-  static const double wheelCardUnselectedWidth = 65;
-  static const double wheelCardUnselectedHeight = 100;
+  // Semantic aliases
+  static const double screen = large;
+  static const double button = medium;
+  static const double input = small;
+  static const double cont = 54;
 }
 
-class Spacing {
-  static const Widget tinyW = SizedBox(width: SpacingConsts.tiny);
-  static const Widget xsmallW = SizedBox(width: SpacingConsts.xsmall);
-  static const Widget smallW = SizedBox(width: SpacingConsts.small);
-  static const Widget mediumW = SizedBox(width: SpacingConsts.medium);
-  static const Widget largeW = SizedBox(width: SpacingConsts.large);
-  static const Widget xlargeW = SizedBox(width: SpacingConsts.xlarge);
-  static const Widget xxlargeW = SizedBox(width: SpacingConsts.xxlarge);
-  static const Widget xxxlargeW = SizedBox(width: SpacingConsts.xxxlarge);
+abstract final class CardSp {
+  static const double flipHeight = 190;
+  static const double flipWidth = 110;
+  static const double wheelItemExtent = 140;
+  static const double wheelDiameterRatio = 1.5;
+  static const double wheelPerspective = 0.0008;
+  static const double wheelSqueeze = 1.5;
+  static const int totalCards = 50;
+  static const double shadowBlurRadius = 20;
+  static const double shadowSpreadRadius = 10;
+  static const double selectedCardWidth = 120;
+  static const double selectedCardHeight = 180;
+  static const double unselectedCardWidth = 65;
+  static const double unselectedCardHeight = 100;
 
-  static const Widget tinyH = SizedBox(height: SpacingConsts.tiny);
-  static const Widget xsmallH = SizedBox(height: SpacingConsts.xsmall);
-  static const Widget smallH = SizedBox(height: SpacingConsts.small);
-  static const Widget mediumH = SizedBox(height: SpacingConsts.medium);
-  static const Widget largeH = SizedBox(height: SpacingConsts.large);
-  static const Widget xlargeH = SizedBox(height: SpacingConsts.xlarge);
-  static const Widget xxlargeH = SizedBox(height: SpacingConsts.xxlarge);
-  static const Widget xxxlargeH = SizedBox(height: SpacingConsts.xxxlarge);
-  static const Widget hugeH = SizedBox(height: SpacingConsts.huge);
+  static const Duration flipAnimation = Duration(milliseconds: 500);
+  static const Duration revealAnimation = Duration(milliseconds: 7500);
+  static const Duration wheelAnimation = Duration(milliseconds: 500);
+  static const Duration flipCard = Duration(seconds: 3);
+}
 
-  static BorderRadius tinyBorderRadius = BorderRadius.circular(
-    SpacingConsts.tiny,
-  );
-  static BorderRadius xsmallBorderRadius = BorderRadius.circular(
-    SpacingConsts.xsmall,
-  );
-  static BorderRadius smallBorderRadius = BorderRadius.circular(
-    SpacingConsts.small,
-  );
-  static BorderRadius defaultBorderRadius = BorderRadius.circular(
-    SpacingConsts.medium,
-  );
-  static BorderRadius largeBorderRadius = BorderRadius.circular(
-    SpacingConsts.large,
-  );
-  static BorderRadius xlargeBorderRadius = BorderRadius.circular(
-    SpacingConsts.xlarge,
-  );
-  static BorderRadius circularBorderRadius = BorderRadius.circular(100);
-  static BorderRadius xxlargeBorderRadius = BorderRadius.circular(40);
-  static const EdgeInsets screenPadding = EdgeInsets.all(
-    SpacingConsts.screenPadding,
-  );
+extension SizingX on num {
+  SizedBox get heightBox => SizedBox(height: toDouble().h);
+  SizedBox get widthBox => SizedBox(width: toDouble().w);
+}
 
-  static const EdgeInsets circlePadding = EdgeInsets.all(
-    SpacingConsts.huge,
+extension PaddingX on num {
+  EdgeInsets get padAllR => EdgeInsets.all(toDouble().r);
+  EdgeInsets get padHR => EdgeInsets.symmetric(horizontal: toDouble().w);
+  EdgeInsets get padVR => EdgeInsets.symmetric(vertical: toDouble().h);
+  EdgeInsets get padXR => padHR;
+  EdgeInsets get padYR => padVR;
+  EdgeInsets get padTopR => EdgeInsets.only(top: toDouble().h);
+  EdgeInsets get padBottomR => EdgeInsets.only(bottom: toDouble().h);
+  EdgeInsets get padLeftR => EdgeInsets.only(left: toDouble().w);
+  EdgeInsets get padRightR => EdgeInsets.only(right: toDouble().w);
+
+  EdgeInsets padOnlyR({bool t = false, bool b = false, bool l = false, bool r = false}) =>
+      EdgeInsets.only(
+        top: t ? toDouble().h : 0,
+        bottom: b ? toDouble().h : 0,
+        left: l ? toDouble().w : 0,
+        right: r ? toDouble().w : 0,
+      );
+}
+
+extension AsymmetricPaddingX on num {
+  EdgeInsets padHVR(double v) => EdgeInsets.symmetric(horizontal: toDouble().w, vertical: v.h);
+  EdgeInsets padVHR(double h) => EdgeInsets.symmetric(vertical: toDouble().h, horizontal: h.w);
+
+  EdgeInsets padSymR({double? h, double? v}) => EdgeInsets.symmetric(
+    horizontal: (h ?? toDouble()).w,
+    vertical: (v ?? 0).h,
   );
-  static const EdgeInsets largePadding = EdgeInsets.all(
-    SpacingConsts.largePadding,
-  );
+}
 
-  static const EdgeInsets xlargePadding = EdgeInsets.all(
-    SpacingConsts.xlargePadding,
-  );
+extension RadiusX on num {
+  BorderRadius get radiusR => BorderRadius.circular(toDouble().r);
+  Radius get rRadius => Radius.circular(toDouble().r);
 
-  static const EdgeInsets defaultPadding = EdgeInsets.all(
-    SpacingConsts.defaultPadding,
-  );
+  BorderRadius radiusOnlyR({
+    bool tl = false,
+    bool tr = false,
+    bool bl = false,
+    bool br = false,
+  }) {
+    final r = Radius.circular(toDouble().r);
+    return BorderRadius.only(
+      topLeft: tl ? r : Radius.zero,
+      topRight: tr ? r : Radius.zero,
+      bottomLeft: bl ? r : Radius.zero,
+      bottomRight: br ? r : Radius.zero,
+    );
+  }
+}
 
-  static const EdgeInsets tinyPadding = EdgeInsets.all(SpacingConsts.tiny);
-  static const EdgeInsets smallPadding = EdgeInsets.all(SpacingConsts.small);
-  static const EdgeInsets xsmallPadding = EdgeInsets.all(SpacingConsts.xsmall);
-  static const EdgeInsets noPadding = EdgeInsets.zero;
+extension FontSizeX on num {
+  double get textSp => toDouble().sp;
+}
 
-  static const EdgeInsets hXLargeVLargePad = EdgeInsets.symmetric(
-    horizontal: SpacingConsts.xlarge,
-    vertical: SpacingConsts.large,
-  );
+extension DurationX on num {
+  Duration get ms => Duration(milliseconds: round());
+  Duration get seconds => Duration(seconds: round());
+}
 
-  static const EdgeInsets hLargeVMediumPad = EdgeInsets.symmetric(
-    horizontal: SpacingConsts.large,
-    vertical: SpacingConsts.medium,
-  );
-
-  static const EdgeInsets hMediumVSmallPad = EdgeInsets.symmetric(
-    horizontal: SpacingConsts.medium,
-    vertical: SpacingConsts.small,
-  );
-
-  static const EdgeInsets hSmallVTinyPad = EdgeInsets.symmetric(
-    horizontal: SpacingConsts.small,
-    vertical: SpacingConsts.tiny,
-  );
-
-  static const EdgeInsets hMediumVXSmallPad = EdgeInsets.symmetric(
-    horizontal: SpacingConsts.medium,
-    vertical: SpacingConsts.xsmall,
-  );
-
-  static double screenWidth(BuildContext context) => MediaQuery.of(context).size.width;
-
-  static double screenHeight(BuildContext context) => MediaQuery.of(context).size.height;
-
-  static double get buttonHeight => 54;
-  static double get contHeight => 54;
+extension ContextSizingX on BuildContext {
+  double get suWidth => ScreenUtil().screenWidth;
+  double get suHeight => ScreenUtil().screenHeight;
 }

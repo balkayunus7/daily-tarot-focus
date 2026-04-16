@@ -5,7 +5,7 @@ class ExploreAskQuestionCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final screenHeight = Spacing.screenHeight(context);
+    final screenHeight = context.suHeight;
     final cardHeight = screenHeight / 4.7;
     final colors = context.colors;
 
@@ -14,14 +14,14 @@ class ExploreAskQuestionCard extends StatelessWidget {
       child: Container(
         width: double.infinity,
         height: cardHeight,
-        padding: Spacing.xlargePadding,
+        padding: Sp.xlarge.padAllR,
         decoration: BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
             colors: [colors.primary, colors.gradientEnd, colors.background],
           ),
-          borderRadius: Spacing.largeBorderRadius,
+          borderRadius: Sp.large.radiusR,
           border: Border.all(color: context.colors.border, width: 0.5),
         ),
         child: const Stack(
@@ -38,7 +38,7 @@ class _CardContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final screenWidth = Spacing.screenWidth(context);
+    final screenWidth = context.suWidth;
     final contentSize = screenWidth * 0.4;
     final buttonWidth = screenWidth * 0.3;
     final buttonHeight = buttonWidth * 0.32;
@@ -53,7 +53,7 @@ class _CardContent extends StatelessWidget {
             LocaleKeys.explore_page_ask_question_title.tr(),
             style: m18w600(context).copyWith(color: context.colors.textOnPrimary),
           ),
-          Spacing.mediumH,
+          Sp.medium.heightBox,
           IgnorePointer(
             child: UnconstrainedBox(
               alignment: Alignment.centerLeft,
@@ -80,7 +80,7 @@ class _OverlayCardImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final screenWidth = Spacing.screenWidth(context);
+    final screenWidth = context.suWidth;
     final cardWidth = screenWidth * _kWidthRatio;
     final cardHeight = cardWidth / _kAspectRatio;
 
@@ -92,7 +92,7 @@ class _OverlayCardImage extends StatelessWidget {
         width: cardWidth,
         height: cardHeight,
         decoration: BoxDecoration(
-          borderRadius: Spacing.defaultBorderRadius,
+          borderRadius: Sp.medium.radiusR,
           image: DecorationImage(
             image: AssetImage(TarotAppAssets.maskotDaily.path),
             fit: BoxFit.cover,

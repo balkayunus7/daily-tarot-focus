@@ -43,7 +43,7 @@ class TarotButton extends StatelessWidget {
     final glassColor = colors.textOnPrimary.withValues(alpha: 0.5);
     final borderColor = colors.textOnPrimary.withValues(alpha: 0.3);
     final textColor = colors.textOnPrimary;
-    final resolvedBorderRadius = borderRadius ?? BorderRadius.circular(100);
+    final resolvedBorderRadius = borderRadius ?? 100.radiusR;
     final shapeRadius = resolvedBorderRadius.topLeft.x;
 
     final innerContent = Row(
@@ -60,7 +60,7 @@ class TarotButton extends StatelessWidget {
               width: svgIconSize?.width ?? 24,
               height: svgIconSize?.height ?? 24,
             ),
-            Spacing.tinyW,
+            Sp.tiny.widthBox,
           ],
           Flexible(
             child: Text(
@@ -74,12 +74,12 @@ class TarotButton extends StatelessWidget {
     );
 
     final buttonBody = Padding(
-      padding: EdgeInsets.symmetric(horizontal: paddingHorizontal),
+      padding: paddingHorizontal.padXR,
       child: ScalingContainer(
         onTap: isLoading || isDisabled ? null : onTap,
         child: SizedBox(
-          width: width,
-          height: height,
+          width: width.w,
+          height: height.h,
           child: LiquidGlass.withOwnLayer(
             settings: LiquidGlassSettings(
               glassColor: glassOutColor ?? glassColor,

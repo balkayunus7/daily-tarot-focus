@@ -22,7 +22,7 @@ mixin RevealPageStateMixin on State<TarotRevealPage>, TickerProvider {
   void initState() {
     super.initState();
 
-    const initialCardIndex = SpacingConsts.totalCards ~/ 2;
+    const initialCardIndex = CardSp.totalCards ~/ 2;
     selectedCardIndex = ValueNotifier(initialCardIndex);
     lastHapticCardIndex = initialCardIndex;
     selectedTarotCard = ValueNotifier(null);
@@ -31,12 +31,12 @@ mixin RevealPageStateMixin on State<TarotRevealPage>, TickerProvider {
 
     flipAnimController = AnimationController(
       vsync: this,
-      duration: SpacingConsts.flipAnimationDuration,
+      duration: CardSp.flipAnimation,
     );
 
     revealAnimController = AnimationController(
       vsync: this,
-      duration: SpacingConsts.revealAnimationDuration,
+      duration: CardSp.revealAnimation,
     )..addStatusListener((status) async {
       if (status.isCompleted) {
         await navigateToDetail();
@@ -73,7 +73,7 @@ mixin RevealPageStateMixin on State<TarotRevealPage>, TickerProvider {
   }
 
   Future<void> navigateToDetail() async {
-    await Future<void>.delayed(SpacingConsts.flipCardDuration);
+    await Future<void>.delayed(CardSp.flipCard);
     if (mounted && selectedTarotCard.value != null) {
       await context.pushNamed(
         AppRoutes.tarotRevealDetail,
@@ -84,14 +84,14 @@ mixin RevealPageStateMixin on State<TarotRevealPage>, TickerProvider {
 
   double getRevealCardWidth({required bool isSelected}) {
     return isSelected
-        ? SpacingConsts.wheelCardSelectedWidth
-        : SpacingConsts.wheelCardUnselectedWidth;
+        ? CardSp.selectedCardWidth
+        : CardSp.unselectedCardWidth;
   }
 
   double getRevealCardHeight({required bool isSelected}) {
     return isSelected
-        ? SpacingConsts.wheelCardSelectedHeight
-        : SpacingConsts.wheelCardUnselectedHeight;
+        ? CardSp.selectedCardHeight
+        : CardSp.unselectedCardHeight;
   }
 
   bool get isCardSelected => selectedTarotCard.value != null;

@@ -10,19 +10,24 @@ class ExplorePaywallCard extends StatelessWidget {
     return ScalingContainer(
       onTap: () => context.push(AppRoutes.subscriptionPaywall),
       child: Container(
-        padding: Spacing.hLargeVMediumPad,
+        padding: Sp.large.padHVR(Sp.medium),
         decoration: BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
             colors: [colors.gradientStart, colors.gradientEnd, colors.background],
           ),
-          borderRadius: Spacing.defaultBorderRadius,
+          borderRadius: Sp.medium.radiusR,
           border: Border.all(color: colors.border),
           boxShadow: colors.primary.mediumShadow,
         ),
-        child: const Row(
-          children: [_PremiumIcon(), Spacing.smallW, _PaywallTextContent(), _PremiumButton()],
+        child: Row(
+          children: [
+            const _PremiumIcon(),
+            Sp.small.widthBox,
+            const _PaywallTextContent(),
+            const _PremiumButton(),
+          ],
         ),
       ),
     );
@@ -52,7 +57,7 @@ class _PaywallTextContent extends StatelessWidget {
             LocaleKeys.explore_page_go_premium.tr(),
             style: m16w600(context).copyWith(color: context.colors.textOnPrimary),
           ),
-          Spacing.tinyH,
+          Sp.tiny.heightBox,
           Text(
             LocaleKeys.explore_page_unlock_all_features.tr(),
             style: m11w500(context).copyWith(color: context.colors.textOnPrimary),
@@ -68,7 +73,7 @@ class _PremiumButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final screenWidth = Spacing.screenWidth(context);
+    final screenWidth = context.suWidth;
     final buttonWidth = screenWidth * 0.22;
     final buttonHeight = buttonWidth * 0.4;
 

@@ -56,8 +56,8 @@ class TarotAppColorsDark extends AppColorsDark {
         textPrimary: const Color(0xFF1A2266),
         textSecondary: const Color(0xFF5A6080),
         textDisabled: const Color(0xFF9BA0BC),
-        textOnPrimary: const Color(0xFFFFFFFF), // lacivert üstü → beyaz
-        textOnSecondary: const Color(0xFF1A2266), // altın üstü → lacivert
+        textOnPrimary: const Color(0xFFFFFFFF),
+        textOnSecondary: const Color(0xFF1A2266),
         buttonPrimary: const Color(0xFF1A2266),
         buttonSecondary: const Color(0xFFD4B94A),
         buttonGhost: Colors.transparent,

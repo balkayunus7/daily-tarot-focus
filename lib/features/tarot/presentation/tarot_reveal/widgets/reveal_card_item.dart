@@ -29,14 +29,14 @@ class RevealCardItem extends StatelessWidget {
             curve: Curves.easeOut,
             width: cardWidth,
             height: cardHeight,
-            margin: EdgeInsets.symmetric(vertical: isSelected ? 0 : 2),
+            margin: (isSelected ? 0.0 : 2.0).padYR,
             decoration: BoxDecoration(
-              borderRadius: Spacing.defaultBorderRadius,
+              borderRadius: Sp.medium.radiusR,
               border: Border.all(color: context.colors.border),
               boxShadow: isSelected ? context.colors.primary.mediumShadow : [],
             ),
             child: ClipRRect(
-              borderRadius: Spacing.defaultBorderRadius,
+              borderRadius: Sp.medium.radiusR,
               child: Image.asset(TarotAppAssets.cardBg.path, fit: BoxFit.fill),
             ),
           ),

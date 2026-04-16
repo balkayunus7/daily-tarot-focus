@@ -43,7 +43,7 @@ class FancyButton extends StatelessWidget {
     final baseColor = backgroundColor ?? context.colors.primary;
     final glassColorRef = baseColor.withValues(alpha: 0.35);
     final borderColor = baseColor.withValues(alpha: 0.5);
-    final resolvedBorderRadius = borderRadius ?? BorderRadius.circular(16);
+    final resolvedBorderRadius = borderRadius ?? 16.radiusR;
     final shapeRadius = resolvedBorderRadius.topLeft.x;
 
     return ScalingContainer(
@@ -65,11 +65,11 @@ class FancyButton extends StatelessWidget {
           child: Container(
             decoration: BoxDecoration(
               border: Border.all(color: borderColor),
-              borderRadius: BorderRadius.circular(shapeRadius),
+              borderRadius: shapeRadius.radiusR,
             ),
             child: GlassGlow(
               child: Padding(
-                padding: padding ?? const EdgeInsets.symmetric(horizontal: 12, vertical: 7),
+                padding: padding ?? 12.padSymR(v: 7),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   mainAxisSize: MainAxisSize.min,
@@ -82,7 +82,7 @@ class FancyButton extends StatelessWidget {
                     ] else ...[
                       if (icon != null) ...[icon!],
                       if (text != null) ...[
-                        Spacing.tinyW,
+                        Sp.tiny.widthBox,
                         Text(
                           text!,
                           overflow: TextOverflow.ellipsis,

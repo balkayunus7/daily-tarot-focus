@@ -18,7 +18,7 @@ class ReadingEmptyWidget extends StatelessWidget {
           'Bir hata olustu',
           style: m16w700(context),
         ),
-        Spacing.xxlargeH,
+        Sp.xxlarge.heightBox,
         TarotButton(
           onTap: onTap,
           buttonText: message,
@@ -26,9 +26,9 @@ class ReadingEmptyWidget extends StatelessWidget {
           width: 128,
           height: 40,
           buttonTextStyle: m10w600(context),
-          borderRadius: Spacing.xlargeBorderRadius,
+          borderRadius: Sp.xlarge.radiusR,
         ),
-        Spacing.xxlargeH,
+        Sp.xxlarge.heightBox,
         Image.asset(
           TarotAppAssets.empty.path,
           height: MediaQuery.of(context).size.height * 0.3,

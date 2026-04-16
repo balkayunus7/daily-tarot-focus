@@ -17,7 +17,7 @@ class BirthDayCircle extends StatelessWidget {
     return ScalingContainer(
       onTap: selectDate,
       child: Container(
-        padding: Spacing.circlePadding,
+        padding: Sp.xxlarge.padAllR,
         decoration: BoxDecoration(
           color: colors.surface,
           shape: BoxShape.circle,
@@ -53,7 +53,7 @@ class _BirthdayCircleInfo extends StatelessWidget {
                 color: colors.textSecondary,
                 size: 64,
               ),
-              Spacing.mediumH,
+              Sp.medium.heightBox,
               Text(
                 'Select Date',
                 style: m20w600(context),

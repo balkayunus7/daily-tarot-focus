@@ -14,7 +14,7 @@ class LibraryChipList extends StatelessWidget {
 
         return SingleChildScrollView(
           scrollDirection: Axis.horizontal,
-          padding: Spacing.hMediumVSmallPad,
+          padding: Sp.medium.padHVR(Sp.small),
           child: Row(
             children: [
               _CategoryChip(
@@ -22,12 +22,12 @@ class LibraryChipList extends StatelessWidget {
                 isSelected: isCategoryAllSelected,
                 onTap: () => scope.state.onCategoryChanged(null),
               ),
-              Spacing.xsmallW,
+              Sp.xsmall.widthBox,
               ...TarotCategory.values.map(
                 (category) {
                   final isSelected = currentCategory == category;
                   return Padding(
-                    padding: const EdgeInsets.only(right: SpacingConsts.xsmall),
+                    padding: Sp.xsmall.padRightR,
                     child: _CategoryChip(
                       label: category.value,
                       isSelected: isSelected,
@@ -68,10 +68,10 @@ class _CategoryChip extends StatelessWidget {
         ),
         shape: const LiquidRoundedSuperellipse(borderRadius: 16),
         child: Container(
-          padding: Spacing.hMediumVXSmallPad,
+          padding: Sp.medium.padHVR(Sp.xsmall),
           decoration: BoxDecoration(
             border: Border.all(color: borderColor),
-            borderRadius: BorderRadius.circular(16),
+            borderRadius: 16.radiusR,
           ),
           child: GlassGlow(
             child: Text(label, style: m12w600(context).copyWith(color: textColor)),

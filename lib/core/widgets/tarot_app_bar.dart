@@ -39,7 +39,7 @@ class TarotsProAppBar extends StatelessWidget implements PreferredSizeWidget {
                     buttonText: 'Get Pro',
                     buttonTextStyle: m14w600(context),
                   ),
-                  Spacing.xsmallW,
+                  Sp.xsmall.widthBox,
                   ScalingContainer(
                     onTap: () {},
                     child: Container(
@@ -47,7 +47,7 @@ class TarotsProAppBar extends StatelessWidget implements PreferredSizeWidget {
                       height: 38,
                       decoration: BoxDecoration(
                         color: context.colors.secondary,
-                        borderRadius: BorderRadius.circular(100),
+                        borderRadius: 100.radiusR,
                       ),
                       child: Center(
                         child: SvgPicture.asset(TarotAppAssets.settings.path),
@@ -146,7 +146,7 @@ class TarotAppBar extends StatelessWidget implements PreferredSizeWidget {
             ),
           ),
         ],
-        Spacing.mediumW,
+        Sp.medium.widthBox,
       ],
       title: titleWidget ?? Text(title ?? '', style: titleStyle ?? m21w600(context)),
     );

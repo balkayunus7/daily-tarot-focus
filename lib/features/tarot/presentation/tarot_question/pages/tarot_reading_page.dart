@@ -40,7 +40,7 @@ class TarotReadingPage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   SpinKitFadingCircle(color: colors.primary, size: 32),
-                  Spacing.largeH,
+                  Sp.large.heightBox,
                   Text(
                     'Kartlar yorumlanıyor...',
                     style: m16w500(context).copyWith(color: colors.primary),
@@ -85,16 +85,16 @@ class _ReadingAnswerWidget extends StatelessWidget {
     final colors = context.colors;
 
     return SingleChildScrollView(
-      padding: Spacing.defaultPadding,
+      padding: Sp.screen.padAllR,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Spacing.mediumH,
+          Sp.medium.heightBox,
           FancyContainer(
             width: double.infinity,
-            borderRadius: Spacing.xlargeBorderRadius,
+            borderRadius: Sp.xlarge.radiusR,
             child: Padding(
-              padding: Spacing.hLargeVMediumPad,
+              padding: Sp.large.padHVR(Sp.medium),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -105,7 +105,7 @@ class _ReadingAnswerWidget extends StatelessWidget {
                         size: 20,
                         color: colors.primary,
                       ),
-                      Spacing.smallW,
+                      Sp.small.widthBox,
                       Expanded(
                         child: Text(
                           'Özet',
@@ -114,7 +114,7 @@ class _ReadingAnswerWidget extends StatelessWidget {
                       ),
                     ],
                   ),
-                  Spacing.xsmallH,
+                  Sp.xsmall.heightBox,
                   Text(
                     data.summary,
                     style: m14w500(context).copyWith(
@@ -126,15 +126,15 @@ class _ReadingAnswerWidget extends StatelessWidget {
               ),
             ),
           ),
-          Spacing.largeH,
+          Sp.large.heightBox,
           ...data.cards.map((card) {
             return Padding(
-              padding: const EdgeInsets.only(bottom: SpacingConsts.large),
+              padding: Sp.large.padBottomR,
               child: FancyContainer(
                 width: double.infinity,
-                borderRadius: Spacing.xlargeBorderRadius,
+                borderRadius: Sp.xlarge.radiusR,
                 child: Padding(
-                  padding: Spacing.hLargeVMediumPad,
+                  padding: Sp.large.padHVR(Sp.medium),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -142,7 +142,7 @@ class _ReadingAnswerWidget extends StatelessWidget {
                         '${card.position.toUpperCase()} - ${card.id.replaceAll('_', ' ').toUpperCase()}',
                         style: m16w700(context).copyWith(color: colors.primary),
                       ),
-                      Spacing.smallH,
+                      Sp.small.heightBox,
                       Text(
                         card.interpretation,
                         style: m14w500(context).copyWith(
@@ -151,12 +151,12 @@ class _ReadingAnswerWidget extends StatelessWidget {
                         ),
                       ),
                       if (card.advice.isNotEmpty) ...[
-                        Spacing.mediumH,
+                        Sp.medium.heightBox,
                         Text(
                           LocaleKeys.tarot_detail_advice.tr(),
                           style: m14w700(context).copyWith(color: colors.textPrimary),
                         ),
-                        Spacing.xsmallH,
+                        Sp.xsmall.heightBox,
                         Text(
                           card.advice,
                           style: m13w500(context).copyWith(
@@ -174,9 +174,9 @@ class _ReadingAnswerWidget extends StatelessWidget {
           }),
           FancyContainer(
             width: double.infinity,
-            borderRadius: Spacing.xlargeBorderRadius,
+            borderRadius: Sp.xlarge.radiusR,
             child: Padding(
-              padding: Spacing.hLargeVMediumPad,
+              padding: Sp.large.padHVR(Sp.medium),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -187,7 +187,7 @@ class _ReadingAnswerWidget extends StatelessWidget {
                         size: 20,
                         color: colors.primary,
                       ),
-                      Spacing.smallW,
+                      Sp.small.widthBox,
                       Expanded(
                         child: Text(
                           'Genel Mesaj',
@@ -196,7 +196,7 @@ class _ReadingAnswerWidget extends StatelessWidget {
                       ),
                     ],
                   ),
-                  Spacing.xsmallH,
+                  Sp.xsmall.heightBox,
                   Text(
                     data.overallMessage,
                     style: m14w500(context).copyWith(
@@ -204,7 +204,7 @@ class _ReadingAnswerWidget extends StatelessWidget {
                       height: 1.45,
                     ),
                   ),
-                  Spacing.mediumH,
+                  Sp.medium.heightBox,
                   Row(
                     children: [
                       Icon(
@@ -212,7 +212,7 @@ class _ReadingAnswerWidget extends StatelessWidget {
                         size: 20,
                         color: context.colors.primary,
                       ),
-                      Spacing.smallW,
+                      Sp.small.widthBox,
                       Expanded(
                         child: Text(
                           LocaleKeys.tarot_detail_affirmation.tr(),
@@ -221,7 +221,7 @@ class _ReadingAnswerWidget extends StatelessWidget {
                       ),
                     ],
                   ),
-                  Spacing.xsmallH,
+                  Sp.xsmall.heightBox,
                   Text(
                     data.affirmation,
                     style: m13w500(context).copyWith(
@@ -234,7 +234,7 @@ class _ReadingAnswerWidget extends StatelessWidget {
               ),
             ),
           ),
-          Spacing.xxlargeH,
+          Sp.xxlarge.heightBox,
         ],
       ),
     );

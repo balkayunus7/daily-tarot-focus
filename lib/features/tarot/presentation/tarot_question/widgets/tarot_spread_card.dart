@@ -17,21 +17,21 @@ class TarotSpreadCard extends StatelessWidget {
     return ScalingContainer(
       onTap: onTap,
       child: Container(
-        padding: Spacing.defaultPadding,
+        padding: Sp.screen.padAllR,
         decoration: BoxDecoration(
           color: colors.secondary.withValues(alpha: 0.05),
-          borderRadius: Spacing.defaultBorderRadius,
+          borderRadius: Sp.medium.radiusR,
         ),
         child: Row(
           children: [
             SizedBox(
-              width: 52,
-              height: 52,
+              width: 52.w,
+              height: 52.h,
               child: Center(
                 child: _LayoutPreview(cardCount: spread.cardCount),
               ),
             ),
-            Spacing.largeW,
+            Sp.large.widthBox,
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -43,7 +43,7 @@ class TarotSpreadCard extends StatelessWidget {
                       color: colors.textPrimary,
                     ),
                   ),
-                  Spacing.tinyH,
+                  Sp.tiny.heightBox,
                   Text(
                     spread.description,
                     style: m12w400(context).copyWith(
@@ -56,7 +56,7 @@ class TarotSpreadCard extends StatelessWidget {
                 ],
               ),
             ),
-            Spacing.smallW,
+            Sp.small.widthBox,
           ],
         ),
       ),
@@ -85,7 +85,7 @@ class _LayoutPreview extends StatelessWidget {
           height: cardHeight,
           decoration: BoxDecoration(
             color: context.colors.primary.withValues(alpha: 0.8),
-            borderRadius: BorderRadius.circular(1.5),
+            borderRadius: 1.5.radiusR,
             boxShadow: [
               BoxShadow(
                 color: context.colors.primary.withValues(alpha: 0.2),

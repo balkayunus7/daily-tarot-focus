@@ -21,23 +21,23 @@ class RelationshipCard extends StatelessWidget {
     return ScalingContainer(
       onTap: onTap,
       child: Container(
-        padding: Spacing.defaultPadding,
+        padding: Sp.screen.padAllR,
         decoration: BoxDecoration(
           color: bgColor,
-          borderRadius: Spacing.defaultBorderRadius,
+          borderRadius: Sp.medium.radiusR,
           border: Border.all(color: borderColor, width: 2),
         ),
         child: Row(
           children: [
             Text(status.emoji, style: m28w600(context)),
-            Spacing.mediumW,
+            Sp.medium.widthBox,
             Expanded(child: Text(status.localizedName, style: m16w600(context))),
             if (isSelected) ...[
-              Spacing.mediumW,
+              Sp.medium.widthBox,
               Icon(
                 Icons.check_circle,
                 color: colors.primary,
-                size: SpacingConsts.xlarge,
+                size: Sp.xlarge,
               ),
             ],
           ],

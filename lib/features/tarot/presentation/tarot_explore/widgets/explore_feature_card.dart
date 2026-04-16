@@ -19,7 +19,7 @@ class ExploreFeatureCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colors = context.colors;
-    final screenHeight = Spacing.screenHeight(context);
+    final screenHeight = context.suHeight;
     final cardHeight = screenHeight * 0.22;
 
     return AnimatedOpacity(
@@ -31,7 +31,7 @@ class ExploreFeatureCard extends StatelessWidget {
           width: double.infinity,
           height: cardHeight,
           decoration: BoxDecoration(
-            borderRadius: Spacing.defaultBorderRadius,
+            borderRadius: Sp.medium.radiusR,
             border: Border.all(color: colors.borderSecondary, width: 0.5),
           ),
           child: Column(
@@ -42,9 +42,9 @@ class ExploreFeatureCard extends StatelessWidget {
                   children: [
                     Positioned.fill(
                       child: Padding(
-                        padding: Spacing.tinyPadding,
+                        padding: Sp.tiny.padAllR,
                         child: ClipRRect(
-                          borderRadius: Spacing.smallBorderRadius,
+                          borderRadius: Sp.small.radiusR,
                           child: Opacity(
                             opacity: 0.9,
                             child: Image.asset(imagePath, fit: BoxFit.cover),
@@ -53,11 +53,11 @@ class ExploreFeatureCard extends StatelessWidget {
                       ),
                     ),
                     Positioned(
-                      top: SpacingConsts.small,
-                      right: SpacingConsts.small,
+                      top: Sp.small,
+                      right: Sp.small,
                       child: FancyContainer(
-                        borderRadius: Spacing.xlargeBorderRadius,
-                        padding: Spacing.tinyPadding,
+                        borderRadius: Sp.xlarge.radiusR,
+                        padding: Sp.tiny.padAllR,
                         borderColor: colors.textOnPrimary,
                         child: Icon(
                           isDisabled ? Icons.lock_outline : Icons.arrow_outward,
@@ -70,11 +70,7 @@ class ExploreFeatureCard extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(
-                  bottom: SpacingConsts.small,
-                  left: SpacingConsts.small,
-                  right: SpacingConsts.small,
-                ),
+                padding: Sp.small.padOnlyR(b: true, l: true, r: true),
                 child: Builder(
                   builder: (context) {
                     final showCountdown = isDisabled && countdownText != null;
@@ -84,7 +80,7 @@ class ExploreFeatureCard extends StatelessWidget {
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           Icon(Icons.timer_outlined, color: colors.textSecondary, size: 13),
-                          Spacing.tinyW,
+                          Sp.tiny.widthBox,
                           Text(
                             countdownText!,
                             style: m14w600(context).copyWith(

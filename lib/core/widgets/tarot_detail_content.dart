@@ -42,9 +42,9 @@ class _TarotDetailContentState extends State<TarotDetailContent> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Spacing.largeH,
+            Sp.large.heightBox,
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: SpacingConsts.medium),
+              padding: Sp.medium.padXR,
               child: IntrinsicHeight(
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -75,24 +75,24 @@ class _TarotDetailContentState extends State<TarotDetailContent> {
                         ],
                       ),
                     ),
-                    Spacing.xsmallW,
+                    Sp.xsmall.widthBox,
                     Expanded(
                       flex: 6,
                       child: Hero(
                         tag: TarotMockData.dailyTarotCardHeroTag,
                         child: Container(
                           decoration: BoxDecoration(
-                            borderRadius: Spacing.defaultBorderRadius,
+                            borderRadius: Sp.medium.radiusR,
                             border: Border.all(color: context.colors.secondary),
                           ),
                           child: ClipRRect(
-                            borderRadius: Spacing.defaultBorderRadius,
+                            borderRadius: Sp.medium.radiusR,
                             child: Image.asset(tarot.imagePath, fit: BoxFit.cover),
                           ),
                         ),
                       ),
                     ),
-                    Spacing.xsmallW,
+                    Sp.xsmall.widthBox,
                     Expanded(
                       flex: 2,
                       child: Column(
@@ -111,9 +111,9 @@ class _TarotDetailContentState extends State<TarotDetailContent> {
                 ),
               ),
             ),
-            Spacing.xlargeH,
+            Sp.xlarge.heightBox,
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: SpacingConsts.xlarge),
+              padding: Sp.xlarge.padXR,
               child: ValueListenableBuilder<bool>(
                 valueListenable: isUpright,
                 builder: (context, isUprightValue, _) {
@@ -124,7 +124,7 @@ class _TarotDetailContentState extends State<TarotDetailContent> {
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
                       _KeywordsWrap(keywords: keywords),
-                      Spacing.largeH,
+                      Sp.large.heightBox,
                       Center(
                         child: Text(
                           tarot.category.localizedName.toUpperCase(),
@@ -134,7 +134,7 @@ class _TarotDetailContentState extends State<TarotDetailContent> {
                           ),
                         ),
                       ),
-                      Spacing.smallH,
+                      Sp.small.heightBox,
                       Center(
                         child: Text(
                           tarot.name,
@@ -145,9 +145,9 @@ class _TarotDetailContentState extends State<TarotDetailContent> {
                           ),
                         ),
                       ),
-                      Spacing.xlargeH,
+                      Sp.xlarge.heightBox,
                       _MeaningToggle(isUpright: isUpright),
-                      Spacing.xlargeH,
+                      Sp.xlarge.heightBox,
                       if (tarot.description.isNotEmpty) ...[
                         Text(
                           'The Essence',
@@ -156,7 +156,7 @@ class _TarotDetailContentState extends State<TarotDetailContent> {
                             color: context.colors.textPrimary,
                           ),
                         ),
-                        Spacing.mediumH,
+                        Sp.medium.heightBox,
                         Text(
                           tarot.description,
                           style: m13w400(context).copyWith(
@@ -164,7 +164,7 @@ class _TarotDetailContentState extends State<TarotDetailContent> {
                             height: 1.7,
                           ),
                         ),
-                        Spacing.xlargeH,
+                        Sp.xlarge.heightBox,
                       ],
                       if (meanings.general.isNotEmpty) ...[
                         _InfoCard(
@@ -174,7 +174,7 @@ class _TarotDetailContentState extends State<TarotDetailContent> {
                           title: LocaleKeys.tarot_detail_general.tr(),
                           content: meanings.general,
                         ),
-                        Spacing.largeH,
+                        Sp.large.heightBox,
                       ],
                       if (meanings.love.isNotEmpty) ...[
                         _InfoCard(
@@ -184,7 +184,7 @@ class _TarotDetailContentState extends State<TarotDetailContent> {
                           title: LocaleKeys.tarot_detail_love.tr(),
                           content: meanings.love,
                         ),
-                        Spacing.largeH,
+                        Sp.large.heightBox,
                       ],
                       if (meanings.career.isNotEmpty) ...[
                         _InfoCard(
@@ -194,7 +194,7 @@ class _TarotDetailContentState extends State<TarotDetailContent> {
                           title: LocaleKeys.tarot_detail_career.tr(),
                           content: meanings.career,
                         ),
-                        Spacing.largeH,
+                        Sp.large.heightBox,
                       ],
                       if (meanings.finances.isNotEmpty) ...[
                         _InfoCard(
@@ -204,9 +204,9 @@ class _TarotDetailContentState extends State<TarotDetailContent> {
                           title: 'Finance',
                           content: meanings.finances,
                         ),
-                        Spacing.largeH,
+                        Sp.large.heightBox,
                       ],
-                      Spacing.xlargeH,
+                      Sp.xlarge.heightBox,
                       Center(
                         child: Text(
                           "Part of the 'Celestial Stillness' Collection",
@@ -216,14 +216,14 @@ class _TarotDetailContentState extends State<TarotDetailContent> {
                           ),
                         ),
                       ),
-                      Spacing.largeH,
+                      Sp.large.heightBox,
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Icon(Icons.home_outlined, size: 20, color: context.colors.textDisabled),
-                          Spacing.largeW,
+                          Sp.large.widthBox,
                           Icon(Icons.style_outlined, size: 20, color: context.colors.textDisabled),
-                          Spacing.largeW,
+                          Sp.large.widthBox,
                           Icon(
                             Icons.auto_awesome_outlined,
                             size: 20,
@@ -231,7 +231,7 @@ class _TarotDetailContentState extends State<TarotDetailContent> {
                           ),
                         ],
                       ),
-                      Spacing.xxlargeH,
+                      Sp.xxlarge.heightBox,
                     ],
                   );
                 },
@@ -255,9 +255,9 @@ class _MeaningToggle extends StatelessWidget {
       builder: (context, isUprightValue, _) {
         return FancyContainer(
           color: context.colors.surface,
-          borderRadius: Spacing.xlargeBorderRadius,
+          borderRadius: Sp.xlarge.radiusR,
           child: Padding(
-            padding: Spacing.tinyPadding,
+            padding: Sp.tiny.padAllR,
             child: Row(
               children: [
                 _MeaningSwitch(
@@ -296,10 +296,10 @@ class _MeaningSwitch extends StatelessWidget {
         onTap: onTap,
         child: AnimatedContainer(
           duration: const Duration(milliseconds: 200),
-          padding: const EdgeInsets.symmetric(vertical: 12),
+          padding: 12.padYR,
           decoration: BoxDecoration(
             color: isActive ? context.colors.primary.withValues(alpha: 0.8) : Colors.transparent,
-            borderRadius: BorderRadius.circular(20),
+            borderRadius: 20.radiusR,
           ),
           child: Center(
             child: Text(
@@ -330,10 +330,10 @@ class _KeywordsWrap extends StatelessWidget {
       children:
           keywords.map((keyword) {
             return Container(
-              padding: Spacing.hMediumVXSmallPad,
+              padding: Sp.medium.padHVR(Sp.xsmall),
               decoration: BoxDecoration(
                 color: context.colors.secondary.withValues(alpha: 0.1),
-                borderRadius: Spacing.defaultBorderRadius,
+                borderRadius: Sp.medium.radiusR,
               ),
               child: Text(
                 keyword,
@@ -364,20 +364,20 @@ class _InfoCard extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         color: context.colors.secondary.withValues(alpha: 0.05),
-        borderRadius: Spacing.defaultBorderRadius,
+        borderRadius: Sp.medium.radiusR,
       ),
-      padding: const EdgeInsets.all(SpacingConsts.large),
+      padding: Sp.large.padAllR,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
             children: [
               Container(
-                padding: Spacing.tinyPadding,
+                padding: Sp.tiny.padAllR,
                 decoration: BoxDecoration(color: context.colors.surface, shape: BoxShape.circle),
                 child: Icon(icon, color: context.colors.primary, size: 16),
               ),
-              Spacing.smallW,
+              Sp.small.widthBox,
               Text(
                 title,
                 style: m14w600(context).copyWith(
@@ -387,7 +387,7 @@ class _InfoCard extends StatelessWidget {
               ),
             ],
           ),
-          Spacing.xsmallH,
+          Sp.xsmall.heightBox,
           _ExpandableText(
             text: content,
             style: m13w400(context).copyWith(color: context.colors.textSecondary, height: 1.5),
@@ -448,7 +448,7 @@ class _ExpandableTextState extends State<_ExpandableText> {
                   ),
                 ),
               ),
-              Spacing.smallW,
+              Sp.small.widthBox,
               Icon(
                 isExpanded ? Icons.keyboard_arrow_up : Icons.keyboard_arrow_down,
                 color: context.colors.primary.withValues(alpha: 0.4),
@@ -475,7 +475,7 @@ class _LineLabel extends StatelessWidget {
       height: 1,
       color: context.colors.primary.withValues(alpha: 0.5),
     );
-    const gap = Spacing.tinyW;
+    final gap = Sp.tiny.widthBox;
 
     final textColumn = Expanded(
       child: Column(
@@ -490,7 +490,7 @@ class _LineLabel extends StatelessWidget {
               style: m9w700(context),
             ),
           ),
-          const SizedBox(height: 2),
+          2.heightBox,
           Text(
             value,
             style: m8w400(context).copyWith(color: context.colors.textSecondary),
@@ -503,7 +503,7 @@ class _LineLabel extends StatelessWidget {
     );
 
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 4),
+      padding: 4.padYR,
       child: Row(
         children: isLeft ? [textColumn, gap, line] : [line, gap, textColumn],
       ),

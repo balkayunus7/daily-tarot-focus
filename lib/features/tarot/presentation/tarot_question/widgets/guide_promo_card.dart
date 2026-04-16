@@ -13,10 +13,10 @@ class GuidePromoCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: Spacing.xlargePadding,
+      padding: Sp.xlarge.padAllR,
       decoration: BoxDecoration(
         color: context.colors.textOnPrimary,
-        borderRadius: Spacing.defaultBorderRadius,
+        borderRadius: Sp.medium.radiusR,
       ),
       child: Stack(
         children: [
@@ -39,7 +39,7 @@ class GuidePromoCard extends StatelessWidget {
                   color: context.colors.textPrimary,
                 ),
               ),
-              Spacing.mediumH,
+              Sp.medium.heightBox,
               Text(
                 'Hangi açılımın sana uygun olduğunu '
                 'bilmiyorsan, senin için bir rehber hazırladık.',
@@ -48,7 +48,7 @@ class GuidePromoCard extends StatelessWidget {
                   height: 1.5,
                 ),
               ),
-              Spacing.xxlargeH,
+              Sp.xxlarge.heightBox,
               TarotButton(
                 onTap: onTap,
                 buttonText: 'REHBERİ İNCELE',

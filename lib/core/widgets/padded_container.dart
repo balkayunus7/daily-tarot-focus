@@ -6,14 +6,14 @@ class PaddedContainer extends StatelessWidget {
   const PaddedContainer({
     required this.child,
     super.key,
-    this.padding = Spacing.tinyPadding,
+    this.padding,
     this.width,
     this.height,
     this.borderColor,
   });
 
   final Widget child;
-  final EdgeInsets padding;
+  final EdgeInsets? padding;
   final double? width;
   final double? height;
   final Color? borderColor;
@@ -24,17 +24,17 @@ class PaddedContainer extends StatelessWidget {
       width: width ?? double.infinity,
       decoration: BoxDecoration(
         color: context.colors.background,
-        borderRadius: Spacing.largeBorderRadius,
+        borderRadius: Sp.large.radiusR,
         border: Border.all(color: borderColor ?? context.colors.border),
       ),
       child: Padding(
-        padding: padding,
+        padding: padding ?? Sp.tiny.padAllR,
         child: Container(
           width: double.infinity,
           height: height,
           decoration: BoxDecoration(
             color: context.colors.surface,
-            borderRadius: Spacing.defaultBorderRadius,
+            borderRadius: Sp.medium.radiusR,
           ),
           child: child,
         ),

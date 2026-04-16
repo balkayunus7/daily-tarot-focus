@@ -1,3 +1,4 @@
+import 'package:daily_tarot_focus/core/util/tarot_app_sizes.dart';
 import 'package:flutter/material.dart';
 import 'package:liquid_glass_renderer/liquid_glass_renderer.dart';
 import 'package:mobile_boilerplate/presentation/extensions/build_context_theme_ext.dart';
@@ -46,7 +47,7 @@ class FancyContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final resolvedBorderRadius = borderRadius ?? BorderRadius.circular(12);
+    final resolvedBorderRadius = borderRadius ?? Sp.small.radiusR;
     final shapeRadius = resolvedBorderRadius.topLeft.x;
     final glassColor = color ?? context.colors.primary;
 

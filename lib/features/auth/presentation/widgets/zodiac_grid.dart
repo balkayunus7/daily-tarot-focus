@@ -10,8 +10,8 @@ class ZodiacGrid extends StatelessWidget {
         return GridView.builder(
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 3,
-            crossAxisSpacing: SpacingConsts.small,
-            mainAxisSpacing: SpacingConsts.small,
+            crossAxisSpacing: Sp.small,
+            mainAxisSpacing: Sp.small,
           ),
           itemCount: ZodiacSign.values.length,
           itemBuilder: (context, index) {

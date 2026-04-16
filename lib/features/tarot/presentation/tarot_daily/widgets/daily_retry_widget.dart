@@ -17,9 +17,9 @@ class DailyEmptyWidget extends StatelessWidget {
           width: 168,
           height: 48,
           buttonTextStyle: m10w600(context),
-          borderRadius: Spacing.xlargeBorderRadius,
+          borderRadius: Sp.xlarge.radiusR,
         ),
-        Spacing.xxlargeH,
+        Sp.xxlarge.heightBox,
         Image.asset(
           TarotAppAssets.empty.path,
           height: MediaQuery.of(context).size.height * 0.3,

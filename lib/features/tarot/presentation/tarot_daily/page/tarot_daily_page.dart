@@ -98,7 +98,7 @@ class _TarotDailyPageState extends State<TarotDailyPage>
                             }
 
                             return ListView.builder(
-                              padding: const EdgeInsets.symmetric(vertical: 16),
+                              padding: Sp.medium.padVR,
                               itemCount: cards.length,
                               itemBuilder: (context, index) {
                                 final card = cards[index];

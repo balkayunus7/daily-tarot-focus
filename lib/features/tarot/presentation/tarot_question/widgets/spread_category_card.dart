@@ -27,15 +27,15 @@ class SpreadCategoryCard extends StatelessWidget {
     return ScalingContainer(
       onTap: onTap,
       child: Container(
-        padding: Spacing.defaultPadding,
+        padding: Sp.screen.padAllR,
         decoration: BoxDecoration(
           color: colors.secondary.withValues(alpha: 0.05),
-          borderRadius: Spacing.defaultBorderRadius,
+          borderRadius: Sp.medium.radiusR,
         ),
         child: Row(
           children: [
             Container(
-              padding: const EdgeInsets.all(6),
+              padding: Sp.tiny.padAllR,
               decoration: BoxDecoration(
                 color: colors.surface,
                 shape: BoxShape.circle,
@@ -47,7 +47,7 @@ class SpreadCategoryCard extends StatelessWidget {
                 height: 20,
               ),
             ),
-            Spacing.mediumW,
+            Sp.medium.widthBox,
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -58,7 +58,7 @@ class SpreadCategoryCard extends StatelessWidget {
                     style: m14w600(context).copyWith(color: colors.textPrimary),
                   ),
                   if (subtitle != null) ...[
-                    Spacing.tinyH,
+                    Sp.tiny.heightBox,
                     Text(
                       subtitle!,
                       style: m12w500(context).copyWith(

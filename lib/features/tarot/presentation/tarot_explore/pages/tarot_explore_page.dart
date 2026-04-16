@@ -43,24 +43,24 @@ class TarotExplorePage extends StatelessWidget {
 
           return SafeArea(
             child: Padding(
-              padding: Spacing.largePadding,
+              padding: Sp.large.padAllR,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const ExploreHeader(),
-                  Spacing.largeH,
+                  Sp.large.heightBox,
                   const ExploreAskQuestionCard(),
-                  Spacing.largeH,
+                  Sp.large.heightBox,
                   if (!isPremium) ...[
                     const ExplorePaywallCard(),
-                    Spacing.largeH,
+                    Sp.large.heightBox,
                   ],
                   Text(LocaleKeys.explore_page_spiritual_guide.tr(), style: m16w500(context)),
-                  Spacing.mediumH,
+                  Sp.medium.heightBox,
                   Row(
                     children: [
                       const Expanded(child: ExploreDailyCardWithCooldown()),
-                      Spacing.mediumW,
+                      Sp.medium.widthBox,
                       Expanded(
                         child: ExploreFeatureCard(
                           title: LocaleKeys.explore_page_library.tr(),

@@ -15,8 +15,8 @@ import 'package:daily_tarot_focus/features/tarot/presentation/tarot_daily/page/t
 import 'package:daily_tarot_focus/features/tarot/presentation/tarot_library/pages/tarot_library_detail_page.dart';
 import 'package:daily_tarot_focus/features/tarot/presentation/tarot_library/pages/tarot_library_page.dart';
 import 'package:daily_tarot_focus/features/tarot/presentation/tarot_question/pages/tarot_question_step1_page.dart';
-import 'package:daily_tarot_focus/features/tarot/presentation/tarot_question/pages/tarot_reading_page.dart';
 import 'package:daily_tarot_focus/features/tarot/presentation/tarot_question/pages/tarot_question_step2_page.dart';
+import 'package:daily_tarot_focus/features/tarot/presentation/tarot_question/pages/tarot_reading_page.dart';
 import 'package:daily_tarot_focus/features/tarot/presentation/tarot_reveal/pages/tarot_reveal_detail_page.dart';
 import 'package:daily_tarot_focus/features/tarot/presentation/tarot_reveal/pages/tarot_reveal_page.dart';
 import 'package:flutter/material.dart';
@@ -128,7 +128,6 @@ final appRouter = GoRouter(
       path: '${AppRoutes.tarotRevealDetail}/:tarotId',
       name: AppRoutes.tarotRevealDetail,
       pageBuilder: (context, state) {
-        // Try to get tarot from extra first, fallback to cubit lookup
         final extraTarot = state.extra as TarotCardModel?;
         if (extraTarot != null) {
           return MaterialPage(

@@ -32,7 +32,7 @@ class TarotQuestionStep1Page extends StatelessWidget {
           titleWidget: Column(
             children: [
               Text('Açılım Yolculuğu', style: m16w700(context)),
-              Spacing.tinyH,
+              Sp.tiny.heightBox,
               Text(
                 'ADIM 1 / 4',
                 style: m10w500(context).copyWith(
@@ -55,22 +55,22 @@ class TarotQuestionStep1Page extends StatelessWidget {
               final categories = state.categories;
               return SafeArea(
                 child: SingleChildScrollView(
-                  padding: const EdgeInsets.symmetric(horizontal: SpacingConsts.medium),
+                  padding: Sp.medium.padXR,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
-                      Spacing.smallH,
+                      Sp.small.heightBox,
                       Text(
                         'Bir odak noktası seçerek kehanetleri keşfet.',
                         style: m14w400(context).copyWith(color: colors.textSecondary),
                         textAlign: TextAlign.center,
                       ),
-                      Spacing.xlargeH,
+                      Sp.xlarge.heightBox,
                       ListView.separated(
                         physics: const NeverScrollableScrollPhysics(),
                         shrinkWrap: true,
                         itemCount: mockSpreadCategories.length,
-                        separatorBuilder: (context, index) => Spacing.smallH,
+                        separatorBuilder: (context, index) => Sp.small.heightBox,
                         itemBuilder: (context, index) {
                           final meta = mockSpreadCategories[index];
                           final categoryData = categories.firstWhere(
@@ -90,9 +90,9 @@ class TarotQuestionStep1Page extends StatelessWidget {
                           );
                         },
                       ),
-                      Spacing.xlargeH,
+                      Sp.xlarge.heightBox,
                       GuidePromoCard(onTap: () {}),
-                      Spacing.xxlargeH,
+                      Sp.xxlarge.heightBox,
                     ],
                   ),
                 ),

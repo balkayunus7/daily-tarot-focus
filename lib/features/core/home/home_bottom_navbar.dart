@@ -17,7 +17,7 @@ class HomeBottomNavbar extends StatelessWidget {
     final items = TarotMockData.navbarItems;
 
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 32),
+      padding: Sp.xxlarge.padHR,
       child: LiquidGlass.withOwnLayer(
         settings: LiquidGlassSettings(
           glassColor: context.colors.textOnPrimary,
@@ -58,7 +58,7 @@ class HomeBottomNavbar extends StatelessWidget {
                             ? ColorFilter.mode(context.colors.textOnPrimary, BlendMode.srcIn)
                             : ColorFilter.mode(context.colors.primary, BlendMode.srcIn),
                   ),
-                  Spacing.tinyH,
+                  Sp.tiny.heightBox,
                   Text(
                     label,
                     style: m10w600(context).copyWith(
@@ -69,10 +69,7 @@ class HomeBottomNavbar extends StatelessWidget {
               );
 
               Widget tabItem = Container(
-                padding:
-                    path == TarotAppAssets.tarotIcon.path
-                        ? const EdgeInsets.symmetric(vertical: 2)
-                        : const EdgeInsets.symmetric(vertical: 6),
+                padding: path == TarotAppAssets.tarotIcon.path ? 2.padYR : 6.padYR,
                 child: tabContent,
               );
 
@@ -80,7 +77,7 @@ class HomeBottomNavbar extends StatelessWidget {
                 tabItem = Container(
                   decoration: BoxDecoration(
                     color: context.colors.primary.withValues(alpha: 0.8),
-                    borderRadius: BorderRadius.circular(100),
+                    borderRadius: 100.radiusR,
                   ),
                   child: tabItem,
                 );
@@ -91,7 +88,7 @@ class HomeBottomNavbar extends StatelessWidget {
                   onTap: () => onTap(index),
                   behavior: HitTestBehavior.opaque,
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 4),
+                    padding: 4.padXR,
                     child: tabItem,
                   ),
                 ),

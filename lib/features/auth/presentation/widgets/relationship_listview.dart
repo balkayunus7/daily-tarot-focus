@@ -9,7 +9,7 @@ class RelationshipListView extends StatelessWidget {
       builder: (context, state) {
         return ListView.separated(
           itemCount: RelationshipStatus.values.length,
-          separatorBuilder: (_, _) => Spacing.smallH,
+          separatorBuilder: (_, _) => Sp.small.heightBox,
           itemBuilder: (context, index) {
             final bloc = context.read<RegisterCubit>();
             final status = RelationshipStatus.values[index];

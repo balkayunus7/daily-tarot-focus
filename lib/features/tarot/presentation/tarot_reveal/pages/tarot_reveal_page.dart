@@ -53,7 +53,7 @@ class _TarotRevealPageState extends State<TarotRevealPage>
                   child: Image.asset(TarotAppAssets.dailyPickBg.path, fit: BoxFit.cover),
                 ),
                 AnimatedOpacity(
-                  duration: SpacingConsts.wheelAnimationDuration,
+                  duration: CardSp.wheelAnimation,
                   opacity: isCardSelected ? 0.0 : 1.0,
                   child: SafeArea(
                     child: Center(
@@ -64,7 +64,7 @@ class _TarotRevealPageState extends State<TarotRevealPage>
                             DateTime.now().toLocal().dayMonthDay(Localizations.localeOf(context)),
                             style: m28w600(context),
                           ),
-                          Spacing.mediumH,
+                          Sp.medium.heightBox,
                           Text(
                             LocaleKeys.reveal_page_tap_to_pick.tr(),
                             style: m14w500(context).copyWith(color: context.colors.textSecondary),

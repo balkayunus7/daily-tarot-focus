@@ -24,11 +24,11 @@ class ExploreHeader extends StatelessWidget {
             Row(
               children: [
                 Icon(timeIcon, color: colors.secondary, size: 28),
-                Spacing.xsmallW,
+                Sp.xsmall.widthBox,
                 Flexible(child: Text(timeGreeting, style: m18w700(context))),
               ],
             ),
-            Spacing.smallH,
+            Sp.small.heightBox,
             if (userZodiac != null) ...[
               Text(
                 LocaleKeys.explore_page_intuition_guide.tr(args: [userZodiac.localizedName]),

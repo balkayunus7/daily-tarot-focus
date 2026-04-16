@@ -62,11 +62,11 @@ class SettingsPage extends StatelessWidget {
         ),
         body: SafeArea(
           child: Padding(
-            padding: Spacing.screenPadding,
+            padding: Sp.screen.padAllR,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Spacing.largeH,
+                Sp.large.heightBox,
                 _SettingsSection(
                   title: LocaleKeys.settings_page_account.tr(),
                   children: [
@@ -98,7 +98,7 @@ class SettingsPage extends StatelessWidget {
                     ),
                   ],
                 ),
-                Spacing.largeH,
+                Sp.large.heightBox,
                 _SettingsSection(
                   title: 'Legal',
                   children: [
@@ -136,12 +136,12 @@ class SettingsPage extends StatelessWidget {
     await showModalBottomSheet<void>(
       context: context,
       backgroundColor: colors.background,
-      shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+      shape: RoundedRectangleBorder(
+        borderRadius: 20.radiusOnlyR(tl: true, tr: true),
       ),
       builder: (context) {
         return Padding(
-          padding: const EdgeInsets.all(24),
+          padding: Sp.xlarge.padAllR,
           child: Column(
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -152,16 +152,16 @@ class SettingsPage extends StatelessWidget {
                   height: 4,
                   decoration: BoxDecoration(
                     color: colors.borderSecondary,
-                    borderRadius: BorderRadius.circular(2),
+                    borderRadius: 2.radiusR,
                   ),
                 ),
               ),
-              Spacing.largeH,
+              Sp.large.heightBox,
               Text(
                 LocaleKeys.settings_page_choose_language.tr(),
                 style: m20w600(context),
               ),
-              Spacing.largeH,
+              Sp.large.heightBox,
               _LanguageOption(
                 title: LocaleKeys.settings_page_english.tr(),
                 locale: context.localeEn,
@@ -183,7 +183,7 @@ class SettingsPage extends StatelessWidget {
                   if (context.mounted) Navigator.pop(context);
                 },
               ),
-              Spacing.mediumH,
+              Sp.medium.heightBox,
               _LanguageOption(
                 title: LocaleKeys.settings_page_turkish.tr(),
                 locale: context.localeTr,
@@ -205,7 +205,7 @@ class SettingsPage extends StatelessWidget {
                   if (context.mounted) Navigator.pop(context);
                 },
               ),
-              Spacing.largeH,
+              Sp.large.heightBox,
             ],
           ),
         );
@@ -232,11 +232,11 @@ class _SettingsSection extends StatelessWidget {
             style: m14w500(context).copyWith(color: colors.textSecondary),
           ),
         ],
-        Spacing.smallH,
+        Sp.small.heightBox,
         Container(
           decoration: BoxDecoration(
             color: colors.surface,
-            borderRadius: Spacing.defaultBorderRadius,
+            borderRadius: Sp.medium.radiusR,
           ),
           child: Column(children: children),
         ),
@@ -264,11 +264,11 @@ class _SettingsTile extends StatelessWidget {
     return ScalingContainer(
       onTap: onTap,
       child: Padding(
-        padding: Spacing.defaultPadding,
+        padding: Sp.screen.padAllR,
         child: Row(
           children: [
             Icon(icon, color: textColor, size: 20),
-            Spacing.mediumW,
+            Sp.medium.widthBox,
             Expanded(
               child: Text(title, style: m16w500(context).copyWith(color: textColor)),
             ),
@@ -300,10 +300,10 @@ class _LanguageOption extends StatelessWidget {
     return ScalingContainer(
       onTap: onTap,
       child: Container(
-        padding: Spacing.defaultPadding,
+        padding: Sp.screen.padAllR,
         decoration: BoxDecoration(
           color: isSelected ? colors.primary.withValues(alpha: 0.1) : colors.surface,
-          borderRadius: Spacing.defaultBorderRadius,
+          borderRadius: Sp.medium.radiusR,
           border: Border.all(
             color: isSelected ? colors.primary : colors.borderSecondary,
             width: isSelected ? 2 : 1,

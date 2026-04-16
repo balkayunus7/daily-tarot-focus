@@ -22,17 +22,17 @@ class ZodiacCard extends StatelessWidget {
       onTap: onTap,
       child: Container(
         width: double.infinity,
-        padding: Spacing.defaultPadding,
+        padding: Sp.screen.padAllR,
         decoration: BoxDecoration(
           color: bgColor,
           border: Border.all(color: borderColor, width: 2),
-          borderRadius: Spacing.defaultBorderRadius,
+          borderRadius: Sp.medium.radiusR,
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(zodiac.emoji, style: m32w600(context)),
-            Spacing.xsmallH,
+            Sp.xsmall.heightBox,
             Text(
               zodiac.localizedName,
               style: m12w600(context).copyWith(color: textColor),

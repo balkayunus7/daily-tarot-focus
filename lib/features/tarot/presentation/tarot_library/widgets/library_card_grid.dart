@@ -10,7 +10,7 @@ class LibraryCardGridView extends StatelessWidget {
 
     return Expanded(
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20),
+        padding: Sp.large.padHR,
         child: GridView.builder(
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 3,
@@ -66,11 +66,11 @@ class _LibraryCard extends StatelessWidget {
                   children: [
                     Container(
                       decoration: BoxDecoration(
-                        borderRadius: Spacing.xsmallBorderRadius,
+                        borderRadius: Sp.xsmall.radiusR,
                         border: Border.all(color: colors.border, width: 2),
                       ),
                       child: ClipRRect(
-                        borderRadius: Spacing.tinyBorderRadius,
+                        borderRadius: Sp.tiny.radiusR,
                         child: Image.asset(
                           card.imagePath,
                           fit: BoxFit.cover,
@@ -85,11 +85,11 @@ class _LibraryCard extends StatelessWidget {
 
                     if (showLock) ...[
                       ClipRRect(
-                        borderRadius: Spacing.tinyBorderRadius,
+                        borderRadius: Sp.tiny.radiusR,
                         child: Container(
                           decoration: BoxDecoration(
                             color: context.colors.overlay,
-                            borderRadius: Spacing.tinyBorderRadius,
+                            borderRadius: Sp.tiny.radiusR,
                           ),
                         ),
                       ),
@@ -98,10 +98,10 @@ class _LibraryCard extends StatelessWidget {
                         top: 8,
                         right: 8,
                         child: Container(
-                          padding: Spacing.tinyPadding,
+                          padding: Sp.tiny.padAllR,
                           decoration: BoxDecoration(
                             color: context.colors.secondary,
-                            borderRadius: Spacing.xsmallBorderRadius,
+                            borderRadius: Sp.xsmall.radiusR,
                             boxShadow: context.colors.primary.mediumShadow,
                           ),
                           child: SvgPicture.asset(
@@ -142,7 +142,7 @@ class _ImageLoadingShimmer extends StatelessWidget {
       ),
       child: SizedBox.expand(
         child: Container(
-          decoration: BoxDecoration(borderRadius: Spacing.tinyBorderRadius),
+          decoration: BoxDecoration(borderRadius: Sp.tiny.radiusR),
         ),
       ),
     );

@@ -7,7 +7,7 @@ class DailyHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: Spacing.largePadding,
+      padding: Sp.large.padAllR,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -15,7 +15,7 @@ class DailyHeader extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(LocaleKeys.tarot_daily_title.tr(), style: m20w700(context)),
-              Spacing.xsmallH,
+              Sp.xsmall.heightBox,
               Text(
                 LocaleKeys.tarot_daily_subtitle.tr(),
                 style: m10w600(context).copyWith(color: context.colors.primary, letterSpacing: 1.5),

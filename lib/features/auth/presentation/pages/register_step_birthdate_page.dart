@@ -41,7 +41,7 @@ class _RegisterStepBirthdatePageState extends State<RegisterStepBirthdatePage> w
         },
         child: SafeArea(
           child: Padding(
-            padding: Spacing.screenPadding,
+            padding: Sp.screen.padAllR,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -53,7 +53,7 @@ class _RegisterStepBirthdatePageState extends State<RegisterStepBirthdatePage> w
                     fontWeight: FontWeight.w400,
                   ),
                 ),
-                Spacing.xsmallH,
+                Sp.xsmall.heightBox,
                 Text(
                   LocaleKeys.register_page_birthdate_title.tr(),
                   style: TextStyle(
@@ -62,7 +62,7 @@ class _RegisterStepBirthdatePageState extends State<RegisterStepBirthdatePage> w
                     fontWeight: FontWeight.w700,
                   ),
                 ),
-                Spacing.xsmallH,
+                Sp.xsmall.heightBox,
                 Text(
                   LocaleKeys.register_page_birthdate_subtitle.tr(),
                   style: TextStyle(
@@ -71,13 +71,13 @@ class _RegisterStepBirthdatePageState extends State<RegisterStepBirthdatePage> w
                     fontWeight: FontWeight.w400,
                   ),
                 ),
-                Spacing.smallH,
+                Sp.small.heightBox,
                 LinearProgressIndicator(
                   value: 1,
                   backgroundColor: colors.surface,
                   valueColor: AlwaysStoppedAnimation<Color>(colors.primary),
                 ),
-                Spacing.hugeH,
+                Sp.huge.heightBox,
                 Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -85,7 +85,7 @@ class _RegisterStepBirthdatePageState extends State<RegisterStepBirthdatePage> w
                       selectedDate: _selectedDate,
                       selectDate: () => _selectDate(context),
                     ),
-                    Spacing.xxlargeH,
+                    Sp.xxlarge.heightBox,
                     if (isSelected) ...[
                       Text(
                         _selectedDate!.ageText(context),

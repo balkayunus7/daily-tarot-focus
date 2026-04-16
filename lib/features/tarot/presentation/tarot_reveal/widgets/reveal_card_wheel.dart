@@ -6,8 +6,8 @@ class RevealCardWheel extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final scope = RevealPageScope.of(context);
-    final cardWheelheight = Spacing.screenHeight(context) * 0.25;
-    final screenWidth = Spacing.screenWidth(context);
+    final cardWheelheight = context.suHeight * 0.25;
+    final screenWidth = context.suWidth;
 
     return SafeArea(
       child: Column(
@@ -23,15 +23,15 @@ class RevealCardWheel extends StatelessWidget {
                 builder: (context, selectedCardIndex, _) {
                   return ListWheelScrollView.useDelegate(
                     controller: scope.wheelScrollController,
-                    itemExtent: SpacingConsts.cardWheelItemExtent,
-                    diameterRatio: SpacingConsts.cardWheelDiameterRatio,
-                    perspective: SpacingConsts.cardWheelPerspective,
+                    itemExtent: CardSp.wheelItemExtent,
+                    diameterRatio: CardSp.wheelDiameterRatio,
+                    perspective: CardSp.wheelPerspective,
                     physics: const FixedExtentScrollPhysics(parent: ClampingScrollPhysics()),
-                    squeeze: SpacingConsts.cardWheelSqueeze,
+                    squeeze: CardSp.wheelSqueeze,
                     clipBehavior: Clip.none,
                     onSelectedItemChanged: scope.handleCardScroll,
                     childDelegate: ListWheelChildBuilderDelegate(
-                      childCount: SpacingConsts.totalCards,
+                      childCount: CardSp.totalCards,
                       builder: (context, index) {
                         final isSelected = index == selectedCardIndex;
 
@@ -48,7 +48,7 @@ class RevealCardWheel extends StatelessWidget {
               ),
             ),
           ),
-          Spacing.xsmallH,
+          Sp.xsmall.heightBox,
           Image.asset(
             TarotAppAssets.arrow.path,
             width: screenWidth * 0.25,
@@ -59,7 +59,7 @@ class RevealCardWheel extends StatelessWidget {
             LocaleKeys.reveal_page_drag_to_move.tr(),
             style: m12w500(context).copyWith(color: context.colors.textSecondary),
           ),
-          Spacing.mediumH,
+          Sp.medium.heightBox,
         ],
       ),
     );

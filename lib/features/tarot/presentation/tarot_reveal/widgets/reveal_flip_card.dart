@@ -61,10 +61,10 @@ class _TarotFrontCard extends StatelessWidget {
     return Hero(
       tag: TarotMockData.dailyTarotCardHeroTag,
       child: Container(
-        width: SpacingConsts.flipCardWidth,
-        height: SpacingConsts.flipCardHeight,
+        width: CardSp.flipWidth,
+        height: CardSp.flipHeight,
         decoration: BoxDecoration(
-          borderRadius: Spacing.xsmallBorderRadius,
+          borderRadius: Sp.xsmall.radiusR,
           border: Border.all(color: context.colors.border, width: 2),
           boxShadow: context.colors.primary.mediumShadow,
         ),
@@ -73,7 +73,7 @@ class _TarotFrontCard extends StatelessWidget {
           children: [
             Expanded(
               child: ClipRRect(
-                borderRadius: Spacing.tinyBorderRadius,
+                borderRadius: Sp.tiny.radiusR,
                 child: Image.asset(imagePath, fit: BoxFit.cover),
               ),
             ),
@@ -92,15 +92,15 @@ class _TarotBackCard extends StatelessWidget {
     return Hero(
       tag: TarotMockData.dailyTarotCardHeroTag,
       child: Container(
-        width: SpacingConsts.flipCardWidth,
-        height: SpacingConsts.flipCardHeight,
+        width: CardSp.flipWidth,
+        height: CardSp.flipHeight,
         decoration: BoxDecoration(
-          borderRadius: Spacing.xsmallBorderRadius,
+          borderRadius: Sp.xsmall.radiusR,
           border: Border.all(color: context.colors.border),
           boxShadow: context.colors.primary.mediumShadow,
         ),
         child: ClipRRect(
-          borderRadius: Spacing.xsmallBorderRadius,
+          borderRadius: Sp.xsmall.radiusR,
           child: Image.asset(TarotAppAssets.cardBg.path, fit: BoxFit.fill),
         ),
       ),

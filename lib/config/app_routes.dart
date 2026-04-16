@@ -10,14 +10,14 @@ class AppRoutes {
   static const Set<String> registerRoutes = {
     AppRoutes.registerStepZodiac,
     AppRoutes.registerStepRelationship,
-    AppRoutes.registerStepBirthdate,
+    AppRoutes.registerStepCareer,
   };
 
   // Auth routes
   static const String splash = '/';
   static const String registerStepZodiac = '/register-step-zodiac';
   static const String registerStepRelationship = '/register-step-relationship';
-  static const String registerStepBirthdate = '/register-step-birthdate';
+  static const String registerStepCareer = '/register-step-career';
 
   // Tarot explore
   static const String tarotExplore = '/tarot-explore';

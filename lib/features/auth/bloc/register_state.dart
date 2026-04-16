@@ -5,7 +5,7 @@ class RegisterState extends Equatable {
     required this.registerStatus,
     this.zodiac,
     this.relationshipStatus,
-    this.birthDate,
+    this.careerStatus,
     this.failure,
   });
 
@@ -15,29 +15,29 @@ class RegisterState extends Equatable {
 
   final ZodiacSign? zodiac;
   final RelationshipStatus? relationshipStatus;
-  final DateTime? birthDate;
+  final CareerStatus? careerStatus;
   final Failure? failure;
   final RegisterStatus registerStatus;
 
   bool get isRegisterNotCompleted {
-    return zodiac == null || relationshipStatus == null || birthDate == null;
+    return zodiac == null || relationshipStatus == null || careerStatus == null;
   }
 
   bool get isZodiacSelected => zodiac != null;
   bool get isRelationshipStatusSelected => relationshipStatus != null;
-  bool get isBirthDateSelected => birthDate != null;
+  bool get isCareerStatusSelected => careerStatus != null;
 
   RegisterState copyWith({
     ZodiacSign? zodiac,
     RelationshipStatus? relationshipStatus,
-    DateTime? birthDate,
+    CareerStatus? careerStatus,
     Failure? failure,
     RegisterStatus? registerStatus,
   }) {
     return RegisterState(
       zodiac: zodiac ?? this.zodiac,
       relationshipStatus: relationshipStatus ?? this.relationshipStatus,
-      birthDate: birthDate ?? this.birthDate,
+      careerStatus: careerStatus ?? this.careerStatus,
       registerStatus: registerStatus ?? this.registerStatus,
       failure: failure ?? this.failure,
     );
@@ -47,7 +47,7 @@ class RegisterState extends Equatable {
   List<Object?> get props => [
     zodiac,
     relationshipStatus,
-    birthDate,
+    careerStatus,
     registerStatus,
     failure,
   ];

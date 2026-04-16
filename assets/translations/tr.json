@@ -75,8 +75,8 @@
         "zodiac_subtitle": "Tarot deneyimini kişiselleştirmemize yardım et",
         "relationship_title": "İlişki durumun ne?",
         "relationship_subtitle": "Bu, daha iyi içgörüler sağlamamıza yardımcı olur",
-        "birthdate_title": "Ne zaman doğdun?",
-        "birthdate_subtitle": "Doğum tarihin kozmik yolunu hesaplamamıza yardımcı olur",
+        "career_title": "Kariyer durumun ne?",
+        "career_subtitle": "Bu, kariyerinle ilgili daha net rehberlik etmemize yardımcı olur",
         "continue_button": "Devam Et",
         "complete_registration": "Kaydı Tamamla"
     },
@@ -142,6 +142,14 @@
         "wands": "Asalar",
         "swords": "Kılıçlar",
         "pentacles": "Tılsımlar"
+    },
+    "career_status": {
+        "student": "Öğrenci",
+        "employed": "Çalışan",
+        "self_employed": "Kendi İşinin Sahibi",
+        "unemployed": "İş Arıyor",
+        "retired": "Emekli",
+        "prefer_not_to_say": "Belirtmek istemiyorum"
     },
     "relationship_status": {
         "single": "Bekar",

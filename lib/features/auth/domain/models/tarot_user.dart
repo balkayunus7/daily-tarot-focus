@@ -1,3 +1,4 @@
+import 'package:daily_tarot_focus/features/auth/domain/models/tarot_user_career_enum.dart';
 import 'package:daily_tarot_focus/features/auth/domain/models/tarot_user_relations_enum.dart';
 import 'package:daily_tarot_focus/features/auth/domain/models/tarot_user_zodiac_enum.dart';
 import 'package:mobile_boilerplate/common_dependencies.dart';
@@ -13,7 +14,7 @@ class TarotUser extends User {
     required super.subscription,
     this.zodiac,
     this.relationshipStatus,
-    this.birthDate,
+    this.careerStatus,
   });
 
   factory TarotUser.fromMap(Map<String, dynamic> map) {
@@ -39,25 +40,18 @@ class TarotUser extends User {
                 map['relationship_status'] as String,
               )
               : null,
-      birthDate: map['birth_date'] != null ? DateTime.parse(map['birth_date'] as String) : null,
+      careerStatus:
+          map['career_status'] != null
+              ? CareerStatus.fromString(map['career_status'] as String)
+              : null,
     );
   }
   final ZodiacSign? zodiac;
   final RelationshipStatus? relationshipStatus;
-  final DateTime? birthDate;
+  final CareerStatus? careerStatus;
 
-  bool get isProfileComplete => zodiac != null && relationshipStatus != null && birthDate != null;
-
-  int? get age {
-    if (birthDate == null) return null;
-    final today = DateTime.now();
-    var age = today.year - birthDate!.year;
-    if (today.month < birthDate!.month ||
-        (today.month == birthDate!.month && today.day < birthDate!.day)) {
-      age--;
-    }
-    return age;
-  }
+  bool get isProfileComplete =>
+      zodiac != null && relationshipStatus != null && careerStatus != null;
 
   Map<String, dynamic> toMap() {
     return {
@@ -66,7 +60,7 @@ class TarotUser extends User {
       'premium_info': subscription?.toMap(),
       'zodiac_sign': zodiac?.value,
       'relationship_status': relationshipStatus?.value,
-      'birth_date': birthDate?.toIso8601String(),
+      'career_status': careerStatus?.value,
     };
   }
 
@@ -74,7 +68,7 @@ class TarotUser extends User {
     Purchaser? purchaser,
     ZodiacSign? zodiac,
     RelationshipStatus? relationshipStatus,
-    DateTime? birthDate,
+    CareerStatus? careerStatus,
   }) {
     return TarotUser(
       userId: userId,
@@ -82,7 +76,7 @@ class TarotUser extends User {
       subscription: subscription,
       zodiac: zodiac ?? this.zodiac,
       relationshipStatus: relationshipStatus ?? this.relationshipStatus,
-      birthDate: birthDate ?? this.birthDate,
+      careerStatus: careerStatus ?? this.careerStatus,
     );
   }
 
@@ -93,6 +87,6 @@ class TarotUser extends User {
     subscription,
     zodiac,
     relationshipStatus,
-    birthDate,
+    careerStatus,
   ];
 }

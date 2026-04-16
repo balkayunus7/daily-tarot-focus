@@ -1,4 +1,5 @@
 import 'package:daily_tarot_focus/features/auth/domain/models/register_enum.dart';
+import 'package:daily_tarot_focus/features/auth/domain/models/tarot_user_career_enum.dart';
 import 'package:daily_tarot_focus/features/auth/domain/models/tarot_user_properties.dart';
 import 'package:daily_tarot_focus/features/auth/domain/models/tarot_user_relations_enum.dart';
 import 'package:daily_tarot_focus/features/auth/domain/models/tarot_user_zodiac_enum.dart';
@@ -20,8 +21,8 @@ class RegisterCubit extends Cubit<RegisterState> {
     emit(state.copyWith(relationshipStatus: status));
   }
 
-  void selectBirthDate(DateTime birthDate) {
-    emit(state.copyWith(birthDate: birthDate));
+  void selectCareerStatus(CareerStatus status) {
+    emit(state.copyWith(careerStatus: status));
   }
 
   Future<void> submitRegistration(AuthSession session) async {
@@ -40,7 +41,7 @@ class RegisterCubit extends Cubit<RegisterState> {
     final properties = TarotUserProperties(
       zodiac: state.zodiac!,
       relationshipStatus: state.relationshipStatus!,
-      birthDate: state.birthDate!,
+      careerStatus: state.careerStatus!,
     );
 
     final updateFailureOrUnit = await userRepository.updateUser(

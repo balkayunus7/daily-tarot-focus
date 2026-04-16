@@ -65,7 +65,7 @@ class RegisterStepRelationshipPage extends StatelessWidget {
                       return GlassButton(
                         buttonText: LocaleKeys.register_page_continue_button.tr(),
                         onTap: () async {
-                          await context.push(AppRoutes.registerStepBirthdate);
+                          await context.push(AppRoutes.registerStepCareer);
                         },
                         isDisabled: !state.isRelationshipStatusSelected,
                       );

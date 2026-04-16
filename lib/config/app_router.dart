@@ -1,6 +1,6 @@
 import 'package:daily_tarot_focus/config/app_routes.dart';
 import 'package:daily_tarot_focus/features/auth/domain/models/tarot_user.dart';
-import 'package:daily_tarot_focus/features/auth/presentation/pages/register_step_birthdate_page.dart';
+import 'package:daily_tarot_focus/features/auth/presentation/pages/register_step_career_page.dart';
 import 'package:daily_tarot_focus/features/auth/presentation/pages/register_step_relationship_page.dart';
 import 'package:daily_tarot_focus/features/auth/presentation/pages/register_step_zodiac_page.dart';
 import 'package:daily_tarot_focus/features/auth/presentation/pages/splash_page.dart';
@@ -79,7 +79,7 @@ final appRouter = GoRouter(
       pageBuilder: (context, state) {
         return MaterialPage(
           key: state.pageKey,
-          child: const RegisterStepZodiacPage(),
+          child: const PopScope(canPop: false, child: RegisterStepZodiacPage()),
         );
       },
     ),
@@ -89,17 +89,17 @@ final appRouter = GoRouter(
       pageBuilder: (context, state) {
         return MaterialPage(
           key: state.pageKey,
-          child: const RegisterStepRelationshipPage(),
+          child: const PopScope(canPop: false, child: RegisterStepRelationshipPage()),
         );
       },
     ),
     GoRoute(
-      path: AppRoutes.registerStepBirthdate,
-      name: AppRoutes.registerStepBirthdate,
+      path: AppRoutes.registerStepCareer,
+      name: AppRoutes.registerStepCareer,
       pageBuilder: (context, state) {
         return MaterialPage(
           key: state.pageKey,
-          child: const RegisterStepBirthdatePage(),
+          child: const PopScope(canPop: false, child: RegisterStepCareerPage()),
         );
       },
     ),

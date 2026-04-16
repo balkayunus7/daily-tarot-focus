@@ -75,8 +75,8 @@
         "zodiac_subtitle": "Help us personalize your tarot experience",
         "relationship_title": "What's your relationship status?",
         "relationship_subtitle": "This helps us provide better insights",
-        "birthdate_title": "When were you born?",
-        "birthdate_subtitle": "Your birth date helps us calculate your cosmic path",
+        "career_title": "What is your career status?",
+        "career_subtitle": "This helps us provide clearer guidance about your career",
         "continue_button": "Continue",
         "complete_registration": "Complete Registration"
     },
@@ -142,6 +142,14 @@
         "wands": "Wands",
         "swords": "Swords",
         "pentacles": "Pentacles"
+    },
+    "career_status": {
+        "student": "Student",
+        "employed": "Employed",
+        "self_employed": "Self-employed",
+        "unemployed": "Looking for work",
+        "retired": "Retired",
+        "prefer_not_to_say": "Prefer not to say"
     },
     "relationship_status": {
         "single": "Single",

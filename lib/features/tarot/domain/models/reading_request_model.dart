@@ -40,8 +40,7 @@ class TarotQuestionData {
   Map<String, dynamic> get _userMap => {
     'zodiac': user.zodiac?.localizedName,
     'relationship_status': user.relationshipStatus?.localizedName,
-    'birth_date': user.birthDate?.toIso8601String(),
-    'age': user.age,
+    'career_status': user.careerStatus?.localizedName,
   };
 
   Map<String, dynamic> get _readingMap => {

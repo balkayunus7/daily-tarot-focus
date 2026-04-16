@@ -15,7 +15,7 @@ class RelationshipListView extends StatelessWidget {
             final status = RelationshipStatus.values[index];
             final isSelected = state.relationshipStatus == status;
 
-            return RelationshipCard(
+            return RelationshipItem(
               status: status,
               isSelected: isSelected,
               onTap: () => bloc.selectRelationshipStatus(status),

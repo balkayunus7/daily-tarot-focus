@@ -14,7 +14,6 @@ class SpreadCategoryCard extends StatelessWidget {
     this.subtitle,
     super.key,
   });
-
   final String title;
   final String? subtitle;
   final TarotAppAssets icon;

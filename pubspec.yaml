@@ -2,7 +2,7 @@ name: daily_tarot_focus
 description: "A new Flutter project."
 publish_to: 'none' 
 
-version: 1.0.0+9
+version: 1.0.0+10
 
 environment:
   sdk: ^3.7.2
@@ -20,6 +20,7 @@ dependencies:
   go_router: ^17.0.0
   gradient_borders: ^1.0.2
   http: ^1.2.2
+  iconify_flutter: ^0.0.7
   image: ^4.5.4
   liquid_glass_renderer: ^0.2.0-dev.4
   lottie: ^3.1.0

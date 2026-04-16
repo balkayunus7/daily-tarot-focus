@@ -9,11 +9,13 @@ import 'package:daily_tarot_focus/features/auth/domain/models/tarot_user_relatio
 import 'package:daily_tarot_focus/features/auth/presentation/widgets/step_background.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:iconify_flutter/iconify_flutter.dart';
+import 'package:iconify_flutter/icons/mdi.dart';
 import 'package:mobile_boilerplate/common_dependencies.dart';
 import 'package:mobile_boilerplate/presentation/extensions/build_context_theme_ext.dart';
 import 'package:mobile_boilerplate/presentation/widgets/scaling_container.dart';
 
-part '../widgets/relationship_card.dart';
+part '../widgets/relationship_item.dart';
 part '../widgets/relationship_listview.dart';
 
 class RegisterStepRelationshipPage extends StatelessWidget {

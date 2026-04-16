@@ -1,7 +1,7 @@
 part of '../pages/register_step_relationship_page.dart';
 
-class RelationshipCard extends StatelessWidget {
-  const RelationshipCard({
+class RelationshipItem extends StatelessWidget {
+  const RelationshipItem({
     required this.status,
     required this.isSelected,
     required this.onTap,
@@ -28,12 +28,25 @@ class RelationshipCard extends StatelessWidget {
         borderColor: colors.primary.withValues(alpha: 0.1),
         child: Row(
           children: [
-            Text(status.emoji, style: m28w600(context)),
+            Container(
+              width: 36.w,
+              height: 36.h,
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  colors: [colors.gradientStart, colors.gradientEnd],
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                ),
+                borderRadius: Sp.small.radiusR,
+              ),
+              alignment: Alignment.center,
+              child: Iconify(status.icon, color: colors.accent, size: Sp.large),
+            ),
             Sp.medium.widthBox,
             Expanded(child: Text(status.localizedName, style: m15w600(context))),
             if (isSelected) ...[
               Sp.medium.widthBox,
-              Icon(Icons.check_circle, color: colors.primary, size: Sp.xlarge),
+              Iconify(Mdi.check_circle, color: colors.primary),
             ],
           ],
         ),

@@ -1,7 +1,7 @@
 part of '../pages/register_step_zodiac_page.dart';
 
-class ZodiacCard extends StatelessWidget {
-  const ZodiacCard({
+class ZodiacItem extends StatelessWidget {
+  const ZodiacItem({
     required this.zodiac,
     required this.isSelected,
     required this.onTap,

@@ -1,5 +1,6 @@
 import 'package:daily_tarot_focus/core/util/locale_keys.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:iconify_flutter/icons/mdi.dart';
 
 enum RelationshipStatus {
   single('Single'),
@@ -47,5 +48,14 @@ enum RelationshipStatus {
     RelationshipStatus.married => '💒',
     RelationshipStatus.itsComplicated => '🤔',
     RelationshipStatus.preferNotToSay => '🤐',
+  };
+
+  String get icon => switch (this) {
+    RelationshipStatus.single => Mdi.account,
+    RelationshipStatus.inARelationship => Mdi.heart,
+    RelationshipStatus.engaged => Mdi.ring,
+    RelationshipStatus.married => Mdi.account_multiple,
+    RelationshipStatus.itsComplicated => Mdi.help_circle,
+    RelationshipStatus.preferNotToSay => Mdi.eye_off,
   };
 }

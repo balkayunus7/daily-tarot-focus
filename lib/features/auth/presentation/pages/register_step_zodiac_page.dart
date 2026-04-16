@@ -13,7 +13,7 @@ import 'package:mobile_boilerplate/common_dependencies.dart';
 import 'package:mobile_boilerplate/presentation/extensions/build_context_theme_ext.dart';
 import 'package:mobile_boilerplate/presentation/widgets/scaling_container.dart';
 
-part '../widgets/zodiac_card.dart';
+part '../widgets/zodiac_item.dart';
 part '../widgets/zodiac_grid.dart';
 
 class RegisterStepZodiacPage extends StatelessWidget {

@@ -19,7 +19,7 @@ class ZodiacGrid extends StatelessWidget {
             final isSelected = state.zodiac == zodiac;
             final bloc = context.read<RegisterCubit>();
 
-            return ZodiacCard(
+            return ZodiacItem(
               zodiac: zodiac,
               isSelected: isSelected,
               onTap: () {

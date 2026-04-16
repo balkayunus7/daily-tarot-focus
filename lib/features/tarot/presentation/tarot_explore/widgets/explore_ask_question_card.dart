@@ -57,7 +57,7 @@ class _CardContent extends StatelessWidget {
           IgnorePointer(
             child: UnconstrainedBox(
               alignment: Alignment.centerLeft,
-              child: TarotButton(
+              child: GlassButton(
                 height: buttonHeight,
                 width: buttonWidth,
                 onTap: () {},

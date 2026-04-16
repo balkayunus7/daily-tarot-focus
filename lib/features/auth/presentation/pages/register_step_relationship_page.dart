@@ -2,7 +2,7 @@ import 'package:daily_tarot_focus/config/app_routes.dart';
 import 'package:daily_tarot_focus/core/util/locale_keys.dart';
 import 'package:daily_tarot_focus/core/util/tarot_app_sizes.dart';
 import 'package:daily_tarot_focus/core/util/text_style_helper.dart';
-import 'package:daily_tarot_focus/core/widgets/tarot_button.dart';
+import 'package:daily_tarot_focus/core/widgets/glass_button.dart';
 import 'package:daily_tarot_focus/features/auth/bloc/register_cubit.dart';
 import 'package:daily_tarot_focus/features/auth/domain/models/tarot_user_relations_enum.dart';
 import 'package:flutter/material.dart';
@@ -54,7 +54,7 @@ class RegisterStepRelationshipPage extends StatelessWidget {
               Sp.xxlarge.heightBox,
               BlocBuilder<RegisterCubit, RegisterState>(
                 builder: (context, state) {
-                  return TarotButton(
+                  return GlassButton(
                     buttonText: LocaleKeys.register_page_continue_button.tr(),
                     onTap: () async {
                       await context.push(AppRoutes.registerStepBirthdate);

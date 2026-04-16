@@ -2,7 +2,7 @@ import 'package:daily_tarot_focus/core/util/locale_keys.dart';
 import 'package:daily_tarot_focus/core/util/tarot_app_sizes.dart';
 import 'package:daily_tarot_focus/core/util/tarot_mock_data.dart';
 import 'package:daily_tarot_focus/core/util/text_style_helper.dart';
-import 'package:daily_tarot_focus/core/widgets/fancy_container.dart';
+import 'package:daily_tarot_focus/core/widgets/glass_container.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/tarot_card_model.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -253,9 +253,9 @@ class _MeaningToggle extends StatelessWidget {
     return ValueListenableBuilder<bool>(
       valueListenable: isUpright,
       builder: (context, isUprightValue, _) {
-        return FancyContainer(
-          color: context.colors.surface,
-          borderRadius: Sp.xlarge.radiusR,
+        return GlassContainer(
+          glassColor: context.colors.surface,
+          borderRadius: Sp.xlarge,
           child: Padding(
             padding: Sp.tiny.padAllR,
             child: Row(
@@ -476,7 +476,6 @@ class _LineLabel extends StatelessWidget {
       color: context.colors.primary.withValues(alpha: 0.5),
     );
     final gap = Sp.tiny.widthBox;
-
     final textColumn = Expanded(
       child: Column(
         crossAxisAlignment: isLeft ? CrossAxisAlignment.end : CrossAxisAlignment.start,
@@ -485,10 +484,7 @@ class _LineLabel extends StatelessWidget {
           FittedBox(
             fit: BoxFit.scaleDown,
             alignment: isLeft ? Alignment.centerRight : Alignment.centerLeft,
-            child: Text(
-              title.toUpperCase(),
-              style: m9w700(context),
-            ),
+            child: Text(title.toUpperCase(), style: m9w700(context)),
           ),
           2.heightBox,
           Text(
@@ -503,10 +499,8 @@ class _LineLabel extends StatelessWidget {
     );
 
     return Padding(
-      padding: 4.padYR,
-      child: Row(
-        children: isLeft ? [textColumn, gap, line] : [line, gap, textColumn],
-      ),
+      padding: Sp.tiny.padYR,
+      child: Row(children: isLeft ? [textColumn, gap, line] : [line, gap, textColumn]),
     );
   }
 }

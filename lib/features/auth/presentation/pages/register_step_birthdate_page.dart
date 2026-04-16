@@ -2,7 +2,7 @@ import 'package:daily_tarot_focus/config/app_routes.dart';
 import 'package:daily_tarot_focus/core/util/locale_keys.dart';
 import 'package:daily_tarot_focus/core/util/tarot_app_sizes.dart';
 import 'package:daily_tarot_focus/core/util/text_style_helper.dart';
-import 'package:daily_tarot_focus/core/widgets/tarot_button.dart';
+import 'package:daily_tarot_focus/core/widgets/glass_button.dart';
 import 'package:daily_tarot_focus/features/auth/bloc/register_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -99,7 +99,7 @@ class _RegisterStepBirthdatePageState extends State<RegisterStepBirthdatePage> w
                 const Spacer(),
                 BlocBuilder<RegisterCubit, RegisterState>(
                   builder: (context, state) {
-                    return TarotButton(
+                    return GlassButton(
                       buttonText: LocaleKeys.register_page_complete_registration.tr(),
                       onTap: () async {
                         final authState = context.read<AuthCubit>().state;

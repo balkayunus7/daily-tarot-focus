@@ -78,7 +78,7 @@ class _PremiumButton extends StatelessWidget {
     final buttonHeight = buttonWidth * 0.4;
 
     return IgnorePointer(
-      child: TarotButton(
+      child: GlassButton(
         height: buttonHeight,
         width: buttonWidth,
         onTap: () {},

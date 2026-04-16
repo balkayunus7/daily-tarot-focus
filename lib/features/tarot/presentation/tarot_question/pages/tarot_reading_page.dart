@@ -2,7 +2,7 @@ import 'package:daily_tarot_focus/config/app_routes.dart';
 import 'package:daily_tarot_focus/core/util/locale_keys.dart';
 import 'package:daily_tarot_focus/core/util/tarot_app_sizes.dart';
 import 'package:daily_tarot_focus/core/util/text_style_helper.dart';
-import 'package:daily_tarot_focus/core/widgets/fancy_container.dart';
+import 'package:daily_tarot_focus/core/widgets/glass_container.dart';
 import 'package:daily_tarot_focus/core/widgets/tarot_app_bar.dart';
 import 'package:daily_tarot_focus/features/tarot/bloc/tarot/tarot_bloc.dart';
 import 'package:daily_tarot_focus/features/tarot/bloc/tarot/tarot_state.dart';
@@ -90,9 +90,9 @@ class _ReadingAnswerWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Sp.medium.heightBox,
-          FancyContainer(
+          GlassContainer(
             width: double.infinity,
-            borderRadius: Sp.xlarge.radiusR,
+            borderRadius: Sp.xlarge,
             child: Padding(
               padding: Sp.large.padHVR(Sp.medium),
               child: Column(
@@ -130,9 +130,9 @@ class _ReadingAnswerWidget extends StatelessWidget {
           ...data.cards.map((card) {
             return Padding(
               padding: Sp.large.padBottomR,
-              child: FancyContainer(
+              child: GlassContainer(
                 width: double.infinity,
-                borderRadius: Sp.xlarge.radiusR,
+                borderRadius: Sp.xlarge,
                 child: Padding(
                   padding: Sp.large.padHVR(Sp.medium),
                   child: Column(
@@ -172,9 +172,9 @@ class _ReadingAnswerWidget extends StatelessWidget {
               ),
             );
           }),
-          FancyContainer(
+          GlassContainer(
             width: double.infinity,
-            borderRadius: Sp.xlarge.radiusR,
+            borderRadius: Sp.xlarge,
             child: Padding(
               padding: Sp.large.padHVR(Sp.medium),
               child: Column(

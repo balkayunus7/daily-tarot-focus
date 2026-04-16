@@ -1,7 +1,7 @@
 import 'dart:math' as math;
 
 import 'package:daily_tarot_focus/core/util/tarot_app_sizes.dart';
-import 'package:daily_tarot_focus/core/widgets/tarot_button.dart';
+import 'package:daily_tarot_focus/core/widgets/glass_button.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile_boilerplate/presentation/app_text_styles.dart';
 import 'package:mobile_boilerplate/presentation/extensions/build_context_theme_ext.dart';
@@ -49,7 +49,7 @@ class GuidePromoCard extends StatelessWidget {
                 ),
               ),
               Sp.xxlarge.heightBox,
-              TarotButton(
+              GlassButton(
                 onTap: onTap,
                 buttonText: 'REHBERİ İNCELE',
                 glassOutColor: context.colors.secondary,

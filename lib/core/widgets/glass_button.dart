@@ -7,8 +7,8 @@ import 'package:mobile_boilerplate/common_dependencies.dart';
 import 'package:mobile_boilerplate/presentation/extensions/build_context_theme_ext.dart';
 import 'package:mobile_boilerplate/presentation/widgets/scaling_container.dart';
 
-class TarotButton extends StatelessWidget {
-  const TarotButton({
+class GlassButton extends StatelessWidget {
+  const GlassButton({
     required this.onTap,
     required this.buttonText,
     super.key,

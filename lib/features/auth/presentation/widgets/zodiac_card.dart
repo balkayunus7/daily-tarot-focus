@@ -16,7 +16,7 @@ class ZodiacCard extends StatelessWidget {
     final colors = context.colors;
     final textColor = isSelected ? colors.primary : colors.textPrimary;
     final borderColor = isSelected ? colors.primary : colors.border;
-    final bgColor = isSelected ? colors.surfaceSecondary : colors.surface;
+    final bgColor = isSelected ? colors.secondary : colors.primary.withValues(alpha: 0.1);
 
     return ScalingContainer(
       onTap: onTap,

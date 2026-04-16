@@ -10,7 +10,7 @@ class DailyEmptyWidget extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
-        TarotButton(
+        GlassButton(
           onTap: onTap,
           buttonText: message,
           paddingHorizontal: 20,

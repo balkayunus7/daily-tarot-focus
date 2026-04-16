@@ -10,7 +10,7 @@ class LibraryRetryWidget extends StatelessWidget {
         return Column(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
-            TarotButton(
+            GlassButton(
               onTap: () async {
                 final cubit = context.read<TarotLocalizationCubit>();
                 await cubit.loadCards(context.locale.languageCode);

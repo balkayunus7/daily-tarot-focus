@@ -71,6 +71,9 @@ TextStyle m15w400(BuildContext context) =>
 TextStyle m15w500(BuildContext context) =>
     buildTextStyle(context, fontSize: 15, fontWeight: FontWeight.w500);
 
+TextStyle m15w600(BuildContext context) =>
+    buildTextStyle(context, fontSize: 15, fontWeight: FontWeight.w600);
+
 TextStyle m15w700(BuildContext context) =>
     buildTextStyle(context, fontSize: 15, fontWeight: FontWeight.w700);
 

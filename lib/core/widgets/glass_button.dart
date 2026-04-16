@@ -40,10 +40,11 @@ class GlassButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colors = context.colors;
-    final glassColor = colors.textOnPrimary.withValues(alpha: 0.5);
-    final borderColor = colors.textOnPrimary.withValues(alpha: 0.3);
+    final glassColor = isDisabled ? colors.primary.withValues(alpha: 0.05) : colors.secondary;
+    final borderColor =
+        isDisabled ? colors.primary.withValues(alpha: 0.1) : colors.primary.withValues(alpha: 0.2);
     final textColor = colors.textOnPrimary;
-    final resolvedBorderRadius = borderRadius ?? 100.radiusR;
+    final resolvedBorderRadius = borderRadius ?? 24.radiusR;
     final shapeRadius = resolvedBorderRadius.topLeft.x;
 
     final innerContent = Row(

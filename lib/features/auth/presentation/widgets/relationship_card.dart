@@ -15,30 +15,25 @@ class RelationshipCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colors = context.colors;
-    final bgColor = isSelected ? colors.surfaceSecondary : colors.surface;
-    final borderColor = isSelected ? colors.primary : colors.border;
 
     return ScalingContainer(
       onTap: onTap,
-      child: Container(
-        padding: Sp.screen.padAllR,
-        decoration: BoxDecoration(
-          color: bgColor,
-          borderRadius: Sp.medium.radiusR,
-          border: Border.all(color: borderColor, width: 2),
-        ),
+      child: GlassContainer(
+        padding: Sp.small.padSymR(h: Sp.large, v: Sp.small),
+        borderRadius: Sp.medium,
+        glassColor:
+            isSelected
+                ? colors.primary.withValues(alpha: 0.2)
+                : colors.primary.withValues(alpha: 0.05),
+        borderColor: colors.primary.withValues(alpha: 0.1),
         child: Row(
           children: [
             Text(status.emoji, style: m28w600(context)),
             Sp.medium.widthBox,
-            Expanded(child: Text(status.localizedName, style: m16w600(context))),
+            Expanded(child: Text(status.localizedName, style: m15w600(context))),
             if (isSelected) ...[
               Sp.medium.widthBox,
-              Icon(
-                Icons.check_circle,
-                color: colors.primary,
-                size: Sp.xlarge,
-              ),
+              Icon(Icons.check_circle, color: colors.primary, size: Sp.xlarge),
             ],
           ],
         ),

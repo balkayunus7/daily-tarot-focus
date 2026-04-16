@@ -40,6 +40,10 @@ class GlassContainer extends StatelessWidget {
       width: width,
       height: height,
       margin: margin,
+      decoration: BoxDecoration(
+        border: Border.all(color: borderColor ?? Colors.transparent, width: 2),
+        borderRadius: borderRadius != null ? BorderRadius.circular(borderRadius!) : null,
+      ),
       child: LiquidGlass.withOwnLayer(
         settings: LiquidGlassSettings(
           glassColor: resolvedGlassColor,
@@ -49,10 +53,7 @@ class GlassContainer extends StatelessWidget {
           refractiveIndex: refractiveIndex ?? 1.15,
         ),
         shape: LiquidRoundedSuperellipse(borderRadius: borderRadius ?? 100),
-        child: Padding(
-          padding: padding ?? EdgeInsets.zero,
-          child: child,
-        ),
+        child: Padding(padding: padding ?? EdgeInsets.zero, child: child),
       ),
     );
   }

@@ -78,7 +78,7 @@ class _SplashPageState extends State<SplashPage>
             },
           ),
         ],
-        child: TarotSplashView(
+        child: SplashView(
           logo: SizedBox(
             width: 150,
             height: 150,

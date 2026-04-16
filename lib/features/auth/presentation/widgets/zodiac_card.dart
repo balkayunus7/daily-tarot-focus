@@ -14,32 +14,60 @@ class ZodiacCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colors = context.colors;
-    final textColor = isSelected ? colors.primary : colors.textPrimary;
-    final borderColor = isSelected ? colors.primary : colors.border;
-    final bgColor = isSelected ? colors.secondary : colors.primary.withValues(alpha: 0.1);
 
     return ScalingContainer(
       onTap: onTap,
-      child: Container(
+      child: GlassContainer(
         width: double.infinity,
-        padding: Sp.screen.padAllR,
-        decoration: BoxDecoration(
-          color: bgColor,
-          border: Border.all(color: borderColor, width: 2),
-          borderRadius: Sp.medium.radiusR,
-        ),
+        borderRadius: Sp.xlarge,
+        glassColor:
+            isSelected
+                ? colors.primary.withValues(alpha: 0.2)
+                : colors.primary.withValues(alpha: 0.05),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(zodiac.emoji, style: m32w600(context)),
-            Sp.xsmall.heightBox,
+            _ZodiacContainer(zodiac: zodiac),
+            12.heightBox,
             Text(
               zodiac.localizedName,
-              style: m12w600(context).copyWith(color: textColor),
-              textAlign: TextAlign.center,
+              style: m12w500(context).copyWith(
+                fontWeight: isSelected ? FontWeight.w700 : FontWeight.w500,
+                letterSpacing: 0.3,
+                color: isSelected ? colors.textPrimary : colors.textSecondary,
+              ),
             ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class _ZodiacContainer extends StatelessWidget {
+  const _ZodiacContainer({required this.zodiac});
+  final ZodiacSign zodiac;
+
+  @override
+  Widget build(BuildContext context) {
+    final colors = context.colors;
+    return Container(
+      width: 44.w,
+      height: 44.w,
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          colors: [colors.gradientStart, colors.gradientEnd],
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+        ),
+        borderRadius: 12.radiusR,
+      ),
+      alignment: Alignment.center,
+      child: SvgPicture.asset(
+        zodiac.svgPath,
+        width: 24.w,
+        height: 24.w,
+        colorFilter: ColorFilter.mode(colors.textOnPrimary, BlendMode.srcIn),
       ),
     );
   }

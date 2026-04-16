@@ -1,8 +1,9 @@
-part of '../pages/register_step_zodiac_page.dart';
+import 'dart:math' as math;
+import 'package:flutter/material.dart';
+import 'package:mobile_boilerplate/presentation/extensions/build_context_theme_ext.dart';
 
-class ZodiacBackground extends StatelessWidget {
-  const ZodiacBackground({super.key});
-
+class StepBackground extends StatelessWidget {
+  const StepBackground({super.key});
   static const _starCount = 70;
 
   @override

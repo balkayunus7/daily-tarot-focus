@@ -78,4 +78,6 @@ enum ZodiacSign {
         return '♓';
     }
   }
+
+  String get svgPath => 'assets/svg/zodiac-${value.toLowerCase()}.svg';
 }

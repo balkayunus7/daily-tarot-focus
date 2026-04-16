@@ -18,13 +18,10 @@ class DateRangeBadge extends StatelessWidget {
           padding: Sp.large.padXR,
           child: Row(
             children: [
-              Container(
-                padding: Sp.small.padHVR(Sp.tiny),
-                decoration: BoxDecoration(
-                  color: context.colors.primary.withValues(alpha: 0.1),
-                  borderRadius: 999.radiusR,
-                  border: Border.all(color: context.colors.primary.withValues(alpha: 0.3)),
-                ),
+              GlassContainer(
+                padding: Sp.small.padHVR(Sp.xsmall),
+                glassColor: context.colors.primary.withValues(alpha: 0.05),
+
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [

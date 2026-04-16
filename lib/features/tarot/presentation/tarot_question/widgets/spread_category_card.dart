@@ -1,7 +1,10 @@
 import 'package:daily_tarot_focus/core/util/tarot_app_assets.dart';
 import 'package:daily_tarot_focus/core/util/tarot_app_sizes.dart';
 import 'package:daily_tarot_focus/core/util/text_style_helper.dart';
+import 'package:daily_tarot_focus/core/widgets/glass_container.dart';
 import 'package:flutter/material.dart';
+import 'package:iconify_flutter/iconify_flutter.dart';
+import 'package:iconify_flutter/icons/mdi.dart';
 import 'package:mobile_boilerplate/common_dependencies.dart';
 import 'package:mobile_boilerplate/presentation/extensions/build_context_theme_ext.dart';
 import 'package:mobile_boilerplate/presentation/widgets/scaling_container.dart';
@@ -12,12 +15,14 @@ class SpreadCategoryCard extends StatelessWidget {
     required this.onTap,
     required this.title,
     this.subtitle,
+    this.isSelected = false,
     super.key,
   });
   final String title;
   final String? subtitle;
   final TarotAppAssets icon;
   final VoidCallback onTap;
+  final bool isSelected;
 
   @override
   Widget build(BuildContext context) {
@@ -25,25 +30,33 @@ class SpreadCategoryCard extends StatelessWidget {
 
     return ScalingContainer(
       onTap: onTap,
-      child: Container(
-        padding: Sp.screen.padAllR,
-        decoration: BoxDecoration(
-          color: colors.secondary.withValues(alpha: 0.05),
-          borderRadius: Sp.medium.radiusR,
-        ),
+      child: GlassContainer(
+        padding: Sp.small.padSymR(h: Sp.large, v: Sp.small),
+        borderRadius: Sp.medium,
+        glassColor:
+            isSelected
+                ? colors.primary.withValues(alpha: 0.2)
+                : colors.primary.withValues(alpha: 0.05),
+        borderColor: colors.primary.withValues(alpha: 0.05),
         child: Row(
           children: [
             Container(
-              padding: Sp.tiny.padAllR,
+              width: 36.w,
+              height: 36.h,
               decoration: BoxDecoration(
-                color: colors.surface,
-                shape: BoxShape.circle,
+                gradient: LinearGradient(
+                  colors: [colors.gradientStart, colors.gradientEnd],
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                ),
+                borderRadius: Sp.small.radiusR,
               ),
+              alignment: Alignment.center,
               child: SvgPicture.asset(
                 icon.path,
-                colorFilter: ColorFilter.mode(colors.primary, BlendMode.srcIn),
-                width: 20,
-                height: 20,
+                colorFilter: ColorFilter.mode(colors.accent, BlendMode.srcIn),
+                width: 20.w,
+                height: 20.h,
               ),
             ),
             Sp.medium.widthBox,
@@ -52,12 +65,9 @@ class SpreadCategoryCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Text(
-                    title,
-                    style: m14w600(context).copyWith(color: colors.textPrimary),
-                  ),
+                  Text(title, style: m15w600(context)),
                   if (subtitle != null) ...[
-                    Sp.tiny.heightBox,
+                    2.heightBox,
                     Text(
                       subtitle!,
                       style: m12w500(context).copyWith(
@@ -68,6 +78,10 @@ class SpreadCategoryCard extends StatelessWidget {
                 ],
               ),
             ),
+            if (isSelected) ...[
+              Sp.medium.widthBox,
+              Iconify(Mdi.check_circle, color: colors.primary),
+            ],
           ],
         ),
       ),

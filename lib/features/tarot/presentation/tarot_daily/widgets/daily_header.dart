@@ -24,12 +24,12 @@ class DailyHeader extends StatelessWidget {
           ),
           ScalingContainer(
             onTap: showFilterSheet,
-            child: Container(
-              width: 48,
-              height: 48,
-              decoration: BoxDecoration(color: context.colors.surface, shape: BoxShape.circle),
+            child: GlassContainer(
+              width: Sp.xxxlarge.w,
+              height: Sp.xxxlarge.h,
+              glassColor: context.colors.primary.withValues(alpha: 0.3),
               child: Center(
-                child: Icon(Icons.filter_list, color: context.colors.primary),
+                child: Icon(Icons.filter_list, color: context.colors.accent),
               ),
             ),
           ),

@@ -2,6 +2,7 @@ import 'package:daily_tarot_focus/core/util/tarot_app_assets.dart';
 import 'package:daily_tarot_focus/core/util/tarot_app_sizes.dart';
 import 'package:daily_tarot_focus/core/util/text_style_helper.dart';
 import 'package:daily_tarot_focus/core/widgets/glass_button.dart';
+import 'package:daily_tarot_focus/core/widgets/glass_container.dart';
 import 'package:daily_tarot_focus/features/auth/domain/models/tarot_user.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -107,17 +108,13 @@ class TarotAppBar extends StatelessWidget implements PreferredSizeWidget {
           return ScalingContainer(
             onTap: onBackIconTap ?? () => context.pop(),
             child: Center(
-              child: Container(
-                width: 32,
-                height: 32,
-                decoration: BoxDecoration(
-                  color: context.colors.secondary.withValues(alpha: 0.1),
-                  shape: BoxShape.circle,
-                ),
+              child: GlassContainer(
+                width: 32.w,
+                height: 32.h,
                 child: Icon(
                   backIcon ?? Icons.arrow_back,
-                  size: 20,
-                  color: context.colors.textPrimary,
+                  size: 16,
+                  color: context.colors.textOnPrimary,
                 ),
               ),
             ),
@@ -130,17 +127,13 @@ class TarotAppBar extends StatelessWidget implements PreferredSizeWidget {
           ScalingContainer(
             onTap: onIconTap ?? () => context.pop(),
             child: Center(
-              child: Container(
-                width: 32,
-                height: 32,
-                decoration: BoxDecoration(
-                  color: context.colors.secondary.withValues(alpha: 0.1),
-                  shape: BoxShape.circle,
-                ),
+              child: GlassContainer(
+                width: 32.w,
+                height: 32.h,
                 child: Icon(
                   trailingIcon,
-                  size: 18,
-                  color: context.colors.textPrimary,
+                  size: 16,
+                  color: context.colors.textOnPrimary,
                 ),
               ),
             ),

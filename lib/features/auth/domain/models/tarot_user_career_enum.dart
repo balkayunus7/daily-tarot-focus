@@ -3,12 +3,12 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:iconify_flutter/icons/mdi.dart';
 
 enum CareerStatus {
-  student('student'),
-  employed('employed'),
-  selfEmployed('self_employed'),
-  unemployed('unemployed'),
-  retired('retired'),
-  preferNotToSay('prefer_not_to_say');
+  student('Student'),
+  employed('Employed'),
+  selfEmployed('Self-employed'),
+  unemployed('Looking for work'),
+  retired('Retired'),
+  preferNotToSay('Prefer not to say');
 
   const CareerStatus(this.value);
 

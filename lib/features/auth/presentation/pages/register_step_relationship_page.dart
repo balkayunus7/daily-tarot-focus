@@ -48,7 +48,7 @@ class RegisterStepRelationshipPage extends StatelessWidget {
                   Sp.xsmall.heightBox,
                   Text(
                     LocaleKeys.register_page_relationship_subtitle.tr(),
-                    style: m16w500(context).copyWith(color: colors.textSecondary),
+                    style: m15w500(context).copyWith(color: colors.secondary),
                   ),
                   Sp.small.heightBox,
                   LinearProgressIndicator(

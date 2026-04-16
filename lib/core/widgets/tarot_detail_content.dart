@@ -169,42 +169,34 @@ class _TarotDetailContentState extends State<TarotDetailContent> {
                       if (meanings.general.isNotEmpty) ...[
                         _InfoCard(
                           icon: Icons.auto_awesome,
-                          iconColor: context.colors.surface,
-                          iconBgColor: context.colors.primary,
                           title: LocaleKeys.tarot_detail_general.tr(),
                           content: meanings.general,
                         ),
-                        Sp.large.heightBox,
+                        Sp.medium.heightBox,
                       ],
                       if (meanings.love.isNotEmpty) ...[
                         _InfoCard(
                           icon: Icons.favorite,
-                          iconColor: context.colors.surface,
-                          iconBgColor: context.colors.primary,
                           title: LocaleKeys.tarot_detail_love.tr(),
                           content: meanings.love,
                         ),
-                        Sp.large.heightBox,
+                        Sp.medium.heightBox,
                       ],
                       if (meanings.career.isNotEmpty) ...[
                         _InfoCard(
                           icon: Icons.work,
-                          iconColor: context.colors.surface,
-                          iconBgColor: context.colors.primary,
                           title: LocaleKeys.tarot_detail_career.tr(),
                           content: meanings.career,
                         ),
-                        Sp.large.heightBox,
+                        Sp.medium.heightBox,
                       ],
                       if (meanings.finances.isNotEmpty) ...[
                         _InfoCard(
                           icon: Icons.account_balance_wallet,
-                          iconColor: context.colors.surface,
-                          iconBgColor: context.colors.primary,
                           title: 'Finance',
                           content: meanings.finances,
                         ),
-                        Sp.large.heightBox,
+                        Sp.medium.heightBox,
                       ],
                       Sp.xlarge.heightBox,
                       Center(
@@ -296,9 +288,9 @@ class _MeaningSwitch extends StatelessWidget {
         onTap: onTap,
         child: AnimatedContainer(
           duration: const Duration(milliseconds: 200),
-          padding: 12.padYR,
+          padding: Sp.small.padYR,
           decoration: BoxDecoration(
-            color: isActive ? context.colors.primary.withValues(alpha: 0.8) : Colors.transparent,
+            color: isActive ? context.colors.secondary.withValues(alpha: 0.7) : Colors.transparent,
             borderRadius: 20.radiusR,
           ),
           child: Center(
@@ -326,18 +318,16 @@ class _KeywordsWrap extends StatelessWidget {
     return Wrap(
       alignment: WrapAlignment.center,
       spacing: 6,
-      runSpacing: 6,
+      runSpacing: 3,
       children:
           keywords.map((keyword) {
-            return Container(
-              padding: Sp.medium.padHVR(Sp.xsmall),
-              decoration: BoxDecoration(
-                color: context.colors.secondary.withValues(alpha: 0.1),
-                borderRadius: Sp.medium.radiusR,
-              ),
+            return GlassContainer(
+              padding: Sp.small.padHVR(Sp.xsmall),
+              borderRadius: Sp.medium,
+              glassColor: context.colors.primary.withValues(alpha: 0.2),
               child: Text(
                 keyword,
-                style: m10w500(context).copyWith(color: context.colors.textSecondary),
+                style: m10w500(context).copyWith(color: context.colors.textOnPrimary),
               ),
             );
           }).toList(),
@@ -346,26 +336,19 @@ class _KeywordsWrap extends StatelessWidget {
 }
 
 class _InfoCard extends StatelessWidget {
-  const _InfoCard({
-    required this.icon,
-    required this.iconColor,
-    required this.iconBgColor,
-    required this.title,
-    required this.content,
-  });
+  const _InfoCard({required this.icon, required this.title, required this.content});
   final IconData icon;
-  final Color iconColor;
-  final Color iconBgColor;
   final String title;
   final String content;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        color: context.colors.secondary.withValues(alpha: 0.05),
-        borderRadius: Sp.medium.radiusR,
-      ),
+    final colors = context.colors;
+
+    return GlassContainer(
+      borderRadius: Sp.medium,
+      glassColor: colors.primary.withValues(alpha: 0.05),
+      borderColor: colors.primary.withValues(alpha: 0.05),
       padding: Sp.large.padAllR,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -373,16 +356,25 @@ class _InfoCard extends StatelessWidget {
           Row(
             children: [
               Container(
-                padding: Sp.tiny.padAllR,
-                decoration: BoxDecoration(color: context.colors.surface, shape: BoxShape.circle),
-                child: Icon(icon, color: context.colors.primary, size: 16),
+                width: 28.w,
+                height: 28.h,
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    colors: [colors.gradientStart, colors.gradientEnd],
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                  ),
+                  borderRadius: Sp.small.radiusR,
+                ),
+                alignment: Alignment.center,
+                child: Icon(icon, color: colors.accent, size: 16),
               ),
               Sp.small.widthBox,
               Text(
                 title,
-                style: m14w600(context).copyWith(
+                style: m15w600(context).copyWith(
                   fontStyle: FontStyle.italic,
-                  color: context.colors.textPrimary,
+                  color: colors.textPrimary,
                 ),
               ),
             ],
@@ -390,7 +382,7 @@ class _InfoCard extends StatelessWidget {
           Sp.xsmall.heightBox,
           _ExpandableText(
             text: content,
-            style: m13w400(context).copyWith(color: context.colors.textSecondary, height: 1.5),
+            style: m13w400(context).copyWith(color: colors.textSecondary, height: 1.5),
           ),
         ],
       ),

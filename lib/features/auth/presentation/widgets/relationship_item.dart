@@ -25,7 +25,7 @@ class RelationshipItem extends StatelessWidget {
             isSelected
                 ? colors.primary.withValues(alpha: 0.2)
                 : colors.primary.withValues(alpha: 0.05),
-        borderColor: colors.primary.withValues(alpha: 0.1),
+        borderColor: colors.primary.withValues(alpha: 0.05),
         child: Row(
           children: [
             Container(

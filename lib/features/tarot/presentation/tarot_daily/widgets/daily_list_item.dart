@@ -8,7 +8,7 @@ class _DailyCardListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final dotColor = context.colors.primary;
+    final primary = context.colors.primary;
 
     return ScalingContainer(
       onTap: () => context.push(AppRoutes.tarotDailyDetail, extra: card),
@@ -25,8 +25,8 @@ class _DailyCardListItem extends StatelessWidget {
                       begin: Alignment.topCenter,
                       end: Alignment.bottomCenter,
                       colors: [
-                        dotColor.withValues(alpha: isFirst ? 1.0 : 0.6),
-                        dotColor.withValues(alpha: isLast ? 0.0 : 0.6),
+                        primary.withValues(alpha: isFirst ? 1.0 : 0.6),
+                        primary.withValues(alpha: isLast ? 0.0 : 0.6),
                       ],
                     ),
                   ),
@@ -40,7 +40,7 @@ class _DailyCardListItem extends StatelessWidget {
                       Center(
                         child: SvgPicture.asset(
                           TarotAppAssets.tarotIcon.path,
-                          colorFilter: ColorFilter.mode(dotColor, BlendMode.srcIn),
+                          colorFilter: ColorFilter.mode(primary, BlendMode.srcIn),
                           width: 20,
                           height: 20,
                         ),
@@ -49,7 +49,7 @@ class _DailyCardListItem extends StatelessWidget {
                       if (card.savedAt != null) ...[
                         Text(
                           card.savedAt!.dAmWithLastDays(context.locale),
-                          style: m10w600(context).copyWith(color: dotColor, letterSpacing: 0.5),
+                          style: m10w600(context).copyWith(color: primary, letterSpacing: 0.5),
                           textAlign: TextAlign.center,
                         ),
                       ],
@@ -61,18 +61,16 @@ class _DailyCardListItem extends StatelessWidget {
             Expanded(
               child: Padding(
                 padding: Sp.large.padHVR(Sp.medium),
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: context.colors.surface,
-                    borderRadius: Sp.medium.radiusR,
-                    border: Border.all(color: context.colors.border),
-                  ),
+                child: GlassContainer(
+                  borderRadius: Sp.medium,
+                  glassColor: primary.withValues(alpha: 0.05),
+                  borderColor: primary.withValues(alpha: 0.05),
                   padding: Sp.screen.padAllR,
                   child: Row(
                     children: [
                       Container(
                         decoration: BoxDecoration(
-                          border: Border.all(color: dotColor.withValues(alpha: 0.5)),
+                          border: Border.all(color: primary.withValues(alpha: 0.3)),
                           borderRadius: Sp.xsmall.radiusR,
                         ),
                         child: ClipRRect(
@@ -91,7 +89,7 @@ class _DailyCardListItem extends StatelessWidget {
                                 height: 80.h,
                                 child: DecoratedBox(
                                   decoration: BoxDecoration(
-                                    color: dotColor.withValues(alpha: 0.1),
+                                    color: primary.withValues(alpha: 0.1),
                                     borderRadius: Sp.xsmall.radiusR,
                                   ),
                                   child: Center(
@@ -99,7 +97,7 @@ class _DailyCardListItem extends StatelessWidget {
                                       width: 16.w,
                                       height: 16.h,
                                       child: SpinKitFadingCircle(
-                                        color: dotColor.withValues(alpha: 0.4),
+                                        color: primary.withValues(alpha: 0.4),
                                         size: 16,
                                       ),
                                     ),
@@ -115,19 +113,19 @@ class _DailyCardListItem extends StatelessWidget {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(card.name, style: m14w700(context)),
+                            Text(card.name, style: m14w700(context).copyWith(color: primary)),
                             Sp.small.heightBox,
                             if (card.uprightKeywords.isNotEmpty) ...[
                               Container(
                                 padding: Sp.small.padAllR,
                                 decoration: BoxDecoration(
-                                  border: Border.all(color: dotColor.withValues(alpha: 0.5)),
-                                  borderRadius: Sp.xsmall.radiusR,
+                                  color: context.colors.accent.withValues(alpha: 0.5),
+                                  borderRadius: Sp.small.radiusR,
                                 ),
                                 child: Text(
                                   card.uprightKeywords.take(3).join(' • '),
                                   style: m10w600(context).copyWith(
-                                    color: dotColor,
+                                    color: context.colors.textOnSecondary,
                                     letterSpacing: 0.2,
                                   ),
                                 ),
@@ -136,8 +134,12 @@ class _DailyCardListItem extends StatelessWidget {
                           ],
                         ),
                       ),
-                      Sp.tiny.widthBox,
-                      const Icon(Icons.chevron_right),
+                      Sp.xsmall.widthBox,
+                      Icon(
+                        Icons.chevron_right,
+                        color: context.colors.secondary,
+                        size: 20,
+                      ),
                     ],
                   ),
                 ),

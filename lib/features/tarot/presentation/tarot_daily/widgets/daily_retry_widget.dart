@@ -13,11 +13,9 @@ class DailyEmptyWidget extends StatelessWidget {
         GlassButton(
           onTap: onTap,
           buttonText: message,
-          paddingHorizontal: 20,
-          width: 168,
-          height: 48,
-          buttonTextStyle: m10w600(context),
-          borderRadius: Sp.xlarge.radiusR,
+          width: 168.w,
+          height: 48.h,
+          buttonTextStyle: m10w600(context).copyWith(color: context.colors.textOnPrimary),
         ),
         Sp.xxlarge.heightBox,
         Image.asset(

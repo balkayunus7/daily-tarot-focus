@@ -5,7 +5,6 @@ import 'package:daily_tarot_focus/core/widgets/tarot_app_bar.dart';
 import 'package:daily_tarot_focus/features/tarot/bloc/tarot_question/tarot_question_bloc.dart';
 import 'package:daily_tarot_focus/features/tarot/bloc/tarot_question/tarot_question_state.dart';
 import 'package:daily_tarot_focus/features/tarot/presentation/tarot_question/widgets/question_reader_card.dart';
-import 'package:daily_tarot_focus/features/tarot/presentation/tarot_question/widgets/spread_category_guide.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mobile_boilerplate/common_dependencies.dart';
@@ -73,8 +72,6 @@ class TarotQuestionStep1Page extends StatelessWidget {
                           },
                         ),
                         Sp.xlarge.heightBox,
-                        SpreadCategoryGuide(onTap: () {}),
-                        Sp.large.heightBox,
                       ],
                     ),
                   ),

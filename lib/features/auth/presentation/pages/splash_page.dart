@@ -6,6 +6,8 @@ import 'package:daily_tarot_focus/features/auth/presentation/widgets/splash_view
 import 'package:daily_tarot_focus/features/tarot/bloc/tarot/tarot_bloc.dart';
 import 'package:daily_tarot_focus/features/tarot/bloc/tarot/tarot_state.dart';
 import 'package:daily_tarot_focus/features/tarot/bloc/tarot_localization/tarot_localization_cubit.dart';
+import 'package:daily_tarot_focus/features/tarot/bloc/tarot_question/tarot_question_bloc.dart';
+import 'package:daily_tarot_focus/features/tarot/bloc/tarot_question/tarot_question_state.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/fetch_daily_cards_request_model.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -56,6 +58,16 @@ class _SplashPageState extends State<SplashPage>
           BlocListener<TarotBloc, TarotState>(
             listenWhen: (previous, current) {
               return previous.hasFetchedDailyCards != current.hasFetchedDailyCards;
+            },
+            listener: (context, state) {
+              context.read<TarotQuestionBloc>().addInitRequested();
+            },
+          ),
+          BlocListener<TarotQuestionBloc, TarotQuestionState>(
+            listenWhen: (previous, current) {
+              return (previous.hasFetchedCategoriesSucceeded !=
+                      current.hasFetchedCategoriesSucceeded) &&
+                  (previous.hasFetchedReadersSucceeded != current.hasFetchedReadersSucceeded);
             },
             listener: (context, state) {
               context.go(AppRoutes.tarotExplore);

@@ -6,8 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:mobile_boilerplate/presentation/app_text_styles.dart';
 import 'package:mobile_boilerplate/presentation/extensions/build_context_theme_ext.dart';
 
-class GuidePromoCard extends StatelessWidget {
-  const GuidePromoCard({required this.onTap, super.key});
+class SpreadCategoryGuide extends StatelessWidget {
+  const SpreadCategoryGuide({required this.onTap, super.key});
   final VoidCallback onTap;
 
   @override

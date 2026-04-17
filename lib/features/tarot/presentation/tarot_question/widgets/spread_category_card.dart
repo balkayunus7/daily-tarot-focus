@@ -33,10 +33,7 @@ class SpreadCategoryCard extends StatelessWidget {
       child: GlassContainer(
         padding: Sp.small.padSymR(h: Sp.large, v: Sp.small),
         borderRadius: Sp.medium,
-        glassColor:
-            isSelected
-                ? colors.primary.withValues(alpha: 0.2)
-                : colors.primary.withValues(alpha: 0.05),
+        glassColor: colors.primary.withValues(alpha: 0.05),
         borderColor: colors.primary.withValues(alpha: 0.05),
         child: Row(
           children: [

@@ -1,12 +1,13 @@
 import 'package:daily_tarot_focus/core/util/tarot_app_sizes.dart';
 import 'package:daily_tarot_focus/core/util/text_style_helper.dart';
-import 'package:daily_tarot_focus/features/tarot/domain/models/tarot_spread_model.dart';
+import 'package:daily_tarot_focus/core/widgets/glass_container.dart';
+import 'package:daily_tarot_focus/features/tarot/domain/models/tarot_spread_category_model.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile_boilerplate/presentation/extensions/build_context_theme_ext.dart';
 import 'package:mobile_boilerplate/presentation/widgets/scaling_container.dart';
 
-class TarotSpreadCard extends StatelessWidget {
-  const TarotSpreadCard({required this.spread, required this.onTap, super.key});
+class SpreadLayoutCard extends StatelessWidget {
+  const SpreadLayoutCard({required this.spread, required this.onTap, super.key});
   final TarotSpreadModel spread;
   final VoidCallback onTap;
 
@@ -16,12 +17,11 @@ class TarotSpreadCard extends StatelessWidget {
 
     return ScalingContainer(
       onTap: onTap,
-      child: Container(
+      child: GlassContainer(
         padding: Sp.screen.padAllR,
-        decoration: BoxDecoration(
-          color: colors.secondary.withValues(alpha: 0.05),
-          borderRadius: Sp.medium.radiusR,
-        ),
+        borderRadius: Sp.medium,
+        glassColor: colors.primary.withValues(alpha: 0.05),
+        borderColor: colors.primary.withValues(alpha: 0.05),
         child: Row(
           children: [
             SizedBox(

@@ -1,0 +1,12 @@
+Analyzing daily-tarot-focus...                                  
+
+   info • Sort directive sections alphabetically • lib/config/app_router.dart:14:1 • directives_ordering
+   info • Sort directive sections alphabetically • lib/config/app_router.dart:21:1 • directives_ordering
+   info • Missing documentation explaining why the diagnostic is ignored • lib/core/util/locale_keys.dart:3:1 • document_ignores
+   info • The diagnostic 'constant_identifier_names' isn't produced in this file so it doesn't need to be ignored • lib/core/util/locale_keys.dart:3:21 • unnecessary_ignore
+   info • The value of the argument is redundant because it matches the default value • lib/features/tarot/bloc/tarot_question/tarot_question_state.dart:29:21 • avoid_redundant_argument_values
+   info • Sort directive sections alphabetically • lib/features/tarot/presentation/tarot_explore/pages/tarot_explore_page.dart:10:1 • directives_ordering
+   info • Missing a newline at the end of the file • lib/features/tarot/presentation/tarot_question/pages/tarot_question_step2_page.dart:119:2 • eol_at_end_of_file
+   info • Missing a newline at the end of the file • lib/features/tarot/presentation/tarot_question/pages/tarot_question_step3_page.dart:90:2 • eol_at_end_of_file
+
+8 issues found. (ran in 4.6s)

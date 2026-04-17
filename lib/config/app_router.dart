@@ -10,12 +10,12 @@ import 'package:daily_tarot_focus/features/core/subscription/pages/tarot_subscri
 import 'package:daily_tarot_focus/features/tarot/bloc/tarot_localization/tarot_localization_cubit.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/reading_request_model.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/tarot_card_model.dart';
-import 'package:daily_tarot_focus/features/tarot/domain/models/tarot_spread_model.dart';
 import 'package:daily_tarot_focus/features/tarot/presentation/tarot_daily/page/tarot_daily_detail_page.dart';
 import 'package:daily_tarot_focus/features/tarot/presentation/tarot_deck/pages/tarot_deck_detail_page.dart';
 import 'package:daily_tarot_focus/features/tarot/presentation/tarot_deck/pages/tarot_deck_page.dart';
 import 'package:daily_tarot_focus/features/tarot/presentation/tarot_question/pages/tarot_question_step1_page.dart';
 import 'package:daily_tarot_focus/features/tarot/presentation/tarot_question/pages/tarot_question_step2_page.dart';
+import 'package:daily_tarot_focus/features/tarot/presentation/tarot_question/pages/tarot_question_step3_page.dart';
 import 'package:daily_tarot_focus/features/tarot/presentation/tarot_question/pages/tarot_reading_page.dart';
 import 'package:daily_tarot_focus/features/tarot/presentation/tarot_reveal/pages/tarot_reveal_detail_page.dart';
 import 'package:daily_tarot_focus/features/tarot/presentation/tarot_reveal/pages/tarot_reveal_page.dart';
@@ -171,8 +171,8 @@ final appRouter = GoRouter(
       },
     ),
     GoRoute(
-      path: AppRoutes.tarotQuestion,
-      name: AppRoutes.tarotQuestion,
+      path: AppRoutes.tarotQuestionStep1,
+      name: AppRoutes.tarotQuestionStep1,
       pageBuilder: (context, state) {
         return MaterialPage(
           key: state.pageKey,
@@ -181,13 +181,22 @@ final appRouter = GoRouter(
       },
     ),
     GoRoute(
-      path: AppRoutes.tarotSpreadSelect,
-      name: AppRoutes.tarotSpreadSelect,
+      path: AppRoutes.tarotQuestionStep2,
+      name: AppRoutes.tarotQuestionStep2,
       pageBuilder: (context, state) {
-        final category = state.extra! as TarotSpreadCategoryModel;
         return MaterialPage(
           key: state.pageKey,
-          child: TarotQuestionStep2Page(category: category),
+          child: const TarotQuestionStep2Page(),
+        );
+      },
+    ),
+    GoRoute(
+      path: AppRoutes.tarotQuestionStep3,
+      name: AppRoutes.tarotQuestionStep3,
+      pageBuilder: (context, state) {
+        return MaterialPage(
+          key: state.pageKey,
+          child: const TarotQuestionStep3Page(),
         );
       },
     ),

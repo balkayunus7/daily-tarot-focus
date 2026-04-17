@@ -1,14 +1,19 @@
+import 'package:daily_tarot_focus/config/app_routes.dart';
 import 'package:daily_tarot_focus/core/util/tarot_app_sizes.dart';
 import 'package:daily_tarot_focus/core/util/text_style_helper.dart';
 import 'package:daily_tarot_focus/core/widgets/tarot_app_bar.dart';
-import 'package:daily_tarot_focus/features/tarot/domain/models/tarot_spread_model.dart';
-import 'package:daily_tarot_focus/features/tarot/presentation/tarot_question/widgets/tarot_spread_card.dart';
+import 'package:daily_tarot_focus/features/tarot/bloc/tarot_question/tarot_question_bloc.dart';
+import 'package:daily_tarot_focus/features/tarot/bloc/tarot_question/tarot_question_state.dart';
+import 'package:daily_tarot_focus/features/tarot/presentation/tarot_question/helpers/spread_category_model.dart';
+import 'package:daily_tarot_focus/features/tarot/presentation/tarot_question/widgets/spread_category_card.dart';
+import 'package:daily_tarot_focus/features/tarot/presentation/tarot_question/widgets/spread_category_guide.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:mobile_boilerplate/common_dependencies.dart';
 import 'package:mobile_boilerplate/presentation/extensions/build_context_theme_ext.dart';
 
 class TarotQuestionStep2Page extends StatelessWidget {
-  const TarotQuestionStep2Page({required this.category, super.key});
-  final TarotSpreadCategoryModel category;
+  const TarotQuestionStep2Page({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +27,7 @@ class TarotQuestionStep2Page extends StatelessWidget {
             Text('Açılım Yolculuğu', style: m16w700(context)),
             Sp.tiny.heightBox,
             Text(
-              'ADIM 2 / 4',
+              'ADIM 2 / 3',
               style: m10w500(context).copyWith(
                 color: colors.textSecondary,
                 letterSpacing: 1.5,
@@ -31,57 +36,56 @@ class TarotQuestionStep2Page extends StatelessWidget {
           ],
         ),
       ),
-      body: SafeArea(
-        child: SingleChildScrollView(
-          padding: Sp.medium.padXR,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              Sp.small.heightBox,
-              Text(
-                'İçsel rehberliğini aydınlatacak düzeni belirle.',
-                style: m14w400(context).copyWith(color: colors.textSecondary),
-                textAlign: TextAlign.center,
-              ),
-              Sp.xxlarge.heightBox,
-              ListView.separated(
-                physics: const NeverScrollableScrollPhysics(),
-                shrinkWrap: true,
-                itemCount: category.spreads.length,
-                separatorBuilder: (context, index) => Sp.medium.heightBox,
-                itemBuilder: (context, index) {
-                  final spread = category.spreads[index];
-                  return TarotSpreadCard(
-                    spread: spread,
-                    onTap: () {},
-                  );
-                },
-              ),
-              Sp.xxlarge.heightBox,
-              _QuoteSection(),
-              Sp.xxlarge.heightBox,
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}
+      body: BlocBuilder<TarotQuestionBloc, TarotQuestionState>(
+        builder: (context, state) {
+          final categories = state.categoriesOrCrash;
 
-class _QuoteSection extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Text(
-          '"Gelecek, şu anki düşüncelerinizin bir yansımasıdır."',
-          style: m16w600(context).copyWith(
-            fontStyle: FontStyle.italic,
-            color: context.colors.textSecondary.withValues(alpha: 0.6),
-          ),
-          textAlign: TextAlign.center,
-        ),
-      ],
+          return SafeArea(
+            child: SingleChildScrollView(
+              padding: Sp.medium.padXR,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Sp.small.heightBox,
+                  Text(
+                    'Bir odak noktası seçerek kehanetleri keşfet.',
+                    style: m14w400(context).copyWith(color: colors.textSecondary),
+                    textAlign: TextAlign.center,
+                  ),
+                  Sp.xlarge.heightBox,
+                  ListView.separated(
+                    physics: const NeverScrollableScrollPhysics(),
+                    shrinkWrap: true,
+                    itemCount: mockSpreadCategories.length,
+                    separatorBuilder: (context, index) => Sp.small.heightBox,
+                    itemBuilder: (context, index) {
+                      final meta = mockSpreadCategories[index];
+                      final categoryData = categories.firstOrNull(
+                        (c) => c.categoryId == meta.categoryId,
+                      );
+
+                      if (categoryData == null) return const SizedBox.shrink();
+
+                      return SpreadCategoryCard(
+                        title: categoryData.title,
+                        subtitle: '${categoryData.spreads.size} Açılım',
+                        icon: meta.icon,
+                        onTap: () async {
+                          context.read<TarotQuestionBloc>().addCategorySelected(categoryData);
+                          await context.push(AppRoutes.tarotQuestionStep3);
+                        },
+                      );
+                    },
+                  ),
+                  Sp.xlarge.heightBox,
+                  SpreadCategoryGuide(onTap: () {}),
+                  Sp.xxlarge.heightBox,
+                ],
+              ),
+            ),
+          );
+        },
+      ),
     );
   }
 }

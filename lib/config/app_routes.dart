@@ -1,28 +1,28 @@
 class AppRoutes {
   AppRoutes._();
 
-  /// Auth not required routes
+  /// Auth not required
   static const Set<String> publicRoutes = {
     AppRoutes.splash,
   };
 
-  /// Auth required routes
+  /// Auth required
   static const Set<String> registerRoutes = {
     AppRoutes.registerStepZodiac,
     AppRoutes.registerStepRelationship,
     AppRoutes.registerStepCareer,
   };
 
-  // Auth routes
+  // Auth
   static const String splash = '/';
   static const String registerStepZodiac = '/register-step-zodiac';
   static const String registerStepRelationship = '/register-step-relationship';
   static const String registerStepCareer = '/register-step-career';
 
-  // Tarot explore
+  // Tarot Explore
   static const String tarotExplore = '/tarot-explore';
 
-  // Tarot reveal
+  // Tarot Reveal
   static const String tarotReveal = '/tarot-reveal';
   static const String tarotRevealDetail = '/tarot-reveal-detail';
 
@@ -30,10 +30,10 @@ class AppRoutes {
   static const String tarotDeck = '/tarot-deck';
   static const String tarotDeckDetail = '/tarot-deck-detail';
 
-  // Tarot question (soru sorma & cevap)
-  static const String tarotQuestion = '/tarot-question';
-  static const String tarotSpreadSelect = '/tarot-spread-select';
-  static const String tarotQuestionCardSelect = '/tarot-question-card-select';
+  // Tarot Question
+  static const String tarotQuestionStep1 = '/tarot-question-step-1';
+  static const String tarotQuestionStep2 = '/tarot-question-step-2';
+  static const String tarotQuestionStep3 = '/tarot-question-step-3';
   static const String tarotReading = '/tarot-question-answer';
 
   // Tarot daily

@@ -10,10 +10,11 @@ import 'package:daily_tarot_focus/features/auth/data/impl_ios_local_notification
 import 'package:daily_tarot_focus/features/auth/data/impl_user_repository.dart';
 import 'package:daily_tarot_focus/features/tarot/bloc/tarot/tarot_bloc.dart';
 import 'package:daily_tarot_focus/features/tarot/bloc/tarot_localization/tarot_localization_cubit.dart';
-import 'package:daily_tarot_focus/features/tarot/bloc/tarot_spread/tarot_spread_cubit.dart';
+import 'package:daily_tarot_focus/features/tarot/bloc/tarot_question/tarot_question_bloc.dart';
+import 'package:daily_tarot_focus/features/tarot/data/tarot/i_tarot_question_repository.dart';
+import 'package:daily_tarot_focus/features/tarot/data/tarot/impl_tarot_question_repository.dart';
 import 'package:daily_tarot_focus/features/tarot/data/tarot/impl_tarot_remote_data_source.dart';
 import 'package:daily_tarot_focus/features/tarot/data/tarot/tarot_repository.dart';
-import 'package:daily_tarot_focus/features/tarot/data/tarot/tarot_spread_repository.dart';
 import 'package:daily_tarot_focus/features/tarot/data/tarot_localization/impl_tarot_localization_service.dart';
 import 'package:daily_tarot_focus/features/tarot/data/tarot_localization/tarot_localization_repository.dart';
 import 'package:mobile_boilerplate/application/analytics/analytics_cubit.dart';
@@ -181,7 +182,7 @@ Future<void> setupDependencies() async {
     ..registerSingleton<ImplTarotRepository>(
       ImplTarotRepository(getIt<ImplTarotRemoteDataSource>()),
     )
-    ..registerSingleton<TarotSpreadRepository>(TarotSpreadRepository())
+    ..registerSingleton<ITarotQuestionRepository>(ImplTarotQuestionRepository())
     // Setup application dependencies
     ..registerFactory<AuthCubit>(
       () => AuthCubit(
@@ -231,8 +232,8 @@ Future<void> setupDependencies() async {
     ..registerFactory<TarotLocalizationCubit>(
       () => TarotLocalizationCubit(getIt<ImplTarotLocalizationRepository>()),
     )
-    ..registerFactory<TarotSpreadCubit>(
-      () => TarotSpreadCubit(getIt<TarotSpreadRepository>()),
+    ..registerFactory<TarotQuestionBloc>(
+      () => TarotQuestionBloc(getIt<ITarotQuestionRepository>()),
     )
     ..registerLazySingleton<TarotBloc>(
       () => TarotBloc(

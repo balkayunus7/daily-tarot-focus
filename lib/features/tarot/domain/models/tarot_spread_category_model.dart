@@ -1,3 +1,5 @@
+import 'package:mobile_boilerplate/common_dependencies.dart';
+
 class TarotSpreadCategoryModel {
   const TarotSpreadCategoryModel({
     required this.categoryId,
@@ -12,13 +14,13 @@ class TarotSpreadCategoryModel {
       spreads:
           (json['spreads'] as List<dynamic>)
               .map((e) => TarotSpreadModel.fromJson(e as Map<String, dynamic>))
-              .toList(),
+              .toImmutableList(),
     );
   }
 
   final String categoryId;
   final String title;
-  final List<TarotSpreadModel> spreads;
+  final KtList<TarotSpreadModel> spreads;
 }
 
 class TarotSpreadModel {
@@ -41,7 +43,7 @@ class TarotSpreadModel {
       positions:
           (json['positions'] as List<dynamic>)
               .map((e) => TarotSpreadPositionModel.fromJson(e as Map<String, dynamic>))
-              .toList(),
+              .toImmutableList(),
     );
   }
 
@@ -50,7 +52,7 @@ class TarotSpreadModel {
   final String title;
   final String description;
   final int cardCount;
-  final List<TarotSpreadPositionModel> positions;
+  final KtList<TarotSpreadPositionModel> positions;
 }
 
 class TarotSpreadPositionModel {

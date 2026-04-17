@@ -30,26 +30,25 @@ class ReaderCard extends StatelessWidget {
         borderColor: colors.primary.withValues(alpha: 0.08),
         child: Row(
           children: [
-            _ReaderAvatar(icon: reader.icon),
+            _ReaderAvatar(image: reader.image),
             Sp.medium.widthBox,
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  _StarRow(rating: reader.rating, reviewCount: reader.reviewCount),
-                  2.heightBox,
+                  Sp.tiny.heightBox,
                   Text(reader.name, style: m15w600(context)),
-                  2.heightBox,
+                  Sp.tiny.heightBox,
                   Text(
                     reader.bio,
-                    style: m12w500(context).copyWith(
-                      color: colors.textSecondary.withValues(alpha: 0.55),
+                    style: m10w400(context).copyWith(
+                      color: colors.textSecondary.withValues(alpha: 0.8),
                     ),
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                   ),
-                  Sp.tiny.heightBox,
+                  Sp.small.heightBox,
                   _TagRow(tags: reader.tags),
                 ],
               ),
@@ -62,71 +61,19 @@ class ReaderCard extends StatelessWidget {
 }
 
 class _ReaderAvatar extends StatelessWidget {
-  const _ReaderAvatar({required this.icon});
-  final String icon;
+  const _ReaderAvatar({required this.image});
+  final String image;
 
   @override
   Widget build(BuildContext context) {
-    final colors = context.colors;
-
-    return Stack(
-      clipBehavior: Clip.none,
-      children: [
-        Container(
-          width: 52.w,
-          height: 52.h,
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              colors: [colors.gradientStart, colors.gradientEnd],
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-            ),
-            borderRadius: Sp.small.radiusR,
-          ),
-          padding: const EdgeInsets.all(1.5),
-          child: Container(
-            decoration: BoxDecoration(
-              color: colors.background,
-              borderRadius: (Sp.small - 2).radiusR,
-            ),
-            alignment: Alignment.center,
-            child: Text(icon, style: const TextStyle(fontSize: 22)),
-          ),
-        ),
-      ],
-    );
-  }
-}
-
-class _StarRow extends StatelessWidget {
-  const _StarRow({required this.rating, required this.reviewCount});
-
-  final double rating;
-  final int reviewCount;
-
-  @override
-  Widget build(BuildContext context) {
-    final colors = context.colors;
-    final fullStars = rating.floor();
-    const totalStars = 5;
-
-    return Row(
-      children: [
-        ...List.generate(totalStars, (i) {
-          return Icon(
-            i < fullStars ? Icons.star_rounded : Icons.star_outline_rounded,
-            size: 12.r,
-            color: const Color(0xFFF59E0B),
-          );
-        }),
-        4.widthBox,
-        Text(
-          '($reviewCount)',
-          style: m10w500(context).copyWith(
-            color: colors.textSecondary.withValues(alpha: 0.45),
-          ),
-        ),
-      ],
+    return SizedBox(
+      width: 84.w,
+      height: 84.h,
+      child: Container(
+        decoration: BoxDecoration(borderRadius: Sp.xxxlarge.radiusR),
+        clipBehavior: Clip.antiAlias,
+        child: Image.asset(image, fit: BoxFit.cover),
+      ),
     );
   }
 }
@@ -140,37 +87,30 @@ class _TagRow extends StatelessWidget {
     final colors = context.colors;
 
     return Wrap(
-      spacing: 5,
+      spacing: 4,
       runSpacing: 4,
       children:
-          tags
-              .map<Widget>(
-                (tag) => Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
-                  decoration: BoxDecoration(
-                    color: colors.primary.withValues(alpha: 0.08),
-                    borderRadius: BorderRadius.circular(20),
-                    border: Border.all(
-                      color: colors.primary.withValues(alpha: 0.18),
-                      width: 0.5,
-                    ),
+          tags.map((tag) {
+            return Container(
+              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+              decoration: BoxDecoration(
+                color: colors.primary.withValues(alpha: 0.08),
+                borderRadius: BorderRadius.circular(20),
+                border: Border.all(color: colors.border, width: 0.5),
+              ),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(tag.emoji, style: const TextStyle(fontSize: 11)),
+                  Sp.tiny.widthBox,
+                  Text(
+                    tag.label,
+                    style: m10w500(context).copyWith(color: colors.textPrimary),
                   ),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Text(tag.emoji, style: const TextStyle(fontSize: 10)),
-                      4.widthBox,
-                      Text(
-                        tag.label,
-                        style: m10w500(context).copyWith(
-                          color: colors.primary.withValues(alpha: 0.85),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              )
-              .asList(),
+                ],
+              ),
+            );
+          }).asList(),
     );
   }
 }

@@ -8,9 +8,8 @@ class TarotReaderModel {
     required this.bio,
     required this.icon,
     required this.tags,
-    required this.rating,
-    required this.reviewCount,
     required this.aiPrompt,
+    required this.image,
   });
 
   factory TarotReaderModel.fromJson(Map<String, dynamic> json) {
@@ -24,9 +23,8 @@ class TarotReaderModel {
           (json['tags'] as List<dynamic>)
               .map((e) => TarotReaderTag.fromJson(e as Map<String, dynamic>))
               .toImmutableList(),
-      rating: json['rating'] as double,
-      reviewCount: json['reviewCount'] as int,
       aiPrompt: json['aiPrompt'] as String,
+      image: json['image'] as String,
     );
   }
 
@@ -36,9 +34,8 @@ class TarotReaderModel {
   final String bio;
   final String icon;
   final KtList<TarotReaderTag> tags;
-  final double rating;
-  final int reviewCount;
   final String aiPrompt;
+  final String image;
 }
 
 class TarotReaderTag {

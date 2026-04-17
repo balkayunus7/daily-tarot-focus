@@ -1,7 +1,7 @@
-part of '../pages/tarot_library_page.dart';
+part of '../pages/tarot_deck_page.dart';
 
-class LibraryRetryWidget extends StatelessWidget {
-  const LibraryRetryWidget({super.key});
+class DeckRetryWidget extends StatelessWidget {
+  const DeckRetryWidget({super.key});
 
   @override
   Widget build(BuildContext context) {

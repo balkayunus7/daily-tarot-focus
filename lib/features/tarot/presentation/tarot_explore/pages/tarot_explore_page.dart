@@ -63,9 +63,9 @@ class TarotExplorePage extends StatelessWidget {
                       Sp.medium.widthBox,
                       Expanded(
                         child: ExploreFeatureCard(
-                          title: LocaleKeys.explore_page_library.tr(),
+                          title: LocaleKeys.explore_page_deck.tr(),
                           imagePath: TarotAppAssets.library.path,
-                          onTap: () => context.push(AppRoutes.tarotLibrary),
+                          onTap: () => context.push(AppRoutes.tarotDeck),
                         ),
                       ),
                     ],

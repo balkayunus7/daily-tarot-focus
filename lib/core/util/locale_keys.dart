@@ -5,7 +5,7 @@
 abstract class  LocaleKeys {
   static const explore_page_spiritual_guide = 'explore_page.spiritual_guide';
   static const explore_page_ask_question = 'explore_page.ask_question';
-  static const explore_page_library = 'explore_page.library';
+  static const explore_page_deck = 'explore_page.deck';
   static const explore_page_discover_daily = 'explore_page.discover_daily';
   static const explore_page_daily_card = 'explore_page.daily_card';
   static const explore_page_ask_question_title = 'explore_page.ask_question_title';
@@ -17,11 +17,11 @@ abstract class  LocaleKeys {
   static const explore_page_moon_energy = 'explore_page.moon_energy';
   static const explore_page_intuition_guide = 'explore_page.intuition_guide';
   static const explore_page = 'explore_page';
-  static const library_page_title = 'library_page.title';
-  static const library_page_meaning_for_day = 'library_page.meaning_for_day';
-  static const library_page_upright_meanings = 'library_page.upright_meanings';
-  static const library_page_reversed_meanings = 'library_page.reversed_meanings';
-  static const library_page = 'library_page';
+  static const deck_page_title = 'deck_page.title';
+  static const deck_page_meaning_for_day = 'deck_page.meaning_for_day';
+  static const deck_page_upright_meanings = 'deck_page.upright_meanings';
+  static const deck_page_reversed_meanings = 'deck_page.reversed_meanings';
+  static const deck_page = 'deck_page';
   static const tarot_detail_general = 'tarot_detail.general';
   static const tarot_detail_love = 'tarot_detail.love';
   static const tarot_detail_career = 'tarot_detail.career';

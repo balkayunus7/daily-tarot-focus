@@ -8,8 +8,8 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:mobile_boilerplate/common_dependencies.dart';
 import 'package:mobile_boilerplate/presentation/extensions/build_context_theme_ext.dart';
 
-class TarotDataDetailPage extends StatelessWidget {
-  const TarotDataDetailPage({required this.tarotId, super.key});
+class TarotDeckDetailPage extends StatelessWidget {
+  const TarotDeckDetailPage({required this.tarotId, super.key});
   final String tarotId;
 
   @override

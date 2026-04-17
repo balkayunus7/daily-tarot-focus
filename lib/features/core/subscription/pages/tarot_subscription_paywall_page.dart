@@ -29,7 +29,7 @@ class TarotSubscriptionPaywallPage extends StatelessWidget {
       cardBadgeBackground: colors.primary.withValues(alpha: 0.8),
       cardBadgeForeground: colors.background,
       buttonTextColor: colors.background,
-      buttonColor: colors.primary.withValues(alpha: 0.9),
+      buttonColor: colors.primary.withValues(alpha: 0.8),
       freeColumnLabel: 'ÜCRETSİZ',
       tableBgColor: colors.surface.withValues(alpha: 0.6),
     );

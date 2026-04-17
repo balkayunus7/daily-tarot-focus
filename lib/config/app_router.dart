@@ -12,8 +12,8 @@ import 'package:daily_tarot_focus/features/tarot/domain/models/reading_request_m
 import 'package:daily_tarot_focus/features/tarot/domain/models/tarot_card_model.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/tarot_spread_model.dart';
 import 'package:daily_tarot_focus/features/tarot/presentation/tarot_daily/page/tarot_daily_detail_page.dart';
-import 'package:daily_tarot_focus/features/tarot/presentation/tarot_library/pages/tarot_library_detail_page.dart';
-import 'package:daily_tarot_focus/features/tarot/presentation/tarot_library/pages/tarot_library_page.dart';
+import 'package:daily_tarot_focus/features/tarot/presentation/tarot_deck/pages/tarot_deck_detail_page.dart';
+import 'package:daily_tarot_focus/features/tarot/presentation/tarot_deck/pages/tarot_deck_page.dart';
 import 'package:daily_tarot_focus/features/tarot/presentation/tarot_question/pages/tarot_question_step1_page.dart';
 import 'package:daily_tarot_focus/features/tarot/presentation/tarot_question/pages/tarot_question_step2_page.dart';
 import 'package:daily_tarot_focus/features/tarot/presentation/tarot_question/pages/tarot_reading_page.dart';
@@ -149,24 +149,24 @@ final appRouter = GoRouter(
       },
     ),
     GoRoute(
-      path: AppRoutes.tarotLibrary,
-      name: AppRoutes.tarotLibrary,
+      path: AppRoutes.tarotDeck,
+      name: AppRoutes.tarotDeck,
       pageBuilder: (context, state) {
         return MaterialPage(
           key: state.pageKey,
-          child: const TarotLibraryPage(),
+          child: const TarotDeckPage(),
         );
       },
     ),
     GoRoute(
-      path: '${AppRoutes.tarotLibraryDetail}/:tarotId',
-      name: AppRoutes.tarotLibraryDetail,
+      path: '${AppRoutes.tarotDeckDetail}/:tarotId',
+      name: AppRoutes.tarotDeckDetail,
       pageBuilder: (context, state) {
         final tarotId = state.pathParameters['tarotId'] ?? '';
 
         return MaterialPage(
           key: state.pageKey,
-          child: TarotDataDetailPage(tarotId: tarotId),
+          child: TarotDeckDetailPage(tarotId: tarotId),
         );
       },
     ),

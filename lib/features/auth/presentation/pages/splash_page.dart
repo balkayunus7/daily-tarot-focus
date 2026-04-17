@@ -58,7 +58,7 @@ class _SplashPageState extends State<SplashPage>
               return previous.hasFetchedDailyCards != current.hasFetchedDailyCards;
             },
             listener: (context, state) {
-              context.go(AppRoutes.registerStepZodiac);
+              context.go(AppRoutes.tarotExplore);
             },
           ),
           BlocListener<AuthCubit, AuthState>(

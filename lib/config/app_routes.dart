@@ -26,9 +26,9 @@ class AppRoutes {
   static const String tarotReveal = '/tarot-reveal';
   static const String tarotRevealDetail = '/tarot-reveal-detail';
 
-  // Tarot library
-  static const String tarotLibrary = '/tarot-library';
-  static const String tarotLibraryDetail = '/tarot-library-detail';
+  // Tarot Deck
+  static const String tarotDeck = '/tarot-deck';
+  static const String tarotDeckDetail = '/tarot-deck-detail';
 
   // Tarot question (soru sorma & cevap)
   static const String tarotQuestion = '/tarot-question';

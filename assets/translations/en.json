@@ -2,7 +2,7 @@
     "explore_page": {
         "spiritual_guide": "Your Spiritual Guide",
         "ask_question": "Ask Question",
-        "library": "Library",
+        "deck": "Decks",
         "discover_daily": "Discover Your Daily Tarot",
         "daily_card": "Pick Daily Card",
         "ask_question_title": "Ask the question on your mind!",
@@ -14,8 +14,8 @@
         "moon_energy": "The mysterious energy of the Moon is with you.",
         "intuition_guide": "Dear {}, let the voice of your intuition guide you."
     },
-    "library_page": {
-        "title": "Library",
+    "deck_page": {
+        "title": "Decks",
         "meaning_for_day": "Meaning for Your Day",
         "upright_meanings": "Upright Meanings",
         "reversed_meanings": "Reversed Meanings"

@@ -2,7 +2,7 @@
     "explore_page": {
         "spiritual_guide": "Ruhsal Rehberin",
         "ask_question": "Soru Sor",
-        "library": "Kütüphane",
+        "deck": "Desten",
         "discover_daily": "Günlük Tarotunu Keşfet",
         "daily_card": "Günün Kartını Çek",
         "ask_question_title": "Aklındaki o soruyu sor!",
@@ -14,8 +14,8 @@
         "moon_energy": "Ay'ın gizemli enerjisi seninle.",
         "intuition_guide": "Sevgili {}, sezgilerinin sesi yol göstersin."
     },
-    "library_page": {
-        "title": "Kütüphane",
+    "deck_page": {
+        "title": "Desten",
         "meaning_for_day": "Günün Anlamı",
         "upright_meanings": "Düz Anlamlar",
         "reversed_meanings": "Ters Anlamlar"

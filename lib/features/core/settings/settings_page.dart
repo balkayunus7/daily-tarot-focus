@@ -3,6 +3,7 @@ import 'package:daily_tarot_focus/core/util/locale_extensions.dart';
 import 'package:daily_tarot_focus/core/util/locale_keys.dart';
 import 'package:daily_tarot_focus/core/util/tarot_app_sizes.dart';
 import 'package:daily_tarot_focus/core/util/text_style_helper.dart';
+import 'package:daily_tarot_focus/core/widgets/glass_container.dart';
 import 'package:daily_tarot_focus/core/widgets/tarot_app_bar.dart';
 import 'package:daily_tarot_focus/features/tarot/bloc/tarot/tarot_bloc.dart';
 import 'package:daily_tarot_focus/features/tarot/bloc/tarot_localization/tarot_localization_cubit.dart';
@@ -16,7 +17,10 @@ import 'package:mobile_boilerplate/core_app.dart';
 import 'package:mobile_boilerplate/presentation/common/loading_page.dart';
 import 'package:mobile_boilerplate/presentation/extensions/build_context_failure_ext.dart';
 import 'package:mobile_boilerplate/presentation/extensions/build_context_theme_ext.dart';
+import 'package:mobile_boilerplate/presentation/popups/core_popup.dart';
 import 'package:mobile_boilerplate/presentation/widgets/scaling_container.dart';
+
+part 'change_language_dialog.dart';
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage({super.key});
@@ -61,10 +65,10 @@ class SettingsPage extends StatelessWidget {
           showBackIcon: false,
         ),
         body: SafeArea(
-          child: Padding(
-            padding: Sp.screen.padAllR,
+          child: SingleChildScrollView(
+            padding: Sp.screen.padHR,
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 Sp.large.heightBox,
                 _SettingsSection(
@@ -122,94 +126,24 @@ class SettingsPage extends StatelessWidget {
                     ),
                   ],
                 ),
+                Sp.large.heightBox,
+                _SettingsSection(
+                  title: 'Danger Zone',
+                  children: [
+                    _SettingsTile(
+                      icon: Icons.delete_forever,
+                      title: LocaleKeys.settings_page_delete_account.tr(),
+                      color: colors.error,
+                      onTap: () => displayDeleteAccountPopup(context),
+                    ),
+                  ],
+                ),
+                Sp.xxlarge.heightBox,
               ],
             ),
           ),
         ),
       ),
-    );
-  }
-
-  Future<void> _showLanguageBottomSheet(BuildContext context) async {
-    final colors = context.colors;
-
-    await showModalBottomSheet<void>(
-      context: context,
-      backgroundColor: colors.background,
-      shape: RoundedRectangleBorder(
-        borderRadius: 20.radiusOnlyR(tl: true, tr: true),
-      ),
-      builder: (context) {
-        return Padding(
-          padding: Sp.xlarge.padAllR,
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Center(
-                child: Container(
-                  width: 40,
-                  height: 4,
-                  decoration: BoxDecoration(
-                    color: colors.borderSecondary,
-                    borderRadius: 2.radiusR,
-                  ),
-                ),
-              ),
-              Sp.large.heightBox,
-              Text(
-                LocaleKeys.settings_page_choose_language.tr(),
-                style: m20w600(context),
-              ),
-              Sp.large.heightBox,
-              _LanguageOption(
-                title: LocaleKeys.settings_page_english.tr(),
-                locale: context.localeEn,
-                isSelected: context.isLocaleEn,
-                onTap: () async {
-                  await context.setLocale(context.localeEn);
-                  final langCode = LocaleLanguage.en.value;
-
-                  if (context.mounted) {
-                    await context.read<TarotLocalizationCubit>().refreshCards(langCode);
-                    if (context.mounted) {
-                      final session = context.read<AuthCubit>().state.sessionOrCrash;
-                      context.read<TarotBloc>().addFetchDailyCardsRequested(
-                        request: FetchDailyCardsRequest(session: session, languageCode: langCode),
-                      );
-                    }
-                  }
-                  await HapticFeedbackHelper.selectionClick();
-                  if (context.mounted) Navigator.pop(context);
-                },
-              ),
-              Sp.medium.heightBox,
-              _LanguageOption(
-                title: LocaleKeys.settings_page_turkish.tr(),
-                locale: context.localeTr,
-                isSelected: context.isLocaleTr,
-                onTap: () async {
-                  await context.setLocale(context.localeTr);
-                  final langCode = LocaleLanguage.tr.value;
-
-                  if (context.mounted) {
-                    await context.read<TarotLocalizationCubit>().refreshCards(langCode);
-                    if (context.mounted) {
-                      final session = context.read<AuthCubit>().state.sessionOrCrash;
-                      context.read<TarotBloc>().addFetchDailyCardsRequested(
-                        request: FetchDailyCardsRequest(session: session, languageCode: langCode),
-                      );
-                    }
-                  }
-                  await HapticFeedbackHelper.selectionClick();
-                  if (context.mounted) Navigator.pop(context);
-                },
-              ),
-              Sp.large.heightBox,
-            ],
-          ),
-        );
-      },
     );
   }
 }
@@ -227,18 +161,29 @@ class _SettingsSection extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         if (title != null) ...[
-          Text(
-            title!,
-            style: m14w500(context).copyWith(color: colors.textSecondary),
+          Padding(
+            padding: Sp.xsmall.padXR,
+            child: Text(
+              title!.toUpperCase(),
+              style: m12w600(context).copyWith(
+                color: colors.textSecondary.withValues(alpha: 0.6),
+                letterSpacing: 1.2,
+              ),
+            ),
           ),
         ],
         Sp.small.heightBox,
-        Container(
-          decoration: BoxDecoration(
-            color: colors.surface,
-            borderRadius: Sp.medium.radiusR,
+        GlassContainer(
+          borderRadius: Sp.medium,
+          glassColor: colors.primary.withValues(alpha: 0.05),
+          borderColor: colors.primary.withValues(alpha: 0.05),
+          child: Column(
+            children: [
+              for (int i = 0; i < children.length; i++) ...[
+                children[i],
+              ],
+            ],
           ),
-          child: Column(children: children),
         ),
       ],
     );
@@ -250,29 +195,50 @@ class _SettingsTile extends StatelessWidget {
     required this.icon,
     required this.title,
     required this.onTap,
+    this.color,
   });
 
   final IconData icon;
   final String title;
   final VoidCallback onTap;
+  final Color? color;
 
   @override
   Widget build(BuildContext context) {
     final colors = context.colors;
-    final textColor = colors.textPrimary;
 
     return ScalingContainer(
       onTap: onTap,
       child: Padding(
-        padding: Sp.screen.padAllR,
+        padding: Sp.small.padSymR(h: Sp.large, v: Sp.small),
         child: Row(
           children: [
-            Icon(icon, color: textColor, size: 20),
+            Container(
+              width: 28.w,
+              height: 28.h,
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  colors: [colors.gradientStart, colors.gradientEnd],
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                ),
+                borderRadius: Sp.small.radiusR,
+              ),
+              alignment: Alignment.center,
+              child: Icon(icon, color: colors.accent, size: 18),
+            ),
             Sp.medium.widthBox,
             Expanded(
-              child: Text(title, style: m16w500(context).copyWith(color: textColor)),
+              child: Text(
+                title,
+                style: m15w500(context).copyWith(color: color ?? colors.textPrimary),
+              ),
             ),
-            Icon(Icons.chevron_right, color: colors.textSecondary),
+            Icon(
+              Icons.chevron_right,
+              color: (color ?? colors.textSecondary).withValues(alpha: 0.4),
+              size: 20,
+            ),
           ],
         ),
       ),
@@ -299,27 +265,25 @@ class _LanguageOption extends StatelessWidget {
 
     return ScalingContainer(
       onTap: onTap,
-      child: Container(
-        padding: Sp.screen.padAllR,
-        decoration: BoxDecoration(
-          color: isSelected ? colors.primary.withValues(alpha: 0.1) : colors.surface,
-          borderRadius: Sp.medium.radiusR,
-          border: Border.all(
-            color: isSelected ? colors.primary : colors.borderSecondary,
-            width: isSelected ? 2 : 1,
-          ),
-        ),
+      child: GlassContainer(
+        padding: Sp.small.padSymR(h: Sp.large, v: Sp.small),
+        borderRadius: Sp.medium,
+        glassColor:
+            isSelected
+                ? colors.primary.withValues(alpha: 0.2)
+                : colors.primary.withValues(alpha: 0.05),
+        borderColor: colors.primary.withValues(alpha: 0.05),
         child: Row(
           children: [
             Expanded(
               child: Text(
                 title,
-                style: m16w500(
-                  context,
-                ).copyWith(color: isSelected ? colors.primary : colors.textPrimary),
+                style: m15w600(context).copyWith(
+                  color: isSelected ? colors.primary : colors.textPrimary,
+                ),
               ),
             ),
-            if (isSelected) Icon(Icons.check_circle, color: colors.primary),
+            if (isSelected) Icon(Icons.check_circle, color: colors.primary, size: 20),
           ],
         ),
       ),

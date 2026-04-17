@@ -1,12 +1,12 @@
-part of '../pages/tarot_library_page.dart';
+part of '../pages/tarot_deck_page.dart';
 
-class LibraryCardGridView extends StatelessWidget {
-  const LibraryCardGridView({required this.filteredCards, super.key});
+class DeckCardGridView extends StatelessWidget {
+  const DeckCardGridView({required this.filteredCards, super.key});
   final List<TarotCardModel> filteredCards;
 
   @override
   Widget build(BuildContext context) {
-    final scope = LibraryPageScope.of(context);
+    final scope = DeckPageScope.of(context);
 
     return Expanded(
       child: Padding(
@@ -22,7 +22,7 @@ class LibraryCardGridView extends StatelessWidget {
           itemBuilder: (context, index) {
             final card = filteredCards[index];
             final isPremium = index >= scope.state.freeCardCount;
-            return _LibraryCard(card: card, isPremium: isPremium);
+            return _DeckCard(card: card, isPremium: isPremium);
           },
         ),
       ),
@@ -30,8 +30,8 @@ class LibraryCardGridView extends StatelessWidget {
   }
 }
 
-class _LibraryCard extends StatelessWidget {
-  const _LibraryCard({required this.card, required this.isPremium});
+class _DeckCard extends StatelessWidget {
+  const _DeckCard({required this.card, required this.isPremium});
   final TarotCardModel card;
   final bool isPremium;
 
@@ -56,7 +56,7 @@ class _LibraryCard extends StatelessWidget {
                     await context.push(AppRoutes.subscriptionPaywall);
                   } else {
                     await context.pushNamed(
-                      AppRoutes.tarotLibraryDetail,
+                      AppRoutes.tarotDeckDetail,
                       pathParameters: {'tarotId': card.name},
                     );
                   }

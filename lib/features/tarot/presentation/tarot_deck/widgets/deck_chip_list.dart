@@ -1,11 +1,11 @@
-part of '../pages/tarot_library_page.dart';
+part of '../pages/tarot_deck_page.dart';
 
-class LibraryChipList extends StatelessWidget {
-  const LibraryChipList({super.key});
+class DeckChipList extends StatelessWidget {
+  const DeckChipList({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final scope = LibraryPageScope.of(context);
+    final scope = DeckPageScope.of(context);
 
     return BlocBuilder<TarotLocalizationCubit, TarotLocalizationState>(
       builder: (context, state) {
@@ -71,7 +71,7 @@ class _CategoryChip extends StatelessWidget {
           padding: Sp.medium.padHVR(Sp.xsmall),
           decoration: BoxDecoration(
             border: Border.all(color: borderColor),
-            borderRadius: 16.radiusR,
+            borderRadius: Sp.medium.radiusR,
           ),
           child: GlassGlow(
             child: Text(label, style: m12w600(context).copyWith(color: textColor)),

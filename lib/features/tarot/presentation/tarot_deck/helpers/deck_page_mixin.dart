@@ -1,6 +1,6 @@
-part of '../pages/tarot_library_page.dart';
+part of '../pages/tarot_deck_page.dart';
 
-mixin LibraryPageStateMixin on State<TarotLibraryPage> {
+mixin DeckPageStateMixin on State<TarotDeckPage> {
   final int freeCardCount = 5;
 
   void onCategoryChanged(TarotCategory? category) {

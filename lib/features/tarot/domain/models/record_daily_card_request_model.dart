@@ -6,10 +6,8 @@ class RecordDailyCardRequestModel {
   const RecordDailyCardRequestModel({
     required this.session,
     required this.cardId,
-    required this.languageCode,
   });
 
   final AuthSession session;
   final String cardId;
-  final String languageCode;
 }

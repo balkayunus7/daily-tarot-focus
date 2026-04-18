@@ -1,9 +1,13 @@
+import 'package:daily_tarot_focus/config/app_routes.dart';
+import 'package:daily_tarot_focus/config/restartable_app.dart';
 import 'package:daily_tarot_focus/core/util/locale_keys.dart';
 import 'package:daily_tarot_focus/core/util/tarot_app_sizes.dart';
 import 'package:daily_tarot_focus/core/util/text_style_helper.dart';
 import 'package:daily_tarot_focus/core/widgets/glass_container.dart';
 import 'package:daily_tarot_focus/core/widgets/tarot_app_bar.dart';
+import 'package:daily_tarot_focus/features/core/settings/display_delete_account_popup.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:mobile_boilerplate/application/auth/auth_cubit.dart';
 import 'package:mobile_boilerplate/application/launcher/launcher.dart';
 import 'package:mobile_boilerplate/application/purchases/purchases_bloc.dart';
@@ -12,7 +16,6 @@ import 'package:mobile_boilerplate/core_app.dart';
 import 'package:mobile_boilerplate/presentation/common/loading_page.dart';
 import 'package:mobile_boilerplate/presentation/extensions/build_context_failure_ext.dart';
 import 'package:mobile_boilerplate/presentation/extensions/build_context_theme_ext.dart';
-import 'package:mobile_boilerplate/presentation/popups/core_popup.dart';
 import 'package:mobile_boilerplate/presentation/widgets/scaling_container.dart';
 
 class SettingsPage extends StatelessWidget {
@@ -42,6 +45,13 @@ class SettingsPage extends StatelessWidget {
         },
       );
 
+  BlocListener<AuthCubit, AuthState> _deleteAccountListener() => BlocListener<AuthCubit, AuthState>(
+    listenWhen: (p, c) => p.failOrUserOption.isSome() != c.failOrUserOption.isNone(),
+    listener: (context, state) async {
+      context.go(AppRoutes.splash);
+      RestartableApp.restartApp(context);
+    },
+  );
   @override
   Widget build(BuildContext context) {
     final colors = context.colors;
@@ -50,6 +60,7 @@ class SettingsPage extends StatelessWidget {
       listeners: [
         _restoringListener(),
         _restoredListener(),
+        _deleteAccountListener(),
       ],
       child: Scaffold(
         backgroundColor: colors.background,

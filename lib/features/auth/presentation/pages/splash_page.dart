@@ -48,15 +48,6 @@ class _SplashPageState extends State<SplashPage>
     await Future.wait(images.map((url) => precacheImage(CachedNetworkImageProvider(url), context)));
   }
 
-  Future<void> _fetchDailyCards() async {
-    final authState = context.read<AuthCubit>().state;
-    final langCode = Localizations.localeOf(context).languageCode;
-
-    context.read<TarotBloc>().addFetchDailyCardsRequested(
-      request: FetchDailyCardsRequest(session: authState.sessionOrCrash, languageCode: langCode),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -68,10 +59,7 @@ class _SplashPageState extends State<SplashPage>
                   current.hasFetchedDailyCardsSucceeded);
             },
             listener: (context, state) {
-              final authState = context.read<AuthCubit>().state;
-              context.read<TarotBloc>().addFetchAllCardsRequested(
-                request: FetchAllCardsRequest(session: authState.sessionOrCrash),
-              );
+              context.go(AppRoutes.tarotExplore);
             },
           ),
           BlocListener<TarotBloc, TarotState>(
@@ -79,7 +67,12 @@ class _SplashPageState extends State<SplashPage>
               return (previous.hasFetchAllCardsSucceeded != current.hasFetchAllCardsSucceeded);
             },
             listener: (context, state) {
-              context.go(AppRoutes.tarotExplore);
+              final authState = context.read<AuthCubit>().state;
+              final session = authState.sessionOrCrash;
+
+              context.read<TarotBloc>().addFetchDailyCardsRequested(
+                request: FetchDailyCardsRequest(session: session),
+              );
             },
           ),
           BlocListener<AuthCubit, AuthState>(
@@ -87,7 +80,10 @@ class _SplashPageState extends State<SplashPage>
               return current.isAuthenticated && (previous.isInitial || !previous.isAuthenticated);
             },
             listener: (context, state) async {
-              await _fetchDailyCards();
+              final authState = context.read<AuthCubit>().state;
+              context.read<TarotBloc>().addFetchAllCardsRequested(
+                request: FetchAllCardsRequest(session: authState.sessionOrCrash),
+              );
             },
           ),
           BlocListener<AuthCubit, AuthState>(

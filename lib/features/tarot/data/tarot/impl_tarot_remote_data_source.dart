@@ -30,9 +30,9 @@ class ImplTarotRemoteDataSource implements ITarotRemoteDataSource {
 
     final response = responseOrFail.getRightOrCrash();
     final map = decodeSupabaseResponse(response.data);
-    final success = map['success'] as bool? ?? false;
 
-    if (!success) throw Exception();
+    final cardId = map['card_id'] as String?;
+    if (cardId == null) throw Exception();
 
     return RecordDailyCardResponse.fromMap();
   }

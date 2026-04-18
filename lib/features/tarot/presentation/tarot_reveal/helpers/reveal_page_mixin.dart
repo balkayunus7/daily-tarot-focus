@@ -77,21 +77,17 @@ mixin RevealPageStateMixin on State<TarotRevealPage>, TickerProvider {
     if (mounted && selectedTarotCard.value != null) {
       await context.pushNamed(
         AppRoutes.tarotRevealDetail,
-        pathParameters: {'tarotId': selectedTarotCard.value!.name},
+        pathParameters: {'tarotId': selectedTarotCard.value!.id},
       );
     }
   }
 
   double getRevealCardWidth({required bool isSelected}) {
-    return isSelected
-        ? CardSp.selectedCardWidth
-        : CardSp.unselectedCardWidth;
+    return isSelected ? CardSp.selectedCardWidth : CardSp.unselectedCardWidth;
   }
 
   double getRevealCardHeight({required bool isSelected}) {
-    return isSelected
-        ? CardSp.selectedCardHeight
-        : CardSp.unselectedCardHeight;
+    return isSelected ? CardSp.selectedCardHeight : CardSp.unselectedCardHeight;
   }
 
   bool get isCardSelected => selectedTarotCard.value != null;

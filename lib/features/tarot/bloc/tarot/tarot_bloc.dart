@@ -8,7 +8,6 @@ import 'package:daily_tarot_focus/features/tarot/domain/models/fetch_all_cards_r
 import 'package:daily_tarot_focus/features/tarot/domain/models/fetch_daily_cards_request_model.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/reading_request_model.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/record_daily_card_request_model.dart';
-import 'package:daily_tarot_focus/features/tarot/domain/models/tarot_card_model.dart';
 import 'package:mobile_boilerplate/common_dependencies.dart';
 
 class TarotBloc extends Bloc<TarotEvent, TarotState> {
@@ -88,19 +87,15 @@ class TarotBloc extends Bloc<TarotEvent, TarotState> {
         isFetchingDailyCards: false,
       ),
       (response) {
-        final cards =
-            response.records
-                .asList()
-                .map((record) {
-                  final card = state.getById(record.cardId);
-                  return card?.copyWith(savedAt: record.date);
-                })
-                .whereType<TarotCardModel>()
-                .toList()
-              ..sort((a, b) => (b.savedAt ?? DateTime(0)).compareTo(a.savedAt ?? DateTime(0)));
+        final records =
+            response.records.map((r) {
+              final card = state.getById(r.cardId);
+              if (card == null) return null;
+              return card.copyWith(savedAt: r.date);
+            }).filterNotNull();
 
         return state.copyWith(
-          fetchFailureOrDailyCards: some(right(KtList.from(cards))),
+          fetchFailureOrDailyCards: some(right(records)),
           isFetchingDailyCards: false,
         );
       },
@@ -118,22 +113,25 @@ class TarotBloc extends Bloc<TarotEvent, TarotState> {
     final failOrUnit = await _tarotRepository.requestRecordDailyCard(request: event.request);
 
     final newState = failOrUnit.fold(
-      (failure) => state.copyWith(
-        recordDailyCardFailureOrUnit: some(left(failure)),
-        isRecordDailyCard: false,
-      ),
-      (_) =>
-          state.copyWith(recordDailyCardFailureOrUnit: some(right(unit)), isRecordDailyCard: false),
+      (failure) {
+        return state.copyWith(
+          recordDailyCardFailureOrUnit: some(left(failure)),
+          isRecordDailyCard: false,
+        );
+      },
+      (_) {
+        return state.copyWith(
+          recordDailyCardFailureOrUnit: some(right(unit)),
+          isRecordDailyCard: false,
+        );
+      },
     );
 
     emit(newState);
 
     if (newState.hasRecordDailyCardSucceeded) {
       addFetchDailyCardsRequested(
-        request: FetchDailyCardsRequest(
-          session: event.request.session,
-          languageCode: event.request.languageCode,
-        ),
+        request: FetchDailyCardsRequest(session: event.request.session),
       );
     }
   }

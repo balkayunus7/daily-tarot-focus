@@ -60,25 +60,24 @@ class _DailyCardListItem extends StatelessWidget {
             ),
             Expanded(
               child: Padding(
-                padding: Sp.large.padHVR(Sp.medium),
+                padding: Sp.large.padHVR(Sp.small),
                 child: GlassContainer(
                   borderRadius: Sp.medium,
                   glassColor: primary.withValues(alpha: 0.05),
                   borderColor: primary.withValues(alpha: 0.05),
-                  padding: Sp.screen.padAllR,
+                  padding: Sp.small.padAllR,
                   child: Row(
                     children: [
                       Container(
                         decoration: BoxDecoration(
                           border: Border.all(color: primary.withValues(alpha: 0.3)),
-                          borderRadius: Sp.xsmall.radiusR,
+                          borderRadius: Sp.tiny.radiusR,
                         ),
-                        child: ClipRRect(
-                          borderRadius: Sp.xsmall.radiusR,
-                          child: CustomCacheNetworkImage(
-                            imageUrl: card.imageUrl,
-                            fit: BoxFit.cover,
-                          ),
+                        child: CustomCacheNetworkImage(
+                          imageUrl: card.imageUrl,
+                          fit: BoxFit.fitHeight,
+                          width: 56.w,
+                          height: 84.h,
                         ),
                       ),
                       Sp.medium.widthBox,

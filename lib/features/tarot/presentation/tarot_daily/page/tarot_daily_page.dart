@@ -74,12 +74,8 @@ class _TarotDailyPageState extends State<TarotDailyPage>
                               message: LocaleKeys.tarot_daily_error_desc.tr(),
                               onTap: () {
                                 final session = context.read<AuthCubit>().state.sessionOrCrash;
-                                final languageCode = context.locale.languageCode;
                                 context.read<TarotBloc>().addFetchDailyCardsRequested(
-                                  request: FetchDailyCardsRequest(
-                                    session: session,
-                                    languageCode: languageCode,
-                                  ),
+                                  request: FetchDailyCardsRequest(session: session),
                                 );
                               },
                             );

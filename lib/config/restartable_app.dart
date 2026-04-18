@@ -1,3 +1,4 @@
+import 'package:daily_tarot_focus/config/setup_dependieces.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile_boilerplate/application/network_time/network_time_provider.dart';
 import 'package:mobile_boilerplate/common_dependencies.dart';
@@ -7,8 +8,8 @@ class RestartableApp extends StatefulWidget {
 
   final Widget child;
 
-  static void restartApp(BuildContext context) {
-    context.findAncestorStateOfType<_RestartableAppState>()?.restartApp();
+  static Future<void> restartApp(BuildContext context) async {
+    await context.findAncestorStateOfType<_RestartableAppState>()?.restartApp();
   }
 
   @override
@@ -18,7 +19,12 @@ class RestartableApp extends StatefulWidget {
 class _RestartableAppState extends State<RestartableApp> {
   Key key = UniqueKey();
 
-  void restartApp() => setState(() => key = UniqueKey());
+  Future<void> restartApp() async {
+    await getIt.reset();
+    await setupDependencies();
+    if (!mounted) return;
+    setState(() => key = UniqueKey());
+  }
 
   @override
   Widget build(BuildContext context) {

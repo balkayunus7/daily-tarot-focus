@@ -20,15 +20,12 @@ class TarotRevealDetailPage extends StatelessWidget {
 
   void saveDailyCard(BuildContext context, {required bool isSaving}) {
     if (isSaving) return;
-
     final authState = context.read<AuthCubit>().state;
-    final langCode = Localizations.localeOf(context).languageCode;
 
     context.read<TarotBloc>().addRecordDailyCardRequested(
       request: RecordDailyCardRequest(
         session: authState.sessionOrCrash,
         cardId: tarot.id,
-        languageCode: langCode,
       ),
     );
   }

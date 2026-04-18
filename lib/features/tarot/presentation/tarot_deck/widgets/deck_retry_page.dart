@@ -5,15 +5,17 @@ class DeckRetryWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<TarotLocalizationCubit, TarotLocalizationState>(
-      builder: (context, lclState) {
+    return BlocBuilder<TarotBloc, TarotState>(
+      builder: (context, state) {
         return Column(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
             GlassButton(
               onTap: () async {
-                final cubit = context.read<TarotLocalizationCubit>();
-                await cubit.loadCards(context.locale.languageCode);
+                final authState = context.read<AuthCubit>().state;
+                context.read<TarotBloc>().addFetchAllCardsRequested(
+                  request: FetchAllCardsRequest(session: authState.sessionOrCrash),
+                );
               },
               buttonText: 'Load Cards',
               paddingHorizontal: 20,

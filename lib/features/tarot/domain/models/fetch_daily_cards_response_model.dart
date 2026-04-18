@@ -1,10 +1,7 @@
 import 'package:mobile_boilerplate/common_dependencies.dart';
 
 class FetchDailyCardsResponseModel with EquatableMixin {
-  const FetchDailyCardsResponseModel({
-    required this.records,
-  });
-
+  const FetchDailyCardsResponseModel({required this.records});
   factory FetchDailyCardsResponseModel.fromList(List<dynamic> list) {
     return FetchDailyCardsResponseModel(
       records: KtList.from(
@@ -19,9 +16,7 @@ class FetchDailyCardsResponseModel with EquatableMixin {
     return records.asList().map((record) => record.toMap()).toList();
   }
 
-  FetchDailyCardsResponseModel copyWith({
-    KtList<DailyCardModel>? records,
-  }) {
+  FetchDailyCardsResponseModel copyWith({KtList<DailyCardModel>? records}) {
     return FetchDailyCardsResponseModel(
       records: records ?? this.records,
     );

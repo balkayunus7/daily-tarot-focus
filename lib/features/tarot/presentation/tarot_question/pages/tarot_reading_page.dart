@@ -50,7 +50,7 @@ class TarotReadingPage extends StatelessWidget {
             );
           }
 
-          if (state.hasReadingQuestionFailed) {
+          if (state.hasReadingFailed) {
             return ReadingEmptyWidget(
               message: 'Tekrar Dene',
               onTap: () {

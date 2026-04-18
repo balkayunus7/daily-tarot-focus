@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:daily_tarot_focus/config/app_routes.dart';
 import 'package:daily_tarot_focus/core/util/haptic_feedback_helper.dart';
 import 'package:daily_tarot_focus/core/util/tarot_app_sizes.dart';
-import 'package:daily_tarot_focus/features/tarot/bloc/tarot_localization/tarot_localization_cubit.dart';
+import 'package:daily_tarot_focus/features/tarot/bloc/tarot/tarot_bloc.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/tarot_card_model.dart';
 import 'package:daily_tarot_focus/features/tarot/presentation/tarot_reveal/pages/tarot_reveal_page.dart';
 import 'package:flutter/material.dart';
@@ -66,8 +66,8 @@ mixin RevealPageStateMixin on State<TarotRevealPage>, TickerProvider {
     selectedCardIndex.value = index;
     await flipAnimController.forward();
     if (mounted) {
-      final tarotLocalCubit = context.read<TarotLocalizationCubit>();
-      selectedTarotCard.value = tarotLocalCubit.getRandomCard();
+      final tarotBloc = context.read<TarotBloc>();
+      selectedTarotCard.value = tarotBloc.state.randomCard;
     }
     await revealAnimController.forward();
   }

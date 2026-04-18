@@ -71,18 +71,27 @@ class _DeckCard extends StatelessWidget {
                       ),
                       child: ClipRRect(
                         borderRadius: Sp.tiny.radiusR,
-                        child: Image.asset(
-                          card.imagePath,
+                        child: CachedNetworkImage(
+                          imageUrl: card.imagePath,
                           fit: BoxFit.cover,
-                          gaplessPlayback: true,
-                          frameBuilder: (_, child, frame, _) {
-                            if (frame != null) return child;
-                            return const _ImageLoadingShimmer();
-                          },
+                          fadeInDuration: Duration.zero,
+                          placeholder:
+                              (context, url) => Container(
+                                decoration: BoxDecoration(
+                                  borderRadius: Sp.small.radiusR,
+                                  gradient: LinearGradient(
+                                    begin: Alignment.topLeft,
+                                    end: Alignment.bottomRight,
+                                    colors: [
+                                      context.colors.primary.withValues(alpha: 0.3),
+                                      context.colors.secondary.withValues(alpha: 0.1),
+                                    ],
+                                  ),
+                                ),
+                              ),
                         ),
                       ),
                     ),
-
                     if (showLock) ...[
                       ClipRRect(
                         borderRadius: Sp.tiny.radiusR,
@@ -93,7 +102,6 @@ class _DeckCard extends StatelessWidget {
                           ),
                         ),
                       ),
-
                       Positioned(
                         top: 8,
                         right: 8,
@@ -123,28 +131,6 @@ class _DeckCard extends StatelessWidget {
           ],
         );
       },
-    );
-  }
-}
-
-class _ImageLoadingShimmer extends StatelessWidget {
-  const _ImageLoadingShimmer();
-
-  @override
-  Widget build(BuildContext context) {
-    final colors = context.colors;
-
-    return Shimmer(
-      gradient: LinearGradient(
-        begin: Alignment.topLeft,
-        end: Alignment.bottomRight,
-        colors: [colors.primary, colors.gradientEnd, colors.background],
-      ),
-      child: SizedBox.expand(
-        child: Container(
-          decoration: BoxDecoration(borderRadius: Sp.tiny.radiusR),
-        ),
-      ),
     );
   }
 }

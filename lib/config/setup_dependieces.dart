@@ -9,14 +9,11 @@ import 'package:daily_tarot_focus/features/auth/data/impl_firebase_remote_notifi
 import 'package:daily_tarot_focus/features/auth/data/impl_ios_local_notifications_service.dart';
 import 'package:daily_tarot_focus/features/auth/data/impl_user_repository.dart';
 import 'package:daily_tarot_focus/features/tarot/bloc/tarot/tarot_bloc.dart';
-import 'package:daily_tarot_focus/features/tarot/bloc/tarot_localization/tarot_localization_cubit.dart';
 import 'package:daily_tarot_focus/features/tarot/bloc/tarot_question/tarot_question_bloc.dart';
 import 'package:daily_tarot_focus/features/tarot/data/tarot/i_tarot_question_repository.dart';
 import 'package:daily_tarot_focus/features/tarot/data/tarot/impl_tarot_question_repository.dart';
 import 'package:daily_tarot_focus/features/tarot/data/tarot/impl_tarot_remote_data_source.dart';
-import 'package:daily_tarot_focus/features/tarot/data/tarot/tarot_repository.dart';
-import 'package:daily_tarot_focus/features/tarot/data/tarot_localization/impl_tarot_localization_service.dart';
-import 'package:daily_tarot_focus/features/tarot/data/tarot_localization/tarot_localization_repository.dart';
+import 'package:daily_tarot_focus/features/tarot/data/tarot/impl_tarot_repository.dart';
 import 'package:mobile_boilerplate/application/analytics/analytics_cubit.dart';
 import 'package:mobile_boilerplate/application/auth/auth_cubit.dart';
 import 'package:mobile_boilerplate/application/color_theme/color_theme_bloc.dart';
@@ -170,14 +167,8 @@ Future<void> setupDependencies() async {
       ),
     )
     ..registerSingleton<StoreCheckerService>(const StoreCheckerService())
-    ..registerSingleton<ImplTarotLocalizationService>(
-      ImplTarotLocalizationService(),
-    )
     ..registerSingleton<ImplTarotRemoteDataSource>(
       ImplTarotRemoteDataSource(getIt<SupabaseClient>()),
-    )
-    ..registerSingleton<ImplTarotLocalizationRepository>(
-      ImplTarotLocalizationRepository(getIt<ImplTarotLocalizationService>()),
     )
     ..registerSingleton<ImplTarotRepository>(
       ImplTarotRepository(getIt<ImplTarotRemoteDataSource>()),
@@ -229,16 +220,10 @@ Future<void> setupDependencies() async {
     ..registerFactory<RegisterCubit>(
       () => RegisterCubit(getIt<ImplUserRepository>()),
     )
-    ..registerFactory<TarotLocalizationCubit>(
-      () => TarotLocalizationCubit(getIt<ImplTarotLocalizationRepository>()),
-    )
     ..registerFactory<TarotQuestionBloc>(
       () => TarotQuestionBloc(getIt<ITarotQuestionRepository>()),
     )
     ..registerLazySingleton<TarotBloc>(
-      () => TarotBloc(
-        getIt<ImplTarotRepository>(),
-        getIt<ImplTarotLocalizationRepository>(),
-      ),
+      () => TarotBloc(getIt<ImplTarotRepository>()),
     );
 }

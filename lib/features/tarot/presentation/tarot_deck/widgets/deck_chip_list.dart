@@ -7,10 +7,10 @@ class DeckChipList extends StatelessWidget {
   Widget build(BuildContext context) {
     final scope = DeckPageScope.of(context);
 
-    return BlocBuilder<TarotLocalizationCubit, TarotLocalizationState>(
-      builder: (context, state) {
-        final currentCategory = state.selectedCategory;
-        final isCategoryAllSelected = currentCategory == null;
+    return ValueListenableBuilder<TarotCategory?>(
+      valueListenable: scope.state.selectedCategory,
+      builder: (context, category, child) {
+        final isCategoryAllSelected = category == null;
 
         return SingleChildScrollView(
           scrollDirection: Axis.horizontal,
@@ -20,22 +20,20 @@ class DeckChipList extends StatelessWidget {
               _CategoryChip(
                 label: 'All',
                 isSelected: isCategoryAllSelected,
-                onTap: () => scope.state.onCategoryChanged(null),
+                onTap: () => scope.state.onCategoryChanged = null,
               ),
               Sp.xsmall.widthBox,
-              ...TarotCategory.values.map(
-                (category) {
-                  final isSelected = currentCategory == category;
-                  return Padding(
-                    padding: Sp.xsmall.padRightR,
-                    child: _CategoryChip(
-                      label: category.value,
-                      isSelected: isSelected,
-                      onTap: () => scope.state.onCategoryChanged(category),
-                    ),
-                  );
-                },
-              ),
+              ...TarotCategory.values.map((cat) {
+                final isSelected = cat == category;
+                return Padding(
+                  padding: Sp.xsmall.padRightR,
+                  child: _CategoryChip(
+                    label: cat.value,
+                    isSelected: isSelected,
+                    onTap: () => scope.state.onCategoryChanged = cat,
+                  ),
+                );
+              }),
             ],
           ),
         );
@@ -66,7 +64,7 @@ class _CategoryChip extends StatelessWidget {
           thickness: 10,
           lightIntensity: isSelected ? 1.1 : 0.7,
         ),
-        shape: const LiquidRoundedSuperellipse(borderRadius: 16),
+        shape: const LiquidRoundedSuperellipse(borderRadius: Sp.medium),
         child: Container(
           padding: Sp.medium.padHVR(Sp.xsmall),
           decoration: BoxDecoration(

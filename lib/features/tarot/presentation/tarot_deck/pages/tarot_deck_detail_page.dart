@@ -1,7 +1,8 @@
 import 'package:daily_tarot_focus/core/util/text_style_helper.dart';
 import 'package:daily_tarot_focus/core/widgets/tarot_app_bar.dart';
 import 'package:daily_tarot_focus/core/widgets/tarot_detail_content.dart';
-import 'package:daily_tarot_focus/features/tarot/bloc/tarot_localization/tarot_localization_cubit.dart';
+import 'package:daily_tarot_focus/features/tarot/bloc/tarot/tarot_bloc.dart';
+import 'package:daily_tarot_focus/features/tarot/bloc/tarot/tarot_state.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/tarot_card_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -14,12 +15,9 @@ class TarotDeckDetailPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<TarotLocalizationCubit, TarotLocalizationState>(
-      builder: (context, locState) {
-        final cubit = context.read<TarotLocalizationCubit>();
-        final tarot =
-            cubit.getByTitle(tarotId) ??
-            (locState.allCards.isNotEmpty ? locState.allCards.first : null);
+    return BlocBuilder<TarotBloc, TarotState>(
+      builder: (context, state) {
+        final tarot = state.getByTitle(tarotId);
 
         if (tarot == null) {
           return Scaffold(

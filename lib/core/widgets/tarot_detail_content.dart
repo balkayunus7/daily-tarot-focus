@@ -87,7 +87,27 @@ class _TarotDetailContentState extends State<TarotDetailContent> {
                           ),
                           child: ClipRRect(
                             borderRadius: Sp.medium.radiusR,
-                            child: Image.asset(tarot.imagePath, fit: BoxFit.cover),
+                            child: CachedNetworkImage(
+                              imageUrl: tarot.imagePath,
+                              fit: BoxFit.cover,
+                              placeholder:
+                                  (context, url) => Container(
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(12),
+                                      gradient: LinearGradient(
+                                        begin: Alignment.topLeft,
+                                        end: Alignment.bottomRight,
+                                        colors: [
+                                          context.colors.primary,
+                                          context.colors.secondary,
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                              errorWidget: (context, url, error) => const Icon(Icons.broken_image),
+                              fadeInDuration: const Duration(milliseconds: 300),
+                              fadeOutDuration: const Duration(milliseconds: 100),
+                            ),
                           ),
                         ),
                       ),

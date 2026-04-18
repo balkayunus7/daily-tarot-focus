@@ -1,6 +1,8 @@
 import 'package:daily_tarot_focus/core/util/supabase_helper.dart';
 import 'package:daily_tarot_focus/core/util/tarot_routes.dart';
 import 'package:daily_tarot_focus/features/tarot/data/tarot/i_tarot_remote_data_source.dart';
+import 'package:daily_tarot_focus/features/tarot/domain/models/fetch_all_cards_request_model.dart';
+import 'package:daily_tarot_focus/features/tarot/domain/models/fetch_all_cards_response_model.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/fetch_daily_cards_request_model.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/fetch_daily_cards_response_model.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/reading_request_model.dart';
@@ -32,7 +34,7 @@ class ImplTarotRemoteDataSource implements ITarotRemoteDataSource {
 
     if (!success) throw Exception();
 
-    return RecordDailyCardResponseModel.fromMap();
+    return RecordDailyCardResponse.fromMap();
   }
 
   @override
@@ -47,7 +49,7 @@ class ImplTarotRemoteDataSource implements ITarotRemoteDataSource {
     if (responseOrFail.isLeft()) throw Exception();
 
     final response = responseOrFail.getRightOrCrash();
-    return FetchDailyCardsResponseModel.fromList(response.data as List);
+    return FetchDailyCardsResponse.fromList(response.data as List);
   }
 
   @override
@@ -62,7 +64,20 @@ class ImplTarotRemoteDataSource implements ITarotRemoteDataSource {
     if (responseOrFail.isLeft()) throw Exception();
 
     final response = responseOrFail.getRightOrCrash();
-    return ReadingResponseModel.fromMap(decodeSupabaseResponse(response.data));
+    return ReadingResponse.fromMap(decodeSupabaseResponse(response.data));
+  }
+
+  @override
+  Future<FetchAllCardsResponse> requestAllCards({required FetchAllCardsRequest request}) async {
+    final responseOrFail = await supabaseClient.secureInvoke(
+      route: GET_ALL_CARDS,
+      session: request.session,
+    );
+
+    if (responseOrFail.isLeft()) throw Exception();
+
+    final response = responseOrFail.getRightOrCrash();
+    return FetchAllCardsResponse.fromMap(decodeSupabaseResponse(response.data));
   }
 
   final SupabaseClient _supabaseClient;

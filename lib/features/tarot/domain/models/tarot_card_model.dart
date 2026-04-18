@@ -21,7 +21,7 @@ class TarotCardModel with EquatableMixin {
     return TarotCardModel(
       id: map['id'] as String,
       name: map['name'] as String? ?? '',
-      imagePath: map['imagePath'] as String? ?? '',
+      imagePath: map['image_url'] as String? ?? '',
       category: TarotCategory.fromString(map['category'] as String? ?? ''),
       description: map['description'] as String? ?? '',
       correspondences: CorrespondencesModel.fromMap(

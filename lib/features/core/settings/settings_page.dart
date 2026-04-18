@@ -1,13 +1,8 @@
-import 'package:daily_tarot_focus/core/util/haptic_feedback_helper.dart';
-import 'package:daily_tarot_focus/core/util/locale_extensions.dart';
 import 'package:daily_tarot_focus/core/util/locale_keys.dart';
 import 'package:daily_tarot_focus/core/util/tarot_app_sizes.dart';
 import 'package:daily_tarot_focus/core/util/text_style_helper.dart';
 import 'package:daily_tarot_focus/core/widgets/glass_container.dart';
 import 'package:daily_tarot_focus/core/widgets/tarot_app_bar.dart';
-import 'package:daily_tarot_focus/features/tarot/bloc/tarot/tarot_bloc.dart';
-import 'package:daily_tarot_focus/features/tarot/bloc/tarot_localization/tarot_localization_cubit.dart';
-import 'package:daily_tarot_focus/features/tarot/domain/models/fetch_daily_cards_request_model.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile_boilerplate/application/auth/auth_cubit.dart';
 import 'package:mobile_boilerplate/application/launcher/launcher.dart';
@@ -19,8 +14,6 @@ import 'package:mobile_boilerplate/presentation/extensions/build_context_failure
 import 'package:mobile_boilerplate/presentation/extensions/build_context_theme_ext.dart';
 import 'package:mobile_boilerplate/presentation/popups/core_popup.dart';
 import 'package:mobile_boilerplate/presentation/widgets/scaling_container.dart';
-
-part 'change_language_dialog.dart';
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage({super.key});
@@ -74,11 +67,6 @@ class SettingsPage extends StatelessWidget {
                 _SettingsSection(
                   title: LocaleKeys.settings_page_account.tr(),
                   children: [
-                    _SettingsTile(
-                      icon: Icons.language,
-                      title: LocaleKeys.settings_page_language.tr(),
-                      onTap: () => _showLanguageBottomSheet(context),
-                    ),
                     _SettingsTile(
                       icon: Icons.star_rate,
                       title: LocaleKeys.settings_page_rate_us.tr(),
@@ -239,51 +227,6 @@ class _SettingsTile extends StatelessWidget {
               color: (color ?? colors.textSecondary).withValues(alpha: 0.4),
               size: 20,
             ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class _LanguageOption extends StatelessWidget {
-  const _LanguageOption({
-    required this.title,
-    required this.locale,
-    required this.isSelected,
-    required this.onTap,
-  });
-
-  final String title;
-  final Locale locale;
-  final bool isSelected;
-  final VoidCallback onTap;
-
-  @override
-  Widget build(BuildContext context) {
-    final colors = context.colors;
-
-    return ScalingContainer(
-      onTap: onTap,
-      child: GlassContainer(
-        padding: Sp.small.padSymR(h: Sp.large, v: Sp.small),
-        borderRadius: Sp.medium,
-        glassColor:
-            isSelected
-                ? colors.primary.withValues(alpha: 0.2)
-                : colors.primary.withValues(alpha: 0.05),
-        borderColor: colors.primary.withValues(alpha: 0.05),
-        child: Row(
-          children: [
-            Expanded(
-              child: Text(
-                title,
-                style: m15w600(context).copyWith(
-                  color: isSelected ? colors.primary : colors.textPrimary,
-                ),
-              ),
-            ),
-            if (isSelected) Icon(Icons.check_circle, color: colors.primary, size: 20),
           ],
         ),
       ),

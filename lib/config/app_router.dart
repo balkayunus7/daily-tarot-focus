@@ -7,7 +7,7 @@ import 'package:daily_tarot_focus/features/auth/presentation/pages/splash_page.d
 import 'package:daily_tarot_focus/features/core/home/home_page.dart';
 import 'package:daily_tarot_focus/features/core/settings/settings_page.dart';
 import 'package:daily_tarot_focus/features/core/subscription/pages/tarot_subscription_paywall_page.dart';
-import 'package:daily_tarot_focus/features/tarot/bloc/tarot_localization/tarot_localization_cubit.dart';
+import 'package:daily_tarot_focus/features/tarot/bloc/tarot/tarot_bloc.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/reading_request_model.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/tarot_card_model.dart';
 import 'package:daily_tarot_focus/features/tarot/presentation/tarot_daily/page/tarot_daily_detail_page.dart';
@@ -137,13 +137,13 @@ final appRouter = GoRouter(
         }
 
         final tarotId = state.pathParameters['tarotId'];
-        final cubit = context.read<TarotLocalizationCubit>();
-        final tarot = tarotId != null ? cubit.getByTitle(tarotId) : cubit.getRandomCard();
+        final tarotState = context.read<TarotBloc>().state;
+        final tarot = tarotId != null ? tarotState.getById(tarotId) : tarotState.randomCard;
 
         return MaterialPage(
           key: state.pageKey,
           child: TarotRevealDetailPage(
-            tarot: tarot ?? cubit.state.allCards.first,
+            tarot: tarot ?? tarotState.allCardsOrEmpty.first(),
           ),
         );
       },

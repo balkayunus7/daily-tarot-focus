@@ -1,5 +1,6 @@
 import 'package:daily_tarot_focus/core/util/tarot_app_sizes.dart';
 import 'package:daily_tarot_focus/core/util/text_style_helper.dart';
+import 'package:daily_tarot_focus/core/widgets/custom_cache_network_image.dart';
 import 'package:daily_tarot_focus/core/widgets/glass_container.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/tarot_reader_model.dart';
 import 'package:flutter/material.dart';
@@ -72,7 +73,7 @@ class _ReaderAvatar extends StatelessWidget {
       child: Container(
         decoration: BoxDecoration(borderRadius: Sp.xxxlarge.radiusR),
         clipBehavior: Clip.antiAlias,
-        child: Image.asset(image, fit: BoxFit.cover),
+        child: CustomCacheNetworkImage(imageUrl: image, fit: BoxFit.cover),
       ),
     );
   }

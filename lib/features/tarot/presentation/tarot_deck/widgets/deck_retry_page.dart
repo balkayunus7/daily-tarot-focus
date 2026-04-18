@@ -25,10 +25,10 @@ class DeckRetryWidget extends StatelessWidget {
               borderRadius: Sp.xlarge.radiusR,
             ),
             Sp.xxlarge.heightBox,
-            Image.asset(
-              TarotAppAssets.empty.path,
-              height: MediaQuery.of(context).size.height * 0.3,
+            CustomCacheNetworkImage(
+              imageUrl: TarotAppAssets.emptyHttp,
               fit: BoxFit.contain,
+              height: MediaQuery.of(context).size.height * 0.3,
             ),
           ],
         );

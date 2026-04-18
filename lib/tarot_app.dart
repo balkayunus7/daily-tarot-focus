@@ -34,9 +34,7 @@ class TarotApp extends StatelessWidget {
         BlocProvider(create: (_) => getIt<TarotBloc>()),
         BlocProvider(create: (_) => getIt<TarotQuestionBloc>()),
         Provider<Launcher>(create: (_) => getIt<Launcher>()),
-        Provider<NetworkTimeProvider>(
-          create: (_) => getIt<NetworkTimeProvider>(),
-        ),
+        Provider<NetworkTimeProvider>(create: (_) => getIt<NetworkTimeProvider>()),
       ],
       child: CoreApp(
         darkColors: TarotAppColorsDark(),

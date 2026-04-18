@@ -1,6 +1,7 @@
 import 'package:daily_tarot_focus/core/util/tarot_app_assets.dart';
 import 'package:daily_tarot_focus/core/util/tarot_app_sizes.dart';
 import 'package:daily_tarot_focus/core/util/text_style_helper.dart';
+import 'package:daily_tarot_focus/core/widgets/custom_cache_network_image.dart';
 import 'package:daily_tarot_focus/core/widgets/glass_button.dart';
 import 'package:flutter/material.dart';
 
@@ -29,10 +30,10 @@ class ReadingEmptyWidget extends StatelessWidget {
           borderRadius: Sp.xlarge.radiusR,
         ),
         Sp.xxlarge.heightBox,
-        Image.asset(
-          TarotAppAssets.empty.path,
-          height: MediaQuery.of(context).size.height * 0.3,
+        CustomCacheNetworkImage(
+          imageUrl: TarotAppAssets.emptyHttp,
           fit: BoxFit.contain,
+          height: MediaQuery.of(context).size.height * 0.3,
         ),
       ],
     );

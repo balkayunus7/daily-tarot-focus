@@ -6,6 +6,7 @@ import 'package:daily_tarot_focus/core/util/shadow_extensions.dart';
 import 'package:daily_tarot_focus/core/util/tarot_app_assets.dart';
 import 'package:daily_tarot_focus/core/util/tarot_app_sizes.dart';
 import 'package:daily_tarot_focus/core/util/text_style_helper.dart';
+import 'package:daily_tarot_focus/core/widgets/custom_cache_network_image.dart';
 import 'package:daily_tarot_focus/core/widgets/glass_button.dart';
 import 'package:daily_tarot_focus/core/widgets/glass_container.dart';
 import 'package:daily_tarot_focus/features/auth/domain/models/tarot_user.dart';
@@ -64,7 +65,7 @@ class TarotExplorePage extends StatelessWidget {
                       Expanded(
                         child: ExploreFeatureCard(
                           title: LocaleKeys.explore_page_deck.tr(),
-                          imagePath: TarotAppAssets.library.path,
+                          imagePath: TarotAppAssets.libraryHttp,
                           onTap: () => context.push(AppRoutes.tarotDeck),
                         ),
                       ),

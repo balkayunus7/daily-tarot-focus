@@ -1,8 +1,10 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 Future<void> setupBindings() async {
   final binding = WidgetsFlutterBinding.ensureInitialized();
+
   for (final renderView in binding.renderViews) {
     renderView.automaticSystemUiAdjustment = false;
   }

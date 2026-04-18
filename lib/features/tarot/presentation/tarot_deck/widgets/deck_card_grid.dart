@@ -71,25 +71,7 @@ class _DeckCard extends StatelessWidget {
                       ),
                       child: ClipRRect(
                         borderRadius: Sp.tiny.radiusR,
-                        child: CachedNetworkImage(
-                          imageUrl: card.imagePath,
-                          fit: BoxFit.cover,
-                          fadeInDuration: Duration.zero,
-                          placeholder:
-                              (context, url) => Container(
-                                decoration: BoxDecoration(
-                                  borderRadius: Sp.small.radiusR,
-                                  gradient: LinearGradient(
-                                    begin: Alignment.topLeft,
-                                    end: Alignment.bottomRight,
-                                    colors: [
-                                      context.colors.primary.withValues(alpha: 0.3),
-                                      context.colors.secondary.withValues(alpha: 0.1),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                        ),
+                        child: CustomCacheNetworkImage(imageUrl: card.imagePath, fit: BoxFit.cover),
                       ),
                     ),
                     if (showLock) ...[

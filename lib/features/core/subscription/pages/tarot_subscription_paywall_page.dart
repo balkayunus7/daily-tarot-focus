@@ -1,4 +1,5 @@
 import 'package:daily_tarot_focus/core/util/tarot_app_assets.dart';
+import 'package:daily_tarot_focus/core/widgets/custom_cache_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile_boilerplate/domain/purchases/subscription_period.dart';
 import 'package:mobile_boilerplate/domain/purchases/subscription_plan.dart';
@@ -59,10 +60,9 @@ class TarotSubscriptionPaywallPage extends StatelessWidget {
       packageBadges: _badges,
       theme: buildTheme(context),
       dismissDelay: const Duration(seconds: 3),
-      headerImage: Image.asset(
-        TarotAppAssets.paywall.path,
+      headerImage: const CustomCacheNetworkImage(
+        imageUrl: TarotAppAssets.paywallHttp,
         fit: BoxFit.cover,
-        alignment: Alignment.topCenter,
       ),
     );
   }

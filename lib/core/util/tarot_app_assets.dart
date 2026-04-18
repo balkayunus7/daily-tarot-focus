@@ -1,13 +1,4 @@
 enum TarotAppAssets {
-  /////PNG///////////////////////
-  dailyPickBg._('assets/png/daily_pick_bg.png'),
-  cardBg._('assets/png/card_bg.png'),
-  arrow._('assets/png/arrow.png'),
-  maskotDaily._('assets/png/maskot_daily.png'),
-  library._('assets/png/ask_question.png'),
-  askQuestion._('assets/png/library.png'),
-  paywall._('assets/png/paywall.png'),
-  empty._('assets/png/empty.png'),
   /////SVG///////////////////////
   card._('assets/svg/card.svg'),
   crown._('assets/svg/crown.svg'),
@@ -27,4 +18,17 @@ enum TarotAppAssets {
 
   const TarotAppAssets._(this.path);
   final String path;
+
+  /////HTTP///////////////////////
+  static const _base =
+      'https://wcokelgolrodijdxtvjn.supabase.co/storage/v1/object/public/app-images/backgrounds';
+
+  static const arrowHttp = '$_base/arrow.png';
+  static const askQuestionHttp = '$_base/ask_question.png';
+  static const cardBgHttp = '$_base/card_bg.png';
+  static const dailyPickBgHttp = '$_base/daily_pick_bg.png';
+  static const emptyHttp = '$_base/empty.png';
+  static const libraryHttp = '$_base/library.png';
+  static const maskotDailyHttp = '$_base/maskot_daily.png';
+  static const paywallHttp = '$_base/paywall.png';
 }

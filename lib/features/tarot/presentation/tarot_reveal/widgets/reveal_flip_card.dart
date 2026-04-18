@@ -74,7 +74,12 @@ class _TarotFrontCard extends StatelessWidget {
             Expanded(
               child: ClipRRect(
                 borderRadius: Sp.tiny.radiusR,
-                child: Image.asset(imagePath, fit: BoxFit.cover),
+                child: CustomCacheNetworkImage(
+                  imageUrl: imagePath,
+                  width: CardSp.flipWidth,
+                  height: CardSp.flipHeight,
+                  fit: BoxFit.fill,
+                ),
               ),
             ),
           ],
@@ -101,7 +106,12 @@ class _TarotBackCard extends StatelessWidget {
         ),
         child: ClipRRect(
           borderRadius: Sp.xsmall.radiusR,
-          child: Image.asset(TarotAppAssets.cardBg.path, fit: BoxFit.fill),
+          child: const CustomCacheNetworkImage(
+            imageUrl: TarotAppAssets.cardBgHttp,
+            width: CardSp.flipWidth,
+            height: CardSp.flipHeight,
+            fit: BoxFit.fill,
+          ),
         ),
       ),
     );

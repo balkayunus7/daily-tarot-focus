@@ -18,10 +18,10 @@ class DailyEmptyWidget extends StatelessWidget {
           buttonTextStyle: m10w600(context).copyWith(color: context.colors.textOnPrimary),
         ),
         Sp.xxlarge.heightBox,
-        Image.asset(
-          TarotAppAssets.empty.path,
-          height: MediaQuery.of(context).size.height * 0.3,
+        CustomCacheNetworkImage(
+          imageUrl: TarotAppAssets.emptyHttp,
           fit: BoxFit.contain,
+          height: MediaQuery.of(context).size.height * 0.3,
         ),
       ],
     );

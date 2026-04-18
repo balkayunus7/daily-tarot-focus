@@ -89,16 +89,11 @@ class _OverlayCardImage extends StatelessWidget {
       right: -cardWidth * _kPaddingRatio,
       top: -cardHeight * _kPaddingRatio,
       bottom: -cardHeight * _kPaddingRatio,
-      child: Container(
+      child: CustomCacheNetworkImage(
+        imageUrl: TarotAppAssets.maskotDailyHttp,
         width: cardWidth,
         height: cardHeight,
-        decoration: BoxDecoration(
-          borderRadius: Sp.medium.radiusR,
-          image: DecorationImage(
-            image: AssetImage(TarotAppAssets.maskotDaily.path),
-            fit: BoxFit.cover,
-          ),
-        ),
+        fit: BoxFit.cover,
       ),
     );
   }

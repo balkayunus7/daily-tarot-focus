@@ -1,3 +1,4 @@
+import 'package:daily_tarot_focus/core/widgets/custom_cache_network_image.dart';
 import 'package:flutter/material.dart';
 
 class ScaleableImage extends StatelessWidget {
@@ -7,11 +8,17 @@ class ScaleableImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final displayHeight = MediaQuery.of(context).size.height * scaleFactor;
+
     return Positioned(
       left: 0,
       right: 0,
-      height: MediaQuery.of(context).size.height * scaleFactor,
-      child: Image.asset(imagePath, fit: BoxFit.cover),
+      height: displayHeight,
+      child: CustomCacheNetworkImage(
+        imageUrl: imagePath,
+        fit: BoxFit.cover,
+        height: displayHeight,
+      ),
     );
   }
 }

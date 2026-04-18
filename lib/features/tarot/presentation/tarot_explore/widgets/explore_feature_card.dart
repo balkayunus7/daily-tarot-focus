@@ -47,7 +47,7 @@ class ExploreFeatureCard extends StatelessWidget {
                           borderRadius: Sp.small.radiusR,
                           child: Opacity(
                             opacity: 0.9,
-                            child: Image.asset(imagePath, fit: BoxFit.cover),
+                            child: CustomCacheNetworkImage(imageUrl: imagePath, fit: BoxFit.cover),
                           ),
                         ),
                       ),

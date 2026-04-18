@@ -37,7 +37,12 @@ class RevealCardItem extends StatelessWidget {
             ),
             child: ClipRRect(
               borderRadius: Sp.medium.radiusR,
-              child: Image.asset(TarotAppAssets.cardBg.path, fit: BoxFit.fill),
+              child: CustomCacheNetworkImage(
+                imageUrl: TarotAppAssets.cardBgHttp,
+                width: cardWidth,
+                height: cardHeight,
+                fit: BoxFit.fill,
+              ),
             ),
           ),
         ),

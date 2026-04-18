@@ -75,36 +75,9 @@ class _DailyCardListItem extends StatelessWidget {
                         ),
                         child: ClipRRect(
                           borderRadius: Sp.xsmall.radiusR,
-                          child: Image.asset(
-                            card.imagePath,
-                            width: 56,
-                            height: 80,
-                            fit: BoxFit.fill,
-                            frameBuilder: (context, child, frame, wasSynchronouslyLoaded) {
-                              if (wasSynchronouslyLoaded || frame != null) {
-                                return child;
-                              }
-                              return SizedBox(
-                                width: 56.w,
-                                height: 80.h,
-                                child: DecoratedBox(
-                                  decoration: BoxDecoration(
-                                    color: primary.withValues(alpha: 0.1),
-                                    borderRadius: Sp.xsmall.radiusR,
-                                  ),
-                                  child: Center(
-                                    child: SizedBox(
-                                      width: 16.w,
-                                      height: 16.h,
-                                      child: SpinKitFadingCircle(
-                                        color: primary.withValues(alpha: 0.4),
-                                        size: 16,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              );
-                            },
+                          child: CustomCacheNetworkImage(
+                            imageUrl: card.imagePath,
+                            fit: BoxFit.cover,
                           ),
                         ),
                       ),

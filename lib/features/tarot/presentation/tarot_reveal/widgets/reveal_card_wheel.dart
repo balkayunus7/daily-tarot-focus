@@ -35,11 +35,16 @@ class RevealCardWheel extends StatelessWidget {
                       builder: (context, index) {
                         final isSelected = index == selectedCardIndex;
 
-                        return RevealCardItem(
-                          index: index,
-                          cardImagePath: TarotMockData.randomTarotCard,
-                          isSelected: isSelected,
-                          handleCardTap: scope.handleCardTap,
+                        return BlocBuilder<TarotBloc, TarotState>(
+                          builder: (context, state) {
+                            final card = state.randomCard!;
+                            return RevealCardItem(
+                              index: index,
+                              cardImagePath: card.imagePath,
+                              isSelected: isSelected,
+                              handleCardTap: scope.handleCardTap,
+                            );
+                          },
                         );
                       },
                     ),
@@ -49,8 +54,8 @@ class RevealCardWheel extends StatelessWidget {
             ),
           ),
           Sp.xsmall.heightBox,
-          Image.asset(
-            TarotAppAssets.arrow.path,
+          CustomCacheNetworkImage(
+            imageUrl: TarotAppAssets.arrowHttp,
             width: screenWidth * 0.25,
             height: screenWidth * 0.12,
             color: context.colors.primary,

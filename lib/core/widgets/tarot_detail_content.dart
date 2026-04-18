@@ -2,6 +2,7 @@ import 'package:daily_tarot_focus/core/util/locale_keys.dart';
 import 'package:daily_tarot_focus/core/util/tarot_app_sizes.dart';
 import 'package:daily_tarot_focus/core/util/tarot_mock_data.dart';
 import 'package:daily_tarot_focus/core/util/text_style_helper.dart';
+import 'package:daily_tarot_focus/core/widgets/custom_cache_network_image.dart';
 import 'package:daily_tarot_focus/core/widgets/glass_container.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/tarot_card_model.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -87,26 +88,9 @@ class _TarotDetailContentState extends State<TarotDetailContent> {
                           ),
                           child: ClipRRect(
                             borderRadius: Sp.medium.radiusR,
-                            child: CachedNetworkImage(
+                            child: CustomCacheNetworkImage(
                               imageUrl: tarot.imagePath,
                               fit: BoxFit.cover,
-                              placeholder:
-                                  (context, url) => Container(
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(12),
-                                      gradient: LinearGradient(
-                                        begin: Alignment.topLeft,
-                                        end: Alignment.bottomRight,
-                                        colors: [
-                                          context.colors.primary,
-                                          context.colors.secondary,
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                              errorWidget: (context, url, error) => const Icon(Icons.broken_image),
-                              fadeInDuration: const Duration(milliseconds: 300),
-                              fadeOutDuration: const Duration(milliseconds: 100),
                             ),
                           ),
                         ),

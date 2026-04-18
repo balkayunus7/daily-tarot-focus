@@ -25,14 +25,27 @@ class _SplashPageState extends State<SplashPage>
   @override
   void initState() {
     super.initState();
-    final authCubit = context.read<AuthCubit>();
 
     WidgetsBinding.instance.addPostFrameCallback((_) async {
+      await _initImages();
       Future.delayed(const Duration(seconds: 1), () async {
         if (!mounted) return;
+        final authCubit = context.read<AuthCubit>();
         await authCubit.initialize(requestAttAuth: Platform.isIOS);
       });
     });
+  }
+
+  Future<void> _initImages() async {
+    final images = [
+      TarotAppAssets.dailyPickBgHttp,
+      TarotAppAssets.emptyHttp,
+      TarotAppAssets.maskotDailyHttp,
+      TarotAppAssets.libraryHttp,
+      TarotAppAssets.paywallHttp,
+    ];
+
+    await Future.wait(images.map((url) => precacheImage(CachedNetworkImageProvider(url), context)));
   }
 
   Future<void> _fetchDailyCards() async {

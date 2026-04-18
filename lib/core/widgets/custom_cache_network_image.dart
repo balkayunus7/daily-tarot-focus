@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:mobile_boilerplate/common_dependencies.dart';
-import 'package:mobile_boilerplate/presentation/extensions/build_context_theme_ext.dart';
 
 class CustomCacheNetworkImage extends StatelessWidget {
   const CustomCacheNetworkImage({
@@ -11,12 +9,14 @@ class CustomCacheNetworkImage extends StatelessWidget {
     this.height,
     this.fit,
     this.indicatorSize,
+    this.color,
   });
   final String imageUrl;
   final double? width;
   final double? height;
   final BoxFit? fit;
   final double? indicatorSize;
+  final Color? color;
 
   @override
   Widget build(BuildContext context) {
@@ -25,16 +25,10 @@ class CustomCacheNetworkImage extends StatelessWidget {
       fit: fit ?? BoxFit.cover,
       width: width,
       height: height,
-      placeholder: (context, url) {
-        return SpinKitFadingCircle(color: context.colors.primary, size: indicatorSize ?? 24);
-      },
-      errorWidget: (context, url, error) {
-        return Container(
-          width: width,
-          height: height,
-          color: context.colors.background,
-        );
-      },
+      color: color,
+      fadeInDuration: Duration.zero,
+      fadeOutDuration: Duration.zero,
+      placeholderFadeInDuration: Duration.zero,
     );
   }
 }

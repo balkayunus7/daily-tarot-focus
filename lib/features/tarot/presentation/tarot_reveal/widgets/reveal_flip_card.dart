@@ -35,7 +35,7 @@ class RevealFlipCard extends StatelessWidget {
                     if (isFrontVisible) {
                       return _TarotFrontCard(
                         title: selectedCard.name,
-                        imagePath: selectedCard.imagePath,
+                        imagePath: selectedCard.imageUrl,
                       );
                     }
                     return const _TarotBackCard();

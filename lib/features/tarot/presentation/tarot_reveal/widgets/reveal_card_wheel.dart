@@ -40,7 +40,7 @@ class RevealCardWheel extends StatelessWidget {
                             final card = state.randomCard!;
                             return RevealCardItem(
                               index: index,
-                              cardImagePath: card.imagePath,
+                              cardImagePath: card.imageUrl,
                               isSelected: isSelected,
                               handleCardTap: scope.handleCardTap,
                             );

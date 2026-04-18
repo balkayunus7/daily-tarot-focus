@@ -1,5 +1,8 @@
+import 'dart:async';
+
 import 'package:daily_tarot_focus/features/tarot/bloc/tarot/tarot_event.dart';
 import 'package:daily_tarot_focus/features/tarot/bloc/tarot/tarot_state.dart';
+import 'package:daily_tarot_focus/features/tarot/data/tarot/impl_tarot_cache_service.dart';
 import 'package:daily_tarot_focus/features/tarot/data/tarot/impl_tarot_repository.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/fetch_all_cards_request_model.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/fetch_daily_cards_request_model.dart';
@@ -7,10 +10,9 @@ import 'package:daily_tarot_focus/features/tarot/domain/models/reading_request_m
 import 'package:daily_tarot_focus/features/tarot/domain/models/record_daily_card_request_model.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/tarot_card_model.dart';
 import 'package:mobile_boilerplate/common_dependencies.dart';
-import 'package:mobile_boilerplate/domain/common/failure.dart';
 
 class TarotBloc extends Bloc<TarotEvent, TarotState> {
-  TarotBloc(this._tarotRepository) : super(TarotState.initial()) {
+  TarotBloc(this._tarotRepository, this._cacheService) : super(TarotState.initial()) {
     on<TarotEvent>((event, emit) async {
       if (event is TarotFetchAllCardsRequested) {
         await _onFetchAllCardsRequested(event, emit);
@@ -36,48 +38,47 @@ class TarotBloc extends Bloc<TarotEvent, TarotState> {
   void addReadingRequested({required ReadingRequest request}) =>
       add(TarotReadingRequested(request: request));
 
-  // PRIVATE METHODS
   Future<void> _onFetchAllCardsRequested(
     TarotFetchAllCardsRequested event,
     Emitter<TarotState> emit,
   ) async {
-    emit(state.copyWith(isLoadingCards: true));
+    emit(state.copyWith(isFetchingAllCards: true));
 
-    try {
-      final failOrAllCards = await _tarotRepository.requestAllCards(request: event.request);
-
-      final newState = failOrAllCards.fold(
-        (failure) => state.copyWith(
-          fetchAllCardsFailureOrCards: some(left(failure)),
-          isFetchingAllCards: false,
-        ),
-        (response) => state.copyWith(
-          fetchAllCardsFailureOrCards: some(right(response.cards)),
-          isFetchingAllCards: false,
-        ),
-      );
-
-      emit(newState);
-    } on Exception {
+    final cachedCards = await _cacheService.getCards();
+    if (cachedCards != null && cachedCards.isNotEmpty) {
       emit(
         state.copyWith(
+          fetchAllCardsFailureOrCards: some(right(KtList.from(cachedCards))),
           isFetchingAllCards: false,
-          fetchAllCardsFailureOrCards: some(left(const UnknownFailure())),
         ),
       );
+      return;
     }
+
+    final failOrAllCards = await _tarotRepository.requestAllCards(request: event.request);
+
+    final newState = failOrAllCards.fold(
+      (failure) => state.copyWith(
+        fetchAllCardsFailureOrCards: some(left(failure)),
+        isFetchingAllCards: false,
+      ),
+      (response) {
+        unawaited(_cacheService.saveCards(response.cards.asList()));
+        return state.copyWith(
+          fetchAllCardsFailureOrCards: some(right(response.cards)),
+          isFetchingAllCards: false,
+        );
+      },
+    );
+
+    emit(newState);
   }
 
   Future<void> _onFetchDailyCardsRequested(
     TarotFetchDailyCardsRequested event,
     Emitter<TarotState> emit,
   ) async {
-    emit(
-      state.copyWith(
-        isFetchingDailyCards: true,
-        fetchFailureOrDailyCards: none(),
-      ),
-    );
+    emit(state.copyWith(isFetchingDailyCards: true, fetchFailureOrDailyCards: none()));
 
     final failOrRecords = await _tarotRepository.requestFetchDailyCards(request: event.request);
 
@@ -112,12 +113,7 @@ class TarotBloc extends Bloc<TarotEvent, TarotState> {
     TarotRecordDailyCardRequested event,
     Emitter<TarotState> emit,
   ) async {
-    emit(
-      state.copyWith(
-        isRecordDailyCard: true,
-        recordDailyCardFailureOrUnit: none(),
-      ),
-    );
+    emit(state.copyWith(isRecordDailyCard: true, recordDailyCardFailureOrUnit: none()));
 
     final failOrUnit = await _tarotRepository.requestRecordDailyCard(request: event.request);
 
@@ -126,10 +122,8 @@ class TarotBloc extends Bloc<TarotEvent, TarotState> {
         recordDailyCardFailureOrUnit: some(left(failure)),
         isRecordDailyCard: false,
       ),
-      (_) => state.copyWith(
-        recordDailyCardFailureOrUnit: some(right(unit)),
-        isRecordDailyCard: false,
-      ),
+      (_) =>
+          state.copyWith(recordDailyCardFailureOrUnit: some(right(unit)), isRecordDailyCard: false),
     );
 
     emit(newState);
@@ -144,32 +138,20 @@ class TarotBloc extends Bloc<TarotEvent, TarotState> {
     }
   }
 
-  Future<void> _onReadingRequested(
-    TarotReadingRequested event,
-    Emitter<TarotState> emit,
-  ) async {
-    emit(
-      state.copyWith(
-        isReading: true,
-        readingFailureOrResponse: none(),
-      ),
-    );
+  Future<void> _onReadingRequested(TarotReadingRequested event, Emitter<TarotState> emit) async {
+    emit(state.copyWith(isReading: true, readingFailureOrResponse: none()));
 
     final failOrResponse = await _tarotRepository.requestTarotReading(request: event.request);
 
     final newState = failOrResponse.fold(
-      (failure) => state.copyWith(
-        readingFailureOrResponse: some(left(failure)),
-        isReading: false,
-      ),
-      (response) => state.copyWith(
-        readingFailureOrResponse: some(right(response)),
-        isReading: false,
-      ),
+      (failure) => state.copyWith(readingFailureOrResponse: some(left(failure)), isReading: false),
+      (response) =>
+          state.copyWith(readingFailureOrResponse: some(right(response)), isReading: false),
     );
 
     emit(newState);
   }
 
   final ImplTarotRepository _tarotRepository;
+  final ImplTarotCacheService _cacheService;
 }

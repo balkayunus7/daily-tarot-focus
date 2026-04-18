@@ -89,7 +89,7 @@ class _TarotDetailContentState extends State<TarotDetailContent> {
                           child: ClipRRect(
                             borderRadius: Sp.medium.radiusR,
                             child: CustomCacheNetworkImage(
-                              imageUrl: tarot.imagePath,
+                              imageUrl: tarot.imageUrl,
                               fit: BoxFit.cover,
                             ),
                           ),

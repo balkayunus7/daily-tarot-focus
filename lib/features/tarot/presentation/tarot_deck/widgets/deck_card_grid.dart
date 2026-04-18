@@ -71,7 +71,7 @@ class _DeckCard extends StatelessWidget {
                       ),
                       child: ClipRRect(
                         borderRadius: Sp.tiny.radiusR,
-                        child: CustomCacheNetworkImage(imageUrl: card.imagePath, fit: BoxFit.cover),
+                        child: CustomCacheNetworkImage(imageUrl: card.imageUrl, fit: BoxFit.cover),
                       ),
                     ),
                     if (showLock) ...[
@@ -96,8 +96,8 @@ class _DeckCard extends StatelessWidget {
                           ),
                           child: SvgPicture.asset(
                             TarotAppAssets.crown.path,
-                            width: 12,
-                            height: 12,
+                            width: Sp.small,
+                            height: Sp.small,
                             colorFilter: ColorFilter.mode(
                               colors.textOnPrimary.withValues(alpha: 0.5),
                               BlendMode.srcIn,

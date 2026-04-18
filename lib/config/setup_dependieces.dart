@@ -11,6 +11,7 @@ import 'package:daily_tarot_focus/features/auth/data/impl_user_repository.dart';
 import 'package:daily_tarot_focus/features/tarot/bloc/tarot/tarot_bloc.dart';
 import 'package:daily_tarot_focus/features/tarot/bloc/tarot_question/tarot_question_bloc.dart';
 import 'package:daily_tarot_focus/features/tarot/data/tarot/i_tarot_question_repository.dart';
+import 'package:daily_tarot_focus/features/tarot/data/tarot/impl_tarot_cache_service.dart';
 import 'package:daily_tarot_focus/features/tarot/data/tarot/impl_tarot_question_repository.dart';
 import 'package:daily_tarot_focus/features/tarot/data/tarot/impl_tarot_remote_data_source.dart';
 import 'package:daily_tarot_focus/features/tarot/data/tarot/impl_tarot_repository.dart';
@@ -173,6 +174,9 @@ Future<void> setupDependencies() async {
     ..registerSingleton<ImplTarotRepository>(
       ImplTarotRepository(getIt<ImplTarotRemoteDataSource>()),
     )
+    ..registerSingleton<ImplTarotCacheService>(
+      ImplTarotCacheService(),
+    )
     ..registerSingleton<ITarotQuestionRepository>(ImplTarotQuestionRepository())
     // Setup application dependencies
     ..registerFactory<AuthCubit>(
@@ -224,6 +228,6 @@ Future<void> setupDependencies() async {
       () => TarotQuestionBloc(getIt<ITarotQuestionRepository>()),
     )
     ..registerLazySingleton<TarotBloc>(
-      () => TarotBloc(getIt<ImplTarotRepository>()),
+      () => TarotBloc(getIt<ImplTarotRepository>(), getIt<ImplTarotCacheService>()),
     );
 }

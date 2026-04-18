@@ -76,7 +76,7 @@ class _DailyCardListItem extends StatelessWidget {
                         child: ClipRRect(
                           borderRadius: Sp.xsmall.radiusR,
                           child: CustomCacheNetworkImage(
-                            imageUrl: card.imagePath,
+                            imageUrl: card.imageUrl,
                             fit: BoxFit.cover,
                           ),
                         ),

@@ -6,7 +6,7 @@ class TarotCardModel with EquatableMixin {
     required this.id,
     required this.name,
     required this.category,
-    required this.imagePath,
+    required this.imageUrl,
     required this.description,
     required this.correspondences,
     required this.symbols,
@@ -21,7 +21,7 @@ class TarotCardModel with EquatableMixin {
     return TarotCardModel(
       id: map['id'] as String,
       name: map['name'] as String? ?? '',
-      imagePath: map['image_url'] as String? ?? '',
+      imageUrl: map['image_url'] as String? ?? '',
       category: TarotCategory.fromString(map['category'] as String? ?? ''),
       description: map['description'] as String? ?? '',
       correspondences: CorrespondencesModel.fromMap(
@@ -49,7 +49,7 @@ class TarotCardModel with EquatableMixin {
     return {
       'id': id,
       'name': name,
-      'imagePath': imagePath,
+      'image_url': imageUrl,
       'category': category.value,
       'description': description,
       'correspondences': correspondences.toMap(),
@@ -63,7 +63,7 @@ class TarotCardModel with EquatableMixin {
 
   final String id;
   final String name;
-  final String imagePath;
+  final String imageUrl;
   final TarotCategory category;
   final String description;
   final CorrespondencesModel correspondences;
@@ -77,7 +77,7 @@ class TarotCardModel with EquatableMixin {
   TarotCardModel copyWith({
     String? id,
     String? name,
-    String? imagePath,
+    String? imageUrl,
     TarotCategory? category,
     String? description,
     CorrespondencesModel? correspondences,
@@ -91,7 +91,7 @@ class TarotCardModel with EquatableMixin {
     return TarotCardModel(
       id: id ?? this.id,
       name: name ?? this.name,
-      imagePath: imagePath ?? this.imagePath,
+      imageUrl: imageUrl ?? this.imageUrl,
       category: category ?? this.category,
       description: description ?? this.description,
       correspondences: correspondences ?? this.correspondences,
@@ -108,7 +108,7 @@ class TarotCardModel with EquatableMixin {
   List<Object?> get props => [
     id,
     name,
-    imagePath,
+    imageUrl,
     category,
     description,
     correspondences,

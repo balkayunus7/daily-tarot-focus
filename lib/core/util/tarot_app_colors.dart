@@ -41,7 +41,7 @@ abstract class TarotAppColors extends AppColors {
   });
 }
 
-class TarotAppColorsDark extends AppColorsDark {
+class TarotAppColorsDark extends AppColorsLight {
   TarotAppColorsDark()
     : super(
         background: const Color(0xFFF5F3EC),
@@ -49,17 +49,17 @@ class TarotAppColorsDark extends AppColorsDark {
         surfaceSecondary: const Color(0xFFF0EDE0),
         overlay: const Color(0xFF0E1028).withValues(alpha: 0.55),
         primary: const Color(0xFF1A2266),
-        secondary: const Color(0xFFD4B94A),
-        accent: const Color(0xFF2B3A9E),
-        border: const Color(0xFFD4B94A).withValues(alpha: 0.25),
+        secondary: const Color(0xFF1A2266).withValues(alpha: 0.35),
+        accent: Colors.white,
+        border: const Color(0xFF1A2266).withValues(alpha: 0.2),
         borderSecondary: const Color(0xFFC5C9DC),
-        textPrimary: const Color(0xFF1A2266),
-        textSecondary: const Color(0xFF5A6080),
+        textPrimary: const Color.fromARGB(255, 17, 22, 68),
+        textSecondary: const Color.fromARGB(255, 66, 73, 107),
         textDisabled: const Color(0xFF9BA0BC),
         textOnPrimary: const Color(0xFFFFFFFF),
         textOnSecondary: const Color(0xFF1A2266),
         buttonPrimary: const Color(0xFF1A2266),
-        buttonSecondary: const Color(0xFFD4B94A),
+        buttonSecondary: const Color(0xFF1A2266).withValues(alpha: 0.35),
         buttonGhost: Colors.transparent,
         buttonDisabled: const Color(0xFFC5C9DC),
         inputBorderDefault: const Color(0xFFC5C9DC),
@@ -70,7 +70,7 @@ class TarotAppColorsDark extends AppColorsDark {
         navIconInactive: const Color(0xFF9BA0BC),
         navIndicator: const Color(0xFFD4B94A),
         gradientStart: const Color(0xFF1A2266),
-        gradientEnd: const Color(0xFFC8A84B),
+        gradientEnd: const Color(0xFF1A2266).withValues(alpha: 0.35),
         buttonOnGradient: const Color(0xFFFFFFFF).withValues(alpha: 0.20),
         buttonOnGradientText: const Color(0xFFFFFFFF),
         error: const Color(0xFFD64F4F),

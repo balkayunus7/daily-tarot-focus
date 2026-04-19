@@ -1,6 +1,7 @@
 import 'package:daily_tarot_focus/core/util/tarot_app_sizes.dart';
 import 'package:daily_tarot_focus/core/util/text_style_helper.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:liquid_glass_renderer/liquid_glass_renderer.dart';
 import 'package:mobile_boilerplate/common_dependencies.dart';

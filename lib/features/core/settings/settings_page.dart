@@ -7,6 +7,7 @@ import 'package:daily_tarot_focus/core/widgets/glass_container.dart';
 import 'package:daily_tarot_focus/core/widgets/tarot_app_bar.dart';
 import 'package:daily_tarot_focus/features/core/settings/display_delete_account_popup.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mobile_boilerplate/application/auth/auth_cubit.dart';
 import 'package:mobile_boilerplate/application/launcher/launcher.dart';
@@ -49,7 +50,8 @@ class SettingsPage extends StatelessWidget {
     listenWhen: (p, c) => p.failOrUserOption.isSome() != c.failOrUserOption.isNone(),
     listener: (context, state) async {
       context.go(AppRoutes.splash);
-      RestartableApp.restartApp(context);
+      if (context.mounted) return;
+      await RestartableApp.restartApp(context);
     },
   );
   @override

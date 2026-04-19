@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-export 'package:flutter_screenutil/flutter_screenutil.dart';
 
 abstract final class Sp {
   static const double none = 0;

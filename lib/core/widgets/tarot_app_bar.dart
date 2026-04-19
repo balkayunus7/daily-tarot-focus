@@ -109,11 +109,11 @@ class TarotAppBar extends StatelessWidget implements PreferredSizeWidget {
             onTap: onBackIconTap ?? () => context.pop(),
             child: Center(
               child: GlassContainer(
-                width: 32.w,
-                height: 32.h,
+                width: 36.w,
+                height: 36.h,
                 child: Icon(
                   backIcon ?? Icons.arrow_back,
-                  size: 16,
+                  size: Sp.large,
                   color: context.colors.textOnPrimary,
                 ),
               ),
@@ -128,11 +128,11 @@ class TarotAppBar extends StatelessWidget implements PreferredSizeWidget {
             onTap: onIconTap ?? () => context.pop(),
             child: Center(
               child: GlassContainer(
-                width: 32.w,
-                height: 32.h,
+                width: 36.w,
+                height: 36.h,
                 child: Icon(
                   trailingIcon,
-                  size: 16,
+                  size: Sp.large,
                   color: context.colors.textOnPrimary,
                 ),
               ),

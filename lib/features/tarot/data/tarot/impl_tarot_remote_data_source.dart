@@ -5,8 +5,10 @@ import 'package:daily_tarot_focus/features/tarot/domain/models/fetch_all_cards_r
 import 'package:daily_tarot_focus/features/tarot/domain/models/fetch_all_cards_response_model.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/fetch_daily_cards_request_model.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/fetch_daily_cards_response_model.dart';
-import 'package:daily_tarot_focus/features/tarot/domain/models/reading_request_model.dart';
-import 'package:daily_tarot_focus/features/tarot/domain/models/reading_response_model.dart';
+import 'package:daily_tarot_focus/features/tarot/domain/models/fetch_readers_request_model.dart';
+import 'package:daily_tarot_focus/features/tarot/domain/models/fetch_readers_response_model.dart';
+import 'package:daily_tarot_focus/features/tarot/domain/models/fetch_spreads_request_model.dart';
+import 'package:daily_tarot_focus/features/tarot/domain/models/fetch_spreads_response_model.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/record_daily_card_request_model.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/record_daily_card_response_model.dart';
 import 'package:mobile_boilerplate/domain/common/http_utilities.dart';
@@ -16,6 +18,7 @@ import 'package:supabase/supabase.dart' hide Session;
 class ImplTarotRemoteDataSource implements ITarotRemoteDataSource {
   ImplTarotRemoteDataSource(this._supabaseClient);
 
+  /// REQUEST RECORD DAILY CARD
   @override
   Future<RecordDailyCardResponse> requestRecordDailyCard({
     required RecordDailyCardRequest request,
@@ -37,6 +40,7 @@ class ImplTarotRemoteDataSource implements ITarotRemoteDataSource {
     return RecordDailyCardResponse.fromMap();
   }
 
+  /// REQUEST FETCH DAILY CARDS
   @override
   Future<FetchDailyCardsResponse> requestFetchDailyCards({
     required FetchDailyCardsRequest request,
@@ -49,24 +53,10 @@ class ImplTarotRemoteDataSource implements ITarotRemoteDataSource {
     if (responseOrFail.isLeft()) throw Exception();
 
     final response = responseOrFail.getRightOrCrash();
-    return FetchDailyCardsResponse.fromList(response.data as List);
+    return FetchDailyCardsResponse.fromMap(decodeSupabaseResponse(response.data));
   }
 
-  @override
-  Future<ReadingResponse> requestReading({required ReadingRequest request}) async {
-    final responseOrFail = await supabaseClient.secureInvoke(
-      route: ASK_QUESTION,
-      method: HttpMethod.post,
-      session: request.session,
-      body: request.data.toMap(),
-    );
-
-    if (responseOrFail.isLeft()) throw Exception();
-
-    final response = responseOrFail.getRightOrCrash();
-    return ReadingResponse.fromMap(decodeSupabaseResponse(response.data));
-  }
-
+  /// REQUEST FETCH ALL CARDS
   @override
   Future<FetchAllCardsResponse> requestAllCards({required FetchAllCardsRequest request}) async {
     final responseOrFail = await supabaseClient.secureInvoke(
@@ -82,4 +72,34 @@ class ImplTarotRemoteDataSource implements ITarotRemoteDataSource {
 
   final SupabaseClient _supabaseClient;
   SupabaseClient get supabaseClient => _supabaseClient;
+
+  /// REQUEST FETCH SPREADS
+  @override
+  Future<FetchSpreadsResponse> requestSpreadCategories({
+    required FetchSpreadsRequest request,
+  }) async {
+    final responseOrFail = await supabaseClient.secureInvoke(
+      route: GET_SPREADS,
+      session: request.session,
+    );
+
+    if (responseOrFail.isLeft()) throw Exception();
+
+    final response = responseOrFail.getRightOrCrash();
+    return FetchSpreadsResponse.fromMap(decodeSupabaseResponse(response.data));
+  }
+
+  /// REQUEST FETCH READERS
+  @override
+  Future<FetchReadersResponse> requestReaders({required FetchReadersRequest request}) async {
+    final responseOrFail = await supabaseClient.secureInvoke(
+      route: GET_READERS,
+      session: request.session,
+    );
+
+    if (responseOrFail.isLeft()) throw Exception();
+
+    final response = responseOrFail.getRightOrCrash();
+    return FetchReadersResponse.fromMap(decodeSupabaseResponse(response.data));
+  }
 }

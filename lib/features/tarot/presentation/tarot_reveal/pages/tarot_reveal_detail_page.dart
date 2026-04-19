@@ -5,8 +5,8 @@ import 'package:daily_tarot_focus/core/widgets/tarot_detail_content.dart';
 import 'package:daily_tarot_focus/features/core/home/home_page.dart';
 import 'package:daily_tarot_focus/features/tarot/bloc/tarot/tarot_bloc.dart';
 import 'package:daily_tarot_focus/features/tarot/bloc/tarot/tarot_state.dart';
+import 'package:daily_tarot_focus/features/tarot/domain/models/fetch_all_cards_response_model.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/record_daily_card_request_model.dart';
-import 'package:daily_tarot_focus/features/tarot/domain/models/tarot_card_model.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mobile_boilerplate/application/auth/auth_cubit.dart';
@@ -33,7 +33,9 @@ class TarotRevealDetailPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<TarotBloc, TarotState>(
-      listenWhen: (previous, current) => previous.hasRecordDailyCard != current.hasRecordDailyCard,
+      listenWhen:
+          (previous, current) =>
+              previous.hasRecordDailyCardSucceeded != current.hasRecordDailyCardSucceeded,
       listener: (context, state) {
         if (state.hasRecordDailyCardFailed) {
           context.showToastMessage('Kart Kaydedilemedi!!');

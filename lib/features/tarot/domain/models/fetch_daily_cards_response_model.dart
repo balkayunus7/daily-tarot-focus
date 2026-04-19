@@ -1,11 +1,14 @@
 import 'package:mobile_boilerplate/common_dependencies.dart';
 
+typedef FetchDailyCardsResponse = FetchDailyCardsResponseModel;
+
 class FetchDailyCardsResponseModel with EquatableMixin {
   const FetchDailyCardsResponseModel({required this.records});
-  factory FetchDailyCardsResponseModel.fromList(List<dynamic> list) {
+
+  factory FetchDailyCardsResponseModel.fromMap(Map<String, dynamic> map) {
     return FetchDailyCardsResponseModel(
       records: KtList.from(
-        list.map((item) => DailyCardModel.fromMap(item as Map<String, dynamic>)),
+        map.entries.map((e) => DailyCardModel.fromMap(e.value as Map<String, dynamic>)),
       ),
     );
   }
@@ -26,8 +29,7 @@ class FetchDailyCardsResponseModel with EquatableMixin {
   List<Object?> get props => [records];
 }
 
-typedef FetchDailyCardsResponse = FetchDailyCardsResponseModel;
-
+//////// DATA MODEL //////////
 class DailyCardModel with EquatableMixin {
   const DailyCardModel({
     required this.cardId,

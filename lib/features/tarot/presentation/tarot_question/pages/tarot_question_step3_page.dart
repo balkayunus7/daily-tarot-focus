@@ -1,8 +1,8 @@
 import 'package:daily_tarot_focus/core/util/tarot_app_sizes.dart';
 import 'package:daily_tarot_focus/core/util/text_style_helper.dart';
 import 'package:daily_tarot_focus/core/widgets/tarot_app_bar.dart';
-import 'package:daily_tarot_focus/features/tarot/bloc/tarot_question/tarot_question_bloc.dart';
-import 'package:daily_tarot_focus/features/tarot/bloc/tarot_question/tarot_question_state.dart';
+import 'package:daily_tarot_focus/features/tarot/bloc/tarot/tarot_bloc.dart';
+import 'package:daily_tarot_focus/features/tarot/bloc/tarot/tarot_state.dart';
 import 'package:daily_tarot_focus/features/tarot/presentation/tarot_question/widgets/spread_layout_card.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile_boilerplate/common_dependencies.dart';
@@ -15,9 +15,9 @@ class TarotQuestionStep3Page extends StatelessWidget {
   Widget build(BuildContext context) {
     final colors = context.colors;
 
-    return BlocBuilder<TarotQuestionBloc, TarotQuestionState>(
+    return BlocBuilder<TarotBloc, TarotState>(
       builder: (context, state) {
-        final category = state.selectedCategory;
+        final category = state.selectedSpreadCategory;
         if (category == null) return const SizedBox.shrink();
 
         return Scaffold(
@@ -60,7 +60,7 @@ class TarotQuestionStep3Page extends StatelessWidget {
                       return SpreadLayoutCard(
                         spread: spread,
                         onTap: () {
-                          context.read<TarotQuestionBloc>().addSpreadSelected(spread);
+                          context.read<TarotBloc>().addSelectSpread(spread: spread);
                         },
                       );
                     },

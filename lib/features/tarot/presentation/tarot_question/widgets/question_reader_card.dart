@@ -2,7 +2,7 @@ import 'package:daily_tarot_focus/core/util/tarot_app_sizes.dart';
 import 'package:daily_tarot_focus/core/util/text_style_helper.dart';
 import 'package:daily_tarot_focus/core/widgets/custom_cache_network_image.dart';
 import 'package:daily_tarot_focus/core/widgets/glass_container.dart';
-import 'package:daily_tarot_focus/features/tarot/domain/models/tarot_reader_model.dart';
+import 'package:daily_tarot_focus/features/tarot/domain/models/fetch_readers_response_model.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile_boilerplate/common_dependencies.dart';
 import 'package:mobile_boilerplate/presentation/extensions/build_context_theme_ext.dart';
@@ -31,7 +31,7 @@ class ReaderCard extends StatelessWidget {
         borderColor: colors.primary.withValues(alpha: 0.08),
         child: Row(
           children: [
-            _ReaderAvatar(image: reader.image),
+            _ReaderAvatar(image: reader.imageUrl),
             Sp.medium.widthBox,
             Expanded(
               child: Column(
@@ -81,7 +81,7 @@ class _ReaderAvatar extends StatelessWidget {
 
 class _TagRow extends StatelessWidget {
   const _TagRow({required this.tags});
-  final KtList<TarotReaderTag> tags;
+  final KtList<ReaderTagModel> tags;
 
   @override
   Widget build(BuildContext context) {

@@ -1,4 +1,4 @@
-import 'package:daily_tarot_focus/features/tarot/domain/models/tarot_card_model.dart';
+import 'package:daily_tarot_focus/features/tarot/domain/models/fetch_all_cards_response_model.dart';
 import 'package:daily_tarot_focus/features/tarot/presentation/tarot_daily/page/tarot_daily_page.dart';
 import 'package:flutter/material.dart';
 

@@ -10,7 +10,7 @@ import 'package:daily_tarot_focus/core/widgets/tarot_app_bar.dart';
 import 'package:daily_tarot_focus/features/tarot/bloc/tarot/tarot_bloc.dart';
 import 'package:daily_tarot_focus/features/tarot/bloc/tarot/tarot_state.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/fetch_all_cards_request_model.dart';
-import 'package:daily_tarot_focus/features/tarot/domain/models/tarot_card_model.dart';
+import 'package:daily_tarot_focus/features/tarot/domain/models/fetch_all_cards_response_model.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/tarot_category_enum.dart';
 import 'package:daily_tarot_focus/features/tarot/presentation/tarot_deck/helpers/deck_page_scope.dart';
 import 'package:flutter/material.dart';

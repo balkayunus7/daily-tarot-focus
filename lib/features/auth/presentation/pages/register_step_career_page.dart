@@ -34,7 +34,7 @@ class RegisterStepCareerPage extends StatelessWidget {
           if (state.registerStatus.isSuccess) {
             await context.read<AuthCubit>().refetchUser();
             if (!context.mounted) return;
-            context.go(AppRoutes.tarotExplore);
+            context.go(AppRoutes.accountSetup);
           } else if (state.registerStatus.isFailure) {
             SnackbarHelper.showError(
               context,

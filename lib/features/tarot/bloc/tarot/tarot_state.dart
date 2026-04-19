@@ -1,5 +1,6 @@
-import 'package:daily_tarot_focus/features/tarot/domain/models/reading_response_model.dart';
-import 'package:daily_tarot_focus/features/tarot/domain/models/tarot_card_model.dart';
+import 'package:daily_tarot_focus/features/tarot/domain/models/fetch_all_cards_response_model.dart';
+import 'package:daily_tarot_focus/features/tarot/domain/models/fetch_readers_response_model.dart';
+import 'package:daily_tarot_focus/features/tarot/domain/models/fetch_spreads_response_model.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/tarot_category_enum.dart';
 import 'package:mobile_boilerplate/common_dependencies.dart';
 import 'package:mobile_boilerplate/domain/common/failure.dart';
@@ -9,35 +10,56 @@ class TarotState extends Equatable {
   const TarotState({
     required this.fetchFailureOrDailyCards,
     required this.recordDailyCardFailureOrUnit,
-    required this.readingFailureOrResponse,
     required this.fetchAllCardsFailureOrCards,
+    required this.fetchSpreadsFailureOrSpreads,
+    required this.fetchReadersFailureOrReaders,
     required this.isFetchingAllCards,
     required this.isFetchingDailyCards,
     required this.isRecordDailyCard,
-    required this.isReading,
+    required this.isFetchingSpreads,
+    required this.isFetchingReaders,
+    required this.selectedSpreadCategory,
+    required this.selectedSpread,
+    required this.selectedReader,
+    required this.isSettingUpAccount,
+    required this.hasAccountSetupCompleted,
   });
 
   factory TarotState.initial() {
     return TarotState(
       fetchFailureOrDailyCards: none(),
       recordDailyCardFailureOrUnit: none(),
-      readingFailureOrResponse: none(),
       fetchAllCardsFailureOrCards: none(),
+      fetchSpreadsFailureOrSpreads: none(),
+      fetchReadersFailureOrReaders: none(),
       isFetchingDailyCards: false,
       isRecordDailyCard: false,
-      isReading: false,
       isFetchingAllCards: false,
+      isFetchingSpreads: false,
+      isFetchingReaders: false,
+      selectedSpreadCategory: null,
+      selectedSpread: null,
+      selectedReader: null,
+      isSettingUpAccount: false,
+      hasAccountSetupCompleted: false,
     );
   }
 
   final Option<FailureOr<KtList<TarotCardModel>>> fetchFailureOrDailyCards;
   final Option<FailureOr<Unit>> recordDailyCardFailureOrUnit;
-  final Option<FailureOr<ReadingResponse>> readingFailureOrResponse;
   final Option<FailureOr<KtList<TarotCardModel>>> fetchAllCardsFailureOrCards;
+  final Option<FailureOr<KtList<TarotSpreadCategoryModel>>> fetchSpreadsFailureOrSpreads;
+  final Option<FailureOr<KtList<TarotReaderModel>>> fetchReadersFailureOrReaders;
   final bool isFetchingDailyCards;
   final bool isRecordDailyCard;
-  final bool isReading;
   final bool isFetchingAllCards;
+  final bool isFetchingSpreads;
+  final bool isFetchingReaders;
+  final TarotSpreadCategoryModel? selectedSpreadCategory;
+  final TarotSpreadModel? selectedSpread;
+  final TarotReaderModel? selectedReader;
+  final bool isSettingUpAccount;
+  final bool hasAccountSetupCompleted;
 
   // ALL CARDS GETTERS
   KtList<TarotCardModel> get allCardsOrEmpty =>
@@ -84,8 +106,6 @@ class TarotState extends Equatable {
   bool get hasRecordDailyCardFailed =>
       recordDailyCardFailureOrUnit.getOrNull()?.getLeftOrNull() != null;
 
-  bool get hasRecordDailyCard => recordDailyCardFailureOrUnit.getOrNull()?.getRightOrNull() != null;
-
   // FETCH DAILY CARDS
   bool get hasFetchedDailyCardsSucceeded =>
       fetchFailureOrDailyCards.getOrNull()?.getRightOrNull() != null;
@@ -96,25 +116,47 @@ class TarotState extends Equatable {
   KtList<TarotCardModel> get dailyCardsOrEmpty =>
       fetchFailureOrDailyCards.getOrNull()?.getRightOrNull() ?? const KtList.empty();
 
-  // READING
-  bool get hasReadingSucceeded => readingFailureOrResponse.getOrNull()?.isRight() != null;
+  // FETCH SPREADS
+  bool get hasFetchedSpreadsSucceeded =>
+      fetchSpreadsFailureOrSpreads.getOrNull()?.getRightOrNull() != null;
 
-  bool get hasReadingFailed => readingFailureOrResponse.getOrNull()?.getLeftOrNull() != null;
+  bool get hasFetchedSpreadsFailed =>
+      fetchSpreadsFailureOrSpreads.getOrNull()?.getLeftOrNull() != null;
 
-  ReadingResponse? get readingResponseOrNull =>
-      readingFailureOrResponse.getOrNull()?.getRightOrNull();
+  KtList<TarotSpreadCategoryModel> get spreadsOrEmpty =>
+      fetchSpreadsFailureOrSpreads.getOrNull()?.getRightOrNull() ?? const KtList.empty();
+
+  // FETCH READERS
+  bool get hasFetchedReadersSucceeded =>
+      fetchReadersFailureOrReaders.getOrNull()?.getRightOrNull() != null;
+
+  bool get hasFetchedReadersFailed =>
+      fetchReadersFailureOrReaders.getOrNull()?.getLeftOrNull() != null;
+
+  KtList<TarotReaderModel> get readersOrEmpty =>
+      fetchReadersFailureOrReaders.getOrNull()?.getRightOrNull() ?? const KtList.empty();
+
+  // SELECTED
+  bool get hasSelectedSpreadCategory => selectedSpreadCategory != null;
+  bool get hasSelectedSpread => selectedSpread != null;
+  bool get hasSelectedReader => selectedReader != null;
 
   TarotState copyWith({
-    List<TarotCardModel>? allCards,
-    bool? isLoadingCards,
     Option<FailureOr<KtList<TarotCardModel>>>? fetchFailureOrDailyCards,
     bool? isFetchingDailyCards,
     Option<FailureOr<Unit>>? recordDailyCardFailureOrUnit,
     bool? isRecordDailyCard,
-    Option<FailureOr<ReadingResponse>>? readingFailureOrResponse,
-    bool? isReading,
     Option<FailureOr<KtList<TarotCardModel>>>? fetchAllCardsFailureOrCards,
     bool? isFetchingAllCards,
+    Option<FailureOr<KtList<TarotSpreadCategoryModel>>>? fetchSpreadsFailureOrSpreads,
+    bool? isFetchingSpreads,
+    Option<FailureOr<KtList<TarotReaderModel>>>? fetchReadersFailureOrReaders,
+    bool? isFetchingReaders,
+    TarotSpreadCategoryModel? selectedSpreadCategory,
+    TarotSpreadModel? selectedSpread,
+    TarotReaderModel? selectedReader,
+    bool? isSettingUpAccount,
+    bool? hasAccountSetupCompleted,
   }) {
     return TarotState(
       fetchFailureOrDailyCards: fetchFailureOrDailyCards ?? this.fetchFailureOrDailyCards,
@@ -122,10 +164,19 @@ class TarotState extends Equatable {
       recordDailyCardFailureOrUnit:
           recordDailyCardFailureOrUnit ?? this.recordDailyCardFailureOrUnit,
       isRecordDailyCard: isRecordDailyCard ?? this.isRecordDailyCard,
-      readingFailureOrResponse: readingFailureOrResponse ?? this.readingFailureOrResponse,
-      isReading: isReading ?? this.isReading,
       fetchAllCardsFailureOrCards: fetchAllCardsFailureOrCards ?? this.fetchAllCardsFailureOrCards,
       isFetchingAllCards: isFetchingAllCards ?? this.isFetchingAllCards,
+      fetchSpreadsFailureOrSpreads:
+          fetchSpreadsFailureOrSpreads ?? this.fetchSpreadsFailureOrSpreads,
+      isFetchingSpreads: isFetchingSpreads ?? this.isFetchingSpreads,
+      fetchReadersFailureOrReaders:
+          fetchReadersFailureOrReaders ?? this.fetchReadersFailureOrReaders,
+      isFetchingReaders: isFetchingReaders ?? this.isFetchingReaders,
+      selectedSpreadCategory: selectedSpreadCategory ?? this.selectedSpreadCategory,
+      selectedSpread: selectedSpread ?? this.selectedSpread,
+      selectedReader: selectedReader ?? this.selectedReader,
+      isSettingUpAccount: isSettingUpAccount ?? this.isSettingUpAccount,
+      hasAccountSetupCompleted: hasAccountSetupCompleted ?? this.hasAccountSetupCompleted,
     );
   }
 
@@ -135,9 +186,16 @@ class TarotState extends Equatable {
     isFetchingDailyCards,
     recordDailyCardFailureOrUnit,
     isRecordDailyCard,
-    readingFailureOrResponse,
-    isReading,
     fetchAllCardsFailureOrCards,
     isFetchingAllCards,
+    fetchSpreadsFailureOrSpreads,
+    isFetchingSpreads,
+    fetchReadersFailureOrReaders,
+    isFetchingReaders,
+    selectedSpreadCategory,
+    selectedSpread,
+    selectedReader,
+    isSettingUpAccount,
+    hasAccountSetupCompleted,
   ];
 }

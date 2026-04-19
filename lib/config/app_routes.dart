@@ -18,6 +18,7 @@ class AppRoutes {
   static const String registerStepZodiac = '/register-step-zodiac';
   static const String registerStepRelationship = '/register-step-relationship';
   static const String registerStepCareer = '/register-step-career';
+  static const String accountSetup = '/account-created';
 
   // Tarot Explore
   static const String tarotExplore = '/tarot-explore';
@@ -34,7 +35,6 @@ class AppRoutes {
   static const String tarotQuestionStep1 = '/tarot-question-step-1';
   static const String tarotQuestionStep2 = '/tarot-question-step-2';
   static const String tarotQuestionStep3 = '/tarot-question-step-3';
-  static const String tarotReading = '/tarot-question-answer';
 
   // Tarot daily
   static const String tarotDailyDetail = '/tarot-daily-detail';

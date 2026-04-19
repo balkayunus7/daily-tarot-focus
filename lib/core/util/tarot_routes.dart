@@ -4,3 +4,5 @@ const String GET_USER = 'get-user';
 const String UPDATE_USER = 'update-user';
 const String ASK_QUESTION = 'ask-question';
 const String GET_ALL_CARDS = 'get-all-cards';
+const String GET_SPREADS = 'get-tarot-spreads';
+const String GET_READERS = 'get-readers';

@@ -2,8 +2,8 @@ import 'package:daily_tarot_focus/config/app_routes.dart';
 import 'package:daily_tarot_focus/core/util/tarot_app_sizes.dart';
 import 'package:daily_tarot_focus/core/util/text_style_helper.dart';
 import 'package:daily_tarot_focus/core/widgets/tarot_app_bar.dart';
-import 'package:daily_tarot_focus/features/tarot/bloc/tarot_question/tarot_question_bloc.dart';
-import 'package:daily_tarot_focus/features/tarot/bloc/tarot_question/tarot_question_state.dart';
+import 'package:daily_tarot_focus/features/tarot/bloc/tarot/tarot_bloc.dart';
+import 'package:daily_tarot_focus/features/tarot/bloc/tarot/tarot_state.dart';
 import 'package:daily_tarot_focus/features/tarot/presentation/tarot_question/widgets/question_reader_card.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -17,9 +17,9 @@ class TarotQuestionStep1Page extends StatelessWidget {
   Widget build(BuildContext context) {
     final colors = context.colors;
 
-    return BlocBuilder<TarotQuestionBloc, TarotQuestionState>(
+    return BlocBuilder<TarotBloc, TarotState>(
       builder: (context, state) {
-        final readers = state.readersOrCrash;
+        final readers = state.readersOrEmpty;
 
         return Scaffold(
           backgroundColor: colors.background,
@@ -65,7 +65,7 @@ class TarotQuestionStep1Page extends StatelessWidget {
                             return ReaderCard(
                               reader: reader,
                               onTap: () async {
-                                context.read<TarotQuestionBloc>().addReaderSelected(reader);
+                                context.read<TarotBloc>().addSelectReader(reader: reader);
                                 await context.push(AppRoutes.tarotQuestionStep2);
                               },
                             );

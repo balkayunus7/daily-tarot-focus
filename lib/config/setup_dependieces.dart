@@ -9,10 +9,7 @@ import 'package:daily_tarot_focus/features/auth/data/impl_firebase_remote_notifi
 import 'package:daily_tarot_focus/features/auth/data/impl_ios_local_notifications_service.dart';
 import 'package:daily_tarot_focus/features/auth/data/impl_user_repository.dart';
 import 'package:daily_tarot_focus/features/tarot/bloc/tarot/tarot_bloc.dart';
-import 'package:daily_tarot_focus/features/tarot/bloc/tarot_question/tarot_question_bloc.dart';
-import 'package:daily_tarot_focus/features/tarot/data/tarot/i_tarot_question_repository.dart';
 import 'package:daily_tarot_focus/features/tarot/data/tarot/impl_tarot_cache_service.dart';
-import 'package:daily_tarot_focus/features/tarot/data/tarot/impl_tarot_question_repository.dart';
 import 'package:daily_tarot_focus/features/tarot/data/tarot/impl_tarot_remote_data_source.dart';
 import 'package:daily_tarot_focus/features/tarot/data/tarot/impl_tarot_repository.dart';
 import 'package:mobile_boilerplate/application/analytics/analytics_cubit.dart';
@@ -177,7 +174,6 @@ Future<void> setupDependencies() async {
     ..registerSingleton<ImplTarotCacheService>(
       ImplTarotCacheService(),
     )
-    ..registerSingleton<ITarotQuestionRepository>(ImplTarotQuestionRepository())
     // Setup application dependencies
     ..registerFactory<AuthCubit>(
       () => AuthCubit(
@@ -223,9 +219,6 @@ Future<void> setupDependencies() async {
     )
     ..registerFactory<RegisterCubit>(
       () => RegisterCubit(getIt<ImplUserRepository>()),
-    )
-    ..registerFactory<TarotQuestionBloc>(
-      () => TarotQuestionBloc(getIt<ITarotQuestionRepository>()),
     )
     ..registerLazySingleton<TarotBloc>(
       () => TarotBloc(getIt<ImplTarotRepository>(), getIt<ImplTarotCacheService>()),

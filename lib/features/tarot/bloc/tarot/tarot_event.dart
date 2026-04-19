@@ -1,13 +1,18 @@
 import 'package:daily_tarot_focus/features/tarot/domain/models/fetch_all_cards_request_model.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/fetch_daily_cards_request_model.dart';
-import 'package:daily_tarot_focus/features/tarot/domain/models/reading_request_model.dart';
+import 'package:daily_tarot_focus/features/tarot/domain/models/fetch_readers_request_model.dart';
+import 'package:daily_tarot_focus/features/tarot/domain/models/fetch_readers_response_model.dart';
+import 'package:daily_tarot_focus/features/tarot/domain/models/fetch_spreads_request_model.dart';
+import 'package:daily_tarot_focus/features/tarot/domain/models/fetch_spreads_response_model.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/record_daily_card_request_model.dart';
+import 'package:mobile_boilerplate/domain/auth/auth_session.dart';
 
 sealed class TarotEvent {
   const TarotEvent();
   List<Object?> get props => [];
 }
 
+//// FETCH AND POST EVENTS
 final class TarotFetchDailyCardsRequested extends TarotEvent {
   const TarotFetchDailyCardsRequested({required this.request});
   final FetchDailyCardsRequest request;
@@ -24,18 +29,59 @@ final class TarotRecordDailyCardRequested extends TarotEvent {
   List<Object?> get props => [request.cardId, request.session];
 }
 
-final class TarotReadingRequested extends TarotEvent {
-  const TarotReadingRequested({required this.request});
-  final ReadingRequest request;
-
-  @override
-  List<Object?> get props => [request.session, request.data];
-}
-
 final class TarotFetchAllCardsRequested extends TarotEvent {
   const TarotFetchAllCardsRequested({required this.request});
   final FetchAllCardsRequest request;
 
   @override
   List<Object?> get props => [request.session];
+}
+
+final class TarotFetchSpreadsRequested extends TarotEvent {
+  const TarotFetchSpreadsRequested({required this.request});
+  final FetchSpreadsRequest request;
+
+  @override
+  List<Object?> get props => [request.session];
+}
+
+final class TarotFetchReadersRequested extends TarotEvent {
+  const TarotFetchReadersRequested({required this.request});
+  final FetchReadersRequest request;
+
+  @override
+  List<Object?> get props => [request.session];
+}
+
+//// SELECT QUESTION EVENTS
+final class TarotSelectSpreadCategory extends TarotEvent {
+  const TarotSelectSpreadCategory({required this.category});
+  final TarotSpreadCategoryModel category;
+
+  @override
+  List<Object?> get props => [category];
+}
+
+final class TarotSelectSpread extends TarotEvent {
+  const TarotSelectSpread({required this.spread});
+  final TarotSpreadModel spread;
+
+  @override
+  List<Object?> get props => [spread];
+}
+
+final class TarotSelectReader extends TarotEvent {
+  const TarotSelectReader({required this.reader});
+  final TarotReaderModel reader;
+
+  @override
+  List<Object?> get props => [reader];
+}
+
+final class TarotSetupAccountRequested extends TarotEvent {
+  const TarotSetupAccountRequested({required this.session});
+  final AuthSession session;
+
+  @override
+  List<Object?> get props => [session];
 }

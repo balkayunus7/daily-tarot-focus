@@ -1,5 +1,6 @@
 import 'package:daily_tarot_focus/config/app_routes.dart';
 import 'package:daily_tarot_focus/features/auth/domain/models/tarot_user.dart';
+import 'package:daily_tarot_focus/features/auth/presentation/pages/register_account_setup_page.dart';
 import 'package:daily_tarot_focus/features/auth/presentation/pages/register_step_career_page.dart';
 import 'package:daily_tarot_focus/features/auth/presentation/pages/register_step_relationship_page.dart';
 import 'package:daily_tarot_focus/features/auth/presentation/pages/register_step_zodiac_page.dart';
@@ -8,15 +9,13 @@ import 'package:daily_tarot_focus/features/core/home/home_page.dart';
 import 'package:daily_tarot_focus/features/core/settings/settings_page.dart';
 import 'package:daily_tarot_focus/features/core/subscription/pages/tarot_subscription_paywall_page.dart';
 import 'package:daily_tarot_focus/features/tarot/bloc/tarot/tarot_bloc.dart';
-import 'package:daily_tarot_focus/features/tarot/domain/models/reading_request_model.dart';
-import 'package:daily_tarot_focus/features/tarot/domain/models/tarot_card_model.dart';
+import 'package:daily_tarot_focus/features/tarot/domain/models/fetch_all_cards_response_model.dart';
 import 'package:daily_tarot_focus/features/tarot/presentation/tarot_daily/page/tarot_daily_detail_page.dart';
 import 'package:daily_tarot_focus/features/tarot/presentation/tarot_deck/pages/tarot_deck_detail_page.dart';
 import 'package:daily_tarot_focus/features/tarot/presentation/tarot_deck/pages/tarot_deck_page.dart';
 import 'package:daily_tarot_focus/features/tarot/presentation/tarot_question/pages/tarot_question_step1_page.dart';
 import 'package:daily_tarot_focus/features/tarot/presentation/tarot_question/pages/tarot_question_step2_page.dart';
 import 'package:daily_tarot_focus/features/tarot/presentation/tarot_question/pages/tarot_question_step3_page.dart';
-import 'package:daily_tarot_focus/features/tarot/presentation/tarot_question/pages/tarot_reading_page.dart';
 import 'package:daily_tarot_focus/features/tarot/presentation/tarot_reveal/pages/tarot_reveal_detail_page.dart';
 import 'package:daily_tarot_focus/features/tarot/presentation/tarot_reveal/pages/tarot_reveal_page.dart';
 import 'package:flutter/material.dart';
@@ -100,6 +99,16 @@ final appRouter = GoRouter(
         return MaterialPage(
           key: state.pageKey,
           child: const PopScope(canPop: false, child: RegisterStepCareerPage()),
+        );
+      },
+    ),
+    GoRoute(
+      path: AppRoutes.accountSetup,
+      name: AppRoutes.accountSetup,
+      pageBuilder: (context, state) {
+        return MaterialPage(
+          key: state.pageKey,
+          child: const PopScope(canPop: false, child: AccountSetupPage()),
         );
       },
     ),
@@ -200,19 +209,6 @@ final appRouter = GoRouter(
         );
       },
     ),
-    GoRoute(
-      path: AppRoutes.tarotReading,
-      name: AppRoutes.tarotReading,
-      pageBuilder: (context, state) {
-        final questionData = state.extra! as TarotQuestionData;
-
-        return MaterialPage(
-          key: state.pageKey,
-          child: PopScope(canPop: false, child: TarotReadingPage(questionData: questionData)),
-        );
-      },
-    ),
-
     GoRoute(
       path: AppRoutes.tarotDailyDetail,
       name: AppRoutes.tarotDailyDetail,

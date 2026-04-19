@@ -41,7 +41,7 @@ abstract class TarotAppColors extends AppColors {
   });
 }
 
-class TarotAppColorsDark extends AppColorsLight {
+class TarotAppColorsDark extends AppColorsDark {
   TarotAppColorsDark()
     : super(
         background: const Color(0xFFF5F3EC),

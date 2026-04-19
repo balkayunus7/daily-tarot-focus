@@ -1,6 +1,6 @@
 import 'package:daily_tarot_focus/core/util/locale_keys.dart';
 import 'package:daily_tarot_focus/core/util/tarot_app_assets.dart';
-import 'package:easy_localization/easy_localization.dart';
+import 'package:mobile_boilerplate/common_dependencies.dart';
 
 /// Utility class for tarot-related mock data and constants.
 /// Note: Actual tarot card data is now loaded from JSON files via TarotCardService.

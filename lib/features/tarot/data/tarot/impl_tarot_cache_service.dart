@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:daily_tarot_focus/features/tarot/domain/models/fetch_all_cards_response_model.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/fetch_readers_response_model.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/fetch_spreads_response_model.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:mobile_boilerplate/common_dependencies.dart';
 
 class ImplTarotCacheService {
   static const _cardsKey = 'tarot_cards_cache';

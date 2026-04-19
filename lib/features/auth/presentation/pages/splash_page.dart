@@ -41,11 +41,21 @@ class _SplashPageState extends State<SplashPage>
         listeners: [
           BlocListener<TarotBloc, TarotState>(
             listenWhen: (previous, current) {
+              return (previous.isSettingUpAccount != current.isSettingUpAccount) &&
+                  current.hasAccountSetupCompleted;
+            },
+            listener: (context, state) {
+              context.go(AppRoutes.tarotExplore);
+            },
+          ),
+          BlocListener<TarotBloc, TarotState>(
+            listenWhen: (previous, current) {
               return (previous.hasFetchedDailyCardsSucceeded !=
                   current.hasFetchedDailyCardsSucceeded);
             },
             listener: (context, state) {
-              context.go(AppRoutes.tarotExplore);
+              final session = context.read<AuthCubit>().state.sessionOrCrash;
+              context.read<TarotBloc>().addSetupAccountRequested(session: session);
             },
           ),
           BlocListener<AuthCubit, AuthState>(

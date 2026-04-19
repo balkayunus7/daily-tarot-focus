@@ -128,7 +128,11 @@ class TarotBloc extends Bloc<TarotEvent, TarotState> {
     return result.map((r) => r.readers);
   }
 
-  // ── Event handlers ──────────────────────────────────────────────────────────
+  // ── Event handlers
+  Future<void> clearCache() async {
+    await _cacheService.clearCache();
+  }
+
   Future<void> _onSetupAccountRequested(
     TarotSetupAccountRequested event,
     Emitter<TarotState> emit,

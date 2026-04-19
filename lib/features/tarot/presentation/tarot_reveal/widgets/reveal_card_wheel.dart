@@ -35,16 +35,10 @@ class RevealCardWheel extends StatelessWidget {
                       builder: (context, index) {
                         final isSelected = index == selectedCardIndex;
 
-                        return BlocBuilder<TarotBloc, TarotState>(
-                          builder: (context, state) {
-                            final card = state.randomCard!;
-                            return RevealCardItem(
-                              index: index,
-                              cardImagePath: card.imageUrl,
-                              isSelected: isSelected,
-                              handleCardTap: scope.handleCardTap,
-                            );
-                          },
+                        return RevealCardItem(
+                          index: index,
+                          isSelected: isSelected,
+                          handleCardTap: scope.handleCardTap,
                         );
                       },
                     ),

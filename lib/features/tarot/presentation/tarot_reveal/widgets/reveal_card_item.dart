@@ -4,13 +4,11 @@ class RevealCardItem extends StatelessWidget {
   const RevealCardItem({
     required this.index,
     required this.isSelected,
-    required this.cardImagePath,
     required this.handleCardTap,
     super.key,
   });
   final int index;
   final bool isSelected;
-  final String cardImagePath;
   final void Function(int index) handleCardTap;
 
   @override

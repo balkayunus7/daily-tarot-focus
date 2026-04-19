@@ -19,14 +19,32 @@ class AccountSetupPage extends StatefulWidget {
 }
 
 class _AccountSetupPageState extends State<AccountSetupPage> {
+  late ValueNotifier<bool> isPrecaching;
+
   @override
   void initState() {
     super.initState();
+    isPrecaching = ValueNotifier(false);
+
+    isPrecaching.addListener(() {
+      if (!isPrecaching.value && context.mounted) {
+        context.go(AppRoutes.tarotExplore);
+      }
+    });
+
     final session = context.read<AuthCubit>().state.sessionOrCrash;
     context.read<TarotBloc>().addSetupAccountRequested(session: session);
   }
 
+  @override
+  void dispose() {
+    isPrecaching.dispose();
+    super.dispose();
+  }
+
   Future<void> _precacheImages(BuildContext context, TarotState state) async {
+    isPrecaching.value = true;
+
     final staticImages = [
       TarotAppAssets.dailyPickBgHttp,
       TarotAppAssets.emptyHttp,
@@ -52,8 +70,12 @@ class _AccountSetupPageState extends State<AccountSetupPage> {
     final allImages = [...staticImages, ...cardImages, ...readerImages];
 
     await Future.wait(
-      allImages.map((url) => precacheImage(CachedNetworkImageProvider(url), context)),
+      allImages.map((url) async {
+        await precacheImage(CachedNetworkImageProvider(url), context);
+      }),
     );
+
+    isPrecaching.value = false;
   }
 
   @override
@@ -69,8 +91,6 @@ class _AccountSetupPageState extends State<AccountSetupPage> {
         },
         listener: (context, state) async {
           await _precacheImages(context, state);
-          if (!context.mounted) return;
-          context.go(AppRoutes.tarotExplore);
         },
         child: Stack(
           children: [
@@ -87,46 +107,54 @@ class _AccountSetupPageState extends State<AccountSetupPage> {
                           state.fetchReadersFailureOrReaders.isSome(),
                         ].where((e) => e).length;
 
-                    final progress = completed / 3.0;
+                    return ValueListenableBuilder<bool>(
+                      valueListenable: isPrecaching,
+                      builder: (context, precaching, _) {
+                        final totalProgress =
+                            (completed / 4.0) + (precaching ? 0.0 : (completed == 3 ? 0.25 : 0.0));
 
-                    return Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          'Hesabın hazırlanıyor',
-                          style: m28w600(context),
-                        ),
-                        Sp.xsmall.heightBox,
-                        Text(
-                          'Tarot kartları, falcılar ve spreads yükleniyor...',
-                          style: m14w500(context).copyWith(color: colors.textSecondary),
-                          textAlign: TextAlign.center,
-                        ),
-                        Sp.xlarge.heightBox,
-                        TweenAnimationBuilder<double>(
-                          tween: Tween(begin: 0, end: progress),
-                          duration: const Duration(milliseconds: 400),
-                          curve: Curves.easeInOut,
-                          builder:
-                              (context, value, _) => LinearProgressIndicator(
-                                value: value,
-                                minHeight: 8,
-                                borderRadius: BorderRadius.circular(8),
-                                backgroundColor: colors.secondary,
-                                valueColor: AlwaysStoppedAnimation<Color>(colors.primary),
-                              ),
-                        ),
-                        Sp.medium.heightBox,
-                        TweenAnimationBuilder<double>(
-                          tween: Tween(begin: 0, end: progress),
-                          duration: const Duration(milliseconds: 400),
-                          builder:
-                              (context, value, _) => Text(
-                                '%${(value * 100).toInt()}',
-                                style: m14w700(context).copyWith(color: colors.primary),
-                              ),
-                        ),
-                      ],
+                        return Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              'Hesabın hazırlanıyor',
+                              style: m28w600(context),
+                            ),
+                            Sp.xsmall.heightBox,
+                            Text(
+                              precaching
+                                  ? 'Görseller yükleniyor...'
+                                  : 'Tarot kartları, falcılar ve spreads yükleniyor...',
+                              style: m14w500(context).copyWith(color: colors.textSecondary),
+                              textAlign: TextAlign.center,
+                            ),
+                            Sp.xlarge.heightBox,
+                            TweenAnimationBuilder<double>(
+                              tween: Tween(begin: 0, end: totalProgress),
+                              duration: const Duration(milliseconds: 400),
+                              curve: Curves.easeInOut,
+                              builder:
+                                  (context, value, _) => LinearProgressIndicator(
+                                    value: value,
+                                    minHeight: 8,
+                                    borderRadius: BorderRadius.circular(8),
+                                    backgroundColor: colors.secondary,
+                                    valueColor: AlwaysStoppedAnimation<Color>(colors.primary),
+                                  ),
+                            ),
+                            Sp.medium.heightBox,
+                            TweenAnimationBuilder<double>(
+                              tween: Tween(begin: 0, end: totalProgress),
+                              duration: const Duration(milliseconds: 400),
+                              builder:
+                                  (context, value, _) => Text(
+                                    '%${(value * 100).toInt()}',
+                                    style: m14w700(context).copyWith(color: colors.primary),
+                                  ),
+                            ),
+                          ],
+                        );
+                      },
                     );
                   },
                 ),

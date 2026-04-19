@@ -49,8 +49,10 @@ class SettingsPage extends StatelessWidget {
   BlocListener<AuthCubit, AuthState> _deleteAccountListener() => BlocListener<AuthCubit, AuthState>(
     listenWhen: (p, c) => p.failOrUserOption.isSome() != c.failOrUserOption.isNone(),
     listener: (context, state) async {
+      context.pop();
+      if (!context.mounted) return;
       context.go(AppRoutes.splash);
-      if (context.mounted) return;
+      if (!context.mounted) return;
       await RestartableApp.restartApp(context);
     },
   );

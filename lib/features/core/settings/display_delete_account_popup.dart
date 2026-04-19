@@ -20,8 +20,6 @@ Future<dynamic> displayDeleteAccountPopup(BuildContext context) {
           textColor: ctx.colors.error,
           onTap: () async {
             await ctx.read<AuthCubit>().deleteUser();
-            if (!context.mounted) return;
-            Navigator.pop(context);
           },
         ),
       ];

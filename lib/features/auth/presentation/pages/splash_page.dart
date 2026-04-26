@@ -50,12 +50,13 @@ class _SplashPageState extends State<SplashPage>
           ),
           BlocListener<TarotBloc, TarotState>(
             listenWhen: (previous, current) {
-              return (previous.hasFetchedDailyCardsSucceeded !=
-                  current.hasFetchedDailyCardsSucceeded);
+              return (previous.hasAccountSetupCompleted != current.hasAccountSetupCompleted);
             },
             listener: (context, state) {
               final session = context.read<AuthCubit>().state.sessionOrCrash;
-              context.read<TarotBloc>().addSetupAccountRequested(session: session);
+              context.read<TarotBloc>().addFetchDailyCardsRequested(
+                request: FetchDailyCardsRequest(session: session),
+              );
             },
           ),
           BlocListener<AuthCubit, AuthState>(
@@ -64,9 +65,8 @@ class _SplashPageState extends State<SplashPage>
             },
             listener: (context, state) async {
               final authState = context.read<AuthCubit>().state;
-              context.read<TarotBloc>().addFetchDailyCardsRequested(
-                request: FetchDailyCardsRequest(session: authState.sessionOrCrash),
-              );
+              final session = authState.sessionOrCrash;
+              context.read<TarotBloc>().addSetupAccountRequested(session: session);
             },
           ),
           BlocListener<AuthCubit, AuthState>(

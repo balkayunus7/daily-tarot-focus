@@ -20,15 +20,13 @@ class CustomCacheNetworkImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CachedNetworkImage(
-      imageUrl: imageUrl,
+    return Image(
+      image: CachedNetworkImageProvider(imageUrl),
       fit: fit ?? BoxFit.cover,
       width: width,
       height: height,
       color: color,
-      fadeInDuration: Duration.zero,
-      fadeOutDuration: Duration.zero,
-      placeholderFadeInDuration: Duration.zero,
+      gaplessPlayback: true,
     );
   }
 }

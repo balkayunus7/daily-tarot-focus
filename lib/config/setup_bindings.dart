@@ -8,6 +8,8 @@ Future<void> setupBindings() async {
   for (final renderView in binding.renderViews) {
     renderView.automaticSystemUiAdjustment = false;
   }
+  PaintingBinding.instance.imageCache.maximumSize = 2000;
+  PaintingBinding.instance.imageCache.maximumSizeBytes = 1024 * 1024 * 300;
   await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   await SystemChrome.setEnabledSystemUIMode(
     SystemUiMode.edgeToEdge,

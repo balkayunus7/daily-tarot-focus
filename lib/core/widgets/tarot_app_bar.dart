@@ -127,14 +127,18 @@ class TarotAppBar extends StatelessWidget implements PreferredSizeWidget {
         if (trailingIcon != null) ...[
           ScalingContainer(
             onTap: onIconTap ?? () => context.pop(),
-            child: Center(
-              child: GlassContainer(
-                width: 36.w,
-                height: 36.h,
-                child: Icon(
-                  trailingIcon,
-                  size: Sp.large,
-                  color: context.colors.textOnPrimary,
+            child: AnimatedContainer(
+              duration: 300.ms,
+              curve: Curves.easeInBack,
+              child: Center(
+                child: GlassContainer(
+                  width: 36.w,
+                  height: 36.h,
+                  child: Icon(
+                    trailingIcon,
+                    size: Sp.medium,
+                    color: context.colors.textOnPrimary,
+                  ),
                 ),
               ),
             ),

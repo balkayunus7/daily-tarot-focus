@@ -42,14 +42,12 @@ class _TarotDetailContentState extends State<TarotDetailContent> {
     return SafeArea(
       child: SingleChildScrollView(
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Sp.large.heightBox,
             Padding(
               padding: Sp.medium.padXR,
               child: IntrinsicHeight(
                 child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     Expanded(
                       flex: 2,
@@ -79,7 +77,7 @@ class _TarotDetailContentState extends State<TarotDetailContent> {
                     ),
                     Sp.xsmall.widthBox,
                     Expanded(
-                      flex: 6,
+                      flex: 3,
                       child: Hero(
                         tag: TarotMockData.dailyTarotCardHeroTag,
                         child: Container(

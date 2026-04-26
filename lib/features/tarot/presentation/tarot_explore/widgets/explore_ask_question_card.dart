@@ -19,7 +19,7 @@ class ExploreAskQuestionCard extends StatelessWidget {
           gradient: LinearGradient(
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
-            colors: [colors.primary, colors.gradientEnd, colors.background],
+            colors: [colors.gradientStart, colors.gradientEnd, colors.background],
           ),
           borderRadius: Sp.large.radiusR,
           border: Border.all(color: context.colors.border, width: 0.5),
@@ -93,7 +93,6 @@ class _OverlayCardImage extends StatelessWidget {
         imageUrl: TarotAppAssets.maskotDailyHttp,
         width: cardWidth,
         height: cardHeight,
-        fit: BoxFit.cover,
       ),
     );
   }

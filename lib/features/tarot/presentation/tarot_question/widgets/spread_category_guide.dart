@@ -20,7 +20,7 @@ class SpreadCategoryGuide extends StatelessWidget {
         children: [
           Positioned(
             right: -32,
-            bottom: -16,
+            bottom: -32,
             child: CustomPaint(
               size: const Size(180, 180),
               painter: _SparklePainter(color: context.colors.accent),
@@ -30,17 +30,16 @@ class SpreadCategoryGuide extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisSize: MainAxisSize.min,
             children: [
-              Text('Rehbere mi İhtiyacın Var?', style: m24w600(context)),
-              Sp.small.heightBox,
+              Text('Need a little guidance?', style: m21w600(context)),
+              Sp.xsmall.heightBox,
               Text(
-                'Hangi açılımın sana uygun olduğunu '
-                'bilmiyorsan, senin için bir rehber hazırladık.',
-                style: m14w400(context).copyWith(color: context.colors.textSecondary, height: 1.5),
+                'If you don’t know which spread suits you, we’ve prepared a guide for you.',
+                style: m12w500(context).copyWith(color: context.colors.textSecondary, height: 1.5),
               ),
-              Sp.xxlarge.heightBox,
+              Sp.xlarge.heightBox,
               FancyButton(
                 onTap: onTap,
-                text: 'REHBERİ İNCELE',
+                text: 'Guide Me!',
                 backgroundColor: context.colors.primary,
                 textStyle: m14w700(context).copyWith(color: context.colors.textOnPrimary),
               ),

@@ -51,10 +51,7 @@ class _TarotRevealPageState extends State<TarotRevealPage>
                   left: 0,
                   right: 0,
                   height: MediaQuery.of(context).size.height * 0.5,
-                  child: const CustomCacheNetworkImage(
-                    imageUrl: TarotAppAssets.dailyPickBgHttp,
-                    fit: BoxFit.cover,
-                  ),
+                  child: const CustomCacheNetworkImage(imageUrl: TarotAppAssets.dailyPickBgHttp),
                 ),
                 AnimatedOpacity(
                   duration: CardSp.wheelAnimation,

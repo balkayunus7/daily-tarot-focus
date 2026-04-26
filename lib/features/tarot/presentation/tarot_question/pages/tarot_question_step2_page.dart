@@ -24,10 +24,10 @@ class TarotQuestionStep2Page extends StatelessWidget {
       appBar: TarotAppBar(
         titleWidget: Column(
           children: [
-            Text('Açılım Yolculuğu', style: m16w700(context)),
+            Text('Spread Journey', style: m16w700(context)),
             Sp.tiny.heightBox,
             Text(
-              'ADIM 2 / 3',
+              'STEP 2 / 3',
               style: m10w500(context).copyWith(
                 color: colors.textSecondary,
                 letterSpacing: 1.5,
@@ -48,7 +48,7 @@ class TarotQuestionStep2Page extends StatelessWidget {
                 children: [
                   Sp.small.heightBox,
                   Text(
-                    'Bir odak noktası seçerek kehanetleri keşfet.',
+                    'Choose a focus area to explore the spreads.',
                     style: m14w400(context).copyWith(color: colors.textSecondary),
                     textAlign: TextAlign.center,
                   ),
@@ -68,7 +68,7 @@ class TarotQuestionStep2Page extends StatelessWidget {
 
                       return SpreadCategoryCard(
                         title: categoryData.title,
-                        subtitle: '${categoryData.spreads.size} Açılım',
+                        subtitle: '${categoryData.spreads.size} spreads',
                         icon: meta.icon,
                         onTap: () async {
                           context.read<TarotBloc>().addSelectSpreadCategory(category: categoryData);

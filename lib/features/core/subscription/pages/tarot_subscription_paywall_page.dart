@@ -60,10 +60,7 @@ class TarotSubscriptionPaywallPage extends StatelessWidget {
       packageBadges: _badges,
       theme: buildTheme(context),
       dismissDelay: const Duration(seconds: 3),
-      headerImage: const CustomCacheNetworkImage(
-        imageUrl: TarotAppAssets.paywallHttp,
-        fit: BoxFit.cover,
-      ),
+      headerImage: const CustomCacheNetworkImage(imageUrl: TarotAppAssets.paywallHttp),
     );
   }
 }

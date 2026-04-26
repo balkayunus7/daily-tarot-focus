@@ -25,10 +25,10 @@ class TarotQuestionStep3Page extends StatelessWidget {
           appBar: TarotAppBar(
             titleWidget: Column(
               children: [
-                Text('Açılım Yolculuğu', style: m16w700(context)),
+                Text('Spread Journey', style: m16w700(context)),
                 Sp.tiny.heightBox,
                 Text(
-                  'ADIM 3 / 3',
+                  'STEP 3 / 3',
                   style: m10w500(context).copyWith(
                     color: colors.textSecondary,
                     letterSpacing: 1.5,
@@ -45,7 +45,7 @@ class TarotQuestionStep3Page extends StatelessWidget {
                 children: [
                   Sp.small.heightBox,
                   Text(
-                    'İçsel rehberliğini aydınlatacak düzeni belirle.',
+                    'Choose a layout to illuminate your inner guidance.',
                     style: m14w400(context).copyWith(color: colors.textSecondary),
                     textAlign: TextAlign.center,
                   ),

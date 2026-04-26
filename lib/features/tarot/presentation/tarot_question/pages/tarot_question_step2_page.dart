@@ -1,10 +1,10 @@
 import 'package:daily_tarot_focus/config/app_routes.dart';
+import 'package:daily_tarot_focus/core/util/tarot_app_assets.dart';
 import 'package:daily_tarot_focus/core/util/tarot_app_sizes.dart';
 import 'package:daily_tarot_focus/core/util/text_style_helper.dart';
 import 'package:daily_tarot_focus/core/widgets/tarot_app_bar.dart';
 import 'package:daily_tarot_focus/features/tarot/bloc/tarot/tarot_bloc.dart';
 import 'package:daily_tarot_focus/features/tarot/bloc/tarot/tarot_state.dart';
-import 'package:daily_tarot_focus/features/tarot/presentation/tarot_question/helpers/spread_category_model.dart';
 import 'package:daily_tarot_focus/features/tarot/presentation/tarot_question/widgets/spread_category_card.dart';
 import 'package:daily_tarot_focus/features/tarot/presentation/tarot_question/widgets/spread_category_guide.dart';
 import 'package:flutter/material.dart';
@@ -56,20 +56,15 @@ class TarotQuestionStep2Page extends StatelessWidget {
                   ListView.separated(
                     physics: const NeverScrollableScrollPhysics(),
                     shrinkWrap: true,
-                    itemCount: mockSpreadCategories.length,
+                    itemCount: categories.size,
                     separatorBuilder: (context, index) => Sp.small.heightBox,
                     itemBuilder: (context, index) {
-                      final meta = mockSpreadCategories[index];
-                      final categoryData = categories.firstOrNull(
-                        (category) => category.id == meta.categoryId,
-                      );
-
-                      if (categoryData == null) return const SizedBox.shrink();
+                      final categoryData = categories[index];
 
                       return SpreadCategoryCard(
                         title: categoryData.title,
                         subtitle: '${categoryData.spreads.size} spreads',
-                        icon: meta.icon,
+                        icon: TarotAppAssets.asclepius,
                         onTap: () async {
                           context.read<TarotBloc>().addSelectSpreadCategory(category: categoryData);
                           await context.push(AppRoutes.tarotQuestionStep3);

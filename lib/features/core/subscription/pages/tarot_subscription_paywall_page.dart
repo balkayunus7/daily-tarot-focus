@@ -25,7 +25,7 @@ class TarotSubscriptionPaywallPage extends StatelessWidget {
       textSecondary: colors.textSecondary,
       checkColorFree: colors.textPrimary,
       checkColorPro: colors.primary,
-      cardSelectedBackground: colors.secondary,
+      cardSelectedBackground: colors.primary,
       cardSelectedBorderColor: colors.textOnPrimary,
       cardBadgeBackground: colors.primary.withValues(alpha: 0.8),
       cardBadgeForeground: colors.background,

@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mobile_boilerplate/presentation/bottom_sheets/core_bottom_sheet.dart';
 import 'package:mobile_boilerplate/presentation/extensions/build_context_theme_ext.dart';
+import 'package:daily_tarot_focus/features/tarot/presentation/tarot_question/widgets/spread_layout_card.dart';
 
 Future<void> showSpreadDetailsBottomSheet(
   BuildContext context,
@@ -14,63 +15,163 @@ Future<void> showSpreadDetailsBottomSheet(
 ) async {
   await showCoreBottomSheet(
     context,
-    backgroundColor: context.colors.surface,
-    buildWidget: (bottomSheetContext) {
+    buildWidget: (ctx) {
+      final positions = [...spread.positions.asList()]..sort((a, b) => a.index.compareTo(b.index));
+
       return SafeArea(
-        child: Column(
-          children: [
-            Text(spread.title, style: m16w700(bottomSheetContext), textAlign: TextAlign.center),
-            Sp.medium.heightBox,
-            Divider(color: bottomSheetContext.colors.border),
-            Sp.large.heightBox,
-            ...spread.positions.asList().map((position) {
-              return Padding(
-                padding: Sp.small.padSymR(h: Sp.large, v: Sp.xsmall),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text('Card ${position.index}: ', style: m14w700(bottomSheetContext)),
-                    Sp.tiny.widthBox,
-                    Expanded(
-                      child: Text(
-                        position.question.isNotEmpty ? position.question : position.title,
-                        style: m14w400(bottomSheetContext),
-                      ),
-                    ),
-                  ],
+        child: SizedBox(
+          height: MediaQuery.sizeOf(ctx).height * 0.7,
+          child: Padding(
+            padding: Sp.medium.padHR,
+            child: Column(
+              children: [
+                Text(
+                  spread.title,
+                  style: m24w600(context),
                 ),
-              );
-            }),
-            Sp.xlarge.heightBox,
-            Wrap(
-              spacing: Sp.small,
-              runSpacing: Sp.small,
-              alignment: WrapAlignment.center,
-              children:
-                  spread.positions.asList().map((position) {
-                    return Container(
-                      width: 40.w,
-                      height: 60.h,
-                      decoration: BoxDecoration(
-                        border: Border.all(color: bottomSheetContext.colors.border),
-                        borderRadius: Sp.xsmall.radiusR,
-                        color: bottomSheetContext.colors.primary.withValues(alpha: 0.05),
-                      ),
-                      child: Center(
-                        child: Text('${position.index}', style: m16w700(bottomSheetContext)),
-                      ),
-                    );
-                  }).toList(),
+                Sp.xsmall.heightBox,
+                Text(
+                  '${spread.cardCount}-Card Guided Journey',
+                  style: m11w500(context).copyWith(color: context.colors.textTertiary),
+                  textAlign: TextAlign.center,
+                ),
+                Sp.large.heightBox,
+                Expanded(
+                  child: SingleChildScrollView(
+                    padding: EdgeInsets.fromLTRB(0, 4.h, 20.w, 16.h),
+                    child: Column(
+                      children: [
+                        Center(
+                          child: SpreadLayoutPreview(
+                            positions: positions,
+                            showIndex: true,
+                            cardWidth: 36.w,
+                            cardHeight: 54.w,
+                            spacing: 8.w,
+                          ),
+                        ),
+                        Sp.xxlarge.heightBox,
+                        Stack(
+                          children: [
+                            Positioned(
+                              left: 11.w,
+                              top: 16.h,
+                              bottom: 16.h,
+                              child: Container(
+                                width: 1.5,
+                                color: ctx.colors.primary.withValues(alpha: 0.2),
+                              ),
+                            ),
+                            Column(
+                              children: List.generate(positions.length, (i) {
+                                final pos = positions[i];
+                                final isFirst = i == 0;
+                                final isLast = i == positions.length - 1;
+
+                                return Padding(
+                                  padding: EdgeInsets.only(bottom: isLast ? 0 : Sp.small.r),
+                                  child: Row(
+                                    children: [
+                                      SizedBox(
+                                        width: 24.w,
+                                        child: Center(
+                                          child: Container(
+                                            width: isFirst ? 14.w : 12.w,
+                                            height: isFirst ? 14.w : 12.w,
+                                            decoration: BoxDecoration(
+                                              shape: BoxShape.circle,
+                                              color:
+                                                  isFirst
+                                                      ? ctx.colors.primary
+                                                      : ctx.colors.navBackground,
+                                              border: Border.all(
+                                                color: ctx.colors.primary.withValues(alpha: 0.4),
+                                                width: 1.5,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                      Sp.medium.widthBox,
+                                      Expanded(
+                                        child: _SpreadPositionCard(
+                                          position: pos,
+                                          isFirst: isFirst,
+                                          primaryColor: ctx.colors.primary,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                );
+                              }),
+                            ),
+                          ],
+                        ),
+                        Sp.xxlarge.heightBox,
+                      ],
+                    ),
+                  ),
+                ),
+                FancyButton(
+                  onTap: onTap,
+                  padding: Sp.large.padXR,
+                  text: 'Tap to Draw Cards',
+                ),
+              ],
             ),
-            Sp.xlarge.heightBox,
-            FancyButton(
-              onTap: onTap,
-              text: 'Tap to Draw Cards',
-              padding: Sp.large.padXR,
-            ),
-          ],
+          ),
         ),
       );
     },
   );
+}
+
+class _SpreadPositionCard extends StatelessWidget {
+  const _SpreadPositionCard({
+    required this.position,
+    required this.isFirst,
+    required this.primaryColor,
+  });
+
+  final TarotSpreadPositionModel position;
+  final bool isFirst;
+  final Color primaryColor;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: Sp.small.padSymR(h: Sp.medium, v: Sp.small),
+      decoration: BoxDecoration(
+        color: context.colors.navBackground,
+        borderRadius: Sp.medium.radiusR,
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            position.title,
+            style: m15w700(context).copyWith(color: context.colors.secondary),
+          ),
+          Sp.xsmall.heightBox,
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'Card ${position.index}:  ',
+                style: m11w500(context).copyWith(color: primaryColor),
+              ),
+              Expanded(
+                child: Text(
+                  position.question,
+                  style: m11w400(context).copyWith(color: context.colors.textTertiary),
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
 }

@@ -10,19 +10,17 @@ class DeckRetryWidget extends StatelessWidget {
         return Column(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
-            GlassButton(
+            FancyButton(
               onTap: () async {
                 final authState = context.read<AuthCubit>().state;
                 context.read<TarotBloc>().addFetchAllCardsRequested(
                   request: FetchAllCardsRequest(session: authState.sessionOrCrash),
                 );
               },
-              buttonText: 'Load Cards',
-              paddingHorizontal: 20,
+              text: 'Load Cards',
               width: 144,
-              height: 48,
-              buttonTextStyle: m10w600(context),
-              borderRadius: Sp.xlarge.radiusR,
+              height: 40,
+              textStyle: m10w600(context).copyWith(color: context.colors.textOnPrimary),
             ),
             Sp.xxlarge.heightBox,
             CustomCacheNetworkImage(

@@ -18,14 +18,12 @@ class RelationshipItem extends StatelessWidget {
 
     return ScalingContainer(
       onTap: onTap,
-      child: GlassContainer(
+      child: FancyContainer(
         padding: Sp.small.padSymR(h: Sp.large, v: Sp.small),
-        borderRadius: Sp.medium,
-        glassColor:
+        color:
             isSelected
-                ? colors.primary.withValues(alpha: 0.2)
-                : colors.primary.withValues(alpha: 0.05),
-        borderColor: colors.primary.withValues(alpha: 0.05),
+                ? colors.primary.withValues(alpha: 0.4)
+                : colors.primary.withValues(alpha: 0.08),
         child: Row(
           children: [
             Container(
@@ -43,10 +41,15 @@ class RelationshipItem extends StatelessWidget {
               child: Iconify(status.icon, color: colors.accent, size: Sp.large),
             ),
             Sp.medium.widthBox,
-            Expanded(child: Text(status.localizedName, style: m15w600(context))),
+            Expanded(
+              child: Text(
+                status.localizedName,
+                style: m15w600(context).copyWith(color: isSelected ? colors.textOnPrimary : null),
+              ),
+            ),
             if (isSelected) ...[
               Sp.medium.widthBox,
-              Iconify(Mdi.check_circle, color: colors.primary),
+              Iconify(Mdi.check_circle, color: colors.textOnPrimary),
             ],
           ],
         ),

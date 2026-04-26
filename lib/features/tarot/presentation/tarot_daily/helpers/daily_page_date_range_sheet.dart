@@ -19,87 +19,89 @@ mixin DailyPageDateRangeSheet on State<TarotDailyPage> {
       backgroundColor: context.colors.surface,
       buildWidget: (bottomSheetContext) {
         return Padding(
-          padding: Sp.xsmall.padAllR,
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Text(
-                'Filtrele',
-                style: m18w700(bottomSheetContext),
-              ),
-              Sp.medium.heightBox,
-              ListTile(
-                leading: const Icon(Icons.all_inclusive),
-                shape: RoundedRectangleBorder(
-                  side:
-                      selectedFilter.value == TarotDailyDateFilter.allTime
-                          ? BorderSide(color: context.colors.border)
-                          : BorderSide.none,
-                  borderRadius: Sp.medium.radiusR,
+          padding: Sp.medium.padAllR,
+          child: SafeArea(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                  'Filtrele',
+                  style: m18w700(bottomSheetContext),
                 ),
-                title: const Text('Tüm Zamanlar'),
-                onTap: () {
-                  result = TarotDailyDateFilter.allTime;
-                  Navigator.pop(bottomSheetContext);
-                },
-                selected: selectedFilter.value == TarotDailyDateFilter.allTime,
-                selectedColor: bottomSheetContext.colors.primary,
-              ),
-              Sp.xsmall.heightBox,
-              ListTile(
-                shape: RoundedRectangleBorder(
-                  side:
-                      selectedFilter.value == TarotDailyDateFilter.lastWeek
-                          ? BorderSide(color: context.colors.border)
-                          : BorderSide.none,
-                  borderRadius: Sp.medium.radiusR,
+                Sp.medium.heightBox,
+                ListTile(
+                  leading: const Icon(Icons.all_inclusive),
+                  shape: RoundedRectangleBorder(
+                    side:
+                        selectedFilter.value == TarotDailyDateFilter.allTime
+                            ? BorderSide(color: context.colors.border)
+                            : BorderSide.none,
+                    borderRadius: Sp.medium.radiusR,
+                  ),
+                  title: const Text('Tüm Zamanlar'),
+                  onTap: () {
+                    result = TarotDailyDateFilter.allTime;
+                    Navigator.pop(bottomSheetContext);
+                  },
+                  selected: selectedFilter.value == TarotDailyDateFilter.allTime,
+                  selectedColor: bottomSheetContext.colors.primary,
                 ),
-                leading: const Icon(Icons.view_week),
-                title: const Text('Son 1 Hafta'),
-                onTap: () {
-                  result = TarotDailyDateFilter.lastWeek;
-                  Navigator.pop(bottomSheetContext);
-                },
-                selected: selectedFilter.value == TarotDailyDateFilter.lastWeek,
-                selectedColor: bottomSheetContext.colors.primary,
-              ),
-              Sp.xsmall.heightBox,
-              ListTile(
-                shape: RoundedRectangleBorder(
-                  side:
-                      selectedFilter.value == TarotDailyDateFilter.lastMonth
-                          ? BorderSide(color: context.colors.border)
-                          : BorderSide.none,
-                  borderRadius: Sp.medium.radiusR,
+                Sp.xsmall.heightBox,
+                ListTile(
+                  shape: RoundedRectangleBorder(
+                    side:
+                        selectedFilter.value == TarotDailyDateFilter.lastWeek
+                            ? BorderSide(color: context.colors.border)
+                            : BorderSide.none,
+                    borderRadius: Sp.medium.radiusR,
+                  ),
+                  leading: const Icon(Icons.view_week),
+                  title: const Text('Son 1 Hafta'),
+                  onTap: () {
+                    result = TarotDailyDateFilter.lastWeek;
+                    Navigator.pop(bottomSheetContext);
+                  },
+                  selected: selectedFilter.value == TarotDailyDateFilter.lastWeek,
+                  selectedColor: bottomSheetContext.colors.primary,
                 ),
-                leading: const Icon(Icons.calendar_month),
-                title: const Text('Son 1 Ay'),
-                onTap: () {
-                  result = TarotDailyDateFilter.lastMonth;
-                  Navigator.pop(bottomSheetContext);
-                },
-                selected: selectedFilter.value == TarotDailyDateFilter.lastMonth,
-                selectedColor: bottomSheetContext.colors.primary,
-              ),
-              Sp.xsmall.heightBox,
-              ListTile(
-                shape: RoundedRectangleBorder(
-                  side:
-                      selectedFilter.value == TarotDailyDateFilter.custom
-                          ? BorderSide(color: context.colors.border)
-                          : BorderSide.none,
-                  borderRadius: Sp.medium.radiusR,
+                Sp.xsmall.heightBox,
+                ListTile(
+                  shape: RoundedRectangleBorder(
+                    side:
+                        selectedFilter.value == TarotDailyDateFilter.lastMonth
+                            ? BorderSide(color: context.colors.border)
+                            : BorderSide.none,
+                    borderRadius: Sp.medium.radiusR,
+                  ),
+                  leading: const Icon(Icons.calendar_month),
+                  title: const Text('Son 1 Ay'),
+                  onTap: () {
+                    result = TarotDailyDateFilter.lastMonth;
+                    Navigator.pop(bottomSheetContext);
+                  },
+                  selected: selectedFilter.value == TarotDailyDateFilter.lastMonth,
+                  selectedColor: bottomSheetContext.colors.primary,
                 ),
-                leading: const Icon(Icons.date_range),
-                title: const Text('Tarih Seçimi'),
-                onTap: () {
-                  result = TarotDailyDateFilter.custom;
-                  Navigator.pop(bottomSheetContext);
-                },
-                selected: selectedFilter.value == TarotDailyDateFilter.custom,
-                selectedColor: bottomSheetContext.colors.primary,
-              ),
-            ],
+                Sp.xsmall.heightBox,
+                ListTile(
+                  shape: RoundedRectangleBorder(
+                    side:
+                        selectedFilter.value == TarotDailyDateFilter.custom
+                            ? BorderSide(color: context.colors.border)
+                            : BorderSide.none,
+                    borderRadius: Sp.medium.radiusR,
+                  ),
+                  leading: const Icon(Icons.date_range),
+                  title: const Text('Tarih Seçimi'),
+                  onTap: () {
+                    result = TarotDailyDateFilter.custom;
+                    Navigator.pop(bottomSheetContext);
+                  },
+                  selected: selectedFilter.value == TarotDailyDateFilter.custom,
+                  selectedColor: bottomSheetContext.colors.primary,
+                ),
+              ],
+            ),
           ),
         );
       },

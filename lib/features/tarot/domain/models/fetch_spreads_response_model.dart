@@ -13,6 +13,12 @@ class FetchSpreadsResponseModel with EquatableMixin {
     );
   }
 
+  FetchSpreadsResponse copyWith({required KtList<TarotSpreadCategoryModel>? spreadCategories}) {
+    return FetchSpreadsResponse(
+      spreadCategories: spreadCategories ?? this.spreadCategories,
+    );
+  }
+
   final KtList<TarotSpreadCategoryModel> spreadCategories;
 
   @override
@@ -38,9 +44,6 @@ class TarotSpreadCategoryModel {
     );
   }
 
-  factory TarotSpreadCategoryModel.fromJson(Map<String, dynamic> json) =>
-      TarotSpreadCategoryModel.fromMap(json);
-
   Map<String, dynamic> toMap() {
     return {
       'id': id,
@@ -49,7 +52,17 @@ class TarotSpreadCategoryModel {
     };
   }
 
-  Map<String, dynamic> toJson() => toMap();
+  TarotSpreadCategoryModel copyWith({
+    String? id,
+    String? title,
+    KtList<TarotSpreadModel>? spreads,
+  }) {
+    return TarotSpreadCategoryModel(
+      id: id ?? this.id,
+      title: title ?? this.title,
+      spreads: spreads ?? this.spreads,
+    );
+  }
 
   final String id;
   final String title;
@@ -63,24 +76,45 @@ class TarotSpreadModel {
     required this.description,
     required this.cardCount,
     required this.layoutType,
+    required this.categoryId,
     required this.positions,
   });
 
   factory TarotSpreadModel.fromMap(Map<String, dynamic> map) {
     return TarotSpreadModel(
-      id: map['id'] as String,
-      title: map['title'] as String,
-      description: map['description'] as String,
-      cardCount: map['card_count'] as int,
-      layoutType: map['layout_type'] as String,
+      id: map['id'] != null ? map['id'] as String : '',
+      title: map['title'] != null ? map['title'] as String : '',
+      description: map['description'] != null ? map['description'] as String : '',
+      cardCount: map['card_count'] != null ? map['card_count'] as int : 0,
+      layoutType: map['layout_type'] != null ? map['layout_type'] as String : '',
+      categoryId: map['category_id'] != null ? map['category_id'] as String : '',
       positions:
-          (map['positions'] as List<dynamic>)
-              .map((e) => TarotSpreadPositionModel.fromMap(e as Map<String, dynamic>))
-              .toImmutableList(),
+          (map['positions'] as List<dynamic>?)
+              ?.map((e) => TarotSpreadPositionModel.fromMap(e as Map<String, dynamic>))
+              .toImmutableList() ??
+          const KtList<TarotSpreadPositionModel>.empty(),
     );
   }
 
-  factory TarotSpreadModel.fromJson(Map<String, dynamic> json) => TarotSpreadModel.fromMap(json);
+  TarotSpreadModel copyWith({
+    String? id,
+    String? title,
+    String? description,
+    int? cardCount,
+    String? layoutType,
+    String? categoryId,
+    KtList<TarotSpreadPositionModel>? positions,
+  }) {
+    return TarotSpreadModel(
+      id: id ?? this.id,
+      title: title ?? this.title,
+      description: description ?? this.description,
+      cardCount: cardCount ?? this.cardCount,
+      layoutType: layoutType ?? this.layoutType,
+      categoryId: categoryId ?? this.categoryId,
+      positions: positions ?? this.positions,
+    );
+  }
 
   Map<String, dynamic> toMap() {
     return {
@@ -89,17 +123,17 @@ class TarotSpreadModel {
       'description': description,
       'card_count': cardCount,
       'layout_type': layoutType,
+      'category_id': categoryId,
       'positions': positions.asList().map((e) => e.toMap()).toList(),
     };
   }
-
-  Map<String, dynamic> toJson() => toMap();
 
   final String id;
   final String title;
   final String description;
   final int cardCount;
   final String layoutType;
+  final String categoryId;
   final KtList<TarotSpreadPositionModel> positions;
 }
 
@@ -109,7 +143,7 @@ class TarotSpreadPositionModel {
     required this.row,
     required this.index,
     required this.title,
-    required this.meaning,
+    required this.question,
   });
 
   factory TarotSpreadPositionModel.fromMap(Map<String, dynamic> map) {
@@ -118,12 +152,31 @@ class TarotSpreadPositionModel {
       row: map['row'] as int,
       index: map['index'] as int,
       title: map['title'] as String,
-      meaning: map['meaning'] as String,
+      question: map['question'] as String,
     );
   }
 
-  factory TarotSpreadPositionModel.fromJson(Map<String, dynamic> json) =>
-      TarotSpreadPositionModel.fromMap(json);
+  final int col;
+  final int row;
+  final int index;
+  final String title;
+  final String question;
+
+  TarotSpreadPositionModel copyWith({
+    int? col,
+    int? row,
+    int? index,
+    String? title,
+    String? question,
+  }) {
+    return TarotSpreadPositionModel(
+      col: col ?? this.col,
+      row: row ?? this.row,
+      index: index ?? this.index,
+      title: title ?? this.title,
+      question: question ?? this.question,
+    );
+  }
 
   Map<String, dynamic> toMap() {
     return {
@@ -131,15 +184,7 @@ class TarotSpreadPositionModel {
       'row': row,
       'index': index,
       'title': title,
-      'meaning': meaning,
+      'question': question,
     };
   }
-
-  Map<String, dynamic> toJson() => toMap();
-
-  final int col;
-  final int row;
-  final int index;
-  final String title;
-  final String meaning;
 }

@@ -57,13 +57,13 @@ class _CardContent extends StatelessWidget {
           IgnorePointer(
             child: UnconstrainedBox(
               alignment: Alignment.centerLeft,
-              child: GlassButton(
+              child: FancyButton(
                 height: buttonHeight,
                 width: buttonWidth,
                 onTap: () {},
-                glassOutColor: context.colors.primary.withValues(alpha: 0.1),
-                buttonText: LocaleKeys.explore_page_ask_question_button.tr(),
-                buttonTextStyle: m12w600(context).copyWith(color: context.colors.textOnPrimary),
+                backgroundColor: context.colors.primary,
+                text: LocaleKeys.explore_page_ask_question_button.tr(),
+                textStyle: m12w600(context).copyWith(color: context.colors.textOnPrimary),
               ),
             ),
           ),

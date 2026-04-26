@@ -10,12 +10,12 @@ class DailyEmptyWidget extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
-        GlassButton(
+        FancyButton(
           onTap: onTap,
-          buttonText: message,
-          width: 168.w,
-          height: 48.h,
-          buttonTextStyle: m10w600(context).copyWith(color: context.colors.textOnPrimary),
+          text: message,
+          width: 160.w,
+          height: 40.h,
+          textStyle: m10w600(context).copyWith(color: context.colors.textOnPrimary),
         ),
         Sp.xxlarge.heightBox,
         CustomCacheNetworkImage(

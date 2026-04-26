@@ -5,7 +5,8 @@ import 'package:daily_tarot_focus/core/util/tarot_app_assets.dart';
 import 'package:daily_tarot_focus/core/util/tarot_app_sizes.dart';
 import 'package:daily_tarot_focus/core/util/text_style_helper.dart';
 import 'package:daily_tarot_focus/core/widgets/custom_cache_network_image.dart';
-import 'package:daily_tarot_focus/core/widgets/glass_button.dart';
+import 'package:daily_tarot_focus/core/widgets/fancy_button.dart';
+import 'package:daily_tarot_focus/core/widgets/fancy_container.dart';
 import 'package:daily_tarot_focus/core/widgets/tarot_app_bar.dart';
 import 'package:daily_tarot_focus/features/tarot/bloc/tarot/tarot_bloc.dart';
 import 'package:daily_tarot_focus/features/tarot/bloc/tarot/tarot_state.dart';
@@ -14,8 +15,8 @@ import 'package:daily_tarot_focus/features/tarot/domain/models/fetch_all_cards_r
 import 'package:daily_tarot_focus/features/tarot/domain/models/tarot_category_enum.dart';
 import 'package:daily_tarot_focus/features/tarot/presentation/tarot_deck/helpers/deck_page_scope.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:go_router/go_router.dart';
-import 'package:liquid_glass_renderer/liquid_glass_renderer.dart';
 import 'package:mobile_boilerplate/application/auth/auth_cubit.dart';
 import 'package:mobile_boilerplate/common_dependencies.dart';
 import 'package:mobile_boilerplate/presentation/extensions/build_context_theme_ext.dart';
@@ -41,25 +42,34 @@ class _TarotDeckPageState extends State<TarotDeckPage> with DeckPageStateMixin {
       state: this,
       child: Scaffold(
         appBar: TarotAppBar(title: LocaleKeys.deck_page_title.tr()),
-        body: SafeArea(
-          child: ValueListenableBuilder<TarotCategory?>(
-            valueListenable: selectedCategory,
-            builder: (context, category, child) {
-              return BlocBuilder<TarotBloc, TarotState>(
-                builder: (context, state) {
-                  final filteredCards = state.byCategory(category);
+        body: ValueListenableBuilder<TarotCategory?>(
+          valueListenable: selectedCategory,
+          builder: (context, category, child) {
+            return BlocBuilder<TarotBloc, TarotState>(
+              builder: (context, state) {
+                if (state.isFetchingAllCards) {
+                  return Center(
+                    child: SpinKitFadingCircle(color: context.colors.primary, size: 32),
+                  );
+                }
+                if (state.hasFetchAllCardsFailed) {
+                  return const DeckRetryWidget();
+                }
 
-                  return Column(
+                final filteredCards = state.byCategory(category);
+
+                return SafeArea(
+                  child: Column(
                     children: [
                       const DeckChipList(),
                       Sp.medium.heightBox,
                       DeckCardGridView(filteredCards: filteredCards),
                     ],
-                  );
-                },
-              );
-            },
-          ),
+                  ),
+                );
+              },
+            );
+          },
         ),
       ),
     );

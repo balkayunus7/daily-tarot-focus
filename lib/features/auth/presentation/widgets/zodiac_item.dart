@@ -17,14 +17,13 @@ class ZodiacItem extends StatelessWidget {
 
     return ScalingContainer(
       onTap: onTap,
-      child: GlassContainer(
+      child: FancyContainer(
         width: double.infinity,
         borderRadius: Sp.xlarge,
-        glassColor:
+        color:
             isSelected
-                ? colors.primary.withValues(alpha: 0.2)
-                : colors.primary.withValues(alpha: 0.05),
-        borderColor: colors.primary.withValues(alpha: 0.05),
+                ? colors.primary.withValues(alpha: 0.4)
+                : colors.primary.withValues(alpha: 0.08),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -33,9 +32,9 @@ class ZodiacItem extends StatelessWidget {
             Text(
               zodiac.localizedName,
               style: m12w500(context).copyWith(
-                fontWeight: isSelected ? FontWeight.w700 : FontWeight.w500,
+                fontWeight: isSelected ? FontWeight.bold : FontWeight.w700,
                 letterSpacing: 0.3,
-                color: isSelected ? colors.textPrimary : colors.textSecondary,
+                color: isSelected ? colors.textOnPrimary : colors.textSecondary,
               ),
             ),
           ],

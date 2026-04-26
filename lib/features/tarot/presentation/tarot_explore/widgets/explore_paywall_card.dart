@@ -78,13 +78,13 @@ class _PremiumButton extends StatelessWidget {
     final buttonHeight = buttonWidth * 0.4;
 
     return IgnorePointer(
-      child: GlassButton(
+      child: FancyButton(
         height: buttonHeight,
         width: buttonWidth,
         onTap: () {},
-        buttonText: LocaleKeys.explore_page_get_pro.tr(),
-        glassOutColor: context.colors.primary.withValues(alpha: 0.1),
-        buttonTextStyle: m12w600(context).copyWith(color: context.colors.textOnPrimary),
+        text: LocaleKeys.explore_page_get_pro.tr(),
+        backgroundColor: context.colors.primary.withValues(alpha: 0.1),
+        textStyle: m12w600(context).copyWith(color: context.colors.textOnPrimary),
       ),
     );
   }

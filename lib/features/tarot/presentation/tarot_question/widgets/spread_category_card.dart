@@ -1,7 +1,7 @@
 import 'package:daily_tarot_focus/core/util/tarot_app_assets.dart';
 import 'package:daily_tarot_focus/core/util/tarot_app_sizes.dart';
 import 'package:daily_tarot_focus/core/util/text_style_helper.dart';
-import 'package:daily_tarot_focus/core/widgets/glass_container.dart';
+import 'package:daily_tarot_focus/core/widgets/fancy_container.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:iconify_flutter/iconify_flutter.dart';
@@ -31,11 +31,9 @@ class SpreadCategoryCard extends StatelessWidget {
 
     return ScalingContainer(
       onTap: onTap,
-      child: GlassContainer(
+      child: FancyContainer(
         padding: Sp.small.padSymR(h: Sp.large, v: Sp.small),
-        borderRadius: Sp.medium,
-        glassColor: colors.primary.withValues(alpha: 0.05),
-        borderColor: colors.primary.withValues(alpha: 0.05),
+        color: colors.primary.withValues(alpha: 0.05),
         child: Row(
           children: [
             Container(

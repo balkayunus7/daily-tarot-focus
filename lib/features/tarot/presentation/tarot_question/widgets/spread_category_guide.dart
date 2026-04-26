@@ -1,7 +1,8 @@
 import 'dart:math' as math;
 
 import 'package:daily_tarot_focus/core/util/tarot_app_sizes.dart';
-import 'package:daily_tarot_focus/core/widgets/glass_button.dart';
+import 'package:daily_tarot_focus/core/widgets/fancy_button.dart';
+import 'package:daily_tarot_focus/core/widgets/fancy_container.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile_boilerplate/presentation/app_text_styles.dart';
 import 'package:mobile_boilerplate/presentation/extensions/build_context_theme_ext.dart';
@@ -12,12 +13,9 @@ class SpreadCategoryGuide extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return FancyContainer(
       padding: Sp.xlarge.padAllR,
-      decoration: BoxDecoration(
-        color: context.colors.textOnPrimary,
-        borderRadius: Sp.medium.radiusR,
-      ),
+      color: context.colors.textOnPrimary,
       child: Stack(
         children: [
           Positioned(
@@ -25,35 +23,26 @@ class SpreadCategoryGuide extends StatelessWidget {
             bottom: -16,
             child: CustomPaint(
               size: const Size(180, 180),
-              painter: _SparklePainter(color: context.colors.secondary),
+              painter: _SparklePainter(color: context.colors.accent),
             ),
           ),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisSize: MainAxisSize.min,
             children: [
-              Text(
-                'Rehbere mi İhtiyacın Var?',
-                style: m24w600(context).copyWith(
-                  fontStyle: FontStyle.italic,
-                  color: context.colors.textPrimary,
-                ),
-              ),
-              Sp.medium.heightBox,
+              Text('Rehbere mi İhtiyacın Var?', style: m24w600(context)),
+              Sp.small.heightBox,
               Text(
                 'Hangi açılımın sana uygun olduğunu '
                 'bilmiyorsan, senin için bir rehber hazırladık.',
-                style: m14w400(context).copyWith(
-                  color: context.colors.textSecondary,
-                  height: 1.5,
-                ),
+                style: m14w400(context).copyWith(color: context.colors.textSecondary, height: 1.5),
               ),
               Sp.xxlarge.heightBox,
-              GlassButton(
+              FancyButton(
                 onTap: onTap,
-                buttonText: 'REHBERİ İNCELE',
-                glassOutColor: context.colors.secondary,
-                buttonTextStyle: m14w700(context).copyWith(color: context.colors.textOnPrimary),
+                text: 'REHBERİ İNCELE',
+                backgroundColor: context.colors.primary,
+                textStyle: m14w700(context).copyWith(color: context.colors.textOnPrimary),
               ),
             ],
           ),

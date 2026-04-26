@@ -1,7 +1,7 @@
 import 'package:daily_tarot_focus/core/util/tarot_app_sizes.dart';
 import 'package:daily_tarot_focus/core/util/text_style_helper.dart';
 import 'package:daily_tarot_focus/core/widgets/custom_cache_network_image.dart';
-import 'package:daily_tarot_focus/core/widgets/glass_container.dart';
+import 'package:daily_tarot_focus/core/widgets/fancy_container.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/fetch_readers_response_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -25,11 +25,9 @@ class ReaderCard extends StatelessWidget {
 
     return ScalingContainer(
       onTap: onTap,
-      child: GlassContainer(
+      child: FancyContainer(
         padding: Sp.small.padSymR(h: Sp.medium, v: Sp.small),
-        borderRadius: Sp.medium,
-        glassColor: colors.primary.withValues(alpha: 0.05),
-        borderColor: colors.primary.withValues(alpha: 0.08),
+        color: colors.primary.withValues(alpha: 0.05),
         child: Row(
           children: [
             _ReaderAvatar(image: reader.imageUrl),
@@ -39,7 +37,6 @@ class ReaderCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Sp.tiny.heightBox,
                   Text(reader.name, style: m15w600(context)),
                   Sp.tiny.heightBox,
                   Text(
@@ -89,27 +86,25 @@ class _TagRow extends StatelessWidget {
     final colors = context.colors;
 
     return Wrap(
-      spacing: 4,
-      runSpacing: 4,
+      spacing: 6,
+      runSpacing: 6,
       children:
           tags.map((tag) {
-            return Container(
-              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
-              decoration: BoxDecoration(
-                color: colors.primary.withValues(alpha: 0.08),
-                borderRadius: BorderRadius.circular(20),
-                border: Border.all(color: colors.border, width: 0.5),
-              ),
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Text(tag.emoji, style: const TextStyle(fontSize: 11)),
-                  Sp.tiny.widthBox,
-                  Text(
-                    tag.label,
-                    style: m10w500(context).copyWith(color: colors.textPrimary),
-                  ),
-                ],
+            return FancyContainer(
+              color: colors.primary,
+              border: Border.all(color: colors.border, width: 0.5),
+              child: Padding(
+                padding: Sp.xsmall.padHR,
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(tag.emoji, style: const TextStyle(fontSize: 11)),
+                    Text(
+                      tag.label,
+                      style: m9w400(context).copyWith(color: colors.textOnPrimary),
+                    ),
+                  ],
+                ),
               ),
             );
           }).asList(),

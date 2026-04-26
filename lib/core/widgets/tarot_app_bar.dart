@@ -1,8 +1,8 @@
 import 'package:daily_tarot_focus/core/util/tarot_app_assets.dart';
 import 'package:daily_tarot_focus/core/util/tarot_app_sizes.dart';
 import 'package:daily_tarot_focus/core/util/text_style_helper.dart';
-import 'package:daily_tarot_focus/core/widgets/glass_button.dart';
-import 'package:daily_tarot_focus/core/widgets/glass_container.dart';
+import 'package:daily_tarot_focus/core/widgets/fancy_button.dart';
+import 'package:daily_tarot_focus/core/widgets/fancy_container.dart';
 import 'package:daily_tarot_focus/features/auth/domain/models/tarot_user.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -34,12 +34,14 @@ class TarotsProAppBar extends StatelessWidget implements PreferredSizeWidget {
               ? null
               : Row(
                 children: [
-                  GlassButton(
+                  FancyButton(
                     width: 84,
                     height: 38,
                     onTap: () {},
-                    buttonText: 'Get Pro',
-                    buttonTextStyle: m14w600(context),
+                    text: 'Get Pro',
+                    backgroundColor: context.colors.background,
+                    textColor: context.colors.textOnPrimary,
+                    textStyle: m14w600(context),
                   ),
                   Sp.xsmall.widthBox,
                   ScalingContainer(
@@ -109,12 +111,14 @@ class TarotAppBar extends StatelessWidget implements PreferredSizeWidget {
           return ScalingContainer(
             onTap: onBackIconTap ?? () => context.pop(),
             child: Center(
-              child: GlassContainer(
-                width: 36.w,
-                height: 36.h,
+              child: FancyContainer(
+                width: 32.w,
+                height: 32.h,
+                borderRadius: 100,
+                color: context.colors.primary,
                 child: Icon(
                   backIcon ?? Icons.arrow_back,
-                  size: Sp.large,
+                  size: Sp.medium,
                   color: context.colors.textOnPrimary,
                 ),
               ),
@@ -131,9 +135,10 @@ class TarotAppBar extends StatelessWidget implements PreferredSizeWidget {
               duration: 300.ms,
               curve: Curves.easeInBack,
               child: Center(
-                child: GlassContainer(
-                  width: 36.w,
-                  height: 36.h,
+                child: FancyContainer(
+                  width: 32.w,
+                  height: 32.h,
+                  color: context.colors.primary,
                   child: Icon(
                     trailingIcon,
                     size: Sp.medium,

@@ -3,8 +3,8 @@ import 'package:daily_tarot_focus/core/util/locale_keys.dart';
 import 'package:daily_tarot_focus/core/util/snackbar_helper.dart';
 import 'package:daily_tarot_focus/core/util/tarot_app_sizes.dart';
 import 'package:daily_tarot_focus/core/util/text_style_helper.dart';
-import 'package:daily_tarot_focus/core/widgets/glass_button.dart';
-import 'package:daily_tarot_focus/core/widgets/glass_container.dart';
+import 'package:daily_tarot_focus/core/widgets/fancy_button.dart';
+import 'package:daily_tarot_focus/core/widgets/fancy_container.dart';
 import 'package:daily_tarot_focus/features/auth/bloc/register_cubit.dart';
 import 'package:daily_tarot_focus/features/auth/domain/models/tarot_user_career_enum.dart';
 import 'package:daily_tarot_focus/features/auth/presentation/widgets/step_background.dart';
@@ -64,7 +64,7 @@ class RegisterStepCareerPage extends StatelessWidget {
                     Sp.xsmall.heightBox,
                     Text(
                       LocaleKeys.register_page_career_subtitle.tr(),
-                      style: m15w500(context).copyWith(color: colors.secondary),
+                      style: m14w500(context).copyWith(color: colors.textSecondary),
                     ),
                     Sp.small.heightBox,
                     LinearProgressIndicator(
@@ -78,8 +78,8 @@ class RegisterStepCareerPage extends StatelessWidget {
                     const Expanded(child: CareerListView()),
                     BlocBuilder<RegisterCubit, RegisterState>(
                       builder: (context, state) {
-                        return GlassButton(
-                          buttonText: LocaleKeys.register_page_complete_registration.tr(),
+                        return FancyButton(
+                          text: LocaleKeys.register_page_complete_registration.tr(),
                           onTap: () async {
                             final authState = context.read<AuthCubit>().state;
                             await context.read<RegisterCubit>().submitRegistration(

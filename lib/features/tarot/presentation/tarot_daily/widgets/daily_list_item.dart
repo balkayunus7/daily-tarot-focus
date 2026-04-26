@@ -61,11 +61,9 @@ class _DailyCardListItem extends StatelessWidget {
             Expanded(
               child: Padding(
                 padding: Sp.large.padHVR(Sp.small),
-                child: GlassContainer(
-                  borderRadius: Sp.medium,
-                  glassColor: primary.withValues(alpha: 0.05),
-                  borderColor: primary.withValues(alpha: 0.05),
-                  padding: Sp.small.padAllR,
+                child: FancyContainer(
+                  color: primary.withValues(alpha: 0.05),
+                  padding: Sp.medium.padAllR,
                   child: Row(
                     children: [
                       Container(
@@ -91,15 +89,14 @@ class _DailyCardListItem extends StatelessWidget {
                               Container(
                                 padding: Sp.small.padAllR,
                                 decoration: BoxDecoration(
-                                  color: context.colors.accent.withValues(alpha: 0.5),
+                                  color: context.colors.accent,
                                   borderRadius: Sp.small.radiusR,
                                 ),
                                 child: Text(
-                                  card.uprightKeywords.take(3).join(' • '),
-                                  style: m10w600(context).copyWith(
-                                    color: context.colors.textOnSecondary,
-                                    letterSpacing: 0.2,
-                                  ),
+                                  card.uprightKeywords.take(3).join(' •.  '),
+                                  style: m10w600(
+                                    context,
+                                  ).copyWith(letterSpacing: 0.2, color: context.colors.secondary),
                                 ),
                               ),
                             ],

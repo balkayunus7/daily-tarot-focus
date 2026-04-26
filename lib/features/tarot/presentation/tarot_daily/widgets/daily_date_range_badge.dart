@@ -18,23 +18,22 @@ class DateRangeBadge extends StatelessWidget {
           padding: Sp.large.padXR,
           child: Row(
             children: [
-              GlassContainer(
+              FancyContainer(
                 padding: Sp.small.padHVR(Sp.xsmall),
-                glassColor: context.colors.primary.withValues(alpha: 0.05),
-
+                color: context.colors.primary.withValues(alpha: 0.05),
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    Icon(Icons.filter_list, size: 14, color: context.colors.primary),
+                    Icon(Icons.filter_list, size: 14, color: context.colors.secondary),
                     Sp.small.widthBox,
                     Text(
                       filterLabel,
-                      style: m12w600(context).copyWith(color: context.colors.primary),
+                      style: m12w600(context).copyWith(color: context.colors.secondary),
                     ),
                     Sp.small.widthBox,
                     GestureDetector(
                       onTap: clearFilter,
-                      child: Icon(Icons.close, size: 14, color: context.colors.primary),
+                      child: Icon(Icons.close, size: 14, color: context.colors.secondary),
                     ),
                   ],
                 ),

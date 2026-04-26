@@ -55,14 +55,14 @@ class ExploreFeatureCard extends StatelessWidget {
                     Positioned(
                       top: Sp.small,
                       right: Sp.small,
-                      child: GlassContainer(
+                      child: FancyContainer(
                         borderRadius: Sp.xlarge,
                         padding: Sp.tiny.padAllR,
-                        borderColor: colors.textOnPrimary,
+                        color: colors.primary.withValues(alpha: 0.5),
                         child: Icon(
                           isDisabled ? Icons.lock_outline : Icons.arrow_outward,
                           color: colors.textOnPrimary,
-                          size: 16,
+                          size: 16.sp,
                         ),
                       ),
                     ),

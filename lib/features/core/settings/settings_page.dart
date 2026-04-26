@@ -3,7 +3,7 @@ import 'package:daily_tarot_focus/config/restartable_app.dart';
 import 'package:daily_tarot_focus/core/util/locale_keys.dart';
 import 'package:daily_tarot_focus/core/util/tarot_app_sizes.dart';
 import 'package:daily_tarot_focus/core/util/text_style_helper.dart';
-import 'package:daily_tarot_focus/core/widgets/glass_container.dart';
+import 'package:daily_tarot_focus/core/widgets/fancy_container.dart';
 import 'package:daily_tarot_focus/core/widgets/tarot_app_bar.dart';
 import 'package:daily_tarot_focus/features/core/settings/display_delete_account_popup.dart';
 import 'package:flutter/material.dart';
@@ -168,23 +168,17 @@ class _SettingsSection extends StatelessWidget {
             padding: Sp.xsmall.padXR,
             child: Text(
               title!.toUpperCase(),
-              style: m12w600(context).copyWith(
-                color: colors.textSecondary.withValues(alpha: 0.6),
-                letterSpacing: 1.2,
-              ),
+              style: m12w600(context).copyWith(color: colors.textTertiary),
             ),
           ),
         ],
         Sp.small.heightBox,
-        GlassContainer(
-          borderRadius: Sp.medium,
-          glassColor: colors.primary.withValues(alpha: 0.05),
-          borderColor: colors.primary.withValues(alpha: 0.05),
+        FancyContainer(
+          color: colors.primary.withValues(alpha: 0.05),
+          border: Border.all(color: colors.border),
           child: Column(
             children: [
-              for (int i = 0; i < children.length; i++) ...[
-                children[i],
-              ],
+              for (int i = 0; i < children.length; i++) ...[children[i]],
             ],
           ),
         ),
@@ -234,7 +228,7 @@ class _SettingsTile extends StatelessWidget {
             Expanded(
               child: Text(
                 title,
-                style: m15w500(context).copyWith(color: color ?? colors.textPrimary),
+                style: m14w500(context).copyWith(color: color ?? colors.textPrimary),
               ),
             ),
             Icon(

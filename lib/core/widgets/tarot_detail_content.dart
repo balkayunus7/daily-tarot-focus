@@ -3,7 +3,7 @@ import 'package:daily_tarot_focus/core/util/tarot_app_sizes.dart';
 import 'package:daily_tarot_focus/core/util/tarot_mock_data.dart';
 import 'package:daily_tarot_focus/core/util/text_style_helper.dart';
 import 'package:daily_tarot_focus/core/widgets/custom_cache_network_image.dart';
-import 'package:daily_tarot_focus/core/widgets/glass_container.dart';
+import 'package:daily_tarot_focus/core/widgets/fancy_container.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/fetch_all_cards_response_model.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -145,7 +145,6 @@ class _TarotDetailContentState extends State<TarotDetailContent> {
                           tarot.name,
                           textAlign: TextAlign.center,
                           style: m38w400(context).copyWith(
-                            fontStyle: FontStyle.italic,
                             color: context.colors.textPrimary,
                           ),
                         ),
@@ -157,7 +156,6 @@ class _TarotDetailContentState extends State<TarotDetailContent> {
                         Text(
                           'The Essence',
                           style: m18w600(context).copyWith(
-                            fontStyle: FontStyle.italic,
                             color: context.colors.textPrimary,
                           ),
                         ),
@@ -207,10 +205,7 @@ class _TarotDetailContentState extends State<TarotDetailContent> {
                       Center(
                         child: Text(
                           "Part of the 'Celestial Stillness' Collection",
-                          style: m12w500(context).copyWith(
-                            fontStyle: FontStyle.italic,
-                            color: context.colors.textSecondary,
-                          ),
+                          style: m12w500(context).copyWith(color: context.colors.textSecondary),
                         ),
                       ),
                       Sp.large.heightBox,
@@ -250,8 +245,7 @@ class _MeaningToggle extends StatelessWidget {
     return ValueListenableBuilder<bool>(
       valueListenable: isUpright,
       builder: (context, isUprightValue, _) {
-        return GlassContainer(
-          glassColor: context.colors.surface,
+        return FancyContainer(
           borderRadius: Sp.xlarge,
           child: Padding(
             padding: Sp.tiny.padAllR,
@@ -295,14 +289,14 @@ class _MeaningSwitch extends StatelessWidget {
           duration: const Duration(milliseconds: 200),
           padding: Sp.small.padYR,
           decoration: BoxDecoration(
-            color: isActive ? context.colors.secondary.withValues(alpha: 0.7) : Colors.transparent,
+            color: isActive ? context.colors.primary : context.colors.background,
             borderRadius: 20.radiusR,
           ),
           child: Center(
             child: Text(
               title,
               style: m12w600(context).copyWith(
-                color: isActive ? context.colors.textOnPrimary : context.colors.textDisabled,
+                color: isActive ? context.colors.textOnPrimary : context.colors.primary,
               ),
             ),
           ),
@@ -326,10 +320,9 @@ class _KeywordsWrap extends StatelessWidget {
       runSpacing: 3,
       children:
           keywords.map((keyword) {
-            return GlassContainer(
-              padding: Sp.small.padHVR(Sp.xsmall),
-              borderRadius: Sp.medium,
-              glassColor: context.colors.primary.withValues(alpha: 0.2),
+            return FancyContainer(
+              padding: Sp.small.padSymR(h: Sp.small, v: Sp.tiny),
+              color: context.colors.primary.withValues(alpha: 0.6),
               child: Text(
                 keyword,
                 style: m10w500(context).copyWith(color: context.colors.textOnPrimary),
@@ -350,10 +343,9 @@ class _InfoCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final colors = context.colors;
 
-    return GlassContainer(
-      borderRadius: Sp.medium,
-      glassColor: colors.primary.withValues(alpha: 0.05),
-      borderColor: colors.primary.withValues(alpha: 0.05),
+    return FancyContainer(
+      color: colors.primary.withValues(alpha: 0.05),
+      border: Border.all(color: colors.border),
       padding: Sp.large.padAllR,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -377,10 +369,7 @@ class _InfoCard extends StatelessWidget {
               Sp.small.widthBox,
               Text(
                 title,
-                style: m15w600(context).copyWith(
-                  fontStyle: FontStyle.italic,
-                  color: colors.textPrimary,
-                ),
+                style: m15w600(context).copyWith(color: colors.textPrimary),
               ),
             ],
           ),

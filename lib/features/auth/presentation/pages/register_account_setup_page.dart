@@ -118,38 +118,38 @@ class _AccountSetupPageState extends State<AccountSetupPage> {
                           children: [
                             Text(
                               'Hesabın hazırlanıyor',
-                              style: m28w600(context),
+                              style: m26w600(context),
                             ),
                             Sp.xsmall.heightBox,
                             Text(
                               precaching
                                   ? 'Görseller yükleniyor...'
                                   : 'Tarot kartları, falcılar ve spreads yükleniyor...',
-                              style: m14w500(context).copyWith(color: colors.textSecondary),
+                              style: m12w500(context).copyWith(color: colors.textSecondary),
                               textAlign: TextAlign.center,
                             ),
                             Sp.xlarge.heightBox,
                             TweenAnimationBuilder<double>(
                               tween: Tween(begin: 0, end: totalProgress),
-                              duration: const Duration(milliseconds: 400),
+                              duration: const Duration(seconds: 400),
                               curve: Curves.easeInOut,
                               builder:
                                   (context, value, _) => LinearProgressIndicator(
                                     value: value,
                                     minHeight: 8,
                                     borderRadius: BorderRadius.circular(8),
-                                    backgroundColor: colors.secondary,
+                                    backgroundColor: colors.accent,
                                     valueColor: AlwaysStoppedAnimation<Color>(colors.primary),
                                   ),
                             ),
                             Sp.medium.heightBox,
                             TweenAnimationBuilder<double>(
                               tween: Tween(begin: 0, end: totalProgress),
-                              duration: const Duration(milliseconds: 400),
+                              duration: const Duration(seconds: 400),
                               builder:
                                   (context, value, _) => Text(
                                     '%${(value * 100).toInt()}',
-                                    style: m14w700(context).copyWith(color: colors.primary),
+                                    style: m14w700(context).copyWith(color: colors.secondary),
                                   ),
                             ),
                           ],

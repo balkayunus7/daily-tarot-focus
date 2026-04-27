@@ -144,30 +144,34 @@ class TarotSpreadPositionModel {
     required this.index,
     required this.title,
     required this.question,
+    this.rotation = 0,
   });
 
   factory TarotSpreadPositionModel.fromMap(Map<String, dynamic> map) {
     return TarotSpreadPositionModel(
-      col: map['col'] as int,
-      row: map['row'] as int,
+      col: (map['col'] as num).toDouble(),
+      row: (map['row'] as num).toDouble(),
       index: map['index'] as int,
       title: map['title'] as String,
       question: map['question'] as String,
+      rotation: (map['rotation'] as int?) ?? 0,
     );
   }
 
-  final int col;
-  final int row;
+  final double col;
+  final double row;
   final int index;
   final String title;
   final String question;
+  final int rotation;
 
   TarotSpreadPositionModel copyWith({
-    int? col,
-    int? row,
+    double? col,
+    double? row,
     int? index,
     String? title,
     String? question,
+    int? rotation,
   }) {
     return TarotSpreadPositionModel(
       col: col ?? this.col,
@@ -175,6 +179,7 @@ class TarotSpreadPositionModel {
       index: index ?? this.index,
       title: title ?? this.title,
       question: question ?? this.question,
+      rotation: rotation ?? this.rotation,
     );
   }
 
@@ -185,6 +190,7 @@ class TarotSpreadPositionModel {
       'index': index,
       'title': title,
       'question': question,
+      'rotation': rotation,
     };
   }
 }

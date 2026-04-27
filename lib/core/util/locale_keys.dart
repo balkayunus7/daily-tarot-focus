@@ -1,5 +1,6 @@
 // DO NOT EDIT. This is code generated via package:easy_localization/generate.dart
 
+// ignore_for_file: constant_identifier_names
 
 abstract class  LocaleKeys {
   static const explore_page_spiritual_guide = 'explore_page.spiritual_guide';
@@ -86,6 +87,7 @@ abstract class  LocaleKeys {
   static const common_save = 'common.save';
   static const common_delete = 'common.delete';
   static const common_back = 'common.back';
+  static const common_filter = 'common.filter';
   static const common = 'common';
   static const settings_page_app_bar = 'settings_page.app_bar';
   static const settings_page_account = 'settings_page.account';
@@ -150,7 +152,24 @@ abstract class  LocaleKeys {
   static const tarot_daily_subtitle = 'tarot_daily.subtitle';
   static const tarot_daily_error_desc = 'tarot_daily.error_desc';
   static const tarot_daily_empty_desc = 'tarot_daily.empty_desc';
+  static const tarot_daily_all_time = 'tarot_daily.all_time';
+  static const tarot_daily_last_week = 'tarot_daily.last_week';
+  static const tarot_daily_last_month = 'tarot_daily.last_month';
+  static const tarot_daily_custom_date = 'tarot_daily.custom_date';
   static const tarot_daily = 'tarot_daily';
+  static const tarot_question_spread_journey = 'tarot_question.spread_journey';
+  static const tarot_question_step_1_of_3 = 'tarot_question.step_1_of_3';
+  static const tarot_question_step_2_of_3 = 'tarot_question.step_2_of_3';
+  static const tarot_question_step_3_of_3 = 'tarot_question.step_3_of_3';
+  static const tarot_question_choose_reader_subtitle = 'tarot_question.choose_reader_subtitle';
+  static const tarot_question_choose_focus_subtitle = 'tarot_question.choose_focus_subtitle';
+  static const tarot_question_choose_layout_subtitle = 'tarot_question.choose_layout_subtitle';
+  static const tarot_question_spreads_count = 'tarot_question.spreads_count';
+  static const tarot_question_need_guidance = 'tarot_question.need_guidance';
+  static const tarot_question_guide_subtitle = 'tarot_question.guide_subtitle';
+  static const tarot_question_guide_button = 'tarot_question.guide_button';
+  static const tarot_question_quote_future = 'tarot_question.quote_future';
+  static const tarot_question = 'tarot_question';
   static const paywall_unlimited_readings = 'paywall.unlimited_readings';
   static const paywall_limited_question = 'paywall.limited_question';
   static const paywall_no_ads = 'paywall.no_ads';

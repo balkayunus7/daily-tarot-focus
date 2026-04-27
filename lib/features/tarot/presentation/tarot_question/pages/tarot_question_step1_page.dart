@@ -1,4 +1,5 @@
 import 'package:daily_tarot_focus/config/app_routes.dart';
+import 'package:daily_tarot_focus/core/util/locale_keys.dart';
 import 'package:daily_tarot_focus/core/util/tarot_app_sizes.dart';
 import 'package:daily_tarot_focus/core/util/text_style_helper.dart';
 import 'package:daily_tarot_focus/core/widgets/tarot_app_bar.dart';
@@ -26,10 +27,10 @@ class TarotQuestionStep1Page extends StatelessWidget {
           appBar: TarotAppBar(
             titleWidget: Column(
               children: [
-                Text('Spread Journey', style: m16w700(context)),
+                Text(LocaleKeys.tarot_question_spread_journey.tr(), style: m16w700(context)),
                 Sp.tiny.heightBox,
                 Text(
-                  'STEP 1 / 3',
+                  LocaleKeys.tarot_question_step_1_of_3.tr(),
                   style: m10w500(context).copyWith(
                     color: colors.textSecondary,
                     letterSpacing: 1.5,
@@ -49,7 +50,7 @@ class TarotQuestionStep1Page extends StatelessWidget {
                       children: [
                         Sp.small.heightBox,
                         Text(
-                          'Choose a reader to guide you.',
+                          LocaleKeys.tarot_question_choose_reader_subtitle.tr(),
                           style: m14w400(context).copyWith(color: colors.textSecondary),
                           textAlign: TextAlign.center,
                         ),

@@ -78,7 +78,10 @@
         "career_title": "What is your career status?",
         "career_subtitle": "Better career insights",
         "continue_button": "Continue",
-        "complete_registration": "Complete Registration"
+        "complete_registration": "Complete Registration",
+        "preparing_account": "Your account is being prepared",
+        "loading_images": "Images are loading...",
+        "loading_data": "Tarot cards, readers and spreads are loading..."
     },
     "navbar": {
         "explore": "Explore",
@@ -90,7 +93,8 @@
         "confirm": "Confirm",
         "save": "Save",
         "delete": "Delete",
-        "back": "Back"
+        "back": "Back",
+        "filter": "Filter"
     },
     "settings_page": {
         "app_bar": "Settings",
@@ -163,12 +167,38 @@
         "title": "Daily Tarots",
         "subtitle": "YOUR SPIRITUAL JOURNEY",
         "error_desc": "Retry Loading Cards",
-        "empty_desc": "Draw your first card"
+        "empty_desc": "Draw your first card",
+        "all_time": "All Time",
+        "last_week": "Last 1 Week",
+        "last_month": "Last 1 Month",
+        "custom_date": "Custom Date Selection"
+    },
+    "tarot_question": {
+        "spread_journey": "Spread Journey",
+        "step_1_of_3": "STEP 1 / 3",
+        "step_2_of_3": "STEP 2 / 3",
+        "step_3_of_3": "STEP 3 / 3",
+        "choose_reader_subtitle": "Choose a reader to guide you.",
+        "choose_focus_subtitle": "Choose a focus area to explore the spreads.",
+        "choose_layout_subtitle": "Choose a layout to illuminate your inner guidance.",
+        "spreads_count": "{} spreads",
+        "need_guidance": "Need a little guidance?",
+        "guide_subtitle": "If you don’t know which spread suits you, we’ve prepared a guide for you.",
+        "guide_button": "Guide Me!",
+        "quote_future": "\"The future is a reflection of your current thoughts.\""
     },
     "paywall": {
         "unlimited_readings": "Unlimited Tarot Readings",
         "limited_question": "Weekly 10 Questions",
-        "no_ads": "Monthly Analysis & Charts"
+        "no_ads": "Monthly Analysis & Charts",
+        "free": "FREE",
+        "daily_draw": "Daily Tarot Drawing",
+        "daily_questions": "Daily Questions",
+        "monthly_summary": "Monthly Summary & Charts",
+        "detailed_interpretation": "Detailed & Deep Interpretation",
+        "popular": "Popular",
+        "exclusive_experience": "Exclusive Experience",
+        "unlock_destiny": "Unlock all doors of your destiny"
     },
     "subscription_paywall_page": {
         "app_bar": "Premium",

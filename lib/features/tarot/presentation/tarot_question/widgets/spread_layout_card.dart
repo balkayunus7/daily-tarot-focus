@@ -122,43 +122,41 @@ class SpreadLayoutPreview extends StatelessWidget {
     if (positions.isEmpty) return const SizedBox.shrink();
     final totalCards = positions.length;
 
-    // Card dimensions — smaller for a minimal look
     final w = cardWidth ?? (totalCards > 5 ? 12.0 : 18.0);
     final h = cardHeight ?? (totalCards > 5 ? 20.0 : 28.0);
     final s = spacing ?? (totalCards > 5 ? 5.0 : 4.0);
 
-    final maxRow = positions.map((p) => p.row).reduce((a, b) => a > b ? a : b);
-    final maxCol = positions.map((p) => p.col).reduce((a, b) => a > b ? a : b);
+    final maxRow = positions.map((p) => p.row).reduce((a, b) => a > b ? a : b).ceil();
+    final maxCol = positions.map((p) => p.col).reduce((a, b) => a > b ? a : b).ceil();
 
-    final posMap = {for (final p in positions) '${p.col}_${p.row}': p};
+    final totalWidth = (maxCol + 1) * w + maxCol * s;
+    final totalHeight = (maxRow + 1) * h + maxRow * s;
 
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: List.generate(maxRow + 1, (row) {
-        return Padding(
-          padding: EdgeInsets.only(bottom: row < maxRow ? s : 0),
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.end,
-            children: List.generate(maxCol + 1, (col) {
-              final key = '${col}_$row';
-              final pos = posMap[key];
+    return SizedBox(
+      width: totalWidth,
+      height: totalHeight,
+      child: Stack(
+        clipBehavior: Clip.none,
+        children:
+            positions.map((pos) {
+              final tileW = pos.rotation == 90 ? h : w;
+              final tileH = pos.rotation == 90 ? w : h;
 
-              return Padding(
-                padding: EdgeInsets.only(right: col < maxCol ? s : 0),
-                child:
-                    pos != null
-                        ? _TarotCardTile(
-                          width: w,
-                          height: h,
-                          index: showIndex ? pos.index : null,
-                        )
-                        : SizedBox(width: w, height: h),
+              // Align center within the logical cell coordinate
+              final leftOffset = pos.col * (w + s) + (w - tileW) / 2;
+              final topOffset = pos.row * (h + s) + (h - tileH) / 2;
+
+              return Positioned(
+                left: leftOffset,
+                top: topOffset,
+                child: _TarotCardTile(
+                  width: tileW,
+                  height: tileH,
+                  index: showIndex ? pos.index : null,
+                ),
               );
-            }),
-          ),
-        );
-      }),
+            }).toList(),
+      ),
     );
   }
 }

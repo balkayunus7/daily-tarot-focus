@@ -1,9 +1,11 @@
 import 'dart:math' as math;
 
+import 'package:daily_tarot_focus/core/util/locale_keys.dart';
 import 'package:daily_tarot_focus/core/util/tarot_app_sizes.dart';
 import 'package:daily_tarot_focus/core/widgets/fancy_button.dart';
 import 'package:daily_tarot_focus/core/widgets/fancy_container.dart';
 import 'package:flutter/material.dart';
+import 'package:mobile_boilerplate/common_dependencies.dart';
 import 'package:mobile_boilerplate/presentation/app_text_styles.dart';
 import 'package:mobile_boilerplate/presentation/extensions/build_context_theme_ext.dart';
 
@@ -30,16 +32,16 @@ class SpreadCategoryGuide extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisSize: MainAxisSize.min,
             children: [
-              Text('Need a little guidance?', style: m21w600(context)),
+              Text(LocaleKeys.tarot_question_need_guidance.tr(), style: m21w600(context)),
               Sp.xsmall.heightBox,
               Text(
-                'If you don’t know which spread suits you, we’ve prepared a guide for you.',
+                LocaleKeys.tarot_question_guide_subtitle.tr(),
                 style: m12w500(context).copyWith(color: context.colors.textSecondary, height: 1.5),
               ),
               Sp.xlarge.heightBox,
               FancyButton(
                 onTap: onTap,
-                text: 'Guide Me!',
+                text: LocaleKeys.tarot_question_guide_button.tr(),
                 backgroundColor: context.colors.primary,
                 textStyle: m14w700(context).copyWith(color: context.colors.textOnPrimary),
               ),

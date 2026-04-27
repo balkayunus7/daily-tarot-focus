@@ -78,7 +78,10 @@
         "career_title": "Kariyer durumun ne?",
         "career_subtitle": "Daha iyi kariyer içgörüleri için",
         "continue_button": "Devam Et",
-        "complete_registration": "Kaydı Tamamla"
+        "complete_registration": "Kaydı Tamamla",
+        "preparing_account": "Hesabın hazırlanıyor",
+        "loading_images": "Görseller yükleniyor...",
+        "loading_data": "Tarot kartları, falcılar ve spreads yükleniyor..."
     },
     "navbar": {
         "explore": "Keşfet",
@@ -90,7 +93,8 @@
         "confirm": "Onayla",
         "save": "Kaydet",
         "delete": "Sil",
-        "back": "Geri"
+        "back": "Geri",
+        "filter": "Filtrele"
     },
     "settings_page": {
         "app_bar": "Ayarlar",
@@ -163,12 +167,38 @@
         "title": "Günlük Tarotlar",
         "subtitle": "SENİN RUHSAL YOLCULUĞUM",
         "error_desc": "Kartları Tekrar Yükle",
-        "empty_desc": "İlk kartını çek"
+        "empty_desc": "İlk kartını çek",
+        "all_time": "Tüm Zamanlar",
+        "last_week": "Son 1 Hafta",
+        "last_month": "Son 1 Ay",
+        "custom_date": "Tarih Seçimi"
+    },
+    "tarot_question": {
+        "spread_journey": "Açılım Yolculuğu",
+        "step_1_of_3": "ADIM 1 / 3",
+        "step_2_of_3": "ADIM 2 / 3",
+        "step_3_of_3": "ADIM 3 / 3",
+        "choose_reader_subtitle": "Size rehberlik edecek bir yorumcu seçin.",
+        "choose_focus_subtitle": "Açılımları keşfetmek için bir odak alanı seçin.",
+        "choose_layout_subtitle": "İçsel rehberliğinizi aydınlatacak bir düzen seçin.",
+        "spreads_count": "{} açılım",
+        "need_guidance": "Biraz rehberliğe mi ihtiyacınız var?",
+        "guide_subtitle": "Hangi açılımın size uygun olduğunu bilmiyorsanız, sizin için bir rehber hazırladık.",
+        "guide_button": "Bana Rehberlik Et!",
+        "quote_future": "\"Gelecek, şu anki düşüncelerinizin bir yansımasıdır.\""
     },
     "paywall": {
         "unlimited_readings": "Sınırsız Tarot Açılımı",
         "limited_question": "Günlük 10 Soru Sorma Hakkı",
-        "no_ads": "Aylık Analiz & Grafik"
+        "no_ads": "Aylık Analiz & Grafik",
+        "free": "ÜCRETSİZ",
+        "daily_draw": "Günlük Tarot Çekimi",
+        "daily_questions": "Günlük Soru Sorma",
+        "monthly_summary": "Aylık Özet ve Grafikler",
+        "detailed_interpretation": "Detaylı ve Derin Yorumlama",
+        "popular": "Sık Tercih Edilen",
+        "exclusive_experience": "Ayrıcalıklı Deneyim",
+        "unlock_destiny": "Kaderinin tüm kapılarını arala"
     },
     "subscription_paywall_page": {
         "app_bar": "Premium",

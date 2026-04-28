@@ -57,7 +57,7 @@ class _DeckCard extends StatelessWidget {
                   } else {
                     await context.pushNamed(
                       AppRoutes.tarotDeckDetail,
-                      pathParameters: {'tarotId': card.name},
+                      pathParameters: {'tarotId': card.id},
                     );
                   }
                 },

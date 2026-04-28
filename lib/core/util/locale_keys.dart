@@ -163,10 +163,12 @@ abstract class  LocaleKeys {
   static const tarot_daily_custom_date = 'tarot_daily.custom_date';
   static const tarot_daily = 'tarot_daily';
   static const tarot_question_spread_journey = 'tarot_question.spread_journey';
-  static const tarot_question_step_1_of_4 = 'tarot_question.step_1_of_4';
-  static const tarot_question_step_2_of_4 = 'tarot_question.step_2_of_4';
-  static const tarot_question_step_3_of_4 = 'tarot_question.step_3_of_4';
-  static const tarot_question_step_4_of_4 = 'tarot_question.step_4_of_4';
+  static const tarot_question_step_1_of_6 = 'tarot_question.step_1_of_6';
+  static const tarot_question_step_2_of_6 = 'tarot_question.step_2_of_6';
+  static const tarot_question_step_3_of_6 = 'tarot_question.step_3_of_6';
+  static const tarot_question_step_4_of_6 = 'tarot_question.step_4_of_6';
+  static const tarot_question_step_5_of_6 = 'tarot_question.step_5_of_6';
+  static const tarot_question_step_6_of_6 = 'tarot_question.step_6_of_6';
   static const tarot_question_choose_reader_subtitle = 'tarot_question.choose_reader_subtitle';
   static const tarot_question_choose_focus_subtitle = 'tarot_question.choose_focus_subtitle';
   static const tarot_question_choose_layout_subtitle = 'tarot_question.choose_layout_subtitle';

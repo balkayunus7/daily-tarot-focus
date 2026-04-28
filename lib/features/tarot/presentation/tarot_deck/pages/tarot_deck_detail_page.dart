@@ -17,7 +17,7 @@ class TarotDeckDetailPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<TarotBloc, TarotState>(
       builder: (context, state) {
-        final tarot = state.getByTitle(tarotId);
+        final tarot = state.getById(tarotId);
 
         if (tarot == null) {
           return Scaffold(

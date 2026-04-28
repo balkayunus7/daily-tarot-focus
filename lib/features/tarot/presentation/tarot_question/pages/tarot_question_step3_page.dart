@@ -31,7 +31,7 @@ class TarotQuestionStep3Page extends StatelessWidget {
                 Text(LocaleKeys.tarot_question_spread_journey.tr(), style: m16w700(context)),
                 Sp.tiny.heightBox,
                 Text(
-                  LocaleKeys.tarot_question_step_3_of_4.tr(),
+                  LocaleKeys.tarot_question_step_3_of_6.tr(),
                   style: m10w500(context).copyWith(
                     color: colors.textSecondary,
                     letterSpacing: 1.5,

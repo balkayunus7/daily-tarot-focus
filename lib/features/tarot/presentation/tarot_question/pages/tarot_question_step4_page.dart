@@ -64,7 +64,7 @@ class _TarotQuestionStep4PageState extends State<TarotQuestionStep4Page> {
             ),
             Sp.tiny.heightBox,
             Text(
-              LocaleKeys.tarot_question_step_4_of_4.tr(),
+              LocaleKeys.tarot_question_step_4_of_6.tr(),
               style: m10w500(context).copyWith(color: colors.textSecondary, letterSpacing: 1.5),
             ),
           ],

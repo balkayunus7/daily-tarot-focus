@@ -71,7 +71,7 @@ class _TarotQuestionStep5PageState extends State<TarotQuestionStep5Page>
             Text(LocaleKeys.tarot_shuffle_title.tr(), style: m16w700(context)),
             Sp.tiny.heightBox,
             Text(
-              LocaleKeys.tarot_shuffle_step_5_of_5.tr(),
+              LocaleKeys.tarot_question_step_5_of_6.tr(),
               style: m10w500(context).copyWith(color: colors.textSecondary, letterSpacing: 1.5),
             ),
           ],

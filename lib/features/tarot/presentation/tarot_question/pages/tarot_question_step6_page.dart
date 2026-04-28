@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:math' as math;
 
+import 'package:daily_tarot_focus/config/app_routes.dart';
 import 'package:daily_tarot_focus/core/util/locale_keys.dart';
 import 'package:daily_tarot_focus/core/util/tarot_app_assets.dart';
 import 'package:daily_tarot_focus/core/util/tarot_app_sizes.dart';
@@ -16,6 +17,7 @@ import 'package:daily_tarot_focus/features/tarot/domain/models/tarot_reading_mod
 import 'package:daily_tarot_focus/features/tarot/presentation/tarot_question/widgets/spread_layout_bottom_sheet.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:iconify_flutter/iconify_flutter.dart';
 import 'package:iconify_flutter/icons/mdi.dart';
 import 'package:mobile_boilerplate/common_dependencies.dart';
@@ -58,7 +60,7 @@ class _TarotQuestionStep6PageState extends State<TarotQuestionStep6Page> {
             Text(LocaleKeys.tarot_shuffle_title.tr(), style: m16w700(context)),
             Sp.tiny.heightBox,
             Text(
-              LocaleKeys.tarot_question_step_4_of_4.tr(),
+              LocaleKeys.tarot_question_step_6_of_6.tr(),
               style: m10w500(context).copyWith(color: colors.textSecondary, letterSpacing: 1.5),
             ),
           ],
@@ -237,19 +239,20 @@ class _InteractiveSpreadLayoutState extends State<_InteractiveSpreadLayout>
     super.dispose();
   }
 
-  void _onCardTap(int positionIndex, TarotSpreadPositionModel position) {
+  Future<void> _onCardTap(int positionIndex, TarotSpreadPositionModel position) async {
     if (widget.allCards.isEmpty) return;
 
-    final usedIds =
-        _assignedCardIds.entries.where((e) => e.key != positionIndex).map((e) => e.value).toSet();
+    final currentId = _assignedCardIds[positionIndex];
+    if (currentId != null) {
+      if (_flipControllers[positionIndex]?.isAnimating ?? false) return;
+      await context.pushNamed(AppRoutes.tarotDeckDetail, pathParameters: {'tarotId': currentId});
+      return;
+    }
+
+    final usedIds = _assignedCardIds.values.toSet();
 
     var pool = widget.allCards.where((c) => !usedIds.contains(c.id)).toList();
     if (pool.isEmpty) pool = List.of(widget.allCards);
-
-    final currentId = _assignedCardIds[positionIndex];
-    if (currentId != null && pool.length > 1) {
-      pool = pool.where((c) => c.id != currentId).toList();
-    }
 
     pool.shuffle();
     final picked = pool.first;

@@ -12,6 +12,7 @@ import 'package:daily_tarot_focus/features/tarot/domain/models/fetch_readers_res
 import 'package:daily_tarot_focus/features/tarot/domain/models/fetch_spreads_request_model.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/fetch_spreads_response_model.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/record_daily_card_request_model.dart';
+import 'package:daily_tarot_focus/features/tarot/domain/models/tarot_reading_model.dart';
 import 'package:mobile_boilerplate/common_dependencies.dart';
 import 'package:mobile_boilerplate/domain/auth/auth_session.dart';
 import 'package:mobile_boilerplate/domain/common/failure.dart';
@@ -40,6 +41,8 @@ class TarotBloc extends Bloc<TarotEvent, TarotState> {
           emit(state.copyWith(selectedReader: event.reader));
         } else if (event is TarotSelectQuestion) {
           emit(state.copyWith(selectedQuestion: event.question));
+        } else if (event is TarotSetReadingCards) {
+          emit(state.copyWith(selectedReadingCards: event.cards));
         }
       },
       transformer: sequential(),
@@ -70,6 +73,9 @@ class TarotBloc extends Bloc<TarotEvent, TarotState> {
 
   void addSelectQuestion({required String question}) =>
       add(TarotSelectQuestion(question: question));
+
+  void addSetReadingCards({required List<TarotSelectedReadingCard> cards}) =>
+      add(TarotSetReadingCards(cards: cards));
 
   // ── Private cache helpers ───────────────────────────────────────────────────
   Future<FailureOr<KtList<TarotCardModel>>> _fetchAndCacheAllCards(

@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:daily_tarot_focus/config/app_routes.dart';
 import 'package:daily_tarot_focus/core/util/locale_keys.dart';
 import 'package:daily_tarot_focus/core/util/tarot_app_sizes.dart';
 import 'package:daily_tarot_focus/core/util/text_style_helper.dart';
@@ -11,6 +12,7 @@ import 'package:daily_tarot_focus/features/tarot/presentation/tarot_question/wid
 import 'package:daily_tarot_focus/features/tarot/presentation/tarot_question/widgets/spread_layout_bottom_sheet.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:mobile_boilerplate/common_dependencies.dart';
 import 'package:mobile_boilerplate/presentation/extensions/build_context_theme_ext.dart';
 import 'package:mobile_boilerplate/presentation/widgets/scaling_container.dart';
@@ -122,7 +124,9 @@ class _TarotQuestionStep5PageState extends State<TarotQuestionStep5Page>
                 isAutoShuffle: _isAutoShuffle,
                 shuffleTimeLeft: _shuffleTimeLeft,
                 onToggleAutoShuffle: _toggleAutoShuffle,
-                onFinish: () {},
+                onFinish: () async {
+                  await context.push(AppRoutes.tarotQuestionStep6);
+                },
               ),
             ],
           );

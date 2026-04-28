@@ -196,7 +196,9 @@
         "tip_2_desc": "Tarot brings awareness. Replace \"Will I get the job?\" with \"What can I do to improve my chances?\"",
         "tip_3_title": "Be clear and specific",
         "tip_3_desc": "Instead of \"What awaits me in love?\", ask \"How can I attract a loving relationship?\"",
-        "question_hint": "Type something if you'd like...\nE.g. What should I focus on right now?"
+        "question_hint": "Type something if you'd like...\nE.g. What should I focus on right now?",
+        "step6_ready_to_open": "Focus your intent and tap the cards to reveal their messages.",
+        "step6_start_reading": "Start Reading"
     },
     "paywall": {
         "unlimited_readings": "Unlimited Tarot Readings",

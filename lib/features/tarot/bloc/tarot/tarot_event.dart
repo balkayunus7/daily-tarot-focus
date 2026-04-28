@@ -5,6 +5,7 @@ import 'package:daily_tarot_focus/features/tarot/domain/models/fetch_readers_res
 import 'package:daily_tarot_focus/features/tarot/domain/models/fetch_spreads_request_model.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/fetch_spreads_response_model.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/record_daily_card_request_model.dart';
+import 'package:daily_tarot_focus/features/tarot/domain/models/tarot_reading_model.dart';
 import 'package:mobile_boilerplate/domain/auth/auth_session.dart';
 
 sealed class TarotEvent {
@@ -92,4 +93,12 @@ final class TarotSelectQuestion extends TarotEvent {
 
   @override
   List<Object?> get props => [question];
+}
+
+final class TarotSetReadingCards extends TarotEvent {
+  const TarotSetReadingCards({required this.cards});
+  final List<TarotSelectedReadingCard> cards;
+
+  @override
+  List<Object?> get props => [cards];
 }

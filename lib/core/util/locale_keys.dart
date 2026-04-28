@@ -183,6 +183,8 @@ abstract class  LocaleKeys {
   static const tarot_question_tip_3_title = 'tarot_question.tip_3_title';
   static const tarot_question_tip_3_desc = 'tarot_question.tip_3_desc';
   static const tarot_question_question_hint = 'tarot_question.question_hint';
+  static const tarot_question_step6_ready_to_open = 'tarot_question.step6_ready_to_open';
+  static const tarot_question_step6_start_reading = 'tarot_question.step6_start_reading';
   static const tarot_question = 'tarot_question';
   static const paywall_unlimited_readings = 'paywall.unlimited_readings';
   static const paywall_limited_question = 'paywall.limited_question';

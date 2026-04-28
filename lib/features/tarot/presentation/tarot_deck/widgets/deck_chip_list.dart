@@ -53,8 +53,7 @@ class _CategoryChip extends StatelessWidget {
     return ScalingContainer(
       onTap: onTap,
       child: FancyContainer(
-        padding: Sp.tiny.padSymR(h: Sp.xsmall, v: Sp.tiny),
-        borderRadius: 12,
+        padding: Sp.tiny.padSymR(h: Sp.small, v: Sp.xsmall),
         border: Border.all(color: context.colors.border, width: 0.5),
         color: isSelected ? context.colors.primary : context.colors.primary.withValues(alpha: 0.2),
         child: Text(label, style: m10w600(context).copyWith(color: context.colors.textOnPrimary)),

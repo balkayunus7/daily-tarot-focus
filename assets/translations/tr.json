@@ -196,7 +196,9 @@
         "tip_2_desc": "Tarot bilinç verir. \"İşi alacak mıyım?\" yerine \"Şansımı artırmak için ne yapabilirim?\" ile değiştirin",
         "tip_3_title": "Net ve spesifik olun",
         "tip_3_desc": "\"Aşk için beni ne bekliyor?\" yerine, \"Nasıl sevgi dolu bir ilişki çekebilirim?\" sorun",
-        "question_hint": "İsterseniz bir şeyler yazın...\nÖrn. Şu anda neye odaklanmalıyım?"
+        "question_hint": "İsterseniz bir şeyler yazın...\nÖrn. Şu anda neye odaklanmalıyım?",
+        "step6_ready_to_open": "Odaklan ve kartların üzerine dokunarak mesajlarını açığa çıkar.",
+        "step6_start_reading": "Okumayı Başlat"
     },
     "paywall": {
         "unlimited_readings": "Sınırsız Tarot Açılımı",

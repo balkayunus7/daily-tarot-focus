@@ -2,6 +2,7 @@ import 'package:daily_tarot_focus/features/tarot/domain/models/fetch_all_cards_r
 import 'package:daily_tarot_focus/features/tarot/domain/models/fetch_readers_response_model.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/fetch_spreads_response_model.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/tarot_category_enum.dart';
+import 'package:daily_tarot_focus/features/tarot/domain/models/tarot_reading_model.dart';
 import 'package:mobile_boilerplate/common_dependencies.dart';
 import 'package:mobile_boilerplate/domain/common/failure.dart';
 import 'package:mobile_boilerplate/extensions.dart';
@@ -24,6 +25,7 @@ class TarotState extends Equatable {
     required this.selectedQuestion,
     required this.isSettingUpAccount,
     required this.hasAccountSetupCompleted,
+    required this.selectedReadingCards,
   });
 
   factory TarotState.initial() {
@@ -44,6 +46,7 @@ class TarotState extends Equatable {
       selectedQuestion: null,
       isSettingUpAccount: false,
       hasAccountSetupCompleted: false,
+      selectedReadingCards: const [],
     );
   }
 
@@ -63,6 +66,7 @@ class TarotState extends Equatable {
   final String? selectedQuestion;
   final bool isSettingUpAccount;
   final bool hasAccountSetupCompleted;
+  final List<TarotSelectedReadingCard> selectedReadingCards;
 
   // ALL CARDS GETTERS
   KtList<TarotCardModel> get allCardsOrEmpty =>
@@ -144,6 +148,7 @@ class TarotState extends Equatable {
   bool get hasSelectedSpread => selectedSpread != null;
   bool get hasSelectedReader => selectedReader != null;
   bool get hasSelectedQuestion => selectedQuestion != null;
+  bool get hasReadingCards => selectedReadingCards.isNotEmpty;
 
   TarotState copyWith({
     Option<FailureOr<KtList<TarotCardModel>>>? fetchFailureOrDailyCards,
@@ -162,6 +167,7 @@ class TarotState extends Equatable {
     String? selectedQuestion,
     bool? isSettingUpAccount,
     bool? hasAccountSetupCompleted,
+    List<TarotSelectedReadingCard>? selectedReadingCards,
   }) {
     return TarotState(
       fetchFailureOrDailyCards: fetchFailureOrDailyCards ?? this.fetchFailureOrDailyCards,
@@ -183,6 +189,7 @@ class TarotState extends Equatable {
       selectedQuestion: selectedQuestion ?? this.selectedQuestion,
       isSettingUpAccount: isSettingUpAccount ?? this.isSettingUpAccount,
       hasAccountSetupCompleted: hasAccountSetupCompleted ?? this.hasAccountSetupCompleted,
+      selectedReadingCards: selectedReadingCards ?? this.selectedReadingCards,
     );
   }
 
@@ -204,5 +211,6 @@ class TarotState extends Equatable {
     selectedQuestion,
     isSettingUpAccount,
     hasAccountSetupCompleted,
+    selectedReadingCards,
   ];
 }

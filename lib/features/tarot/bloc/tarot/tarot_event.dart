@@ -102,3 +102,11 @@ final class TarotSetReadingCards extends TarotEvent {
   @override
   List<Object?> get props => [cards];
 }
+
+final class TarotGenerateReadingRequested extends TarotEvent {
+  const TarotGenerateReadingRequested({required this.session});
+  final AuthSession session;
+
+  @override
+  List<Object?> get props => [session];
+}

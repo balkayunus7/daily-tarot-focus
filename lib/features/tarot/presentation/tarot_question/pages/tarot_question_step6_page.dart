@@ -120,7 +120,7 @@ class _TarotQuestionStep6PageState extends State<TarotQuestionStep6Page> {
                     valueListenable: _isReadingReady,
                     builder: (context, isReady, _) {
                       return FancyButton(
-                        onTap: () {},
+                        onTap: () => context.pushNamed(AppRoutes.tarotReadingLoading),
                         text: LocaleKeys.tarot_question_step6_start_reading.tr(),
                         isDisabled: !isReady,
                       );

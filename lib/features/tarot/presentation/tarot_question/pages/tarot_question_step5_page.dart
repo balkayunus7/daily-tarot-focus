@@ -253,7 +253,7 @@ class _BottomButtons extends StatelessWidget {
                       onTap: onToggleAutoShuffle,
                       child: AnimatedContainer(
                         duration: const Duration(milliseconds: 200),
-                        height: 52.h,
+                        height: 48.h,
                         decoration: BoxDecoration(
                           color:
                               isAuto ? colors.primary.withValues(alpha: 0.10) : Colors.transparent,
@@ -298,7 +298,6 @@ class _BottomButtons extends StatelessWidget {
               child: FancyButton(
                 onTap: onFinish,
                 text: LocaleKeys.tarot_shuffle_finish.tr(),
-                height: 52,
               ),
             ),
           ],

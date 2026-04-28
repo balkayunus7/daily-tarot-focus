@@ -11,6 +11,7 @@ import 'package:daily_tarot_focus/features/tarot/domain/models/fetch_readers_req
 import 'package:daily_tarot_focus/features/tarot/domain/models/fetch_readers_response_model.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/fetch_spreads_request_model.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/fetch_spreads_response_model.dart';
+import 'package:daily_tarot_focus/features/tarot/domain/models/generate_reading_request_model.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/record_daily_card_request_model.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/tarot_reading_model.dart';
 import 'package:mobile_boilerplate/common_dependencies.dart';
@@ -43,6 +44,8 @@ class TarotBloc extends Bloc<TarotEvent, TarotState> {
           emit(state.copyWith(selectedQuestion: event.question));
         } else if (event is TarotSetReadingCards) {
           emit(state.copyWith(selectedReadingCards: event.cards));
+        } else if (event is TarotGenerateReadingRequested) {
+          await _onGenerateReadingRequested(event, emit);
         }
       },
       transformer: sequential(),
@@ -76,6 +79,9 @@ class TarotBloc extends Bloc<TarotEvent, TarotState> {
 
   void addSetReadingCards({required List<TarotSelectedReadingCard> cards}) =>
       add(TarotSetReadingCards(cards: cards));
+
+  void addGenerateReadingRequested({required AuthSession session}) =>
+      add(TarotGenerateReadingRequested(session: session));
 
   // ── Private cache helpers ───────────────────────────────────────────────────
   Future<FailureOr<KtList<TarotCardModel>>> _fetchAndCacheAllCards(
@@ -264,6 +270,35 @@ class TarotBloc extends Bloc<TarotEvent, TarotState> {
         isFetchingReaders: false,
       ),
     );
+  }
+
+  Future<void> _onGenerateReadingRequested(
+    TarotGenerateReadingRequested event,
+    Emitter<TarotState> emit,
+  ) async {
+    emit(state.copyWith(isGeneratingReading: true, fetchFailureOrGenerateReading: none()));
+
+    final request = GenerateReadingRequest(
+      session: event.session,
+      spreadCategoryId: state.selectedSpreadCategory?.id ?? '',
+      spreadId: state.selectedSpread?.id ?? '',
+      readerId: state.selectedReader?.id ?? '',
+      question: state.selectedQuestion ?? '',
+      cards:
+          state.selectedReadingCards
+              .map(
+                (c) => GenerateReadingCardRequest(
+                  cardId: c.card.id,
+                  positionIndex: c.positionIndex,
+                  isReversed: c.isReversed,
+                ),
+              )
+              .toList(),
+    );
+
+    final result = await _tarotRepository.requestGenerateReading(request: request);
+
+    emit(state.copyWith(isGeneratingReading: false, fetchFailureOrGenerateReading: some(result)));
   }
 
   final ImplTarotRepository _tarotRepository;

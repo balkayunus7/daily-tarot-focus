@@ -1,6 +1,7 @@
 import 'package:daily_tarot_focus/features/tarot/domain/models/fetch_all_cards_response_model.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/fetch_readers_response_model.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/fetch_spreads_response_model.dart';
+import 'package:daily_tarot_focus/features/tarot/domain/models/generate_reading_response_model.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/tarot_category_enum.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/tarot_reading_model.dart';
 import 'package:mobile_boilerplate/common_dependencies.dart';
@@ -26,6 +27,8 @@ class TarotState extends Equatable {
     required this.isSettingUpAccount,
     required this.hasAccountSetupCompleted,
     required this.selectedReadingCards,
+    required this.isGeneratingReading,
+    required this.fetchFailureOrGenerateReading,
   });
 
   factory TarotState.initial() {
@@ -47,6 +50,8 @@ class TarotState extends Equatable {
       isSettingUpAccount: false,
       hasAccountSetupCompleted: false,
       selectedReadingCards: const [],
+      isGeneratingReading: false,
+      fetchFailureOrGenerateReading: none(),
     );
   }
 
@@ -67,6 +72,8 @@ class TarotState extends Equatable {
   final bool isSettingUpAccount;
   final bool hasAccountSetupCompleted;
   final List<TarotSelectedReadingCard> selectedReadingCards;
+  final bool isGeneratingReading;
+  final Option<FailureOr<GenerateReadingResponse>> fetchFailureOrGenerateReading;
 
   // ALL CARDS GETTERS
   KtList<TarotCardModel> get allCardsOrEmpty =>
@@ -143,6 +150,16 @@ class TarotState extends Equatable {
   KtList<TarotReaderModel> get readersOrEmpty =>
       fetchReadersFailureOrReaders.getOrNull()?.getRightOrNull() ?? const KtList.empty();
 
+  // GENERATE READING
+  bool get hasGeneratedReadingSucceeded =>
+      fetchFailureOrGenerateReading.getOrNull()?.getRightOrNull() != null;
+
+  bool get hasGeneratedReadingFailed =>
+      fetchFailureOrGenerateReading.getOrNull()?.getLeftOrNull() != null;
+
+  GenerateReadingResponse? get generateReadingResponseOrNull =>
+      fetchFailureOrGenerateReading.getOrNull()?.getRightOrNull();
+
   // SELECTED
   bool get hasSelectedSpreadCategory => selectedSpreadCategory != null;
   bool get hasSelectedSpread => selectedSpread != null;
@@ -168,6 +185,8 @@ class TarotState extends Equatable {
     bool? isSettingUpAccount,
     bool? hasAccountSetupCompleted,
     List<TarotSelectedReadingCard>? selectedReadingCards,
+    bool? isGeneratingReading,
+    Option<FailureOr<GenerateReadingResponse>>? fetchFailureOrGenerateReading,
   }) {
     return TarotState(
       fetchFailureOrDailyCards: fetchFailureOrDailyCards ?? this.fetchFailureOrDailyCards,
@@ -190,6 +209,9 @@ class TarotState extends Equatable {
       isSettingUpAccount: isSettingUpAccount ?? this.isSettingUpAccount,
       hasAccountSetupCompleted: hasAccountSetupCompleted ?? this.hasAccountSetupCompleted,
       selectedReadingCards: selectedReadingCards ?? this.selectedReadingCards,
+      isGeneratingReading: isGeneratingReading ?? this.isGeneratingReading,
+      fetchFailureOrGenerateReading:
+          fetchFailureOrGenerateReading ?? this.fetchFailureOrGenerateReading,
     );
   }
 
@@ -212,5 +234,7 @@ class TarotState extends Equatable {
     isSettingUpAccount,
     hasAccountSetupCompleted,
     selectedReadingCards,
+    isGeneratingReading,
+    fetchFailureOrGenerateReading,
   ];
 }

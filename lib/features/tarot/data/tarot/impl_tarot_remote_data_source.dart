@@ -9,6 +9,8 @@ import 'package:daily_tarot_focus/features/tarot/domain/models/fetch_readers_req
 import 'package:daily_tarot_focus/features/tarot/domain/models/fetch_readers_response_model.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/fetch_spreads_request_model.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/fetch_spreads_response_model.dart';
+import 'package:daily_tarot_focus/features/tarot/domain/models/generate_reading_request_model.dart';
+import 'package:daily_tarot_focus/features/tarot/domain/models/generate_reading_response_model.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/record_daily_card_request_model.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/record_daily_card_response_model.dart';
 import 'package:mobile_boilerplate/domain/common/http_utilities.dart';
@@ -101,5 +103,23 @@ class ImplTarotRemoteDataSource implements ITarotRemoteDataSource {
 
     final response = responseOrFail.getRightOrCrash();
     return FetchReadersResponse.fromMap(decodeSupabaseResponse(response.data));
+  }
+
+  /// REQUEST GENERATE READING
+  @override
+  Future<GenerateReadingResponse> requestGenerateReading({
+    required GenerateReadingRequest request,
+  }) async {
+    final responseOrFail = await supabaseClient.secureInvoke(
+      route: GENERATE_READING,
+      method: HttpMethod.post,
+      body: request.toMap(),
+      session: request.session,
+    );
+
+    if (responseOrFail.isLeft()) throw Exception();
+
+    final response = responseOrFail.getRightOrCrash();
+    return GenerateReadingResponse.fromMap(decodeSupabaseResponse(response.data));
   }
 }

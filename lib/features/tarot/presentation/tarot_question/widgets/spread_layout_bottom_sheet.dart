@@ -20,15 +20,12 @@ Future<void> showSpreadDetailsBottomSheet(
 
       return SafeArea(
         child: SizedBox(
-          height: MediaQuery.sizeOf(ctx).height * 0.7,
+          height: MediaQuery.sizeOf(ctx).height * 0.65,
           child: Padding(
             padding: Sp.medium.padHR,
             child: Column(
               children: [
-                Text(
-                  spread.title,
-                  style: m24w600(context),
-                ),
+                Text(spread.title, style: m24w600(context)),
                 Sp.xsmall.heightBox,
                 Text(
                   '${spread.cardCount}-Card Guided Journey',
@@ -114,7 +111,7 @@ Future<void> showSpreadDetailsBottomSheet(
                 ),
                 FancyButton(
                   onTap: onTap,
-                  padding: Sp.large.padXR,
+                  padding: Sp.xsmall.padXR,
                   text: 'Tap to Draw Cards',
                 ),
               ],

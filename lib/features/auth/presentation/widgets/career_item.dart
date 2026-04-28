@@ -44,7 +44,7 @@ class CareerItem extends StatelessWidget {
             Expanded(
               child: Text(
                 status.localizedName,
-                style: m15w500(context).copyWith(color: isSelected ? colors.textOnPrimary : null),
+                style: m15w600(context).copyWith(color: isSelected ? colors.textOnPrimary : null),
               ),
             ),
             if (isSelected) ...[

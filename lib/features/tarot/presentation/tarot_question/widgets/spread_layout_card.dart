@@ -25,8 +25,16 @@ class SpreadLayoutCard extends StatelessWidget {
         color: colors.primary.withValues(alpha: 0.05),
         child: Row(
           children: [
-            SpreadLayoutPreview(positions: spread.positions.asList()),
-            Sp.xlarge.widthBox,
+            SizedBox(
+              width: 64.w,
+              child: Center(
+                child: FittedBox(
+                  fit: BoxFit.scaleDown,
+                  child: SpreadLayoutPreview(positions: spread.positions.asList()),
+                ),
+              ),
+            ),
+            Sp.large.widthBox,
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -122,9 +130,9 @@ class SpreadLayoutPreview extends StatelessWidget {
     if (positions.isEmpty) return const SizedBox.shrink();
     final totalCards = positions.length;
 
-    final w = cardWidth ?? (totalCards > 5 ? 12.0 : 18.0);
+    final w = cardWidth ?? (totalCards > 5 ? 16.0 : 18.0);
     final h = cardHeight ?? (totalCards > 5 ? 20.0 : 28.0);
-    final s = spacing ?? (totalCards > 5 ? 5.0 : 4.0);
+    final s = spacing ?? (totalCards > 5 ? 5.0 : 3.0);
 
     final maxRow = positions.map((p) => p.row).reduce((a, b) => a > b ? a : b).ceil();
     final maxCol = positions.map((p) => p.col).reduce((a, b) => a > b ? a : b).ceil();

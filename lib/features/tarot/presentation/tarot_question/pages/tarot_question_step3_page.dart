@@ -82,17 +82,20 @@ class TarotQuestionStep3Page extends StatelessWidget {
 class _QuoteSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Text(
-          LocaleKeys.tarot_question_quote_future.tr(),
-          style: m16w600(context).copyWith(
-            fontStyle: FontStyle.italic,
-            color: context.colors.textSecondary.withValues(alpha: 0.6),
+    return Padding(
+      padding: Sp.huge.padXR,
+      child: Column(
+        children: [
+          Text(
+            LocaleKeys.tarot_question_quote_future.tr(),
+            style: m14w600(context).copyWith(
+              fontStyle: FontStyle.italic,
+              color: context.colors.textSecondary.withValues(alpha: 0.6),
+            ),
+            textAlign: TextAlign.center,
           ),
-          textAlign: TextAlign.center,
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

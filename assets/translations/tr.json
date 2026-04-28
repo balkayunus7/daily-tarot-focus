@@ -94,7 +94,9 @@
         "save": "Kaydet",
         "delete": "Sil",
         "back": "Geri",
-        "filter": "Filtrele"
+        "filter": "Filtrele",
+        "next": "Sonraki",
+        "more": "Daha fazla"
     },
     "settings_page": {
         "app_bar": "Ayarlar",
@@ -175,17 +177,26 @@
     },
     "tarot_question": {
         "spread_journey": "Açılım Yolculuğu",
-        "step_1_of_3": "ADIM 1 / 3",
-        "step_2_of_3": "ADIM 2 / 3",
-        "step_3_of_3": "ADIM 3 / 3",
+        "step_1_of_4": "ADIM 1 / 4",
+        "step_2_of_4": "ADIM 2 / 4",
+        "step_3_of_4": "ADIM 3 / 4",
+        "step_4_of_4": "ADIM 4 / 4",
         "choose_reader_subtitle": "Size rehberlik edecek bir yorumcu seçin.",
         "choose_focus_subtitle": "Açılımları keşfetmek için bir odak alanı seçin.",
         "choose_layout_subtitle": "İçsel rehberliğinizi aydınlatacak bir düzen seçin.",
+        "choose_question_subtitle": "Aklındaki soruyu bize sor",
         "spreads_count": "{} açılım",
         "need_guidance": "Biraz rehberliğe mi ihtiyacınız var?",
         "guide_subtitle": "Hangi açılımın size uygun olduğunu bilmiyorsanız, sizin için bir rehber hazırladık.",
         "guide_button": "Bana Rehberlik Et!",
-        "quote_future": "\"Gelecek, şu anki düşüncelerinizin bir yansımasıdır.\""
+        "quote_future": "\"Gelecek, şu anki düşüncelerinizin bir yansımasıdır.\"",
+        "tip_1_title": "Kendinize odaklanın",
+        "tip_1_desc": "Kendi bakış açınızdan sorun. \"Partnerim ne hissediyor?\" yerine \"Bu ilişkiyi nasıl geliştirebilirim?\" deneyin",
+        "tip_2_title": "Rehberlik arayın, tahmin değil",
+        "tip_2_desc": "Tarot bilinç verir. \"İşi alacak mıyım?\" yerine \"Şansımı artırmak için ne yapabilirim?\" ile değiştirin",
+        "tip_3_title": "Net ve spesifik olun",
+        "tip_3_desc": "\"Aşk için beni ne bekliyor?\" yerine, \"Nasıl sevgi dolu bir ilişki çekebilirim?\" sorun",
+        "question_hint": "İsterseniz bir şeyler yazın...\nÖrn. Şu anda neye odaklanmalıyım?"
     },
     "paywall": {
         "unlimited_readings": "Sınırsız Tarot Açılımı",
@@ -230,5 +241,19 @@
         "month": "{price} / ay",
         "week": "{price} / hafta",
         "year": "{price} / yıl"
+    },
+    "tarot_shuffle": {
+        "title": "Kartlarınızı Açın",
+        "step_5_of_5": "ADIM 5 / 5",
+        "tip_1_title": "Zihnini temizle",
+        "tip_1_desc": "ve soruna odaklan",
+        "tip_2_title": "Desteğe dokun",
+        "tip_2_desc": "ve kartları kendin karıştır",
+        "tip_3_title": "Veya otomatik karıştırmayı etkinleştir",
+        "tip_3_desc": "ve kartların kendi kendine hareket etmesine izin ver",
+        "auto_toggle": "Otomatik Karıştırma",
+        "auto_on": "açık",
+        "auto_off": "kapalı",
+        "finish": "Karıştırmayı Bitir"
     }
 }

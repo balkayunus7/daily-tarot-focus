@@ -9,10 +9,11 @@ import 'package:mobile_boilerplate/presentation/bottom_sheets/core_bottom_sheet.
 import 'package:mobile_boilerplate/presentation/extensions/build_context_theme_ext.dart';
 
 Future<void> showSpreadDetailsBottomSheet(
-  BuildContext context,
-  TarotSpreadModel spread,
-  VoidCallback onTap,
-) async {
+  BuildContext context, {
+  required TarotSpreadModel spread,
+  VoidCallback? onTap,
+  bool showButton = false,
+}) async {
   await showCoreBottomSheet(
     context,
     buildWidget: (ctx) {
@@ -20,7 +21,7 @@ Future<void> showSpreadDetailsBottomSheet(
 
       return SafeArea(
         child: SizedBox(
-          height: MediaQuery.sizeOf(ctx).height * 0.65,
+          height: MediaQuery.sizeOf(ctx).height * 0.7,
           child: Padding(
             padding: Sp.medium.padHR,
             child: Column(
@@ -109,11 +110,17 @@ Future<void> showSpreadDetailsBottomSheet(
                     ),
                   ),
                 ),
-                FancyButton(
-                  onTap: onTap,
-                  padding: Sp.xsmall.padXR,
-                  text: 'Tap to Draw Cards',
-                ),
+
+                if (showButton && onTap != null) ...[
+                  FancyButton(
+                    onTap: () {
+                      Navigator.of(ctx).pop();
+                      onTap();
+                    },
+                    padding: Sp.xsmall.padXR,
+                    text: 'Tap to Draw Cards',
+                  ),
+                ],
               ],
             ),
           ),

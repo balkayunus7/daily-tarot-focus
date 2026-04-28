@@ -94,7 +94,9 @@
         "save": "Save",
         "delete": "Delete",
         "back": "Back",
-        "filter": "Filter"
+        "filter": "Filter",
+        "next": "Next",
+        "more": "More"
     },
     "settings_page": {
         "app_bar": "Settings",
@@ -175,17 +177,26 @@
     },
     "tarot_question": {
         "spread_journey": "Spread Journey",
-        "step_1_of_3": "STEP 1 / 3",
-        "step_2_of_3": "STEP 2 / 3",
-        "step_3_of_3": "STEP 3 / 3",
+        "step_1_of_4": "STEP 1 / 4",
+        "step_2_of_4": "STEP 2 / 4",
+        "step_3_of_4": "STEP 3 / 4",
+        "step_4_of_4": "STEP 4 / 4",
         "choose_reader_subtitle": "Choose a reader to guide you.",
         "choose_focus_subtitle": "Choose a focus area to explore the spreads.",
         "choose_layout_subtitle": "Choose a layout to illuminate your inner guidance.",
+        "choose_question_subtitle": "Ask us the question on your mind",
         "spreads_count": "{} spreads",
         "need_guidance": "Need a little guidance?",
         "guide_subtitle": "If you don’t know which spread suits you, we’ve prepared a guide for you.",
         "guide_button": "Guide Me!",
-        "quote_future": "\"The future is a reflection of your current thoughts.\""
+        "quote_future": "\"The future is a reflection of your current thoughts.\"",
+        "tip_1_title": "Focus on yourself",
+        "tip_1_desc": "Ask from your own perspective. Try \"How can I improve this relationship?\" instead of \"What is my partner feeling?\"",
+        "tip_2_title": "Seek guidance, not prediction",
+        "tip_2_desc": "Tarot brings awareness. Replace \"Will I get the job?\" with \"What can I do to improve my chances?\"",
+        "tip_3_title": "Be clear and specific",
+        "tip_3_desc": "Instead of \"What awaits me in love?\", ask \"How can I attract a loving relationship?\"",
+        "question_hint": "Type something if you'd like...\nE.g. What should I focus on right now?"
     },
     "paywall": {
         "unlimited_readings": "Unlimited Tarot Readings",
@@ -230,5 +241,19 @@
         "month": "{price} / month",
         "week": "{price} / week",
         "year": "{price} / year"
+    },
+    "tarot_shuffle": {
+        "title": "Open Your Cards",
+        "step_5_of_5": "STEP 5 / 5",
+        "tip_1_title": "Clear your mind",
+        "tip_1_desc": "and focus on your question",
+        "tip_2_title": "Touch the deck",
+        "tip_2_desc": "and shuffle the cards yourself",
+        "tip_3_title": "Or enable auto-shuffle",
+        "tip_3_desc": "and let the cards move on their own",
+        "auto_toggle": "Auto Shuffle",
+        "auto_on": "on",
+        "auto_off": "off",
+        "finish": "Finish Shuffling"
     }
 }

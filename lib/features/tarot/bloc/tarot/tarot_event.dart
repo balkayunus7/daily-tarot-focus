@@ -85,3 +85,11 @@ final class TarotSetupAccountRequested extends TarotEvent {
   @override
   List<Object?> get props => [session];
 }
+
+final class TarotSelectQuestion extends TarotEvent {
+  const TarotSelectQuestion({required this.question});
+  final String question;
+
+  @override
+  List<Object?> get props => [question];
+}

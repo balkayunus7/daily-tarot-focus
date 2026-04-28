@@ -35,6 +35,8 @@ class AppRoutes {
   static const String tarotQuestionStep1 = '/tarot-question-step-1';
   static const String tarotQuestionStep2 = '/tarot-question-step-2';
   static const String tarotQuestionStep3 = '/tarot-question-step-3';
+  static const String tarotQuestionStep4 = '/tarot-question-step-4';
+  static const String tarotQuestionStep5 = '/tarot-question-step-5';
 
   // Tarot daily
   static const String tarotDailyDetail = '/tarot-daily-detail';

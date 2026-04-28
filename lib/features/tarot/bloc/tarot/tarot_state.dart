@@ -21,6 +21,7 @@ class TarotState extends Equatable {
     required this.selectedSpreadCategory,
     required this.selectedSpread,
     required this.selectedReader,
+    required this.selectedQuestion,
     required this.isSettingUpAccount,
     required this.hasAccountSetupCompleted,
   });
@@ -40,6 +41,7 @@ class TarotState extends Equatable {
       selectedSpreadCategory: null,
       selectedSpread: null,
       selectedReader: null,
+      selectedQuestion: null,
       isSettingUpAccount: false,
       hasAccountSetupCompleted: false,
     );
@@ -58,6 +60,7 @@ class TarotState extends Equatable {
   final TarotSpreadCategoryModel? selectedSpreadCategory;
   final TarotSpreadModel? selectedSpread;
   final TarotReaderModel? selectedReader;
+  final String? selectedQuestion;
   final bool isSettingUpAccount;
   final bool hasAccountSetupCompleted;
 
@@ -140,6 +143,7 @@ class TarotState extends Equatable {
   bool get hasSelectedSpreadCategory => selectedSpreadCategory != null;
   bool get hasSelectedSpread => selectedSpread != null;
   bool get hasSelectedReader => selectedReader != null;
+  bool get hasSelectedQuestion => selectedQuestion != null;
 
   TarotState copyWith({
     Option<FailureOr<KtList<TarotCardModel>>>? fetchFailureOrDailyCards,
@@ -155,6 +159,7 @@ class TarotState extends Equatable {
     TarotSpreadCategoryModel? selectedSpreadCategory,
     TarotSpreadModel? selectedSpread,
     TarotReaderModel? selectedReader,
+    String? selectedQuestion,
     bool? isSettingUpAccount,
     bool? hasAccountSetupCompleted,
   }) {
@@ -175,6 +180,7 @@ class TarotState extends Equatable {
       selectedSpreadCategory: selectedSpreadCategory ?? this.selectedSpreadCategory,
       selectedSpread: selectedSpread ?? this.selectedSpread,
       selectedReader: selectedReader ?? this.selectedReader,
+      selectedQuestion: selectedQuestion ?? this.selectedQuestion,
       isSettingUpAccount: isSettingUpAccount ?? this.isSettingUpAccount,
       hasAccountSetupCompleted: hasAccountSetupCompleted ?? this.hasAccountSetupCompleted,
     );
@@ -195,6 +201,7 @@ class TarotState extends Equatable {
     selectedSpreadCategory,
     selectedSpread,
     selectedReader,
+    selectedQuestion,
     isSettingUpAccount,
     hasAccountSetupCompleted,
   ];

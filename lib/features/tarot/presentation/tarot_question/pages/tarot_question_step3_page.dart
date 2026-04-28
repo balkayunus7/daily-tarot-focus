@@ -1,3 +1,4 @@
+import 'package:daily_tarot_focus/config/app_routes.dart';
 import 'package:daily_tarot_focus/core/util/locale_keys.dart';
 import 'package:daily_tarot_focus/core/util/tarot_app_sizes.dart';
 import 'package:daily_tarot_focus/core/util/text_style_helper.dart';
@@ -6,6 +7,7 @@ import 'package:daily_tarot_focus/features/tarot/bloc/tarot/tarot_bloc.dart';
 import 'package:daily_tarot_focus/features/tarot/bloc/tarot/tarot_state.dart';
 import 'package:daily_tarot_focus/features/tarot/presentation/tarot_question/widgets/spread_layout_card.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:mobile_boilerplate/common_dependencies.dart';
 import 'package:mobile_boilerplate/presentation/extensions/build_context_theme_ext.dart';
 
@@ -29,7 +31,7 @@ class TarotQuestionStep3Page extends StatelessWidget {
                 Text(LocaleKeys.tarot_question_spread_journey.tr(), style: m16w700(context)),
                 Sp.tiny.heightBox,
                 Text(
-                  LocaleKeys.tarot_question_step_3_of_3.tr(),
+                  LocaleKeys.tarot_question_step_3_of_4.tr(),
                   style: m10w500(context).copyWith(
                     color: colors.textSecondary,
                     letterSpacing: 1.5,
@@ -60,8 +62,9 @@ class TarotQuestionStep3Page extends StatelessWidget {
                       final spread = category.spreads[index];
                       return SpreadLayoutCard(
                         spread: spread,
-                        onTap: () {
+                        onTap: () async {
                           context.read<TarotBloc>().addSelectSpread(spread: spread);
+                          await context.push(AppRoutes.tarotQuestionStep4);
                         },
                       );
                     },

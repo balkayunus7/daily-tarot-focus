@@ -82,7 +82,12 @@ class SpreadLayoutCard extends StatelessWidget {
                       const Spacer(),
                       ScalingContainer(
                         onTap: () async {
-                          await showSpreadDetailsBottomSheet(context, spread, onTap);
+                          await showSpreadDetailsBottomSheet(
+                            context,
+                            spread: spread,
+                            showButton: true,
+                            onTap: onTap,
+                          );
                         },
                         child: Container(
                           padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 5.h),

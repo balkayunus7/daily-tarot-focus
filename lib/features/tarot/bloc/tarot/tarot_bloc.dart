@@ -38,6 +38,8 @@ class TarotBloc extends Bloc<TarotEvent, TarotState> {
           emit(state.copyWith(selectedSpread: event.spread));
         } else if (event is TarotSelectReader) {
           emit(state.copyWith(selectedReader: event.reader));
+        } else if (event is TarotSelectQuestion) {
+          emit(state.copyWith(selectedQuestion: event.question));
         }
       },
       transformer: sequential(),
@@ -65,6 +67,9 @@ class TarotBloc extends Bloc<TarotEvent, TarotState> {
 
   void addSelectReader({required TarotReaderModel reader}) =>
       add(TarotSelectReader(reader: reader));
+
+  void addSelectQuestion({required String question}) =>
+      add(TarotSelectQuestion(question: question));
 
   // ── Private cache helpers ───────────────────────────────────────────────────
   Future<FailureOr<KtList<TarotCardModel>>> _fetchAndCacheAllCards(

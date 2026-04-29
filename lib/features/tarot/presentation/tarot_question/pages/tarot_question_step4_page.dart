@@ -59,7 +59,7 @@ class _TarotQuestionStep4PageState extends State<TarotQuestionStep4Page> {
         titleWidget: Column(
           children: [
             Text(
-              LocaleKeys.tarot_question_choose_question_subtitle.tr(),
+              LocaleKeys.tarot_question_question_step_title.tr(),
               style: m16w700(context),
             ),
             Sp.tiny.heightBox,

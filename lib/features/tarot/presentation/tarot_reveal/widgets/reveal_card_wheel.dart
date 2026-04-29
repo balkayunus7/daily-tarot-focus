@@ -50,10 +50,11 @@ class RevealCardWheel extends StatelessWidget {
           Sp.xsmall.heightBox,
           CustomCacheNetworkImage(
             imageUrl: TarotAppAssets.arrowHttp,
-            width: screenWidth * 0.25,
-            height: screenWidth * 0.12,
+            width: screenWidth * 0.18,
+            height: screenWidth * 0.1,
             color: context.colors.primary,
           ),
+          Sp.xsmall.heightBox,
           Text(
             LocaleKeys.reveal_page_drag_to_move.tr(),
             style: m12w500(context).copyWith(color: context.colors.textSecondary),

@@ -57,7 +57,10 @@ class _TarotQuestionStep6PageState extends State<TarotQuestionStep6Page> {
       appBar: TarotAppBar(
         titleWidget: Column(
           children: [
-            Text(LocaleKeys.tarot_shuffle_title.tr(), style: m16w700(context)),
+            Text(
+              LocaleKeys.tarot_question_deck_shuffle_open_step_subtitle.tr(),
+              style: m16w700(context),
+            ),
             Sp.tiny.heightBox,
             Text(
               LocaleKeys.tarot_question_step_6_of_6.tr(),
@@ -82,17 +85,18 @@ class _TarotQuestionStep6PageState extends State<TarotQuestionStep6Page> {
               Padding(
                 padding: Sp.medium.padSymR(h: Sp.large, v: Sp.xsmall),
                 child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Iconify(
                       Mdi.question_mark_circle,
                       color: colors.primary,
                       size: 16.w,
                     ),
-                    Sp.tiny.widthBox,
+                    Sp.xsmall.widthBox,
                     Expanded(
                       child: Text(
-                        LocaleKeys.tarot_question_step6_ready_to_open.tr(),
-                        style: m11w500(context).copyWith(
+                        LocaleKeys.tarot_question_choose_open_deck_subtitle.tr(),
+                        style: m12w500(context).copyWith(
                           color: colors.textSecondary.withValues(alpha: 0.7),
                         ),
                       ),

@@ -68,7 +68,7 @@ class _TarotQuestionStep5PageState extends State<TarotQuestionStep5Page>
       appBar: TarotAppBar(
         titleWidget: Column(
           children: [
-            Text(LocaleKeys.tarot_shuffle_title.tr(), style: m16w700(context)),
+            Text(LocaleKeys.tarot_question_deck_shuffle_step_title.tr(), style: m16w700(context)),
             Sp.tiny.heightBox,
             Text(
               LocaleKeys.tarot_question_step_5_of_6.tr(),

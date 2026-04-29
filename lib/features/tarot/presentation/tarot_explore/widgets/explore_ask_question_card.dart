@@ -50,7 +50,7 @@ class _CardContent extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            LocaleKeys.explore_page_ask_question_title.tr(),
+            LocaleKeys.explore_page_spread_title.tr(),
             style: m18w600(context).copyWith(color: context.colors.textOnPrimary),
           ),
           Sp.medium.heightBox,
@@ -62,7 +62,7 @@ class _CardContent extends StatelessWidget {
                 width: buttonWidth,
                 onTap: () {},
                 backgroundColor: context.colors.primary,
-                text: LocaleKeys.explore_page_ask_question_button.tr(),
+                text: LocaleKeys.explore_page_spread_button.tr(),
                 textStyle: m12w600(context).copyWith(color: context.colors.textOnPrimary),
               ),
             ),

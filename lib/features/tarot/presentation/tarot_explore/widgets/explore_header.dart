@@ -22,17 +22,18 @@ class ExploreHeader extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Icon(timeIcon, color: colors.primary, size: 28),
                 Sp.xsmall.widthBox,
-                Flexible(child: Text(timeGreeting, style: m18w700(context))),
+                Flexible(child: Text(timeGreeting, style: m16w700(context))),
               ],
             ),
             Sp.small.heightBox,
             if (userZodiac != null) ...[
               Text(
                 LocaleKeys.explore_page_intuition_guide.tr(args: [userZodiac.localizedName]),
-                style: m14w500(context).copyWith(color: colors.textSecondary),
+                style: m13w500(context).copyWith(color: colors.textSecondary),
               ),
             ],
           ],

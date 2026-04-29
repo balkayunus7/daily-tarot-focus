@@ -57,7 +57,7 @@ class TarotExplorePage extends StatelessWidget {
                     const ExplorePaywallCard(),
                     Sp.large.heightBox,
                   ],
-                  Text(LocaleKeys.explore_page_spiritual_guide.tr(), style: m16w500(context)),
+                  Text(LocaleKeys.explore_page_spiritual_guide.tr(), style: m15w600(context)),
                   Sp.medium.heightBox,
                   Row(
                     children: [

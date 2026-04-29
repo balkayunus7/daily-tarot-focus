@@ -81,7 +81,8 @@
         "complete_registration": "Kaydı Tamamla",
         "preparing_account": "Hesabın hazırlanıyor",
         "loading_images": "Görseller yükleniyor...",
-        "loading_data": "Tarot kartları, falcılar ve spreads yükleniyor..."
+        "loading_data": "Tarot kartları, falcılar ve spreads yükleniyor...",
+        "progress_format": "%{}"
     },
     "navbar": {
         "explore": "Keşfet",

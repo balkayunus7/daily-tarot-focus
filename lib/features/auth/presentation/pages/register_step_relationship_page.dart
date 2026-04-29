@@ -56,7 +56,7 @@ class RegisterStepRelationshipPage extends StatelessWidget {
                     value: 0.66,
                     minHeight: 6,
                     borderRadius: Sp.medium.radiusR,
-                    backgroundColor: colors.secondary,
+                    backgroundColor: colors.accent,
                     valueColor: AlwaysStoppedAnimation<Color>(colors.primary),
                   ),
                   Sp.xxlarge.heightBox,

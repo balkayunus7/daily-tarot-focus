@@ -110,3 +110,10 @@ final class TarotGenerateReadingRequested extends TarotEvent {
   @override
   List<Object?> get props => [session];
 }
+
+final class TarotCacheCleared extends TarotEvent {
+  const TarotCacheCleared();
+
+  @override
+  List<Object?> get props => [];
+}

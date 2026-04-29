@@ -81,7 +81,8 @@
         "complete_registration": "Complete Registration",
         "preparing_account": "Your account is being prepared",
         "loading_images": "Images are loading...",
-        "loading_data": "Tarot cards, readers and spreads are loading..."
+        "loading_data": "Tarot cards, readers and spreads are loading...",
+        "progress_format": "{}%"
     },
     "navbar": {
         "explore": "Explore",

@@ -46,6 +46,8 @@ class TarotBloc extends Bloc<TarotEvent, TarotState> {
           emit(state.copyWith(selectedReadingCards: event.cards));
         } else if (event is TarotGenerateReadingRequested) {
           await _onGenerateReadingRequested(event, emit);
+        } else if (event is TarotCacheCleared) {
+          await _onCacheCleared(event, emit);
         }
       },
       transformer: sequential(),
@@ -82,6 +84,8 @@ class TarotBloc extends Bloc<TarotEvent, TarotState> {
 
   void addGenerateReadingRequested({required AuthSession session}) =>
       add(TarotGenerateReadingRequested(session: session));
+
+  void addClearCache() => add(const TarotCacheCleared());
 
   // ── Private cache helpers ───────────────────────────────────────────────────
   Future<FailureOr<KtList<TarotCardModel>>> _fetchAndCacheAllCards(
@@ -146,8 +150,13 @@ class TarotBloc extends Bloc<TarotEvent, TarotState> {
   }
 
   // ── Event handlers
-  Future<void> clearCache() async {
+  Future<void> _onCacheCleared(
+    TarotCacheCleared event,
+    Emitter<TarotState> emit,
+  ) async {
+    emit(state.copyWith(clearCacheFailureOrUnit: some(right(unit))));
     await _cacheService.clearCache();
+    emit(state.copyWith(clearCacheFailureOrUnit: some(right(unit))));
   }
 
   Future<void> _onSetupAccountRequested(

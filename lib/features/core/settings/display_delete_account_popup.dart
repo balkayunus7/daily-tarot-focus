@@ -1,4 +1,3 @@
-import 'package:daily_tarot_focus/features/tarot/bloc/tarot/tarot_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile_boilerplate/application/auth/auth_cubit.dart';
 import 'package:mobile_boilerplate/common_dependencies.dart';
@@ -20,8 +19,6 @@ Future<dynamic> displayDeleteAccountPopup(BuildContext context) {
           title: context.tr('delete_account_popup.delete_button'),
           textColor: ctx.colors.error,
           onTap: () async {
-            await ctx.read<TarotBloc>().clearCache();
-            if (!context.mounted) return;
             await ctx.read<AuthCubit>().deleteUser();
           },
         ),

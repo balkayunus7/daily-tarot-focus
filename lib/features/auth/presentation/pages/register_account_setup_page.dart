@@ -1,4 +1,5 @@
 import 'package:daily_tarot_focus/config/app_routes.dart';
+import 'package:daily_tarot_focus/core/util/locale_keys.dart';
 import 'package:daily_tarot_focus/core/util/tarot_app_assets.dart';
 import 'package:daily_tarot_focus/core/util/tarot_app_sizes.dart';
 import 'package:daily_tarot_focus/core/util/text_style_helper.dart';
@@ -117,27 +118,27 @@ class _AccountSetupPageState extends State<AccountSetupPage> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
-                              'Hesabın hazırlanıyor',
+                              LocaleKeys.register_page_preparing_account.tr(),
                               style: m26w600(context),
                             ),
                             Sp.xsmall.heightBox,
                             Text(
                               precaching
-                                  ? 'Görseller yükleniyor...'
-                                  : 'Tarot kartları, falcılar ve spreads yükleniyor...',
+                                  ? LocaleKeys.register_page_loading_images.tr()
+                                  : LocaleKeys.register_page_loading_data.tr(),
                               style: m12w500(context).copyWith(color: colors.textSecondary),
                               textAlign: TextAlign.center,
                             ),
                             Sp.xlarge.heightBox,
                             TweenAnimationBuilder<double>(
                               tween: Tween(begin: 0, end: totalProgress),
-                              duration: const Duration(seconds: 400),
+                              duration: const Duration(milliseconds: 400),
                               curve: Curves.easeInOut,
                               builder:
                                   (context, value, _) => LinearProgressIndicator(
                                     value: value,
                                     minHeight: 8,
-                                    borderRadius: BorderRadius.circular(8),
+                                    borderRadius: Sp.xsmall.radiusR,
                                     backgroundColor: colors.accent,
                                     valueColor: AlwaysStoppedAnimation<Color>(colors.primary),
                                   ),
@@ -145,10 +146,12 @@ class _AccountSetupPageState extends State<AccountSetupPage> {
                             Sp.medium.heightBox,
                             TweenAnimationBuilder<double>(
                               tween: Tween(begin: 0, end: totalProgress),
-                              duration: const Duration(seconds: 400),
+                              duration: const Duration(milliseconds: 500),
                               builder:
                                   (context, value, _) => Text(
-                                    '%${(value * 100).toInt()}',
+                                    LocaleKeys.register_page_progress_format.tr(
+                                      args: [(value * 100).toInt().toString()],
+                                    ),
                                     style: m14w700(context).copyWith(color: colors.secondary),
                                   ),
                             ),

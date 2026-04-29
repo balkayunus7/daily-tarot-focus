@@ -80,6 +80,7 @@ abstract class  LocaleKeys {
   static const register_page_preparing_account = 'register_page.preparing_account';
   static const register_page_loading_images = 'register_page.loading_images';
   static const register_page_loading_data = 'register_page.loading_data';
+  static const register_page_progress_format = 'register_page.progress_format';
   static const register_page = 'register_page';
   static const navbar_explore = 'navbar.explore';
   static const navbar_daily_tarots = 'navbar.daily_tarots';

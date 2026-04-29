@@ -29,6 +29,7 @@ class TarotState extends Equatable {
     required this.selectedReadingCards,
     required this.isGeneratingReading,
     required this.fetchFailureOrGenerateReading,
+    required this.clearCacheFailureOrUnit,
   });
 
   factory TarotState.initial() {
@@ -52,6 +53,7 @@ class TarotState extends Equatable {
       selectedReadingCards: const [],
       isGeneratingReading: false,
       fetchFailureOrGenerateReading: none(),
+      clearCacheFailureOrUnit: none(),
     );
   }
 
@@ -65,15 +67,16 @@ class TarotState extends Equatable {
   final bool isFetchingAllCards;
   final bool isFetchingSpreads;
   final bool isFetchingReaders;
+  final bool isSettingUpAccount;
+  final bool hasAccountSetupCompleted;
   final TarotSpreadCategoryModel? selectedSpreadCategory;
   final TarotSpreadModel? selectedSpread;
   final TarotReaderModel? selectedReader;
   final String? selectedQuestion;
-  final bool isSettingUpAccount;
-  final bool hasAccountSetupCompleted;
   final List<TarotSelectedReadingCard> selectedReadingCards;
-  final bool isGeneratingReading;
   final Option<FailureOr<GenerateReadingResponse>> fetchFailureOrGenerateReading;
+  final bool isGeneratingReading;
+  final Option<FailureOr<Unit>> clearCacheFailureOrUnit;
 
   // ALL CARDS GETTERS
   KtList<TarotCardModel> get allCardsOrEmpty =>
@@ -187,6 +190,7 @@ class TarotState extends Equatable {
     List<TarotSelectedReadingCard>? selectedReadingCards,
     bool? isGeneratingReading,
     Option<FailureOr<GenerateReadingResponse>>? fetchFailureOrGenerateReading,
+    Option<FailureOr<Unit>>? clearCacheFailureOrUnit,
   }) {
     return TarotState(
       fetchFailureOrDailyCards: fetchFailureOrDailyCards ?? this.fetchFailureOrDailyCards,
@@ -212,6 +216,7 @@ class TarotState extends Equatable {
       isGeneratingReading: isGeneratingReading ?? this.isGeneratingReading,
       fetchFailureOrGenerateReading:
           fetchFailureOrGenerateReading ?? this.fetchFailureOrGenerateReading,
+      clearCacheFailureOrUnit: clearCacheFailureOrUnit ?? this.clearCacheFailureOrUnit,
     );
   }
 
@@ -236,5 +241,6 @@ class TarotState extends Equatable {
     selectedReadingCards,
     isGeneratingReading,
     fetchFailureOrGenerateReading,
+    clearCacheFailureOrUnit,
   ];
 }

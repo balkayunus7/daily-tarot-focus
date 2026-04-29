@@ -4,7 +4,7 @@ import 'package:mobile_boilerplate/presentation/extensions/build_context_theme_e
 
 class StepBackground extends StatelessWidget {
   const StepBackground({super.key});
-  static const _starCount = 70;
+  static const _starCount = 100;
 
   @override
   Widget build(BuildContext context) {
@@ -12,7 +12,7 @@ class StepBackground extends StatelessWidget {
 
     // Pre-computed star data based on a fixed seed for consistent static visual.
     final stars = List<_StarData>.generate(_starCount, (i) {
-      final rng = math.Random(i * 31 + 7);
+      final rng = math.Random(i * 30);
       return _StarData(
         x: rng.nextDouble(),
         y: rng.nextDouble(),
@@ -29,7 +29,7 @@ class StepBackground extends StatelessWidget {
       painter: _ZodiacBackgroundPainter(
         stars: stars,
         primaryColor: colors.primary,
-        secondaryColor: colors.secondary,
+        secondaryColor: colors.secondary.withValues(alpha: 0.2),
         accentColor: colors.accent,
       ),
     );
@@ -80,57 +80,10 @@ class _ZodiacBackgroundPainter extends CustomPainter {
       );
     }
 
-    // 2. Orbital arcs (faint ellipses)
-    final arcPaint =
-        Paint()
-          ..style = PaintingStyle.stroke
-          ..strokeWidth = 1;
-
-    final center = Offset(size.width / 2, size.height * 0.5);
-
-    arcPaint.color = secondaryColor;
-    _drawRotatedEllipse(
-      canvas,
-      center,
-      size.width * 0.82,
-      size.height * 0.21,
-      -25 * math.pi / 180,
-      arcPaint,
-    );
-
-    arcPaint.color = accentColor;
-    _drawRotatedEllipse(
-      canvas,
-      center,
-      size.width * 0.72,
-      size.height * 0.17,
-      15 * math.pi / 180,
-      arcPaint,
-    );
-
     // 3. Crescent moon (top-right)
     _drawCrescent(canvas, size);
-
     // 4. Constellation cluster (top-right)
     _drawConstellation(canvas, size);
-  }
-
-  void _drawRotatedEllipse(
-    Canvas canvas,
-    Offset center,
-    double rx,
-    double ry,
-    double angle,
-    Paint paint,
-  ) {
-    canvas
-      ..save()
-      ..translate(center.dx, center.dy)
-      ..rotate(angle);
-    final rect = Rect.fromCenter(center: Offset.zero, width: rx * 2, height: ry * 2);
-    canvas
-      ..drawOval(rect, paint)
-      ..restore();
   }
 
   void _drawCrescent(Canvas canvas, Size size) {

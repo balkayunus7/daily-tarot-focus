@@ -6,6 +6,8 @@ import 'package:daily_tarot_focus/core/util/text_style_helper.dart';
 import 'package:daily_tarot_focus/core/widgets/fancy_container.dart';
 import 'package:daily_tarot_focus/core/widgets/tarot_app_bar.dart';
 import 'package:daily_tarot_focus/features/core/settings/display_delete_account_popup.dart';
+import 'package:daily_tarot_focus/features/tarot/bloc/tarot/tarot_bloc.dart';
+import 'package:daily_tarot_focus/features/tarot/bloc/tarot/tarot_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
@@ -49,13 +51,26 @@ class SettingsPage extends StatelessWidget {
   BlocListener<AuthCubit, AuthState> _deleteAccountListener() => BlocListener<AuthCubit, AuthState>(
     listenWhen: (p, c) => p.failOrUserOption.isSome() != c.failOrUserOption.isNone(),
     listener: (context, state) async {
-      context.pop();
-      if (!context.mounted) return;
-      context.go(AppRoutes.splash);
-      if (!context.mounted) return;
-      await RestartableApp.restartApp(context);
+      context.read<TarotBloc>().addClearCache();
     },
   );
+  BlocListener<TarotBloc, TarotState> _restartAppListener() => BlocListener<TarotBloc, TarotState>(
+    listenWhen: (previous, current) {
+      return previous.clearCacheFailureOrUnit.isNone() && current.clearCacheFailureOrUnit.isSome();
+    },
+    listener: (context, state) async {
+      await restartApp(context);
+    },
+  );
+
+  Future<void> restartApp(BuildContext context) async {
+    context.pop();
+    if (!context.mounted) return;
+    context.go(AppRoutes.splash);
+    if (!context.mounted) return;
+    await RestartableApp.restartApp(context);
+  }
+
   @override
   Widget build(BuildContext context) {
     final colors = context.colors;
@@ -65,6 +80,7 @@ class SettingsPage extends StatelessWidget {
         _restoringListener(),
         _restoredListener(),
         _deleteAccountListener(),
+        _restartAppListener(),
       ],
       child: Scaffold(
         backgroundColor: colors.background,

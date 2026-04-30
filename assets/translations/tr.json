@@ -32,7 +32,8 @@
     },
     "reveal_page": {
         "tap_to_pick": "Açmak için dokun",
-        "drag_to_move": "Keşfetmek için sürükle"
+        "drag_to_move": "Keşfetmek için sürükle",
+        "cooldown_subtitle": "YENİ KARTIN SENI BEKLİYOR"
     },
     "question_page": {
         "title": "Gerçeğin",

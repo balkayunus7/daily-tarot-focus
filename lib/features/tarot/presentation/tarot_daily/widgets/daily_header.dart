@@ -6,6 +6,8 @@ class DailyHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colors = context.colors;
+
     return Padding(
       padding: Sp.large.padAllR,
       child: Row(
@@ -18,7 +20,7 @@ class DailyHeader extends StatelessWidget {
               Sp.xsmall.heightBox,
               Text(
                 LocaleKeys.tarot_daily_subtitle.tr(),
-                style: m10w600(context).copyWith(color: context.colors.primary, letterSpacing: 1.5),
+                style: m10w600(context).copyWith(color: colors.primary, letterSpacing: 1.5),
               ),
             ],
           ),

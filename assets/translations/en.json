@@ -32,7 +32,8 @@
     },
     "reveal_page": {
         "tap_to_pick": "Tap to reveal",
-        "drag_to_move": "Drag to explore"
+        "drag_to_move": "Drag to explore",
+        "cooldown_subtitle": "YOUR NEXT CARD AWAITS"
     },
     "question_page": {
         "title": "Your Truth",

@@ -33,6 +33,7 @@ abstract class  LocaleKeys {
   static const tarot_detail = 'tarot_detail';
   static const reveal_page_tap_to_pick = 'reveal_page.tap_to_pick';
   static const reveal_page_drag_to_move = 'reveal_page.drag_to_move';
+  static const reveal_page_cooldown_subtitle = 'reveal_page.cooldown_subtitle';
   static const reveal_page = 'reveal_page';
   static const question_page_title = 'question_page.title';
   static const question_page_hint_text = 'question_page.hint_text';

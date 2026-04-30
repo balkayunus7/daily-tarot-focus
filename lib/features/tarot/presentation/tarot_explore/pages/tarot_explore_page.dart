@@ -60,7 +60,7 @@ class TarotExplorePage extends StatelessWidget {
                   Expanded(
                     child: ExploreFeatureCard(
                       title: LocaleKeys.explore_page_deck.tr(),
-                      imagePath: TarotAppAssets.libraryHttp,
+                      imageWidget: const _SacredDecksIllustration(),
                       onTap: () => context.push(AppRoutes.tarotDeck),
                     ),
                   ),

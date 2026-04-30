@@ -7,7 +7,6 @@ abstract class  LocaleKeys {
   static const explore_page_ask_question = 'explore_page.ask_question';
   static const explore_page_deck = 'explore_page.deck';
   static const explore_page_discover_daily = 'explore_page.discover_daily';
-  static const explore_page_daily_card = 'explore_page.daily_card';
   static const explore_page_spread_title = 'explore_page.spread_title';
   static const explore_page_spread_button = 'explore_page.spread_button';
   static const explore_page_ask_question_title = 'explore_page.ask_question_title';

@@ -96,8 +96,8 @@ class _ExploreDailyCardWithCooldownState extends State<ExploreDailyCardWithCoold
           valueListenable: remaining,
           builder: (context, remainingValue, _) {
             return ExploreFeatureCard(
-              title: LocaleKeys.explore_page_daily_card.tr(),
-              imagePath: TarotAppAssets.askQuestionHttp,
+              title: LocaleKeys.explore_page_discover_daily.tr(),
+              imageWidget: const _DailyFateIllustration(),
               onTap: () => context.push(AppRoutes.tarotReveal),
               isDisabled: onCooldown,
               countdownText: onCooldown ? formatDuration(remainingValue) : null,

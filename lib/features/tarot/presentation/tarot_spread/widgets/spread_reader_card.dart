@@ -9,8 +9,8 @@ import 'package:mobile_boilerplate/common_dependencies.dart';
 import 'package:mobile_boilerplate/presentation/extensions/build_context_theme_ext.dart';
 import 'package:mobile_boilerplate/presentation/widgets/scaling_container.dart';
 
-class ReaderCard extends StatelessWidget {
-  const ReaderCard({required this.reader, required this.onTap, super.key});
+class SpreadReaderCard extends StatelessWidget {
+  const SpreadReaderCard({required this.reader, required this.onTap, super.key});
   final TarotReaderModel reader;
   final VoidCallback onTap;
 

@@ -43,7 +43,7 @@ class _CardContent extends StatelessWidget {
   Widget build(BuildContext context) {
     final screenWidth = context.suWidth;
     final contentSize = screenWidth * 0.4;
-    final buttonWidth = screenWidth * 0.3;
+    final buttonWidth = screenWidth * 0.28;
     final buttonHeight = buttonWidth * 0.32;
 
     return SizedBox(
@@ -54,15 +54,15 @@ class _CardContent extends StatelessWidget {
         children: [
           Text(
             LocaleKeys.explore_page_spread_title.tr(),
-            style: m18w600(context).copyWith(color: context.colors.textOnPrimary),
+            style: m16w600(context).copyWith(color: context.colors.textOnPrimary),
           ),
-          Sp.medium.heightBox,
+          Sp.small.heightBox,
           IgnorePointer(
             child: UnconstrainedBox(
               alignment: Alignment.centerLeft,
               child: FancyButton(
-                height: buttonHeight,
                 width: buttonWidth,
+                height: buttonHeight,
                 onTap: () {},
                 backgroundColor: context.colors.primary,
                 text: LocaleKeys.explore_page_spread_button.tr(),

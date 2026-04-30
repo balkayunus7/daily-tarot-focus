@@ -5,98 +5,158 @@ class ExploreAskQuestionCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final screenHeight = context.suHeight;
-    final cardHeight = screenHeight / 4.7;
     final colors = context.colors;
 
     return ScalingContainer(
       onTap: () async {
-        context.read<TarotBloc>().addSetFlowType(flowType: TarotFlowType.otherSpreads);
+        context.read<TarotBloc>().addSetFlowType(flowType: TarotFlowType.threeCard);
         await context.push(AppRoutes.tarotQuestionStep1);
       },
       child: Container(
         width: double.infinity,
-        height: cardHeight,
-        padding: Sp.xlarge.padAllR,
         decoration: BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
-            colors: [colors.gradientStart, colors.gradientEnd, colors.background],
+            colors: [colors.gradientStart, colors.gradientEnd],
           ),
           borderRadius: Sp.large.radiusR,
-          border: Border.all(color: context.colors.border, width: 0.5),
+          border: Border.all(color: colors.border, width: 0.5),
         ),
-        child: const Stack(
-          clipBehavior: Clip.none,
-          children: [_CardContent(), _OverlayCardImage()],
-        ),
-      ),
-    );
-  }
-}
-
-class _CardContent extends StatelessWidget {
-  const _CardContent();
-
-  @override
-  Widget build(BuildContext context) {
-    final screenWidth = context.suWidth;
-    final contentSize = screenWidth * 0.4;
-    final buttonWidth = screenWidth * 0.3;
-    final buttonHeight = buttonWidth * 0.32;
-
-    return SizedBox(
-      width: contentSize,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            LocaleKeys.explore_page_spread_title.tr(),
-            style: m18w600(context).copyWith(color: context.colors.textOnPrimary),
-          ),
-          Sp.medium.heightBox,
-          IgnorePointer(
-            child: UnconstrainedBox(
-              alignment: Alignment.centerLeft,
-              child: FancyButton(
-                height: buttonHeight,
-                width: buttonWidth,
-                onTap: () {},
-                backgroundColor: context.colors.primary,
-                text: LocaleKeys.explore_page_spread_button.tr(),
-                textStyle: m12w600(context).copyWith(color: context.colors.textOnPrimary),
+        child: ClipRRect(
+          borderRadius: Sp.large.radiusR,
+          child: Stack(
+            children: [
+              Positioned.fill(child: CustomPaint(painter: _CosmicBackgroundPainter())),
+              Padding(
+                padding: Sp.large.padAllR,
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          LocaleKeys.explore_page_ask_question_title.tr(),
+                          style: m16w600(context).copyWith(color: colors.textOnPrimary),
+                        ),
+                        Sp.tiny.heightBox,
+                        Text(
+                          LocaleKeys.explore_page_tarot_reading_desc.tr(),
+                          style: m12w400(context).copyWith(
+                            color: colors.textOnPrimary.withValues(alpha: 0.75),
+                          ),
+                        ),
+                      ],
+                    ),
+                    const Spacer(),
+                    IgnorePointer(
+                      child: UnconstrainedBox(
+                        alignment: Alignment.centerLeft,
+                        child: FancyButton(
+                          height: 36.h,
+                          padding: Sp.small.padXR,
+                          onTap: () {},
+                          backgroundColor: colors.buttonOnGradient,
+                          text: LocaleKeys.explore_page_ask_question_button.tr(),
+                          textStyle: m12w600(context).copyWith(color: colors.textOnPrimary),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
-            ),
+            ],
           ),
-        ],
+        ),
       ),
     );
   }
 }
 
-class _OverlayCardImage extends StatelessWidget {
-  const _OverlayCardImage();
-  static const double _kWidthRatio = 0.35;
-  static const double _kAspectRatio = 2.5 / 3;
-  static const double _kPaddingRatio = 0.12;
+class _CosmicBackgroundPainter extends CustomPainter {
+  static const _stars = [
+    [0.62, 0.08],
+    [0.72, 0.22],
+    [0.80, 0.12],
+    [0.90, 0.30],
+    [0.68, 0.48],
+    [0.85, 0.55],
+    [0.76, 0.70],
+    [0.95, 0.18],
+    [0.64, 0.82],
+    [0.88, 0.75],
+    [0.57, 0.38],
+    [0.93, 0.90],
+    [0.75, 0.92],
+    [0.60, 0.60],
+    [0.70, 0.42],
+    [0.98, 0.65],
+  ];
 
   @override
-  Widget build(BuildContext context) {
-    final screenWidth = context.suWidth;
-    final cardWidth = screenWidth * _kWidthRatio;
-    final cardHeight = cardWidth / _kAspectRatio;
+  void paint(Canvas canvas, Size size) {
+    final haloPaint = Paint()..color = const Color(0x26FFFFFF);
+    final corePaint = Paint()..color = const Color(0xCCFFFFFF);
 
-    return Positioned(
-      right: -cardWidth * _kPaddingRatio,
-      top: -cardHeight * _kPaddingRatio,
-      bottom: -cardHeight * _kPaddingRatio,
-      child: CustomCacheNetworkImage(
-        imageUrl: TarotAppAssets.maskotDailyHttp,
-        width: cardWidth,
-        height: cardHeight,
+    for (final pos in _stars) {
+      final center = Offset(size.width * pos[0], size.height * pos[1]);
+      canvas
+        ..drawCircle(center, 2.5, haloPaint)
+        ..drawCircle(center, 1, corePaint);
+    }
+
+    // Bokeh glow spots
+    final glowPaint =
+        Paint()
+          ..color = const Color(0x14FFFFFF)
+          ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 12);
+    const bokeh = [
+      [0.78, 0.25],
+      [0.88, 0.65],
+      [0.65, 0.80],
+    ];
+    for (final pos in bokeh) {
+      canvas.drawCircle(Offset(size.width * pos[0], size.height * pos[1]), 10, glowPaint);
+    }
+
+    // Decorative crescent arc on the right
+    final arcPaint =
+        Paint()
+          ..color = const Color(0x1AFFFFFF)
+          ..style = PaintingStyle.stroke
+          ..strokeWidth = 1.2;
+    canvas.drawArc(
+      Rect.fromCenter(
+        center: Offset(size.width * 0.85, size.height * 0.5),
+        width: size.height * 0.75,
+        height: size.height * 0.75,
       ),
+      -1.2,
+      2.4,
+      false,
+      arcPaint,
+    );
+
+    // Second concentric arc (thinner, more transparent)
+    final arcPaint2 =
+        Paint()
+          ..color = const Color(0x0DFFFFFF)
+          ..style = PaintingStyle.stroke
+          ..strokeWidth = 0.8;
+    canvas.drawArc(
+      Rect.fromCenter(
+        center: Offset(size.width * 0.85, size.height * 0.5),
+        width: size.height * 1.1,
+        height: size.height * 1.1,
+      ),
+      -1,
+      2,
+      false,
+      arcPaint2,
     );
   }
+
+  @override
+  bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
 }

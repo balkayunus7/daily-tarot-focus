@@ -8,8 +8,8 @@ import 'package:daily_tarot_focus/core/widgets/fancy_button.dart';
 import 'package:daily_tarot_focus/core/widgets/tarot_app_bar.dart';
 import 'package:daily_tarot_focus/features/tarot/bloc/tarot/tarot_bloc.dart';
 import 'package:daily_tarot_focus/features/tarot/bloc/tarot/tarot_state.dart';
-import 'package:daily_tarot_focus/features/tarot/presentation/tarot_question/widgets/riffle_deck.dart';
-import 'package:daily_tarot_focus/features/tarot/presentation/tarot_question/widgets/spread_layout_bottom_sheet.dart';
+import 'package:daily_tarot_focus/features/tarot/presentation/tarot_spread/widgets/riffle_deck.dart';
+import 'package:daily_tarot_focus/features/tarot/presentation/tarot_spread/widgets/spread_layout_bottom_sheet.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
@@ -17,14 +17,14 @@ import 'package:mobile_boilerplate/common_dependencies.dart';
 import 'package:mobile_boilerplate/presentation/extensions/build_context_theme_ext.dart';
 import 'package:mobile_boilerplate/presentation/widgets/scaling_container.dart';
 
-class TarotQuestionStep5Page extends StatefulWidget {
-  const TarotQuestionStep5Page({super.key});
+class TarotSpreadStep5Page extends StatefulWidget {
+  const TarotSpreadStep5Page({super.key});
 
   @override
-  State<TarotQuestionStep5Page> createState() => _TarotQuestionStep5PageState();
+  State<TarotSpreadStep5Page> createState() => _TarotSpreadStep5PageState();
 }
 
-class _TarotQuestionStep5PageState extends State<TarotQuestionStep5Page>
+class _TarotSpreadStep5PageState extends State<TarotSpreadStep5Page>
     with SingleTickerProviderStateMixin {
   final ValueNotifier<bool> _isAutoShuffle = ValueNotifier(false);
   final ValueNotifier<int> _shuffleTimeLeft = ValueNotifier(0);

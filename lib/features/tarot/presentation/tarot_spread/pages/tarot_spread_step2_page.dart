@@ -5,15 +5,15 @@ import 'package:daily_tarot_focus/core/util/text_style_helper.dart';
 import 'package:daily_tarot_focus/core/widgets/tarot_app_bar.dart';
 import 'package:daily_tarot_focus/features/tarot/bloc/tarot/tarot_bloc.dart';
 import 'package:daily_tarot_focus/features/tarot/bloc/tarot/tarot_state.dart';
-import 'package:daily_tarot_focus/features/tarot/presentation/tarot_question/widgets/spread_category_card.dart';
-import 'package:daily_tarot_focus/features/tarot/presentation/tarot_question/widgets/spread_category_guide.dart';
+import 'package:daily_tarot_focus/features/tarot/presentation/tarot_spread/widgets/spread_category_card.dart';
+import 'package:daily_tarot_focus/features/tarot/presentation/tarot_spread/widgets/spread_category_guide.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mobile_boilerplate/common_dependencies.dart';
 import 'package:mobile_boilerplate/presentation/extensions/build_context_theme_ext.dart';
 
-class TarotQuestionStep2Page extends StatelessWidget {
-  const TarotQuestionStep2Page({super.key});
+class TarotSpreadStep2Page extends StatelessWidget {
+  const TarotSpreadStep2Page({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -38,10 +38,8 @@ class TarotQuestionStep2Page extends StatelessWidget {
       ),
       body: BlocBuilder<TarotBloc, TarotState>(
         builder: (context, state) {
-          final categories = state.spreadsOrEmpty
-              .asList()
-              .where((c) => c.id != 'cat_3_cards')
-              .toList();
+          final categories =
+              state.spreadsOrEmpty.asList().where((c) => c.id != 'cat_3_cards').toList();
 
           return SafeArea(
             child: SingleChildScrollView(

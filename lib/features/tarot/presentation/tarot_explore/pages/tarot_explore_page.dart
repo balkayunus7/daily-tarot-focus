@@ -23,12 +23,12 @@ import 'package:mobile_boilerplate/presentation/extensions/build_context_time_ex
 import 'package:mobile_boilerplate/presentation/extensions/date_time_ext.dart';
 import 'package:mobile_boilerplate/presentation/widgets/scaling_container.dart';
 
-part '../widgets/explore_ask_question_card.dart';
+part '../widgets/explore_spread_card.dart';
 part '../widgets/explore_daily_card_cooldown.dart';
 part '../widgets/explore_feature_card.dart';
 part '../widgets/explore_header.dart';
 part '../widgets/explore_paywall_card.dart';
-part '../widgets/explore_three_card_flow_card.dart';
+part '../widgets/explore_ask_question_card.dart';
 
 class TarotExplorePage extends StatelessWidget {
   const TarotExplorePage({super.key});
@@ -47,9 +47,9 @@ class TarotExplorePage extends StatelessWidget {
             children: [
               const ExploreHeader(),
               Sp.large.heightBox,
-              const ExploreThreeCardFlowCard(),
-              Sp.large.heightBox,
               const ExploreAskQuestionCard(),
+              Sp.large.heightBox,
+              const ExploreSpreadCard(),
               Sp.large.heightBox,
               Text(LocaleKeys.explore_page_spiritual_guide.tr(), style: m15w600(context)),
               Sp.medium.heightBox,

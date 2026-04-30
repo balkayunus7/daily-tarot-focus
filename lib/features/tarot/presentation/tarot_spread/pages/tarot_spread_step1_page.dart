@@ -6,14 +6,14 @@ import 'package:daily_tarot_focus/core/widgets/tarot_app_bar.dart';
 import 'package:daily_tarot_focus/features/tarot/bloc/tarot/tarot_bloc.dart';
 import 'package:daily_tarot_focus/features/tarot/bloc/tarot/tarot_state.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/tarot_flow_type.dart';
-import 'package:daily_tarot_focus/features/tarot/presentation/tarot_question/widgets/question_reader_card.dart';
+import 'package:daily_tarot_focus/features/tarot/presentation/tarot_spread/widgets/question_reader_card.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mobile_boilerplate/common_dependencies.dart';
 import 'package:mobile_boilerplate/presentation/extensions/build_context_theme_ext.dart';
 
-class TarotQuestionStep1Page extends StatelessWidget {
-  const TarotQuestionStep1Page({super.key});
+class TarotSpreadStep1Page extends StatelessWidget {
+  const TarotSpreadStep1Page({super.key});
 
   @override
   Widget build(BuildContext context) {

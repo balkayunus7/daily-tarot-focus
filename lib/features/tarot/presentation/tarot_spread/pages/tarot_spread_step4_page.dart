@@ -6,7 +6,7 @@ import 'package:daily_tarot_focus/core/widgets/fancy_button.dart';
 import 'package:daily_tarot_focus/core/widgets/tarot_app_bar.dart';
 import 'package:daily_tarot_focus/features/tarot/bloc/tarot/tarot_bloc.dart';
 import 'package:daily_tarot_focus/features/tarot/bloc/tarot/tarot_state.dart';
-import 'package:daily_tarot_focus/features/tarot/presentation/tarot_question/widgets/spread_layout_bottom_sheet.dart';
+import 'package:daily_tarot_focus/features/tarot/presentation/tarot_spread/widgets/spread_layout_bottom_sheet.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
@@ -14,14 +14,14 @@ import 'package:mobile_boilerplate/common_dependencies.dart';
 import 'package:mobile_boilerplate/presentation/extensions/build_context_theme_ext.dart';
 import 'package:mobile_boilerplate/presentation/widgets/scaling_container.dart';
 
-class TarotQuestionStep4Page extends StatefulWidget {
-  const TarotQuestionStep4Page({super.key});
+class TarotSpreadStep4Page extends StatefulWidget {
+  const TarotSpreadStep4Page({super.key});
 
   @override
-  State<TarotQuestionStep4Page> createState() => _TarotQuestionStep4PageState();
+  State<TarotSpreadStep4Page> createState() => _TarotSpreadStep4PageState();
 }
 
-class _TarotQuestionStep4PageState extends State<TarotQuestionStep4Page> {
+class _TarotSpreadStep4PageState extends State<TarotSpreadStep4Page> {
   static const int _maxChars = 120;
 
   late final TextEditingController _controller;

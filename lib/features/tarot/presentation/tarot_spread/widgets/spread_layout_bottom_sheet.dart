@@ -2,7 +2,7 @@ import 'package:daily_tarot_focus/core/util/tarot_app_sizes.dart';
 import 'package:daily_tarot_focus/core/util/text_style_helper.dart';
 import 'package:daily_tarot_focus/core/widgets/fancy_button.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/fetch_spreads_response_model.dart';
-import 'package:daily_tarot_focus/features/tarot/presentation/tarot_question/widgets/spread_layout_card.dart';
+import 'package:daily_tarot_focus/features/tarot/presentation/tarot_spread/widgets/spread_layout_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mobile_boilerplate/presentation/bottom_sheets/core_bottom_sheet.dart';
@@ -20,11 +20,14 @@ Future<void> showSpreadDetailsBottomSheet(
       final positions = [...spread.positions.asList()]..sort((a, b) => a.index.compareTo(b.index));
 
       return SafeArea(
-        child: SizedBox(
-          height: MediaQuery.sizeOf(ctx).height * 0.7,
+        child: Container(
+          constraints: BoxConstraints(
+            maxHeight: MediaQuery.sizeOf(ctx).height * 0.7,
+          ),
           child: Padding(
             padding: Sp.medium.padHR,
             child: Column(
+              mainAxisSize: MainAxisSize.min,
               children: [
                 Text(spread.title, style: m24w600(context)),
                 Sp.xsmall.heightBox,
@@ -33,10 +36,10 @@ Future<void> showSpreadDetailsBottomSheet(
                   style: m11w500(context).copyWith(color: context.colors.textTertiary),
                   textAlign: TextAlign.center,
                 ),
-                Sp.large.heightBox,
-                Expanded(
+                Sp.xlarge.heightBox,
+                Flexible(
                   child: SingleChildScrollView(
-                    padding: EdgeInsets.fromLTRB(0, 4.h, 20.w, 16.h),
+                    padding: EdgeInsets.fromLTRB(0, 4.h, 20.w, 8.h),
                     child: Column(
                       children: [
                         Center(
@@ -48,7 +51,7 @@ Future<void> showSpreadDetailsBottomSheet(
                             spacing: 8.w,
                           ),
                         ),
-                        Sp.xxlarge.heightBox,
+                        Sp.xlarge.heightBox,
                         Stack(
                           children: [
                             Positioned(
@@ -105,7 +108,7 @@ Future<void> showSpreadDetailsBottomSheet(
                             ),
                           ],
                         ),
-                        Sp.xxlarge.heightBox,
+                        Sp.medium.heightBox,
                       ],
                     ),
                   ),

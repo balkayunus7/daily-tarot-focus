@@ -14,7 +14,7 @@ import 'package:daily_tarot_focus/features/tarot/bloc/tarot/tarot_state.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/fetch_all_cards_response_model.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/fetch_spreads_response_model.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/tarot_reading_model.dart';
-import 'package:daily_tarot_focus/features/tarot/presentation/tarot_question/widgets/spread_layout_bottom_sheet.dart';
+import 'package:daily_tarot_focus/features/tarot/presentation/tarot_spread/widgets/spread_layout_bottom_sheet.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
@@ -32,14 +32,14 @@ const double _kGap = 20;
 const double _kBadge = 28;
 const double _kBadgeOverhang = _kBadge / 2;
 
-class TarotQuestionStep6Page extends StatefulWidget {
-  const TarotQuestionStep6Page({super.key});
+class TarotSpreadStep6Page extends StatefulWidget {
+  const TarotSpreadStep6Page({super.key});
 
   @override
-  State<TarotQuestionStep6Page> createState() => _TarotQuestionStep6PageState();
+  State<TarotSpreadStep6Page> createState() => _TarotSpreadStep6PageState();
 }
 
-class _TarotQuestionStep6PageState extends State<TarotQuestionStep6Page> {
+class _TarotSpreadStep6PageState extends State<TarotSpreadStep6Page> {
   final ValueNotifier<bool> _isReadingReady = ValueNotifier(false);
 
   @override

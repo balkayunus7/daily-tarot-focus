@@ -13,14 +13,14 @@ import 'package:mobile_boilerplate/application/auth/auth_cubit.dart';
 import 'package:mobile_boilerplate/common_dependencies.dart';
 import 'package:mobile_boilerplate/presentation/extensions/build_context_theme_ext.dart';
 
-class TarotReadingLoadingPage extends StatefulWidget {
-  const TarotReadingLoadingPage({super.key});
+class TarotSpreadLoadingPage extends StatefulWidget {
+  const TarotSpreadLoadingPage({super.key});
 
   @override
-  State<TarotReadingLoadingPage> createState() => _TarotReadingLoadingPageState();
+  State<TarotSpreadLoadingPage> createState() => _TarotSpreadLoadingPageState();
 }
 
-class _TarotReadingLoadingPageState extends State<TarotReadingLoadingPage> {
+class _TarotSpreadLoadingPageState extends State<TarotSpreadLoadingPage> {
   final List<String> _loadingMessages = [
     'Enerjiler harmanlanıyor...',
     'Kartlar kaderini fısıldıyor...',

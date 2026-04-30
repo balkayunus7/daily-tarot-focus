@@ -13,15 +13,15 @@ import 'package:daily_tarot_focus/features/tarot/domain/models/fetch_all_cards_r
 import 'package:daily_tarot_focus/features/tarot/presentation/tarot_daily/page/tarot_daily_detail_page.dart';
 import 'package:daily_tarot_focus/features/tarot/presentation/tarot_deck/pages/tarot_deck_detail_page.dart';
 import 'package:daily_tarot_focus/features/tarot/presentation/tarot_deck/pages/tarot_deck_page.dart';
-import 'package:daily_tarot_focus/features/tarot/presentation/tarot_question/pages/tarot_question_step1_page.dart';
-import 'package:daily_tarot_focus/features/tarot/presentation/tarot_question/pages/tarot_question_step2_page.dart';
-import 'package:daily_tarot_focus/features/tarot/presentation/tarot_question/pages/tarot_question_step3_page.dart';
-import 'package:daily_tarot_focus/features/tarot/presentation/tarot_question/pages/tarot_question_step4_page.dart';
-import 'package:daily_tarot_focus/features/tarot/presentation/tarot_question/pages/tarot_question_step5_page.dart';
-import 'package:daily_tarot_focus/features/tarot/presentation/tarot_question/pages/tarot_question_step6_page.dart';
-import 'package:daily_tarot_focus/features/tarot/presentation/tarot_question/pages/tarot_reading_loading_page.dart';
 import 'package:daily_tarot_focus/features/tarot/presentation/tarot_reveal/pages/tarot_reveal_detail_page.dart';
 import 'package:daily_tarot_focus/features/tarot/presentation/tarot_reveal/pages/tarot_reveal_page.dart';
+import 'package:daily_tarot_focus/features/tarot/presentation/tarot_spread/pages/tarot_spread_loading_page.dart';
+import 'package:daily_tarot_focus/features/tarot/presentation/tarot_spread/pages/tarot_spread_step1_page.dart';
+import 'package:daily_tarot_focus/features/tarot/presentation/tarot_spread/pages/tarot_spread_step2_page.dart';
+import 'package:daily_tarot_focus/features/tarot/presentation/tarot_spread/pages/tarot_spread_step3_page.dart';
+import 'package:daily_tarot_focus/features/tarot/presentation/tarot_spread/pages/tarot_spread_step4_page.dart';
+import 'package:daily_tarot_focus/features/tarot/presentation/tarot_spread/pages/tarot_spread_step5_page.dart';
+import 'package:daily_tarot_focus/features/tarot/presentation/tarot_spread/pages/tarot_spread_step6_page.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mobile_boilerplate/application/auth/auth_cubit.dart';
@@ -189,7 +189,7 @@ final appRouter = GoRouter(
       pageBuilder: (context, state) {
         return MaterialPage(
           key: state.pageKey,
-          child: const TarotQuestionStep1Page(),
+          child: const TarotSpreadStep1Page(),
         );
       },
     ),
@@ -199,7 +199,7 @@ final appRouter = GoRouter(
       pageBuilder: (context, state) {
         return MaterialPage(
           key: state.pageKey,
-          child: const TarotQuestionStep2Page(),
+          child: const TarotSpreadStep2Page(),
         );
       },
     ),
@@ -209,7 +209,7 @@ final appRouter = GoRouter(
       pageBuilder: (context, state) {
         return MaterialPage(
           key: state.pageKey,
-          child: const TarotQuestionStep3Page(),
+          child: const TarotSpreadStep3Page(),
         );
       },
     ),
@@ -219,7 +219,7 @@ final appRouter = GoRouter(
       pageBuilder: (context, state) {
         return MaterialPage(
           key: state.pageKey,
-          child: const TarotQuestionStep4Page(),
+          child: const TarotSpreadStep4Page(),
         );
       },
     ),
@@ -229,7 +229,7 @@ final appRouter = GoRouter(
       pageBuilder: (context, state) {
         return MaterialPage(
           key: state.pageKey,
-          child: const TarotQuestionStep5Page(),
+          child: const TarotSpreadStep5Page(),
         );
       },
     ),
@@ -239,7 +239,7 @@ final appRouter = GoRouter(
       pageBuilder: (context, state) {
         return MaterialPage(
           key: state.pageKey,
-          child: const TarotQuestionStep6Page(),
+          child: const TarotSpreadStep6Page(),
         );
       },
     ),
@@ -249,7 +249,7 @@ final appRouter = GoRouter(
       pageBuilder: (context, state) {
         return MaterialPage(
           key: state.pageKey,
-          child: const TarotReadingLoadingPage(),
+          child: const TarotSpreadLoadingPage(),
         );
       },
     ),

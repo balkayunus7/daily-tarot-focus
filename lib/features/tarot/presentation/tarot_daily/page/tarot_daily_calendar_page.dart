@@ -249,7 +249,7 @@ class _CalendarGrid extends StatelessWidget {
         crossAxisCount: 7,
         crossAxisSpacing: 8,
         mainAxisSpacing: 10,
-        childAspectRatio: 0.6,
+        childAspectRatio: 0.52,
       ),
       itemCount: totalCells,
       itemBuilder: (context, index) {
@@ -326,7 +326,7 @@ class _DayCell extends StatelessWidget {
                 borderRadius: radius,
                 child:
                     hasCard
-                        ? CustomCacheNetworkImage(imageUrl: card!.imageUrl, fit: BoxFit.cover)
+                        ? CustomCacheNetworkImage(imageUrl: card!.imageUrl, fit: BoxFit.fitWidth)
                         : (isPast || isToday)
                         ? Center(
                           child: Text(

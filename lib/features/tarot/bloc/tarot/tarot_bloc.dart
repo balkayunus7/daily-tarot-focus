@@ -298,17 +298,8 @@ class TarotBloc extends Bloc<TarotEvent, TarotState> {
       spreadCategoryId: state.selectedSpreadCategory?.id ?? '',
       spreadId: state.selectedSpread?.id ?? '',
       readerId: state.selectedReader?.id ?? '',
-      question: state.selectedQuestion ?? '',
-      cards:
-          state.selectedReadingCards
-              .map(
-                (c) => GenerateReadingCardRequest(
-                  cardId: c.card.id,
-                  positionIndex: c.positionIndex,
-                  isReversed: c.isReversed,
-                ),
-              )
-              .toList(),
+      question: state.selectedQuestion,
+      cards: state.selectedReadingCards.map((c) => c.toCardRequest()).toList(),
     );
 
     final result = await _tarotRepository.requestGenerateReading(request: request);

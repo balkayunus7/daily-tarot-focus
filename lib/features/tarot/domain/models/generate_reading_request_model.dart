@@ -7,7 +7,7 @@ class GenerateReadingRequest with EquatableMixin {
     required this.spreadCategoryId,
     required this.spreadId,
     required this.readerId,
-    required this.question,
+    this.question,
     required this.cards,
   });
 
@@ -15,7 +15,7 @@ class GenerateReadingRequest with EquatableMixin {
   final String spreadCategoryId;
   final String spreadId;
   final String readerId;
-  final String question;
+  final String? question;
   final List<GenerateReadingCardRequest> cards;
 
   Map<String, dynamic> toMap() {

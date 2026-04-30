@@ -1,5 +1,6 @@
 import 'package:daily_tarot_focus/features/tarot/domain/models/fetch_all_cards_response_model.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/fetch_spreads_response_model.dart';
+import 'package:daily_tarot_focus/features/tarot/domain/models/generate_reading_request_model.dart';
 import 'package:mobile_boilerplate/common_dependencies.dart';
 
 class TarotSelectedReadingCard with EquatableMixin {
@@ -26,6 +27,14 @@ class TarotSelectedReadingCard with EquatableMixin {
       card: card ?? this.card,
       position: position ?? this.position,
       isReversed: isReversed ?? this.isReversed,
+    );
+  }
+
+  GenerateReadingCardRequest toCardRequest() {
+    return GenerateReadingCardRequest(
+      cardId: card.id,
+      positionIndex: positionIndex,
+      isReversed: isReversed,
     );
   }
 

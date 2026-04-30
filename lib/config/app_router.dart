@@ -15,6 +15,7 @@ import 'package:daily_tarot_focus/features/tarot/presentation/tarot_deck/pages/t
 import 'package:daily_tarot_focus/features/tarot/presentation/tarot_deck/pages/tarot_deck_page.dart';
 import 'package:daily_tarot_focus/features/tarot/presentation/tarot_reveal/pages/tarot_reveal_detail_page.dart';
 import 'package:daily_tarot_focus/features/tarot/presentation/tarot_reveal/pages/tarot_reveal_page.dart';
+import 'package:daily_tarot_focus/features/tarot/presentation/tarot_spread/pages/tarot_reading_answer_page.dart';
 import 'package:daily_tarot_focus/features/tarot/presentation/tarot_spread/pages/tarot_spread_loading_page.dart';
 import 'package:daily_tarot_focus/features/tarot/presentation/tarot_spread/pages/tarot_spread_step1_page.dart';
 import 'package:daily_tarot_focus/features/tarot/presentation/tarot_spread/pages/tarot_spread_step2_page.dart';
@@ -254,6 +255,16 @@ final appRouter = GoRouter(
       },
     ),
 
+    GoRoute(
+      path: AppRoutes.tarotReadingAnswer,
+      name: AppRoutes.tarotReadingAnswer,
+      pageBuilder: (context, state) {
+        return MaterialPage(
+          key: state.pageKey,
+          child: const TarotReadingAnswerPage(),
+        );
+      },
+    ),
     GoRoute(
       path: AppRoutes.tarotDailyDetail,
       name: AppRoutes.tarotDailyDetail,

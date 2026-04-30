@@ -74,7 +74,11 @@ class _TarotSpreadLoadingPageState extends State<TarotSpreadLoadingPage> {
           listenWhen: (previous, current) {
             return previous.hasGeneratedReadingSucceeded != current.hasGeneratedReadingSucceeded;
           },
-          listener: (context, state) {},
+          listener: (context, state) {
+            if (state.hasGeneratedReadingSucceeded) {
+              context.pushReplacementNamed(AppRoutes.tarotReadingAnswer);
+            }
+          },
         ),
       ],
       child: Scaffold(

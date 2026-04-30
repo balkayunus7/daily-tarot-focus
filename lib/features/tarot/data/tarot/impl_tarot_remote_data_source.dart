@@ -111,7 +111,7 @@ class ImplTarotRemoteDataSource implements ITarotRemoteDataSource {
     required GenerateReadingRequest request,
   }) async {
     final responseOrFail = await supabaseClient.secureInvoke(
-      route: GENERATE_READING,
+      route: ASK_QUESTION,
       method: HttpMethod.post,
       body: request.toMap(),
       session: request.session,

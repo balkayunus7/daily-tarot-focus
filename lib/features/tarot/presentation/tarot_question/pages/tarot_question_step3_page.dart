@@ -5,6 +5,7 @@ import 'package:daily_tarot_focus/core/util/text_style_helper.dart';
 import 'package:daily_tarot_focus/core/widgets/tarot_app_bar.dart';
 import 'package:daily_tarot_focus/features/tarot/bloc/tarot/tarot_bloc.dart';
 import 'package:daily_tarot_focus/features/tarot/bloc/tarot/tarot_state.dart';
+import 'package:daily_tarot_focus/features/tarot/domain/models/tarot_flow_type.dart';
 import 'package:daily_tarot_focus/features/tarot/presentation/tarot_question/widgets/spread_layout_card.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -64,7 +65,11 @@ class TarotQuestionStep3Page extends StatelessWidget {
                         spread: spread,
                         onTap: () async {
                           context.read<TarotBloc>().addSelectSpread(spread: spread);
-                          await context.push(AppRoutes.tarotQuestionStep4);
+                          if (state.flowType == TarotFlowType.threeCard) {
+                            await context.push(AppRoutes.tarotQuestionStep4);
+                          } else {
+                            await context.push(AppRoutes.tarotQuestionStep5);
+                          }
                         },
                       );
                     },

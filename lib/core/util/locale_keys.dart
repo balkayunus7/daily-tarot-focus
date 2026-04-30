@@ -12,6 +12,7 @@ abstract class  LocaleKeys {
   static const explore_page_spread_button = 'explore_page.spread_button';
   static const explore_page_ask_question_title = 'explore_page.ask_question_title';
   static const explore_page_ask_question_button = 'explore_page.ask_question_button';
+  static const explore_page_tarot_reading_desc = 'explore_page.tarot_reading_desc';
   static const explore_page_go_premium = 'explore_page.go_premium';
   static const explore_page_unlock_all_features = 'explore_page.unlock_all_features';
   static const explore_page_get_pro = 'explore_page.get_pro';

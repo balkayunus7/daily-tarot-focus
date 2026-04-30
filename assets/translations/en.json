@@ -9,11 +9,12 @@
         "spread_button": "Reveal Cards",
         "ask_question_title": "Seek your truth.",
         "ask_question_button": "Ask a Reader",
+        "tarot_reading_desc": "Focus on a question, pick cards",
         "go_premium": "Premium Wisdom",
         "unlock_all_features": "Infinite cosmic insights",
         "get_pro": "Get Pro",
-        "day_energy": "The universe's vibrant energy flows through you today.",
-        "moon_energy": "The Moon's mystical glow illuminates your path.",
+        "day_energy": "The universe flows through you today.",
+        "moon_energy": "The Moon illuminates your path.",
         "intuition_guide": "Dear {}, quiet your mind and listen to the cosmos."
     },
     "deck_page": {

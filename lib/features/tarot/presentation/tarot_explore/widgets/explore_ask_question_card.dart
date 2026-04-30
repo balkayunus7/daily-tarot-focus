@@ -10,7 +10,10 @@ class ExploreAskQuestionCard extends StatelessWidget {
     final colors = context.colors;
 
     return ScalingContainer(
-      onTap: () async => context.push(AppRoutes.tarotQuestionStep1),
+      onTap: () async {
+        context.read<TarotBloc>().addSetFlowType(flowType: TarotFlowType.otherSpreads);
+        await context.push(AppRoutes.tarotQuestionStep1);
+      },
       child: Container(
         width: double.infinity,
         height: cardHeight,

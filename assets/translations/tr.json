@@ -9,11 +9,12 @@
         "spread_button": "Kartları Keşfet",
         "ask_question_title": "Gerçeğini ara.",
         "ask_question_button": "Okuyucuya Sor",
+        "tarot_reading_desc": "Bir soruya odaklan,kartlarını seç",
         "go_premium": "Premium Bilgelik",
         "unlock_all_features": "Sonsuz kozmik içgörüler",
         "get_pro": "Pro Ol",
-        "day_energy": "Evrenin canlı enerjisi bugün seninle birlikte akıyor.",
-        "moon_energy": "Ay'ın mistik parıltısı bugün yolunu aydınlatıyor.",
+        "day_energy": "Bugün evrenin enerjisi seninle.",
+        "moon_energy": "Ay'ın ışığı yolunu aydınlatıyor.",
         "intuition_guide": "Sevgili {}, zihnini sustur ve evreni dinle."
     },
     "deck_page": {

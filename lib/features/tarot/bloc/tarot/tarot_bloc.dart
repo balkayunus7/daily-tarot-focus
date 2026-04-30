@@ -13,6 +13,7 @@ import 'package:daily_tarot_focus/features/tarot/domain/models/fetch_spreads_req
 import 'package:daily_tarot_focus/features/tarot/domain/models/fetch_spreads_response_model.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/generate_reading_request_model.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/record_daily_card_request_model.dart';
+import 'package:daily_tarot_focus/features/tarot/domain/models/tarot_flow_type.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/tarot_reading_model.dart';
 import 'package:mobile_boilerplate/common_dependencies.dart';
 import 'package:mobile_boilerplate/domain/auth/auth_session.dart';
@@ -46,6 +47,8 @@ class TarotBloc extends Bloc<TarotEvent, TarotState> {
           emit(state.copyWith(selectedReadingCards: event.cards));
         } else if (event is TarotGenerateReadingRequested) {
           await _onGenerateReadingRequested(event, emit);
+        } else if (event is TarotSetFlowType) {
+          emit(state.copyWith(flowType: event.flowType));
         } else if (event is TarotCacheCleared) {
           await _onCacheCleared(event, emit);
         }
@@ -84,6 +87,9 @@ class TarotBloc extends Bloc<TarotEvent, TarotState> {
 
   void addGenerateReadingRequested({required AuthSession session}) =>
       add(TarotGenerateReadingRequested(session: session));
+
+  void addSetFlowType({required TarotFlowType flowType}) =>
+      add(TarotSetFlowType(flowType: flowType));
 
   void addClearCache() => add(const TarotCacheCleared());
 

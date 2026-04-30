@@ -5,6 +5,7 @@ import 'package:daily_tarot_focus/core/util/text_style_helper.dart';
 import 'package:daily_tarot_focus/core/widgets/tarot_app_bar.dart';
 import 'package:daily_tarot_focus/features/tarot/bloc/tarot/tarot_bloc.dart';
 import 'package:daily_tarot_focus/features/tarot/bloc/tarot/tarot_state.dart';
+import 'package:daily_tarot_focus/features/tarot/domain/models/tarot_flow_type.dart';
 import 'package:daily_tarot_focus/features/tarot/presentation/tarot_question/widgets/question_reader_card.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -66,8 +67,21 @@ class TarotQuestionStep1Page extends StatelessWidget {
                             return ReaderCard(
                               reader: reader,
                               onTap: () async {
-                                context.read<TarotBloc>().addSelectReader(reader: reader);
-                                await context.push(AppRoutes.tarotQuestionStep2);
+                                final bloc =
+                                    context.read<TarotBloc>()..addSelectReader(reader: reader);
+                                if (state.flowType == TarotFlowType.threeCard) {
+                                  final threeCardCat =
+                                      state.spreadsOrEmpty
+                                          .asList()
+                                          .where((c) => c.id == 'cat_3_cards')
+                                          .firstOrNull;
+                                  if (threeCardCat != null) {
+                                    bloc.addSelectSpreadCategory(category: threeCardCat);
+                                  }
+                                  await context.push(AppRoutes.tarotQuestionStep3);
+                                } else {
+                                  await context.push(AppRoutes.tarotQuestionStep2);
+                                }
                               },
                             );
                           },

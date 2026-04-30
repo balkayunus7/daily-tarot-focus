@@ -38,7 +38,10 @@ class TarotQuestionStep2Page extends StatelessWidget {
       ),
       body: BlocBuilder<TarotBloc, TarotState>(
         builder: (context, state) {
-          final categories = state.spreadsOrEmpty;
+          final categories = state.spreadsOrEmpty
+              .asList()
+              .where((c) => c.id != 'cat_3_cards')
+              .toList();
 
           return SafeArea(
             child: SingleChildScrollView(
@@ -56,7 +59,7 @@ class TarotQuestionStep2Page extends StatelessWidget {
                   ListView.separated(
                     physics: const NeverScrollableScrollPhysics(),
                     shrinkWrap: true,
-                    itemCount: categories.size,
+                    itemCount: categories.length,
                     separatorBuilder: (context, index) => Sp.small.heightBox,
                     itemBuilder: (context, index) {
                       final categoryData = categories[index];

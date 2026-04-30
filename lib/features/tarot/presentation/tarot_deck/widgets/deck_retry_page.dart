@@ -18,7 +18,6 @@ class DeckRetryWidget extends StatelessWidget {
                 );
               },
               text: 'Load Cards',
-              width: 144,
               height: 40,
               textStyle: m10w600(context).copyWith(color: context.colors.textOnPrimary),
             ),

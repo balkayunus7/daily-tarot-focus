@@ -5,6 +5,7 @@ import 'package:daily_tarot_focus/features/tarot/domain/models/fetch_readers_res
 import 'package:daily_tarot_focus/features/tarot/domain/models/fetch_spreads_request_model.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/fetch_spreads_response_model.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/record_daily_card_request_model.dart';
+import 'package:daily_tarot_focus/features/tarot/domain/models/tarot_flow_type.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/tarot_reading_model.dart';
 import 'package:mobile_boilerplate/domain/auth/auth_session.dart';
 
@@ -109,6 +110,14 @@ final class TarotGenerateReadingRequested extends TarotEvent {
 
   @override
   List<Object?> get props => [session];
+}
+
+final class TarotSetFlowType extends TarotEvent {
+  const TarotSetFlowType({required this.flowType});
+  final TarotFlowType flowType;
+
+  @override
+  List<Object?> get props => [flowType];
 }
 
 final class TarotCacheCleared extends TarotEvent {

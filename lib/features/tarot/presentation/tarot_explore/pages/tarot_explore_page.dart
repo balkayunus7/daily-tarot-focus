@@ -12,6 +12,7 @@ import 'package:daily_tarot_focus/core/widgets/fancy_container.dart';
 import 'package:daily_tarot_focus/features/auth/domain/models/tarot_user.dart';
 import 'package:daily_tarot_focus/features/tarot/bloc/tarot/tarot_bloc.dart';
 import 'package:daily_tarot_focus/features/tarot/bloc/tarot/tarot_state.dart';
+import 'package:daily_tarot_focus/features/tarot/domain/models/tarot_flow_type.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
@@ -27,6 +28,7 @@ part '../widgets/explore_daily_card_cooldown.dart';
 part '../widgets/explore_feature_card.dart';
 part '../widgets/explore_header.dart';
 part '../widgets/explore_paywall_card.dart';
+part '../widgets/explore_three_card_flow_card.dart';
 
 class TarotExplorePage extends StatelessWidget {
   const TarotExplorePage({super.key});
@@ -37,46 +39,36 @@ class TarotExplorePage extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: colors.background,
-      body: BlocBuilder<AuthCubit, AuthState>(
-        buildWhen: (previous, current) => current.isAuthenticated,
-        builder: (context, state) {
-          final networkTime = context.networkNow();
-          final isPremium = state.userOrCrash.isSubscribed(networkTime: networkTime);
-
-          return SafeArea(
-            child: Padding(
-              padding: Sp.large.padAllR,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+      body: SafeArea(
+        child: SingleChildScrollView(
+          padding: Sp.large.padAllR,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const ExploreHeader(),
+              Sp.large.heightBox,
+              const ExploreThreeCardFlowCard(),
+              Sp.large.heightBox,
+              const ExploreAskQuestionCard(),
+              Sp.large.heightBox,
+              Text(LocaleKeys.explore_page_spiritual_guide.tr(), style: m15w600(context)),
+              Sp.medium.heightBox,
+              Row(
                 children: [
-                  const ExploreHeader(),
-                  Sp.large.heightBox,
-                  const ExploreAskQuestionCard(),
-                  Sp.large.heightBox,
-                  if (!isPremium) ...[
-                    const ExplorePaywallCard(),
-                    Sp.large.heightBox,
-                  ],
-                  Text(LocaleKeys.explore_page_spiritual_guide.tr(), style: m15w600(context)),
-                  Sp.medium.heightBox,
-                  Row(
-                    children: [
-                      const Expanded(child: ExploreDailyCardWithCooldown()),
-                      Sp.medium.widthBox,
-                      Expanded(
-                        child: ExploreFeatureCard(
-                          title: LocaleKeys.explore_page_deck.tr(),
-                          imagePath: TarotAppAssets.libraryHttp,
-                          onTap: () => context.push(AppRoutes.tarotDeck),
-                        ),
-                      ),
-                    ],
+                  const Expanded(child: ExploreDailyCardWithCooldown()),
+                  Sp.medium.widthBox,
+                  Expanded(
+                    child: ExploreFeatureCard(
+                      title: LocaleKeys.explore_page_deck.tr(),
+                      imagePath: TarotAppAssets.libraryHttp,
+                      onTap: () => context.push(AppRoutes.tarotDeck),
+                    ),
                   ),
                 ],
               ),
-            ),
-          );
-        },
+            ],
+          ),
+        ),
       ),
     );
   }

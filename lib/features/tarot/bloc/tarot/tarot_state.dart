@@ -3,6 +3,7 @@ import 'package:daily_tarot_focus/features/tarot/domain/models/fetch_readers_res
 import 'package:daily_tarot_focus/features/tarot/domain/models/fetch_spreads_response_model.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/generate_reading_response_model.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/tarot_category_enum.dart';
+import 'package:daily_tarot_focus/features/tarot/domain/models/tarot_flow_type.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/tarot_reading_model.dart';
 import 'package:mobile_boilerplate/common_dependencies.dart';
 import 'package:mobile_boilerplate/domain/common/failure.dart';
@@ -30,6 +31,7 @@ class TarotState extends Equatable {
     required this.isGeneratingReading,
     required this.fetchFailureOrGenerateReading,
     required this.clearCacheFailureOrUnit,
+    required this.flowType,
   });
 
   factory TarotState.initial() {
@@ -54,6 +56,7 @@ class TarotState extends Equatable {
       isGeneratingReading: false,
       fetchFailureOrGenerateReading: none(),
       clearCacheFailureOrUnit: none(),
+      flowType: TarotFlowType.threeCard,
     );
   }
 
@@ -77,6 +80,7 @@ class TarotState extends Equatable {
   final Option<FailureOr<GenerateReadingResponse>> fetchFailureOrGenerateReading;
   final bool isGeneratingReading;
   final Option<FailureOr<Unit>> clearCacheFailureOrUnit;
+  final TarotFlowType flowType;
 
   // ALL CARDS GETTERS
   KtList<TarotCardModel> get allCardsOrEmpty =>
@@ -191,6 +195,7 @@ class TarotState extends Equatable {
     bool? isGeneratingReading,
     Option<FailureOr<GenerateReadingResponse>>? fetchFailureOrGenerateReading,
     Option<FailureOr<Unit>>? clearCacheFailureOrUnit,
+    TarotFlowType? flowType,
   }) {
     return TarotState(
       fetchFailureOrDailyCards: fetchFailureOrDailyCards ?? this.fetchFailureOrDailyCards,
@@ -217,6 +222,7 @@ class TarotState extends Equatable {
       fetchFailureOrGenerateReading:
           fetchFailureOrGenerateReading ?? this.fetchFailureOrGenerateReading,
       clearCacheFailureOrUnit: clearCacheFailureOrUnit ?? this.clearCacheFailureOrUnit,
+      flowType: flowType ?? this.flowType,
     );
   }
 
@@ -242,5 +248,6 @@ class TarotState extends Equatable {
     isGeneratingReading,
     fetchFailureOrGenerateReading,
     clearCacheFailureOrUnit,
+    flowType,
   ];
 }

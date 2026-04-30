@@ -42,24 +42,16 @@ class _DeckCard extends StatelessWidget {
     return BlocBuilder<AuthCubit, AuthState>(
       buildWhen: (previous, current) => current.isAuthenticated,
       builder: (context, state) {
-        final networkTime = context.networkNow();
-        final isSubscribed = state.userOrCrash.isSubscribed(networkTime: networkTime);
-        final showLock = isPremium && !isSubscribed;
-
         return Column(
           mainAxisSize: MainAxisSize.min,
           children: [
             Expanded(
               child: ScalingContainer(
                 onTap: () async {
-                  if (showLock) {
-                    await context.push(AppRoutes.subscriptionPaywall);
-                  } else {
-                    await context.pushNamed(
-                      AppRoutes.tarotDeckDetail,
-                      pathParameters: {'tarotId': card.id},
-                    );
-                  }
+                  await context.pushNamed(
+                    AppRoutes.tarotDeckDetail,
+                    pathParameters: {'tarotId': card.id},
+                  );
                 },
                 child: Stack(
                   fit: StackFit.expand,
@@ -74,38 +66,6 @@ class _DeckCard extends StatelessWidget {
                         child: CustomCacheNetworkImage(imageUrl: card.imageUrl, fit: BoxFit.cover),
                       ),
                     ),
-                    if (showLock) ...[
-                      ClipRRect(
-                        borderRadius: Sp.tiny.radiusR,
-                        child: Container(
-                          decoration: BoxDecoration(
-                            color: context.colors.overlay,
-                            borderRadius: Sp.tiny.radiusR,
-                          ),
-                        ),
-                      ),
-                      Positioned(
-                        top: 8,
-                        right: 8,
-                        child: Container(
-                          padding: Sp.tiny.padAllR,
-                          decoration: BoxDecoration(
-                            color: context.colors.secondary,
-                            borderRadius: Sp.xsmall.radiusR,
-                            boxShadow: context.colors.primary.mediumShadow,
-                          ),
-                          child: SvgPicture.asset(
-                            TarotAppAssets.crown.path,
-                            width: Sp.small,
-                            height: Sp.small,
-                            colorFilter: ColorFilter.mode(
-                              colors.textOnPrimary.withValues(alpha: 0.5),
-                              BlendMode.srcIn,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
                   ],
                 ),
               ),

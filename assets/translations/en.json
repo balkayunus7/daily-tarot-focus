@@ -254,6 +254,21 @@
         "week": "{price} / week",
         "year": "{price} / year"
     },
+    "tarot_reading": {
+        "title": "Your Reading",
+        "tab_spread": "SPREAD",
+        "tab_cards": "CARDS",
+        "tab_notes": "NOTES",
+        "save": "Save",
+        "general_reading": "General Reading",
+        "your_question": "Your Question",
+        "notes_title": "Personal Notes",
+        "notes_placeholder": "Enter your notes about this spread\n(maximum 360 characters)",
+        "upright": "Upright",
+        "reversed": "Reversed",
+        "spread_label": "SPREAD",
+        "card_label": "Card {}"
+    },
     "tarot_shuffle": {
         "step_5_of_5": "5 / 5",
         "tip_1_title": "Clear mind",

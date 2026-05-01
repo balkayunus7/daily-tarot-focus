@@ -7,8 +7,8 @@ class GenerateReadingRequest with EquatableMixin {
     required this.spreadCategoryId,
     required this.spreadId,
     required this.readerId,
-    this.question,
     required this.cards,
+    this.question,
   });
 
   final AuthSession session;

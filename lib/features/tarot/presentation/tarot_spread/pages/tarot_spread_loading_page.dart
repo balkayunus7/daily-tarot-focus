@@ -61,7 +61,7 @@ class _TarotSpreadLoadingPageState extends State<TarotSpreadLoadingPage> {
       listeners: [
         BlocListener<TarotBloc, TarotState>(
           listenWhen: (previous, current) {
-            return previous.hasGeneratedReadingFailed != current.hasGeneratedReadingFailed;
+            return !previous.hasGeneratedReadingFailed && current.hasGeneratedReadingFailed;
           },
           listener: (context, state) {
             ScaffoldMessenger.of(context).showSnackBar(
@@ -72,7 +72,7 @@ class _TarotSpreadLoadingPageState extends State<TarotSpreadLoadingPage> {
         ),
         BlocListener<TarotBloc, TarotState>(
           listenWhen: (previous, current) {
-            return previous.hasGeneratedReadingSucceeded != current.hasGeneratedReadingSucceeded;
+            return !previous.hasGeneratedReadingSucceeded && current.hasGeneratedReadingSucceeded;
           },
           listener: (context, state) {
             if (state.hasGeneratedReadingSucceeded) {

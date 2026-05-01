@@ -360,11 +360,13 @@ class _NextButton extends StatelessWidget {
       child: ValueListenableBuilder<int>(
         valueListenable: charCount,
         builder:
-            (_, count, _) => FancyButton(
-              onTap: onTap,
-              text: LocaleKeys.common_next.tr(),
-              isDisabled: count == 0,
+            (_, count, _) => Padding(
               padding: Sp.screen.padXR,
+              child: FancyButton(
+                onTap: onTap,
+                text: LocaleKeys.common_next.tr(),
+                isDisabled: count == 0,
+              ),
             ),
       ),
     );

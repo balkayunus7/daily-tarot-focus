@@ -255,6 +255,21 @@
         "week": "{price} / hafta",
         "year": "{price} / yıl"
     },
+    "tarot_reading": {
+        "title": "Yorumlamanız",
+        "tab_spread": "AÇILIM",
+        "tab_cards": "KARTLAR",
+        "tab_notes": "NOTLAR",
+        "save": "Kaydet",
+        "general_reading": "Genel Yorum",
+        "your_question": "Sorunuz",
+        "notes_title": "Kişisel Notlar",
+        "notes_placeholder": "Bu açılım hakkındaki notlarınızı girin\n(maksimum 350 karakter)",
+        "upright": "Düz",
+        "reversed": "Ters",
+        "spread_label": "AÇILIM",
+        "card_label": "Kart {}"
+    },
     "tarot_shuffle": {
         "step_5_of_5": "5 / 5",
         "tip_1_title": "Zihnini boşalt",

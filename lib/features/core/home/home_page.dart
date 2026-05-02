@@ -1,7 +1,8 @@
-import 'package:daily_tarot_focus/core/util/haptic_feedback_helper.dart';
+import 'package:daily_tarot_focus/features/core/home/helpers/home_page_mixin.dart';
+import 'package:daily_tarot_focus/features/core/home/helpers/home_page_scope.dart';
 import 'package:daily_tarot_focus/features/core/home/home_bottom_navbar.dart';
 import 'package:daily_tarot_focus/features/core/settings/settings_page.dart';
-import 'package:daily_tarot_focus/features/tarot/presentation/tarot_daily/page/tarot_daily_page.dart';
+import 'package:daily_tarot_focus/features/tarot/presentation/tarot_reading/pages/tarot_reading_page.dart';
 import 'package:daily_tarot_focus/features/tarot/presentation/tarot_explore/pages/tarot_explore_page.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile_boilerplate/presentation/routing/route_arguments.dart';
@@ -31,61 +32,24 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage>
-    with RouteAwareAnalyticsMixin, RouteAwareAnalyticsPageParamsMixin {
-  late PageController pageController;
-  int currentIndex = 0;
-
-  Future<void> _onBottomNavigationBarTap(int index) async {
-    await HapticFeedbackHelper.selectionClick();
-    setState(() {
-      currentIndex = index;
-    });
-    pageController.jumpToPage(index);
-  }
-
-  @override
-  void initState() {
-    super.initState();
-
-    final initialTab = widget.arguments.initialTabIndex;
-    pageController = PageController(initialPage: initialTab);
-    currentIndex = initialTab;
-  }
-
-  @override
-  void didUpdateWidget(covariant HomePage oldWidget) {
-    super.didUpdateWidget(oldWidget);
-
-    final newArgs = widget.arguments;
-    final oldArgs = oldWidget.arguments;
-
-    var shouldJump = false;
-    if (newArgs.forceUpdateKey != null && newArgs.forceUpdateKey != oldArgs.forceUpdateKey) {
-      shouldJump = true;
-    } else if (newArgs.initialTabIndex != oldArgs.initialTabIndex) {
-      shouldJump = true;
-    }
-
-    if (shouldJump && currentIndex != newArgs.initialTabIndex) {
-      setState(() {
-        currentIndex = newArgs.initialTabIndex;
-      });
-      if (pageController.hasClients) {
-        pageController.jumpToPage(currentIndex);
-      }
-    }
-  }
-
+    with HomePageMixin, RouteAwareAnalyticsMixin, RouteAwareAnalyticsPageParamsMixin {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: PageView(
-        physics: const NeverScrollableScrollPhysics(),
-        controller: pageController,
-        children: const [TarotExplorePage(), TarotDailyPage(), SettingsPage()],
-      ),
-      bottomNavigationBar: SafeArea(
-        child: HomeBottomNavbar(currentIndex: currentIndex, onTap: _onBottomNavigationBarTap),
+    return HomePageScope(
+      state: this,
+      child: Scaffold(
+        body: PageView(
+          physics: const NeverScrollableScrollPhysics(),
+          controller: pageController,
+          children: [
+            const TarotExplorePage(),
+            TarotReadingPage(onNavbarTap: () => onNavbarTap(0)),
+            const SettingsPage(),
+          ],
+        ),
+        bottomNavigationBar: SafeArea(
+          child: HomeBottomNavbar(currentIndex: currentIndex, onTap: onNavbarTap),
+        ),
       ),
     );
   }

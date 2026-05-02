@@ -251,6 +251,7 @@ abstract class LocaleKeys {
   static const tarot_reading_reversed = 'tarot_reading.reversed';
   static const tarot_reading_spread_label = 'tarot_reading.spread_label';
   static const tarot_reading_card_label = 'tarot_reading.card_label';
+  static const tarot_reading_no_notes = 'tarot_reading.no_notes';
   static const tarot_reading = 'tarot_reading';
   static const tarot_shuffle_step_5_of_5 = 'tarot_shuffle.step_5_of_5';
   static const tarot_shuffle_tip_1_title = 'tarot_shuffle.tip_1_title';

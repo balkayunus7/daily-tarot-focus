@@ -9,7 +9,7 @@ class ExploreAskQuestionCard extends StatelessWidget {
 
     return ScalingContainer(
       onTap: () async {
-        context.read<TarotBloc>().addSetFlowType(flowType: TarotFlowType.threeCard);
+        context.read<TarotBloc>().addReadingFlowReset(flowType: TarotFlowType.threeCard);
         await context.push(AppRoutes.tarotQuestionStep1);
       },
       child: Container(

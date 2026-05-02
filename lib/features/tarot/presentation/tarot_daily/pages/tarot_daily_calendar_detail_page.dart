@@ -4,8 +4,8 @@ import 'package:daily_tarot_focus/features/tarot/domain/models/fetch_all_cards_r
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-class TarotDailyDetailPage extends StatelessWidget {
-  const TarotDailyDetailPage({required this.tarot, super.key});
+class TarotDailyCalendarDetailPage extends StatelessWidget {
+  const TarotDailyCalendarDetailPage({required this.tarot, super.key});
   final TarotCardModel tarot;
 
   @override

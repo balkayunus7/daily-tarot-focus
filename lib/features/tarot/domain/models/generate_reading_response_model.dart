@@ -53,6 +53,14 @@ class CardInterpretationModel with EquatableMixin {
   final bool isReversed;
   final String interpretation;
 
+  Map<String, dynamic> toMap() => {
+    'position_index': positionIndex,
+    'card_id': cardId,
+    'card_name': cardName,
+    'is_reversed': isReversed,
+    'interpretation': interpretation,
+  };
+
   @override
   List<Object?> get props => [positionIndex, cardId, cardName, isReversed, interpretation];
 }

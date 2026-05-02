@@ -170,10 +170,10 @@
         "prefer_not_to_say": "Geç"
     },
     "tarot_daily": {
-        "title": "Günlük Tarot",
-        "subtitle": "YOLCULUĞUN",
-        "error_desc": "Enerjiler dağıldı. Tekrar dene.",
-        "empty_desc": "İlk kartını çek.",
+        "title": "Okumalarım",
+        "subtitle": "KAYDEDİLENLER",
+        "error_desc": "Yüklenemedi. Tekrar dene.",
+        "empty_desc": "İlk okumanı kaydet.",
         "all_time": "Tümü",
         "last_week": "Son Hafta",
         "last_month": "Son Ay",
@@ -271,7 +271,8 @@
         "upright": "Düz",
         "reversed": "Ters",
         "spread_label": "AÇILIM",
-        "card_label": "Kart {}"
+        "card_label": "Kart {}",
+        "no_notes": "Kişisel not eklenmedi."
     },
     "tarot_shuffle": {
         "step_5_of_5": "5 / 5",

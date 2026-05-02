@@ -1,13 +1,12 @@
-part of '../page/tarot_daily_page.dart';
+part of '../pages/tarot_reading_page.dart';
 
-class DailyHeader extends StatelessWidget {
-  const DailyHeader({required this.showFilterSheet, super.key});
-  final VoidCallback showFilterSheet;
+class ReadingHeader extends StatelessWidget {
+  const ReadingHeader({super.key});
 
   @override
   Widget build(BuildContext context) {
     final colors = context.colors;
-
+    final scope = ReadingPageScope.of(context).state;
     return Padding(
       padding: Sp.large.padAllR,
       child: Row(
@@ -25,13 +24,13 @@ class DailyHeader extends StatelessWidget {
             ],
           ),
           ScalingContainer(
-            onTap: showFilterSheet,
+            onTap: scope.showFilterBottomSheet,
             child: FancyContainer(
               width: Sp.xxxlarge.w,
               height: Sp.xxxlarge.h,
               borderRadius: 100,
-              color: context.colors.primary.withValues(alpha: 0.5),
-              child: Center(child: Icon(Icons.filter_list, color: context.colors.textOnPrimary)),
+              color: colors.primary.withValues(alpha: 0.5),
+              child: Center(child: Icon(Icons.filter_list, color: colors.textOnPrimary)),
             ),
           ),
         ],

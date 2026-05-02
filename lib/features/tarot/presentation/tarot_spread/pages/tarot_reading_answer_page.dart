@@ -7,50 +7,78 @@ import 'package:daily_tarot_focus/core/util/text_style_helper.dart';
 import 'package:daily_tarot_focus/core/widgets/custom_cache_network_image.dart';
 import 'package:daily_tarot_focus/core/widgets/fancy_button.dart';
 import 'package:daily_tarot_focus/core/widgets/tarot_app_bar.dart';
+import 'package:daily_tarot_focus/features/core/home/home_page.dart';
 import 'package:daily_tarot_focus/features/tarot/bloc/tarot/tarot_bloc.dart';
 import 'package:daily_tarot_focus/features/tarot/bloc/tarot/tarot_state.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/fetch_spreads_response_model.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/generate_reading_response_model.dart';
-import 'package:daily_tarot_focus/features/tarot/domain/models/save_reading_request_model.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/tarot_reading_model.dart';
+import 'package:daily_tarot_focus/features/tarot/presentation/tarot_spread/helpers/answer_page_mixin.dart';
+import 'package:daily_tarot_focus/features/tarot/presentation/tarot_spread/helpers/answer_page_scope.dart';
 import 'package:daily_tarot_focus/features/tarot/presentation/tarot_spread/widgets/spread_layout_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
-import 'package:mobile_boilerplate/application/auth/auth_cubit.dart';
 import 'package:mobile_boilerplate/common_dependencies.dart';
 import 'package:mobile_boilerplate/presentation/extensions/build_context_theme_ext.dart';
 
-class TarotReadingAnswerPage extends StatelessWidget {
+class TarotReadingAnswerPage extends StatefulWidget {
   const TarotReadingAnswerPage({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return BlocBuilder<TarotBloc, TarotState>(
-      builder: (context, state) {
-        final response = state.generateReadingResponseOrNull;
-        final spread = state.selectedSpread;
-        if (response == null || spread == null) return const SizedBox.shrink();
+  State<TarotReadingAnswerPage> createState() => _TarotReadingAnswerPageState();
+}
 
-        return PopScope(
-          canPop: false,
-          child: DefaultTabController(
-            length: 3,
-            child: _AnswerScaffold(
-              response: response,
-              spread: spread,
-              cards: state.selectedReadingCards,
-              question: state.selectedQuestion,
-            ),
-          ),
-        );
-      },
+class _TarotReadingAnswerPageState extends State<TarotReadingAnswerPage> with AnswerPageMixin {
+  @override
+  Widget build(BuildContext context) {
+    return AnswerPageScope(
+      state: this,
+      child: BlocListener<TarotBloc, TarotState>(
+        listenWhen:
+            (prev, curr) =>
+                (!prev.hasSaveReadingSucceeded && curr.hasSaveReadingSucceeded) ||
+                (!prev.hasSaveReadingFailed && curr.hasSaveReadingFailed),
+        listener: (context, state) {
+          if (state.hasSaveReadingSucceeded) {
+            context.go(
+              AppRoutes.tarotExplore,
+              extra: HomePageArguments(context, initialTabIndex: 1),
+            );
+          } else if (state.hasSaveReadingFailed) {
+            if (!mounted) return;
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(content: Text(LocaleKeys.tarot_reading_save_error.tr())),
+            );
+          }
+        },
+        child: BlocBuilder<TarotBloc, TarotState>(
+          builder: (context, state) {
+            final response = state.generateReadingResponseOrNull;
+            final spread = state.selectedSpread;
+            if (response == null || spread == null) return const SizedBox.shrink();
+
+            return PopScope(
+              canPop: false,
+              child: DefaultTabController(
+                length: 3,
+                child: _AnswerContent(
+                  response: response,
+                  spread: spread,
+                  cards: state.selectedReadingCards,
+                  question: state.selectedQuestion,
+                ),
+              ),
+            );
+          },
+        ),
+      ),
     );
   }
 }
 
-class _AnswerScaffold extends StatefulWidget {
-  const _AnswerScaffold({
+class _AnswerContent extends StatelessWidget {
+  const _AnswerContent({
     required this.response,
     required this.spread,
     required this.cards,
@@ -62,111 +90,66 @@ class _AnswerScaffold extends StatefulWidget {
   final String? question;
 
   @override
-  State<_AnswerScaffold> createState() => _AnswerScaffoldState();
-}
-
-class _AnswerScaffoldState extends State<_AnswerScaffold> {
-  final TextEditingController _notesController = TextEditingController();
-
-  @override
-  void dispose() {
-    _notesController.dispose();
-    super.dispose();
-  }
-
-  void _onSave(BuildContext context) {
-    final session = context.read<AuthCubit>().state.sessionOrCrash;
-    context.read<TarotBloc>().addSaveReadingRequested(
-      request: SaveReadingRequest(
-        session: session,
-        readingId: widget.response.id,
-        note: _notesController.text.trim().isEmpty ? null : _notesController.text.trim(),
-      ),
-    );
-  }
-
-  @override
   Widget build(BuildContext context) {
     final colors = context.colors;
 
-    return BlocListener<TarotBloc, TarotState>(
-      listenWhen:
-          (prev, curr) =>
-              !prev.hasSaveReadingSucceeded && curr.hasSaveReadingSucceeded ||
-              !prev.hasSaveReadingFailed && curr.hasSaveReadingFailed,
-      listener: (context, state) {
-        if (state.hasSaveReadingSucceeded) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text(LocaleKeys.tarot_reading_save_success.tr())),
-          );
-        } else if (state.hasSaveReadingFailed) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text(LocaleKeys.tarot_reading_save_error.tr())),
-          );
-        }
-      },
-      child: Scaffold(
-        backgroundColor: colors.background,
-        appBar: PreferredSize(
-          preferredSize: const Size.fromHeight(kToolbarHeight + Sp.xxxlarge),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              TarotAppBar(
-                backIcon: Icons.close,
-                onBackIconTap: () => context.go(AppRoutes.tarotExplore),
-                titleWidget: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [Text(LocaleKeys.tarot_reading_title.tr(), style: m16w700(context))],
-                ),
-                subsWidget: BlocBuilder<TarotBloc, TarotState>(
-                  buildWhen:
-                      (prev, curr) =>
-                          prev.isSavingReading != curr.isSavingReading ||
-                          prev.hasSaveReadingSucceeded != curr.hasSaveReadingSucceeded,
-                  builder:
-                      (context, state) => FancyButton(
-                        onTap: () => _onSave(context),
-                        isLoading: state.isSavingReading,
-                        isDisabled: state.hasSaveReadingSucceeded,
-                        height: 32.h,
-                        width: 72.w,
-                        text:
-                            state.hasSaveReadingSucceeded
-                                ? LocaleKeys.tarot_reading_saved.tr()
-                                : LocaleKeys.tarot_reading_save.tr(),
-                        textStyle: m12w600(context).copyWith(color: colors.textOnPrimary),
-                      ),
-                ),
-              ),
-              TabBar(
-                indicatorColor: colors.primary,
-                indicatorSize: TabBarIndicatorSize.label,
-                labelColor: colors.textPrimary,
-                unselectedLabelColor: colors.textSecondary.withValues(alpha: 0.5),
-                labelStyle: m11w500(context).copyWith(letterSpacing: 1),
-                unselectedLabelStyle: m11w500(context).copyWith(letterSpacing: 1),
-                tabs: [
-                  Tab(text: LocaleKeys.tarot_reading_tab_spread.tr()),
-                  Tab(text: LocaleKeys.tarot_reading_tab_cards.tr()),
-                  Tab(text: LocaleKeys.tarot_reading_tab_notes.tr()),
+    return Scaffold(
+      backgroundColor: colors.background,
+      appBar: PreferredSize(
+        preferredSize: const Size.fromHeight(kToolbarHeight + Sp.xxxlarge),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            TarotAppBar(
+              backIcon: Icons.close,
+              onBackIconTap: () => context.go(AppRoutes.tarotExplore),
+              titleWidget: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(LocaleKeys.tarot_reading_title.tr(), style: m16w700(context)),
                 ],
               ),
-            ],
-          ),
-        ),
-        body: TabBarView(
-          children: [
-            _SpreadTab(
-              response: widget.response,
-              cards: widget.cards,
-              spread: widget.spread,
-              question: widget.question,
+              subsWidget: BlocBuilder<TarotBloc, TarotState>(
+                buildWhen:
+                    (prev, curr) =>
+                        prev.isSavingReading != curr.isSavingReading ||
+                        prev.hasSaveReadingSucceeded != curr.hasSaveReadingSucceeded,
+                builder: (context, state) {
+                  return FancyButton(
+                    onTap: AnswerPageScope.of(context).state.onSave,
+                    isLoading: state.isSavingReading,
+                    isDisabled: state.hasSaveReadingSucceeded,
+                    indicatorSize: 20.w,
+                    height: 32.h,
+                    width: 72.w,
+                    text: LocaleKeys.tarot_reading_save.tr(),
+                    textStyle: m12w600(context).copyWith(color: colors.textOnPrimary),
+                  );
+                },
+              ),
             ),
-            _CardsTab(cards: widget.cards, spread: widget.spread),
-            _NotesTab(controller: _notesController),
+            TabBar(
+              indicatorColor: colors.primary,
+              indicatorSize: TabBarIndicatorSize.label,
+              labelColor: colors.textPrimary,
+              unselectedLabelColor: colors.textSecondary.withValues(alpha: 0.5),
+              labelStyle: m11w500(context).copyWith(letterSpacing: 1),
+              unselectedLabelStyle: m11w500(context).copyWith(letterSpacing: 1),
+              tabs: [
+                Tab(text: LocaleKeys.tarot_reading_tab_spread.tr()),
+                Tab(text: LocaleKeys.tarot_reading_tab_cards.tr()),
+                Tab(text: LocaleKeys.tarot_reading_tab_notes.tr()),
+              ],
+            ),
           ],
         ),
+      ),
+      body: TabBarView(
+        children: [
+          _SpreadTab(response: response, cards: cards, spread: spread, question: question),
+          _CardsTab(cards: cards, spread: spread),
+          const _NotesTab(),
+        ],
       ),
     );
   }
@@ -190,12 +173,7 @@ class _SpreadTab extends StatelessWidget {
     final sorted = [...cards]..sort((a, b) => a.positionIndex.compareTo(b.positionIndex));
 
     return ListView(
-      padding: EdgeInsets.fromLTRB(
-        Sp.screen.w,
-        Sp.large.h,
-        Sp.screen.w,
-        Sp.xxxlarge.h,
-      ),
+      padding: EdgeInsets.fromLTRB(Sp.screen.w, Sp.large.h, Sp.screen.w, Sp.xxxlarge.h),
       children: [
         if (question != null && question!.isNotEmpty) ...[
           _QuestionSection(question: question!),
@@ -234,7 +212,6 @@ class _QuestionSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colors = context.colors;
-
     return Container(
       width: double.infinity,
       padding: Sp.medium.padAllR,
@@ -259,17 +236,13 @@ class _QuestionSection extends StatelessWidget {
 }
 
 class _CardInterpretationItem extends StatelessWidget {
-  const _CardInterpretationItem({
-    required this.card,
-    required this.interpretation,
-  });
+  const _CardInterpretationItem({required this.card, required this.interpretation});
   final TarotSelectedReadingCard card;
   final CardInterpretationModel? interpretation;
 
   @override
   Widget build(BuildContext context) {
     final colors = context.colors;
-
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -323,7 +296,10 @@ class _CardInterpretationItem extends StatelessWidget {
               if (card.position.title.isNotEmpty)
                 Text(
                   card.position.title.toUpperCase(),
-                  style: m10w500(context).copyWith(color: colors.textSecondary, letterSpacing: 1.2),
+                  style: m10w500(context).copyWith(
+                    color: colors.textSecondary,
+                    letterSpacing: 1.2,
+                  ),
                 ),
               Sp.tiny.heightBox,
               Row(
@@ -337,10 +313,7 @@ class _CardInterpretationItem extends StatelessWidget {
               Text(
                 interpretation?.interpretation ??
                     (card.isReversed ? card.card.reversed.general : card.card.upright.general),
-                style: m12w400(context).copyWith(
-                  color: colors.textSecondary,
-                  height: 1.5,
-                ),
+                style: m12w400(context).copyWith(color: colors.textSecondary, height: 1.5),
               ),
             ],
           ),
@@ -378,7 +351,6 @@ class _GeneralInterpretationSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colors = context.colors;
-
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -387,7 +359,10 @@ class _GeneralInterpretationSection extends StatelessWidget {
             Container(
               width: Sp.tiny,
               height: Sp.large,
-              decoration: BoxDecoration(color: colors.primary, borderRadius: Sp.tiny.radiusR),
+              decoration: BoxDecoration(
+                color: colors.primary,
+                borderRadius: Sp.tiny.radiusR,
+              ),
             ),
             Sp.xsmall.widthBox,
             Text(LocaleKeys.tarot_reading_general_reading.tr(), style: m16w700(context)),
@@ -436,7 +411,6 @@ class _SpreadInfoCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colors = context.colors;
-
     return Container(
       width: double.infinity,
       padding: EdgeInsets.symmetric(horizontal: Sp.large.w, vertical: Sp.large.h),
@@ -459,17 +433,10 @@ class _SpreadInfoCard extends StatelessWidget {
             style: m10w500(context).copyWith(color: colors.textSecondary, letterSpacing: 2),
           ),
           Sp.tiny.heightBox,
-          Text(
-            spread.title,
-            style: m18w700(context),
-            textAlign: TextAlign.center,
-          ),
+          Text(spread.title, style: m18w700(context), textAlign: TextAlign.center),
           if (spread.description.isNotEmpty) ...[
             Sp.small.heightBox,
-            Text(
-              '• • •',
-              style: m12w400(context).copyWith(color: colors.textSecondary),
-            ),
+            Text('• • •', style: m12w400(context).copyWith(color: colors.textSecondary)),
             Sp.small.heightBox,
             Text(
               spread.description,
@@ -490,7 +457,6 @@ class _CardsCardRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colors = context.colors;
-
     return Container(
       padding: EdgeInsets.all(Sp.medium.w),
       decoration: BoxDecoration(
@@ -521,10 +487,7 @@ class _CardsCardRow extends StatelessWidget {
                   style: m12w600(context).copyWith(color: colors.textSecondary),
                 ),
                 Sp.xsmall.heightBox,
-                Text(
-                  card.position.question,
-                  style: m12w400(context).copyWith(height: 1.4),
-                ),
+                Text(card.position.question, style: m12w400(context).copyWith(height: 1.4)),
               ],
             ),
           ),
@@ -535,8 +498,7 @@ class _CardsCardRow extends StatelessWidget {
 }
 
 class _NotesTab extends StatefulWidget {
-  const _NotesTab({required this.controller});
-  final TextEditingController controller;
+  const _NotesTab();
 
   @override
   State<_NotesTab> createState() => _NotesTabState();
@@ -550,6 +512,7 @@ class _NotesTabState extends State<_NotesTab> with AutomaticKeepAliveClientMixin
   Widget build(BuildContext context) {
     super.build(context);
     final colors = context.colors;
+    final controller = AnswerPageScope.of(context).state.notesController;
 
     return Padding(
       padding: EdgeInsets.fromLTRB(Sp.screen.w, Sp.large.h, Sp.screen.w, Sp.xxxlarge.h),
@@ -566,12 +529,9 @@ class _NotesTabState extends State<_NotesTab> with AutomaticKeepAliveClientMixin
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  LocaleKeys.tarot_reading_notes_title.tr(),
-                  style: m14w700(context),
-                ),
+                Text(LocaleKeys.tarot_reading_notes_title.tr(), style: m14w700(context)),
                 TextField(
-                  controller: widget.controller,
+                  controller: controller,
                   minLines: 10,
                   maxLines: 10,
                   maxLength: 360,

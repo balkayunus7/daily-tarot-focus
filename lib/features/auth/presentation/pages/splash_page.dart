@@ -6,6 +6,7 @@ import 'package:daily_tarot_focus/features/auth/presentation/widgets/splash_view
 import 'package:daily_tarot_focus/features/tarot/bloc/tarot/tarot_bloc.dart';
 import 'package:daily_tarot_focus/features/tarot/bloc/tarot/tarot_state.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/fetch_daily_cards_request_model.dart';
+import 'package:daily_tarot_focus/features/tarot/domain/models/fetch_saved_readings_request_model.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:lottie/lottie.dart';
@@ -39,19 +40,29 @@ class _SplashPageState extends State<SplashPage>
     return Scaffold(
       body: MultiBlocListener(
         listeners: [
+          // 3. Saved readings done → navigate
           BlocListener<TarotBloc, TarotState>(
-            listenWhen: (previous, current) {
-              return (previous.isSettingUpAccount != current.isSettingUpAccount) &&
-                  current.hasAccountSetupCompleted;
-            },
+            listenWhen: (prev, curr) =>
+                prev.isFetchingSavedReadings && !curr.isFetchingSavedReadings,
             listener: (context, state) {
               context.go(AppRoutes.tarotExplore);
             },
           ),
+          // 2. Daily cards done → fetch saved readings
           BlocListener<TarotBloc, TarotState>(
-            listenWhen: (previous, current) {
-              return (previous.hasAccountSetupCompleted != current.hasAccountSetupCompleted);
+            listenWhen: (prev, curr) =>
+                prev.isFetchingDailyCards && !curr.isFetchingDailyCards,
+            listener: (context, state) {
+              final session = context.read<AuthCubit>().state.sessionOrCrash;
+              context.read<TarotBloc>().addFetchSavedReadingsRequested(
+                request: FetchSavedReadingsRequest(session: session),
+              );
             },
+          ),
+          // 1. Setup done → fetch daily cards
+          BlocListener<TarotBloc, TarotState>(
+            listenWhen: (prev, curr) =>
+                prev.isSettingUpAccount && !curr.isSettingUpAccount && curr.hasAccountSetupCompleted,
             listener: (context, state) {
               final session = context.read<AuthCubit>().state.sessionOrCrash;
               context.read<TarotBloc>().addFetchDailyCardsRequested(
@@ -59,16 +70,17 @@ class _SplashPageState extends State<SplashPage>
               );
             },
           ),
+          // Auth → setup
           BlocListener<AuthCubit, AuthState>(
             listenWhen: (previous, current) {
               return current.isAuthenticated && (previous.isInitial || !previous.isAuthenticated);
             },
             listener: (context, state) async {
-              final authState = context.read<AuthCubit>().state;
-              final session = authState.sessionOrCrash;
+              final session = context.read<AuthCubit>().state.sessionOrCrash;
               context.read<TarotBloc>().addSetupAccountRequested(session: session);
             },
           ),
+          // Not authenticated → sign in anonymously
           BlocListener<AuthCubit, AuthState>(
             listenWhen: (previous, current) {
               return previous.isInitial && !current.isInitial && !current.isAuthenticated;

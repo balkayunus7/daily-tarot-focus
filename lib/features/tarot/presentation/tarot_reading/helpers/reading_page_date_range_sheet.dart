@@ -1,20 +1,20 @@
 import 'package:daily_tarot_focus/core/util/locale_keys.dart';
 import 'package:daily_tarot_focus/core/util/tarot_app_sizes.dart';
 import 'package:daily_tarot_focus/core/util/text_style_helper.dart';
-import 'package:daily_tarot_focus/features/tarot/presentation/tarot_daily/helpers/daily_page_mixin.dart';
-import 'package:daily_tarot_focus/features/tarot/presentation/tarot_daily/page/tarot_daily_page.dart';
+import 'package:daily_tarot_focus/features/tarot/presentation/tarot_reading/helpers/reading_page_mixin.dart';
+import 'package:daily_tarot_focus/features/tarot/presentation/tarot_reading/pages/tarot_reading_page.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile_boilerplate/common_dependencies.dart';
 import 'package:mobile_boilerplate/presentation/bottom_sheets/core_bottom_sheet.dart';
 import 'package:mobile_boilerplate/presentation/extensions/build_context_theme_ext.dart';
 
-mixin DailyPageDateRangeSheet on State<TarotDailyPage> {
-  ValueNotifier<TarotDailyDateFilter> get selectedFilter;
+mixin ReadingPageDateRangeSheet on State<TarotReadingPage> {
+  ValueNotifier<TarotReadingDateFilter> get selectedFilter;
   ValueNotifier<DateTimeRange?> get customDateRange;
-  void updateFilter(TarotDailyDateFilter filter, DateTimeRange? range);
+  void updateFilter(TarotReadingDateFilter filter, DateTimeRange? range);
 
   Future<void> showFilterBottomSheet() async {
-    TarotDailyDateFilter? result;
+    TarotReadingDateFilter? result;
 
     await showCoreBottomSheet(
       context,
@@ -35,24 +35,24 @@ mixin DailyPageDateRangeSheet on State<TarotDailyPage> {
                   leading: const Icon(Icons.all_inclusive),
                   shape: RoundedRectangleBorder(
                     side:
-                        selectedFilter.value == TarotDailyDateFilter.allTime
+                        selectedFilter.value == TarotReadingDateFilter.allTime
                             ? BorderSide(color: context.colors.border)
                             : BorderSide.none,
                     borderRadius: Sp.medium.radiusR,
                   ),
                   title: Text(LocaleKeys.tarot_daily_all_time.tr()),
                   onTap: () {
-                    result = TarotDailyDateFilter.allTime;
+                    result = TarotReadingDateFilter.allTime;
                     Navigator.pop(bottomSheetContext);
                   },
-                  selected: selectedFilter.value == TarotDailyDateFilter.allTime,
+                  selected: selectedFilter.value == TarotReadingDateFilter.allTime,
                   selectedColor: bottomSheetContext.colors.primary,
                 ),
                 Sp.xsmall.heightBox,
                 ListTile(
                   shape: RoundedRectangleBorder(
                     side:
-                        selectedFilter.value == TarotDailyDateFilter.lastWeek
+                        selectedFilter.value == TarotReadingDateFilter.lastWeek
                             ? BorderSide(color: context.colors.border)
                             : BorderSide.none,
                     borderRadius: Sp.medium.radiusR,
@@ -60,17 +60,17 @@ mixin DailyPageDateRangeSheet on State<TarotDailyPage> {
                   leading: const Icon(Icons.view_week),
                   title: Text(LocaleKeys.tarot_daily_last_week.tr()),
                   onTap: () {
-                    result = TarotDailyDateFilter.lastWeek;
+                    result = TarotReadingDateFilter.lastWeek;
                     Navigator.pop(bottomSheetContext);
                   },
-                  selected: selectedFilter.value == TarotDailyDateFilter.lastWeek,
+                  selected: selectedFilter.value == TarotReadingDateFilter.lastWeek,
                   selectedColor: bottomSheetContext.colors.primary,
                 ),
                 Sp.xsmall.heightBox,
                 ListTile(
                   shape: RoundedRectangleBorder(
                     side:
-                        selectedFilter.value == TarotDailyDateFilter.lastMonth
+                        selectedFilter.value == TarotReadingDateFilter.lastMonth
                             ? BorderSide(color: context.colors.border)
                             : BorderSide.none,
                     borderRadius: Sp.medium.radiusR,
@@ -78,17 +78,17 @@ mixin DailyPageDateRangeSheet on State<TarotDailyPage> {
                   leading: const Icon(Icons.calendar_month),
                   title: Text(LocaleKeys.tarot_daily_last_month.tr()),
                   onTap: () {
-                    result = TarotDailyDateFilter.lastMonth;
+                    result = TarotReadingDateFilter.lastMonth;
                     Navigator.pop(bottomSheetContext);
                   },
-                  selected: selectedFilter.value == TarotDailyDateFilter.lastMonth,
+                  selected: selectedFilter.value == TarotReadingDateFilter.lastMonth,
                   selectedColor: bottomSheetContext.colors.primary,
                 ),
                 Sp.xsmall.heightBox,
                 ListTile(
                   shape: RoundedRectangleBorder(
                     side:
-                        selectedFilter.value == TarotDailyDateFilter.custom
+                        selectedFilter.value == TarotReadingDateFilter.custom
                             ? BorderSide(color: context.colors.border)
                             : BorderSide.none,
                     borderRadius: Sp.medium.radiusR,
@@ -96,10 +96,10 @@ mixin DailyPageDateRangeSheet on State<TarotDailyPage> {
                   leading: const Icon(Icons.date_range),
                   title: Text(LocaleKeys.tarot_daily_custom_date.tr()),
                   onTap: () {
-                    result = TarotDailyDateFilter.custom;
+                    result = TarotReadingDateFilter.custom;
                     Navigator.pop(bottomSheetContext);
                   },
-                  selected: selectedFilter.value == TarotDailyDateFilter.custom,
+                  selected: selectedFilter.value == TarotReadingDateFilter.custom,
                   selectedColor: bottomSheetContext.colors.primary,
                 ),
               ],
@@ -112,7 +112,7 @@ mixin DailyPageDateRangeSheet on State<TarotDailyPage> {
     if (!mounted) return;
 
     if (result != null) {
-      if (result == TarotDailyDateFilter.custom) {
+      if (result == TarotReadingDateFilter.custom) {
         final dateRange = await showDateRangePicker(
           context: context,
           firstDate: DateTime(2020),
@@ -138,7 +138,6 @@ mixin DailyPageDateRangeSheet on State<TarotDailyPage> {
             );
           },
         );
-
         if (dateRange != null) {
           updateFilter(result!, dateRange);
         }

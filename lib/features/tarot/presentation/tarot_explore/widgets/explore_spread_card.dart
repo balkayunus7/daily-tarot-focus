@@ -11,7 +11,7 @@ class ExploreSpreadCard extends StatelessWidget {
 
     return ScalingContainer(
       onTap: () async {
-        context.read<TarotBloc>().addSetFlowType(flowType: TarotFlowType.otherSpreads);
+        context.read<TarotBloc>().addReadingFlowReset(flowType: TarotFlowType.otherSpreads);
         await context.push(AppRoutes.tarotQuestionStep1);
       },
       child: Container(

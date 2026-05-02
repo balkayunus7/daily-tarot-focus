@@ -1,5 +1,6 @@
 import 'package:daily_tarot_focus/features/tarot/domain/models/fetch_all_cards_request_model.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/fetch_daily_cards_request_model.dart';
+import 'package:daily_tarot_focus/features/tarot/domain/models/fetch_saved_readings_request_model.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/fetch_readers_request_model.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/fetch_readers_response_model.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/fetch_spreads_request_model.dart';
@@ -126,7 +127,23 @@ final class TarotSaveReadingRequested extends TarotEvent {
   final SaveReadingRequest request;
 
   @override
-  List<Object?> get props => [request.readingId, request.note, request.session];
+  List<Object?> get props => [request.spreadId, request.note, request.session];
+}
+
+final class TarotFetchSavedReadingsRequested extends TarotEvent {
+  const TarotFetchSavedReadingsRequested({required this.request});
+  final FetchSavedReadingsRequest request;
+
+  @override
+  List<Object?> get props => [request.session];
+}
+
+final class TarotReadingFlowReset extends TarotEvent {
+  const TarotReadingFlowReset({required this.flowType});
+  final TarotFlowType flowType;
+
+  @override
+  List<Object?> get props => [flowType];
 }
 
 final class TarotCacheCleared extends TarotEvent {

@@ -21,6 +21,7 @@ class FancyButton extends StatelessWidget {
     this.textStyle,
     this.isLoading = false,
     this.isDisabled = false,
+    this.indicatorSize = 24,
   });
 
   final String? text;
@@ -34,6 +35,7 @@ class FancyButton extends StatelessWidget {
   final double? width;
   final bool isLoading;
   final bool isDisabled;
+  final double indicatorSize;
 
   @override
   Widget build(BuildContext context) {
@@ -56,7 +58,10 @@ class FancyButton extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               if (isLoading) ...[
-                SpinKitFadingCircle(color: textColor ?? context.colors.background, size: 28),
+                SpinKitFadingCircle(
+                  color: textColor ?? context.colors.background,
+                  size: indicatorSize,
+                ),
               ] else ...[
                 if (icon != null) ...[icon!],
                 if (text != null) ...[

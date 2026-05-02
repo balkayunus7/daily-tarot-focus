@@ -14,6 +14,8 @@ import 'package:daily_tarot_focus/features/tarot/bloc/tarot/tarot_state.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/fetch_all_cards_response_model.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/fetch_spreads_response_model.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/tarot_reading_model.dart';
+import 'package:daily_tarot_focus/features/tarot/presentation/tarot_spread/helpers/step6_page_mixin.dart';
+import 'package:daily_tarot_focus/features/tarot/presentation/tarot_spread/helpers/step6_page_scope.dart';
 import 'package:daily_tarot_focus/features/tarot/presentation/tarot_spread/widgets/spread_layout_bottom_sheet.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -24,8 +26,6 @@ import 'package:mobile_boilerplate/common_dependencies.dart';
 import 'package:mobile_boilerplate/presentation/extensions/build_context_theme_ext.dart';
 import 'package:mobile_boilerplate/presentation/widgets/scaling_container.dart';
 
-// Virtual canvas constants — logical pixels inside the FittedBox canvas.
-// ScreenUtil (.w/.h) must NOT be mixed in here; FittedBox handles real-screen scaling.
 const double _kCardW = 100;
 const double _kCardH = 165;
 const double _kGap = 20;
@@ -39,102 +39,99 @@ class TarotSpreadStep6Page extends StatefulWidget {
   State<TarotSpreadStep6Page> createState() => _TarotSpreadStep6PageState();
 }
 
-class _TarotSpreadStep6PageState extends State<TarotSpreadStep6Page> {
-  final ValueNotifier<bool> _isReadingReady = ValueNotifier(false);
-
-  @override
-  void dispose() {
-    _isReadingReady.dispose();
-    super.dispose();
-  }
-
+class _TarotSpreadStep6PageState extends State<TarotSpreadStep6Page> with Step6PageMixin {
   @override
   Widget build(BuildContext context) {
     final colors = context.colors;
 
-    return Scaffold(
-      backgroundColor: colors.background,
-      appBar: TarotAppBar(
-        titleWidget: Column(
-          children: [
-            Text(
-              LocaleKeys.tarot_question_deck_shuffle_open_step_subtitle.tr(),
-              style: m16w700(context),
-            ),
-            Sp.tiny.heightBox,
-            Text(
-              LocaleKeys.tarot_question_step_6_of_6.tr(),
-              style: m10w500(context).copyWith(color: colors.textSecondary, letterSpacing: 1.5),
-            ),
-          ],
-        ),
-      ),
-      body: BlocBuilder<TarotBloc, TarotState>(
-        builder: (context, state) {
-          final spread = state.selectedSpread;
-          if (spread == null) return const SizedBox.shrink();
-
-          return Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+    return Step6PageScope(
+      state: this,
+      child: Scaffold(
+        backgroundColor: colors.background,
+        appBar: TarotAppBar(
+          titleWidget: Column(
             children: [
-              _SpreadTitleBar(
-                title: spread.title,
-                onMoreTap: () async => showSpreadDetailsBottomSheet(context, spread: spread),
+              Text(
+                LocaleKeys.tarot_question_deck_shuffle_open_step_subtitle.tr(),
+                style: m16w700(context),
               ),
-              Divider(height: 1, color: colors.textSecondary.withValues(alpha: 0.2)),
-              Padding(
-                padding: Sp.medium.padSymR(h: Sp.large, v: Sp.xsmall),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Iconify(
-                      Mdi.question_mark_circle,
-                      color: colors.primary,
-                      size: 16.w,
-                    ),
-                    Sp.xsmall.widthBox,
-                    Expanded(
-                      child: Text(
-                        LocaleKeys.tarot_question_choose_open_deck_subtitle.tr(),
-                        style: m12w500(context).copyWith(
-                          color: colors.textSecondary.withValues(alpha: 0.7),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Expanded(
-                child: Center(
-                  child: _InteractiveSpreadLayout(
-                    positions: spread.positions.asList(),
-                    allCards: state.allCardsOrEmpty.asList(),
-                    onAllCardsFlipped: (cards) {
-                      context.read<TarotBloc>().addSetReadingCards(cards: cards);
-                    },
-                    isReadingReadyNotifier: _isReadingReady,
-                  ),
-                ),
-              ),
-              SafeArea(
-                top: false,
-                child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: Sp.screen.w, vertical: Sp.large.h),
-                  child: ValueListenableBuilder<bool>(
-                    valueListenable: _isReadingReady,
-                    builder: (context, isReady, _) {
-                      return FancyButton(
-                        onTap: () => context.pushNamed(AppRoutes.tarotReadingLoading),
-                        text: LocaleKeys.tarot_question_step6_start_reading.tr(),
-                        isDisabled: !isReady,
-                      );
-                    },
-                  ),
+              Sp.tiny.heightBox,
+              Text(
+                LocaleKeys.tarot_question_step_6_of_6.tr(),
+                style: m10w500(context).copyWith(
+                  color: colors.textSecondary,
+                  letterSpacing: 1.5,
                 ),
               ),
             ],
-          );
-        },
+          ),
+        ),
+        body: BlocBuilder<TarotBloc, TarotState>(
+          builder: (context, state) {
+            final spread = state.selectedSpread;
+            if (spread == null) return const SizedBox.shrink();
+
+            return Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                _SpreadTitleBar(
+                  title: spread.title,
+                  onMoreTap: () => showSpreadDetailsBottomSheet(context, spread: spread),
+                ),
+                Divider(height: 1, color: colors.textSecondary.withValues(alpha: 0.2)),
+                Padding(
+                  padding: Sp.medium.padSymR(h: Sp.large, v: Sp.xsmall),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Iconify(Mdi.question_mark_circle, color: colors.primary, size: 16.w),
+                      Sp.xsmall.widthBox,
+                      Expanded(
+                        child: Text(
+                          LocaleKeys.tarot_question_choose_open_deck_subtitle.tr(),
+                          style: m12w500(context).copyWith(
+                            color: colors.textSecondary.withValues(alpha: 0.7),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Expanded(
+                  child: Center(
+                    child: _InteractiveSpreadLayout(
+                      positions: spread.positions.asList(),
+                      allCards: state.allCardsOrEmpty.asList(),
+                      onAllCardsFlipped: (cards) {
+                        context.read<TarotBloc>().addSetReadingCards(cards: cards);
+                      },
+                      isReadingReadyNotifier: isReadingReady,
+                    ),
+                  ),
+                ),
+                SafeArea(
+                  top: false,
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(
+                      horizontal: Sp.screen.w,
+                      vertical: Sp.large.h,
+                    ),
+                    child: ValueListenableBuilder<bool>(
+                      valueListenable: isReadingReady,
+                      builder: (context, isReady, _) {
+                        return FancyButton(
+                          onTap: () => context.pushNamed(AppRoutes.tarotReadingLoading),
+                          text: LocaleKeys.tarot_question_step6_start_reading.tr(),
+                          isDisabled: !isReady,
+                        );
+                      },
+                    ),
+                  ),
+                ),
+              ],
+            );
+          },
+        ),
       ),
     );
   }
@@ -208,12 +205,9 @@ class _InteractiveSpreadLayout extends StatefulWidget {
 class _InteractiveSpreadLayoutState extends State<_InteractiveSpreadLayout>
     with TickerProviderStateMixin {
   late final AnimationController _entryController;
-
-  // keyed by TarotSpreadPositionModel.index
   final Map<int, AnimationController> _flipControllers = {};
   final Map<int, String> _assignedCardIds = {};
   final Map<int, bool> _reversedFlags = {};
-
   bool _allFlippedNotified = false;
 
   @override
@@ -254,7 +248,6 @@ class _InteractiveSpreadLayoutState extends State<_InteractiveSpreadLayout>
     }
 
     final usedIds = _assignedCardIds.values.toSet();
-
     var pool = widget.allCards.where((c) => !usedIds.contains(c.id)).toList();
     if (pool.isEmpty) pool = List.of(widget.allCards);
 
@@ -272,7 +265,6 @@ class _InteractiveSpreadLayoutState extends State<_InteractiveSpreadLayout>
     });
 
     unawaited(_flipControllers[positionIndex]?.forward(from: 0));
-
     WidgetsBinding.instance.addPostFrameCallback((_) => _checkAllFlipped());
   }
 
@@ -280,17 +272,16 @@ class _InteractiveSpreadLayoutState extends State<_InteractiveSpreadLayout>
     if (_allFlippedNotified) return;
     if (_assignedCardIds.length < widget.positions.length) return;
 
-    final cards =
-        widget.positions.map((pos) {
-          final cardId = _assignedCardIds[pos.index]!;
-          final card = widget.allCards.firstWhere((c) => c.id == cardId);
-          return TarotSelectedReadingCard(
-            positionIndex: pos.index,
-            card: card,
-            position: pos,
-            isReversed: _reversedFlags[pos.index] ?? false,
-          );
-        }).toList();
+    final cards = widget.positions.map((pos) {
+      final cardId = _assignedCardIds[pos.index]!;
+      final card = widget.allCards.firstWhere((c) => c.id == cardId);
+      return TarotSelectedReadingCard(
+        positionIndex: pos.index,
+        card: card,
+        position: pos,
+        isReversed: _reversedFlags[pos.index] ?? false,
+      );
+    }).toList();
 
     _allFlippedNotified = true;
     widget.isReadingReadyNotifier.value = true;
@@ -305,8 +296,10 @@ class _InteractiveSpreadLayoutState extends State<_InteractiveSpreadLayout>
       padding: EdgeInsets.symmetric(horizontal: Sp.small.w, vertical: Sp.medium.h),
       child: LayoutBuilder(
         builder: (context, constraints) {
-          final maxRow = widget.positions.map((p) => p.row).reduce((a, b) => a > b ? a : b).ceil();
-          final maxCol = widget.positions.map((p) => p.col).reduce((a, b) => a > b ? a : b).ceil();
+          final maxRow =
+              widget.positions.map((p) => p.row).reduce((a, b) => a > b ? a : b).ceil();
+          final maxCol =
+              widget.positions.map((p) => p.col).reduce((a, b) => a > b ? a : b).ceil();
 
           final totalWidth = (maxCol + 1) * _kCardW + maxCol * _kGap;
           final totalHeight = (maxRow + 1) * _kCardH + maxRow * _kGap + _kBadgeOverhang;
@@ -323,68 +316,63 @@ class _InteractiveSpreadLayoutState extends State<_InteractiveSpreadLayout>
                 height: totalHeight,
                 child: Stack(
                   clipBehavior: Clip.none,
-                  children:
-                      sorted.asMap().entries.map((entry) {
-                        final animIdx = entry.key;
-                        final pos = entry.value;
-                        final isLandscape = pos.rotation == 90;
-                        final tileW = isLandscape ? _kCardH : _kCardW;
-                        final tileH = isLandscape ? _kCardW : _kCardH;
+                  children: sorted.asMap().entries.map((entry) {
+                    final animIdx = entry.key;
+                    final pos = entry.value;
+                    final isLandscape = pos.rotation == 90;
+                    final tileW = isLandscape ? _kCardH : _kCardW;
+                    final tileH = isLandscape ? _kCardW : _kCardH;
 
-                        // Align center within the logical cell coordinate
-                        final targetLeft = pos.col * (_kCardW + _kGap) + (_kCardW - tileW) / 2;
-                        final targetTop = pos.row * (_kCardH + _kGap) + (_kCardH - tileH) / 2;
+                    final targetLeft = pos.col * (_kCardW + _kGap) + (_kCardW - tileW) / 2;
+                    final targetTop = pos.row * (_kCardH + _kGap) + (_kCardH - tileH) / 2;
+                    final startLeft = totalWidth / 2 - tileW / 2;
+                    final startTop = totalHeight + 300;
 
-                        final startLeft = totalWidth / 2 - tileW / 2;
-                        final startTop = totalHeight + 300;
+                    final intervalStart = (animIdx * 150.0) / totalDurationMs;
+                    final intervalEnd = (animIdx * 150.0 + 500.0) / totalDurationMs;
 
-                        final intervalStart = (animIdx * 150.0) / totalDurationMs;
-                        final intervalEnd = (animIdx * 150.0 + 500.0) / totalDurationMs;
+                    final entryCurve = CurvedAnimation(
+                      parent: _entryController,
+                      curve: Interval(
+                        intervalStart.clamp(0.0, 1.0),
+                        intervalEnd.clamp(0.0, 1.0),
+                        curve: Curves.easeOutCubic,
+                      ),
+                    );
 
-                        final entryCurve = CurvedAnimation(
-                          parent: _entryController,
-                          curve: Interval(
-                            intervalStart.clamp(0.0, 1.0),
-                            intervalEnd.clamp(0.0, 1.0),
-                            curve: Curves.easeOutCubic,
+                    final assignedCard = _assignedCardIds.containsKey(pos.index)
+                        ? widget.allCards
+                            .where((c) => c.id == _assignedCardIds[pos.index])
+                            .firstOrNull
+                        : null;
+
+                    final isReversed = _reversedFlags[pos.index] ?? false;
+
+                    return AnimatedBuilder(
+                      animation: _entryController,
+                      builder: (context, child) => Positioned(
+                        left: startLeft + (targetLeft - startLeft) * entryCurve.value,
+                        top: startTop + (targetTop - startTop) * entryCurve.value,
+                        child: Transform.rotate(
+                          angle: (1 - entryCurve.value) * 0.2 * (animIdx.isEven ? 1 : -1),
+                          child: Opacity(
+                            opacity: entryCurve.value.clamp(0.0, 1.0),
+                            child: child,
                           ),
-                        );
-
-                        final assignedCard =
-                            _assignedCardIds.containsKey(pos.index)
-                                ? widget.allCards
-                                    .where((c) => c.id == _assignedCardIds[pos.index])
-                                    .firstOrNull
-                                : null;
-
-                        final isReversed = _reversedFlags[pos.index] ?? false;
-
-                        return AnimatedBuilder(
-                          animation: _entryController,
-                          builder:
-                              (context, child) => Positioned(
-                                left: startLeft + (targetLeft - startLeft) * entryCurve.value,
-                                top: startTop + (targetTop - startTop) * entryCurve.value,
-                                child: Transform.rotate(
-                                  angle: (1 - entryCurve.value) * 0.2 * (animIdx.isEven ? 1 : -1),
-                                  child: Opacity(
-                                    opacity: entryCurve.value.clamp(0.0, 1.0),
-                                    child: child,
-                                  ),
-                                ),
-                              ),
-                          child: _PlaygroundCardTile(
-                            width: tileW,
-                            height: tileH,
-                            index: pos.index,
-                            isLandscape: isLandscape,
-                            flipController: _flipControllers[pos.index]!,
-                            assignedCard: assignedCard,
-                            isReversed: isReversed,
-                            onTap: () => _onCardTap(pos.index, pos),
-                          ),
-                        );
-                      }).toList(),
+                        ),
+                      ),
+                      child: _PlaygroundCardTile(
+                        width: tileW,
+                        height: tileH,
+                        index: pos.index,
+                        isLandscape: isLandscape,
+                        flipController: _flipControllers[pos.index]!,
+                        assignedCard: assignedCard,
+                        isReversed: isReversed,
+                        onTap: () => _onCardTap(pos.index, pos),
+                      ),
+                    );
+                  }).toList(),
                 ),
               ),
             ),
@@ -448,10 +436,7 @@ class _PlaygroundCardTile extends StatelessWidget {
                 alignment: Alignment.center,
                 child: Text(
                   '$index',
-                  style: m14w700(context).copyWith(
-                    color: context.colors.textOnPrimary,
-                    height: 1,
-                  ),
+                  style: m14w700(context).copyWith(color: context.colors.textOnPrimary, height: 1),
                 ),
               ),
             ),
@@ -486,22 +471,18 @@ class _FlipCard extends StatelessWidget {
       builder: (context, _) {
         final v = flipController.value;
         final isShowingFront = v > 0.5 && assignedCard != null;
-
-        // Back collapses 0 → π/2; front unfolds −π/2 → 0 (no mirror artefact)
         final angle = isShowingFront ? (v - 1.0) * math.pi : v * math.pi;
 
         return Transform(
-          transform:
-              Matrix4.identity()
-                ..setEntry(3, 2, 0.002)
-                ..rotateY(angle),
+          transform: Matrix4.identity()
+            ..setEntry(3, 2, 0.002)
+            ..rotateY(angle),
           alignment: Alignment.center,
           child: _CardFace(
             imageUrl: isShowingFront ? assignedCard!.imageUrl : TarotAppAssets.cardBgHttp,
             width: width,
             height: height,
             isLandscape: isLandscape,
-            // Reversed only applies to the card face, not the card back
             isReversed: isShowingFront && isReversed,
           ),
         );
@@ -527,7 +508,6 @@ class _CardFace extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Portrait dimensions: the card image is always portrait internally
     final portraitW = isLandscape ? height : width;
     final portraitH = isLandscape ? width : height;
 
@@ -541,15 +521,8 @@ class _CardFace extends StatelessWidget {
       ),
     );
 
-    // Apply reversed rotation to the image content before landscape rotation
-    if (isReversed) {
-      image = Transform.rotate(angle: math.pi, child: image);
-    }
-
+    if (isReversed) image = Transform.rotate(angle: math.pi, child: image);
     if (!isLandscape) return image;
-
-    // RotatedBox properly reports swapped layout dimensions (W↔H) so the
-    // parent Transform has the correct anchor point for the flip animation.
     return RotatedBox(quarterTurns: 1, child: image);
   }
 }

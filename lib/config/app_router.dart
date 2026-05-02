@@ -10,7 +10,9 @@ import 'package:daily_tarot_focus/features/core/settings/settings_page.dart';
 import 'package:daily_tarot_focus/features/core/subscription/pages/tarot_subscription_paywall_page.dart';
 import 'package:daily_tarot_focus/features/tarot/bloc/tarot/tarot_bloc.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/fetch_all_cards_response_model.dart';
-import 'package:daily_tarot_focus/features/tarot/presentation/tarot_daily/page/tarot_daily_detail_page.dart';
+import 'package:daily_tarot_focus/features/tarot/domain/models/fetch_saved_readings_response_model.dart';
+import 'package:daily_tarot_focus/features/tarot/presentation/tarot_daily/pages/tarot_daily_calendar_detail_page.dart';
+import 'package:daily_tarot_focus/features/tarot/presentation/tarot_reading/pages/tarot_reading_detail_page.dart';
 import 'package:daily_tarot_focus/features/tarot/presentation/tarot_deck/pages/tarot_deck_detail_page.dart';
 import 'package:daily_tarot_focus/features/tarot/presentation/tarot_deck/pages/tarot_deck_page.dart';
 import 'package:daily_tarot_focus/features/tarot/presentation/tarot_reveal/pages/tarot_reveal_detail_page.dart';
@@ -272,7 +274,18 @@ final appRouter = GoRouter(
         final tarot = state.extra! as TarotCardModel;
         return MaterialPage(
           key: state.pageKey,
-          child: TarotDailyDetailPage(tarot: tarot),
+          child: TarotDailyCalendarDetailPage(tarot: tarot),
+        );
+      },
+    ),
+    GoRoute(
+      path: AppRoutes.tarotSavedReadingDetail,
+      name: AppRoutes.tarotSavedReadingDetail,
+      pageBuilder: (context, state) {
+        final reading = state.extra! as SavedReadingModel;
+        return MaterialPage(
+          key: state.pageKey,
+          child: TarotReadingDetailPage(reading: reading),
         );
       },
     ),

@@ -1,4 +1,13 @@
-part of '../pages/tarot_reveal_page.dart';
+import 'package:daily_tarot_focus/core/util/locale_keys.dart';
+import 'package:daily_tarot_focus/core/util/tarot_app_assets.dart';
+import 'package:daily_tarot_focus/core/util/tarot_app_sizes.dart';
+import 'package:daily_tarot_focus/core/util/text_style_helper.dart';
+import 'package:daily_tarot_focus/core/widgets/custom_cache_network_image.dart';
+import 'package:daily_tarot_focus/features/tarot/presentation/tarot_reveal/helpers/reveal_page_scope.dart';
+import 'package:daily_tarot_focus/features/tarot/presentation/tarot_reveal/widgets/reveal_card_item.dart';
+import 'package:flutter/material.dart';
+import 'package:mobile_boilerplate/common_dependencies.dart';
+import 'package:mobile_boilerplate/presentation/extensions/build_context_theme_ext.dart';
 
 class RevealCardWheel extends StatelessWidget {
   const RevealCardWheel({super.key});
@@ -33,12 +42,9 @@ class RevealCardWheel extends StatelessWidget {
                     childDelegate: ListWheelChildBuilderDelegate(
                       childCount: CardSp.totalCards,
                       builder: (context, index) {
-                        final isSelected = index == selectedCardIndex;
-
                         return RevealCardItem(
                           index: index,
-                          isSelected: isSelected,
-                          handleCardTap: scope.handleCardTap,
+                          isSelected: index == selectedCardIndex,
                         );
                       },
                     ),

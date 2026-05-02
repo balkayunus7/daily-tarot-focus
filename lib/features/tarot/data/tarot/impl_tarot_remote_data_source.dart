@@ -13,6 +13,8 @@ import 'package:daily_tarot_focus/features/tarot/domain/models/generate_reading_
 import 'package:daily_tarot_focus/features/tarot/domain/models/generate_reading_response_model.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/record_daily_card_request_model.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/record_daily_card_response_model.dart';
+import 'package:daily_tarot_focus/features/tarot/domain/models/fetch_saved_readings_request_model.dart';
+import 'package:daily_tarot_focus/features/tarot/domain/models/fetch_saved_readings_response_model.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/save_reading_request_model.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/save_reading_response_model.dart';
 import 'package:mobile_boilerplate/domain/common/http_utilities.dart';
@@ -133,10 +135,7 @@ class ImplTarotRemoteDataSource implements ITarotRemoteDataSource {
     final responseOrFail = await supabaseClient.secureInvoke(
       route: SAVE_READING,
       method: HttpMethod.post,
-      body: {
-        'reading_id': request.readingId,
-        if (request.note != null && request.note!.isNotEmpty) 'note': request.note,
-      },
+      body: request.toMap(),
       session: request.session,
     );
 
@@ -144,5 +143,21 @@ class ImplTarotRemoteDataSource implements ITarotRemoteDataSource {
 
     final response = responseOrFail.getRightOrCrash();
     return SaveReadingResponse.fromMap(decodeSupabaseResponse(response.data));
+  }
+
+  /// REQUEST FETCH SAVED READINGS
+  @override
+  Future<FetchSavedReadingsResponse> requestFetchSavedReadings({
+    required FetchSavedReadingsRequest request,
+  }) async {
+    final responseOrFail = await supabaseClient.secureInvoke(
+      route: GET_SAVED_READINGS,
+      session: request.session,
+    );
+
+    if (responseOrFail.isLeft()) throw Exception();
+
+    final response = responseOrFail.getRightOrCrash();
+    return FetchSavedReadingsResponse.fromMap(decodeSupabaseResponse(response.data));
   }
 }

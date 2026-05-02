@@ -1,4 +1,15 @@
-part of '../pages/tarot_reveal_page.dart';
+import 'dart:async';
+import 'dart:math' as math;
+
+import 'package:daily_tarot_focus/core/util/shadow_extensions.dart';
+import 'package:daily_tarot_focus/core/util/tarot_app_assets.dart';
+import 'package:daily_tarot_focus/core/util/tarot_app_sizes.dart';
+import 'package:daily_tarot_focus/core/util/tarot_mock_data.dart';
+import 'package:daily_tarot_focus/core/widgets/custom_cache_network_image.dart';
+import 'package:daily_tarot_focus/features/tarot/presentation/tarot_reveal/helpers/reveal_page_scope.dart';
+import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
+import 'package:mobile_boilerplate/presentation/extensions/build_context_theme_ext.dart';
 
 class RevealFlipCard extends StatelessWidget {
   const RevealFlipCard({super.key});

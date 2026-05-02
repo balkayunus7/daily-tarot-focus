@@ -170,10 +170,10 @@
         "prefer_not_to_say": "Skip"
     },
     "tarot_daily": {
-        "title": "Daily Tarots",
-        "subtitle": "YOUR JOURNEY",
-        "error_desc": "Energies scattered. Retry.",
-        "empty_desc": "Draw your first card.",
+        "title": "My Readings",
+        "subtitle": "SAVED",
+        "error_desc": "Could not load. Retry.",
+        "empty_desc": "Save your first reading.",
         "all_time": "All Time",
         "last_week": "Last Week",
         "last_month": "Last Month",
@@ -270,7 +270,8 @@
         "upright": "Upright",
         "reversed": "Reversed",
         "spread_label": "SPREAD",
-        "card_label": "Card {}"
+        "card_label": "Card {}",
+        "no_notes": "No personal notes added."
     },
     "tarot_shuffle": {
         "step_5_of_5": "5 / 5",

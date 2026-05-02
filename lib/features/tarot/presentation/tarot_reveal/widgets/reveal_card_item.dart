@@ -1,15 +1,15 @@
-part of '../pages/tarot_reveal_page.dart';
+import 'package:daily_tarot_focus/core/util/shadow_extensions.dart';
+import 'package:daily_tarot_focus/core/util/tarot_app_assets.dart';
+import 'package:daily_tarot_focus/core/util/tarot_app_sizes.dart';
+import 'package:daily_tarot_focus/core/widgets/custom_cache_network_image.dart';
+import 'package:daily_tarot_focus/features/tarot/presentation/tarot_reveal/helpers/reveal_page_scope.dart';
+import 'package:flutter/material.dart';
+import 'package:mobile_boilerplate/presentation/extensions/build_context_theme_ext.dart';
 
 class RevealCardItem extends StatelessWidget {
-  const RevealCardItem({
-    required this.index,
-    required this.isSelected,
-    required this.handleCardTap,
-    super.key,
-  });
+  const RevealCardItem({required this.index, required this.isSelected, super.key});
   final int index;
   final bool isSelected;
-  final void Function(int index) handleCardTap;
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +21,7 @@ class RevealCardItem extends StatelessWidget {
       quarterTurns: -1,
       child: Center(
         child: GestureDetector(
-          onTap: () => handleCardTap(index),
+          onTap: () => scope.handleCardTap(index),
           child: AnimatedContainer(
             duration: const Duration(milliseconds: 200),
             curve: Curves.easeOut,

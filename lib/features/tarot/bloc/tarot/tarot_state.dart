@@ -2,6 +2,7 @@ import 'package:daily_tarot_focus/features/tarot/domain/models/fetch_all_cards_r
 import 'package:daily_tarot_focus/features/tarot/domain/models/fetch_readers_response_model.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/fetch_spreads_response_model.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/generate_reading_response_model.dart';
+import 'package:daily_tarot_focus/features/tarot/domain/models/save_reading_response_model.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/tarot_category_enum.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/tarot_flow_type.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/tarot_reading_model.dart';
@@ -32,6 +33,8 @@ class TarotState extends Equatable {
     required this.fetchFailureOrGenerateReading,
     required this.clearCacheFailureOrUnit,
     required this.flowType,
+    required this.saveReadingFailureOrResponse,
+    required this.isSavingReading,
   });
 
   factory TarotState.initial() {
@@ -57,6 +60,8 @@ class TarotState extends Equatable {
       fetchFailureOrGenerateReading: none(),
       clearCacheFailureOrUnit: none(),
       flowType: TarotFlowType.threeCard,
+      saveReadingFailureOrResponse: none(),
+      isSavingReading: false,
     );
   }
 
@@ -81,6 +86,8 @@ class TarotState extends Equatable {
   final bool isGeneratingReading;
   final Option<FailureOr<Unit>> clearCacheFailureOrUnit;
   final TarotFlowType flowType;
+  final Option<FailureOr<SaveReadingResponse>> saveReadingFailureOrResponse;
+  final bool isSavingReading;
 
   // ALL CARDS GETTERS
   KtList<TarotCardModel> get allCardsOrEmpty =>
@@ -167,6 +174,13 @@ class TarotState extends Equatable {
   GenerateReadingResponse? get generateReadingResponseOrNull =>
       fetchFailureOrGenerateReading.getOrNull()?.getRightOrNull();
 
+  // SAVE READING
+  bool get hasSaveReadingSucceeded =>
+      saveReadingFailureOrResponse.getOrNull()?.getRightOrNull() != null;
+
+  bool get hasSaveReadingFailed =>
+      saveReadingFailureOrResponse.getOrNull()?.getLeftOrNull() != null;
+
   // SELECTED
   bool get hasSelectedSpreadCategory => selectedSpreadCategory != null;
   bool get hasSelectedSpread => selectedSpread != null;
@@ -196,6 +210,8 @@ class TarotState extends Equatable {
     Option<FailureOr<GenerateReadingResponse>>? fetchFailureOrGenerateReading,
     Option<FailureOr<Unit>>? clearCacheFailureOrUnit,
     TarotFlowType? flowType,
+    Option<FailureOr<SaveReadingResponse>>? saveReadingFailureOrResponse,
+    bool? isSavingReading,
   }) {
     return TarotState(
       fetchFailureOrDailyCards: fetchFailureOrDailyCards ?? this.fetchFailureOrDailyCards,
@@ -223,6 +239,9 @@ class TarotState extends Equatable {
           fetchFailureOrGenerateReading ?? this.fetchFailureOrGenerateReading,
       clearCacheFailureOrUnit: clearCacheFailureOrUnit ?? this.clearCacheFailureOrUnit,
       flowType: flowType ?? this.flowType,
+      saveReadingFailureOrResponse:
+          saveReadingFailureOrResponse ?? this.saveReadingFailureOrResponse,
+      isSavingReading: isSavingReading ?? this.isSavingReading,
     );
   }
 
@@ -249,5 +268,7 @@ class TarotState extends Equatable {
     fetchFailureOrGenerateReading,
     clearCacheFailureOrUnit,
     flowType,
+    saveReadingFailureOrResponse,
+    isSavingReading,
   ];
 }

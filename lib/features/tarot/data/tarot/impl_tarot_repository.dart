@@ -11,6 +11,8 @@ import 'package:daily_tarot_focus/features/tarot/domain/models/generate_reading_
 import 'package:daily_tarot_focus/features/tarot/domain/models/generate_reading_response_model.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/record_daily_card_request_model.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/record_daily_card_response_model.dart';
+import 'package:daily_tarot_focus/features/tarot/domain/models/save_reading_request_model.dart';
+import 'package:daily_tarot_focus/features/tarot/domain/models/save_reading_response_model.dart';
 import 'package:mobile_boilerplate/common_dependencies.dart';
 import 'package:mobile_boilerplate/domain/common/failure.dart';
 
@@ -77,6 +79,17 @@ class ImplTarotRepository {
   }) async {
     try {
       final response = await tarotRemoteDataSource.requestGenerateReading(request: request);
+      return right(response);
+    } on Exception {
+      return left(const UnknownFailure());
+    }
+  }
+
+  Future<FailureOr<SaveReadingResponse>> requestSaveReading({
+    required SaveReadingRequest request,
+  }) async {
+    try {
+      final response = await tarotRemoteDataSource.requestSaveReading(request: request);
       return right(response);
     } on Exception {
       return left(const UnknownFailure());

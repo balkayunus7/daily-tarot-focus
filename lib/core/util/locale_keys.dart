@@ -240,6 +240,9 @@ abstract class LocaleKeys {
   static const tarot_reading_tab_cards = 'tarot_reading.tab_cards';
   static const tarot_reading_tab_notes = 'tarot_reading.tab_notes';
   static const tarot_reading_save = 'tarot_reading.save';
+  static const tarot_reading_saved = 'tarot_reading.saved';
+  static const tarot_reading_save_success = 'tarot_reading.save_success';
+  static const tarot_reading_save_error = 'tarot_reading.save_error';
   static const tarot_reading_general_reading = 'tarot_reading.general_reading';
   static const tarot_reading_your_question = 'tarot_reading.your_question';
   static const tarot_reading_notes_title = 'tarot_reading.notes_title';

@@ -13,6 +13,7 @@ import 'package:daily_tarot_focus/features/tarot/domain/models/fetch_spreads_req
 import 'package:daily_tarot_focus/features/tarot/domain/models/fetch_spreads_response_model.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/generate_reading_request_model.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/record_daily_card_request_model.dart';
+import 'package:daily_tarot_focus/features/tarot/domain/models/save_reading_request_model.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/tarot_flow_type.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/tarot_reading_model.dart';
 import 'package:mobile_boilerplate/common_dependencies.dart';
@@ -49,6 +50,8 @@ class TarotBloc extends Bloc<TarotEvent, TarotState> {
           await _onGenerateReadingRequested(event, emit);
         } else if (event is TarotSetFlowType) {
           emit(state.copyWith(flowType: event.flowType));
+        } else if (event is TarotSaveReadingRequested) {
+          await _onSaveReadingRequested(event, emit);
         } else if (event is TarotCacheCleared) {
           await _onCacheCleared(event, emit);
         }
@@ -90,6 +93,9 @@ class TarotBloc extends Bloc<TarotEvent, TarotState> {
 
   void addSetFlowType({required TarotFlowType flowType}) =>
       add(TarotSetFlowType(flowType: flowType));
+
+  void addSaveReadingRequested({required SaveReadingRequest request}) =>
+      add(TarotSaveReadingRequested(request: request));
 
   void addClearCache() => add(const TarotCacheCleared());
 
@@ -305,6 +311,20 @@ class TarotBloc extends Bloc<TarotEvent, TarotState> {
     final result = await _tarotRepository.requestGenerateReading(request: request);
 
     emit(state.copyWith(isGeneratingReading: false, fetchFailureOrGenerateReading: some(result)));
+  }
+
+  Future<void> _onSaveReadingRequested(
+    TarotSaveReadingRequested event,
+    Emitter<TarotState> emit,
+  ) async {
+    emit(state.copyWith(isSavingReading: true, saveReadingFailureOrResponse: none()));
+
+    final result = await _tarotRepository.requestSaveReading(request: event.request);
+
+    emit(state.copyWith(
+      isSavingReading: false,
+      saveReadingFailureOrResponse: some(result),
+    ));
   }
 
   final ImplTarotRepository _tarotRepository;

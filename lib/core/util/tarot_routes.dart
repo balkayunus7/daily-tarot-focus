@@ -7,3 +7,4 @@ const String GET_ALL_CARDS = 'get-all-cards';
 const String GET_SPREADS = 'get-tarot-spreads';
 const String GET_READERS = 'get-readers';
 const String GENERATE_READING = 'generate-reading';
+const String SAVE_READING = 'save-reading';

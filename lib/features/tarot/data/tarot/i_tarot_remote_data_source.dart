@@ -10,6 +10,8 @@ import 'package:daily_tarot_focus/features/tarot/domain/models/generate_reading_
 import 'package:daily_tarot_focus/features/tarot/domain/models/generate_reading_response_model.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/record_daily_card_request_model.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/record_daily_card_response_model.dart';
+import 'package:daily_tarot_focus/features/tarot/domain/models/save_reading_request_model.dart';
+import 'package:daily_tarot_focus/features/tarot/domain/models/save_reading_response_model.dart';
 
 abstract class ITarotRemoteDataSource {
   Future<RecordDailyCardResponse> requestRecordDailyCard({required RecordDailyCardRequest request});
@@ -18,4 +20,5 @@ abstract class ITarotRemoteDataSource {
   Future<FetchSpreadsResponse> requestSpreadCategories({required FetchSpreadsRequest request});
   Future<FetchReadersResponse> requestReaders({required FetchReadersRequest request});
   Future<GenerateReadingResponse> requestGenerateReading({required GenerateReadingRequest request});
+  Future<SaveReadingResponse> requestSaveReading({required SaveReadingRequest request});
 }

@@ -5,16 +5,19 @@ import 'package:daily_tarot_focus/core/util/locale_keys.dart';
 import 'package:daily_tarot_focus/core/util/tarot_app_sizes.dart';
 import 'package:daily_tarot_focus/core/util/text_style_helper.dart';
 import 'package:daily_tarot_focus/core/widgets/custom_cache_network_image.dart';
+import 'package:daily_tarot_focus/core/widgets/fancy_button.dart';
 import 'package:daily_tarot_focus/core/widgets/tarot_app_bar.dart';
 import 'package:daily_tarot_focus/features/tarot/bloc/tarot/tarot_bloc.dart';
 import 'package:daily_tarot_focus/features/tarot/bloc/tarot/tarot_state.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/fetch_spreads_response_model.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/generate_reading_response_model.dart';
+import 'package:daily_tarot_focus/features/tarot/domain/models/save_reading_request_model.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/tarot_reading_model.dart';
 import 'package:daily_tarot_focus/features/tarot/presentation/tarot_spread/widgets/spread_layout_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:mobile_boilerplate/application/auth/auth_cubit.dart';
 import 'package:mobile_boilerplate/common_dependencies.dart';
 import 'package:mobile_boilerplate/presentation/extensions/build_context_theme_ext.dart';
 
@@ -46,7 +49,7 @@ class TarotReadingAnswerPage extends StatelessWidget {
   }
 }
 
-class _AnswerScaffold extends StatelessWidget {
+class _AnswerScaffold extends StatefulWidget {
   const _AnswerScaffold({
     required this.response,
     required this.spread,
@@ -59,50 +62,111 @@ class _AnswerScaffold extends StatelessWidget {
   final String? question;
 
   @override
+  State<_AnswerScaffold> createState() => _AnswerScaffoldState();
+}
+
+class _AnswerScaffoldState extends State<_AnswerScaffold> {
+  final TextEditingController _notesController = TextEditingController();
+
+  @override
+  void dispose() {
+    _notesController.dispose();
+    super.dispose();
+  }
+
+  void _onSave(BuildContext context) {
+    final session = context.read<AuthCubit>().state.sessionOrCrash;
+    context.read<TarotBloc>().addSaveReadingRequested(
+      request: SaveReadingRequest(
+        session: session,
+        readingId: widget.response.id,
+        note: _notesController.text.trim().isEmpty ? null : _notesController.text.trim(),
+      ),
+    );
+  }
+
+  @override
   Widget build(BuildContext context) {
     final colors = context.colors;
 
-    return Scaffold(
-      backgroundColor: colors.background,
-      appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(kToolbarHeight + Sp.xxxlarge),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
+    return BlocListener<TarotBloc, TarotState>(
+      listenWhen:
+          (prev, curr) =>
+              !prev.hasSaveReadingSucceeded && curr.hasSaveReadingSucceeded ||
+              !prev.hasSaveReadingFailed && curr.hasSaveReadingFailed,
+      listener: (context, state) {
+        if (state.hasSaveReadingSucceeded) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text(LocaleKeys.tarot_reading_save_success.tr())),
+          );
+        } else if (state.hasSaveReadingFailed) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text(LocaleKeys.tarot_reading_save_error.tr())),
+          );
+        }
+      },
+      child: Scaffold(
+        backgroundColor: colors.background,
+        appBar: PreferredSize(
+          preferredSize: const Size.fromHeight(kToolbarHeight + Sp.xxxlarge),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              TarotAppBar(
+                backIcon: Icons.close,
+                onBackIconTap: () => context.go(AppRoutes.tarotExplore),
+                titleWidget: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [Text(LocaleKeys.tarot_reading_title.tr(), style: m16w700(context))],
+                ),
+                subsWidget: BlocBuilder<TarotBloc, TarotState>(
+                  buildWhen:
+                      (prev, curr) =>
+                          prev.isSavingReading != curr.isSavingReading ||
+                          prev.hasSaveReadingSucceeded != curr.hasSaveReadingSucceeded,
+                  builder:
+                      (context, state) => FancyButton(
+                        onTap: () => _onSave(context),
+                        isLoading: state.isSavingReading,
+                        isDisabled: state.hasSaveReadingSucceeded,
+                        height: 32.h,
+                        width: 72.w,
+                        text:
+                            state.hasSaveReadingSucceeded
+                                ? LocaleKeys.tarot_reading_saved.tr()
+                                : LocaleKeys.tarot_reading_save.tr(),
+                        textStyle: m12w600(context).copyWith(color: colors.textOnPrimary),
+                      ),
+                ),
+              ),
+              TabBar(
+                indicatorColor: colors.primary,
+                indicatorSize: TabBarIndicatorSize.label,
+                labelColor: colors.textPrimary,
+                unselectedLabelColor: colors.textSecondary.withValues(alpha: 0.5),
+                labelStyle: m11w500(context).copyWith(letterSpacing: 1),
+                unselectedLabelStyle: m11w500(context).copyWith(letterSpacing: 1),
+                tabs: [
+                  Tab(text: LocaleKeys.tarot_reading_tab_spread.tr()),
+                  Tab(text: LocaleKeys.tarot_reading_tab_cards.tr()),
+                  Tab(text: LocaleKeys.tarot_reading_tab_notes.tr()),
+                ],
+              ),
+            ],
+          ),
+        ),
+        body: TabBarView(
           children: [
-            TarotAppBar(
-              backIcon: Icons.close,
-              onBackIconTap: () => context.go(AppRoutes.tarotExplore),
-              titleWidget: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [Text(LocaleKeys.tarot_reading_title.tr(), style: m16w700(context))],
-              ),
-              subsWidget: TextButton(
-                onPressed: () {},
-                child: Text(LocaleKeys.tarot_reading_save.tr(), style: m14w500(context)),
-              ),
+            _SpreadTab(
+              response: widget.response,
+              cards: widget.cards,
+              spread: widget.spread,
+              question: widget.question,
             ),
-            TabBar(
-              indicatorColor: colors.primary,
-              indicatorSize: TabBarIndicatorSize.label,
-              labelColor: colors.textPrimary,
-              unselectedLabelColor: colors.textSecondary.withValues(alpha: 0.5),
-              labelStyle: m11w500(context).copyWith(letterSpacing: 1),
-              unselectedLabelStyle: m11w500(context).copyWith(letterSpacing: 1),
-              tabs: [
-                Tab(text: LocaleKeys.tarot_reading_tab_spread.tr()),
-                Tab(text: LocaleKeys.tarot_reading_tab_cards.tr()),
-                Tab(text: LocaleKeys.tarot_reading_tab_notes.tr()),
-              ],
-            ),
+            _CardsTab(cards: widget.cards, spread: widget.spread),
+            _NotesTab(controller: _notesController),
           ],
         ),
-      ),
-      body: TabBarView(
-        children: [
-          _SpreadTab(response: response, cards: cards, spread: spread, question: question),
-          _CardsTab(cards: cards, spread: spread),
-          const _NotesTab(),
-        ],
       ),
     );
   }
@@ -157,6 +221,7 @@ class _SpreadTab extends StatelessWidget {
           ],
         ],
         _GeneralInterpretationSection(text: response.generalInterpretation),
+        Sp.huge.heightBox,
       ],
     );
   }
@@ -470,22 +535,16 @@ class _CardsCardRow extends StatelessWidget {
 }
 
 class _NotesTab extends StatefulWidget {
-  const _NotesTab();
+  const _NotesTab({required this.controller});
+  final TextEditingController controller;
+
   @override
   State<_NotesTab> createState() => _NotesTabState();
 }
 
 class _NotesTabState extends State<_NotesTab> with AutomaticKeepAliveClientMixin {
-  final _controller = TextEditingController();
-
   @override
   bool get wantKeepAlive => true;
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -512,7 +571,7 @@ class _NotesTabState extends State<_NotesTab> with AutomaticKeepAliveClientMixin
                   style: m14w700(context),
                 ),
                 TextField(
-                  controller: _controller,
+                  controller: widget.controller,
                   minLines: 10,
                   maxLines: 10,
                   maxLength: 360,

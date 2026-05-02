@@ -39,10 +39,7 @@ class _TarotDailyCalendarPageState extends State<TarotDailyCalendarPage>
           child: Column(
             children: [
               Sp.small.heightBox,
-              ValueListenableBuilder<int>(
-                valueListenable: currentPage,
-                builder: (context, _, _) => const _MonthSelector(),
-              ),
+              const _MonthSelector(),
               Sp.small.heightBox,
               const _TapHint(),
               Sp.xlarge.heightBox,
@@ -55,7 +52,9 @@ class _TarotDailyCalendarPageState extends State<TarotDailyCalendarPage>
                     final cardMap = scope.buildCardMap(state.dailyCardsOrEmpty.asList());
                     return PageView.builder(
                       controller: scope.pageController,
-                      onPageChanged: (page) => scope.currentPage.value = page,
+                      onPageChanged: (page) {
+                        scope.currentPage.value = page;
+                      },
                       itemBuilder: (context, page) {
                         return DayGrid(month: scope.monthForPage(page), cardMap: cardMap);
                       },
@@ -95,77 +94,80 @@ class _TapHint extends StatelessWidget {
 
 class _MonthSelector extends StatelessWidget {
   const _MonthSelector();
-
   String _label(DateTime month) => DateFormat('MMMM yyyy').format(month);
 
   @override
   Widget build(BuildContext context) {
     final scope = DailyCalendarPageScope.of(context).state;
-    final page = scope.currentPage.value;
-    final prev = scope.monthForPage(page - 1);
-    final current = scope.monthForPage(page);
-    final next = scope.monthForPage(page + 1);
     final colors = context.colors;
 
-    return FancyContainer(
-      margin: Sp.medium.padHR,
-      padding: Sp.large.padSymR(v: Sp.small, h: Sp.medium),
-      color: context.colors.primary,
-      child: Row(
-        children: [
-          GestureDetector(
-            onTap: scope.goToPrev,
-            child: Padding(
-              padding: Sp.tiny.padAllR,
-              child: Icon(Icons.chevron_left, color: colors.textOnSecondary, size: 22),
-            ),
-          ),
-          Expanded(
-            child: Opacity(
-              opacity: 0.5,
-              child: Text(
-                _label(prev),
-                style: m11w500(context).copyWith(color: colors.textOnSecondary),
-                textAlign: TextAlign.center,
-                overflow: TextOverflow.ellipsis,
+    return ValueListenableBuilder<int>(
+      valueListenable: scope.currentPage,
+      builder: (context, page, _) {
+        final prev = scope.monthForPage(page - 1);
+        final current = scope.monthForPage(page);
+        final next = scope.monthForPage(page + 1);
+
+        return FancyContainer(
+          margin: Sp.medium.padHR,
+          padding: Sp.large.padSymR(v: Sp.small, h: Sp.medium),
+          color: context.colors.primary,
+          child: Row(
+            children: [
+              GestureDetector(
+                onTap: scope.goToPrev,
+                child: Padding(
+                  padding: Sp.tiny.padAllR,
+                  child: Icon(Icons.chevron_left, color: colors.textOnSecondary, size: 22),
+                ),
               ),
-            ),
-          ),
-          Expanded(
-            flex: 2,
-            child: Text(
-              _label(current),
-              style: m15w700(context).copyWith(color: colors.textOnPrimary),
-              textAlign: TextAlign.center,
-            ),
-          ),
-          Expanded(
-            child: Opacity(
-              opacity: 0.5,
-              child: Text(
-                _label(next),
-                style: m11w500(context).copyWith(color: colors.textOnSecondary),
-                textAlign: TextAlign.center,
-                overflow: TextOverflow.ellipsis,
+              Expanded(
+                child: Opacity(
+                  opacity: 0.5,
+                  child: Text(
+                    _label(prev),
+                    style: m11w500(context).copyWith(color: colors.textOnSecondary),
+                    textAlign: TextAlign.center,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ),
               ),
-            ),
+              Expanded(
+                flex: 2,
+                child: Text(
+                  _label(current),
+                  style: m15w700(context).copyWith(color: colors.textOnPrimary),
+                  textAlign: TextAlign.center,
+                ),
+              ),
+              Expanded(
+                child: Opacity(
+                  opacity: 0.5,
+                  child: Text(
+                    _label(next),
+                    style: m11w500(context).copyWith(color: colors.textOnSecondary),
+                    textAlign: TextAlign.center,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ),
+              ),
+              GestureDetector(
+                onTap: scope.goToNext,
+                child: Padding(
+                  padding: Sp.tiny.padAllR,
+                  child: Icon(Icons.chevron_right, color: colors.textOnSecondary, size: 22),
+                ),
+              ),
+            ],
           ),
-          GestureDetector(
-            onTap: scope.goToNext,
-            child: Padding(
-              padding: Sp.tiny.padAllR,
-              child: Icon(Icons.chevron_right, color: colors.textOnSecondary, size: 22),
-            ),
-          ),
-        ],
-      ),
+        );
+      },
     );
   }
 }
 
 class _WeekdayRow extends StatelessWidget {
   const _WeekdayRow();
-
   static const _days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
 
   @override

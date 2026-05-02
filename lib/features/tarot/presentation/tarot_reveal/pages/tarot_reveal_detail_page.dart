@@ -25,10 +25,10 @@ class _TarotRevealDetailPageState extends State<TarotRevealDetailPage> with Reve
     return RevealDetailPageScope(
       state: this,
       child: BlocConsumer<TarotBloc, TarotState>(
-        listenWhen:
-            (previous, current) =>
-                previous.hasRecordDailyCardSucceeded != current.hasRecordDailyCardSucceeded ||
-                previous.hasRecordDailyCardFailed != current.hasRecordDailyCardFailed,
+        listenWhen: (previous, current) {
+          return previous.hasRecordDailyCardSucceeded != current.hasRecordDailyCardSucceeded ||
+              previous.hasRecordDailyCardFailed != current.hasRecordDailyCardFailed;
+        },
         listener: (context, state) {
           if (state.hasRecordDailyCardFailed) {
             context.showToastMessage('Kart Kaydedilemedi!!');

@@ -16,5 +16,5 @@ mixin TarotDetailContentMixin on State<TarotDetailContent> {
     super.dispose();
   }
 
-  void setUpright(bool value) => isUpright.value = value;
+  set upright(bool value) => isUpright.value = value;
 }

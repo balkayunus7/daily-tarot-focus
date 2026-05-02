@@ -5,6 +5,7 @@ class ReadingListItem extends StatelessWidget {
     required this.reading,
     required this.isFirst,
     required this.isLast,
+    super.key,
   });
   final SavedReadingModel reading;
   final bool isFirst;
@@ -14,7 +15,6 @@ class ReadingListItem extends StatelessWidget {
   Widget build(BuildContext context) {
     final primary = context.colors.primary;
     final colors = context.colors;
-    final cardCount = reading.cardInterpretations.length;
     final preview =
         reading.generalInterpretation.length > 80
             ? '${reading.generalInterpretation.substring(0, 80)}...'
@@ -47,23 +47,18 @@ class ReadingListItem extends StatelessWidget {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Container(
-                        width: 28.w,
-                        height: 28.w,
-                        decoration: BoxDecoration(
-                          color: primary.withValues(alpha: 0.12),
-                          shape: BoxShape.circle,
-                        ),
-                        alignment: Alignment.center,
-                        child: Text(
-                          '$cardCount',
-                          style: m12w600(context).copyWith(color: primary),
+                      Center(
+                        child: SvgPicture.asset(
+                          TarotAppAssets.tarotIcon.path,
+                          colorFilter: ColorFilter.mode(primary, BlendMode.srcIn),
+                          width: 20,
+                          height: 20,
                         ),
                       ),
                       Sp.tiny.heightBox,
                       Text(
                         reading.createdAt.dAmWithLastDays(context.locale),
-                        style: m9w700(context).copyWith(color: primary, letterSpacing: 0.3),
+                        style: m10w600(context).copyWith(color: primary, letterSpacing: 0.5),
                         textAlign: TextAlign.center,
                       ),
                     ],
@@ -83,18 +78,10 @@ class ReadingListItem extends StatelessWidget {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            if (reading.question != null && reading.question!.isNotEmpty)
-                              Text(
-                                reading.question!,
-                                style: m13w500(context).copyWith(color: primary),
-                                maxLines: 1,
-                                overflow: TextOverflow.ellipsis,
-                              )
-                            else
-                              Text(
-                                '$cardCount Card Reading',
-                                style: m13w500(context).copyWith(color: primary),
-                              ),
+                            Text(
+                              '${reading.cardInterpretations.length} Card Reading',
+                              style: m13w500(context).copyWith(color: primary),
+                            ),
                             Sp.xsmall.heightBox,
                             Text(
                               preview,

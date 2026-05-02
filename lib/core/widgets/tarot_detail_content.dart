@@ -249,12 +249,12 @@ class _MeaningToggle extends StatelessWidget {
                 _MeaningSwitch(
                   isActive: isUprightValue,
                   title: 'Upright Meaning',
-                  onTap: () => scope.setUpright(true),
+                  onTap: () => scope.upright = true,
                 ),
                 _MeaningSwitch(
                   isActive: !isUprightValue,
                   title: 'Reversed Meaning',
-                  onTap: () => scope.setUpright(false),
+                  onTap: () => scope.upright = false,
                 ),
               ],
             ),

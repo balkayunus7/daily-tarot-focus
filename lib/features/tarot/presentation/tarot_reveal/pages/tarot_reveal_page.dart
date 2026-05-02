@@ -1,3 +1,4 @@
+import 'package:daily_tarot_focus/config/app_routes.dart';
 import 'package:daily_tarot_focus/core/util/locale_keys.dart';
 import 'package:daily_tarot_focus/core/util/tarot_app_assets.dart';
 import 'package:daily_tarot_focus/core/util/tarot_app_sizes.dart';
@@ -8,13 +9,13 @@ import 'package:daily_tarot_focus/core/widgets/tarot_app_bar.dart';
 import 'package:daily_tarot_focus/features/tarot/bloc/tarot/tarot_bloc.dart';
 import 'package:daily_tarot_focus/features/tarot/bloc/tarot/tarot_state.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/fetch_all_cards_response_model.dart';
-import 'package:daily_tarot_focus/features/tarot/presentation/tarot_daily/pages/tarot_daily_calendar_page.dart';
 import 'package:daily_tarot_focus/features/tarot/presentation/tarot_reveal/helpers/reveal_page_mixin.dart';
 import 'package:daily_tarot_focus/features/tarot/presentation/tarot_reveal/helpers/reveal_page_scope.dart';
 import 'package:daily_tarot_focus/features/tarot/presentation/tarot_reveal/widgets/reveal_card_wheel.dart';
 import 'package:daily_tarot_focus/features/tarot/presentation/tarot_reveal/widgets/reveal_cooldown_view.dart';
 import 'package:daily_tarot_focus/features/tarot/presentation/tarot_reveal/widgets/reveal_flip_card.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:mobile_boilerplate/common_dependencies.dart';
 import 'package:mobile_boilerplate/presentation/extensions/build_context_theme_ext.dart';
 import 'package:mobile_boilerplate/presentation/extensions/date_time_ext.dart';
@@ -58,10 +59,7 @@ class _TarotRevealPageState extends State<TarotRevealPage>
             extendBodyBehindAppBar: true,
             appBar: TarotAppBar(
               trailingIcon: Icons.calendar_month_outlined,
-              onIconTap:
-                  () => Navigator.of(context).push(
-                    MaterialPageRoute<void>(builder: (_) => const TarotDailyCalendarPage()),
-                  ),
+              onIconTap: () => context.push(AppRoutes.tarotDailyCalendar),
             ),
             body: Stack(
               fit: StackFit.expand,
@@ -73,9 +71,9 @@ class _TarotRevealPageState extends State<TarotRevealPage>
                   height: MediaQuery.of(context).size.height * 0.5,
                   child: const CustomCacheNetworkImage(imageUrl: TarotAppAssets.dailyPickBgHttp),
                 ),
-                if (onCooldown)
-                  const RevealCooldownView()
-                else
+                if (!onCooldown) ...[
+                  const RevealCooldownView(),
+                ] else ...[
                   ValueListenableBuilder<TarotCardModel?>(
                     valueListenable: selectedTarotCard,
                     builder: (context, value, child) {
@@ -118,6 +116,7 @@ class _TarotRevealPageState extends State<TarotRevealPage>
                       );
                     },
                   ),
+                ],
               ],
             ),
           ),

@@ -7,9 +7,9 @@ import 'package:daily_tarot_focus/features/tarot/data/tarot/impl_tarot_repositor
 import 'package:daily_tarot_focus/features/tarot/domain/models/fetch_all_cards_request_model.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/fetch_all_cards_response_model.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/fetch_daily_cards_request_model.dart';
-import 'package:daily_tarot_focus/features/tarot/domain/models/fetch_saved_readings_request_model.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/fetch_readers_request_model.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/fetch_readers_response_model.dart';
+import 'package:daily_tarot_focus/features/tarot/domain/models/fetch_saved_readings_request_model.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/fetch_spreads_request_model.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/fetch_spreads_response_model.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/generate_reading_request_model.dart';
@@ -382,14 +382,18 @@ class TarotBloc extends Bloc<TarotEvent, TarotState> {
     TarotFetchSavedReadingsRequested event,
     Emitter<TarotState> emit,
   ) async {
-    emit(state.copyWith(isFetchingSavedReadings: true, fetchSavedReadingsFailureOrResponse: none()));
+    emit(
+      state.copyWith(isFetchingSavedReadings: true, fetchSavedReadingsFailureOrResponse: none()),
+    );
 
     final result = await _tarotRepository.requestFetchSavedReadings(request: event.request);
 
-    emit(state.copyWith(
-      isFetchingSavedReadings: false,
-      fetchSavedReadingsFailureOrResponse: some(result),
-    ));
+    emit(
+      state.copyWith(
+        isFetchingSavedReadings: false,
+        fetchSavedReadingsFailureOrResponse: some(result),
+      ),
+    );
   }
 
   final ImplTarotRepository _tarotRepository;

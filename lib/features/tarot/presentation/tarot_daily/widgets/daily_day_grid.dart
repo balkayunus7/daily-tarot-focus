@@ -1,7 +1,7 @@
 part of '../pages/tarot_daily_calendar_page.dart';
 
 class DayGrid extends StatelessWidget {
-  const DayGrid({super.key, required this.month, required this.cardMap});
+  const DayGrid({required this.month, required this.cardMap, super.key});
   final DateTime month;
   final Map<DateTime, TarotCardModel> cardMap;
 

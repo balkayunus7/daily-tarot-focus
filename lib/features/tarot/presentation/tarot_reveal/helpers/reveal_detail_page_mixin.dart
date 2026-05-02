@@ -24,9 +24,6 @@ mixin RevealDetailPageMixin on State<TarotRevealDetailPage> {
   }
 
   void onSaveSucceeded() {
-    context.go(
-      AppRoutes.tarotExplore,
-      extra: HomePageArguments(context, initialTabIndex: 1),
-    );
+    context.go(AppRoutes.tarotDailyCalendar);
   }
 }

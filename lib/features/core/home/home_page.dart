@@ -2,8 +2,8 @@ import 'package:daily_tarot_focus/features/core/home/helpers/home_page_mixin.dar
 import 'package:daily_tarot_focus/features/core/home/helpers/home_page_scope.dart';
 import 'package:daily_tarot_focus/features/core/home/home_bottom_navbar.dart';
 import 'package:daily_tarot_focus/features/core/settings/settings_page.dart';
-import 'package:daily_tarot_focus/features/tarot/presentation/tarot_reading/pages/tarot_reading_page.dart';
 import 'package:daily_tarot_focus/features/tarot/presentation/tarot_explore/pages/tarot_explore_page.dart';
+import 'package:daily_tarot_focus/features/tarot/presentation/tarot_reading/pages/tarot_reading_page.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile_boilerplate/presentation/routing/route_arguments.dart';
 import 'package:mobile_boilerplate/presentation/routing/route_aware_analytics_mixin.dart';

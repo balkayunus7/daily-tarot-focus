@@ -1,7 +1,9 @@
 import 'package:daily_tarot_focus/config/app_routes.dart';
 import 'package:daily_tarot_focus/core/util/locale_keys.dart';
+import 'package:daily_tarot_focus/core/util/tarot_app_assets.dart';
 import 'package:daily_tarot_focus/core/util/tarot_app_sizes.dart';
 import 'package:daily_tarot_focus/core/util/text_style_helper.dart';
+import 'package:daily_tarot_focus/core/widgets/custom_cache_network_image.dart';
 import 'package:daily_tarot_focus/core/widgets/fancy_button.dart';
 import 'package:daily_tarot_focus/core/widgets/fancy_container.dart';
 import 'package:daily_tarot_focus/features/tarot/bloc/tarot/tarot_bloc.dart';
@@ -135,24 +137,23 @@ class _EmptyOrErrorWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Text(
-            message,
-            style: m14w400(context).copyWith(color: context.colors.textSecondary),
-            textAlign: TextAlign.center,
-          ),
-          SizedBox(height: Sp.large.h),
-          FancyButton(
-            onTap: onTap,
-            height: 40.h,
-            width: 160.w,
-            text: LocaleKeys.tarot_daily_empty_desc.tr(),
-          ),
-        ],
-      ),
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.end,
+      children: [
+        FancyButton(
+          onTap: onTap,
+          text: message,
+          width: 160.w,
+          height: 40.h,
+          textStyle: m10w600(context).copyWith(color: context.colors.textOnPrimary),
+        ),
+        Sp.xxlarge.heightBox,
+        CustomCacheNetworkImage(
+          imageUrl: TarotAppAssets.emptyHttp,
+          fit: BoxFit.contain,
+          height: MediaQuery.of(context).size.height * 0.3,
+        ),
+      ],
     );
   }
 }

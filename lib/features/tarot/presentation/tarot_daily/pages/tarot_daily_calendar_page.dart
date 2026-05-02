@@ -34,7 +34,13 @@ class _TarotDailyCalendarPageState extends State<TarotDailyCalendarPage>
       state: this,
       child: Scaffold(
         backgroundColor: colors.background,
-        appBar: const TarotAppBar(title: 'Daily History'),
+        appBar: TarotAppBar(
+          title: 'Daily History',
+          backIcon: context.canPop() ? null : Icons.close,
+          onBackIconTap: context.canPop()
+              ? null
+              : () => context.go(AppRoutes.tarotExplore),
+        ),
         body: SafeArea(
           child: Column(
             children: [

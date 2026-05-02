@@ -17,7 +17,7 @@ class DeckRetryWidget extends StatelessWidget {
                   request: FetchAllCardsRequest(session: authState.sessionOrCrash),
                 );
               },
-              text: 'Load Cards',
+              text: LocaleKeys.deck_page_load_cards.tr(),
               height: 40,
               textStyle: m10w600(context).copyWith(color: context.colors.textOnPrimary),
             ),

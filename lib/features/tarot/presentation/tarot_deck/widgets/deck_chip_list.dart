@@ -18,7 +18,7 @@ class DeckChipList extends StatelessWidget {
           child: Row(
             children: [
               _CategoryChip(
-                label: 'All',
+                label: LocaleKeys.deck_page_all.tr(),
                 isSelected: isCategoryAllSelected,
                 onTap: () => scope.state.onCategoryChanged = null,
               ),

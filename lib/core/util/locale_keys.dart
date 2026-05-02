@@ -1,6 +1,8 @@
 // DO NOT EDIT. This is code generated via package:easy_localization/generate.dart
 
-abstract class LocaleKeys {
+// ignore_for_file: constant_identifier_names
+
+abstract class  LocaleKeys {
   static const explore_page_spiritual_guide = 'explore_page.spiritual_guide';
   static const explore_page_ask_question = 'explore_page.ask_question';
   static const explore_page_deck = 'explore_page.deck';
@@ -21,6 +23,8 @@ abstract class LocaleKeys {
   static const deck_page_meaning_for_day = 'deck_page.meaning_for_day';
   static const deck_page_upright_meanings = 'deck_page.upright_meanings';
   static const deck_page_reversed_meanings = 'deck_page.reversed_meanings';
+  static const deck_page_all = 'deck_page.all';
+  static const deck_page_load_cards = 'deck_page.load_cards';
   static const deck_page = 'deck_page';
   static const tarot_detail_general = 'tarot_detail.general';
   static const tarot_detail_love = 'tarot_detail.love';
@@ -28,10 +32,20 @@ abstract class LocaleKeys {
   static const tarot_detail_spirituality = 'tarot_detail.spirituality';
   static const tarot_detail_advice = 'tarot_detail.advice';
   static const tarot_detail_affirmation = 'tarot_detail.affirmation';
+  static const tarot_detail_astrology = 'tarot_detail.astrology';
+  static const tarot_detail_element = 'tarot_detail.element';
+  static const tarot_detail_yes_no = 'tarot_detail.yes_no';
+  static const tarot_detail_finance = 'tarot_detail.finance';
+  static const tarot_detail_the_essence = 'tarot_detail.the_essence';
+  static const tarot_detail_upright_meaning = 'tarot_detail.upright_meaning';
+  static const tarot_detail_reversed_meaning = 'tarot_detail.reversed_meaning';
+  static const tarot_detail_archive_title = 'tarot_detail.archive_title';
+  static const tarot_detail_collection_label = 'tarot_detail.collection_label';
   static const tarot_detail = 'tarot_detail';
   static const reveal_page_tap_to_pick = 'reveal_page.tap_to_pick';
   static const reveal_page_drag_to_move = 'reveal_page.drag_to_move';
   static const reveal_page_cooldown_subtitle = 'reveal_page.cooldown_subtitle';
+  static const reveal_page_cooldown_calendar_hint = 'reveal_page.cooldown_calendar_hint';
   static const reveal_page = 'reveal_page';
   static const question_page_title = 'question_page.title';
   static const question_page_hint_text = 'question_page.hint_text';
@@ -109,6 +123,8 @@ abstract class LocaleKeys {
   static const settings_page_choose_language = 'settings_page.choose_language';
   static const settings_page_english = 'settings_page.english';
   static const settings_page_turkish = 'settings_page.turkish';
+  static const settings_page_legal = 'settings_page.legal';
+  static const settings_page_danger_zone = 'settings_page.danger_zone';
   static const settings_page = 'settings_page';
   static const delete_account_popup_title = 'delete_account_popup.title';
   static const delete_account_popup_desc = 'delete_account_popup.desc';
@@ -163,14 +179,17 @@ abstract class LocaleKeys {
   static const tarot_daily_last_week = 'tarot_daily.last_week';
   static const tarot_daily_last_month = 'tarot_daily.last_month';
   static const tarot_daily_custom_date = 'tarot_daily.custom_date';
+  static const tarot_daily_calendar_title = 'tarot_daily.calendar_title';
+  static const tarot_daily_calendar_tap_hint = 'tarot_daily.calendar_tap_hint';
+  static const tarot_daily_save_failed = 'tarot_daily.save_failed';
+  static const tarot_daily_save_success = 'tarot_daily.save_success';
   static const tarot_daily = 'tarot_daily';
   static const tarot_question_reader_step_title = 'tarot_question.reader_step_title';
   static const tarot_question_category_step_title = 'tarot_question.category_step_title';
   static const tarot_question_spread_step_title = 'tarot_question.spread_step_title';
   static const tarot_question_question_step_title = 'tarot_question.question_step_title';
   static const tarot_question_deck_shuffle_step_title = 'tarot_question.deck_shuffle_step_title';
-  static const tarot_question_deck_shuffle_open_step_subtitle =
-      'tarot_question.deck_shuffle_open_step_subtitle';
+  static const tarot_question_deck_shuffle_open_step_subtitle = 'tarot_question.deck_shuffle_open_step_subtitle';
   static const tarot_question_step_1_of_6 = 'tarot_question.step_1_of_6';
   static const tarot_question_step_2_of_6 = 'tarot_question.step_2_of_6';
   static const tarot_question_step_3_of_6 = 'tarot_question.step_3_of_6';
@@ -180,8 +199,7 @@ abstract class LocaleKeys {
   static const tarot_question_choose_reader_subtitle = 'tarot_question.choose_reader_subtitle';
   static const tarot_question_choose_category_subtitle = 'tarot_question.choose_category_subtitle';
   static const tarot_question_choose_spread_subtitle = 'tarot_question.choose_spread_subtitle';
-  static const tarot_question_choose_open_deck_subtitle =
-      'tarot_question.choose_open_deck_subtitle';
+  static const tarot_question_choose_open_deck_subtitle = 'tarot_question.choose_open_deck_subtitle';
   static const tarot_question_spreads_count = 'tarot_question.spreads_count';
   static const tarot_question_need_guidance = 'tarot_question.need_guidance';
   static const tarot_question_guide_subtitle = 'tarot_question.guide_subtitle';
@@ -196,6 +214,15 @@ abstract class LocaleKeys {
   static const tarot_question_question_hint = 'tarot_question.question_hint';
   static const tarot_question_step6_ready_to_open = 'tarot_question.step6_ready_to_open';
   static const tarot_question_step6_start_reading = 'tarot_question.step6_start_reading';
+  static const tarot_question_loading_subtitle = 'tarot_question.loading_subtitle';
+  static const tarot_question_loading_error = 'tarot_question.loading_error';
+  static const tarot_question_spread_card_journey = 'tarot_question.spread_card_journey';
+  static const tarot_question_tap_to_draw_cards = 'tarot_question.tap_to_draw_cards';
+  static const tarot_question_spread_position_card = 'tarot_question.spread_position_card';
+  static const tarot_question_loading_message_1 = 'tarot_question.loading_message_1';
+  static const tarot_question_loading_message_2 = 'tarot_question.loading_message_2';
+  static const tarot_question_loading_message_3 = 'tarot_question.loading_message_3';
+  static const tarot_question_loading_message_4 = 'tarot_question.loading_message_4';
   static const tarot_question = 'tarot_question';
   static const paywall_unlimited_readings = 'paywall.unlimited_readings';
   static const paywall_limited_question = 'paywall.limited_question';
@@ -213,20 +240,14 @@ abstract class LocaleKeys {
   static const subscription_paywall_page_title = 'subscription_paywall_page.title';
   static const subscription_paywall_page_subtitle = 'subscription_paywall_page.subtitle';
   static const subscription_paywall_page_footer_text = 'subscription_paywall_page.footer_text';
-  static const subscription_paywall_page_terms_of_service =
-      'subscription_paywall_page.terms_of_service';
-  static const subscription_paywall_page_failed_fetch_packages =
-      'subscription_paywall_page.failed_fetch_packages';
+  static const subscription_paywall_page_terms_of_service = 'subscription_paywall_page.terms_of_service';
+  static const subscription_paywall_page_failed_fetch_packages = 'subscription_paywall_page.failed_fetch_packages';
   static const subscription_paywall_page_no_packages = 'subscription_paywall_page.no_packages';
-  static const subscription_paywall_page_package_card_period =
-      'subscription_paywall_page.package_card_period';
-  static const subscription_paywall_page_subscribe_placeholder_button =
-      'subscription_paywall_page.subscribe_placeholder_button';
+  static const subscription_paywall_page_package_card_period = 'subscription_paywall_page.package_card_period';
+  static const subscription_paywall_page_subscribe_placeholder_button = 'subscription_paywall_page.subscribe_placeholder_button';
   static const subscription_paywall_page_retry_button = 'subscription_paywall_page.retry_button';
-  static const subscription_paywall_page_restore_button =
-      'subscription_paywall_page.restore_button';
-  static const subscription_paywall_page_subscribe_button =
-      'subscription_paywall_page.subscribe_button';
+  static const subscription_paywall_page_restore_button = 'subscription_paywall_page.restore_button';
+  static const subscription_paywall_page_subscribe_button = 'subscription_paywall_page.subscribe_button';
   static const subscription_paywall_page = 'subscription_paywall_page';
   static const subscription_period_month = 'subscription_period_month';
   static const subscription_period_week = 'subscription_period_week';
@@ -240,11 +261,11 @@ abstract class LocaleKeys {
   static const tarot_reading_tab_cards = 'tarot_reading.tab_cards';
   static const tarot_reading_tab_notes = 'tarot_reading.tab_notes';
   static const tarot_reading_save = 'tarot_reading.save';
-  static const tarot_reading_saved = 'tarot_reading.saved';
-  static const tarot_reading_save_success = 'tarot_reading.save_success';
-  static const tarot_reading_save_error = 'tarot_reading.save_error';
   static const tarot_reading_general_reading = 'tarot_reading.general_reading';
   static const tarot_reading_your_question = 'tarot_reading.your_question';
+  static const tarot_reading_save_success = 'tarot_reading.save_success';
+  static const tarot_reading_save_error = 'tarot_reading.save_error';
+  static const tarot_reading_saved = 'tarot_reading.saved';
   static const tarot_reading_notes_title = 'tarot_reading.notes_title';
   static const tarot_reading_notes_placeholder = 'tarot_reading.notes_placeholder';
   static const tarot_reading_upright = 'tarot_reading.upright';
@@ -254,6 +275,8 @@ abstract class LocaleKeys {
   static const tarot_reading_no_notes = 'tarot_reading.no_notes';
   static const tarot_reading_date_today = 'tarot_reading.date_today';
   static const tarot_reading_date_yesterday = 'tarot_reading.date_yesterday';
+  static const tarot_reading_update_success = 'tarot_reading.update_success';
+  static const tarot_reading_update_error = 'tarot_reading.update_error';
   static const tarot_reading = 'tarot_reading';
   static const tarot_shuffle_step_5_of_5 = 'tarot_shuffle.step_5_of_5';
   static const tarot_shuffle_tip_1_title = 'tarot_shuffle.tip_1_title';
@@ -267,4 +290,5 @@ abstract class LocaleKeys {
   static const tarot_shuffle_auto_off = 'tarot_shuffle.auto_off';
   static const tarot_shuffle_finish = 'tarot_shuffle.finish';
   static const tarot_shuffle = 'tarot_shuffle';
+
 }

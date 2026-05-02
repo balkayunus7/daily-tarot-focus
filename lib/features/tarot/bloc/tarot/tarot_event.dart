@@ -9,6 +9,7 @@ import 'package:daily_tarot_focus/features/tarot/domain/models/record_daily_card
 import 'package:daily_tarot_focus/features/tarot/domain/models/save_reading_request_model.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/tarot_flow_type.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/tarot_reading_model.dart';
+import 'package:daily_tarot_focus/features/tarot/domain/models/update_reading_note_request_model.dart';
 import 'package:mobile_boilerplate/domain/auth/auth_session.dart';
 
 sealed class TarotEvent {
@@ -151,4 +152,12 @@ final class TarotCacheCleared extends TarotEvent {
 
   @override
   List<Object?> get props => [];
+}
+
+final class TarotUpdateReadingNoteRequested extends TarotEvent {
+  const TarotUpdateReadingNoteRequested({required this.request});
+  final UpdateReadingNoteRequest request;
+
+  @override
+  List<Object?> get props => [request.readingId, request.note, request.session];
 }

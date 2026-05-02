@@ -3,6 +3,7 @@ import 'package:daily_tarot_focus/core/util/tarot_app_sizes.dart';
 import 'package:daily_tarot_focus/core/util/text_style_helper.dart';
 import 'package:daily_tarot_focus/features/tarot/presentation/tarot_reveal/helpers/reveal_page_scope.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mobile_boilerplate/common_dependencies.dart';
 import 'package:mobile_boilerplate/presentation/extensions/build_context_theme_ext.dart';
 
@@ -23,21 +24,14 @@ class RevealCooldownView extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Container(
-                  width: 100,
-                  height: 100,
+                  width: 100.w,
+                  height: 100.h,
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
-                    color: colors.secondary.withValues(alpha: 0.15),
-                    boxShadow: [
-                      BoxShadow(
-                        color: colors.primary.withValues(alpha: 0.25),
-                        blurRadius: 40,
-                        spreadRadius: 10,
-                      ),
-                    ],
+                    color: colors.primary.withValues(alpha: 0.15),
                   ),
-                  child: const Center(
-                    child: Icon(Icons.nightlight_round, color: Color(0xFFE8D5A3), size: 48),
+                  child: Center(
+                    child: Icon(Icons.nightlight_round, color: colors.secondary, size: 48),
                   ),
                 ),
                 Sp.xlarge.heightBox,
@@ -52,10 +46,12 @@ class RevealCooldownView extends StatelessWidget {
                 Sp.small.heightBox,
                 Text(
                   LocaleKeys.reveal_page_cooldown_subtitle.tr(),
-                  style: m13w500(context).copyWith(
-                    color: colors.textSecondary,
-                    letterSpacing: 1.2,
-                  ),
+                  style: m16w600(context).copyWith(color: colors.textPrimary, letterSpacing: 1.2),
+                ),
+                Sp.small.heightBox,
+                Text(
+                  LocaleKeys.reveal_page_cooldown_calendar_hint.tr(),
+                  style: m11w500(context).copyWith(color: colors.textTertiary, letterSpacing: 1.2),
                 ),
               ],
             ),

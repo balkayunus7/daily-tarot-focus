@@ -1,3 +1,4 @@
+import 'package:daily_tarot_focus/core/util/locale_keys.dart';
 import 'package:daily_tarot_focus/core/util/text_style_helper.dart';
 import 'package:daily_tarot_focus/core/widgets/tarot_app_bar.dart';
 import 'package:daily_tarot_focus/core/widgets/tarot_detail_content.dart';
@@ -31,10 +32,10 @@ class _TarotRevealDetailPageState extends State<TarotRevealDetailPage> with Reve
         },
         listener: (context, state) {
           if (state.hasRecordDailyCardFailed) {
-            context.showToastMessage('Kart Kaydedilemedi!!');
+            context.showToastMessage(LocaleKeys.tarot_daily_save_failed.tr());
           }
           if (state.hasRecordDailyCardSucceeded) {
-            context.showToastMessage('Kart Kaydedildi');
+            context.showToastMessage(LocaleKeys.tarot_daily_save_success.tr());
             onSaveSucceeded();
           }
         },
@@ -42,7 +43,7 @@ class _TarotRevealDetailPageState extends State<TarotRevealDetailPage> with Reve
           final isSaving = state.isRecordDailyCard;
           return Scaffold(
             appBar: TarotAppBar(
-              title: 'The Ethereal Archive',
+              title: LocaleKeys.tarot_detail_archive_title.tr(),
               titleStyle: m18w600(context).copyWith(
                 fontStyle: FontStyle.italic,
                 color: context.colors.primary,

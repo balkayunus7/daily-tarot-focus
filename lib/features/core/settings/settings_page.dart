@@ -123,7 +123,7 @@ class SettingsPage extends StatelessWidget {
                 ),
                 Sp.large.heightBox,
                 _SettingsSection(
-                  title: 'Legal',
+                  title: LocaleKeys.settings_page_legal.tr(),
                   children: [
                     _SettingsTile(
                       icon: Icons.description,
@@ -147,7 +147,7 @@ class SettingsPage extends StatelessWidget {
                 ),
                 Sp.large.heightBox,
                 _SettingsSection(
-                  title: 'Danger Zone',
+                  title: LocaleKeys.settings_page_danger_zone.tr(),
                   children: [
                     _SettingsTile(
                       icon: Icons.delete_forever,

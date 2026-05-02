@@ -1,3 +1,4 @@
+import 'package:daily_tarot_focus/core/util/locale_keys.dart';
 import 'package:daily_tarot_focus/core/util/text_style_helper.dart';
 import 'package:daily_tarot_focus/core/widgets/tarot_app_bar.dart';
 import 'package:daily_tarot_focus/core/widgets/tarot_detail_content.dart';
@@ -22,7 +23,7 @@ class TarotDeckDetailPage extends StatelessWidget {
         if (tarot == null) {
           return Scaffold(
             appBar: TarotAppBar(
-              title: 'The Ethereal Archive',
+              title: LocaleKeys.tarot_detail_archive_title.tr(),
               titleStyle: m18w600(context).copyWith(
                 fontStyle: FontStyle.italic,
                 color: context.colors.primary,
@@ -46,7 +47,7 @@ class _TarotDetailContent extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: TarotAppBar(
-        title: 'The Ethereal Archive',
+        title: LocaleKeys.tarot_detail_archive_title.tr(),
         titleStyle: m18w600(context).copyWith(
           fontStyle: FontStyle.italic,
           color: context.colors.primary,

@@ -20,7 +20,9 @@
         "title": "Desteler",
         "meaning_for_day": "Günlük İçgörü",
         "upright_meanings": "Düz Anlamı",
-        "reversed_meanings": "Ters Anlamı"
+        "reversed_meanings": "Ters Anlamı",
+        "all": "Tümü",
+        "load_cards": "Kartları Yükle"
     },
     "tarot_detail": {
         "general": "Genel",
@@ -28,12 +30,22 @@
         "career": "Kariyer",
         "spirituality": "Ruh",
         "advice": "Tavsiye",
-        "affirmation": "Olumlama"
+        "affirmation": "Olumlama",
+        "astrology": "Astroloji",
+        "element": "Element",
+        "yes_no": "Evet/Hayır",
+        "finance": "Finans",
+        "the_essence": "Özü",
+        "upright_meaning": "Düz Anlam",
+        "reversed_meaning": "Ters Anlam",
+        "archive_title": "Efsanevi Arşiv",
+        "collection_label": "'Göksel Durgunluk' Koleksiyonundan"
     },
     "reveal_page": {
         "tap_to_pick": "Açmak için dokun",
         "drag_to_move": "Keşfetmek için sürükle",
-        "cooldown_subtitle": "YENİ KARTIN SENI BEKLİYOR"
+        "cooldown_subtitle": "YENİ KARTIN SENI BEKLİYOR",
+        "cooldown_calendar_hint": "Sonraki çekimin için takvimi kontrol et"
     },
     "question_page": {
         "title": "Gerçeğin",
@@ -115,7 +127,9 @@
         "delete_account": "Hesabı Sil",
         "choose_language": "Dil",
         "english": "English",
-        "turkish": "Türkçe"
+        "turkish": "Türkçe",
+        "legal": "Yasal",
+        "danger_zone": "Tehlikeli Alan"
     },
     "delete_account_popup": {
         "title": "Hesabı Sil",
@@ -177,7 +191,11 @@
         "all_time": "Tümü",
         "last_week": "Son Hafta",
         "last_month": "Son Ay",
-        "custom_date": "Özel Tarih"
+        "custom_date": "Özel Tarih",
+        "calendar_title": "Günlük Geçmiş",
+        "calendar_tap_hint": "Kartlara tıklayarak detaylarını görebilirsin",
+        "save_failed": "Kart Kaydedilemedi",
+        "save_success": "Kart Kaydedildi"
     },
     "tarot_question": {
         "reader_step_title": "Mistik Rehberini Seç",
@@ -209,7 +227,16 @@
         "tip_3_desc": "\"Aşk?\" yerine \"Aşkı nasıl çekerim?\" diye sor.",
         "question_hint": "Buraya yazabilirsin...\nÖrn. Şu an odağım ne olmalı?",
         "step6_ready_to_open": "Nefes al. Kartları uyandırmak için dokun.",
-        "step6_start_reading": "Okumaya Başla"
+        "step6_start_reading": "Okumaya Başla",
+        "loading_subtitle": "Lütfen bekleyin, kartlarınız derinlemesine inceleniyor.",
+        "loading_error": "Bir hata oluştu",
+        "spread_card_journey": "{} Kartlı Rehberli Yolculuk",
+        "tap_to_draw_cards": "Kartları Çekmek İçin Dokun",
+        "spread_position_card": "Kart {}:",
+        "loading_message_1": "Enerjiler harmanlanıyor...",
+        "loading_message_2": "Kartlar kaderini fısıldıyor...",
+        "loading_message_3": "Evrenin rehberliği şekilleniyor...",
+        "loading_message_4": "Yorumun hazırlanıyor..."
     },
     "paywall": {
         "unlimited_readings": "Sonsuz Okuma",
@@ -274,7 +301,9 @@
         "card_label": "Kart {}",
         "no_notes": "Kişisel not eklenmedi.",
         "date_today": "Bugün",
-        "date_yesterday": "Dün"
+        "date_yesterday": "Dün",
+        "update_success": "Not kaydedildi",
+        "update_error": "Not kaydedilemedi, tekrar dene"
     },
     "tarot_shuffle": {
         "step_5_of_5": "5 / 5",

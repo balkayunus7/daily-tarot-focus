@@ -1,3 +1,4 @@
+import 'package:daily_tarot_focus/core/util/locale_keys.dart';
 import 'package:daily_tarot_focus/core/util/tarot_app_assets.dart';
 import 'package:daily_tarot_focus/core/util/tarot_app_sizes.dart';
 import 'package:daily_tarot_focus/core/util/text_style_helper.dart';
@@ -38,7 +39,7 @@ class TarotsProAppBar extends StatelessWidget implements PreferredSizeWidget {
                     width: 84,
                     height: 38,
                     onTap: () {},
-                    text: 'Get Pro',
+                    text: LocaleKeys.explore_page_get_pro.tr(),
                     backgroundColor: context.colors.background,
                     textColor: context.colors.textOnPrimary,
                     textStyle: m14w600(context),

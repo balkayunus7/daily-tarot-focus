@@ -1,4 +1,5 @@
 import 'package:daily_tarot_focus/config/app_routes.dart';
+import 'package:daily_tarot_focus/core/util/locale_keys.dart';
 import 'package:daily_tarot_focus/core/util/tarot_app_sizes.dart';
 import 'package:daily_tarot_focus/core/util/text_style_helper.dart';
 import 'package:daily_tarot_focus/core/widgets/custom_cache_network_image.dart';
@@ -35,7 +36,7 @@ class _TarotDailyCalendarPageState extends State<TarotDailyCalendarPage>
       child: Scaffold(
         backgroundColor: colors.background,
         appBar: TarotAppBar(
-          title: 'Daily History',
+          title: LocaleKeys.tarot_daily_calendar_title.tr(),
           backIcon: context.canPop() ? null : Icons.close,
           onBackIconTap: context.canPop()
               ? null
@@ -89,7 +90,7 @@ class _TapHint extends StatelessWidget {
           Icon(Icons.touch_app_outlined, size: 13, color: colors.textSecondary),
           const SizedBox(width: 4),
           Text(
-            'Kartlara tıklayarak detaylarını görebilirsin',
+            LocaleKeys.tarot_daily_calendar_tap_hint.tr(),
             style: m11w500(context).copyWith(color: colors.textSecondary),
           ),
         ],

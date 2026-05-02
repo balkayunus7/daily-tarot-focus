@@ -11,64 +11,96 @@ import 'package:daily_tarot_focus/features/tarot/domain/models/fetch_saved_readi
 import 'package:daily_tarot_focus/features/tarot/domain/models/fetch_spreads_response_model.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/generate_reading_response_model.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/tarot_reading_model.dart';
+import 'package:daily_tarot_focus/features/tarot/presentation/tarot_reading/helpers/detail_page_mixin.dart';
+import 'package:daily_tarot_focus/features/tarot/presentation/tarot_reading/helpers/detail_page_scope.dart';
 import 'package:daily_tarot_focus/features/tarot/presentation/tarot_spread/widgets/spread_layout_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mobile_boilerplate/common_dependencies.dart';
 import 'package:mobile_boilerplate/presentation/extensions/build_context_theme_ext.dart';
+import 'package:mobile_boilerplate/presentation/extensions/build_context_toast_ext.dart';
 
 part '../widgets/detail_notes_tab.dart';
 part '../widgets/detail_spread_tabs.dart';
 part '../widgets/detail_cards_tab.dart';
 
-class TarotReadingDetailPage extends StatelessWidget {
+class TarotReadingDetailPage extends StatefulWidget {
   const TarotReadingDetailPage({required this.reading, super.key});
   final SavedReadingModel reading;
 
   @override
+  State<TarotReadingDetailPage> createState() => _TarotReadingDetailPageState();
+}
+
+class _TarotReadingDetailPageState extends State<TarotReadingDetailPage> with DetailPageMixin {
+  @override
   Widget build(BuildContext context) {
-    return BlocBuilder<TarotBloc, TarotState>(
-      builder: (context, state) {
-        final spread =
-            state.spreadsOrEmpty
-                .asList()
-                .expand((cat) => cat.spreads.asList())
-                .where((s) => s.id == reading.spreadId)
-                .firstOrNull;
-
-        final cards =
-            reading.cardInterpretations
-                .map((interp) {
-                  final card = state.getById(interp.cardId);
-                  if (card == null) return null;
-                  final position =
-                      spread?.positions
-                          .asList()
-                          .where((p) => p.index == interp.positionIndex)
-                          .firstOrNull;
-                  return TarotSelectedReadingCard(
-                    positionIndex: interp.positionIndex,
-                    card: card,
-                    position:
-                        position ??
-                        TarotSpreadPositionModel(
-                          col: 0,
-                          row: 0,
-                          index: interp.positionIndex,
-                          title: '',
-                          question: '',
-                        ),
-                    isReversed: interp.isReversed,
-                  );
-                })
-                .whereType<TarotSelectedReadingCard>()
-                .toList();
-
-        return DefaultTabController(
-          length: 3,
-          child: _DetailScaffold(reading: reading, spread: spread, cards: cards),
-        );
+    return PopScope(
+      onPopInvokedWithResult: (didPop, _) {
+        if (didPop && isDirty.value) onSaveNote();
       },
+      child: DetailPageScope(
+        state: this,
+        child: BlocConsumer<TarotBloc, TarotState>(
+          listenWhen:
+              (prev, curr) =>
+                  (!prev.hasUpdateNoteSucceeded && curr.hasUpdateNoteSucceeded) ||
+                  (!prev.hasUpdateNoteFailed && curr.hasUpdateNoteFailed),
+          listener: (context, state) {
+            if (state.hasUpdateNoteSucceeded) {
+              context.showToastMessage(LocaleKeys.tarot_reading_update_success.tr());
+              onUpdateNoteSucceeded();
+            } else if (state.hasUpdateNoteFailed) {
+              context.showToastMessage(LocaleKeys.tarot_reading_update_error.tr());
+            }
+          },
+          buildWhen:
+              (prev, curr) =>
+                  prev.spreadsOrEmpty != curr.spreadsOrEmpty ||
+                  prev.fetchAllCardsFailureOrCards != curr.fetchAllCardsFailureOrCards,
+          builder: (context, state) {
+            final spread =
+                state.spreadsOrEmpty
+                    .asList()
+                    .expand((cat) => cat.spreads.asList())
+                    .where((s) => s.id == widget.reading.spreadId)
+                    .firstOrNull;
+
+            final cards =
+                widget.reading.cardInterpretations
+                    .map((interp) {
+                      final card = state.getById(interp.cardId);
+                      if (card == null) return null;
+                      final position =
+                          spread?.positions
+                              .asList()
+                              .where((p) => p.index == interp.positionIndex)
+                              .firstOrNull;
+                      return TarotSelectedReadingCard(
+                        positionIndex: interp.positionIndex,
+                        card: card,
+                        position:
+                            position ??
+                            TarotSpreadPositionModel(
+                              col: 0,
+                              row: 0,
+                              index: interp.positionIndex,
+                              title: '',
+                              question: '',
+                            ),
+                        isReversed: interp.isReversed,
+                      );
+                    })
+                    .whereType<TarotSelectedReadingCard>()
+                    .toList();
+
+            return DefaultTabController(
+              length: 3,
+              child: _DetailScaffold(reading: widget.reading, spread: spread, cards: cards),
+            );
+          },
+        ),
+      ),
     );
   }
 }
@@ -95,12 +127,8 @@ class _DetailScaffold extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             TarotAppBar(
-              backIcon: Icons.close,
-              onBackIconTap: () => Navigator.of(context).pop(),
-              titleWidget: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [Text(LocaleKeys.tarot_reading_title.tr(), style: m16w700(context))],
-              ),
+              title: LocaleKeys.tarot_reading_title.tr(),
+              titleStyle: m16w700(context),
             ),
             TabBar(
               indicatorColor: colors.primary,
@@ -122,7 +150,7 @@ class _DetailScaffold extends StatelessWidget {
         children: [
           SpreadTab(reading: reading, cards: cards),
           CardsTab(cards: cards, spread: spread),
-          NotesTab(note: reading.note),
+          const NotesTab(),
         ],
       ),
     );

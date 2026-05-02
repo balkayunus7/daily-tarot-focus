@@ -20,7 +20,9 @@
         "title": "Decks",
         "meaning_for_day": "Daily Insight",
         "upright_meanings": "Upright",
-        "reversed_meanings": "Reversed"
+        "reversed_meanings": "Reversed",
+        "all": "All",
+        "load_cards": "Load Cards"
     },
     "tarot_detail": {
         "general": "General",
@@ -28,12 +30,22 @@
         "career": "Career",
         "spirituality": "Spirit",
         "advice": "Advice",
-        "affirmation": "Affirmation"
+        "affirmation": "Affirmation",
+        "astrology": "Astrology",
+        "element": "Element",
+        "yes_no": "Yes/No",
+        "finance": "Finance",
+        "the_essence": "The Essence",
+        "upright_meaning": "Upright Meaning",
+        "reversed_meaning": "Reversed Meaning",
+        "archive_title": "The Ethereal Archive",
+        "collection_label": "Part of the 'Celestial Stillness' Collection"
     },
     "reveal_page": {
         "tap_to_pick": "Tap to reveal",
         "drag_to_move": "Drag to explore",
-        "cooldown_subtitle": "YOUR NEXT CARD AWAITS"
+        "cooldown_subtitle": "YOUR NEXT CARD AWAITS",
+        "cooldown_calendar_hint": "Check the calendar for your next draw"
     },
     "question_page": {
         "title": "Your Truth",
@@ -115,7 +127,9 @@
         "delete_account": "Delete Account",
         "choose_language": "Language",
         "english": "English",
-        "turkish": "Türkçe"
+        "turkish": "Türkçe",
+        "legal": "Legal",
+        "danger_zone": "Danger Zone"
     },
     "delete_account_popup": {
         "title": "Delete Account",
@@ -177,7 +191,11 @@
         "all_time": "All Time",
         "last_week": "Last Week",
         "last_month": "Last Month",
-        "custom_date": "Custom Date"
+        "custom_date": "Custom Date",
+        "calendar_title": "Daily History",
+        "calendar_tap_hint": "Tap cards to see details",
+        "save_failed": "Card could not be saved",
+        "save_success": "Card saved"
     },
     "tarot_question": {
         "reader_step_title": "Choose your Mystic Reader",
@@ -208,7 +226,16 @@
         "tip_3_title": "Be specific",
         "tip_3_desc": "Instead of \"Love?\", ask \"How to attract love?\"",
         "question_hint": "Type here...\nE.g. My focus right now?",
-        "step6_start_reading": "Start Reading"
+        "step6_start_reading": "Start Reading",
+        "loading_subtitle": "Please wait, your cards are being deeply analyzed.",
+        "loading_error": "An error occurred",
+        "spread_card_journey": "{} Card Guided Journey",
+        "tap_to_draw_cards": "Tap to Draw Cards",
+        "spread_position_card": "Card {}:",
+        "loading_message_1": "Energies are blending...",
+        "loading_message_2": "Cards whisper your fate...",
+        "loading_message_3": "Universe's guidance is forming...",
+        "loading_message_4": "Your reading is being prepared..."
     },
     "paywall": {
         "unlimited_readings": "Infinite Readings",
@@ -273,7 +300,9 @@
         "card_label": "Card {}",
         "no_notes": "No personal notes added.",
         "date_today": "Today",
-        "date_yesterday": "Yesterday"
+        "date_yesterday": "Yesterday",
+        "update_success": "Note saved",
+        "update_error": "Could not save note, try again"
     },
     "tarot_shuffle": {
         "step_5_of_5": "5 / 5",

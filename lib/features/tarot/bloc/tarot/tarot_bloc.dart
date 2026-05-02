@@ -17,6 +17,7 @@ import 'package:daily_tarot_focus/features/tarot/domain/models/record_daily_card
 import 'package:daily_tarot_focus/features/tarot/domain/models/save_reading_request_model.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/tarot_flow_type.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/tarot_reading_model.dart';
+import 'package:daily_tarot_focus/features/tarot/domain/models/update_reading_note_request_model.dart';
 import 'package:mobile_boilerplate/common_dependencies.dart';
 import 'package:mobile_boilerplate/domain/auth/auth_session.dart';
 import 'package:mobile_boilerplate/domain/common/failure.dart';
@@ -59,6 +60,8 @@ class TarotBloc extends Bloc<TarotEvent, TarotState> {
           await _onSaveReadingRequested(event, emit);
         } else if (event is TarotCacheCleared) {
           await _onCacheCleared(event, emit);
+        } else if (event is TarotUpdateReadingNoteRequested) {
+          await _onUpdateReadingNoteRequested(event, emit);
         }
       },
       transformer: sequential(),
@@ -109,6 +112,9 @@ class TarotBloc extends Bloc<TarotEvent, TarotState> {
       add(TarotFetchSavedReadingsRequested(request: request));
 
   void addClearCache() => add(const TarotCacheCleared());
+
+  void addUpdateReadingNoteRequested({required UpdateReadingNoteRequest request}) =>
+      add(TarotUpdateReadingNoteRequested(request: request));
 
   // ── Private cache helpers ───────────────────────────────────────────────────
   Future<FailureOr<KtList<TarotCardModel>>> _fetchAndCacheAllCards(
@@ -201,6 +207,8 @@ class TarotBloc extends Bloc<TarotEvent, TarotState> {
         isSavingReading: false,
         fetchSavedReadingsFailureOrResponse: state.fetchSavedReadingsFailureOrResponse,
         isFetchingSavedReadings: state.isFetchingSavedReadings,
+        isUpdatingNote: false,
+        updateNoteFailureOrUnit: none(),
       ),
     );
   }
@@ -394,6 +402,17 @@ class TarotBloc extends Bloc<TarotEvent, TarotState> {
         fetchSavedReadingsFailureOrResponse: some(result),
       ),
     );
+  }
+
+  Future<void> _onUpdateReadingNoteRequested(
+    TarotUpdateReadingNoteRequested event,
+    Emitter<TarotState> emit,
+  ) async {
+    emit(state.copyWith(isUpdatingNote: true, updateNoteFailureOrUnit: none()));
+
+    final result = await _tarotRepository.requestUpdateReadingNote(request: event.request);
+
+    emit(state.copyWith(isUpdatingNote: false, updateNoteFailureOrUnit: some(result)));
   }
 
   final ImplTarotRepository _tarotRepository;

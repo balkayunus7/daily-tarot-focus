@@ -1,4 +1,5 @@
 import 'package:daily_tarot_focus/config/app_routes.dart';
+import 'package:daily_tarot_focus/core/util/locale_keys.dart';
 import 'package:daily_tarot_focus/core/util/tarot_app_assets.dart';
 import 'package:daily_tarot_focus/core/util/tarot_app_sizes.dart';
 import 'package:daily_tarot_focus/core/util/text_style_helper.dart';
@@ -30,18 +31,20 @@ class _TarotSpreadLoadingPageState extends State<TarotSpreadLoadingPage> with Lo
       child: MultiBlocListener(
         listeners: [
           BlocListener<TarotBloc, TarotState>(
-            listenWhen: (previous, current) =>
-                !previous.hasGeneratedReadingFailed && current.hasGeneratedReadingFailed,
+            listenWhen:
+                (previous, current) =>
+                    !previous.hasGeneratedReadingFailed && current.hasGeneratedReadingFailed,
             listener: (context, state) {
               ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(content: Text('Bir Hata oluştu')),
+                SnackBar(content: Text(LocaleKeys.tarot_question_loading_error.tr())),
               );
               context.go(AppRoutes.tarotExplore);
             },
           ),
           BlocListener<TarotBloc, TarotState>(
-            listenWhen: (previous, current) =>
-                !previous.hasGeneratedReadingSucceeded && current.hasGeneratedReadingSucceeded,
+            listenWhen:
+                (previous, current) =>
+                    !previous.hasGeneratedReadingSucceeded && current.hasGeneratedReadingSucceeded,
             listener: (context, state) {
               if (state.hasGeneratedReadingSucceeded) {
                 context.pushReplacementNamed(AppRoutes.tarotReadingAnswer);
@@ -94,7 +97,7 @@ class _TarotSpreadLoadingPageState extends State<TarotSpreadLoadingPage> with Lo
                 ),
                 Sp.small.heightBox,
                 Text(
-                  'Lütfen bekleyin, kartlarınız derinlemesine inceleniyor.',
+                  LocaleKeys.tarot_question_loading_subtitle.tr(),
                   style: m12w400(context).copyWith(
                     color: colors.textSecondary.withValues(alpha: 0.7),
                   ),

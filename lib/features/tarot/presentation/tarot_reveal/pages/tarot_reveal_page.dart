@@ -71,7 +71,7 @@ class _TarotRevealPageState extends State<TarotRevealPage>
                   height: MediaQuery.of(context).size.height * 0.5,
                   child: const CustomCacheNetworkImage(imageUrl: TarotAppAssets.dailyPickBgHttp),
                 ),
-                if (!onCooldown) ...[
+                if (onCooldown) ...[
                   const RevealCooldownView(),
                 ] else ...[
                   ValueListenableBuilder<TarotCardModel?>(

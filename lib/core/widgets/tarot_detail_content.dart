@@ -46,19 +46,19 @@ class _TarotDetailContentState extends State<TarotDetailContent> with TarotDetai
                           children: [
                             if (tarot.correspondences.astrology.isNotEmpty)
                               _LineLabel(
-                                title: 'Astrology',
+                                title: LocaleKeys.tarot_detail_astrology.tr(),
                                 value: tarot.correspondences.astrology,
                                 isLeft: true,
                               ),
                             if (tarot.correspondences.element.isNotEmpty)
                               _LineLabel(
-                                title: 'Element',
+                                title: LocaleKeys.tarot_detail_element.tr(),
                                 value: tarot.correspondences.element,
                                 isLeft: true,
                               ),
                             if (tarot.correspondences.yesOrNo.isNotEmpty)
                               _LineLabel(
-                                title: 'Yes/No',
+                                title: LocaleKeys.tarot_detail_yes_no.tr(),
                                 value: tarot.correspondences.yesOrNo,
                                 isLeft: true,
                               ),
@@ -140,7 +140,7 @@ class _TarotDetailContentState extends State<TarotDetailContent> with TarotDetai
                         Sp.xlarge.heightBox,
                         if (tarot.description.isNotEmpty) ...[
                           Text(
-                            'The Essence',
+                            LocaleKeys.tarot_detail_the_essence.tr(),
                             style: m18w600(context).copyWith(
                               color: context.colors.textPrimary,
                             ),
@@ -182,7 +182,7 @@ class _TarotDetailContentState extends State<TarotDetailContent> with TarotDetai
                         if (meanings.finances.isNotEmpty) ...[
                           _InfoCard(
                             icon: Icons.account_balance_wallet,
-                            title: 'Finance',
+                            title: LocaleKeys.tarot_detail_finance.tr(),
                             content: meanings.finances,
                           ),
                           Sp.medium.heightBox,
@@ -190,7 +190,7 @@ class _TarotDetailContentState extends State<TarotDetailContent> with TarotDetai
                         Sp.xlarge.heightBox,
                         Center(
                           child: Text(
-                            "Part of the 'Celestial Stillness' Collection",
+                            LocaleKeys.tarot_detail_collection_label.tr(),
                             style: m12w500(context).copyWith(color: context.colors.textSecondary),
                           ),
                         ),
@@ -248,12 +248,12 @@ class _MeaningToggle extends StatelessWidget {
               children: [
                 _MeaningSwitch(
                   isActive: isUprightValue,
-                  title: 'Upright Meaning',
+                  title: LocaleKeys.tarot_detail_upright_meaning.tr(),
                   onTap: () => scope.upright = true,
                 ),
                 _MeaningSwitch(
                   isActive: !isUprightValue,
-                  title: 'Reversed Meaning',
+                  title: LocaleKeys.tarot_detail_reversed_meaning.tr(),
                   onTap: () => scope.upright = false,
                 ),
               ],

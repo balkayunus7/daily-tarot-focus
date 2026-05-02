@@ -17,6 +17,7 @@ import 'package:daily_tarot_focus/features/tarot/domain/models/record_daily_card
 import 'package:daily_tarot_focus/features/tarot/domain/models/record_daily_card_response_model.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/save_reading_request_model.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/save_reading_response_model.dart';
+import 'package:daily_tarot_focus/features/tarot/domain/models/update_reading_note_request_model.dart';
 import 'package:mobile_boilerplate/domain/common/http_utilities.dart';
 import 'package:mobile_boilerplate/extensions.dart';
 import 'package:supabase/supabase.dart' hide Session;
@@ -159,5 +160,18 @@ class ImplTarotRemoteDataSource implements ITarotRemoteDataSource {
 
     final response = responseOrFail.getRightOrCrash();
     return FetchSavedReadingsResponse.fromMap(decodeSupabaseResponse(response.data));
+  }
+
+  /// REQUEST UPDATE READING NOTE
+  @override
+  Future<void> requestUpdateReadingNote({required UpdateReadingNoteRequest request}) async {
+    final responseOrFail = await supabaseClient.secureInvoke(
+      route: UPDATE_READING_NOTE,
+      method: HttpMethod.patch,
+      body: request.toMap(),
+      session: request.session,
+    );
+
+    if (responseOrFail.isLeft()) throw Exception();
   }
 }

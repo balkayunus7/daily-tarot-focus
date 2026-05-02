@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:daily_tarot_focus/core/util/locale_keys.dart';
 import 'package:daily_tarot_focus/features/tarot/bloc/tarot/tarot_bloc.dart';
 import 'package:daily_tarot_focus/features/tarot/presentation/tarot_spread/pages/tarot_spread_loading_page.dart';
 import 'package:flutter/material.dart';
@@ -7,11 +8,11 @@ import 'package:mobile_boilerplate/application/auth/auth_cubit.dart';
 import 'package:mobile_boilerplate/common_dependencies.dart';
 
 mixin LoadingPageMixin on State<TarotSpreadLoadingPage> {
-  final List<String> loadingMessages = const [
-    'Enerjiler harmanlanıyor...',
-    'Kartlar kaderini fısıldıyor...',
-    'Evrenin rehberliği şekilleniyor...',
-    'Yorumun hazırlanıyor...',
+  List<String> get loadingMessages => [
+    LocaleKeys.tarot_question_loading_message_1.tr(),
+    LocaleKeys.tarot_question_loading_message_2.tr(),
+    LocaleKeys.tarot_question_loading_message_3.tr(),
+    LocaleKeys.tarot_question_loading_message_4.tr(),
   ];
 
   final ValueNotifier<int> messageIndex = ValueNotifier(0);

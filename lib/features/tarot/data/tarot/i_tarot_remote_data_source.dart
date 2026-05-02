@@ -14,6 +14,7 @@ import 'package:daily_tarot_focus/features/tarot/domain/models/record_daily_card
 import 'package:daily_tarot_focus/features/tarot/domain/models/record_daily_card_response_model.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/save_reading_request_model.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/save_reading_response_model.dart';
+import 'package:daily_tarot_focus/features/tarot/domain/models/update_reading_note_request_model.dart';
 
 abstract class ITarotRemoteDataSource {
   Future<RecordDailyCardResponse> requestRecordDailyCard({required RecordDailyCardRequest request});
@@ -26,4 +27,5 @@ abstract class ITarotRemoteDataSource {
   Future<FetchSavedReadingsResponse> requestFetchSavedReadings({
     required FetchSavedReadingsRequest request,
   });
+  Future<void> requestUpdateReadingNote({required UpdateReadingNoteRequest request});
 }

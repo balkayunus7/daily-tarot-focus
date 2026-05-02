@@ -1,5 +1,7 @@
+import 'package:daily_tarot_focus/core/util/locale_keys.dart';
 import 'package:daily_tarot_focus/core/util/tarot_app_assets.dart';
 import 'package:daily_tarot_focus/core/widgets/custom_cache_network_image.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile_boilerplate/domain/purchases/subscription_period.dart';
 import 'package:mobile_boilerplate/domain/purchases/subscription_plan.dart';
@@ -31,22 +33,22 @@ class TarotSubscriptionPaywallPage extends StatelessWidget {
       cardBadgeForeground: colors.background,
       buttonTextColor: colors.background,
       buttonColor: colors.primary.withValues(alpha: 0.8),
-      freeColumnLabel: 'ÜCRETSİZ',
+      freeColumnLabel: LocaleKeys.paywall_free.tr(),
       tableBgColor: colors.surface.withValues(alpha: 0.6),
     );
   }
 
-  static const List<PaywallFeature> _features = [
-    PaywallFeature(label: 'Günlük Tarot Çekimi', availableInFree: true),
-    PaywallFeature(label: 'Günlük Soru Sorma', freeText: '2', proText: '10'),
-    PaywallFeature(label: 'Aylık Özet ve Grafikler'),
-    PaywallFeature(label: 'Detaylı ve Derin Yorumlama'),
+  List<PaywallFeature> _features() => [
+    PaywallFeature(label: LocaleKeys.paywall_daily_draw.tr(), availableInFree: true),
+    PaywallFeature(label: LocaleKeys.paywall_daily_questions.tr(), freeText: '2', proText: '10'),
+    PaywallFeature(label: LocaleKeys.paywall_monthly_summary.tr()),
+    PaywallFeature(label: LocaleKeys.paywall_detailed_interpretation.tr()),
   ];
 
-  static const List<PaywallPackageBadge> _badges = [
+  List<PaywallPackageBadge> _badges() => [
     PaywallPackageBadge(
       period: SubscriptionPeriod.month1,
-      label: 'Sık Tercih Edilen',
+      label: LocaleKeys.paywall_popular.tr(),
     ),
   ];
 
@@ -54,10 +56,10 @@ class TarotSubscriptionPaywallPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return SubscriptionPaywallPage(
       plan: SubscriptionPlan.premium,
-      title: 'Ayrıcalıklı Deneyim',
-      subtitle: 'Kaderinin tüm kapılarını arala',
-      features: _features,
-      packageBadges: _badges,
+      title: LocaleKeys.subscription_paywall_page_title.tr(),
+      subtitle: LocaleKeys.subscription_paywall_page_subtitle.tr(),
+      features: _features(),
+      packageBadges: _badges(),
       theme: buildTheme(context),
       dismissDelay: const Duration(seconds: 3),
       headerImage: const CustomCacheNetworkImage(imageUrl: TarotAppAssets.paywallHttp),

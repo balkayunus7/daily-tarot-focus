@@ -134,7 +134,7 @@ class _DetailAppBar extends StatelessWidget {
               children: [
                 GestureDetector(
                   behavior: HitTestBehavior.opaque,
-                  onTap: () => scope.handleBackPress(),
+                  onTap: scope.handleBackPress,
                   child: FancyContainer(
                     width: 32.w,
                     height: 32.h,
@@ -198,7 +198,7 @@ class _DetailScaffold extends StatelessWidget {
         bottom: false,
         child: Column(
           children: [
-            _DetailAppBar(),
+            const _DetailAppBar(),
             Expanded(
               child: TabBarView(
                 children: [

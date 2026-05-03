@@ -1,3 +1,4 @@
+import 'package:daily_tarot_focus/core/util/build_context_toast_ext.dart';
 import 'package:daily_tarot_focus/core/util/locale_keys.dart';
 import 'package:daily_tarot_focus/core/util/text_style_helper.dart';
 import 'package:daily_tarot_focus/core/widgets/tarot_app_bar.dart';
@@ -10,7 +11,6 @@ import 'package:daily_tarot_focus/features/tarot/presentation/tarot_reveal/helpe
 import 'package:flutter/material.dart';
 import 'package:mobile_boilerplate/common_dependencies.dart';
 import 'package:mobile_boilerplate/presentation/extensions/build_context_theme_ext.dart';
-import 'package:daily_tarot_focus/core/util/build_context_toast_ext.dart';
 
 class TarotRevealDetailPage extends StatefulWidget {
   const TarotRevealDetailPage({required this.tarot, super.key});

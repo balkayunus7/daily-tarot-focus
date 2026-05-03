@@ -8,7 +8,6 @@ extension TarotToastExt on BuildContext {
       message,
       this,
       duration: 3,
-      gravity: Toast.BOTTOM,
       backgroundRadius: 12,
       backgroundColor: colors.surface,
       textColor: colors.textPrimary,

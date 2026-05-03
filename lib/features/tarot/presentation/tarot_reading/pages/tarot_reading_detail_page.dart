@@ -1,10 +1,12 @@
 import 'dart:math' as math;
 
+import 'package:daily_tarot_focus/core/util/build_context_toast_ext.dart';
 import 'package:daily_tarot_focus/core/util/locale_keys.dart';
 import 'package:daily_tarot_focus/core/util/tarot_app_sizes.dart';
 import 'package:daily_tarot_focus/core/util/text_style_helper.dart';
 import 'package:daily_tarot_focus/core/widgets/custom_cache_network_image.dart';
-import 'package:daily_tarot_focus/core/widgets/tarot_app_bar.dart';
+import 'package:daily_tarot_focus/core/widgets/fancy_button.dart';
+import 'package:daily_tarot_focus/core/widgets/fancy_container.dart';
 import 'package:daily_tarot_focus/features/tarot/bloc/tarot/tarot_bloc.dart';
 import 'package:daily_tarot_focus/features/tarot/bloc/tarot/tarot_state.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/fetch_saved_readings_response_model.dart';
@@ -18,7 +20,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mobile_boilerplate/common_dependencies.dart';
 import 'package:mobile_boilerplate/presentation/extensions/build_context_theme_ext.dart';
-import 'package:mobile_boilerplate/presentation/extensions/build_context_toast_ext.dart';
 
 part '../widgets/detail_notes_tab.dart';
 part '../widgets/detail_spread_tabs.dart';
@@ -35,10 +36,19 @@ class TarotReadingDetailPage extends StatefulWidget {
 class _TarotReadingDetailPageState extends State<TarotReadingDetailPage> with DetailPageMixin {
   @override
   Widget build(BuildContext context) {
-    return PopScope(
-      onPopInvokedWithResult: (didPop, _) {
-        if (didPop && isDirty.value) onSaveNote();
-      },
+    return ValueListenableBuilder<bool>(
+      valueListenable: isDirty,
+      builder:
+          (context, dirty, child) => PopScope(
+            canPop: !dirty,
+            onPopInvokedWithResult: (didPop, _) async {
+              debugPrint(
+                '[PopScope] fired — didPop=$didPop, isDirty=${isDirty.value}, canPop=${!dirty}',
+              );
+              if (!didPop) await handleBackPress();
+            },
+            child: child!,
+          ),
       child: DetailPageScope(
         state: this,
         child: BlocConsumer<TarotBloc, TarotState>(
@@ -105,6 +115,69 @@ class _TarotReadingDetailPageState extends State<TarotReadingDetailPage> with De
   }
 }
 
+class _DetailAppBar extends StatelessWidget {
+  const _DetailAppBar();
+
+  @override
+  Widget build(BuildContext context) {
+    final colors = context.colors;
+    final scope = DetailPageScope.of(context).state;
+
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        SizedBox(
+          height: kToolbarHeight,
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: Sp.medium.w),
+            child: Row(
+              children: [
+                GestureDetector(
+                  behavior: HitTestBehavior.opaque,
+                  onTap: () => scope.handleBackPress(),
+                  child: FancyContainer(
+                    width: 32.w,
+                    height: 32.h,
+                    borderRadius: 100,
+                    color: colors.primary,
+                    child: Icon(
+                      Icons.arrow_back,
+                      size: Sp.medium,
+                      color: colors.textOnPrimary,
+                    ),
+                  ),
+                ),
+                Expanded(
+                  child: Center(
+                    child: Text(
+                      LocaleKeys.tarot_reading_title.tr(),
+                      style: m16w700(context),
+                    ),
+                  ),
+                ),
+                SizedBox(width: 32.w),
+              ],
+            ),
+          ),
+        ),
+        TabBar(
+          indicatorColor: colors.primary,
+          indicatorSize: TabBarIndicatorSize.label,
+          labelColor: colors.textPrimary,
+          unselectedLabelColor: colors.textSecondary.withValues(alpha: 0.5),
+          labelStyle: m11w500(context).copyWith(letterSpacing: 1),
+          unselectedLabelStyle: m11w500(context).copyWith(letterSpacing: 1),
+          tabs: [
+            Tab(text: LocaleKeys.tarot_reading_tab_spread.tr()),
+            Tab(text: LocaleKeys.tarot_reading_tab_cards.tr()),
+            Tab(text: LocaleKeys.tarot_reading_tab_notes.tr()),
+          ],
+        ),
+      ],
+    );
+  }
+}
+
 class _DetailScaffold extends StatelessWidget {
   const _DetailScaffold({
     required this.reading,
@@ -121,37 +194,22 @@ class _DetailScaffold extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: colors.background,
-      appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(kToolbarHeight + Sp.xxxlarge),
+      body: SafeArea(
+        bottom: false,
         child: Column(
-          mainAxisSize: MainAxisSize.min,
           children: [
-            TarotAppBar(
-              title: LocaleKeys.tarot_reading_title.tr(),
-              titleStyle: m16w700(context),
-            ),
-            TabBar(
-              indicatorColor: colors.primary,
-              indicatorSize: TabBarIndicatorSize.label,
-              labelColor: colors.textPrimary,
-              unselectedLabelColor: colors.textSecondary.withValues(alpha: 0.5),
-              labelStyle: m11w500(context).copyWith(letterSpacing: 1),
-              unselectedLabelStyle: m11w500(context).copyWith(letterSpacing: 1),
-              tabs: [
-                Tab(text: LocaleKeys.tarot_reading_tab_spread.tr()),
-                Tab(text: LocaleKeys.tarot_reading_tab_cards.tr()),
-                Tab(text: LocaleKeys.tarot_reading_tab_notes.tr()),
-              ],
+            _DetailAppBar(),
+            Expanded(
+              child: TabBarView(
+                children: [
+                  SpreadTab(reading: reading, cards: cards),
+                  CardsTab(cards: cards, spread: spread),
+                  const NotesTab(),
+                ],
+              ),
             ),
           ],
         ),
-      ),
-      body: TabBarView(
-        children: [
-          SpreadTab(reading: reading, cards: cards),
-          CardsTab(cards: cards, spread: spread),
-          const NotesTab(),
-        ],
       ),
     );
   }

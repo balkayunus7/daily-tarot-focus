@@ -277,6 +277,9 @@ abstract class  LocaleKeys {
   static const tarot_reading_date_yesterday = 'tarot_reading.date_yesterday';
   static const tarot_reading_update_success = 'tarot_reading.update_success';
   static const tarot_reading_update_error = 'tarot_reading.update_error';
+  static const tarot_reading_unsaved_title = 'tarot_reading.unsaved_title';
+  static const tarot_reading_unsaved_desc = 'tarot_reading.unsaved_desc';
+  static const tarot_reading_unsaved_discard = 'tarot_reading.unsaved_discard';
   static const tarot_reading = 'tarot_reading';
   static const tarot_shuffle_step_5_of_5 = 'tarot_shuffle.step_5_of_5';
   static const tarot_shuffle_tip_1_title = 'tarot_shuffle.tip_1_title';

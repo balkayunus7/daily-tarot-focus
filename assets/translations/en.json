@@ -302,7 +302,10 @@
         "date_today": "Today",
         "date_yesterday": "Yesterday",
         "update_success": "Note saved",
-        "update_error": "Could not save note, try again"
+        "update_error": "Could not save note, try again",
+        "unsaved_title": "Unsaved Notes",
+        "unsaved_desc": "You have unsaved notes. What would you like to do?",
+        "unsaved_discard": "Discard"
     },
     "tarot_shuffle": {
         "step_5_of_5": "5 / 5",

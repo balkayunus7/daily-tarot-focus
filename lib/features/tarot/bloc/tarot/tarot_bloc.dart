@@ -413,6 +413,12 @@ class TarotBloc extends Bloc<TarotEvent, TarotState> {
     final result = await _tarotRepository.requestUpdateReadingNote(request: event.request);
 
     emit(state.copyWith(isUpdatingNote: false, updateNoteFailureOrUnit: some(result)));
+
+    if (result.isRight()) {
+      addFetchSavedReadingsRequested(
+        request: FetchSavedReadingsRequest(session: event.request.session),
+      );
+    }
   }
 
   final ImplTarotRepository _tarotRepository;

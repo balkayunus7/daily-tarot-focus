@@ -1,28 +1,19 @@
+import 'package:daily_tarot_focus/core/widgets/tarot_confirm_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile_boilerplate/application/auth/auth_cubit.dart';
 import 'package:mobile_boilerplate/common_dependencies.dart';
 import 'package:mobile_boilerplate/presentation/extensions/build_context_theme_ext.dart';
-import 'package:mobile_boilerplate/presentation/popups/core_popup.dart';
 
-Future<dynamic> displayDeleteAccountPopup(BuildContext context) {
-  return CorePopup.displayPopup(
+Future<void> displayDeleteAccountPopup(BuildContext context) async {
+  final confirmed = await TarotConfirmDialog.show(
     context,
     title: context.tr('delete_account_popup.title'),
-    descriptions: [
-      context.tr('delete_account_popup.desc'),
-    ],
-    routeName: 'delete_account_popup',
-    popupButtonDataList: (ctx) {
-      return [
-        PopupButtonData.cancel(ctx),
-        PopupButtonData(
-          title: context.tr('delete_account_popup.delete_button'),
-          textColor: ctx.colors.error,
-          onTap: () async {
-            await ctx.read<AuthCubit>().deleteUser();
-          },
-        ),
-      ];
-    },
+    body: context.tr('delete_account_popup.desc'),
+    cancelText: context.tr('popup.cancel_button'),
+    confirmText: context.tr('delete_account_popup.delete_button'),
+    confirmColor: context.colors.error,
   );
+  if ((confirmed ?? false) && context.mounted) {
+    await context.read<AuthCubit>().deleteUser();
+  }
 }

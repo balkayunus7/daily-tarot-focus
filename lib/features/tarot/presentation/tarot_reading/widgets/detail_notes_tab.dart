@@ -69,32 +69,10 @@ class _NotesTabState extends State<NotesTab> with AutomaticKeepAliveClientMixin 
                 child: BlocBuilder<TarotBloc, TarotState>(
                   buildWhen: (prev, curr) => prev.isUpdatingNote != curr.isUpdatingNote,
                   builder: (context, state) {
-                    return SizedBox(
-                      width: double.infinity,
-                      height: 48.h,
-                      child: ElevatedButton(
-                        onPressed: state.isUpdatingNote ? null : scope.onSaveNote,
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: colors.primary,
-                          disabledBackgroundColor: colors.primary.withValues(alpha: 0.5),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: Sp.medium.radiusR,
-                          ),
-                        ),
-                        child: state.isUpdatingNote
-                            ? SizedBox(
-                                width: 20.w,
-                                height: 20.w,
-                                child: CircularProgressIndicator(
-                                  strokeWidth: 2,
-                                  color: colors.textOnPrimary,
-                                ),
-                              )
-                            : Text(
-                                LocaleKeys.tarot_reading_save.tr(),
-                                style: m14w600(context).copyWith(color: colors.textOnPrimary),
-                              ),
-                      ),
+                    return FancyButton(
+                      text: LocaleKeys.tarot_reading_save.tr(),
+                      isLoading: state.isUpdatingNote,
+                      onTap: scope.onSaveNote,
                     );
                   },
                 ),

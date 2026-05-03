@@ -303,7 +303,10 @@
         "date_today": "Bugün",
         "date_yesterday": "Dün",
         "update_success": "Not kaydedildi",
-        "update_error": "Not kaydedilemedi, tekrar dene"
+        "update_error": "Not kaydedilemedi, tekrar dene",
+        "unsaved_title": "Kaydedilmemiş Notlar",
+        "unsaved_desc": "Kaydedilmemiş notlarınız var. Ne yapmak istersiniz?",
+        "unsaved_discard": "Vazgeç"
     },
     "tarot_shuffle": {
         "step_5_of_5": "5 / 5",

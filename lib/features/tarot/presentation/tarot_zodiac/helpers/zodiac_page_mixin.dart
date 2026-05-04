@@ -11,14 +11,17 @@ import 'package:mobile_boilerplate/application/auth/auth_cubit.dart';
 import 'package:mobile_boilerplate/common_dependencies.dart';
 
 mixin ZodiacPageMixin on State<TarotZodiacDetailPage> {
-  bool isCalculating = false;
+  final isCalculating = ValueNotifier<bool>(false);
 
-  Future<void> calculateMoon({
-    required DateTime birthDate,
-    required TimeOfDay birthTime,
-  }) async {
-    if (isCalculating) return;
-    setState(() => isCalculating = true);
+  @override
+  void dispose() {
+    isCalculating.dispose();
+    super.dispose();
+  }
+
+  Future<void> calculateMoon({required DateTime birthDate, required TimeOfDay birthTime}) async {
+    if (isCalculating.value) return;
+    isCalculating.value = true;
     try {
       final birthDateTime = DateTime(
         birthDate.year,
@@ -33,7 +36,7 @@ mixin ZodiacPageMixin on State<TarotZodiacDetailPage> {
     } on Exception catch (_) {
       if (mounted) context.showErrorToastMessage(LocaleKeys.zodiac_page_error.tr());
     } finally {
-      if (mounted) setState(() => isCalculating = false);
+      if (mounted) isCalculating.value = false;
     }
   }
 
@@ -42,14 +45,14 @@ mixin ZodiacPageMixin on State<TarotZodiacDetailPage> {
     required TimeOfDay birthTime,
     required String city,
   }) async {
-    if (isCalculating) return;
-    setState(() => isCalculating = true);
+    if (isCalculating.value) return;
+    isCalculating.value = true;
     try {
       final locations = await locationFromAddress(city);
       if (locations.isEmpty) {
         if (mounted) {
           context.showErrorToastMessage(LocaleKeys.zodiac_page_city_not_found.tr());
-          setState(() => isCalculating = false);
+          isCalculating.value = false;
         }
         return;
       }
@@ -69,7 +72,7 @@ mixin ZodiacPageMixin on State<TarotZodiacDetailPage> {
     } on Exception catch (_) {
       if (mounted) context.showErrorToastMessage(LocaleKeys.zodiac_page_error.tr());
     } finally {
-      if (mounted) setState(() => isCalculating = false);
+      if (mounted) isCalculating.value = false;
     }
   }
 
@@ -84,12 +87,7 @@ mixin ZodiacPageMixin on State<TarotZodiacDetailPage> {
       risingSign: risingSign ?? user.risingSign,
     );
     await authCubit.updateUser(properties: properties);
-    final result = authCubit.state.failOrUpdatedOption;
-    final succeeded = result.fold(() => false, (e) => e.isRight());
-    if (succeeded) {
-      await authCubit.refetchUser();
-    } else {
-      throw Exception('Update failed');
-    }
+    final succeeded = authCubit.state.failOrUpdatedOption.fold(() => false, (e) => e.isRight());
+    if (!succeeded) throw Exception('Update failed');
   }
 }

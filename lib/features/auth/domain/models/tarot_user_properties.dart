@@ -1,7 +1,9 @@
+import 'package:daily_tarot_focus/features/auth/domain/models/tarot_user.dart';
 import 'package:daily_tarot_focus/features/auth/domain/models/tarot_user_career_enum.dart';
 import 'package:daily_tarot_focus/features/auth/domain/models/tarot_user_relations_enum.dart';
 import 'package:daily_tarot_focus/features/auth/domain/models/tarot_user_zodiac_enum.dart';
 import 'package:mobile_boilerplate/common_dependencies.dart';
+import 'package:mobile_boilerplate/domain/auth/user.dart';
 import 'package:mobile_boilerplate/domain/auth/user_properties.dart';
 
 class TarotUserProperties extends UserProperties with EquatableMixin {
@@ -18,8 +20,7 @@ class TarotUserProperties extends UserProperties with EquatableMixin {
       if (v == null) return null;
       try {
         return ZodiacSign.fromString(v as String);
-        // ignore: avoid_catches_without_on_clauses
-      } catch (_) {
+      } on Exception {
         return null;
       }
     }
@@ -62,6 +63,16 @@ class TarotUserProperties extends UserProperties with EquatableMixin {
       careerStatus: careerStatus ?? this.careerStatus,
       moonSign: moonSign ?? this.moonSign,
       risingSign: risingSign ?? this.risingSign,
+    );
+  }
+
+  User applyTo(User user) {
+    return (user as TarotUser).copyWith(
+      zodiac: zodiac,
+      relationshipStatus: relationshipStatus,
+      careerStatus: careerStatus,
+      moonSign: moonSign,
+      risingSign: risingSign,
     );
   }
 

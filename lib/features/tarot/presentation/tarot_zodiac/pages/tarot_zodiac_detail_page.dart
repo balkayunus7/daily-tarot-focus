@@ -375,40 +375,45 @@ class _CalculatePrompt extends StatelessWidget {
               textAlign: TextAlign.center,
             ),
             Sp.xlarge.heightBox,
-            if (scope.isCalculating)
-              FancyContainer(
-                padding: Sp.medium.padAllR,
-                borderRadius: Sp.large,
-                color: colors.primary.withValues(alpha: 0.1),
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    SizedBox(
-                      width: 16.w,
-                      height: 16.h,
-                      child: CircularProgressIndicator(
-                        strokeWidth: 2,
-                        color: colors.primary,
-                      ),
+            ValueListenableBuilder<bool>(
+              valueListenable: scope.isCalculating,
+              builder: (context, calculating, _) {
+                if (calculating) {
+                  return FancyContainer(
+                    padding: Sp.medium.padAllR,
+                    borderRadius: Sp.large,
+                    color: colors.primary.withValues(alpha: 0.1),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        SizedBox(
+                          width: 16.w,
+                          height: 16.h,
+                          child: CircularProgressIndicator(
+                            strokeWidth: 2,
+                            color: colors.primary,
+                          ),
+                        ),
+                        Sp.small.widthBox,
+                        Text(
+                          LocaleKeys.zodiac_page_calculating.tr(),
+                          style: m12w600(context).copyWith(color: colors.primary),
+                        ),
+                      ],
                     ),
-                    Sp.small.widthBox,
-                    Text(
-                      LocaleKeys.zodiac_page_calculating.tr(),
-                      style: m12w600(context).copyWith(color: colors.primary),
-                    ),
-                  ],
-                ),
-              )
-            else
-              FancyButton(
-                text: LocaleKeys.zodiac_page_calculate.tr(),
-                width: 180.w,
-                height: 44.h,
-                textStyle: m14w700(context).copyWith(
-                  color: colors.textOnPrimary,
-                ),
-                onTap: () => unawaited(_showBirthSheet(context, isRising, scope)),
-              ),
+                  );
+                }
+                return FancyButton(
+                  text: LocaleKeys.zodiac_page_calculate.tr(),
+                  width: 180.w,
+                  height: 44.h,
+                  textStyle: m14w700(context).copyWith(
+                    color: colors.textOnPrimary,
+                  ),
+                  onTap: () => unawaited(_showBirthSheet(context, isRising, scope)),
+                );
+              },
+            ),
           ],
         ),
       ),

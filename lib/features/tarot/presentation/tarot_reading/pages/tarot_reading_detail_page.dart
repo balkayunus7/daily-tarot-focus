@@ -18,6 +18,7 @@ import 'package:daily_tarot_focus/features/tarot/presentation/tarot_reading/help
 import 'package:daily_tarot_focus/features/tarot/presentation/tarot_spread/widgets/spread_layout_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:mobile_boilerplate/common_dependencies.dart';
 import 'package:mobile_boilerplate/presentation/extensions/build_context_theme_ext.dart';
 
@@ -55,13 +56,20 @@ class _TarotReadingDetailPageState extends State<TarotReadingDetailPage> with De
           listenWhen:
               (prev, curr) =>
                   (!prev.hasUpdateNoteSucceeded && curr.hasUpdateNoteSucceeded) ||
-                  (!prev.hasUpdateNoteFailed && curr.hasUpdateNoteFailed),
+                  (!prev.hasUpdateNoteFailed && curr.hasUpdateNoteFailed) ||
+                  (!prev.hasDeleteReadingSucceeded && curr.hasDeleteReadingSucceeded) ||
+                  (!prev.hasDeleteReadingFailed && curr.hasDeleteReadingFailed),
           listener: (context, state) {
             if (state.hasUpdateNoteSucceeded) {
               context.showToastMessage(LocaleKeys.tarot_reading_update_success.tr());
               onUpdateNoteSucceeded();
             } else if (state.hasUpdateNoteFailed) {
               context.showErrorToastMessage(LocaleKeys.tarot_reading_update_error.tr());
+            } else if (state.hasDeleteReadingSucceeded) {
+              context.showToastMessage(LocaleKeys.tarot_reading_delete_success.tr());
+              context.pop();
+            } else if (state.hasDeleteReadingFailed) {
+              context.showErrorToastMessage(LocaleKeys.tarot_reading_delete_error.tr());
             }
           },
           buildWhen:
@@ -155,7 +163,42 @@ class _DetailAppBar extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(width: 32.w),
+                BlocBuilder<TarotBloc, TarotState>(
+                  buildWhen: (prev, curr) => prev.isDeletingReading != curr.isDeletingReading,
+                  builder: (context, state) {
+                    if (state.isDeletingReading) {
+                      return SizedBox(
+                        width: 32.w,
+                        height: 32.h,
+                        child: Center(
+                          child: SizedBox(
+                            width: 16.w,
+                            height: 16.h,
+                            child: CircularProgressIndicator(
+                              strokeWidth: 2,
+                              color: colors.primary,
+                            ),
+                          ),
+                        ),
+                      );
+                    }
+                    return GestureDetector(
+                      behavior: HitTestBehavior.opaque,
+                      onTap: scope.onDeleteReading,
+                      child: FancyContainer(
+                        width: 32.w,
+                        height: 32.h,
+                        borderRadius: 100,
+                        color: colors.primary,
+                        child: Icon(
+                          Icons.delete_outline,
+                          size: Sp.medium,
+                          color: colors.textOnPrimary,
+                        ),
+                      ),
+                    );
+                  },
+                ),
               ],
             ),
           ),

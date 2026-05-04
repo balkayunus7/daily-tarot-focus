@@ -1,4 +1,5 @@
 import 'package:daily_tarot_focus/features/tarot/data/tarot/i_tarot_remote_data_source.dart';
+import 'package:daily_tarot_focus/features/tarot/domain/models/delete_reading_request_model.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/fetch_all_cards_request_model.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/fetch_all_cards_response_model.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/fetch_daily_cards_request_model.dart';
@@ -115,6 +116,17 @@ class ImplTarotRepository {
   }) async {
     try {
       await tarotRemoteDataSource.requestUpdateReadingNote(request: request);
+      return right(unit);
+    } on Exception {
+      return left(const UnknownFailure());
+    }
+  }
+
+  Future<FailureOr<Unit>> requestDeleteReading({
+    required DeleteReadingRequest request,
+  }) async {
+    try {
+      await tarotRemoteDataSource.requestDeleteReading(request: request);
       return right(unit);
     } on Exception {
       return left(const UnknownFailure());

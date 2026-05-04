@@ -44,11 +44,23 @@ class _TarotReadingAnswerPageState extends State<TarotReadingAnswerPage> with An
           if (state.hasSaveReadingSucceeded) {
             context.go(
               AppRoutes.tarotExplore,
-              extra: HomePageArguments(context, initialTabIndex: 1),
+              extra: HomePageArguments(
+                context,
+                initialTabIndex: 1,
+                forceUpdateKey: '${DateTime.now().millisecondsSinceEpoch}',
+              ),
             );
           } else if (state.hasSaveReadingFailed) {
             if (!mounted) return;
-            context.showErrorToastMessage(LocaleKeys.tarot_reading_save_error.tr());
+            context
+              ..showErrorToastMessage(LocaleKeys.tarot_reading_save_error.tr())
+              ..go(
+                AppRoutes.tarotExplore,
+                extra: HomePageArguments(
+                  context,
+                  forceUpdateKey: '${DateTime.now().millisecondsSinceEpoch}',
+                ),
+              );
           }
         },
         child: BlocBuilder<TarotBloc, TarotState>(
@@ -109,10 +121,10 @@ class _AnswerContent extends StatelessWidget {
                 ],
               ),
               subsWidget: BlocBuilder<TarotBloc, TarotState>(
-                buildWhen:
-                    (prev, curr) =>
-                        prev.isSavingReading != curr.isSavingReading ||
-                        prev.hasSaveReadingSucceeded != curr.hasSaveReadingSucceeded,
+                buildWhen: (prev, curr) {
+                  return prev.isSavingReading != curr.isSavingReading ||
+                      prev.hasSaveReadingSucceeded != curr.hasSaveReadingSucceeded;
+                },
                 builder: (context, state) {
                   return FancyButton(
                     onTap: AnswerPageScope.of(context).state.onSave,

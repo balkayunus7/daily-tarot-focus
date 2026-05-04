@@ -1,3 +1,4 @@
+import 'package:daily_tarot_focus/features/tarot/domain/models/delete_reading_request_model.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/fetch_all_cards_request_model.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/fetch_daily_cards_request_model.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/fetch_readers_request_model.dart';
@@ -160,4 +161,12 @@ final class TarotUpdateReadingNoteRequested extends TarotEvent {
 
   @override
   List<Object?> get props => [request.readingId, request.note, request.session];
+}
+
+final class TarotDeleteReadingRequested extends TarotEvent {
+  const TarotDeleteReadingRequested({required this.request});
+  final DeleteReadingRequest request;
+
+  @override
+  List<Object?> get props => [request.readingId, request.session];
 }

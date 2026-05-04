@@ -40,6 +40,8 @@ class TarotState extends Equatable {
     required this.isFetchingSavedReadings,
     required this.isUpdatingNote,
     required this.updateNoteFailureOrUnit,
+    required this.isDeletingReading,
+    required this.deleteReadingFailureOrUnit,
   });
 
   factory TarotState.initial() {
@@ -71,6 +73,8 @@ class TarotState extends Equatable {
       isFetchingSavedReadings: false,
       isUpdatingNote: false,
       updateNoteFailureOrUnit: none(),
+      isDeletingReading: false,
+      deleteReadingFailureOrUnit: none(),
     );
   }
 
@@ -101,6 +105,8 @@ class TarotState extends Equatable {
   final bool isFetchingSavedReadings;
   final bool isUpdatingNote;
   final Option<FailureOr<Unit>> updateNoteFailureOrUnit;
+  final bool isDeletingReading;
+  final Option<FailureOr<Unit>> deleteReadingFailureOrUnit;
 
   // ALL CARDS GETTERS
   KtList<TarotCardModel> get allCardsOrEmpty =>
@@ -212,6 +218,13 @@ class TarotState extends Equatable {
   bool get hasUpdateNoteFailed =>
       updateNoteFailureOrUnit.getOrNull()?.getLeftOrNull() != null;
 
+  // DELETE READING
+  bool get hasDeleteReadingSucceeded =>
+      deleteReadingFailureOrUnit.getOrNull()?.getRightOrNull() != null;
+
+  bool get hasDeleteReadingFailed =>
+      deleteReadingFailureOrUnit.getOrNull()?.getLeftOrNull() != null;
+
   // SELECTED
   bool get hasSelectedSpreadCategory => selectedSpreadCategory != null;
   bool get hasSelectedSpread => selectedSpread != null;
@@ -247,6 +260,8 @@ class TarotState extends Equatable {
     bool? isFetchingSavedReadings,
     bool? isUpdatingNote,
     Option<FailureOr<Unit>>? updateNoteFailureOrUnit,
+    bool? isDeletingReading,
+    Option<FailureOr<Unit>>? deleteReadingFailureOrUnit,
   }) {
     return TarotState(
       fetchFailureOrDailyCards: fetchFailureOrDailyCards ?? this.fetchFailureOrDailyCards,
@@ -282,6 +297,8 @@ class TarotState extends Equatable {
       isFetchingSavedReadings: isFetchingSavedReadings ?? this.isFetchingSavedReadings,
       isUpdatingNote: isUpdatingNote ?? this.isUpdatingNote,
       updateNoteFailureOrUnit: updateNoteFailureOrUnit ?? this.updateNoteFailureOrUnit,
+      isDeletingReading: isDeletingReading ?? this.isDeletingReading,
+      deleteReadingFailureOrUnit: deleteReadingFailureOrUnit ?? this.deleteReadingFailureOrUnit,
     );
   }
 
@@ -314,5 +331,7 @@ class TarotState extends Equatable {
     isFetchingSavedReadings,
     isUpdatingNote,
     updateNoteFailureOrUnit,
+    isDeletingReading,
+    deleteReadingFailureOrUnit,
   ];
 }

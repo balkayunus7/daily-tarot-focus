@@ -4,6 +4,7 @@ import 'package:daily_tarot_focus/features/tarot/bloc/tarot/tarot_event.dart';
 import 'package:daily_tarot_focus/features/tarot/bloc/tarot/tarot_state.dart';
 import 'package:daily_tarot_focus/features/tarot/data/tarot/impl_tarot_cache_service.dart';
 import 'package:daily_tarot_focus/features/tarot/data/tarot/impl_tarot_repository.dart';
+import 'package:daily_tarot_focus/features/tarot/domain/models/delete_reading_request_model.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/fetch_all_cards_request_model.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/fetch_all_cards_response_model.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/fetch_daily_cards_request_model.dart';
@@ -62,6 +63,8 @@ class TarotBloc extends Bloc<TarotEvent, TarotState> {
           await _onCacheCleared(event, emit);
         } else if (event is TarotUpdateReadingNoteRequested) {
           await _onUpdateReadingNoteRequested(event, emit);
+        } else if (event is TarotDeleteReadingRequested) {
+          await _onDeleteReadingRequested(event, emit);
         }
       },
       transformer: sequential(),
@@ -115,6 +118,9 @@ class TarotBloc extends Bloc<TarotEvent, TarotState> {
 
   void addUpdateReadingNoteRequested({required UpdateReadingNoteRequest request}) =>
       add(TarotUpdateReadingNoteRequested(request: request));
+
+  void addDeleteReadingRequested({required DeleteReadingRequest request}) =>
+      add(TarotDeleteReadingRequested(request: request));
 
   // ── Private cache helpers ───────────────────────────────────────────────────
   Future<FailureOr<KtList<TarotCardModel>>> _fetchAndCacheAllCards(
@@ -209,6 +215,8 @@ class TarotBloc extends Bloc<TarotEvent, TarotState> {
         isFetchingSavedReadings: state.isFetchingSavedReadings,
         isUpdatingNote: false,
         updateNoteFailureOrUnit: none(),
+        isDeletingReading: false,
+        deleteReadingFailureOrUnit: none(),
       ),
     );
   }
@@ -413,6 +421,23 @@ class TarotBloc extends Bloc<TarotEvent, TarotState> {
     final result = await _tarotRepository.requestUpdateReadingNote(request: event.request);
 
     emit(state.copyWith(isUpdatingNote: false, updateNoteFailureOrUnit: some(result)));
+
+    if (result.isRight()) {
+      addFetchSavedReadingsRequested(
+        request: FetchSavedReadingsRequest(session: event.request.session),
+      );
+    }
+  }
+
+  Future<void> _onDeleteReadingRequested(
+    TarotDeleteReadingRequested event,
+    Emitter<TarotState> emit,
+  ) async {
+    emit(state.copyWith(isDeletingReading: true, deleteReadingFailureOrUnit: none()));
+
+    final result = await _tarotRepository.requestDeleteReading(request: event.request);
+
+    emit(state.copyWith(isDeletingReading: false, deleteReadingFailureOrUnit: some(result)));
 
     if (result.isRight()) {
       addFetchSavedReadingsRequested(

@@ -37,7 +37,7 @@ class _TarotSpreadStep4PageState extends State<TarotSpreadStep4Page> with Step4P
               Text(LocaleKeys.tarot_question_question_step_title.tr(), style: m16w700(context)),
               Sp.tiny.heightBox,
               Text(
-                LocaleKeys.tarot_question_step_4_of_6.tr(),
+                LocaleKeys.tarot_question_step_3_of_5.tr(),
                 style: m10w500(context).copyWith(
                   color: colors.textSecondary,
                   letterSpacing: 1.5,
@@ -242,19 +242,20 @@ class _QuestionTextField extends StatelessWidget {
         ),
         ValueListenableBuilder<bool>(
           valueListenable: scope.isFocused,
-          builder: (_, focused, child) => AnimatedContainer(
-            duration: const Duration(milliseconds: 200),
-            decoration: BoxDecoration(
-              color: colors.surfaceSecondary,
-              borderRadius: BorderRadius.circular(16.r),
-              border: Border.all(
-                color: focused ? colors.primary.withValues(alpha: 0.6) : Colors.transparent,
-                width: 1.5,
+          builder:
+              (_, focused, child) => AnimatedContainer(
+                duration: const Duration(milliseconds: 200),
+                decoration: BoxDecoration(
+                  color: colors.surfaceSecondary,
+                  borderRadius: BorderRadius.circular(16.r),
+                  border: Border.all(
+                    color: focused ? colors.primary.withValues(alpha: 0.6) : Colors.transparent,
+                    width: 1.5,
+                  ),
+                ),
+                padding: EdgeInsets.fromLTRB(Sp.medium.w, Sp.medium.h, Sp.medium.w, Sp.xsmall.h),
+                child: child,
               ),
-            ),
-            padding: EdgeInsets.fromLTRB(Sp.medium.w, Sp.medium.h, Sp.medium.w, Sp.xsmall.h),
-            child: child,
-          ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
@@ -308,14 +309,15 @@ class _NextButton extends StatelessWidget {
       top: false,
       child: ValueListenableBuilder<int>(
         valueListenable: scope.charCount,
-        builder: (_, count, _) => Padding(
-          padding: Sp.screen.padXR,
-          child: FancyButton(
-            onTap: scope.onNext,
-            text: LocaleKeys.common_next.tr(),
-            isDisabled: count == 0,
-          ),
-        ),
+        builder:
+            (_, count, _) => Padding(
+              padding: Sp.screen.padXR,
+              child: FancyButton(
+                onTap: scope.onNext,
+                text: LocaleKeys.common_next.tr(),
+                isDisabled: count == 0,
+              ),
+            ),
       ),
     );
   }

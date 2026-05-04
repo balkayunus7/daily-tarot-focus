@@ -1,6 +1,7 @@
 import 'package:daily_tarot_focus/core/util/supabase_helper.dart';
 import 'package:daily_tarot_focus/core/util/tarot_routes.dart';
 import 'package:daily_tarot_focus/features/tarot/data/tarot/i_tarot_remote_data_source.dart';
+import 'package:daily_tarot_focus/features/tarot/domain/models/delete_reading_request_model.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/fetch_all_cards_request_model.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/fetch_all_cards_response_model.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/fetch_daily_cards_request_model.dart';
@@ -168,6 +169,19 @@ class ImplTarotRemoteDataSource implements ITarotRemoteDataSource {
     final responseOrFail = await supabaseClient.secureInvoke(
       route: UPDATE_READING_NOTE,
       method: HttpMethod.patch,
+      body: request.toMap(),
+      session: request.session,
+    );
+
+    if (responseOrFail.isLeft()) throw Exception();
+  }
+
+  /// REQUEST DELETE READING
+  @override
+  Future<void> requestDeleteReading({required DeleteReadingRequest request}) async {
+    final responseOrFail = await supabaseClient.secureInvoke(
+      route: DELETE_READING,
+      method: HttpMethod.delete,
       body: request.toMap(),
       session: request.session,
     );

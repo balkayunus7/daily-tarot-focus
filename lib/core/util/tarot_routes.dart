@@ -10,3 +10,4 @@ const String GENERATE_READING = 'generate-reading';
 const String SAVE_READING = 'save-reading';
 const String GET_SAVED_READINGS = 'get-saved-readings';
 const String UPDATE_READING_NOTE = 'update-reading-note';
+const String DELETE_READING = 'delete-reading';

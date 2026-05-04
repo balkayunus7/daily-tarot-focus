@@ -37,7 +37,7 @@ class _TarotSpreadStep5PageState extends State<TarotSpreadStep5Page> with Step5P
               Text(LocaleKeys.tarot_question_deck_shuffle_step_title.tr(), style: m16w700(context)),
               Sp.tiny.heightBox,
               Text(
-                LocaleKeys.tarot_question_step_5_of_6.tr(),
+                LocaleKeys.tarot_question_step_4_of_5.tr(),
                 style: m10w500(context).copyWith(
                   color: colors.textSecondary,
                   letterSpacing: 1.5,
@@ -200,47 +200,49 @@ class _BottomButtons extends StatelessWidget {
             Expanded(
               child: ValueListenableBuilder<bool>(
                 valueListenable: scope.isAutoShuffle,
-                builder: (_, isAuto, _) => ScalingContainer(
-                  onTap: scope.toggleAutoShuffle,
-                  child: AnimatedContainer(
-                    duration: const Duration(milliseconds: 200),
-                    height: 48.h,
-                    decoration: BoxDecoration(
-                      color: isAuto ? colors.primary.withValues(alpha: 0.10) : Colors.transparent,
-                      borderRadius: BorderRadius.circular(100.r),
-                      border: Border.all(
-                        color: isAuto ? colors.primary : colors.border,
-                        width: 1.5,
-                      ),
-                    ),
-                    alignment: Alignment.center,
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Text(
-                          LocaleKeys.tarot_shuffle_auto_toggle.tr(),
-                          style: m12w600(context).copyWith(
-                            color: isAuto ? colors.primary : colors.textSecondary,
+                builder:
+                    (_, isAuto, _) => ScalingContainer(
+                      onTap: scope.toggleAutoShuffle,
+                      child: AnimatedContainer(
+                        duration: const Duration(milliseconds: 200),
+                        height: 48.h,
+                        decoration: BoxDecoration(
+                          color:
+                              isAuto ? colors.primary.withValues(alpha: 0.10) : Colors.transparent,
+                          borderRadius: BorderRadius.circular(100.r),
+                          border: Border.all(
+                            color: isAuto ? colors.primary : colors.border,
+                            width: 1.5,
                           ),
                         ),
-                        ValueListenableBuilder<int>(
-                          valueListenable: scope.shuffleTimeLeft,
-                          builder: (_, timeLeft, _) {
-                            final timeText = timeLeft > 0 ? ' ($timeLeft s)' : '';
-                            return Text(
-                              isAuto
-                                  ? '${LocaleKeys.tarot_shuffle_auto_on.tr()}$timeText'
-                                  : LocaleKeys.tarot_shuffle_auto_off.tr(),
-                              style: m10w400(context).copyWith(
-                                color: isAuto ? colors.primary : colors.textDisabled,
+                        alignment: Alignment.center,
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Text(
+                              LocaleKeys.tarot_shuffle_auto_toggle.tr(),
+                              style: m12w600(context).copyWith(
+                                color: isAuto ? colors.primary : colors.textSecondary,
                               ),
-                            );
-                          },
+                            ),
+                            ValueListenableBuilder<int>(
+                              valueListenable: scope.shuffleTimeLeft,
+                              builder: (_, timeLeft, _) {
+                                final timeText = timeLeft > 0 ? ' ($timeLeft s)' : '';
+                                return Text(
+                                  isAuto
+                                      ? '${LocaleKeys.tarot_shuffle_auto_on.tr()}$timeText'
+                                      : LocaleKeys.tarot_shuffle_auto_off.tr(),
+                                  style: m10w400(context).copyWith(
+                                    color: isAuto ? colors.primary : colors.textDisabled,
+                                  ),
+                                );
+                              },
+                            ),
+                          ],
                         ),
-                      ],
+                      ),
                     ),
-                  ),
-                ),
               ),
             ),
             Sp.small.widthBox,

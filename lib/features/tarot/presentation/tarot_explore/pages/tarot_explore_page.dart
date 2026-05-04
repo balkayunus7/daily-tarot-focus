@@ -8,6 +8,7 @@ import 'package:daily_tarot_focus/core/widgets/custom_cache_network_image.dart';
 import 'package:daily_tarot_focus/core/widgets/fancy_button.dart';
 import 'package:daily_tarot_focus/core/widgets/fancy_container.dart';
 import 'package:daily_tarot_focus/features/auth/domain/models/tarot_user.dart';
+import 'package:daily_tarot_focus/features/auth/domain/models/tarot_user_zodiac_enum.dart';
 import 'package:daily_tarot_focus/features/tarot/bloc/tarot/tarot_bloc.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/tarot_flow_type.dart';
 import 'package:flutter/material.dart';
@@ -26,6 +27,7 @@ part '../widgets/explore_feature_card.dart';
 part '../widgets/explore_header.dart';
 part '../widgets/explore_paywall_card.dart';
 part '../widgets/explore_ask_question_card.dart';
+part '../widgets/explore_zodiac_card.dart';
 
 class TarotExplorePage extends StatelessWidget {
   const TarotExplorePage({super.key});
@@ -47,6 +49,8 @@ class TarotExplorePage extends StatelessWidget {
               const ExploreAskQuestionCard(),
               Sp.large.heightBox,
               const ExploreSpreadCard(),
+              Sp.large.heightBox,
+              const ExploreZodiacCard(),
               Sp.large.heightBox,
               Text(LocaleKeys.explore_page_spiritual_guide.tr(), style: m15w600(context)),
               Sp.medium.heightBox,

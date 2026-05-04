@@ -15,6 +15,8 @@ class TarotUser extends User {
     this.zodiac,
     this.relationshipStatus,
     this.careerStatus,
+    this.moonSign,
+    this.risingSign,
   });
 
   factory TarotUser.fromMap(Map<String, dynamic> map) {
@@ -44,11 +46,17 @@ class TarotUser extends User {
           map['career_status'] != null
               ? CareerStatus.fromString(map['career_status'] as String)
               : null,
+      moonSign:
+          map['moon_sign'] != null ? ZodiacSign.fromString(map['moon_sign'] as String) : null,
+      risingSign:
+          map['rising_sign'] != null ? ZodiacSign.fromString(map['rising_sign'] as String) : null,
     );
   }
   final ZodiacSign? zodiac;
   final RelationshipStatus? relationshipStatus;
   final CareerStatus? careerStatus;
+  final ZodiacSign? moonSign;
+  final ZodiacSign? risingSign;
 
   bool get isProfileComplete =>
       zodiac != null && relationshipStatus != null && careerStatus != null;
@@ -61,6 +69,8 @@ class TarotUser extends User {
       'zodiac_sign': zodiac?.value,
       'relationship_status': relationshipStatus?.value,
       'career_status': careerStatus?.value,
+      if (moonSign != null) 'moon_sign': moonSign!.value,
+      if (risingSign != null) 'rising_sign': risingSign!.value,
     };
   }
 
@@ -69,6 +79,8 @@ class TarotUser extends User {
     ZodiacSign? zodiac,
     RelationshipStatus? relationshipStatus,
     CareerStatus? careerStatus,
+    ZodiacSign? moonSign,
+    ZodiacSign? risingSign,
   }) {
     return TarotUser(
       userId: userId,
@@ -77,6 +89,8 @@ class TarotUser extends User {
       zodiac: zodiac ?? this.zodiac,
       relationshipStatus: relationshipStatus ?? this.relationshipStatus,
       careerStatus: careerStatus ?? this.careerStatus,
+      moonSign: moonSign ?? this.moonSign,
+      risingSign: risingSign ?? this.risingSign,
     );
   }
 
@@ -88,5 +102,7 @@ class TarotUser extends User {
     zodiac,
     relationshipStatus,
     careerStatus,
+    moonSign,
+    risingSign,
   ];
 }

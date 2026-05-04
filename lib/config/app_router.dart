@@ -26,6 +26,7 @@ import 'package:daily_tarot_focus/features/tarot/presentation/tarot_spread/pages
 import 'package:daily_tarot_focus/features/tarot/presentation/tarot_spread/pages/tarot_spread_step4_page.dart';
 import 'package:daily_tarot_focus/features/tarot/presentation/tarot_spread/pages/tarot_spread_step5_page.dart';
 import 'package:daily_tarot_focus/features/tarot/presentation/tarot_spread/pages/tarot_spread_step6_page.dart';
+import 'package:daily_tarot_focus/features/tarot/presentation/tarot_zodiac/pages/tarot_zodiac_detail_page.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mobile_boilerplate/application/auth/auth_cubit.dart';
@@ -297,6 +298,16 @@ final appRouter = GoRouter(
         return MaterialPage(
           key: state.pageKey,
           child: TarotReadingDetailPage(reading: reading),
+        );
+      },
+    ),
+    GoRoute(
+      path: AppRoutes.tarotZodiacDetail,
+      name: AppRoutes.tarotZodiacDetail,
+      pageBuilder: (context, state) {
+        return MaterialPage(
+          key: state.pageKey,
+          child: const TarotZodiacDetailPage(),
         );
       },
     ),

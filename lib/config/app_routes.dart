@@ -46,6 +46,9 @@ class AppRoutes {
   static const String tarotDailyDetail = '/tarot-daily-detail';
   static const String tarotSavedReadingDetail = '/tarot-saved-reading-detail';
 
+  // Tarot Zodiac
+  static const String tarotZodiacDetail = '/tarot-zodiac-detail';
+
   // Subscription
   static const String subscriptionPaywall = '/subscription-paywall';
 

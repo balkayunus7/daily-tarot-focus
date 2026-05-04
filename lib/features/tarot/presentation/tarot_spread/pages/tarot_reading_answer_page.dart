@@ -1,6 +1,7 @@
 import 'dart:math' as math;
 
 import 'package:daily_tarot_focus/config/app_routes.dart';
+import 'package:daily_tarot_focus/core/util/build_context_toast_ext.dart';
 import 'package:daily_tarot_focus/core/util/locale_keys.dart';
 import 'package:daily_tarot_focus/core/util/tarot_app_sizes.dart';
 import 'package:daily_tarot_focus/core/util/text_style_helper.dart';
@@ -35,10 +36,10 @@ class _TarotReadingAnswerPageState extends State<TarotReadingAnswerPage> with An
     return AnswerPageScope(
       state: this,
       child: BlocListener<TarotBloc, TarotState>(
-        listenWhen:
-            (prev, curr) =>
-                (!prev.hasSaveReadingSucceeded && curr.hasSaveReadingSucceeded) ||
-                (!prev.hasSaveReadingFailed && curr.hasSaveReadingFailed),
+        listenWhen: (prev, curr) {
+          return (!prev.hasSaveReadingSucceeded && curr.hasSaveReadingSucceeded) ||
+              (!prev.hasSaveReadingFailed && curr.hasSaveReadingFailed);
+        },
         listener: (context, state) {
           if (state.hasSaveReadingSucceeded) {
             context.go(
@@ -47,9 +48,7 @@ class _TarotReadingAnswerPageState extends State<TarotReadingAnswerPage> with An
             );
           } else if (state.hasSaveReadingFailed) {
             if (!mounted) return;
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(content: Text(LocaleKeys.tarot_reading_save_error.tr())),
-            );
+            context.showErrorToastMessage(LocaleKeys.tarot_reading_save_error.tr());
           }
         },
         child: BlocBuilder<TarotBloc, TarotState>(

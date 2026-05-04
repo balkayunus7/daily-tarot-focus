@@ -1,6 +1,6 @@
 import 'package:daily_tarot_focus/config/app_routes.dart';
+import 'package:daily_tarot_focus/core/util/build_context_toast_ext.dart';
 import 'package:daily_tarot_focus/core/util/locale_keys.dart';
-import 'package:daily_tarot_focus/core/util/snackbar_helper.dart';
 import 'package:daily_tarot_focus/core/util/tarot_app_sizes.dart';
 import 'package:daily_tarot_focus/core/util/text_style_helper.dart';
 import 'package:daily_tarot_focus/core/widgets/fancy_button.dart';
@@ -37,10 +37,7 @@ class RegisterStepCareerPage extends StatelessWidget {
             if (!context.mounted) return;
             context.go(AppRoutes.accountSetup);
           } else if (state.registerStatus.isFailure) {
-            SnackbarHelper.showError(
-              context,
-              errorMessage: LocaleKeys.failure_unexpected_message.tr(),
-            );
+            context.showErrorToastMessage(LocaleKeys.failure_unexpected_message.tr());
           }
         },
         child: Stack(

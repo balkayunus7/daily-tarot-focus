@@ -14,4 +14,15 @@ extension TarotToastExt on BuildContext {
       border: Border.all(color: colors.primary),
     );
   }
+
+  void showErrorToastMessage(String message) {
+    Toast.show(
+      message,
+      this,
+      duration: 3,
+      backgroundRadius: 12,
+      backgroundColor: colors.error,
+      textColor: colors.textOnPrimary,
+    );
+  }
 }

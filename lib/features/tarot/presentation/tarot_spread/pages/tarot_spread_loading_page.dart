@@ -1,4 +1,5 @@
 import 'package:daily_tarot_focus/config/app_routes.dart';
+import 'package:daily_tarot_focus/core/util/build_context_toast_ext.dart';
 import 'package:daily_tarot_focus/core/util/locale_keys.dart';
 import 'package:daily_tarot_focus/core/util/tarot_app_assets.dart';
 import 'package:daily_tarot_focus/core/util/tarot_app_sizes.dart';
@@ -31,24 +32,21 @@ class _TarotSpreadLoadingPageState extends State<TarotSpreadLoadingPage> with Lo
       child: MultiBlocListener(
         listeners: [
           BlocListener<TarotBloc, TarotState>(
-            listenWhen:
-                (previous, current) =>
-                    !previous.hasGeneratedReadingFailed && current.hasGeneratedReadingFailed,
+            listenWhen: (previous, current) {
+              return !previous.hasGeneratedReadingFailed && current.hasGeneratedReadingFailed;
+            },
             listener: (context, state) {
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(content: Text(LocaleKeys.tarot_question_loading_error.tr())),
-              );
-              context.go(AppRoutes.tarotExplore);
+              context
+                ..showErrorToastMessage(LocaleKeys.tarot_question_loading_error.tr())
+                ..go(AppRoutes.tarotExplore);
             },
           ),
           BlocListener<TarotBloc, TarotState>(
-            listenWhen:
-                (previous, current) =>
-                    !previous.hasGeneratedReadingSucceeded && current.hasGeneratedReadingSucceeded,
+            listenWhen: (previous, current) {
+              return !previous.hasGeneratedReadingSucceeded && current.hasGeneratedReadingSucceeded;
+            },
             listener: (context, state) {
-              if (state.hasGeneratedReadingSucceeded) {
-                context.pushReplacementNamed(AppRoutes.tarotReadingAnswer);
-              }
+              context.pushReplacementNamed(AppRoutes.tarotReadingAnswer);
             },
           ),
         ],

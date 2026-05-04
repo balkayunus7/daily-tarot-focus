@@ -40,18 +40,16 @@ class _SplashPageState extends State<SplashPage>
     return Scaffold(
       body: MultiBlocListener(
         listeners: [
-          // 3. Saved readings done → navigate
           BlocListener<TarotBloc, TarotState>(
-            listenWhen: (prev, curr) =>
-                prev.isFetchingSavedReadings && !curr.isFetchingSavedReadings,
+            listenWhen: (prev, curr) {
+              return prev.isFetchingSavedReadings && !curr.isFetchingSavedReadings;
+            },
             listener: (context, state) {
               context.go(AppRoutes.tarotExplore);
             },
           ),
-          // 2. Daily cards done → fetch saved readings
           BlocListener<TarotBloc, TarotState>(
-            listenWhen: (prev, curr) =>
-                prev.isFetchingDailyCards && !curr.isFetchingDailyCards,
+            listenWhen: (prev, curr) => prev.isFetchingDailyCards && !curr.isFetchingDailyCards,
             listener: (context, state) {
               final session = context.read<AuthCubit>().state.sessionOrCrash;
               context.read<TarotBloc>().addFetchSavedReadingsRequested(
@@ -59,10 +57,12 @@ class _SplashPageState extends State<SplashPage>
               );
             },
           ),
-          // 1. Setup done → fetch daily cards
           BlocListener<TarotBloc, TarotState>(
-            listenWhen: (prev, curr) =>
-                prev.isSettingUpAccount && !curr.isSettingUpAccount && curr.hasAccountSetupCompleted,
+            listenWhen: (prev, curr) {
+              return prev.isSettingUpAccount &&
+                  !curr.isSettingUpAccount &&
+                  curr.hasAccountSetupCompleted;
+            },
             listener: (context, state) {
               final session = context.read<AuthCubit>().state.sessionOrCrash;
               context.read<TarotBloc>().addFetchDailyCardsRequested(
@@ -70,7 +70,6 @@ class _SplashPageState extends State<SplashPage>
               );
             },
           ),
-          // Auth → setup
           BlocListener<AuthCubit, AuthState>(
             listenWhen: (previous, current) {
               return current.isAuthenticated && (previous.isInitial || !previous.isAuthenticated);
@@ -80,7 +79,6 @@ class _SplashPageState extends State<SplashPage>
               context.read<TarotBloc>().addSetupAccountRequested(session: session);
             },
           ),
-          // Not authenticated → sign in anonymously
           BlocListener<AuthCubit, AuthState>(
             listenWhen: (previous, current) {
               return previous.isInitial && !current.isInitial && !current.isAuthenticated;

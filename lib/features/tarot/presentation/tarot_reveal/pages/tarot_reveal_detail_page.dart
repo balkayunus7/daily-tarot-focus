@@ -32,7 +32,7 @@ class _TarotRevealDetailPageState extends State<TarotRevealDetailPage> with Reve
         },
         listener: (context, state) {
           if (state.hasRecordDailyCardFailed) {
-            context.showToastMessage(LocaleKeys.tarot_daily_save_failed.tr());
+            context.showErrorToastMessage(LocaleKeys.tarot_daily_save_failed.tr());
           }
           if (state.hasRecordDailyCardSucceeded) {
             context.showToastMessage(LocaleKeys.tarot_daily_save_success.tr());

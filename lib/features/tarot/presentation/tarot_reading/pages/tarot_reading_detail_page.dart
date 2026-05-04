@@ -61,7 +61,7 @@ class _TarotReadingDetailPageState extends State<TarotReadingDetailPage> with De
               context.showToastMessage(LocaleKeys.tarot_reading_update_success.tr());
               onUpdateNoteSucceeded();
             } else if (state.hasUpdateNoteFailed) {
-              context.showToastMessage(LocaleKeys.tarot_reading_update_error.tr());
+              context.showErrorToastMessage(LocaleKeys.tarot_reading_update_error.tr());
             }
           },
           buildWhen:

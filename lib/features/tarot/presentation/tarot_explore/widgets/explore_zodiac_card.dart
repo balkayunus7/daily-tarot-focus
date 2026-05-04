@@ -11,8 +11,9 @@ class ExploreZodiacCard extends StatelessWidget {
         final user = state.userOrCrash as TarotUser;
         final sign = user.zodiac;
         if (sign == null) return const SizedBox.shrink();
+
         return ExploreFeatureCard(
-          title: sign.localizedName,
+          title: 'Learn Horoscope',
           imageWidget: _ZodiacIllustration(sign: sign),
           onTap: () => context.push(AppRoutes.tarotZodiacDetail),
         );

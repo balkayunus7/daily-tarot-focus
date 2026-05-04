@@ -2,8 +2,8 @@ import 'dart:async';
 
 import 'package:daily_tarot_focus/features/tarot/bloc/tarot/tarot_event.dart';
 import 'package:daily_tarot_focus/features/tarot/bloc/tarot/tarot_state.dart';
-import 'package:daily_tarot_focus/features/tarot/data/tarot/impl_tarot_cache_service.dart';
-import 'package:daily_tarot_focus/features/tarot/data/tarot/impl_tarot_repository.dart';
+import 'package:daily_tarot_focus/features/tarot/data/impl_tarot_cache_service.dart';
+import 'package:daily_tarot_focus/features/tarot/data/impl_tarot_repository.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/delete_reading_request_model.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/fetch_all_cards_request_model.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/fetch_all_cards_response_model.dart';

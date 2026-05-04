@@ -9,9 +9,9 @@ import 'package:daily_tarot_focus/features/auth/data/impl_firebase_remote_notifi
 import 'package:daily_tarot_focus/features/auth/data/impl_ios_local_notifications_service.dart';
 import 'package:daily_tarot_focus/features/auth/data/impl_user_repository.dart';
 import 'package:daily_tarot_focus/features/tarot/bloc/tarot/tarot_bloc.dart';
-import 'package:daily_tarot_focus/features/tarot/data/tarot/impl_tarot_cache_service.dart';
-import 'package:daily_tarot_focus/features/tarot/data/tarot/impl_tarot_remote_data_source.dart';
-import 'package:daily_tarot_focus/features/tarot/data/tarot/impl_tarot_repository.dart';
+import 'package:daily_tarot_focus/features/tarot/data/impl_tarot_cache_service.dart';
+import 'package:daily_tarot_focus/features/tarot/data/impl_tarot_remote_data_source.dart';
+import 'package:daily_tarot_focus/features/tarot/data/impl_tarot_repository.dart';
 import 'package:mobile_boilerplate/application/analytics/analytics_cubit.dart';
 import 'package:mobile_boilerplate/application/auth/auth_cubit.dart';
 import 'package:mobile_boilerplate/application/color_theme/color_theme_bloc.dart';

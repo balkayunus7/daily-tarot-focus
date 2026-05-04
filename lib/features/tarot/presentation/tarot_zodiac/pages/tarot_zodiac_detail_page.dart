@@ -31,22 +31,13 @@ class _TarotZodiacDetailPageState extends State<TarotZodiacDetailPage> with Zodi
   Widget build(BuildContext context) {
     return ZodiacPageScope(
       state: this,
-      child: BlocBuilder<AuthCubit, AuthState>(
-        builder: (context, authState) {
-          final user = authState.userOrCrash as TarotUser;
-          return DefaultTabController(
-            length: 3,
-            child: _ZodiacScaffold(user: user),
-          );
-        },
-      ),
+      child: const DefaultTabController(length: 3, child: _ZodiacScaffold()),
     );
   }
 }
 
 class _ZodiacScaffold extends StatelessWidget {
-  const _ZodiacScaffold({required this.user});
-  final TarotUser user;
+  const _ZodiacScaffold();
 
   @override
   Widget build(BuildContext context) {
@@ -71,14 +62,21 @@ class _ZodiacScaffold extends StatelessWidget {
                 Tab(text: '⬆ ${LocaleKeys.zodiac_page_tab_rising.tr()}'),
               ],
             ),
-            Expanded(
-              child: TabBarView(
-                children: [
-                  _SunTab(user: user),
-                  _MoonTab(user: user),
-                  _RisingTab(user: user),
-                ],
-              ),
+            BlocBuilder<AuthCubit, AuthState>(
+              buildWhen: (previous, current) => current.isAuthenticated,
+              builder: (context, state) {
+                final user = state.userOrCrash as TarotUser;
+
+                return Expanded(
+                  child: TabBarView(
+                    children: [
+                      _SunTab(user: user),
+                      _MoonTab(user: user),
+                      _RisingTab(user: user),
+                    ],
+                  ),
+                );
+              },
             ),
           ],
         ),
@@ -109,7 +107,6 @@ class _SunTab extends StatelessWidget {
 
 class _MoonTab extends StatelessWidget {
   const _MoonTab({required this.user});
-
   final TarotUser user;
 
   @override
@@ -136,7 +133,6 @@ class _MoonTab extends StatelessWidget {
 
 class _RisingTab extends StatelessWidget {
   const _RisingTab({required this.user});
-
   final TarotUser user;
 
   @override
@@ -144,12 +140,7 @@ class _RisingTab extends StatelessWidget {
     final sign = user.risingSign;
     if (sign != null) {
       return SingleChildScrollView(
-        padding: EdgeInsets.fromLTRB(
-          Sp.screen.w,
-          Sp.xlarge.h,
-          Sp.screen.w,
-          Sp.xxxlarge.h,
-        ),
+        padding: EdgeInsets.fromLTRB(Sp.screen.w, Sp.xlarge.h, Sp.screen.w, Sp.xxxlarge.h),
         child: _ZodiacSignInfo(sign: sign),
       );
     }
@@ -205,21 +196,21 @@ class _ZodiacSignInfo extends StatelessWidget {
           ],
         ),
         Sp.large.heightBox,
-        FancyContainer(
-          width: double.infinity,
-          padding: Sp.large.padAllR,
-          borderRadius: Sp.large,
-          color: colors.primary.withValues(alpha: 0.06),
-          child: Text(
-            sign.signDescription,
-            style: m13w400(context).copyWith(
-              color: colors.textSecondary,
-              height: 1.6,
+        GestureDetector(
+          onTap: () async {},
+          child: FancyContainer(
+            width: double.infinity,
+            padding: Sp.large.padAllR,
+            borderRadius: Sp.large,
+            color: colors.primary.withValues(alpha: 0.06),
+            child: Text(
+              sign.signDescription,
+              style: m13w400(context).copyWith(color: colors.textSecondary, height: 1.6),
+              textAlign: TextAlign.center,
             ),
-            textAlign: TextAlign.center,
           ),
         ),
-        Sp.large.heightBox,
+        Sp.xxxlarge.heightBox,
         _MajorArcanaSection(sign: sign),
       ],
     );
@@ -227,11 +218,7 @@ class _ZodiacSignInfo extends StatelessWidget {
 }
 
 class _Badge extends StatelessWidget {
-  const _Badge({
-    required this.label,
-    required this.value,
-  });
-
+  const _Badge({required this.label, required this.value});
   final String label;
   final String value;
 
@@ -267,18 +254,16 @@ class _Badge extends StatelessWidget {
 
 class _MajorArcanaSection extends StatelessWidget {
   const _MajorArcanaSection({required this.sign});
-
   final ZodiacSign sign;
 
   @override
   Widget build(BuildContext context) {
     final colors = context.colors;
     return BlocBuilder<TarotBloc, TarotState>(
-      buildWhen:
-          (prev, curr) => prev.fetchAllCardsFailureOrCards != curr.fetchAllCardsFailureOrCards,
       builder: (context, state) {
         final card = state.getByTitle(sign.majorArcanaName);
         if (card == null) return const SizedBox.shrink();
+
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -287,10 +272,7 @@ class _MajorArcanaSection extends StatelessWidget {
                 Container(
                   width: Sp.tiny,
                   height: Sp.large,
-                  decoration: BoxDecoration(
-                    color: colors.primary,
-                    borderRadius: Sp.tiny.radiusR,
-                  ),
+                  decoration: BoxDecoration(color: colors.primary, borderRadius: Sp.tiny.radiusR),
                 ),
                 Sp.xsmall.widthBox,
                 Text(
@@ -344,10 +326,6 @@ class _MajorArcanaSection extends StatelessWidget {
     );
   }
 }
-
-// ---------------------------------------------------------------------------
-// Calculate prompt
-// ---------------------------------------------------------------------------
 
 class _CalculatePrompt extends StatelessWidget {
   const _CalculatePrompt({
@@ -437,11 +415,7 @@ class _CalculatePrompt extends StatelessWidget {
     );
   }
 
-  Future<void> _showBirthSheet(
-    BuildContext context,
-    bool isRising,
-    ZodiacPageMixin scope,
-  ) {
+  Future<void> _showBirthSheet(BuildContext context, bool isRising, ZodiacPageMixin scope) {
     return showModalBottomSheet<void>(
       context: context,
       isScrollControlled: true,
@@ -470,10 +444,6 @@ class _CalculatePrompt extends StatelessWidget {
     );
   }
 }
-
-// ---------------------------------------------------------------------------
-// Birth input sheet
-// ---------------------------------------------------------------------------
 
 class _BirthInputSheet extends StatefulWidget {
   const _BirthInputSheet({
@@ -574,7 +544,6 @@ class _BirthInputSheetState extends State<_BirthInputSheet> {
             FancyContainer(
               width: double.infinity,
               padding: Sp.medium.padAllR,
-              borderRadius: Sp.medium,
               color: colors.textSecondary.withValues(alpha: 0.06),
               child: TextField(
                 controller: _cityController,
@@ -637,7 +606,6 @@ class _PickerRow extends StatelessWidget {
       child: FancyContainer(
         width: double.infinity,
         padding: Sp.medium.padAllR,
-        borderRadius: Sp.medium,
         color: colors.textSecondary.withValues(alpha: 0.06),
         child: Row(
           children: [

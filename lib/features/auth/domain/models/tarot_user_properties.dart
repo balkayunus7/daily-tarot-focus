@@ -66,6 +66,7 @@ class TarotUserProperties extends UserProperties with EquatableMixin {
     );
   }
 
+  @override
   User applyTo(User user) {
     return (user as TarotUser).copyWith(
       zodiac: zodiac,

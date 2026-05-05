@@ -66,8 +66,9 @@ class _TarotReadingDetailPageState extends State<TarotReadingDetailPage> with De
             } else if (state.hasUpdateNoteFailed) {
               context.showErrorToastMessage(LocaleKeys.tarot_reading_update_error.tr());
             } else if (state.hasDeleteReadingSucceeded) {
-              context.showToastMessage(LocaleKeys.tarot_reading_delete_success.tr());
-              context.pop();
+              context
+                ..showToastMessage(LocaleKeys.tarot_reading_delete_success.tr())
+                ..pop();
             } else if (state.hasDeleteReadingFailed) {
               context.showErrorToastMessage(LocaleKeys.tarot_reading_delete_error.tr());
             }

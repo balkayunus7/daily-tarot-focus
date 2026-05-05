@@ -2,8 +2,8 @@ import 'dart:math';
 
 import 'package:daily_tarot_focus/features/auth/domain/models/tarot_user_zodiac_enum.dart';
 
-class AstrologyService {
-  const AstrologyService._();
+class AstrologyHelper {
+  const AstrologyHelper._();
 
   static ZodiacSign moonSign(DateTime birthDateTimeUtc) {
     final jd = _julianDay(birthDateTimeUtc);
@@ -24,20 +24,14 @@ class AstrologyService {
   static double _julianDay(DateTime utc) {
     var y = utc.year;
     var m = utc.month;
-    final d =
-        utc.day +
-        (utc.hour + (utc.minute + utc.second / 60.0) / 60.0) / 24.0;
+    final d = utc.day + (utc.hour + (utc.minute + utc.second / 60.0) / 60.0) / 24.0;
     if (m <= 2) {
       y--;
       m += 12;
     }
     final a = y ~/ 100;
     final b = 2 - a + (a ~/ 4);
-    return (365.25 * (y + 4716)).floor() +
-        (30.6001 * (m + 1)).floor() +
-        d +
-        b -
-        1524.5;
+    return (365.25 * (y + 4716)).floor() + (30.6001 * (m + 1)).floor() + d + b - 1524.5;
   }
 
   static double _moonLongitude(double jd) {
@@ -61,10 +55,7 @@ class AstrologyService {
     );
     final mSun = _rad(
       _norm(
-        357.5291092 +
-            35999.0502909 * t -
-            0.0001536 * t * t +
-            t * t * t / 24490000.0,
+        357.5291092 + 35999.0502909 * t - 0.0001536 * t * t + t * t * t / 24490000.0,
       ),
     );
     final mMoon = _rad(
@@ -123,11 +114,7 @@ class AstrologyService {
 
     var sigmaL = 0.0;
     for (final termRow in terms) {
-      final arg =
-          termRow[0] * d +
-          termRow[1] * mSun +
-          termRow[2] * mMoon +
-          termRow[3] * f;
+      final arg = termRow[0] * d + termRow[1] * mSun + termRow[2] * mMoon + termRow[3] * f;
       var coeff = termRow[4].toDouble();
       final mAbs = termRow[1].abs();
       if (mAbs == 1) coeff *= e;
@@ -154,8 +141,7 @@ class AstrologyService {
     return _norm(_deg(atan2(num, den)));
   }
 
-  static ZodiacSign _longitudeToSign(double lon) =>
-      ZodiacSign.values[(lon / 30).floor() % 12];
+  static ZodiacSign _longitudeToSign(double lon) => ZodiacSign.values[(lon / 30).floor() % 12];
 
   static double _norm(double d) {
     final normalized = d % 360;

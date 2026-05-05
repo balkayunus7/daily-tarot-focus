@@ -225,7 +225,7 @@ class TarotBloc extends Bloc<TarotEvent, TarotState> {
     TarotCacheCleared event,
     Emitter<TarotState> emit,
   ) async {
-    emit(state.copyWith(clearCacheFailureOrUnit: some(right(unit))));
+    emit(state.copyWith(clearCacheFailureOrUnit: none()));
     await _cacheService.clearCache();
     emit(state.copyWith(clearCacheFailureOrUnit: some(right(unit))));
   }

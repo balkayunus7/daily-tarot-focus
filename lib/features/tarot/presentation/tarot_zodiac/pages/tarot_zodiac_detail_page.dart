@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:daily_tarot_focus/config/app_routes.dart';
 import 'package:daily_tarot_focus/core/util/locale_keys.dart';
 import 'package:daily_tarot_focus/core/util/tarot_app_sizes.dart';
 import 'package:daily_tarot_focus/core/util/text_style_helper.dart';
@@ -15,6 +16,7 @@ import 'package:daily_tarot_focus/features/tarot/presentation/tarot_zodiac/helpe
 import 'package:daily_tarot_focus/features/tarot/presentation/tarot_zodiac/helpers/zodiac_page_scope.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:mobile_boilerplate/application/auth/auth_cubit.dart';
 import 'package:mobile_boilerplate/common_dependencies.dart';
 import 'package:mobile_boilerplate/presentation/extensions/build_context_theme_ext.dart';
@@ -282,42 +284,54 @@ class _MajorArcanaSection extends StatelessWidget {
               ],
             ),
             Sp.medium.heightBox,
-            FancyContainer(
-              width: double.infinity,
-              padding: Sp.medium.padAllR,
-              borderRadius: Sp.large,
-              color: colors.textSecondary.withValues(alpha: 0.06),
-              child: Row(
-                children: [
-                  ClipRRect(
-                    borderRadius: Sp.small.radiusR,
-                    child: CustomCacheNetworkImage(
-                      imageUrl: card.imageUrl,
-                      width: 64.w,
-                      height: 100.w,
-                      fit: BoxFit.cover,
-                    ),
+            GestureDetector(
+              onTap:
+                  () => context.pushNamed(
+                    AppRoutes.tarotDeckDetail,
+                    pathParameters: {'tarotId': card.id},
                   ),
-                  Sp.medium.widthBox,
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(card.name, style: m14w700(context)),
-                        Sp.xsmall.heightBox,
-                        Text(
-                          card.description.length > 120
-                              ? '${card.description.substring(0, 120)}...'
-                              : card.description,
-                          style: m12w400(context).copyWith(
-                            color: colors.textSecondary,
-                            height: 1.5,
+              child: FancyContainer(
+                width: double.infinity,
+                padding: Sp.medium.padAllR,
+                borderRadius: Sp.large,
+                color: colors.textSecondary.withValues(alpha: 0.06),
+                child: Row(
+                  children: [
+                    ClipRRect(
+                      borderRadius: Sp.small.radiusR,
+                      child: CustomCacheNetworkImage(
+                        imageUrl: card.imageUrl,
+                        width: 64.w,
+                        height: 100.w,
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                    Sp.medium.widthBox,
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(card.name, style: m14w700(context)),
+                          Sp.xsmall.heightBox,
+                          Text(
+                            card.description,
+                            maxLines: 3,
+                            overflow: TextOverflow.ellipsis,
+                            style: m12w400(context).copyWith(
+                              color: colors.textSecondary,
+                              height: 1.5,
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
-                  ),
-                ],
+                    Icon(
+                      Icons.chevron_right,
+                      color: colors.textSecondary.withValues(alpha: 0.4),
+                      size: 20.sp,
+                    ),
+                  ],
+                ),
               ),
             ),
           ],

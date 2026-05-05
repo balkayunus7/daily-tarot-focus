@@ -340,7 +340,7 @@
         "birth_city": "Doğum Şehri",
         "birth_city_hint": "Şehir adı girin...",
         "calculating": "Hesaplanıyor...",
-        "error": "Hesaplama başarısız. Lütfen tekrar deneyin.",
+        "error": "Hesaplama başarısız. Lütfen geçerli şehir adı girin.",
         "success_moon": "Ay burcu keşfedildi",
         "success_rising": "Yükselen burç keşfedildi",
         "city_not_found": "Şehir bulunamadı. Lütfen başka bir isim deneyin.",

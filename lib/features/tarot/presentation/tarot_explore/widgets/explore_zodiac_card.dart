@@ -105,8 +105,8 @@ class _ZodiacIllustration extends StatelessWidget {
                 ),
                 SvgPicture.asset(
                   sign.svgPath,
-                  height: 36,
-                  width: 36,
+                  height: 32.sp,
+                  width: 32.sp,
                   colorFilter: ColorFilter.mode(context.colors.accent, BlendMode.srcIn),
                 ),
               ],
@@ -119,11 +119,7 @@ class _ZodiacIllustration extends StatelessWidget {
 }
 
 class _ZodiacCelestialPainter extends CustomPainter {
-  const _ZodiacCelestialPainter({
-    required this.elementColor,
-    required this.element,
-  });
-
+  const _ZodiacCelestialPainter({required this.elementColor, required this.element});
   final Color elementColor;
   final ZodiacElement element;
 
@@ -187,51 +183,54 @@ class _ZodiacCelestialPainter extends CustomPainter {
           ..color = elementColor.withValues(alpha: 0.78)
           ..style = PaintingStyle.fill;
 
-    final List<Offset> pts;
-    switch (element) {
-      // fire → upward triangle with two inner sparks
-      case ZodiacElement.fire:
-        pts = [
-          Offset(center.dx, center.dy - r * 0.88),
-          Offset(center.dx - r * 0.76, center.dy + r * 0.44),
-          Offset(center.dx + r * 0.76, center.dy + r * 0.44),
-          Offset(center.dx - r * 0.34, center.dy + r * 0.02),
-          Offset(center.dx + r * 0.34, center.dy + r * 0.02),
-        ];
-      // earth → diamond with centre anchor
-      case ZodiacElement.earth:
-        pts = [
-          Offset(center.dx, center.dy - r * 0.88),
-          Offset(center.dx + r * 0.88, center.dy),
-          Offset(center.dx, center.dy + r * 0.88),
-          Offset(center.dx - r * 0.88, center.dy),
-          Offset(center.dx, center.dy),
-        ];
-      // air → flowing wave / zigzag
-      case ZodiacElement.air:
-        pts = [
-          Offset(center.dx - r * 0.88, center.dy + r * 0.28),
-          Offset(center.dx - r * 0.40, center.dy - r * 0.62),
-          Offset(center.dx, center.dy + r * 0.14),
-          Offset(center.dx + r * 0.40, center.dy - r * 0.62),
-          Offset(center.dx + r * 0.88, center.dy + r * 0.28),
-        ];
-      // water → arc / crescent curve
-      case ZodiacElement.water:
-        pts = [
-          Offset(center.dx - r * 0.65, center.dy - r * 0.65),
-          Offset(center.dx, center.dy - r * 0.88),
-          Offset(center.dx + r * 0.65, center.dy - r * 0.65),
-          Offset(center.dx + r * 0.85, center.dy + r * 0.04),
-          Offset(center.dx, center.dy + r * 0.76),
-        ];
-    }
+    final pts = _constellationPoints(center, r);
 
     for (var i = 0; i < pts.length - 1; i++) {
       canvas.drawLine(pts[i], pts[i + 1], linePaint);
     }
     for (final p in pts) {
       canvas.drawCircle(p, 1.8, starPaint);
+    }
+  }
+
+  List<Offset> _constellationPoints(Offset c, double r) {
+    switch (element) {
+      // fire → upward triangle with two inner sparks
+      case ZodiacElement.fire:
+        return [
+          Offset(c.dx, c.dy - r * 0.88),
+          Offset(c.dx - r * 0.76, c.dy + r * 0.44),
+          Offset(c.dx + r * 0.76, c.dy + r * 0.44),
+          Offset(c.dx - r * 0.34, c.dy + r * 0.02),
+          Offset(c.dx + r * 0.34, c.dy + r * 0.02),
+        ];
+      // earth → diamond with centre anchor
+      case ZodiacElement.earth:
+        return [
+          Offset(c.dx, c.dy - r * 0.88),
+          Offset(c.dx + r * 0.88, c.dy),
+          Offset(c.dx, c.dy + r * 0.88),
+          Offset(c.dx - r * 0.88, c.dy),
+          Offset(c.dx, c.dy),
+        ];
+      // air → flowing wave / zigzag
+      case ZodiacElement.air:
+        return [
+          Offset(c.dx - r * 0.88, c.dy + r * 0.28),
+          Offset(c.dx - r * 0.40, c.dy - r * 0.62),
+          Offset(c.dx, c.dy + r * 0.14),
+          Offset(c.dx + r * 0.40, c.dy - r * 0.62),
+          Offset(c.dx + r * 0.88, c.dy + r * 0.28),
+        ];
+      // water → arc / crescent curve
+      case ZodiacElement.water:
+        return [
+          Offset(c.dx - r * 0.65, c.dy - r * 0.65),
+          Offset(c.dx, c.dy - r * 0.88),
+          Offset(c.dx + r * 0.65, c.dy - r * 0.65),
+          Offset(c.dx + r * 0.85, c.dy + r * 0.04),
+          Offset(c.dx, c.dy + r * 0.76),
+        ];
     }
   }
 

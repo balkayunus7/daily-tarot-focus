@@ -64,7 +64,7 @@ class SettingsPage extends StatelessWidget {
   );
 
   Future<void> restartApp(BuildContext context) async {
-    context.pop();
+    if (context.canPop()) context.pop();
     if (!context.mounted) return;
     context.go(AppRoutes.splash);
     if (!context.mounted) return;

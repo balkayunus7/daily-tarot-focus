@@ -339,7 +339,7 @@
         "birth_city": "Birth City",
         "birth_city_hint": "Enter city name...",
         "calculating": "Calculating...",
-        "error": "Calculation failed. Please try again.",
+        "error": "Calculation failed. Enter valid city name",
         "success_moon": "Moon sign discovered",
         "success_rising": "Rising sign discovered",
         "city_not_found": "City not found. Please try another name.",

@@ -359,7 +359,13 @@
         "desc_sagittarius": "Visionary wanderer seeking truth and wisdom across infinite horizons.",
         "desc_capricorn": "Disciplined mountain climber ascending every peak through patient mastery.",
         "desc_aquarius": "Visionary rebel reshaping the future with humanitarian genius and innovation.",
-        "desc_pisces": "Dreaming mystic dissolving boundaries in boundless compassion and mystical vision."
+        "desc_pisces": "Dreaming mystic dissolving boundaries in boundless compassion and mystical vision.",
+        "ruling_planet": "Ruling Planet",
+        "ruling_house": "House",
+        "strengths": "Strengths",
+        "shadows": "Shadows",
+        "minor_arcana": "Minor Arcana",
+        "decan_cards": "Decan Cards"
     },
     "tarot_shuffle": {
         "step_5_of_5": "5 / 5",

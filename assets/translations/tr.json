@@ -360,7 +360,13 @@
         "desc_sagittarius": "Sonsuz ufuklarda gerçek ve bilgelik arayan vizyoner gezgin.",
         "desc_capricorn": "Sabırlı ustalıkla her zirveye tırmanan disiplinli dağcı.",
         "desc_aquarius": "İnsancıl dehasıyla geleceği yeniden şekillendiren vizyoner asi.",
-        "desc_pisces": "Sınırları sonsuz şefkati ve mistik vizyonuyla eriten hayalperest mistik."
+        "desc_pisces": "Sınırları sonsuz şefkati ve mistik vizyonuyla eriten hayalperest mistik.",
+        "ruling_planet": "Yönetici Gezegen",
+        "ruling_house": "Ev",
+        "strengths": "Güçlü Yönler",
+        "shadows": "Gölge Yönler",
+        "minor_arcana": "Küçük Arkana",
+        "decan_cards": "Dekan Kartları"
     },
     "tarot_shuffle": {
         "step_5_of_5": "5 / 5",

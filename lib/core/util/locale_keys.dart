@@ -327,6 +327,12 @@ abstract class LocaleKeys {
   static const zodiac_page_success_moon = 'zodiac_page.success_moon';
   static const zodiac_page_success_rising = 'zodiac_page.success_rising';
   static const zodiac_page_city_not_found = 'zodiac_page.city_not_found';
+  static const zodiac_page_ruling_planet = 'zodiac_page.ruling_planet';
+  static const zodiac_page_ruling_house = 'zodiac_page.ruling_house';
+  static const zodiac_page_strengths = 'zodiac_page.strengths';
+  static const zodiac_page_shadows = 'zodiac_page.shadows';
+  static const zodiac_page_minor_arcana = 'zodiac_page.minor_arcana';
+  static const zodiac_page_decan_cards = 'zodiac_page.decan_cards';
   static const zodiac_page_desc_aries = 'zodiac_page.desc_aries';
   static const zodiac_page_desc_taurus = 'zodiac_page.desc_taurus';
   static const zodiac_page_desc_gemini = 'zodiac_page.desc_gemini';

@@ -2,8 +2,8 @@ import 'dart:math';
 
 import 'package:daily_tarot_focus/features/auth/domain/models/tarot_user_zodiac_enum.dart';
 
-class AstrologyHelper {
-  const AstrologyHelper._();
+class ZodiacLearnHelper {
+  const ZodiacLearnHelper._();
 
   static ZodiacSign moonSign(DateTime birthDateTimeUtc) {
     final jd = _julianDay(birthDateTimeUtc);

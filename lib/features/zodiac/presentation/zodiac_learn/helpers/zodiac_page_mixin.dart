@@ -3,14 +3,14 @@ import 'package:daily_tarot_focus/core/util/locale_keys.dart';
 import 'package:daily_tarot_focus/features/auth/domain/models/tarot_user.dart';
 import 'package:daily_tarot_focus/features/auth/domain/models/tarot_user_properties.dart';
 import 'package:daily_tarot_focus/features/auth/domain/models/tarot_user_zodiac_enum.dart';
-import 'package:daily_tarot_focus/features/tarot/presentation/tarot_zodiac/helpers/astrology_helper.dart';
-import 'package:daily_tarot_focus/features/tarot/presentation/tarot_zodiac/pages/tarot_zodiac_detail_page.dart';
+import 'package:daily_tarot_focus/features/zodiac/presentation/zodiac_learn/helpers/astrology_helper.dart';
+import 'package:daily_tarot_focus/features/zodiac/presentation/zodiac_learn/pages/zodiac_learn_page.dart';
 import 'package:flutter/material.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:mobile_boilerplate/application/auth/auth_cubit.dart';
 import 'package:mobile_boilerplate/common_dependencies.dart';
 
-mixin ZodiacPageMixin on State<TarotZodiacDetailPage> {
+mixin ZodiacLearnPageMixin on State<ZodiacLearnPage> {
   final isCalculating = ValueNotifier<bool>(false);
 
   @override
@@ -30,7 +30,7 @@ mixin ZodiacPageMixin on State<TarotZodiacDetailPage> {
         birthTime.hour,
         birthTime.minute,
       );
-      final sign = AstrologyHelper.moonSign(birthDateTime.toUtc());
+      final sign = ZodiacLearnHelper.moonSign(birthDateTime.toUtc());
       await _saveSign(moonSign: sign);
       if (mounted) context.showToastMessage(LocaleKeys.zodiac_page_success_moon.tr());
     } on Exception catch (_) {
@@ -66,7 +66,7 @@ mixin ZodiacPageMixin on State<TarotZodiacDetailPage> {
         birthTime.minute,
       );
       final utcApprox = localDateTime.subtract(Duration(minutes: (lon / 15 * 60).round()));
-      final sign = AstrologyHelper.risingSign(utcApprox, lat, lon);
+      final sign = ZodiacLearnHelper.risingSign(utcApprox, lat, lon);
       await _saveSign(risingSign: sign);
       if (mounted) context.showToastMessage(LocaleKeys.zodiac_page_success_rising.tr());
     } on Exception catch (_) {

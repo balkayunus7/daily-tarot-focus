@@ -15,7 +15,12 @@
         "get_pro": "Pro Ol",
         "day_energy": "Bugün evrenin enerjisi seninle.",
         "moon_energy": "Ay'ın ışığı yolunu aydınlatıyor.",
-        "intuition_guide": "Sevgili {}, zihnini sustur ve evreni dinle."
+        "intuition_guide": "Sevgili {}, zihnini sustur ve evreni dinle.",
+        "tab_tarot": "Tarot",
+        "tab_horoscope": "Burç",
+        "horoscope_card_title": "Göksel Okumanız",
+        "horoscope_card_desc": "Burcunuz için kozmik içgörüleri keşfet",
+        "horoscope_card_button": "Keşfet"
     },
     "deck_page": {
         "title": "Desteler",
@@ -369,5 +374,23 @@
         "auto_on": "Açık",
         "auto_off": "Kapalı",
         "finish": "Kaderimi Göster"
+    },
+    "compat_page": {
+        "title": "Burç Uyumluluğu",
+        "you": "Sen",
+        "partner": "O",
+        "calculate": "Hesapla",
+        "explore_card_title": "Burç Uyumluluğu",
+        "section_label": "Burç Uyumluluğu",
+        "category_sexuality": "Cinsellik & Yakınlık",
+        "category_trust": "Güven",
+        "category_communication": "İletişim",
+        "category_emotions": "Duygular",
+        "category_values": "Değerler",
+        "title_high": "Harmoni dolu bir birlik",
+        "title_medium": "Büyüleyici bir uyum",
+        "title_low": "Karmaşık ama derin bağ",
+        "title_very_low": "Zorlayıcı ama öğretici",
+        "summary_label": "Özet"
     }
 }

@@ -15,7 +15,12 @@
         "get_pro": "Get Pro",
         "day_energy": "The universe flows through you today.",
         "moon_energy": "The Moon illuminates your path.",
-        "intuition_guide": "Dear {}, quiet your mind and listen to the cosmos."
+        "intuition_guide": "Dear {}, quiet your mind and listen to the cosmos.",
+        "tab_tarot": "Tarot",
+        "tab_horoscope": "Horoscope",
+        "horoscope_card_title": "Your Celestial Reading",
+        "horoscope_card_desc": "Uncover cosmic insights for your sign",
+        "horoscope_card_button": "Explore"
     },
     "deck_page": {
         "title": "Decks",
@@ -368,5 +373,23 @@
         "auto_on": "On",
         "auto_off": "Off",
         "finish": "Reveal Fate"
+    },
+    "compat_page": {
+        "title": "Zodiac Compatibility",
+        "you": "You",
+        "partner": "Them",
+        "calculate": "Calculate",
+        "explore_card_title": "Compatibility",
+        "section_label": "Zodiac Compatibility",
+        "category_sexuality": "Intimacy",
+        "category_trust": "Trust",
+        "category_communication": "Communication",
+        "category_emotions": "Emotions",
+        "category_values": "Values",
+        "title_high": "A harmony-filled union",
+        "title_medium": "A fascinating match",
+        "title_low": "Complex but deep bond",
+        "title_very_low": "Challenging yet enriching",
+        "summary_label": "Summary"
     }
 }

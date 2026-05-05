@@ -12,8 +12,8 @@ import 'package:daily_tarot_focus/features/auth/domain/models/tarot_user.dart';
 import 'package:daily_tarot_focus/features/auth/domain/models/tarot_user_zodiac_enum.dart';
 import 'package:daily_tarot_focus/features/tarot/bloc/tarot/tarot_bloc.dart';
 import 'package:daily_tarot_focus/features/tarot/bloc/tarot/tarot_state.dart';
-import 'package:daily_tarot_focus/features/tarot/presentation/tarot_zodiac/helpers/zodiac_page_mixin.dart';
-import 'package:daily_tarot_focus/features/tarot/presentation/tarot_zodiac/helpers/zodiac_page_scope.dart';
+import 'package:daily_tarot_focus/features/zodiac/presentation/zodiac_learn/helpers/zodiac_page_mixin.dart';
+import 'package:daily_tarot_focus/features/zodiac/presentation/zodiac_learn/helpers/zodiac_page_scope.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
@@ -21,17 +21,17 @@ import 'package:mobile_boilerplate/application/auth/auth_cubit.dart';
 import 'package:mobile_boilerplate/common_dependencies.dart';
 import 'package:mobile_boilerplate/presentation/extensions/build_context_theme_ext.dart';
 
-class TarotZodiacDetailPage extends StatefulWidget {
-  const TarotZodiacDetailPage({super.key});
+class ZodiacLearnPage extends StatefulWidget {
+  const ZodiacLearnPage({super.key});
 
   @override
-  State<TarotZodiacDetailPage> createState() => _TarotZodiacDetailPageState();
+  State<ZodiacLearnPage> createState() => _ZodiacLearnPageState();
 }
 
-class _TarotZodiacDetailPageState extends State<TarotZodiacDetailPage> with ZodiacPageMixin {
+class _ZodiacLearnPageState extends State<ZodiacLearnPage> with ZodiacLearnPageMixin {
   @override
   Widget build(BuildContext context) {
-    return ZodiacPageScope(
+    return ZodiacLearnPageScope(
       state: this,
       child: const DefaultTabController(length: 3, child: _ZodiacScaffold()),
     );
@@ -355,7 +355,7 @@ class _CalculatePrompt extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colors = context.colors;
-    final scope = ZodiacPageScope.of(context).state;
+    final scope = ZodiacLearnPageScope.of(context).state;
     return Center(
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: Sp.screen.w),
@@ -434,7 +434,7 @@ class _CalculatePrompt extends StatelessWidget {
     );
   }
 
-  Future<void> _showBirthSheet(BuildContext context, bool isRising, ZodiacPageMixin scope) {
+  Future<void> _showBirthSheet(BuildContext context, bool isRising, ZodiacLearnPageMixin scope) {
     return showModalBottomSheet<void>(
       context: context,
       isScrollControlled: true,

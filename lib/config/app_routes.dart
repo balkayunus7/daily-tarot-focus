@@ -49,6 +49,10 @@ class AppRoutes {
   // Tarot Zodiac
   static const String tarotZodiacDetail = '/tarot-zodiac-detail';
 
+  // Tarot Compatibility
+  static const String tarotCompatibilityInput = '/tarot-compatibility-input';
+  static const String tarotCompatibilityResult = '/tarot-compatibility-result';
+
   // Subscription
   static const String subscriptionPaywall = '/subscription-paywall';
 

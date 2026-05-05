@@ -1,8 +1,6 @@
 // DO NOT EDIT. This is code generated via package:easy_localization/generate.dart
 
-// ignore_for_file: constant_identifier_names
-
-abstract class  LocaleKeys {
+abstract class LocaleKeys {
   static const explore_page_spiritual_guide = 'explore_page.spiritual_guide';
   static const explore_page_ask_question = 'explore_page.ask_question';
   static const explore_page_deck = 'explore_page.deck';
@@ -19,6 +17,11 @@ abstract class  LocaleKeys {
   static const explore_page_day_energy = 'explore_page.day_energy';
   static const explore_page_moon_energy = 'explore_page.moon_energy';
   static const explore_page_intuition_guide = 'explore_page.intuition_guide';
+  static const explore_page_tab_tarot = 'explore_page.tab_tarot';
+  static const explore_page_tab_horoscope = 'explore_page.tab_horoscope';
+  static const explore_page_horoscope_card_title = 'explore_page.horoscope_card_title';
+  static const explore_page_horoscope_card_desc = 'explore_page.horoscope_card_desc';
+  static const explore_page_horoscope_card_button = 'explore_page.horoscope_card_button';
   static const explore_page = 'explore_page';
   static const deck_page_title = 'deck_page.title';
   static const deck_page_meaning_for_day = 'deck_page.meaning_for_day';
@@ -190,7 +193,8 @@ abstract class  LocaleKeys {
   static const tarot_question_spread_step_title = 'tarot_question.spread_step_title';
   static const tarot_question_question_step_title = 'tarot_question.question_step_title';
   static const tarot_question_deck_shuffle_step_title = 'tarot_question.deck_shuffle_step_title';
-  static const tarot_question_deck_shuffle_open_step_subtitle = 'tarot_question.deck_shuffle_open_step_subtitle';
+  static const tarot_question_deck_shuffle_open_step_subtitle =
+      'tarot_question.deck_shuffle_open_step_subtitle';
   static const tarot_question_step_1_of_5 = 'tarot_question.step_1_of_5';
   static const tarot_question_step_2_of_5 = 'tarot_question.step_2_of_5';
   static const tarot_question_step_3_of_5 = 'tarot_question.step_3_of_5';
@@ -199,7 +203,8 @@ abstract class  LocaleKeys {
   static const tarot_question_choose_reader_subtitle = 'tarot_question.choose_reader_subtitle';
   static const tarot_question_choose_category_subtitle = 'tarot_question.choose_category_subtitle';
   static const tarot_question_choose_spread_subtitle = 'tarot_question.choose_spread_subtitle';
-  static const tarot_question_choose_open_deck_subtitle = 'tarot_question.choose_open_deck_subtitle';
+  static const tarot_question_choose_open_deck_subtitle =
+      'tarot_question.choose_open_deck_subtitle';
   static const tarot_question_spreads_count = 'tarot_question.spreads_count';
   static const tarot_question_need_guidance = 'tarot_question.need_guidance';
   static const tarot_question_guide_subtitle = 'tarot_question.guide_subtitle';
@@ -240,14 +245,20 @@ abstract class  LocaleKeys {
   static const subscription_paywall_page_title = 'subscription_paywall_page.title';
   static const subscription_paywall_page_subtitle = 'subscription_paywall_page.subtitle';
   static const subscription_paywall_page_footer_text = 'subscription_paywall_page.footer_text';
-  static const subscription_paywall_page_terms_of_service = 'subscription_paywall_page.terms_of_service';
-  static const subscription_paywall_page_failed_fetch_packages = 'subscription_paywall_page.failed_fetch_packages';
+  static const subscription_paywall_page_terms_of_service =
+      'subscription_paywall_page.terms_of_service';
+  static const subscription_paywall_page_failed_fetch_packages =
+      'subscription_paywall_page.failed_fetch_packages';
   static const subscription_paywall_page_no_packages = 'subscription_paywall_page.no_packages';
-  static const subscription_paywall_page_package_card_period = 'subscription_paywall_page.package_card_period';
-  static const subscription_paywall_page_subscribe_placeholder_button = 'subscription_paywall_page.subscribe_placeholder_button';
+  static const subscription_paywall_page_package_card_period =
+      'subscription_paywall_page.package_card_period';
+  static const subscription_paywall_page_subscribe_placeholder_button =
+      'subscription_paywall_page.subscribe_placeholder_button';
   static const subscription_paywall_page_retry_button = 'subscription_paywall_page.retry_button';
-  static const subscription_paywall_page_restore_button = 'subscription_paywall_page.restore_button';
-  static const subscription_paywall_page_subscribe_button = 'subscription_paywall_page.subscribe_button';
+  static const subscription_paywall_page_restore_button =
+      'subscription_paywall_page.restore_button';
+  static const subscription_paywall_page_subscribe_button =
+      'subscription_paywall_page.subscribe_button';
   static const subscription_paywall_page = 'subscription_paywall_page';
   static const subscription_period_month = 'subscription_period_month';
   static const subscription_period_week = 'subscription_period_week';
@@ -341,5 +352,21 @@ abstract class  LocaleKeys {
   static const tarot_shuffle_auto_off = 'tarot_shuffle.auto_off';
   static const tarot_shuffle_finish = 'tarot_shuffle.finish';
   static const tarot_shuffle = 'tarot_shuffle';
-
+  static const compat_page_title = 'compat_page.title';
+  static const compat_page_you = 'compat_page.you';
+  static const compat_page_partner = 'compat_page.partner';
+  static const compat_page_calculate = 'compat_page.calculate';
+  static const compat_page_explore_card_title = 'compat_page.explore_card_title';
+  static const compat_page_section_label = 'compat_page.section_label';
+  static const compat_page_category_sexuality = 'compat_page.category_sexuality';
+  static const compat_page_category_trust = 'compat_page.category_trust';
+  static const compat_page_category_communication = 'compat_page.category_communication';
+  static const compat_page_category_emotions = 'compat_page.category_emotions';
+  static const compat_page_category_values = 'compat_page.category_values';
+  static const compat_page_title_high = 'compat_page.title_high';
+  static const compat_page_title_medium = 'compat_page.title_medium';
+  static const compat_page_title_low = 'compat_page.title_low';
+  static const compat_page_title_very_low = 'compat_page.title_very_low';
+  static const compat_page_summary_label = 'compat_page.summary_label';
+  static const compat_page = 'compat_page';
 }

@@ -11,7 +11,13 @@ import 'package:mobile_boilerplate/application/auth/auth_cubit.dart';
 import 'package:mobile_boilerplate/common_dependencies.dart';
 
 mixin ZodiacLearnPageMixin on State<ZodiacLearnPage> {
-  final isCalculating = ValueNotifier<bool>(false);
+  late ValueNotifier<bool> isCalculating;
+
+  @override
+  void initState() {
+    super.initState();
+    isCalculating = ValueNotifier<bool>(false);
+  }
 
   @override
   void dispose() {

@@ -1,7 +1,31 @@
+import 'package:daily_tarot_focus/core/util/tarot_app_assets.dart';
 import 'package:daily_tarot_focus/features/auth/domain/models/tarot_user_zodiac_enum.dart';
 import 'package:flutter/material.dart';
 
-enum CompatGender { female, male, nonBinary }
+enum CompatGender {
+  female('Female'),
+  male('Male'),
+  nonBinary('Non Binary');
+
+  const CompatGender(this.value);
+
+  factory CompatGender.fromString(String value) =>
+      CompatGender.values.firstWhere((e) => e.value == value);
+
+  String get emoji {
+    return switch (this) {
+      CompatGender.female => TarotAppAssets.female.path,
+      CompatGender.male => TarotAppAssets.male.path,
+      CompatGender.nonBinary => TarotAppAssets.nonBinary.path,
+    };
+  }
+
+  final String value;
+
+  bool get isFemale => this == CompatGender.female;
+  bool get isMale => this == CompatGender.male;
+  bool get isNonBinary => this == CompatGender.nonBinary;
+}
 
 class CompatibilityInput {
   const CompatibilityInput({

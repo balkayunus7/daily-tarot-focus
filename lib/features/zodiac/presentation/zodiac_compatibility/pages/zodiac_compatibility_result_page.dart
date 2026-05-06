@@ -12,12 +12,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:mobile_boilerplate/presentation/extensions/build_context_theme_ext.dart';
 
 class TarotCompatibilityResultPage extends StatelessWidget {
-  const TarotCompatibilityResultPage({
-    required this.input,
-    required this.result,
-    super.key,
-  });
-
+  const TarotCompatibilityResultPage({required this.input, required this.result, super.key});
   final CompatibilityInput input;
   final CompatibilityResult result;
 
@@ -52,9 +47,9 @@ class TarotCompatibilityResultPage extends StatelessWidget {
                     _SummarySection(result: result),
                     Sp.large.heightBox,
                     ...result.categories.map(
-                      (c) => Padding(
+                      (category) => Padding(
                         padding: EdgeInsets.only(bottom: Sp.small.h),
-                        child: _CategoryTile(category: c),
+                        child: _CategoryTile(category: category),
                       ),
                     ),
                   ],
@@ -75,7 +70,6 @@ class _HeaderSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colors = context.colors;
-    const heartColor = Color(0xFFE05A82);
 
     return Column(
       children: [
@@ -85,7 +79,7 @@ class _HeaderSection extends StatelessWidget {
             _SignAvatar(sign: result.mySign),
             Padding(
               padding: Sp.large.padHR,
-              child: Icon(Icons.favorite_rounded, color: heartColor, size: 28.sp),
+              child: Icon(Icons.favorite_rounded, color: colors.error, size: 28.sp),
             ),
             _SignAvatar(sign: result.partnerSign),
           ],
@@ -93,7 +87,7 @@ class _HeaderSection extends StatelessWidget {
         Sp.large.heightBox,
         Text(
           result.titleKey.tr(),
-          style: m18w700(context).copyWith(color: const Color(0xFF4CAF82)),
+          style: m18w700(context).copyWith(color: colors.success),
           textAlign: TextAlign.center,
         ),
         Sp.medium.heightBox,
@@ -122,13 +116,6 @@ class _SignAvatar extends StatelessWidget {
           end: Alignment.bottomRight,
           colors: [colors.gradientStart, colors.gradientEnd],
         ),
-        boxShadow: [
-          BoxShadow(
-            color: colors.primary.withValues(alpha: 0.30),
-            blurRadius: 16,
-            spreadRadius: 2,
-          ),
-        ],
       ),
       alignment: Alignment.center,
       child: SvgPicture.asset(

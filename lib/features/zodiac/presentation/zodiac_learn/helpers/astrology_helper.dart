@@ -1,6 +1,33 @@
 import 'dart:math';
 
+import 'package:daily_tarot_focus/core/util/locale_keys.dart';
 import 'package:daily_tarot_focus/features/auth/domain/models/tarot_user_zodiac_enum.dart';
+import 'package:easy_localization/easy_localization.dart';
+
+enum DiscoverZodiacType { moon, rising }
+
+extension DiscoverZodiacTypeExt on DiscoverZodiacType {
+  bool get isRising => this == DiscoverZodiacType.rising;
+  bool get isMoon => this == DiscoverZodiacType.moon;
+
+  String get title {
+    switch (this) {
+      case DiscoverZodiacType.rising:
+        return LocaleKeys.zodiac_page_discover_rising.tr();
+      case DiscoverZodiacType.moon:
+        return LocaleKeys.zodiac_page_discover_moon.tr();
+    }
+  }
+
+  String get description {
+    switch (this) {
+      case DiscoverZodiacType.rising:
+        return LocaleKeys.zodiac_page_desc_rising.tr();
+      case DiscoverZodiacType.moon:
+        return LocaleKeys.zodiac_page_desc_moon.tr();
+    }
+  }
+}
 
 class ZodiacLearnHelper {
   const ZodiacLearnHelper._();

@@ -2,12 +2,7 @@ import 'package:daily_tarot_focus/features/zodiac/presentation/zodiac_learn/help
 import 'package:flutter/widgets.dart';
 
 class ZodiacLearnPageScope extends InheritedWidget {
-  const ZodiacLearnPageScope({
-    required this.state,
-    required super.child,
-    super.key,
-  });
-
+  const ZodiacLearnPageScope({required this.state, required super.child, super.key});
   final ZodiacLearnPageMixin state;
 
   static ZodiacLearnPageScope of(BuildContext context) {

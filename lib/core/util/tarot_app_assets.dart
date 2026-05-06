@@ -14,7 +14,10 @@ enum TarotAppAssets {
   handCoins._('assets/svg/hand-coins.svg'),
   chartLine._('assets/svg/chart-line.svg'),
   asclepius._('assets/svg/asclepius.svg'),
-  babyIcon._('assets/svg/baby.svg');
+  babyIcon._('assets/svg/baby.svg'),
+  male._('assets/svg/male.svg'),
+  female._('assets/svg/female.svg'),
+  nonBinary._('assets/svg/non_binary.svg');
 
   const TarotAppAssets._(this.path);
   final String path;

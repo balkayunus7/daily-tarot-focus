@@ -15,14 +15,14 @@ class ZodiacCalculatedView extends StatelessWidget {
             children: [
               FancyContainer(
                 width: 96.w,
-                height: 96.w,
+                height: 96.h,
                 borderRadius: 100,
                 color: colors.primary.withValues(alpha: 0.1),
                 child: Center(
                   child: SvgPicture.asset(
                     sign.svgPath,
                     width: 52.w,
-                    height: 52.w,
+                    height: 52.h,
                     colorFilter: ColorFilter.mode(colors.primary, BlendMode.srcIn),
                   ),
                 ),
@@ -166,11 +166,7 @@ class _KeywordsSection extends StatelessWidget {
 }
 
 class _KeywordColumn extends StatelessWidget {
-  const _KeywordColumn({
-    required this.title,
-    required this.keywords,
-    required this.accentColor,
-  });
+  const _KeywordColumn({required this.title, required this.keywords, required this.accentColor});
   final String title;
   final List<String> keywords;
   final Color accentColor;
@@ -286,7 +282,7 @@ class _RulingPlanetSection extends StatelessWidget {
                           child: CustomCacheNetworkImage(
                             imageUrl: card.imageUrl,
                             width: 64.w,
-                            height: 106.w,
+                            height: 106.h,
                             fit: BoxFit.fill,
                           ),
                         ),
@@ -358,11 +354,12 @@ class _MajorArcanaSection extends StatelessWidget {
             ),
             Sp.medium.heightBox,
             GestureDetector(
-              onTap:
-                  () => context.pushNamed(
-                    AppRoutes.tarotDeckDetail,
-                    pathParameters: {'tarotId': card.id},
-                  ),
+              onTap: () async {
+                await context.pushNamed(
+                  AppRoutes.tarotDeckDetail,
+                  pathParameters: {'tarotId': card.id},
+                );
+              },
               child: FancyContainer(
                 width: double.infinity,
                 padding: Sp.medium.padAllR,
@@ -375,7 +372,7 @@ class _MajorArcanaSection extends StatelessWidget {
                       child: CustomCacheNetworkImage(
                         imageUrl: card.imageUrl,
                         width: 64.w,
-                        height: 106.w,
+                        height: 106.h,
                         fit: BoxFit.cover,
                       ),
                     ),

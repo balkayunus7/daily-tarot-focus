@@ -4,7 +4,7 @@ import 'package:daily_tarot_focus/core/util/text_style_helper.dart';
 import 'package:daily_tarot_focus/core/widgets/fancy_container.dart';
 import 'package:daily_tarot_focus/core/widgets/tarot_app_bar.dart';
 import 'package:daily_tarot_focus/features/auth/domain/models/tarot_user_zodiac_enum.dart';
-import 'package:daily_tarot_focus/features/zodiac/presentation/zodiac_compatibility/models/zodiac_compatibility.dart';
+import 'package:daily_tarot_focus/features/zodiac/domain/models/zodiac_compatibility_model.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -13,7 +13,7 @@ import 'package:mobile_boilerplate/presentation/extensions/build_context_theme_e
 
 class TarotCompatibilityResultPage extends StatelessWidget {
   const TarotCompatibilityResultPage({required this.input, required this.result, super.key});
-  final CompatibilityInput input;
+  final CompatibilityInputModel input;
   final CompatibilityResult result;
 
   @override
@@ -205,7 +205,7 @@ class _ScoreGrid extends StatelessWidget {
 
 class _ScoreCell extends StatelessWidget {
   const _ScoreCell({required this.category});
-  final CompatibilityCategory category;
+  final CompatibilityCategoryModel category;
 
   @override
   Widget build(BuildContext context) {
@@ -275,7 +275,7 @@ class _SummarySection extends StatelessWidget {
 
 class _CategoryTile extends StatefulWidget {
   const _CategoryTile({required this.category});
-  final CompatibilityCategory category;
+  final CompatibilityCategoryModel category;
 
   @override
   State<_CategoryTile> createState() => _CategoryTileState();

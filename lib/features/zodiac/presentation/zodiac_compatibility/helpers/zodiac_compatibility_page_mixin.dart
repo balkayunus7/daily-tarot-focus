@@ -1,7 +1,7 @@
 import 'package:daily_tarot_focus/config/app_routes.dart';
 import 'package:daily_tarot_focus/features/auth/domain/models/tarot_user.dart';
 import 'package:daily_tarot_focus/features/auth/domain/models/tarot_user_zodiac_enum.dart';
-import 'package:daily_tarot_focus/features/zodiac/presentation/zodiac_compatibility/models/zodiac_compatibility.dart';
+import 'package:daily_tarot_focus/features/zodiac/domain/models/zodiac_compatibility_model.dart';
 import 'package:daily_tarot_focus/features/zodiac/presentation/zodiac_compatibility/pages/zodiac_compatibility_input_page.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -86,7 +86,7 @@ mixin ZodiacCompatibilityPageMixin on State<TarotCompatibilityInputPage> {
 
   Future<void> calculate() async {
     final result = CompatibilityResult.calculate(mySign.value, partnerSign.value);
-    final input = CompatibilityInput(
+    final input = CompatibilityInputModel(
       mySign: mySign.value,
       myGender: myGender.value,
       partnerSign: partnerSign.value,

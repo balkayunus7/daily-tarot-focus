@@ -120,11 +120,13 @@ class _BirthInputSheetState extends State<BirthInputSheet> {
             textStyle: m14w700(context).copyWith(color: colors.textOnPrimary),
             onTap:
                 _canSubmit
-                    ? () => widget.onSubmit(
-                      _selectedDate!,
-                      _selectedTime!,
-                      widget.type.isRising ? _cityController.text.trim() : null,
-                    )
+                    ? () async {
+                      await widget.onSubmit(
+                        _selectedDate!,
+                        _selectedTime!,
+                        widget.type.isRising ? _cityController.text.trim() : null,
+                      );
+                    }
                     : () {},
           ),
         ],

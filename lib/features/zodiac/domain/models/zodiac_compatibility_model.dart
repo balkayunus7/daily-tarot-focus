@@ -27,8 +27,8 @@ enum CompatGender {
   bool get isNonBinary => this == CompatGender.nonBinary;
 }
 
-class CompatibilityInput {
-  const CompatibilityInput({
+class CompatibilityInputModel {
+  const CompatibilityInputModel({
     required this.mySign,
     required this.myGender,
     required this.partnerSign,
@@ -41,8 +41,8 @@ class CompatibilityInput {
   final CompatGender partnerGender;
 }
 
-class CompatibilityCategory {
-  const CompatibilityCategory({
+class CompatibilityCategoryModel {
+  const CompatibilityCategoryModel({
     required this.emoji,
     required this.labelKey,
     required this.score,
@@ -70,7 +70,7 @@ class CompatibilityResult {
   final ZodiacSign partnerSign;
   final int overallScore;
   final String summary;
-  final List<CompatibilityCategory> categories;
+  final List<CompatibilityCategoryModel> categories;
 
   String get titleKey {
     if (overallScore >= 78) return 'compat_page.title_high';
@@ -93,35 +93,35 @@ class CompatibilityResult {
       overallScore: overall,
       summary: _summary(a, b),
       categories: [
-        CompatibilityCategory(
+        CompatibilityCategoryModel(
           emoji: '⚡',
           labelKey: 'compat_page.category_sexuality',
           score: raw[0],
           barColor: const Color(0xFFE05A5A),
           description: _catDesc(raw[0], _sexDesc),
         ),
-        CompatibilityCategory(
+        CompatibilityCategoryModel(
           emoji: '🛡',
           labelKey: 'compat_page.category_trust',
           score: raw[1],
           barColor: const Color(0xFF5A82E0),
           description: _catDesc(raw[1], _trustDesc),
         ),
-        CompatibilityCategory(
+        CompatibilityCategoryModel(
           emoji: '💬',
           labelKey: 'compat_page.category_communication',
           score: raw[2],
           barColor: const Color(0xFF9B5AE0),
           description: _catDesc(raw[2], _commDesc),
         ),
-        CompatibilityCategory(
+        CompatibilityCategoryModel(
           emoji: '🔥',
           labelKey: 'compat_page.category_emotions',
           score: raw[3],
           barColor: const Color(0xFFE08A3A),
           description: _catDesc(raw[3], _emotDesc),
         ),
-        CompatibilityCategory(
+        CompatibilityCategoryModel(
           emoji: '🌱',
           labelKey: 'compat_page.category_values',
           score: raw[4],

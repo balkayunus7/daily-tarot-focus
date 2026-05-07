@@ -1,13 +1,13 @@
 part of '../pages/zodiac_compatibility_result_page.dart';
 
 class ScoreGrid extends StatelessWidget {
-  const ScoreGrid({required this.result, super.key});
-  final CompatibilityResult result;
+  const ScoreGrid({required this.response, super.key});
+  final GenerateCompatibilityResponse response;
 
   @override
   Widget build(BuildContext context) {
     final colors = context.colors;
-    final cats = result.categories;
+    final cats = response.categories;
 
     return FancyContainer(
       width: double.infinity,

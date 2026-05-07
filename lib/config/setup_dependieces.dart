@@ -12,6 +12,9 @@ import 'package:daily_tarot_focus/features/tarot/bloc/tarot/tarot_bloc.dart';
 import 'package:daily_tarot_focus/features/tarot/data/impl_tarot_cache_service.dart';
 import 'package:daily_tarot_focus/features/tarot/data/impl_tarot_remote_data_source.dart';
 import 'package:daily_tarot_focus/features/tarot/data/impl_tarot_repository.dart';
+import 'package:daily_tarot_focus/features/zodiac/bloc/zodiac/zodiac_bloc.dart';
+import 'package:daily_tarot_focus/features/zodiac/data/impl_zodiac_remote_data_source.dart';
+import 'package:daily_tarot_focus/features/zodiac/data/impl_zodiac_repository.dart';
 import 'package:mobile_boilerplate/application/analytics/analytics_cubit.dart';
 import 'package:mobile_boilerplate/application/auth/auth_cubit.dart';
 import 'package:mobile_boilerplate/application/color_theme/color_theme_bloc.dart';
@@ -222,5 +225,14 @@ Future<void> setupDependencies() async {
     )
     ..registerLazySingleton<TarotBloc>(
       () => TarotBloc(getIt<ImplTarotRepository>(), getIt<ImplTarotCacheService>()),
+    )
+    ..registerSingleton<ImplZodiacRemoteDataSource>(
+      ImplZodiacRemoteDataSource(getIt<SupabaseClient>()),
+    )
+    ..registerSingleton<ImplZodiacRepository>(
+      ImplZodiacRepository(getIt<ImplZodiacRemoteDataSource>()),
+    )
+    ..registerLazySingleton<ZodiacBloc>(
+      () => ZodiacBloc(getIt<ImplZodiacRepository>()),
     );
 }

@@ -23,6 +23,7 @@ class _ZodiacPickerState extends State<ZodiacPicker> {
           child: PageView.builder(
             controller: pageController,
             itemCount: ZodiacSign.values.length,
+            onPageChanged: (value) => HapticFeedbackHelper.lightImpact(),
             itemBuilder: (context, index) {
               final sign = ZodiacSign.values[index % 12];
               final distance = (index - state.getCurrentPage(isMe: widget.isMe)).abs();

@@ -1,3 +1,7 @@
+import 'dart:async';
+
+import 'package:daily_tarot_focus/config/app_routes.dart';
+import 'package:daily_tarot_focus/core/util/haptic_feedback_helper.dart';
 import 'package:daily_tarot_focus/core/util/locale_keys.dart';
 import 'package:daily_tarot_focus/core/util/tarot_app_assets.dart';
 import 'package:daily_tarot_focus/core/util/tarot_app_sizes.dart';
@@ -6,13 +10,14 @@ import 'package:daily_tarot_focus/core/widgets/fancy_button.dart';
 import 'package:daily_tarot_focus/core/widgets/fancy_container.dart';
 import 'package:daily_tarot_focus/core/widgets/tarot_app_bar.dart';
 import 'package:daily_tarot_focus/features/auth/domain/models/tarot_user_zodiac_enum.dart';
-import 'package:daily_tarot_focus/features/zodiac/domain/models/zodiac_compatibility_model.dart';
+import 'package:daily_tarot_focus/features/zodiac/bloc/zodiac/zodiac_bloc.dart';
+import 'package:daily_tarot_focus/features/zodiac/domain/models/generate_compatibility_request_model.dart';
 import 'package:daily_tarot_focus/features/zodiac/presentation/zodiac_compatibility/helpers/zodiac_compatibility_page_mixin.dart';
 import 'package:daily_tarot_focus/features/zodiac/presentation/zodiac_compatibility/helpers/zodiac_compatibility_page_scope.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:go_router/go_router.dart';
+import 'package:mobile_boilerplate/common_dependencies.dart';
 import 'package:mobile_boilerplate/presentation/extensions/build_context_theme_ext.dart';
 import 'package:mobile_boilerplate/presentation/widgets/scaling_container.dart';
 
@@ -66,7 +71,11 @@ class _TarotCompatibilityInputPageState extends State<TarotCompatibilityInputPag
                 height: 52.h,
                 text: LocaleKeys.compat_page_calculate.tr(),
                 textStyle: m16w700(context).copyWith(color: colors.textOnPrimary),
-                onTap: calculate,
+                onTap: () {
+                  final request = buildRequest();
+                  context.read<ZodiacBloc>().addGenerateCompatibilityRequested(request: request);
+                  unawaited(context.push(AppRoutes.tarotCompatibilityResult, extra: request));
+                },
               ),
             ),
           ],

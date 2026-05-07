@@ -50,7 +50,10 @@ class _GenderButton extends StatelessWidget {
     final colors = context.colors;
 
     return ScalingContainer(
-      onTap: onTap,
+      onTap: () async {
+        await HapticFeedbackHelper.lightImpact();
+        onTap();
+      },
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 200),
         width: 48.w,

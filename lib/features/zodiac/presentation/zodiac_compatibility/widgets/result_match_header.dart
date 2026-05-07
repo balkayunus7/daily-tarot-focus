@@ -1,8 +1,9 @@
 part of '../pages/zodiac_compatibility_result_page.dart';
 
 class MatchHeader extends StatelessWidget {
-  const MatchHeader({required this.result, super.key});
-  final CompatibilityResult result;
+  const MatchHeader({required this.request, required this.response, super.key});
+  final GenerateCompatibilityRequestModel request;
+  final GenerateCompatibilityResponse response;
 
   @override
   Widget build(BuildContext context) {
@@ -13,24 +14,24 @@ class MatchHeader extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            _SignAvatar(sign: result.mySign),
+            _SignAvatar(sign: request.mySign),
             Padding(
               padding: Sp.large.padHR,
               child: Icon(Icons.favorite_rounded, color: colors.error, size: 28.sp),
             ),
-            _SignAvatar(sign: result.partnerSign),
+            _SignAvatar(sign: request.partnerSign),
           ],
         ),
         Sp.large.heightBox,
         Text(
-          result.titleKey.tr(),
+          response.titleKey.tr(),
           style: m18w700(context).copyWith(color: colors.success),
           textAlign: TextAlign.center,
         ),
         Sp.medium.heightBox,
         Container(height: 1, color: colors.border),
         Sp.medium.heightBox,
-        _OverallBar(score: result.overallScore),
+        _OverallBar(score: response.overallScore),
       ],
     );
   }

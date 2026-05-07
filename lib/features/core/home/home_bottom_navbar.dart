@@ -73,10 +73,7 @@ class HomeBottomNavbar extends StatelessWidget {
               child: GestureDetector(
                 onTap: () => onTap(index),
                 behavior: HitTestBehavior.opaque,
-                child: Padding(
-                  padding: 4.padXR,
-                  child: tabItem,
-                ),
+                child: Padding(padding: 4.padXR, child: tabItem),
               ),
             );
           }),

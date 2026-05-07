@@ -63,7 +63,7 @@ class _TarotExplorePageState extends State<TarotExplorePage> with ExplorePageSta
                     Sp.large.heightBox,
                     const _ExploreTabSwitch(),
                     Sp.large.heightBox,
-                    if (selectedIndex == 0) ...[
+                    if (isTarotTab) ...[
                       const ExploreAskQuestionCard(),
                       Sp.medium.heightBox,
                       const ExploreSpreadCard(),
@@ -123,19 +123,24 @@ class _ExploreTabSwitch extends StatelessWidget {
         borderRadius: BorderRadius.circular(100),
         border: Border.all(color: colors.borderSecondary, width: 0.5),
       ),
-      child: Row(
-        children: [
-          _TabItem(
-            label: LocaleKeys.explore_page_tab_tarot.tr(),
-            isSelected: scope.isTarotTab,
-            onTap: () => scope.setIndex = 0,
-          ),
-          _TabItem(
-            label: LocaleKeys.explore_page_tab_horoscope.tr(),
-            isSelected: scope.isHoroscopeTab,
-            onTap: () => scope.setIndex = 1,
-          ),
-        ],
+      child: ValueListenableBuilder(
+        valueListenable: scope.selected,
+        builder: (context, value, child) {
+          return Row(
+            children: [
+              _TabItem(
+                label: LocaleKeys.explore_page_tab_tarot.tr(),
+                isSelected: scope.isTarotTab,
+                onTap: () => scope.setIndex = 0,
+              ),
+              _TabItem(
+                label: LocaleKeys.explore_page_tab_horoscope.tr(),
+                isSelected: scope.isHoroscopeTab,
+                onTap: () => scope.setIndex = 1,
+              ),
+            ],
+          );
+        },
       ),
     );
   }

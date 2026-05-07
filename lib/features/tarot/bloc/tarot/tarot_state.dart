@@ -173,6 +173,11 @@ class TarotState extends Equatable {
   KtList<TarotSpreadCategoryModel> get spreadsOrEmpty =>
       fetchSpreadsFailureOrSpreads.getOrNull()?.getRightOrNull() ?? const KtList.empty();
 
+  TarotSpreadModel? getSpreadById(String id) {
+    final spreads = spreadsOrEmpty.asList().expand((cat) => cat.spreads.asList());
+    return spreads.where((s) => s.id == id).firstOrNull;
+  }
+
   // FETCH READERS
   bool get hasFetchedReadersSucceeded =>
       fetchReadersFailureOrReaders.getOrNull()?.getRightOrNull() != null;
@@ -212,11 +217,9 @@ class TarotState extends Equatable {
       const KtList.empty();
 
   // UPDATE NOTE
-  bool get hasUpdateNoteSucceeded =>
-      updateNoteFailureOrUnit.getOrNull()?.getRightOrNull() != null;
+  bool get hasUpdateNoteSucceeded => updateNoteFailureOrUnit.getOrNull()?.getRightOrNull() != null;
 
-  bool get hasUpdateNoteFailed =>
-      updateNoteFailureOrUnit.getOrNull()?.getLeftOrNull() != null;
+  bool get hasUpdateNoteFailed => updateNoteFailureOrUnit.getOrNull()?.getLeftOrNull() != null;
 
   // DELETE READING
   bool get hasDeleteReadingSucceeded =>

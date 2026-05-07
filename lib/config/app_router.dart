@@ -26,7 +26,7 @@ import 'package:daily_tarot_focus/features/tarot/presentation/tarot_spread/pages
 import 'package:daily_tarot_focus/features/tarot/presentation/tarot_spread/pages/tarot_spread_step4_page.dart';
 import 'package:daily_tarot_focus/features/tarot/presentation/tarot_spread/pages/tarot_spread_step5_page.dart';
 import 'package:daily_tarot_focus/features/tarot/presentation/tarot_spread/pages/tarot_spread_step6_page.dart';
-import 'package:daily_tarot_focus/features/zodiac/domain/models/zodiac_compatibility_model.dart';
+import 'package:daily_tarot_focus/features/zodiac/domain/models/generate_compatibility_request_model.dart';
 import 'package:daily_tarot_focus/features/zodiac/presentation/zodiac_compatibility/pages/zodiac_compatibility_input_page.dart';
 import 'package:daily_tarot_focus/features/zodiac/presentation/zodiac_compatibility/pages/zodiac_compatibility_result_page.dart';
 import 'package:daily_tarot_focus/features/zodiac/presentation/zodiac_learn/pages/zodiac_learn_page.dart';
@@ -328,13 +328,10 @@ final appRouter = GoRouter(
       path: AppRoutes.tarotCompatibilityResult,
       name: AppRoutes.tarotCompatibilityResult,
       pageBuilder: (context, state) {
-        final extra = state.extra! as (CompatibilityInputModel, CompatibilityResult);
+        final extra = state.extra! as GenerateCompatibilityRequestModel;
         return MaterialPage(
           key: state.pageKey,
-          child: TarotCompatibilityResultPage(
-            input: extra.$1,
-            result: extra.$2,
-          ),
+          child: TarotCompatibilityResultPage(request: extra),
         );
       },
     ),

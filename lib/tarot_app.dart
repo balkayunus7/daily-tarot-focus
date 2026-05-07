@@ -2,6 +2,7 @@ import 'package:daily_tarot_focus/config/app_router.dart';
 import 'package:daily_tarot_focus/core/util/tarot_app_colors.dart';
 import 'package:daily_tarot_focus/features/auth/bloc/register_cubit.dart';
 import 'package:daily_tarot_focus/features/tarot/bloc/tarot/tarot_bloc.dart';
+import 'package:daily_tarot_focus/features/zodiac/bloc/zodiac/zodiac_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile_boilerplate/application/analytics/analytics_cubit.dart';
 import 'package:mobile_boilerplate/application/auth/auth_cubit.dart';
@@ -31,6 +32,7 @@ class TarotApp extends StatelessWidget {
         BlocProvider(create: (_) => getIt<PurchasesBloc>()),
         BlocProvider(create: (_) => getIt<RegisterCubit>()),
         BlocProvider(create: (_) => getIt<TarotBloc>()),
+        BlocProvider(create: (_) => getIt<ZodiacBloc>()),
         Provider<Launcher>(create: (_) => getIt<Launcher>()),
         Provider<NetworkTimeProvider>(create: (_) => getIt<NetworkTimeProvider>()),
       ],

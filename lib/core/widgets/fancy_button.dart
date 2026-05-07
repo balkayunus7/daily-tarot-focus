@@ -41,39 +41,43 @@ class FancyButton extends StatelessWidget {
   Widget build(BuildContext context) {
     final buttonColor = backgroundColor ?? context.colors.primary;
 
-    return ScalingContainer(
-      onTap: () async {
-        await HapticFeedbackHelper.lightImpact();
-        onTap();
-      },
-      child: Opacity(
-        opacity: isDisabled ? 0.3 : 1,
-        child: FancyContainer(
-          color: buttonColor,
-          borderRadius: 100,
-          padding: padding ?? EdgeInsets.zero,
-          width: width,
-          height: height,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              if (isLoading) ...[
-                SpinKitFadingCircle(
-                  color: textColor ?? context.colors.background,
-                  size: indicatorSize,
-                ),
-              ] else ...[
-                if (icon != null) ...[icon!],
-                if (text != null) ...[
-                  Sp.tiny.widthBox,
-                  Text(
-                    text!,
-                    overflow: TextOverflow.ellipsis,
-                    style: textStyle ?? m15w700(context).copyWith(color: context.colors.background),
+    return IgnorePointer(
+      ignoring: isDisabled,
+      child: ScalingContainer(
+        onTap: () async {
+          await HapticFeedbackHelper.lightImpact();
+          onTap();
+        },
+        child: Opacity(
+          opacity: isDisabled ? 0.3 : 1,
+          child: FancyContainer(
+            color: buttonColor,
+            borderRadius: 100,
+            padding: padding ?? EdgeInsets.zero,
+            width: width,
+            height: height,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                if (isLoading) ...[
+                  SpinKitFadingCircle(
+                    color: textColor ?? context.colors.background,
+                    size: indicatorSize,
                   ),
+                ] else ...[
+                  if (icon != null) ...[icon!],
+                  if (text != null) ...[
+                    Sp.tiny.widthBox,
+                    Text(
+                      text!,
+                      overflow: TextOverflow.ellipsis,
+                      style:
+                          textStyle ?? m15w700(context).copyWith(color: context.colors.background),
+                    ),
+                  ],
                 ],
               ],
-            ],
+            ),
           ),
         ),
       ),

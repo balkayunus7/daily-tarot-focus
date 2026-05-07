@@ -7,7 +7,7 @@ import 'package:mobile_boilerplate/common_dependencies.dart';
 class TarotMockData {
   static List<Map<String, String>> get navbarItems => [
     {'path': TarotAppAssets.explore.path, 'label': LocaleKeys.navbar_explore.tr()},
-    {'path': TarotAppAssets.tarotIcon.path, 'label': LocaleKeys.navbar_daily_tarots.tr()},
+    {'path': TarotAppAssets.tarotIcon.path, 'label': LocaleKeys.navbar_readings.tr()},
     {'path': TarotAppAssets.settings.path, 'label': LocaleKeys.navbar_profile.tr()},
   ];
 

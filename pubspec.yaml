@@ -12,6 +12,7 @@ dependencies:
   easy_localization: ^3.0.8
   flutter:
     sdk: flutter
+  flutter_cache_manager: ^3.4.1
   flutter_dotenv: ^6.0.0
   flutter_inset_shadow: ^2.0.3
   flutter_screenutil: ^5.9.3

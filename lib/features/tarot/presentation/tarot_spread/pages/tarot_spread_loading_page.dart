@@ -68,10 +68,10 @@ class _TarotSpreadLoadingPageState extends State<TarotSpreadLoadingPage> with Lo
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const Spacer(flex: 3),
+                const Spacer(flex: 2),
                 SizedBox(
                   width: 250.w,
-                  height: 250.w,
+                  height: 250.h,
                   child: Lottie.asset(TarotAppAssets.tarot.path, repeat: true),
                 ),
                 Sp.large.heightBox,
@@ -100,7 +100,7 @@ class _TarotSpreadLoadingPageState extends State<TarotSpreadLoadingPage> with Lo
                     color: colors.textSecondary.withValues(alpha: 0.7),
                   ),
                 ),
-                const Spacer(flex: 2),
+                const Spacer(),
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 40.w),
                   child: ClipRRect(

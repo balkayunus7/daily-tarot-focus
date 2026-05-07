@@ -99,7 +99,7 @@ mixin RevealPageStateMixin on State<TarotRevealPage>, TickerProvider {
   Future<void> handleCardScroll(int index) async {
     if (index != lastHapticCardIndex) {
       lastHapticCardIndex = index;
-      await HapticFeedbackHelper.heavyImpact();
+      await HapticFeedbackHelper.lightImpact();
     }
     selectedCardIndex.value = index;
   }

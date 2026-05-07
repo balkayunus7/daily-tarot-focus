@@ -35,9 +35,10 @@ class _AccountSetupPageState extends State<AccountSetupPage> with AccountSetupMi
       child: Scaffold(
         backgroundColor: colors.background,
         body: BlocListener<TarotBloc, TarotState>(
-          listenWhen: (previous, current) =>
-              (previous.isSettingUpAccount != current.isSettingUpAccount) &&
-              current.hasAccountSetupCompleted,
+          listenWhen:
+              (previous, current) =>
+                  (previous.isSettingUpAccount != current.isSettingUpAccount) &&
+                  current.hasAccountSetupCompleted,
           listener: (context, state) async {
             await AccountSetupScope.of(context).state.precacheImages(state);
           },
@@ -47,20 +48,12 @@ class _AccountSetupPageState extends State<AccountSetupPage> with AccountSetupMi
               SafeArea(
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 24),
-                  child: BlocBuilder<TarotBloc, TarotState>(
-                    builder: (context, state) {
-                      final completed = [
-                        state.fetchAllCardsFailureOrCards.isSome(),
-                        state.fetchSpreadsFailureOrSpreads.isSome(),
-                        state.fetchReadersFailureOrReaders.isSome(),
-                      ].where((e) => e).length;
-
+                  child: ValueListenableBuilder<double>(
+                    valueListenable: progress,
+                    builder: (context, progressValue, _) {
                       return ValueListenableBuilder<bool>(
-                        valueListenable: AccountSetupScope.of(context).state.isPrecaching,
+                        valueListenable: isPrecaching,
                         builder: (context, precaching, _) {
-                          final totalProgress = (completed / 4.0) +
-                              (precaching ? 0.0 : (completed == 3 ? 0.25 : 0.0));
-
                           return Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
@@ -73,35 +66,23 @@ class _AccountSetupPageState extends State<AccountSetupPage> with AccountSetupMi
                                 precaching
                                     ? LocaleKeys.register_page_loading_images.tr()
                                     : LocaleKeys.register_page_loading_data.tr(),
-                                style: m12w500(context)
-                                    .copyWith(color: colors.textSecondary),
+                                style: m12w500(context).copyWith(color: colors.textSecondary),
                                 textAlign: TextAlign.center,
                               ),
                               Sp.xlarge.heightBox,
-                              TweenAnimationBuilder<double>(
-                                tween: Tween(begin: 0, end: totalProgress),
-                                duration: const Duration(milliseconds: 400),
-                                curve: Curves.easeInOut,
-                                builder: (context, value, _) => LinearProgressIndicator(
-                                  value: value,
-                                  minHeight: 8,
-                                  borderRadius: Sp.xsmall.radiusR,
-                                  backgroundColor: colors.accent,
-                                  valueColor:
-                                      AlwaysStoppedAnimation<Color>(colors.primary),
-                                ),
+                              LinearProgressIndicator(
+                                value: progressValue,
+                                minHeight: 8,
+                                borderRadius: Sp.xsmall.radiusR,
+                                backgroundColor: colors.accent,
+                                valueColor: AlwaysStoppedAnimation<Color>(colors.primary),
                               ),
                               Sp.medium.heightBox,
-                              TweenAnimationBuilder<double>(
-                                tween: Tween(begin: 0, end: totalProgress),
-                                duration: const Duration(milliseconds: 500),
-                                builder: (context, value, _) => Text(
-                                  LocaleKeys.register_page_progress_format.tr(
-                                    args: [(value * 100).toInt().toString()],
-                                  ),
-                                  style: m14w700(context)
-                                      .copyWith(color: colors.secondary),
+                              Text(
+                                LocaleKeys.register_page_progress_format.tr(
+                                  args: [(progressValue * 100).toInt().toString()],
                                 ),
+                                style: m14w700(context).copyWith(color: colors.secondary),
                               ),
                             ],
                           );

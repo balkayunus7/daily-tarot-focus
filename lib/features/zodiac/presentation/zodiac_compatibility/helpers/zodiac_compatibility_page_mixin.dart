@@ -1,9 +1,8 @@
-import 'package:daily_tarot_focus/config/app_routes.dart';
 import 'package:daily_tarot_focus/features/auth/domain/models/tarot_user.dart';
 import 'package:daily_tarot_focus/features/auth/domain/models/tarot_user_zodiac_enum.dart';
-import 'package:daily_tarot_focus/features/zodiac/domain/models/zodiac_compatibility_model.dart';
+import 'package:daily_tarot_focus/features/zodiac/bloc/zodiac/zodiac_bloc.dart';
+import 'package:daily_tarot_focus/features/zodiac/domain/models/generate_compatibility_request_model.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:mobile_boilerplate/application/auth/auth_cubit.dart';
 import 'package:mobile_boilerplate/common_dependencies.dart';
 
@@ -24,22 +23,15 @@ mixin ZodiacCompatibilityPageMixin<T extends StatefulWidget> on State<T>, Ticker
   late final AnimationController animController;
   late final Animation<double> expandAnimation;
 
-  // Input Page Methods
-  ValueNotifier<ZodiacSign> getSignNotifier({required bool isMe}) {
-    return isMe ? mySign : partnerSign;
-  }
+  ValueNotifier<ZodiacSign> getSignNotifier({required bool isMe}) => isMe ? mySign : partnerSign;
 
-  ValueNotifier<CompatGender> getGenderNotifier({required bool isMe}) {
-    return isMe ? myGender : partnerGender;
-  }
+  ValueNotifier<CompatGender> getGenderNotifier({required bool isMe}) =>
+      isMe ? myGender : partnerGender;
 
-  PageController getPageController({required bool isMe}) {
-    return isMe ? myPageController : partnerPageController;
-  }
+  PageController getPageController({required bool isMe}) =>
+      isMe ? myPageController : partnerPageController;
 
-  double getCurrentPage({required bool isMe}) {
-    return isMe ? myCurrentPage : partnerCurrentPage;
-  }
+  double getCurrentPage({required bool isMe}) => isMe ? myCurrentPage : partnerCurrentPage;
 
   void _onMyScroll() {
     if (!mounted) return;
@@ -54,7 +46,6 @@ mixin ZodiacCompatibilityPageMixin<T extends StatefulWidget> on State<T>, Ticker
         signs[(partnerPageController.page?.round() ?? partnerCurrentPage.round()) % 12];
   }
 
-  // Result Page Methods
   Future<void> toggle() async {
     isExpanded.value = !isExpanded.value;
     if (isExpanded.value) {
@@ -68,7 +59,6 @@ mixin ZodiacCompatibilityPageMixin<T extends StatefulWidget> on State<T>, Ticker
   void initState() {
     super.initState();
 
-    /// Input Page Init
     final user = context.read<AuthCubit>().state.userOrCrash;
     final sign = (user is TarotUser ? user.zodiac : null) ?? ZodiacSign.aries;
     mySign = ValueNotifier(sign);
@@ -86,7 +76,6 @@ mixin ZodiacCompatibilityPageMixin<T extends StatefulWidget> on State<T>, Ticker
     myPageController.addListener(_onMyScroll);
     partnerPageController.addListener(_onPartnerScroll);
 
-    /// Result Page Init
     isExpanded = ValueNotifier(false);
     animController = AnimationController(
       vsync: this,
@@ -97,7 +86,6 @@ mixin ZodiacCompatibilityPageMixin<T extends StatefulWidget> on State<T>, Ticker
 
   @override
   void dispose() {
-    // Input Page Dispose
     mySign.dispose();
     partnerSign.dispose();
     myGender.dispose();
@@ -108,21 +96,22 @@ mixin ZodiacCompatibilityPageMixin<T extends StatefulWidget> on State<T>, Ticker
     partnerPageController
       ..removeListener(_onPartnerScroll)
       ..dispose();
-
-    // Result Page Dispose
     isExpanded.dispose();
     animController.dispose();
     super.dispose();
   }
 
-  Future<void> calculate() async {
-    final result = CompatibilityResult.calculate(mySign.value, partnerSign.value);
-    final input = CompatibilityInputModel(
+  GenerateCompatibilityRequestModel buildRequest() {
+    final session = context.read<AuthCubit>().state.sessionOrCrash;
+    return GenerateCompatibilityRequestModel(
+      session: session,
       mySign: mySign.value,
       myGender: myGender.value,
       partnerSign: partnerSign.value,
       partnerGender: partnerGender.value,
     );
-    await context.push(AppRoutes.tarotCompatibilityResult, extra: (input, result));
   }
+
+  void calculate() =>
+      context.read<ZodiacBloc>().addGenerateCompatibilityRequested(request: buildRequest());
 }

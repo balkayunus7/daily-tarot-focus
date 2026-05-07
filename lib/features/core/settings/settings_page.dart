@@ -9,6 +9,7 @@ import 'package:daily_tarot_focus/features/core/settings/display_delete_account_
 import 'package:daily_tarot_focus/features/tarot/bloc/tarot/tarot_bloc.dart';
 import 'package:daily_tarot_focus/features/tarot/bloc/tarot/tarot_state.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mobile_boilerplate/application/auth/auth_cubit.dart';
@@ -64,6 +65,10 @@ class SettingsPage extends StatelessWidget {
   );
 
   Future<void> restartApp(BuildContext context) async {
+    PaintingBinding.instance.imageCache.clear();
+    await DefaultCacheManager().emptyCache();
+
+    if (!context.mounted) return;
     if (context.canPop()) context.pop();
     if (!context.mounted) return;
     context.go(AppRoutes.splash);

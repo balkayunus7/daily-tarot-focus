@@ -7,7 +7,7 @@ class ExploreDailyCardWithCooldown extends StatelessWidget {
   Widget build(BuildContext context) {
     return ExploreFeatureCard(
       title: LocaleKeys.explore_page_discover_daily.tr(),
-      imageWidget: const _DailyFateIllustration(),
+      imageWidget: const DailyFateIllustration(),
       onTap: () => context.push(AppRoutes.tarotReveal),
     );
   }

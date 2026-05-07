@@ -12,7 +12,32 @@ class DayCell extends StatelessWidget {
     final hasCard = card != null;
     final now = DateTime.now();
     final isPast = date.isBefore(DateTime(now.year, now.month, now.day)) && !isToday;
-    const radius = BorderRadius.all(Radius.circular(8));
+    final radius = Sp.xsmall.radiusR;
+
+    Color? backgroundColor = Colors.transparent;
+    if (hasCard) {
+      backgroundColor = null;
+    } else if (isToday) {
+      backgroundColor = colors.primary.withValues(alpha: 0.10);
+    } else if (isPast) {
+      backgroundColor = colors.primary.withValues(alpha: 0.04);
+    }
+
+    var borderColor = colors.borderSecondary.withValues(alpha: 0.22);
+    if (isToday) {
+      borderColor = colors.primary;
+    } else if (hasCard) {
+      borderColor = colors.primary.withValues(alpha: 0.55);
+    } else if (isPast) {
+      borderColor = colors.primary.withValues(alpha: 0.18);
+    }
+
+    var borderWidth = 0.7;
+    if (isToday) {
+      borderWidth = 1.8;
+    } else if (hasCard) {
+      borderWidth = 1.2;
+    }
 
     return GestureDetector(
       onTap: hasCard ? () => context.push(AppRoutes.tarotDailyDetail, extra: card) : null,
@@ -23,46 +48,30 @@ class DayCell extends StatelessWidget {
             child: Container(
               decoration: BoxDecoration(
                 borderRadius: radius,
-                color:
-                    hasCard
-                        ? null
-                        : isToday
-                        ? colors.primary.withValues(alpha: 0.10)
-                        : isPast
-                        ? colors.primary.withValues(alpha: 0.04)
-                        : Colors.transparent,
-                border: Border.all(
-                  color:
-                      isToday
-                          ? colors.primary
-                          : hasCard
-                          ? colors.primary.withValues(alpha: 0.55)
-                          : isPast
-                          ? colors.primary.withValues(alpha: 0.18)
-                          : colors.borderSecondary.withValues(alpha: 0.22),
-                  width:
-                      isToday
-                          ? 1.8
-                          : hasCard
-                          ? 1.2
-                          : 0.7,
-                ),
+                color: backgroundColor,
+                border: Border.all(color: borderColor, width: borderWidth),
               ),
               child: ClipRRect(
                 borderRadius: radius,
-                child:
-                    hasCard
-                        ? CustomCacheNetworkImage(imageUrl: card!.imageUrl, fit: BoxFit.fitWidth)
-                        : (isPast || isToday)
-                        ? Center(
-                          child: Text(
-                            '✦',
-                            style: m11w500(context).copyWith(
-                              color: colors.primary.withValues(alpha: isToday ? 0.38 : 0.16),
-                            ),
+                child: Builder(
+                  builder: (context) {
+                    if (hasCard) {
+                      return CustomCacheNetworkImage(
+                        imageUrl: card!.imageUrl,
+                        fit: BoxFit.fitWidth,
+                      );
+                    } else {
+                      return Center(
+                        child: Text(
+                          '✦',
+                          style: m11w500(context).copyWith(
+                            color: colors.primary.withValues(alpha: isToday ? 0.38 : 0.16),
                           ),
-                        )
-                        : const SizedBox.shrink(),
+                        ),
+                      );
+                    }
+                  },
+                ),
               ),
             ),
           ),
@@ -75,7 +84,7 @@ class DayCell extends StatelessWidget {
               fontWeight: isToday ? FontWeight.w700 : FontWeight.w500,
             ),
           ),
-          const SizedBox(height: 2),
+          const SizedBox(height: Sp.tiny),
         ],
       ),
     );

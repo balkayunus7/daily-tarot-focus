@@ -2,11 +2,7 @@ import 'package:daily_tarot_focus/features/tarot/presentation/tarot_deck/pages/t
 import 'package:flutter/material.dart';
 
 class DeckPageScope extends InheritedWidget {
-  const DeckPageScope({
-    required this.state,
-    required super.child,
-    super.key,
-  });
+  const DeckPageScope({required this.state, required super.child, super.key});
 
   final DeckPageStateMixin state;
 

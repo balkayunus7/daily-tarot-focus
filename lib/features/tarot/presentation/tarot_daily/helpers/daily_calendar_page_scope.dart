@@ -7,7 +7,7 @@ class DailyCalendarPageScope extends InheritedWidget {
 
   static DailyCalendarPageScope of(BuildContext context) {
     final result = context.dependOnInheritedWidgetOfExactType<DailyCalendarPageScope>();
-    assert(result != null, 'No CalendarPageScope found in context');
+    assert(result != null, 'No DailyCalendarPageScope found in context');
     return result!;
   }
 

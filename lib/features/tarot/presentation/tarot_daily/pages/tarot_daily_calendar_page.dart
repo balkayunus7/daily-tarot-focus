@@ -38,9 +38,7 @@ class _TarotDailyCalendarPageState extends State<TarotDailyCalendarPage>
         appBar: TarotAppBar(
           title: LocaleKeys.tarot_daily_calendar_title.tr(),
           backIcon: context.canPop() ? null : Icons.close,
-          onBackIconTap: context.canPop()
-              ? null
-              : () => context.go(AppRoutes.tarotExplore),
+          onBackIconTap: context.canPop() ? null : () => context.go(AppRoutes.tarotExplore),
         ),
         body: SafeArea(
           child: Column(
@@ -101,7 +99,6 @@ class _TapHint extends StatelessWidget {
 
 class _MonthSelector extends StatelessWidget {
   const _MonthSelector();
-  String _label(DateTime month) => DateFormat('MMMM yyyy').format(month);
 
   @override
   Widget build(BuildContext context) {
@@ -132,7 +129,7 @@ class _MonthSelector extends StatelessWidget {
                 child: Opacity(
                   opacity: 0.5,
                   child: Text(
-                    _label(prev),
+                    scope.dayFormattedLabel(prev),
                     style: m11w500(context).copyWith(color: colors.textOnSecondary),
                     textAlign: TextAlign.center,
                     overflow: TextOverflow.ellipsis,
@@ -142,7 +139,7 @@ class _MonthSelector extends StatelessWidget {
               Expanded(
                 flex: 2,
                 child: Text(
-                  _label(current),
+                  scope.dayFormattedLabel(current),
                   style: m15w700(context).copyWith(color: colors.textOnPrimary),
                   textAlign: TextAlign.center,
                 ),
@@ -151,7 +148,7 @@ class _MonthSelector extends StatelessWidget {
                 child: Opacity(
                   opacity: 0.5,
                   child: Text(
-                    _label(next),
+                    scope.dayFormattedLabel(next),
                     style: m11w500(context).copyWith(color: colors.textOnSecondary),
                     textAlign: TextAlign.center,
                     overflow: TextOverflow.ellipsis,
@@ -175,25 +172,23 @@ class _MonthSelector extends StatelessWidget {
 
 class _WeekdayRow extends StatelessWidget {
   const _WeekdayRow();
-  static const _days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
 
   @override
   Widget build(BuildContext context) {
+    const days = DailyCalendarPageMixin.days;
     return Padding(
       padding: Sp.large.padHR,
       child: Row(
         children:
-            _days
-                .map(
-                  (day) => Expanded(
-                    child: Text(
-                      day,
-                      style: m11w500(context).copyWith(color: context.colors.textSecondary),
-                      textAlign: TextAlign.center,
-                    ),
-                  ),
-                )
-                .toList(),
+            days.map((day) {
+              return Expanded(
+                child: Text(
+                  day,
+                  style: m11w500(context).copyWith(color: context.colors.textSecondary),
+                  textAlign: TextAlign.center,
+                ),
+              );
+            }).toList(),
       ),
     );
   }

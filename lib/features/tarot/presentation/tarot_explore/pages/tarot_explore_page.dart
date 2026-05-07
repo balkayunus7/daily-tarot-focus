@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:daily_tarot_focus/config/app_routes.dart';
 import 'package:daily_tarot_focus/core/util/locale_keys.dart';
 import 'package:daily_tarot_focus/core/util/shadow_extensions.dart';
@@ -13,6 +11,7 @@ import 'package:daily_tarot_focus/features/auth/domain/models/tarot_user.dart';
 import 'package:daily_tarot_focus/features/auth/domain/models/tarot_user_zodiac_enum.dart';
 import 'package:daily_tarot_focus/features/tarot/bloc/tarot/tarot_bloc.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/tarot_flow_type.dart';
+import 'package:daily_tarot_focus/features/tarot/presentation/tarot_explore/helpers/explore_illustrations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
@@ -32,6 +31,8 @@ part '../widgets/explore_ask_question_card.dart';
 part '../widgets/explore_zodiac_card.dart';
 part '../widgets/explore_compatibility_card.dart';
 part '../widgets/explore_horoscope_card.dart';
+part '../helpers/explore_page_mixin.dart';
+part '../helpers/explore_page_scope.dart';
 
 class TarotExplorePage extends StatefulWidget {
   const TarotExplorePage({super.key});
@@ -40,80 +41,66 @@ class TarotExplorePage extends StatefulWidget {
   State<TarotExplorePage> createState() => _TarotExplorePageState();
 }
 
-class _TarotExplorePageState extends State<TarotExplorePage> {
-  late final ValueNotifier<int> selected;
-
-  @override
-  void initState() {
-    selected = ValueNotifier(0);
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    selected.dispose();
-    super.dispose();
-  }
-
+class _TarotExplorePageState extends State<TarotExplorePage> with ExplorePageStateMixin {
   @override
   Widget build(BuildContext context) {
     final colors = context.colors;
 
-    return Scaffold(
-      backgroundColor: colors.background,
-      body: SafeArea(
-        child: SingleChildScrollView(
-          padding: Sp.large.padAllR,
-          child: ValueListenableBuilder(
-            valueListenable: selected,
-            builder: (_, selectedIndex, _) {
-              return Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const ExploreHeader(),
-                  Sp.large.heightBox,
-                  _ExploreTabSwitch(
-                    selectedIndex: selectedIndex,
-                    onTabChanged: (i) => selected.value = i,
-                  ),
-                  Sp.large.heightBox,
-                  if (selectedIndex == 0) ...[
-                    const ExploreAskQuestionCard(),
-                    Sp.medium.heightBox,
-                    const ExploreSpreadCard(),
+    return ExplorePageScope(
+      state: this,
+      child: Scaffold(
+        backgroundColor: colors.background,
+        body: SafeArea(
+          child: SingleChildScrollView(
+            padding: Sp.large.padAllR,
+            child: ValueListenableBuilder(
+              valueListenable: selected,
+              builder: (_, selectedIndex, _) {
+                return Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const ExploreHeader(),
                     Sp.large.heightBox,
-                    Text(LocaleKeys.explore_page_spiritual_guide.tr(), style: m15w600(context)),
-                    Sp.medium.heightBox,
-                    Row(
-                      children: [
-                        const Expanded(child: ExploreDailyCardWithCooldown()),
-                        Sp.medium.widthBox,
-                        Expanded(
-                          child: ExploreFeatureCard(
-                            title: LocaleKeys.explore_page_deck.tr(),
-                            imageWidget: const _SacredDecksIllustration(),
-                            onTap: () => context.push(AppRoutes.tarotDeck),
+                    const _ExploreTabSwitch(),
+                    Sp.large.heightBox,
+                    if (selectedIndex == 0) ...[
+                      const ExploreAskQuestionCard(),
+                      Sp.medium.heightBox,
+                      const ExploreSpreadCard(),
+                      Sp.large.heightBox,
+                      Text(LocaleKeys.explore_page_spiritual_guide.tr(), style: m15w600(context)),
+                      Sp.medium.heightBox,
+                      Row(
+                        children: [
+                          const Expanded(child: ExploreDailyCardWithCooldown()),
+                          Sp.medium.widthBox,
+                          Expanded(
+                            child: ExploreFeatureCard(
+                              title: LocaleKeys.explore_page_deck.tr(),
+                              imageWidget: const SacredDecksIllustration(),
+                              onTap: () => context.push(AppRoutes.tarotDeck),
+                            ),
                           ),
-                        ),
-                      ],
-                    ),
-                  ] else ...[
-                    const ExploreHoroscopeCard(),
+                        ],
+                      ),
+                    ] else ...[
+                      const ExploreHoroscopeCard(),
+                      Sp.large.heightBox,
+                      Text(LocaleKeys.compat_page_section_label.tr(), style: m15w600(context)),
+                      Sp.medium.heightBox,
+                      Row(
+                        children: [
+                          const Expanded(child: ExploreZodiacCard()),
+                          Sp.medium.widthBox,
+                          const Expanded(child: ExploreCompatibilityCard()),
+                        ],
+                      ),
+                    ],
                     Sp.large.heightBox,
-                    Text(LocaleKeys.compat_page_section_label.tr(), style: m15w600(context)),
-                    Sp.medium.heightBox,
-                    Row(
-                      children: [
-                        const Expanded(child: ExploreZodiacCard()),
-                        Sp.medium.widthBox,
-                        const Expanded(child: ExploreCompatibilityCard()),
-                      ],
-                    ),
                   ],
-                  Sp.large.heightBox,
-                ],
-              );
-            },
+                );
+              },
+            ),
           ),
         ),
       ),
@@ -122,16 +109,15 @@ class _TarotExplorePageState extends State<TarotExplorePage> {
 }
 
 class _ExploreTabSwitch extends StatelessWidget {
-  const _ExploreTabSwitch({required this.selectedIndex, required this.onTabChanged});
-  final int selectedIndex;
-  final ValueChanged<int> onTabChanged;
+  const _ExploreTabSwitch();
 
   @override
   Widget build(BuildContext context) {
     final colors = context.colors;
+    final scope = ExplorePageScope.of(context).state;
 
     return Container(
-      height: 40,
+      height: 40.h,
       decoration: BoxDecoration(
         color: colors.surface,
         borderRadius: BorderRadius.circular(100),
@@ -141,13 +127,13 @@ class _ExploreTabSwitch extends StatelessWidget {
         children: [
           _TabItem(
             label: LocaleKeys.explore_page_tab_tarot.tr(),
-            isSelected: selectedIndex == 0,
-            onTap: () => onTabChanged(0),
+            isSelected: scope.isTarotTab,
+            onTap: () => scope.setIndex = 0,
           ),
           _TabItem(
             label: LocaleKeys.explore_page_tab_horoscope.tr(),
-            isSelected: selectedIndex == 1,
-            onTap: () => onTabChanged(1),
+            isSelected: scope.isHoroscopeTab,
+            onTap: () => scope.setIndex = 1,
           ),
         ],
       ),

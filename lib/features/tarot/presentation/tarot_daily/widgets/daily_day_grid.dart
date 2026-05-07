@@ -25,15 +25,15 @@ class DayGrid extends StatelessWidget {
       itemBuilder: (context, index) {
         final day = index - startOffset + 1;
 
-        if (day < 1 || day > daysInMonth) {
-          return const SizedBox.shrink();
-        }
+        if (day < 1 || day > daysInMonth) return const SizedBox.shrink();
 
         final date = DateTime(month.year, month.month, day);
-        final card = cardMap[date];
-        final isToday = _isToday(date);
 
-        return DayCell(date: date, card: card, isToday: isToday);
+        return DayCell(
+          date: date,
+          card: cardMap[date],
+          isToday: _isToday(date),
+        );
       },
     );
   }

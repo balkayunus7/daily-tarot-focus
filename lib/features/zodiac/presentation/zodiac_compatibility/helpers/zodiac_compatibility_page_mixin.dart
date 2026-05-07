@@ -2,13 +2,13 @@ import 'package:daily_tarot_focus/config/app_routes.dart';
 import 'package:daily_tarot_focus/features/auth/domain/models/tarot_user.dart';
 import 'package:daily_tarot_focus/features/auth/domain/models/tarot_user_zodiac_enum.dart';
 import 'package:daily_tarot_focus/features/zodiac/domain/models/zodiac_compatibility_model.dart';
-import 'package:daily_tarot_focus/features/zodiac/presentation/zodiac_compatibility/pages/zodiac_compatibility_input_page.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mobile_boilerplate/application/auth/auth_cubit.dart';
 import 'package:mobile_boilerplate/common_dependencies.dart';
 
-mixin ZodiacCompatibilityPageMixin on State<TarotCompatibilityInputPage> {
+mixin ZodiacCompatibilityPageMixin<T extends StatefulWidget> on State<T>, TickerProvider {
+  /// Input Page
   late ValueNotifier<ZodiacSign> mySign;
   late ValueNotifier<ZodiacSign> partnerSign;
   late ValueNotifier<CompatGender> myGender;
@@ -19,6 +19,12 @@ mixin ZodiacCompatibilityPageMixin on State<TarotCompatibilityInputPage> {
   late double myCurrentPage;
   late double partnerCurrentPage;
 
+  /// Result Page
+  late final ValueNotifier<bool> isExpanded;
+  late final AnimationController animController;
+  late final Animation<double> expandAnimation;
+
+  // Input Page Methods
   ValueNotifier<ZodiacSign> getSignNotifier({required bool isMe}) {
     return isMe ? mySign : partnerSign;
   }
@@ -48,9 +54,21 @@ mixin ZodiacCompatibilityPageMixin on State<TarotCompatibilityInputPage> {
         signs[(partnerPageController.page?.round() ?? partnerCurrentPage.round()) % 12];
   }
 
+  // Result Page Methods
+  Future<void> toggle() async {
+    isExpanded.value = !isExpanded.value;
+    if (isExpanded.value) {
+      await animController.forward();
+    } else {
+      await animController.reverse();
+    }
+  }
+
   @override
   void initState() {
     super.initState();
+
+    /// Input Page Init
     final user = context.read<AuthCubit>().state.userOrCrash;
     final sign = (user is TarotUser ? user.zodiac : null) ?? ZodiacSign.aries;
     mySign = ValueNotifier(sign);
@@ -67,10 +85,19 @@ mixin ZodiacCompatibilityPageMixin on State<TarotCompatibilityInputPage> {
     partnerCurrentPage = partnerInitialPage.toDouble();
     myPageController.addListener(_onMyScroll);
     partnerPageController.addListener(_onPartnerScroll);
+
+    /// Result Page Init
+    isExpanded = ValueNotifier(false);
+    animController = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 250),
+    );
+    expandAnimation = CurvedAnimation(parent: animController, curve: Curves.easeInOut);
   }
 
   @override
   void dispose() {
+    // Input Page Dispose
     mySign.dispose();
     partnerSign.dispose();
     myGender.dispose();
@@ -81,6 +108,10 @@ mixin ZodiacCompatibilityPageMixin on State<TarotCompatibilityInputPage> {
     partnerPageController
       ..removeListener(_onPartnerScroll)
       ..dispose();
+
+    // Result Page Dispose
+    isExpanded.dispose();
+    animController.dispose();
     super.dispose();
   }
 

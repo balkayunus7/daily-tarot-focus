@@ -65,21 +65,7 @@ class CompatibilityResult {
     required this.summary,
     required this.categories,
   });
-
-  final ZodiacSign mySign;
-  final ZodiacSign partnerSign;
-  final int overallScore;
-  final String summary;
-  final List<CompatibilityCategoryModel> categories;
-
-  String get titleKey {
-    if (overallScore >= 78) return 'compat_page.title_high';
-    if (overallScore >= 62) return 'compat_page.title_medium';
-    if (overallScore >= 45) return 'compat_page.title_low';
-    return 'compat_page.title_very_low';
-  }
-
-  static CompatibilityResult calculate(ZodiacSign a, ZodiacSign b) {
+  factory CompatibilityResult.calculate(ZodiacSign a, ZodiacSign b) {
     final bases = _elementBase(a.element, b.element);
     final mods = _modalityMod(a.modality, b.modality);
     final jit = _jitter(a, b);
@@ -130,6 +116,19 @@ class CompatibilityResult {
         ),
       ],
     );
+  }
+
+  final ZodiacSign mySign;
+  final ZodiacSign partnerSign;
+  final int overallScore;
+  final String summary;
+  final List<CompatibilityCategoryModel> categories;
+
+  String get titleKey {
+    if (overallScore >= 78) return 'compat_page.title_high';
+    if (overallScore >= 62) return 'compat_page.title_medium';
+    if (overallScore >= 45) return 'compat_page.title_low';
+    return 'compat_page.title_very_low';
   }
 
   static List<int> _elementBase(ZodiacElement a, ZodiacElement b) {
@@ -201,49 +200,49 @@ class CompatibilityResult {
   }
 
   static const _fireFire =
-      'İki ateş işaretinin bir araya gelmesi, tutkulu ve dinamik bir beraberlik yaratır. Birbirinizi kolayca anlarsınız çünkü aynı içsel enerjiyi paylaşırsınız. Bu ilişki; heyecan, yaratıcılık ve macera dolu anlara ev sahipliği yapar. Zaman zaman egolar çatışsa da, birbirinizin ateşini besleyen bu güçlü bağ nadiren söner.';
+      "When two Fire signs come together, it creates a passionate and dynamic union. You easily understand each other because you share the same inner energy. This relationship hosts exciting, creative, and adventurous moments. Although egos may clash at times, this strong bond that feeds each other's fire rarely burns out.";
   static const _earthEarth =
-      'İki Toprak işaretinin bir araya gelmesi, güvenilir ve uzun ömürlü bir ilişkinin zeminini oluşturur. Pratik yaklaşımlarınız ve güvenlik arayışlarınız sizi ortak bir zemine getirir. Bu birliktelik sabırlı, besleyici ve zaman içinde derinleşen bir bağ sunar. Birbirinize güvenmeyi öğrenmek yalnızca zamanla daha kolay hale gelir.';
+      'When two Earth signs come together, it lays the groundwork for a reliable and long-lasting relationship. Your practical approaches and search for security bring you to a common ground. This partnership offers a patient, nurturing bond that deepens over time. Learning to trust each other only becomes easier with time.';
   static const _airAir =
-      'İki Hava işareti bir araya geldiğinde, fikir ve entelektüel merakın sonsuz dans ettiği bir ilişki ortaya çıkar. Birbirinizle saatlerce konuşabilir, tartışabilir ve yeni perspektifler keşfedebilirsiniz. Bu beraberlik özgürlük ve karşılıklı saygıyı ön planda tutar. Bazen duygusal bağ için daha fazla çaba gerekse de, paylaşılan zihinsel uyum eşsizdir.';
+      'When two Air signs come together, a relationship emerges where ideas and intellectual curiosity dance endlessly. You can talk, debate, and discover new perspectives with each other for hours. This union prioritizes freedom and mutual respect. Although emotional connection may sometimes require more effort, the shared mental harmony is unique.';
   static const _waterWater =
-      'İki Su işaretinin beraberliği, derin duygusal anlayış ve sezgisel bir bağın ürünüdür. Birbirinizin söylenmeden anlaşılmasını bekler ve çoğu zaman bu gerçekleşir. Bu ilişki; şefkat, empati ve ruhsal bütünleşme üzerine kuruludur. Hassasiyetiniz zaman zaman çatışmaya sürükleyebilir, ancak duygusal derinliğiniz birbirinizin sığınağı olur.';
+      "The union of two Water signs is the product of deep emotional understanding and an intuitive bond. You expect to be understood without words, and this often happens. This relationship is built on compassion, empathy, and spiritual integration. Your sensitivity may occasionally lead to conflict, but your emotional depth becomes each other's sanctuary.";
   static const _fireEarth =
-      "Ateş'in tutkusu ile Toprak'ın sakinliği buluştuğunda, zıt enerjilerin dengelediği eşsiz bir ilişki ortaya çıkar. Ateş, Toprak'ı heyecanlandırır; Toprak ise Ateş'e istikrar sağlar. Bu denge yönetilebilirse, ikisi birbirini tamamlayan güçlü bir birlik oluştururlar. Farklı hızlar ve öncelikler kimi zaman uyumu zorlaştırsa da anlayış her şeyin üstesinden gelir.";
+      'When the passion of Fire meets the calmness of Earth, a unique relationship balanced by opposing energies emerges. Fire excites Earth, while Earth provides stability to Fire. If this balance can be managed, the two form a strong, complementary union. Although different paces and priorities may sometimes challenge harmony, understanding overcomes everything.';
   static const _fireAir =
-      "Ateş'in ilham veren enerjisi ile Hava'nın zekâsı buluşunca, sınırları zorlayan canlı bir bağ doğar. Birbirinizi besler, teşvik eder ve harekete geçirirsiniz. Derin konuşmalar ve spontane maceralar bu ilişkinin özünü oluşturur. Duygusal köklülük zaman zaman eksik hissettirse de, paylaşılan tutku bu boşluğu kapatar.";
+      "When Fire's inspiring energy meets Air's intellect, a vibrant bond that pushes boundaries is born. You nurture, encourage, and motivate each other. Deep conversations and spontaneous adventures form the essence of this relationship. Although emotional rootedness may sometimes feel lacking, the shared passion bridges this gap.";
   static const _fireWater =
-      "Ateş ile Su'nun karşılaşması, güçlü çekim ve derin farklılıkların iç içe geçtiği bir ilişkiyi işaret eder. Birbirinizi hem büyüler hem de zorlarsınız. Ateş; Su'ya netlik ve cesaret verirken, Su; Ateş'e duygusal derinlik katmak ister. Bu zıtlığı anlayışla yönetebilirseniz, dönüştürücü bir birliktelik yaratabilirsiniz.";
+      'The encounter between Fire and Water signifies a relationship where strong attraction and deep differences intertwine. You both fascinate and challenge each other. While Fire gives clarity and courage to Water, Water seeks to add emotional depth to Fire. If you can manage this contrast with understanding, you can create a transformative union.';
   static const _earthAir =
-      "Toprak'ın pratik dünyası ile Hava'nın entelektüel uçuşu, farklı ama tamamlayıcı bir uyum sunar. Hava, Toprak'ı yeni fikirlerle zenginleştirirken; Toprak, Hava'ya zemin ve güven sağlar. Bu ilişkide sabrın ve uzlaşının önemi büyüktür. Her birinizin güçlü yönleri, diğerinin eksiklerini doldurmak için bir fırsat sunar.";
+      "The practical world of Earth and the intellectual flight of Air offer a different but complementary harmony. While Air enriches Earth with new ideas, Earth provides grounding and security to Air. Patience and compromise are highly important in this relationship. Each of your strengths offers an opportunity to fill the other's gaps.";
   static const _earthWater =
-      "Toprak ile Su'nun birleşmesi, astrolojinin en besleyici ve kalıcı bağlarından birini oluşturur. Toprak; Su'ya yön ve istikrar sağlarken, Su; Toprak'a duygusal derinlik ve sezgi katar. Bu ilişki; güven, sadakat ve olgun bir sevgi anlayışı üzerine yükselir. Birlikte zaman geçirdikçe bağınız güçlenir ve köklenir.";
+      "The union of Earth and Water forms one of astrology's most nurturing and enduring bonds. Earth provides direction and stability to Water, while Water adds emotional depth and intuition to Earth. This relationship is built on trust, loyalty, and a mature understanding of love. As you spend time together, your bond strengthens and takes root.";
   static const _airWater =
-      "Hava'nın rasyonel dünyası ile Su'nun duygusal derinliği, büyüleyici ama kimi zaman zorlu bir denge kurar. Birbirinizden öğrenecek çok şeyiniz vardır: Hava, Su'ya netlik ve perspektif sunarken; Su, Hava'ya empati ve içsel sezgi öğretir. Bu ilişki anlayış ve sabır gerektirse de her iki tarafı da büyüten eşsiz bir bağ sunar.";
+      'The rational world of Air and the emotional depth of Water create a fascinating but sometimes challenging balance. You have much to learn from each other: Air offers clarity and perspective to Water, while Water teaches empathy and inner intuition to Air. Although this relationship requires understanding and patience, it offers a unique bond that helps both sides grow.';
 
   static const _sexDesc = [
-    'İkiniz arasında güçlü bir fiziksel ve duygusal yakınlık hissedilir. Bu alana özgü enerji, birlikteliğinizin en canlı boyutlarından birini oluşturur.',
-    'Fiziksel uyum zaman zaman çaba gerektirir, ancak karşılıklı ilgi ve iletişimle derin bir yakınlık kurulabilir.',
-    'Bu alanda farklı ihtiyaçlarınız olabilir. Sabır ve açık iletişim bu zorluğu fırsata dönüştürebilir.',
+    'A strong physical and emotional intimacy is felt between you two. The energy specific to this area forms one of the most vibrant dimensions of your union.',
+    'Physical harmony may sometimes require effort, but deep intimacy can be established through mutual interest and communication.',
+    'You may have different needs in this area. Patience and open communication can turn this challenge into an opportunity.',
   ];
   static const _trustDesc = [
-    'Birbirinize güvenmek doğal gelir. Söz verilmesi gerekmeden güven hissedilir; bu, ilişkinizin sağlam temellerinden biridir.',
-    'Güven oluşturmak zaman alabilir. Tutarlılık ve şeffaflık bu temeli zamanla sağlamlaştıracaktır.',
-    'Güven alanında dikkatli ve sabırlı olmanız gerekebilir. Küçük adımlar ve dürüst iletişim bu köprüyü inşa edebilir.',
+    'Trusting each other comes naturally. Trust is felt without needing promises; this is one of the solid foundations of your relationship.',
+    'Building trust may take time. Consistency and transparency will solidify this foundation over time.',
+    'You may need to be careful and patient in the area of trust. Small steps and honest communication can build this bridge.',
   ];
   static const _commDesc = [
-    'Birbirinizle konuşmak doğal ve akıcıdır. Düşünceleri paylaşmak, anlaşmazlıkları çözmek için güçlü bir zemin sağlar.',
-    'İletişim kimi zaman çaba gerektirebilir, ancak doğru ortam yaratıldığında derin bir anlayış mümkündür.',
-    'Farklı iletişim tarzlarınız zaman zaman yanlış anlaşılmalara yol açabilir. Dinleme ve sabır bu engeli aşmanın anahtarıdır.',
+    'Talking to each other is natural and fluent. Sharing thoughts provides a strong foundation for resolving disagreements.',
+    'Communication may sometimes require effort, but when the right environment is created, deep understanding is possible.',
+    'Your different communication styles may occasionally lead to misunderstandings. Listening and patience are key to overcoming this hurdle.',
   ];
   static const _emotDesc = [
-    'Duygusal uyumunuz derin ve içseldir. Birbirinizin ruh haline ve ihtiyaçlarına karşı doğal bir duyarlılık taşırsınız.',
-    'Duygusal iletişim pratik gerektirebilir. Birbirinizin farklı duygusal ihtiyaçlarını tanımak ilişkinizi besler.',
-    'Duygusal bağ kurmak zaman zaman zorlu olabilir. Empati ve açık ifade bu alandaki boşluğu köprüleyebilir.',
+    "Your emotional harmony is deep and inner. You possess a natural sensitivity to each other's moods and needs.",
+    "Emotional communication may require practice. Recognizing each other's different emotional needs nurtures your relationship.",
+    'Building an emotional bond may sometimes be challenging. Empathy and open expression can bridge the gap in this area.',
   ];
   static const _valDesc = [
-    'Hayat öncelikleriniz ve değerleriniz büyük ölçüde örtüşür. Bu ortak zemin, uzun vadeli uyumun sağlam taşlarını oluşturur.',
-    'Bazı değer farklılıkları olsa da bu çeşitlilik, birbirinizden öğrenme ve büyüme fırsatı sunar.',
-    'Temel değer farklılıkları zaman zaman yönünüzü belirsizleştirebilir. Anlayış ve karşılıklı saygı bu farklılıkları zenginliğe dönüştürebilir.',
+    'Your life priorities and values largely overlap. This common ground forms the solid stones of long-term harmony.',
+    'Although there may be some differences in values, this diversity offers an opportunity to learn from each other and grow.',
+    'Fundamental differences in values may sometimes obscure your direction. Understanding and mutual respect can transform these differences into richness.',
   ];
 }

@@ -1,3 +1,4 @@
+import 'package:daily_tarot_focus/core/util/tarot_app_sizes.dart';
 import 'package:flutter/material.dart' hide BoxDecoration, BoxShadow;
 import 'package:flutter_inset_shadow/flutter_inset_shadow.dart';
 import 'package:gradient_borders/box_borders/gradient_box_border.dart';
@@ -7,7 +8,7 @@ class FancyContainer extends StatelessWidget {
   const FancyContainer({
     super.key,
     this.color,
-    this.borderRadius = 16,
+    this.borderRadius = Sp.medium,
     this.padding,
     this.margin,
     this.width,

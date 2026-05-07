@@ -54,17 +54,14 @@ class ZodiacPickerItem extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Container(
+        FancyContainer(
           padding: Sp.medium.padAllR,
-          decoration: BoxDecoration(
-            shape: BoxShape.circle,
-            gradient: LinearGradient(
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-              colors: [colors.gradientStart, colors.gradientEnd],
-            ),
+          borderRadius: Sp.huge,
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [colors.gradientStart, colors.gradientEnd],
           ),
-          alignment: Alignment.center,
           child: SvgPicture.asset(
             sign.svgPath,
             width: 32.w,

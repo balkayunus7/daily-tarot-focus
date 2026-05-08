@@ -20,6 +20,9 @@ class GenerateCompatibilityRequestModel with EquatableMixin {
   final ZodiacSign partnerSign;
   final CompatGender partnerGender;
 
+  String get cacheKey =>
+      '${mySign.name}_${myGender.name}_${partnerSign.name}_${partnerGender.name}';
+
   Map<String, dynamic> toMap() => {
     'my_sign': mySign.name,
     'my_gender': myGender.value,

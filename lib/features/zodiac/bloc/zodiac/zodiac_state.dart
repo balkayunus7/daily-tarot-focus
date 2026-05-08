@@ -7,15 +7,18 @@ class ZodiacState extends Equatable {
   const ZodiacState({
     required this.isGeneratingCompatibility,
     required this.fetchCompatibilityFailureOrResult,
+    required this.compatibilityCache,
   });
 
   factory ZodiacState.initial() => const ZodiacState(
     isGeneratingCompatibility: false,
     fetchCompatibilityFailureOrResult: None(),
+    compatibilityCache: {},
   );
 
   final bool isGeneratingCompatibility;
   final Option<FailureOr<GenerateCompatibilityResponse>> fetchCompatibilityFailureOrResult;
+  final Map<String, GenerateCompatibilityResponse> compatibilityCache;
 
   bool get hasGeneratedCompatibilitySucceeded =>
       fetchCompatibilityFailureOrResult.getOrNull()?.getRightOrNull() != null;
@@ -29,14 +32,20 @@ class ZodiacState extends Equatable {
   ZodiacState copyWith({
     bool? isGeneratingCompatibility,
     Option<FailureOr<GenerateCompatibilityResponse>>? fetchCompatibilityFailureOrResult,
+    Map<String, GenerateCompatibilityResponse>? compatibilityCache,
   }) {
     return ZodiacState(
       isGeneratingCompatibility: isGeneratingCompatibility ?? this.isGeneratingCompatibility,
       fetchCompatibilityFailureOrResult:
           fetchCompatibilityFailureOrResult ?? this.fetchCompatibilityFailureOrResult,
+      compatibilityCache: compatibilityCache ?? this.compatibilityCache,
     );
   }
 
   @override
-  List<Object?> get props => [isGeneratingCompatibility, fetchCompatibilityFailureOrResult];
+  List<Object?> get props => [
+    isGeneratingCompatibility,
+    fetchCompatibilityFailureOrResult,
+    compatibilityCache,
+  ];
 }

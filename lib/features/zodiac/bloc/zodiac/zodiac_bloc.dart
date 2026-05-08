@@ -4,6 +4,7 @@ import 'package:daily_tarot_focus/features/zodiac/bloc/zodiac/zodiac_event.dart'
 import 'package:daily_tarot_focus/features/zodiac/bloc/zodiac/zodiac_state.dart';
 import 'package:daily_tarot_focus/features/zodiac/data/impl_zodiac_repository.dart';
 import 'package:daily_tarot_focus/features/zodiac/domain/models/generate_compatibility_request_model.dart';
+import 'package:daily_tarot_focus/features/zodiac/domain/models/generate_compatibility_response_model.dart';
 import 'package:mobile_boilerplate/common_dependencies.dart';
 
 class ZodiacBloc extends Bloc<ZodiacEvent, ZodiacState> {
@@ -25,16 +26,24 @@ class ZodiacBloc extends Bloc<ZodiacEvent, ZodiacState> {
     ZodiacGenerateCompatibilityRequested event,
     Emitter<ZodiacState> emit,
   ) async {
+    final key = event.request.cacheKey;
+
+    if (state.compatibilityCache.containsKey(key)) return;
+
     emit(
       state.copyWith(isGeneratingCompatibility: true, fetchCompatibilityFailureOrResult: none()),
     );
 
     final result = await _zodiacRepository.requestGenerateCompatibility(request: event.request);
 
+    final updatedCache = Map<String, GenerateCompatibilityResponse>.from(state.compatibilityCache);
+    result.fold((_) {}, (response) => updatedCache[key] = response);
+
     emit(
       state.copyWith(
         isGeneratingCompatibility: false,
         fetchCompatibilityFailureOrResult: some(result),
+        compatibilityCache: updatedCache,
       ),
     );
   }

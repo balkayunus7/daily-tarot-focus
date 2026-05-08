@@ -28,26 +28,19 @@ class TarotCompatibilityResultPage extends StatefulWidget {
 }
 
 class _TarotCompatibilityResultPageState extends State<TarotCompatibilityResultPage> {
-  bool _hasResult = false;
-  GenerateCompatibilityResponse? _response;
-
   @override
   Widget build(BuildContext context) {
     final colors = context.colors;
 
-    return BlocConsumer<ZodiacBloc, ZodiacState>(
-      listenWhen: (p, c) => !_hasResult && c.hasGeneratedCompatibilitySucceeded,
-      listener: (context, state) {
-        setState(() {
-          _hasResult = true;
-          _response = state.compatibilityResponseOrNull;
-        });
+    return BlocBuilder<ZodiacBloc, ZodiacState>(
+      buildWhen: (p, c) {
+        final key = widget.request.cacheKey;
+        return p.isGeneratingCompatibility != c.isGeneratingCompatibility ||
+            p.compatibilityCache[key] != c.compatibilityCache[key];
       },
-      buildWhen:
-          (p, c) =>
-              p.isGeneratingCompatibility != c.isGeneratingCompatibility ||
-              p.hasGeneratedCompatibilitySucceeded != c.hasGeneratedCompatibilitySucceeded,
       builder: (context, state) {
+        final response = state.compatibilityCache[widget.request.cacheKey];
+
         return Scaffold(
           backgroundColor: colors.background,
           body: SafeArea(
@@ -66,10 +59,12 @@ class _TarotCompatibilityResultPageState extends State<TarotCompatibilityResultP
                       Sp.screen.w,
                       Sp.xxxlarge.h + MediaQuery.of(context).padding.bottom,
                     ),
-                    child:
-                        _hasResult && _response != null
-                            ? _ResultContent(request: widget.request, response: _response!)
-                            : _ShimmerContent(request: widget.request),
+                    child: Builder(
+                      builder: (context) {
+                        if (response == null) return _ShimmerContent(request: widget.request);
+                        return _ResultContent(request: widget.request, response: response);
+                      },
+                    ),
                   ),
                 ),
               ],

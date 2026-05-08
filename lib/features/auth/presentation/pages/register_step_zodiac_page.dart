@@ -6,6 +6,7 @@ import 'package:daily_tarot_focus/core/widgets/fancy_button.dart';
 import 'package:daily_tarot_focus/core/widgets/fancy_container.dart';
 import 'package:daily_tarot_focus/features/auth/bloc/register_cubit.dart';
 import 'package:daily_tarot_focus/features/auth/domain/models/tarot_user_zodiac_enum.dart';
+import 'package:daily_tarot_focus/features/auth/presentation/helpers/account_setup_mixin.dart';
 import 'package:daily_tarot_focus/features/auth/presentation/widgets/step_background.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -17,8 +18,25 @@ import 'package:mobile_boilerplate/presentation/widgets/scaling_container.dart';
 part '../widgets/zodiac_item.dart';
 part '../widgets/zodiac_grid.dart';
 
-class RegisterStepZodiacPage extends StatelessWidget {
+class RegisterStepZodiacPage extends StatefulWidget {
   const RegisterStepZodiacPage({super.key});
+
+  @override
+  State<RegisterStepZodiacPage> createState() => _RegisterStepZodiacPageState();
+}
+
+class _RegisterStepZodiacPageState extends State<RegisterStepZodiacPage> with AccountSetupMixin {
+  @override
+  bool get shouldAutoNavigate => false;
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!mounted) return;
+      precacheImages();
+    });
+  }
 
   @override
   Widget build(BuildContext context) {

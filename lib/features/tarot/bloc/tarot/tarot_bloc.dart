@@ -8,6 +8,7 @@ import 'package:daily_tarot_focus/features/tarot/domain/models/delete_reading_re
 import 'package:daily_tarot_focus/features/tarot/domain/models/fetch_all_cards_request_model.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/fetch_all_cards_response_model.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/fetch_daily_cards_request_model.dart';
+import 'package:daily_tarot_focus/features/tarot/domain/models/fetch_daily_cards_response_model.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/fetch_readers_request_model.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/fetch_readers_response_model.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/fetch_saved_readings_request_model.dart';
@@ -19,6 +20,7 @@ import 'package:daily_tarot_focus/features/tarot/domain/models/save_reading_requ
 import 'package:daily_tarot_focus/features/tarot/domain/models/tarot_flow_type.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/tarot_reading_model.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/update_reading_note_request_model.dart';
+import 'package:flutter/foundation.dart';
 import 'package:mobile_boilerplate/common_dependencies.dart';
 import 'package:mobile_boilerplate/domain/auth/auth_session.dart';
 import 'package:mobile_boilerplate/domain/common/failure.dart';
@@ -236,9 +238,31 @@ class TarotBloc extends Bloc<TarotEvent, TarotState> {
   ) async {
     emit(state.copyWith(isSettingUpAccount: true, hasAccountSetupCompleted: false));
 
-    final cardsResult = await _fetchAndCacheAllCards(event.session);
-    final spreadsResult = await _fetchAndCacheSpreads(event.session);
-    final readersResult = await _fetchAndCacheReaders(event.session);
+    final sw = Stopwatch()..start();
+
+    final cardsF = _fetchAndCacheAllCards(event.session);
+    final spreadsF = _fetchAndCacheSpreads(event.session);
+    final readersF = _fetchAndCacheReaders(event.session);
+    final dailyCardsF = _tarotRepository.requestFetchDailyCards(
+      request: FetchDailyCardsRequest(session: event.session),
+    );
+    final savedReadingsF = _tarotRepository.requestFetchSavedReadings(
+      request: FetchSavedReadingsRequest(session: event.session),
+    );
+
+    final cardsResult = await cardsF;
+    final spreadsResult = await spreadsF;
+    final readersResult = await readersF;
+    final dailyCardsRaw = await dailyCardsF;
+    final savedReadingsResult = await savedReadingsF;
+
+    sw.stop();
+    debugPrint('[Setup] TOTAL (parallel): ${sw.elapsedMilliseconds}ms');
+
+    final allCards = cardsResult.getOrElse(() => const KtList.empty());
+    final dailyCardsResult = dailyCardsRaw.map(
+      (response) => _mapDailyCards(response, allCards),
+    );
 
     emit(
       state.copyWith(
@@ -247,7 +271,20 @@ class TarotBloc extends Bloc<TarotEvent, TarotState> {
         fetchAllCardsFailureOrCards: some(cardsResult),
         fetchSpreadsFailureOrSpreads: some(spreadsResult),
         fetchReadersFailureOrReaders: some(readersResult),
+        fetchFailureOrDailyCards: some(dailyCardsResult),
+        fetchSavedReadingsFailureOrResponse: some(savedReadingsResult),
       ),
+    );
+  }
+
+  KtList<TarotCardModel> _mapDailyCards(
+    FetchDailyCardsResponse response,
+    KtList<TarotCardModel> allCards,
+  ) {
+    return KtList.from(
+      response.records.asList().map((r) {
+        return allCards.asList().where((c) => c.id == r.cardId).firstOrNull?.copyWith(savedAt: r.date);
+      }).whereType<TarotCardModel>(),
     );
   }
 

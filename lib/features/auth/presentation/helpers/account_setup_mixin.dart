@@ -2,29 +2,29 @@ import 'dart:async';
 
 import 'package:daily_tarot_focus/config/app_routes.dart';
 import 'package:daily_tarot_focus/core/util/tarot_app_assets.dart';
-import 'package:daily_tarot_focus/features/auth/presentation/pages/register_account_setup_page.dart';
-import 'package:daily_tarot_focus/features/tarot/bloc/tarot/tarot_state.dart';
+import 'package:daily_tarot_focus/features/tarot/bloc/tarot/tarot_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mobile_boilerplate/common_dependencies.dart';
 
-mixin AccountSetupMixin on State<AccountSetupPage> {
+mixin AccountSetupMixin<T extends StatefulWidget> on State<T> {
   late final ValueNotifier<double> progress;
   late final ValueNotifier<bool> isPrecaching;
   Timer? _progressTimer;
   bool _dataLoaded = false;
   bool _navigated = false;
 
+  bool get shouldAutoNavigate => true;
+
   @override
   void initState() {
     super.initState();
     progress = ValueNotifier(0);
     isPrecaching = ValueNotifier(false);
-    _startProgressTimer();
+    if (shouldAutoNavigate) _startProgressTimer();
   }
 
   void _startProgressTimer() {
-    // 5 saniye minimum gösterim: 100 tick × 50ms
     const minTicks = 100;
     var ticks = 0;
 
@@ -34,7 +34,6 @@ mixin AccountSetupMixin on State<AccountSetupPage> {
       final minTimeReached = ticks >= minTicks;
 
       if (isDone && minTimeReached && !_navigated) {
-        // Faz 3: iş bitti + min süre geçti → hızlıca %100'e ulaş
         final current = progress.value;
         progress.value = current + (1.0 - current) * 0.25;
 
@@ -48,12 +47,12 @@ mixin AccountSetupMixin on State<AccountSetupPage> {
             () => router.go(AppRoutes.tarotExplore),
           );
         }
-      } else {
-        // Faz 1/2: veri yükleniyor veya min süre dolmadı → yavaş ilerle
-        // S=0.028 → 5 saniyede doğal olarak ~%85'e ulaşır
-        final softCap = _dataLoaded ? 0.90 : 0.60;
+      } else if (isDone && !minTimeReached) {
         final current = progress.value;
-        progress.value = current + (softCap - current) * 0.028;
+        progress.value = current + (0.99 - current) * 0.01;
+      } else if (!_dataLoaded) {
+        final current = progress.value;
+        progress.value = current + (0.60 - current) * 0.028;
       }
     });
   }
@@ -66,40 +65,42 @@ mixin AccountSetupMixin on State<AccountSetupPage> {
     super.dispose();
   }
 
-  Future<void> precacheImages(TarotState state) async {
+  void precacheImages() {
+    final state = context.read<TarotBloc>().state;
+    if (!state.hasAccountSetupCompleted) return;
+
     _dataLoaded = true;
     isPrecaching.value = true;
 
-    final staticImages = [
+    final allUrls = [
       TarotAppAssets.dailyPickBgHttp,
       TarotAppAssets.emptyHttp,
       TarotAppAssets.maskotDailyHttp,
       TarotAppAssets.libraryHttp,
       TarotAppAssets.paywallHttp,
+      ...state.allCardsOrEmpty.asList().map((c) => c.imageUrl).where((u) => u.isNotEmpty),
+      ...state.readersOrEmpty.asList().map((r) => r.imageUrl).where((u) => u.isNotEmpty),
     ];
 
-    final cardImages =
-        state.allCardsOrEmpty
-            .asList()
-            .map((c) => c.imageUrl)
-            .where((url) => url.isNotEmpty)
-            .toList();
+    var completed = 0;
+    final total = allUrls.length;
 
-    final readerImages =
-        state.readersOrEmpty
-            .asList()
-            .map((r) => r.imageUrl)
-            .where((url) => url.isNotEmpty)
-            .toList();
+    void onComplete() {
+      completed++;
+      if (shouldAutoNavigate) {
+        final newValue = completed / total * 0.30;
+        if (newValue > progress.value) progress.value = newValue;
+      }
+      if (completed >= total) isPrecaching.value = false;
+    }
 
-    await Future.wait(
-      [
-        ...staticImages,
-        ...cardImages,
-        ...readerImages,
-      ].map((url) => precacheImage(CachedNetworkImageProvider(url), context)),
-    );
-
-    isPrecaching.value = false;
+    for (final url in allUrls) {
+      unawaited(
+        precacheImage(
+          CachedNetworkImageProvider(url),
+          context,
+        ).then((_) => onComplete()).catchError((_) => onComplete()),
+      );
+    }
   }
 }

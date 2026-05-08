@@ -26,12 +26,12 @@ enum TarotAppAssets {
   static const _base =
       'https://wcokelgolrodijdxtvjn.supabase.co/storage/v1/object/public/app-images/backgrounds';
 
-  static const arrowHttp = '$_base/arrow.png';
-  static const askQuestionHttp = '$_base/ask_question.png';
-  static const cardBgHttp = '$_base/card_bg.png';
-  static const dailyPickBgHttp = '$_base/daily_pick_bg.png';
-  static const emptyHttp = '$_base/empty.png';
-  static const libraryHttp = '$_base/library.png';
-  static const maskotDailyHttp = '$_base/maskot_daily.png';
-  static const paywallHttp = '$_base/paywall.png';
+  static const arrowHttp = '$_base/arrow.webp';
+  static const askQuestionHttp = '$_base/ask_question.webp';
+  static const cardBgHttp = '$_base/card_bg.webp';
+  static const dailyPickBgHttp = '$_base/daily_pick_bg.webp';
+  static const emptyHttp = '$_base/empty.webp';
+  static const libraryHttp = '$_base/library.webp';
+  static const maskotDailyHttp = '$_base/maskot_daily.webp';
+  static const paywallHttp = '$_base/paywall.webp';
 }

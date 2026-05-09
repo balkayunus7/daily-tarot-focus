@@ -9,6 +9,7 @@ import 'package:daily_tarot_focus/features/zodiac/bloc/zodiac/zodiac_state.dart'
 import 'package:daily_tarot_focus/features/zodiac/domain/models/generate_compatibility_request_model.dart';
 import 'package:daily_tarot_focus/features/zodiac/domain/models/generate_compatibility_response_model.dart';
 import 'package:daily_tarot_focus/features/zodiac/presentation/zodiac_compatibility/helpers/zodiac_compatibility_page_mixin.dart';
+import 'package:daily_tarot_focus/features/zodiac/presentation/zodiac_compatibility/helpers/zodiac_compatibility_page_scope.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mobile_boilerplate/common_dependencies.dart';
@@ -27,7 +28,8 @@ class TarotCompatibilityResultPage extends StatefulWidget {
   State<TarotCompatibilityResultPage> createState() => _TarotCompatibilityResultPageState();
 }
 
-class _TarotCompatibilityResultPageState extends State<TarotCompatibilityResultPage> {
+class _TarotCompatibilityResultPageState extends State<TarotCompatibilityResultPage>
+    with SingleTickerProviderStateMixin, ZodiacCompatibilityPageMixin {
   @override
   Widget build(BuildContext context) {
     final colors = context.colors;
@@ -41,33 +43,36 @@ class _TarotCompatibilityResultPageState extends State<TarotCompatibilityResultP
       builder: (context, state) {
         final response = state.compatibilityCache[widget.request.cacheKey];
 
-        return Scaffold(
-          backgroundColor: colors.background,
-          body: SafeArea(
-            bottom: false,
-            child: Column(
-              children: [
-                TarotAppBar(
-                  title: LocaleKeys.compat_page_title.tr(),
-                  titleStyle: m18w700(context),
-                ),
-                Expanded(
-                  child: SingleChildScrollView(
-                    padding: EdgeInsets.fromLTRB(
-                      Sp.screen.w,
-                      Sp.large.h,
-                      Sp.screen.w,
-                      Sp.xxxlarge.h + MediaQuery.of(context).padding.bottom,
-                    ),
-                    child: Builder(
-                      builder: (context) {
-                        if (response == null) return _ShimmerContent(request: widget.request);
-                        return _ResultContent(request: widget.request, response: response);
-                      },
+        return ZodiacCompatibilityPageScope(
+          state: this,
+          child: Scaffold(
+            backgroundColor: colors.background,
+            body: SafeArea(
+              bottom: false,
+              child: Column(
+                children: [
+                  TarotAppBar(
+                    title: LocaleKeys.compat_page_title.tr(),
+                    titleStyle: m18w700(context),
+                  ),
+                  Expanded(
+                    child: SingleChildScrollView(
+                      padding: EdgeInsets.fromLTRB(
+                        Sp.screen.w,
+                        Sp.large.h,
+                        Sp.screen.w,
+                        Sp.xxxlarge.h + MediaQuery.of(context).padding.bottom,
+                      ),
+                      child: Builder(
+                        builder: (context) {
+                          if (response == null) return _ShimmerContent(request: widget.request);
+                          return _ResultContent(request: widget.request, response: response);
+                        },
+                      ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         );

@@ -1,7 +1,7 @@
 part of '../pages/zodiac_horoscope_page.dart';
 
-class _StatsGrid extends StatelessWidget {
-  const _StatsGrid({required this.categories});
+class StatsGrid extends StatelessWidget {
+  const StatsGrid({required this.categories, super.key});
   final List<HoroscopeStatCategory> categories;
 
   @override
@@ -22,8 +22,7 @@ class _StatsGrid extends StatelessWidget {
             children: [
               for (int i = 0; i < row1.length; i++) ...[
                 Expanded(child: _StatCell(category: row1[i])),
-                if (i < row1.length - 1)
-                  Container(width: 1, height: 60.h, color: colors.border),
+                if (i < row1.length - 1) Container(width: 1, height: 60.h, color: colors.border),
               ],
             ],
           ),
@@ -32,8 +31,7 @@ class _StatsGrid extends StatelessWidget {
             children: [
               for (int i = 0; i < row2.length; i++) ...[
                 Expanded(child: _StatCell(category: row2[i])),
-                if (i < row2.length - 1)
-                  Container(width: 1, height: 60.h, color: colors.border),
+                if (i < row2.length - 1) Container(width: 1, height: 60.h, color: colors.border),
               ],
               const Expanded(child: SizedBox()),
             ],

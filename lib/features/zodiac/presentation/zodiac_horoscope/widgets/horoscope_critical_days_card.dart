@@ -1,7 +1,7 @@
 part of '../pages/zodiac_horoscope_page.dart';
 
-class _CriticalDaysCard extends StatelessWidget {
-  const _CriticalDaysCard({required this.criticalDays});
+class CriticalDaysCard extends StatelessWidget {
+  const CriticalDaysCard({required this.criticalDays, super.key});
   final HoroscopeCriticalDaysModel criticalDays;
 
   @override

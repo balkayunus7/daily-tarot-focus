@@ -1,7 +1,7 @@
 part of '../pages/zodiac_horoscope_page.dart';
 
-class _ReminderCard extends StatelessWidget {
-  const _ReminderCard();
+class ReminderCard extends StatelessWidget {
+  const ReminderCard({super.key});
 
   @override
   Widget build(BuildContext context) {

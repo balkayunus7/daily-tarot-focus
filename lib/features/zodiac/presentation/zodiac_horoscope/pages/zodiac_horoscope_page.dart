@@ -23,6 +23,9 @@ part '../widgets/horoscope_reminder_card.dart';
 part '../widgets/horoscope_shimmer.dart';
 part '../widgets/horoscope_stats_grid.dart';
 part '../widgets/horoscope_tips_card.dart';
+part '../widgets/horoscope_error_card.dart';
+part '../helpers/zodiac_horoscope_page_mixin.dart';
+part '../helpers/zodiac_horoscope_page_scope.dart';
 
 class ZodiacHoroscopeArgs {
   const ZodiacHoroscopeArgs({required this.sign, this.initialIndex = 0});
@@ -40,85 +43,48 @@ class ZodiacHoroscopePage extends StatefulWidget {
 }
 
 class _ZodiacHoroscopePageState extends State<ZodiacHoroscopePage>
-    with SingleTickerProviderStateMixin {
-  late final TabController _tabController;
-
-  @override
-  void initState() {
-    super.initState();
-    _tabController = TabController(
-      length: 3,
-      vsync: this,
-      initialIndex: widget.initialIndex.clamp(0, 2),
-    );
-
-    _fireHoroscopeRequest(HoroscopePeriod.values[_tabController.index]);
-
-    _tabController.addListener(_onTabChanged);
-  }
-
-  void _onTabChanged() {
-    if (!_tabController.indexIsChanging) return;
-    _fireHoroscopeRequest(HoroscopePeriod.values[_tabController.index]);
-  }
-
-  void _fireHoroscopeRequest(HoroscopePeriod period) {
-    final session = context.read<AuthCubit>().state.sessionOrCrash;
-    context.read<ZodiacBloc>().addGenerateHoroscopeRequested(
-      request: GenerateHoroscopeRequestModel(
-        session: session,
-        sign: widget.sign,
-        period: period,
-      ),
-    );
-  }
-
-  @override
-  void dispose() {
-    _tabController
-      ..removeListener(_onTabChanged)
-      ..dispose();
-    super.dispose();
-  }
-
+    with TickerProviderStateMixin, ZodiacHoroscopePageMixin {
   @override
   Widget build(BuildContext context) {
     final colors = context.colors;
 
-    return Scaffold(
-      backgroundColor: colors.background,
-      body: SafeArea(
-        bottom: false,
-        child: Column(
-          children: [
-            TarotAppBar(
-              title: LocaleKeys.horoscope_page_title.tr(),
-              titleStyle: m18w700(context),
-            ),
-            _HoroscopeHeader(sign: widget.sign),
-            Sp.xsmall.heightBox,
-            TabBar(
-              controller: _tabController,
-              indicatorColor: colors.textPrimary,
-              indicatorWeight: 2.5,
-              indicatorSize: TabBarIndicatorSize.label,
-              labelColor: colors.textPrimary,
-              unselectedLabelColor: colors.textSecondary.withValues(alpha: 0.45),
-              labelStyle: m15w700(context),
-              unselectedLabelStyle: m13w500(context),
-              dividerColor: colors.border,
-              tabs: HoroscopePeriod.values.map((p) => Tab(text: p.tabLabel)).toList(),
-            ),
-            Expanded(
-              child: TabBarView(
-                controller: _tabController,
-                children:
-                    HoroscopePeriod.values.map((period) {
-                      return _HoroscopeTabContent(sign: widget.sign, period: period);
-                    }).toList(),
+    return ZodiacHoroscopePageScope(
+      state: this,
+      child: Scaffold(
+        backgroundColor: colors.background,
+        body: SafeArea(
+          bottom: false,
+          child: Column(
+            children: [
+              TarotAppBar(
+                title: LocaleKeys.horoscope_page_title.tr(),
+                titleStyle: m18w700(context),
               ),
-            ),
-          ],
+              HoroscopeHeader(sign: widget.sign),
+              Sp.xsmall.heightBox,
+              TabBar(
+                controller: tabController,
+                indicatorColor: colors.textPrimary,
+                indicatorWeight: 2.5,
+                indicatorSize: TabBarIndicatorSize.label,
+                labelColor: colors.textPrimary,
+                unselectedLabelColor: colors.textSecondary.withValues(alpha: 0.45),
+                labelStyle: m15w700(context),
+                unselectedLabelStyle: m13w500(context),
+                dividerColor: colors.border,
+                tabs: HoroscopePeriod.values.map((p) => Tab(text: p.tabLabel)).toList(),
+              ),
+              Expanded(
+                child: TabBarView(
+                  controller: tabController,
+                  children:
+                      HoroscopePeriod.values.map((period) {
+                        return _HoroscopeTabContent(sign: widget.sign, period: period);
+                      }).toList(),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -137,11 +103,16 @@ class _HoroscopeTabContent extends StatelessWidget {
     return BlocBuilder<ZodiacBloc, ZodiacState>(
       buildWhen: (p, c) {
         return p.isGeneratingHoroscope != c.isGeneratingHoroscope ||
-            p.horoscopeCache[cacheKey] != c.horoscopeCache[cacheKey];
+            p.horoscopeCache[cacheKey] != c.horoscopeCache[cacheKey] ||
+            p.fetchHoroscopeFailureOrResult != c.fetchHoroscopeFailureOrResult;
       },
       builder: (context, state) {
         final cached = state.horoscopeCache[cacheKey];
         final response = cached?.response;
+
+        if (response == null && !state.isGeneratingHoroscope && state.hasGeneratedHoroscopeFailed) {
+          return Center(child: HoroscopeErrorCard(period: period));
+        }
 
         return SingleChildScrollView(
           padding: EdgeInsets.fromLTRB(
@@ -152,7 +123,7 @@ class _HoroscopeTabContent extends StatelessWidget {
           ),
           child: Builder(
             builder: (context) {
-              if (response == null) return _HoroscopeShimmer(period: period);
+              if (response == null) return HoroscopeShimmer(period: period);
               return _HoroscopeContent(sign: sign, period: period, response: response);
             },
           ),
@@ -175,20 +146,20 @@ class _HoroscopeContent extends StatelessWidget {
       children: [
         _GeneralCard(text: response.generalText),
         Sp.medium.heightBox,
-        _StatsGrid(categories: response.categories),
+        StatsGrid(categories: response.categories),
         Sp.medium.heightBox,
         ...response.categories.map(
           (cat) => Padding(
             padding: EdgeInsets.only(bottom: Sp.small.h),
-            child: _HoroscopeCategoryTile(category: cat),
+            child: HoroscopeCategoryTile(category: cat),
           ),
         ),
         Sp.small.heightBox,
-        _TipsCard(period: period, tips: response.tips),
+        TipsCard(period: period, tips: response.tips),
         Sp.medium.heightBox,
-        _CriticalDaysCard(criticalDays: response.criticalDays),
+        CriticalDaysCard(criticalDays: response.criticalDays),
         Sp.medium.heightBox,
-        const _ReminderCard(),
+        const ReminderCard(),
       ],
     );
   }

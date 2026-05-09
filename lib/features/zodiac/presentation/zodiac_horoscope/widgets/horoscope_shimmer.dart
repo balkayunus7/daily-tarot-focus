@@ -1,22 +1,15 @@
 part of '../pages/zodiac_horoscope_page.dart';
 
-class _HoroscopeShimmer extends StatelessWidget {
-  const _HoroscopeShimmer({required this.period});
+class HoroscopeShimmer extends StatelessWidget {
+  const HoroscopeShimmer({required this.period, super.key});
   final HoroscopePeriod period;
-
-  static const List<(String, String)> _cats = [
-    ('❤️', LocaleKeys.horoscope_page_category_love),
-    ('💰', LocaleKeys.horoscope_page_category_finance),
-    ('💼', LocaleKeys.horoscope_page_category_career),
-    ('🩺', LocaleKeys.horoscope_page_category_health),
-    ('🏠', LocaleKeys.horoscope_page_category_family),
-  ];
 
   @override
   Widget build(BuildContext context) {
     final colors = context.colors;
     final baseColor = colors.textSecondary.withValues(alpha: 0.18);
     final highlightColor = colors.textSecondary.withValues(alpha: 0.55);
+    final scope = ZodiacHoroscopePageScope.of(context).state;
 
     Widget sBox({required double width, required double height, double radius = 8}) =>
         Shimmer.fromColors(
@@ -72,19 +65,19 @@ class _HoroscopeShimmer extends StatelessWidget {
             children: [
               Row(
                 children: [
-                  Expanded(child: _shimmerStatCell(context, _cats[0], sBox)),
+                  Expanded(child: _shimmerStatCell(context, scope.cats[0], sBox)),
                   Container(width: 1, height: 60.h, color: colors.border),
-                  Expanded(child: _shimmerStatCell(context, _cats[1], sBox)),
+                  Expanded(child: _shimmerStatCell(context, scope.cats[1], sBox)),
                   Container(width: 1, height: 60.h, color: colors.border),
-                  Expanded(child: _shimmerStatCell(context, _cats[2], sBox)),
+                  Expanded(child: _shimmerStatCell(context, scope.cats[2], sBox)),
                 ],
               ),
               Container(height: 1, color: colors.border),
               Row(
                 children: [
-                  Expanded(child: _shimmerStatCell(context, _cats[3], sBox)),
+                  Expanded(child: _shimmerStatCell(context, scope.cats[3], sBox)),
                   Container(width: 1, height: 60.h, color: colors.border),
-                  Expanded(child: _shimmerStatCell(context, _cats[4], sBox)),
+                  Expanded(child: _shimmerStatCell(context, scope.cats[4], sBox)),
                   const Expanded(child: SizedBox()),
                 ],
               ),
@@ -92,7 +85,7 @@ class _HoroscopeShimmer extends StatelessWidget {
           ),
         ),
         Sp.medium.heightBox,
-        ..._cats.map(
+        ...scope.cats.map(
           (cat) => Padding(
             padding: EdgeInsets.only(bottom: Sp.small.h),
             child: FancyContainer(

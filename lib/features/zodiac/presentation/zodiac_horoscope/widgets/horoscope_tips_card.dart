@@ -1,7 +1,7 @@
 part of '../pages/zodiac_horoscope_page.dart';
 
-class _TipsCard extends StatelessWidget {
-  const _TipsCard({required this.period, required this.tips});
+class TipsCard extends StatelessWidget {
+  const TipsCard({required this.period, required this.tips, super.key});
   final HoroscopePeriod period;
   final List<HoroscopeTipModel> tips;
 

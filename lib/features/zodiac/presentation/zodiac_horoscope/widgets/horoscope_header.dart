@@ -1,7 +1,7 @@
 part of '../pages/zodiac_horoscope_page.dart';
 
-class _HoroscopeHeader extends StatelessWidget {
-  const _HoroscopeHeader({required this.sign});
+class HoroscopeHeader extends StatelessWidget {
+  const HoroscopeHeader({required this.sign, super.key});
   final ZodiacSign sign;
 
   @override

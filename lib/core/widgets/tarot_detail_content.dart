@@ -22,7 +22,8 @@ class TarotDetailContent extends StatefulWidget {
   State<TarotDetailContent> createState() => _TarotDetailContentState();
 }
 
-class _TarotDetailContentState extends State<TarotDetailContent> with TarotDetailContentMixin {
+class _TarotDetailContentState extends State<TarotDetailContent>
+    with TickerProviderStateMixin, TarotDetailContentMixin {
   @override
   Widget build(BuildContext context) {
     final tarot = widget.tarot;
@@ -337,107 +338,78 @@ class _InfoCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colors = context.colors;
+    final scope = TarotDetailContentScope.of(context).state;
 
     return FancyContainer(
       color: colors.primary.withValues(alpha: 0.05),
       border: Border.all(color: colors.border),
-      padding: Sp.large.padAllR,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Row(
-            children: [
-              Container(
-                width: 28.w,
-                height: 28.h,
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    colors: [colors.gradientStart, colors.gradientEnd],
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
+          ValueListenableBuilder<bool>(
+            valueListenable: scope.isExpanded,
+            builder: (context, expanded, _) {
+              return InkWell(
+                onTap: scope.toggle,
+                borderRadius: Sp.large.radiusR,
+                child: Padding(
+                  padding: Sp.large.padAllR,
+                  child: Row(
+                    children: [
+                      Container(
+                        width: 28.w,
+                        height: 28.h,
+                        decoration: BoxDecoration(
+                          gradient: LinearGradient(
+                            colors: [colors.gradientStart, colors.gradientEnd],
+                            begin: Alignment.topLeft,
+                            end: Alignment.bottomRight,
+                          ),
+                          borderRadius: Sp.small.radiusR,
+                        ),
+                        alignment: Alignment.center,
+                        child: Icon(icon, color: colors.accent, size: 16),
+                      ),
+                      Sp.small.widthBox,
+                      Expanded(
+                        child: Text(
+                          title,
+                          style: m15w600(context).copyWith(color: colors.textPrimary),
+                        ),
+                      ),
+                      AnimatedRotation(
+                        turns: expanded ? 0.5 : 0,
+                        duration: const Duration(milliseconds: 250),
+                        child: Icon(
+                          Icons.keyboard_arrow_down_rounded,
+                          color: colors.textSecondary,
+                          size: 22.sp,
+                        ),
+                      ),
+                    ],
                   ),
-                  borderRadius: Sp.small.radiusR,
                 ),
-                alignment: Alignment.center,
-                child: Icon(icon, color: colors.accent, size: 16),
-              ),
-              Sp.small.widthBox,
-              Text(
-                title,
-                style: m15w600(context).copyWith(color: colors.textPrimary),
-              ),
-            ],
+              );
+            },
           ),
-          Sp.xsmall.heightBox,
-          _ExpandableText(
-            text: content,
-            style: m13w400(context).copyWith(color: colors.textSecondary, height: 1.5),
+          SizeTransition(
+            sizeFactor: scope.expandAnimation,
+            child: Padding(
+              padding: EdgeInsets.fromLTRB(Sp.large.w, 0, Sp.large.w, Sp.large.h),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(height: 1, color: colors.border),
+                  Sp.medium.heightBox,
+                  Text(
+                    content,
+                    style: m13w400(context).copyWith(color: colors.textSecondary, height: 1.5),
+                  ),
+                ],
+              ),
+            ),
           ),
         ],
-      ),
-    );
-  }
-}
-
-class _ExpandableText extends StatefulWidget {
-  const _ExpandableText({required this.text, required this.style});
-  final String text;
-  final TextStyle style;
-
-  @override
-  State<_ExpandableText> createState() => _ExpandableTextState();
-}
-
-class _ExpandableTextState extends State<_ExpandableText> {
-  late final ValueNotifier<bool> _isExpanded;
-
-  @override
-  void initState() {
-    super.initState();
-    _isExpanded = ValueNotifier(false);
-  }
-
-  @override
-  void dispose() {
-    _isExpanded.dispose();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      behavior: HitTestBehavior.opaque,
-      onTap: () {
-        _isExpanded.value = !_isExpanded.value;
-      },
-      child: ValueListenableBuilder<bool>(
-        valueListenable: _isExpanded,
-        builder: (context, isExpanded, _) {
-          return Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Expanded(
-                child: AnimatedSize(
-                  duration: const Duration(milliseconds: 250),
-                  curve: Curves.easeInOut,
-                  alignment: Alignment.topCenter,
-                  child: Text(
-                    widget.text,
-                    style: widget.style,
-                    maxLines: isExpanded ? null : 2,
-                    overflow: isExpanded ? null : TextOverflow.ellipsis,
-                  ),
-                ),
-              ),
-              Sp.small.widthBox,
-              Icon(
-                isExpanded ? Icons.keyboard_arrow_up : Icons.keyboard_arrow_down,
-                color: context.colors.primary.withValues(alpha: 0.4),
-                size: 20,
-              ),
-            ],
-          );
-        },
       ),
     );
   }

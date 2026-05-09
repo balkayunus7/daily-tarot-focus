@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:daily_tarot_focus/features/zodiac/bloc/zodiac/zodiac_event.dart';
 import 'package:daily_tarot_focus/features/zodiac/bloc/zodiac/zodiac_state.dart';
+import 'package:daily_tarot_focus/features/zodiac/data/impl_zodiac_cache_service.dart';
 import 'package:daily_tarot_focus/features/zodiac/data/impl_zodiac_repository.dart';
 import 'package:daily_tarot_focus/features/zodiac/domain/models/generate_compatibility_request_model.dart';
 import 'package:daily_tarot_focus/features/zodiac/domain/models/generate_compatibility_response_model.dart';
@@ -9,7 +10,7 @@ import 'package:daily_tarot_focus/features/zodiac/domain/models/generate_horosco
 import 'package:mobile_boilerplate/common_dependencies.dart';
 
 class ZodiacBloc extends Bloc<ZodiacEvent, ZodiacState> {
-  ZodiacBloc(this._zodiacRepository) : super(ZodiacState.initial()) {
+  ZodiacBloc(this._zodiacRepository, this._zodiacCacheService) : super(ZodiacState.initial()) {
     on<ZodiacEvent>(
       (event, emit) async {
         if (event is ZodiacGenerateCompatibilityRequested) {
@@ -60,6 +61,14 @@ class ZodiacBloc extends Bloc<ZodiacEvent, ZodiacState> {
   ) async {
     final key = event.request.cacheKey;
 
+    if (!_hasLoadedCache) {
+      final persistentCache = await _zodiacCacheService.getHoroscopeCache();
+      if (persistentCache != null) {
+        emit(state.copyWith(horoscopeCache: persistentCache));
+      }
+      _hasLoadedCache = true;
+    }
+
     final cached = state.horoscopeCache[key];
     if (cached != null && !cached.isExpired) return;
 
@@ -84,7 +93,11 @@ class ZodiacBloc extends Bloc<ZodiacEvent, ZodiacState> {
         horoscopeCache: updatedCache,
       ),
     );
+
+    await _zodiacCacheService.saveHoroscopeCache(updatedCache);
   }
 
   final ImplZodiacRepository _zodiacRepository;
+  final ImplZodiacCacheService _zodiacCacheService;
+  bool _hasLoadedCache = false;
 }

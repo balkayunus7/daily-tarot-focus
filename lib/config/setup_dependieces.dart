@@ -13,6 +13,7 @@ import 'package:daily_tarot_focus/features/tarot/data/impl_tarot_cache_service.d
 import 'package:daily_tarot_focus/features/tarot/data/impl_tarot_remote_data_source.dart';
 import 'package:daily_tarot_focus/features/tarot/data/impl_tarot_repository.dart';
 import 'package:daily_tarot_focus/features/zodiac/bloc/zodiac/zodiac_bloc.dart';
+import 'package:daily_tarot_focus/features/zodiac/data/impl_zodiac_cache_service.dart';
 import 'package:daily_tarot_focus/features/zodiac/data/impl_zodiac_remote_data_source.dart';
 import 'package:daily_tarot_focus/features/zodiac/data/impl_zodiac_repository.dart';
 import 'package:mobile_boilerplate/application/analytics/analytics_cubit.dart';
@@ -232,7 +233,13 @@ Future<void> setupDependencies() async {
     ..registerSingleton<ImplZodiacRepository>(
       ImplZodiacRepository(getIt<ImplZodiacRemoteDataSource>()),
     )
+    ..registerSingleton<ImplZodiacCacheService>(
+      ImplZodiacCacheService(),
+    )
     ..registerLazySingleton<ZodiacBloc>(
-      () => ZodiacBloc(getIt<ImplZodiacRepository>()),
+      () => ZodiacBloc(
+        getIt<ImplZodiacRepository>(),
+        getIt<ImplZodiacCacheService>(),
+      ),
     );
 }

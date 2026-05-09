@@ -114,6 +114,24 @@ class HoroscopeResponseModel with EquatableMixin {
     );
   }
 
+  Map<String, dynamic> toMap() {
+    return {
+      'general_text': generalText,
+      'categories': categories.map((c) => {
+        'score': c.score,
+        'description': c.description,
+      }).toList(),
+      'tips': tips.map((t) => {
+        'is_advice': t.isAdvice,
+        'text': t.text,
+      }).toList(),
+      'critical_days': {
+        'challenging': criticalDays.challenging,
+        'highlight': criticalDays.highlight,
+      },
+    };
+  }
+
   final String generalText;
   final List<HoroscopeStatCategory> categories;
   final List<HoroscopeTipModel> tips;

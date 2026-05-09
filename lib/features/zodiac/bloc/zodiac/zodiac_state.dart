@@ -7,10 +7,25 @@ import 'package:mobile_boilerplate/extensions.dart';
 
 class CachedHoroscope extends Equatable {
   const CachedHoroscope({required this.response, required this.validUntil});
+
+  factory CachedHoroscope.fromMap(Map<String, dynamic> map) {
+    return CachedHoroscope(
+      response: HoroscopeResponseModel.fromMap(map['response'] as Map<String, dynamic>),
+      validUntil: DateTime.parse(map['valid_until'] as String),
+    );
+  }
+
   final HoroscopeResponseModel response;
   final DateTime validUntil;
 
   bool get isExpired => DateTime.now().isAfter(validUntil);
+
+  Map<String, dynamic> toMap() {
+    return {
+      'response': response.toMap(),
+      'valid_until': validUntil.toIso8601String(),
+    };
+  }
 
   @override
   List<Object?> get props => [response, validUntil];

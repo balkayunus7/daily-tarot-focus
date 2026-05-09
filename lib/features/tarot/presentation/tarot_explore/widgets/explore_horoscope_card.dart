@@ -1,7 +1,44 @@
 part of '../pages/tarot_explore_page.dart';
 
-class ExploreHoroscopeCard extends StatelessWidget {
+class ExploreHoroscopeCard extends StatefulWidget {
   const ExploreHoroscopeCard({super.key});
+
+  @override
+  State<ExploreHoroscopeCard> createState() => _ExploreHoroscopeCardState();
+}
+
+class _ExploreHoroscopeCardState extends State<ExploreHoroscopeCard> {
+  late final PageController _controller;
+  int _currentPage = 0;
+
+  static const List<HoroscopePeriod> _periods = HoroscopePeriod.values;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = PageController();
+    _controller.addListener(_onScroll);
+  }
+
+  void _onScroll() {
+    final page = _controller.page?.round() ?? 0;
+    if (page != _currentPage) setState(() => _currentPage = page);
+  }
+
+  @override
+  void dispose() {
+    _controller
+      ..removeListener(_onScroll)
+      ..dispose();
+    super.dispose();
+  }
+
+  Future<void> _navigate(BuildContext context, ZodiacSign sign) async {
+    await context.pushNamed<void>(
+      AppRoutes.zodiacHoroscope,
+      extra: ZodiacHoroscopeArgs(sign: sign, initialIndex: _currentPage),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -12,28 +49,43 @@ class ExploreHoroscopeCard extends StatelessWidget {
         final sign = user.zodiac;
         if (sign == null) return const SizedBox.shrink();
 
-        return _HoroscopeCardBody(sign: sign);
+        return _HoroscopeCardBody(
+          sign: sign,
+          controller: _controller,
+          currentPage: _currentPage,
+          periods: _periods,
+          onTap: () => _navigate(context, sign),
+        );
       },
     );
   }
 }
 
 class _HoroscopeCardBody extends StatelessWidget {
-  const _HoroscopeCardBody({required this.sign});
+  const _HoroscopeCardBody({
+    required this.sign,
+    required this.controller,
+    required this.currentPage,
+    required this.periods,
+    required this.onTap,
+  });
+
   final ZodiacSign sign;
+  final PageController controller;
+  final int currentPage;
+  final List<HoroscopePeriod> periods;
+  final VoidCallback onTap;
 
   @override
   Widget build(BuildContext context) {
     final colors = context.colors;
-    final screenHeight = context.suHeight;
-    final cardHeight = screenHeight / 6;
+    final cardHeight = context.suHeight / 6;
 
     return ScalingContainer(
-      onTap: () {},
+      onTap: onTap,
       child: Container(
         width: double.infinity,
         height: cardHeight,
-        padding: const EdgeInsets.only(left: 20, right: 12, top: 16, bottom: 16),
         decoration: BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topLeft,
@@ -43,63 +95,108 @@ class _HoroscopeCardBody extends StatelessWidget {
           borderRadius: Sp.large.radiusR,
           border: Border.all(color: colors.border, width: 0.5),
         ),
-        child: LayoutBuilder(
-          builder: (context, constraints) {
-            final screenWidth = context.suWidth;
-            final buttonWidth = screenWidth * 0.28;
-            final buttonHeight = buttonWidth * 0.32;
-
-            return Stack(
-              fit: StackFit.expand,
-              children: [
-                Row(
-                  children: [
-                    Flexible(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            sign.localizedName.toUpperCase(),
-                            style: m12w600(context).copyWith(
-                              color: colors.textOnPrimary.withValues(alpha: 0.65),
-                              letterSpacing: 1.3,
-                            ),
-                          ),
-                          Sp.tiny.heightBox,
-                          Text(
-                            LocaleKeys.explore_page_horoscope_card_title.tr(),
-                            style: m16w600(context).copyWith(color: colors.textOnPrimary),
-                          ),
-                          Sp.medium.heightBox,
-                          IgnorePointer(
-                            child: UnconstrainedBox(
-                              alignment: Alignment.centerLeft,
-                              child: FancyButton(
-                                height: buttonHeight,
-                                width: buttonWidth,
-                                padding: Sp.small.padXR,
-                                onTap: () {},
-                                backgroundColor: colors.buttonOnGradient,
-                                text: LocaleKeys.explore_page_horoscope_card_button.tr(),
-                                textStyle: m12w600(context).copyWith(
-                                  color: colors.textOnPrimary,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Sp.huge.widthBox,
-                    Flexible(child: _MedallionStack(sign: sign)),
-                  ],
-                ),
-              ],
-            );
-          },
+        child: Stack(
+          clipBehavior: Clip.none,
+          children: [
+            PageView.builder(
+              controller: controller,
+              physics: const BouncingScrollPhysics(),
+              itemCount: periods.length,
+              itemBuilder:
+                  (context, index) => _PeriodContainer(
+                    sign: sign,
+                    period: periods[index],
+                  ),
+            ),
+            Positioned(
+              bottom: 10.h,
+              left: 0,
+              right: 0,
+              child: Center(
+                child: _DotsIndicator(count: periods.length, current: currentPage),
+              ),
+            ),
+          ],
         ),
       ),
+    );
+  }
+}
+
+class _PeriodContainer extends StatelessWidget {
+  const _PeriodContainer({required this.sign, required this.period});
+  final ZodiacSign sign;
+  final HoroscopePeriod period;
+
+  @override
+  Widget build(BuildContext context) {
+    final colors = context.colors;
+    final screenWidth = context.suWidth;
+    final buttonWidth = screenWidth * 0.28;
+    final buttonHeight = buttonWidth * 0.32;
+
+    return Padding(
+      padding: const EdgeInsets.only(left: 20, top: 16, bottom: 28),
+      child: Row(
+        children: [
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                period.labelKey.tr(),
+                style: m16w600(context).copyWith(color: colors.textOnPrimary),
+              ),
+              Sp.medium.heightBox,
+              IgnorePointer(
+                child: UnconstrainedBox(
+                  alignment: Alignment.centerLeft,
+                  child: FancyButton(
+                    height: buttonHeight,
+                    width: buttonWidth,
+                    padding: Sp.small.padXR,
+                    onTap: () {},
+                    backgroundColor: colors.buttonOnGradient,
+                    text: LocaleKeys.explore_page_horoscope_card_button.tr(),
+                    textStyle: m12w600(context).copyWith(color: colors.textOnPrimary),
+                  ),
+                ),
+              ),
+            ],
+          ),
+          Sp.huge.widthBox,
+          Sp.medium.widthBox,
+          _MedallionStack(sign: sign),
+        ],
+      ),
+    );
+  }
+}
+
+class _DotsIndicator extends StatelessWidget {
+  const _DotsIndicator({required this.count, required this.current});
+  final int count;
+  final int current;
+
+  @override
+  Widget build(BuildContext context) {
+    final colors = context.colors;
+
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: List.generate(count, (i) {
+        final isActive = i == current;
+        return AnimatedContainer(
+          duration: const Duration(milliseconds: 200),
+          margin: EdgeInsets.symmetric(horizontal: 2.w),
+          width: isActive ? 14.w : 6.w,
+          height: 4.h,
+          decoration: BoxDecoration(
+            color: colors.textOnPrimary.withValues(alpha: isActive ? 0.9 : 0.35),
+            borderRadius: BorderRadius.circular(2),
+          ),
+        );
+      }),
     );
   }
 }
@@ -119,9 +216,9 @@ class _MedallionStack extends StatelessWidget {
       clipBehavior: Clip.none,
       alignment: Alignment.center,
       children: [
-        _ZodiacMedallion(sign: prev, rotation: -0.3, offsetX: -56, diameter: 64, isPrimary: false),
-        _ZodiacMedallion(sign: next, rotation: 0.3, offsetX: 56, diameter: 64, isPrimary: false),
-        _ZodiacMedallion(sign: sign, rotation: 0, offsetX: 0, diameter: 90, isPrimary: true),
+        _ZodiacMedallion(sign: prev, rotation: -0.3, offsetX: -52, diameter: 68, isPrimary: false),
+        _ZodiacMedallion(sign: next, rotation: 0.3, offsetX: 52, diameter: 68, isPrimary: false),
+        _ZodiacMedallion(sign: sign, rotation: 0, offsetX: 0, diameter: 96, isPrimary: true),
       ],
     );
   }

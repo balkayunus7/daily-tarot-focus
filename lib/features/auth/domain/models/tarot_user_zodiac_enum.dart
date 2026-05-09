@@ -260,6 +260,35 @@ enum ZodiacSign {
 
   // ── Decan Minor Arcana cards ───────────────────────────────────────────────
 
+  String get dateRangeKey {
+    switch (this) {
+      case ZodiacSign.aries:
+        return LocaleKeys.horoscope_page_date_aries;
+      case ZodiacSign.taurus:
+        return LocaleKeys.horoscope_page_date_taurus;
+      case ZodiacSign.gemini:
+        return LocaleKeys.horoscope_page_date_gemini;
+      case ZodiacSign.cancer:
+        return LocaleKeys.horoscope_page_date_cancer;
+      case ZodiacSign.leo:
+        return LocaleKeys.horoscope_page_date_leo;
+      case ZodiacSign.virgo:
+        return LocaleKeys.horoscope_page_date_virgo;
+      case ZodiacSign.libra:
+        return LocaleKeys.horoscope_page_date_libra;
+      case ZodiacSign.scorpio:
+        return LocaleKeys.horoscope_page_date_scorpio;
+      case ZodiacSign.sagittarius:
+        return LocaleKeys.horoscope_page_date_sagittarius;
+      case ZodiacSign.capricorn:
+        return LocaleKeys.horoscope_page_date_capricorn;
+      case ZodiacSign.aquarius:
+        return LocaleKeys.horoscope_page_date_aquarius;
+      case ZodiacSign.pisces:
+        return LocaleKeys.horoscope_page_date_pisces;
+    }
+  }
+
   List<String> get minorArcanaCards {
     switch (this) {
       case ZodiacSign.aries:

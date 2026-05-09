@@ -12,3 +12,4 @@ const String GET_SAVED_READINGS = 'get-saved-readings';
 const String UPDATE_READING_NOTE = 'update-reading-note';
 const String DELETE_READING = 'delete-reading';
 const String GENERATE_COMPATIBILITY = 'generate-compatibility';
+const String GENERATE_HOROSCOPE = 'generate-horoscope';

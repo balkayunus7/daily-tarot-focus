@@ -12,6 +12,8 @@ import 'package:daily_tarot_focus/features/auth/domain/models/tarot_user_zodiac_
 import 'package:daily_tarot_focus/features/tarot/bloc/tarot/tarot_bloc.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/tarot_flow_type.dart';
 import 'package:daily_tarot_focus/features/tarot/presentation/tarot_explore/helpers/explore_illustrations.dart';
+import 'package:daily_tarot_focus/features/zodiac/domain/models/horoscope_period_enum.dart';
+import 'package:daily_tarot_focus/features/zodiac/presentation/zodiac_horoscope/pages/zodiac_horoscope_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';

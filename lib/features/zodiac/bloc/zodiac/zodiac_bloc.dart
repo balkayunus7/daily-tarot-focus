@@ -5,6 +5,7 @@ import 'package:daily_tarot_focus/features/zodiac/bloc/zodiac/zodiac_state.dart'
 import 'package:daily_tarot_focus/features/zodiac/data/impl_zodiac_repository.dart';
 import 'package:daily_tarot_focus/features/zodiac/domain/models/generate_compatibility_request_model.dart';
 import 'package:daily_tarot_focus/features/zodiac/domain/models/generate_compatibility_response_model.dart';
+import 'package:daily_tarot_focus/features/zodiac/domain/models/generate_horoscope_request_model.dart';
 import 'package:mobile_boilerplate/common_dependencies.dart';
 
 class ZodiacBloc extends Bloc<ZodiacEvent, ZodiacState> {
@@ -13,6 +14,8 @@ class ZodiacBloc extends Bloc<ZodiacEvent, ZodiacState> {
       (event, emit) async {
         if (event is ZodiacGenerateCompatibilityRequested) {
           await _onGenerateCompatibilityRequested(event, emit);
+        } else if (event is ZodiacGenerateHoroscopeRequested) {
+          await _onGenerateHoroscopeRequested(event, emit);
         }
       },
       transformer: sequential(),
@@ -21,6 +24,9 @@ class ZodiacBloc extends Bloc<ZodiacEvent, ZodiacState> {
 
   void addGenerateCompatibilityRequested({required GenerateCompatibilityRequestModel request}) =>
       add(ZodiacGenerateCompatibilityRequested(request: request));
+
+  void addGenerateHoroscopeRequested({required GenerateHoroscopeRequestModel request}) =>
+      add(ZodiacGenerateHoroscopeRequested(request: request));
 
   Future<void> _onGenerateCompatibilityRequested(
     ZodiacGenerateCompatibilityRequested event,
@@ -44,6 +50,38 @@ class ZodiacBloc extends Bloc<ZodiacEvent, ZodiacState> {
         isGeneratingCompatibility: false,
         fetchCompatibilityFailureOrResult: some(result),
         compatibilityCache: updatedCache,
+      ),
+    );
+  }
+
+  Future<void> _onGenerateHoroscopeRequested(
+    ZodiacGenerateHoroscopeRequested event,
+    Emitter<ZodiacState> emit,
+  ) async {
+    final key = event.request.cacheKey;
+
+    final cached = state.horoscopeCache[key];
+    if (cached != null && !cached.isExpired) return;
+
+    emit(
+      state.copyWith(isGeneratingHoroscope: true, fetchHoroscopeFailureOrResult: none()),
+    );
+
+    final result = await _zodiacRepository.requestGenerateHoroscope(request: event.request);
+
+    final updatedCache = Map<String, CachedHoroscope>.from(state.horoscopeCache);
+    result.fold((_) {}, (response) {
+      updatedCache[key] = CachedHoroscope(
+        response: response,
+        validUntil: CachedHoroscope.expiryFor(event.request.period),
+      );
+    });
+
+    emit(
+      state.copyWith(
+        isGeneratingHoroscope: false,
+        fetchHoroscopeFailureOrResult: some(result),
+        horoscopeCache: updatedCache,
       ),
     );
   }

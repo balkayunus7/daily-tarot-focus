@@ -31,7 +31,10 @@ class _BirthInputSheetState extends State<BirthInputSheet> {
   @override
   Widget build(BuildContext context) {
     final colors = context.colors;
-    return Padding(
+    return GestureDetector(
+      onTap: () => FocusScope.of(context).unfocus(),
+      behavior: HitTestBehavior.translucent,
+      child: Padding(
       padding: EdgeInsets.only(
         left: Sp.screen.w,
         right: Sp.screen.w,
@@ -130,6 +133,7 @@ class _BirthInputSheetState extends State<BirthInputSheet> {
                     : () {},
           ),
         ],
+      ),
       ),
     );
   }

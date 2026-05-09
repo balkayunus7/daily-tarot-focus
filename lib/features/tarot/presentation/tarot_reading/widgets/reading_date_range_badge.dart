@@ -1,11 +1,12 @@
 part of '../pages/tarot_reading_page.dart';
 
 class ReadingDateRangeBadge extends StatelessWidget {
-  const ReadingDateRangeBadge({super.key});
+  const ReadingDateRangeBadge({required this.label, required this.onCloseTap, super.key});
+  final String label;
+  final VoidCallback onCloseTap;
 
   @override
   Widget build(BuildContext context) {
-    final scope = ReadingPageScope.of(context).state;
     return Padding(
       padding: Sp.large.padXR,
       child: Row(
@@ -18,13 +19,10 @@ class ReadingDateRangeBadge extends StatelessWidget {
               children: [
                 Icon(Icons.filter_list, size: 14, color: context.colors.secondary),
                 Sp.small.widthBox,
-                Text(
-                  scope.filterLabel,
-                  style: m12w600(context).copyWith(color: context.colors.secondary),
-                ),
+                Text(label, style: m12w600(context).copyWith(color: context.colors.secondary)),
                 Sp.small.widthBox,
                 GestureDetector(
-                  onTap: scope.clearFilter,
+                  onTap: onCloseTap,
                   child: Icon(Icons.close, size: 14, color: context.colors.secondary),
                 ),
               ],

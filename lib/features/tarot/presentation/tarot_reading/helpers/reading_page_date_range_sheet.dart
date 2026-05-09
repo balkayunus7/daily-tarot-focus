@@ -2,19 +2,59 @@ import 'package:daily_tarot_focus/core/util/locale_keys.dart';
 import 'package:daily_tarot_focus/core/util/tarot_app_sizes.dart';
 import 'package:daily_tarot_focus/core/util/text_style_helper.dart';
 import 'package:daily_tarot_focus/features/tarot/presentation/tarot_reading/helpers/reading_page_mixin.dart';
-import 'package:daily_tarot_focus/features/tarot/presentation/tarot_reading/pages/tarot_reading_page.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile_boilerplate/common_dependencies.dart';
 import 'package:mobile_boilerplate/presentation/bottom_sheets/core_bottom_sheet.dart';
 import 'package:mobile_boilerplate/presentation/extensions/build_context_theme_ext.dart';
 
-mixin ReadingPageDateRangeSheet on State<TarotReadingPage> {
-  ValueNotifier<TarotReadingDateFilter> get selectedFilter;
-  ValueNotifier<DateTimeRange?> get customDateRange;
-  void updateFilter(TarotReadingDateFilter filter, DateTimeRange? range);
-
-  Future<void> showFilterBottomSheet() async {
+class DateRangeSheet {
+  static Future<void> showFilterBottomSheet({
+    required BuildContext context,
+    required ValueNotifier<TarotReadingDateFilter> selectedFilter,
+    required ValueNotifier<DateTimeRange?> customDateRange,
+    required void Function(TarotReadingDateFilter filter, DateTimeRange? range) updateFilter,
+  }) async {
     TarotReadingDateFilter? result;
+
+    final allTimeLabelColor =
+        selectedFilter.value == TarotReadingDateFilter.allTime
+            ? context.colors.primary
+            : context.colors.textTertiary;
+
+    final lastWeekLabelColor =
+        selectedFilter.value == TarotReadingDateFilter.lastWeek
+            ? context.colors.primary
+            : context.colors.textTertiary;
+
+    final lastMonthLabelColor =
+        selectedFilter.value == TarotReadingDateFilter.lastMonth
+            ? context.colors.primary
+            : context.colors.textTertiary;
+
+    final customDateLabelColor =
+        selectedFilter.value == TarotReadingDateFilter.custom
+            ? context.colors.primary
+            : context.colors.textTertiary;
+
+    final allTimeBorderColor =
+        selectedFilter.value == TarotReadingDateFilter.allTime
+            ? BorderSide(color: context.colors.primary)
+            : BorderSide.none;
+
+    final lastWeekBorderColor =
+        selectedFilter.value == TarotReadingDateFilter.lastWeek
+            ? BorderSide(color: context.colors.primary)
+            : BorderSide.none;
+
+    final lastMonthBorderColor =
+        selectedFilter.value == TarotReadingDateFilter.lastMonth
+            ? BorderSide(color: context.colors.primary)
+            : BorderSide.none;
+
+    final customDateBorderColor =
+        selectedFilter.value == TarotReadingDateFilter.custom
+            ? BorderSide(color: context.colors.primary)
+            : BorderSide.none;
 
     await showCoreBottomSheet(
       context,
@@ -32,15 +72,18 @@ mixin ReadingPageDateRangeSheet on State<TarotReadingPage> {
                 ),
                 Sp.medium.heightBox,
                 ListTile(
-                  leading: const Icon(Icons.all_inclusive),
+                  leading: Icon(
+                    Icons.all_inclusive,
+                    color: allTimeLabelColor,
+                  ),
                   shape: RoundedRectangleBorder(
-                    side:
-                        selectedFilter.value == TarotReadingDateFilter.allTime
-                            ? BorderSide(color: context.colors.border)
-                            : BorderSide.none,
+                    side: allTimeBorderColor,
                     borderRadius: Sp.medium.radiusR,
                   ),
-                  title: Text(LocaleKeys.tarot_daily_all_time.tr()),
+                  title: Text(
+                    LocaleKeys.tarot_daily_all_time.tr(),
+                    style: m16w400(bottomSheetContext).copyWith(color: allTimeLabelColor),
+                  ),
                   onTap: () {
                     result = TarotReadingDateFilter.allTime;
                     Navigator.pop(bottomSheetContext);
@@ -51,14 +94,17 @@ mixin ReadingPageDateRangeSheet on State<TarotReadingPage> {
                 Sp.xsmall.heightBox,
                 ListTile(
                   shape: RoundedRectangleBorder(
-                    side:
-                        selectedFilter.value == TarotReadingDateFilter.lastWeek
-                            ? BorderSide(color: context.colors.border)
-                            : BorderSide.none,
+                    side: lastWeekBorderColor,
                     borderRadius: Sp.medium.radiusR,
                   ),
-                  leading: const Icon(Icons.view_week),
-                  title: Text(LocaleKeys.tarot_daily_last_week.tr()),
+                  leading: Icon(
+                    Icons.view_week,
+                    color: lastWeekLabelColor,
+                  ),
+                  title: Text(
+                    LocaleKeys.tarot_daily_last_week.tr(),
+                    style: m16w400(bottomSheetContext).copyWith(color: lastWeekLabelColor),
+                  ),
                   onTap: () {
                     result = TarotReadingDateFilter.lastWeek;
                     Navigator.pop(bottomSheetContext);
@@ -69,14 +115,17 @@ mixin ReadingPageDateRangeSheet on State<TarotReadingPage> {
                 Sp.xsmall.heightBox,
                 ListTile(
                   shape: RoundedRectangleBorder(
-                    side:
-                        selectedFilter.value == TarotReadingDateFilter.lastMonth
-                            ? BorderSide(color: context.colors.border)
-                            : BorderSide.none,
+                    side: lastMonthBorderColor,
                     borderRadius: Sp.medium.radiusR,
                   ),
-                  leading: const Icon(Icons.calendar_month),
-                  title: Text(LocaleKeys.tarot_daily_last_month.tr()),
+                  leading: Icon(
+                    Icons.calendar_month,
+                    color: lastMonthLabelColor,
+                  ),
+                  title: Text(
+                    LocaleKeys.tarot_daily_last_month.tr(),
+                    style: m16w400(bottomSheetContext).copyWith(color: lastMonthLabelColor),
+                  ),
                   onTap: () {
                     result = TarotReadingDateFilter.lastMonth;
                     Navigator.pop(bottomSheetContext);
@@ -87,14 +136,17 @@ mixin ReadingPageDateRangeSheet on State<TarotReadingPage> {
                 Sp.xsmall.heightBox,
                 ListTile(
                   shape: RoundedRectangleBorder(
-                    side:
-                        selectedFilter.value == TarotReadingDateFilter.custom
-                            ? BorderSide(color: context.colors.border)
-                            : BorderSide.none,
+                    side: customDateBorderColor,
                     borderRadius: Sp.medium.radiusR,
                   ),
-                  leading: const Icon(Icons.date_range),
-                  title: Text(LocaleKeys.tarot_daily_custom_date.tr()),
+                  leading: Icon(
+                    Icons.date_range,
+                    color: customDateLabelColor,
+                  ),
+                  title: Text(
+                    LocaleKeys.tarot_daily_custom_date.tr(),
+                    style: m16w400(bottomSheetContext).copyWith(color: customDateLabelColor),
+                  ),
                   onTap: () {
                     result = TarotReadingDateFilter.custom;
                     Navigator.pop(bottomSheetContext);
@@ -109,7 +161,7 @@ mixin ReadingPageDateRangeSheet on State<TarotReadingPage> {
       },
     );
 
-    if (!mounted) return;
+    if (!context.mounted) return;
 
     if (result != null) {
       if (result == TarotReadingDateFilter.custom) {

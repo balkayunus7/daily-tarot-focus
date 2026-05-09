@@ -36,4 +36,26 @@ extension HoroscopePeriodX on HoroscopePeriod {
         return LocaleKeys.horoscope_page_period_monthly.tr();
     }
   }
+
+  String get exploreEmoji {
+    switch (this) {
+      case HoroscopePeriod.daily:
+        return '☀️';
+      case HoroscopePeriod.weekly:
+        return '🌙';
+      case HoroscopePeriod.monthly:
+        return '✨';
+    }
+  }
+
+  String get exploreSubtitle {
+    switch (this) {
+      case HoroscopePeriod.daily:
+        return LocaleKeys.explore_page_day_energy.tr();
+      case HoroscopePeriod.weekly:
+        return LocaleKeys.explore_page_moon_energy.tr();
+      case HoroscopePeriod.monthly:
+        return LocaleKeys.explore_page_horoscope_card_desc.tr();
+    }
+  }
 }

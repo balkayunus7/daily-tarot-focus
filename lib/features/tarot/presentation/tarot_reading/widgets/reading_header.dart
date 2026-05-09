@@ -5,8 +5,9 @@ class ReadingHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final colors = context.colors;
     final scope = ReadingPageScope.of(context).state;
+    final colors = context.colors;
+
     return Padding(
       padding: Sp.large.padAllR,
       child: Row(
@@ -24,7 +25,14 @@ class ReadingHeader extends StatelessWidget {
             ],
           ),
           ScalingContainer(
-            onTap: scope.showFilterBottomSheet,
+            onTap: () async {
+              await DateRangeSheet.showFilterBottomSheet(
+                context: context,
+                selectedFilter: scope.selectedFilter,
+                customDateRange: scope.customDateRange,
+                updateFilter: scope.updateFilter,
+              );
+            },
             child: FancyContainer(
               width: Sp.xxxlarge.w,
               height: Sp.xxxlarge.h,

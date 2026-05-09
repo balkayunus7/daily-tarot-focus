@@ -13,8 +13,6 @@ mixin ReadingPageMixin on State<TarotReadingPage> {
   late final ValueNotifier<TarotReadingDateFilter> selectedFilter;
   late final ValueNotifier<DateTimeRange?> customDateRange;
 
-  Future<void> showFilterBottomSheet();
-
   @override
   void initState() {
     super.initState();

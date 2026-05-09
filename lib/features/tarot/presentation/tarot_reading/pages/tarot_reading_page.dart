@@ -35,8 +35,7 @@ class TarotReadingPage extends StatefulWidget {
   State<TarotReadingPage> createState() => _TarotReadingPageState();
 }
 
-class _TarotReadingPageState extends State<TarotReadingPage>
-    with ReadingPageMixin, ReadingPageDateRangeSheet {
+class _TarotReadingPageState extends State<TarotReadingPage> with ReadingPageMixin {
   @override
   Widget build(BuildContext context) {
     return ReadingPageScope(
@@ -50,15 +49,10 @@ class _TarotReadingPageState extends State<TarotReadingPage>
               ValueListenableBuilder(
                 valueListenable: selectedFilter,
                 builder: (context, filter, _) {
-                  return ValueListenableBuilder(
-                    valueListenable: customDateRange,
-                    builder: (context, range, _) {
-                      if (filter == TarotReadingDateFilter.allTime) {
-                        return const SizedBox.shrink();
-                      }
-                      return const ReadingDateRangeBadge();
-                    },
-                  );
+                  if (filter == TarotReadingDateFilter.allTime) {
+                    return const SizedBox.shrink();
+                  }
+                  return ReadingDateRangeBadge(label: filterLabel, onCloseTap: clearFilter);
                 },
               ),
               Expanded(

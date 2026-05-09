@@ -525,8 +525,11 @@ class _NotesTabState extends State<_NotesTab> with AutomaticKeepAliveClientMixin
     final colors = context.colors;
     final controller = AnswerPageScope.of(context).state.notesController;
 
-    return Padding(
-      padding: EdgeInsets.fromLTRB(Sp.screen.w, Sp.large.h, Sp.screen.w, Sp.xxxlarge.h),
+    return GestureDetector(
+      onTap: () => FocusScope.of(context).unfocus(),
+      behavior: HitTestBehavior.translucent,
+      child: SingleChildScrollView(
+        padding: EdgeInsets.fromLTRB(Sp.screen.w, Sp.large.h, Sp.screen.w, Sp.xxxlarge.h),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
@@ -568,6 +571,7 @@ class _NotesTabState extends State<_NotesTab> with AutomaticKeepAliveClientMixin
             ),
           ),
         ],
+      ),
       ),
     );
   }

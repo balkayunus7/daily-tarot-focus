@@ -139,34 +139,289 @@ class _PeriodContainer extends StatelessWidget {
       padding: const EdgeInsets.only(left: 20, top: 16, bottom: 28),
       child: Row(
         children: [
-          Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                period.labelKey.tr(),
-                style: m16w600(context).copyWith(color: colors.textOnPrimary),
-              ),
-              Sp.medium.heightBox,
-              IgnorePointer(
-                child: UnconstrainedBox(
-                  alignment: Alignment.centerLeft,
-                  child: FancyButton(
-                    height: buttonHeight,
-                    width: buttonWidth,
-                    padding: Sp.small.padXR,
-                    onTap: () {},
-                    backgroundColor: colors.buttonOnGradient,
-                    text: LocaleKeys.explore_page_horoscope_card_button.tr(),
-                    textStyle: m12w600(context).copyWith(color: colors.textOnPrimary),
+          Expanded(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  period.labelKey.tr(),
+                  style: m16w600(context).copyWith(color: colors.textOnPrimary),
+                ),
+                Sp.tiny.heightBox,
+                Text(
+                  period.exploreSubtitle,
+                  style: m11w500(context).copyWith(
+                    color: colors.textOnPrimary.withValues(alpha: 0.7),
+                  ),
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                ),
+                Sp.small.heightBox,
+                IgnorePointer(
+                  child: UnconstrainedBox(
+                    alignment: Alignment.centerLeft,
+                    child: FancyButton(
+                      height: buttonHeight,
+                      width: buttonWidth,
+                      padding: Sp.small.padXR,
+                      onTap: () {},
+                      backgroundColor: colors.buttonOnGradient,
+                      text: LocaleKeys.explore_page_horoscope_card_button.tr(),
+                      textStyle: m12w600(context).copyWith(color: colors.textOnPrimary),
+                    ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
-          Sp.huge.widthBox,
           Sp.medium.widthBox,
-          _MedallionStack(sign: sign),
+          _PeriodVisual(sign: sign, period: period),
+          Sp.medium.widthBox,
+        ],
+      ),
+    );
+  }
+}
+
+/// Renders a unique visual per period instead of the same medallion stack.
+class _PeriodVisual extends StatelessWidget {
+  const _PeriodVisual({required this.sign, required this.period});
+  final ZodiacSign sign;
+  final HoroscopePeriod period;
+
+  @override
+  Widget build(BuildContext context) {
+    return switch (period) {
+      HoroscopePeriod.daily => _DailyVisual(sign: sign),
+      HoroscopePeriod.weekly => _WeeklyVisual(sign: sign),
+      HoroscopePeriod.monthly => _MonthlyVisual(sign: sign),
+    };
+  }
+}
+
+/// Daily: single prominent zodiac medallion with a sun-glow ring.
+class _DailyVisual extends StatelessWidget {
+  const _DailyVisual({required this.sign});
+  final ZodiacSign sign;
+
+  @override
+  Widget build(BuildContext context) {
+    final colors = context.colors;
+    final d = 86.r;
+
+    return Container(
+      width: d,
+      height: d,
+      decoration: BoxDecoration(
+        shape: BoxShape.circle,
+        gradient: LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: [
+            colors.accent,
+            colors.accent.withValues(alpha: 0.6),
+          ],
+        ),
+        border: Border.all(color: colors.accent.withValues(alpha: 0.8), width: 2),
+        boxShadow: [
+          BoxShadow(
+            color: colors.accent.withValues(alpha: 0.4),
+            blurRadius: 20,
+            spreadRadius: 4,
+          ),
+        ],
+      ),
+      child: Center(
+        child: SvgPicture.asset(
+          sign.svgPath,
+          height: d * 0.48,
+          width: d * 0.48,
+          colorFilter: ColorFilter.mode(colors.primary, BlendMode.srcIn),
+        ),
+      ),
+    );
+  }
+}
+
+class _WeeklyVisual extends StatelessWidget {
+  const _WeeklyVisual({required this.sign});
+  final ZodiacSign sign;
+
+  @override
+  Widget build(BuildContext context) {
+    final colors = context.colors;
+    final sideBg = Color.lerp(colors.accent, Colors.white, 0.15)!.withValues(alpha: 0.35);
+
+    return SizedBox(
+      width: 120.r,
+      height: 86.r,
+      child: Stack(
+        alignment: Alignment.center,
+        children: [
+          Positioned(
+            left: 0,
+            child: _CrescentDisc(
+              diameter: 58.r,
+              color: sideBg,
+              borderColor: colors.textOnPrimary.withValues(alpha: 0.35),
+              child: Text('🌙', style: TextStyle(fontSize: 20.sp)),
+            ),
+          ),
+          Positioned(
+            right: 0,
+            child: _CrescentDisc(
+              diameter: 58.r,
+              color: sideBg,
+              borderColor: colors.textOnPrimary.withValues(alpha: 0.35),
+              child: Text('⭐', style: TextStyle(fontSize: 20.sp)),
+            ),
+          ),
+          _CrescentDisc(
+            diameter: 72.r,
+            color: colors.accent,
+            borderColor: colors.accent.withValues(alpha: 0.7),
+            child: SvgPicture.asset(
+              sign.svgPath,
+              height: 30.r,
+              width: 30.r,
+              colorFilter: ColorFilter.mode(colors.primary, BlendMode.srcIn),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _CrescentDisc extends StatelessWidget {
+  const _CrescentDisc({
+    required this.diameter,
+    required this.color,
+    required this.borderColor,
+    required this.child,
+  });
+  final double diameter;
+  final Color color;
+  final Color borderColor;
+  final Widget child;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: diameter,
+      height: diameter,
+      decoration: BoxDecoration(
+        shape: BoxShape.circle,
+        color: color,
+        border: Border.all(color: borderColor),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withValues(alpha: 0.35),
+            blurRadius: 10,
+            offset: const Offset(0, 3),
+          ),
+        ],
+      ),
+      child: Center(child: child),
+    );
+  }
+}
+
+class _MonthlyVisual extends StatelessWidget {
+  const _MonthlyVisual({required this.sign});
+  final ZodiacSign sign;
+
+  @override
+  Widget build(BuildContext context) {
+    final colors = context.colors;
+    final d = 86.r;
+    final darkBg = Color.lerp(colors.primary, Colors.black, 0.60)!;
+
+    return SizedBox(
+      width: d + 16.r,
+      height: d + 16.r,
+      child: Stack(
+        alignment: Alignment.center,
+        children: [
+          Container(
+            width: d + 14.r,
+            height: d + 14.r,
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              border: Border.all(
+                color: colors.accent.withValues(alpha: 0.25),
+                width: 1.2,
+              ),
+            ),
+          ),
+          Positioned(
+            top: 0,
+            right: 12.r,
+            child: _OrbitDot(color: colors.accent.withValues(alpha: 0.8), size: 6.r),
+          ),
+          Positioned(
+            bottom: 4.r,
+            left: 4.r,
+            child: _OrbitDot(color: colors.accent.withValues(alpha: 0.5), size: 5.r),
+          ),
+          Positioned(
+            bottom: 2.r,
+            right: 8.r,
+            child: _OrbitDot(color: colors.accent.withValues(alpha: 0.6), size: 4.r),
+          ),
+          Container(
+            width: d * 0.82,
+            height: d * 0.82,
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              gradient: LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                colors: [darkBg, colors.accent.withValues(alpha: 0.35)],
+              ),
+              border: Border.all(color: colors.accent.withValues(alpha: 0.5), width: 1.2),
+              boxShadow: [
+                BoxShadow(
+                  color: colors.accent.withValues(alpha: 0.25),
+                  blurRadius: 16,
+                  spreadRadius: 2,
+                ),
+              ],
+            ),
+            child: Center(
+              child: SvgPicture.asset(
+                sign.svgPath,
+                height: d * 0.38,
+                width: d * 0.38,
+                colorFilter: ColorFilter.mode(
+                  colors.textOnPrimary.withValues(alpha: 0.9),
+                  BlendMode.srcIn,
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _OrbitDot extends StatelessWidget {
+  const _OrbitDot({required this.color, required this.size});
+  final Color color;
+  final double size;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: size,
+      height: size,
+      decoration: BoxDecoration(
+        shape: BoxShape.circle,
+        color: color,
+        boxShadow: [
+          BoxShadow(color: color.withValues(alpha: 0.6), blurRadius: 4),
         ],
       ),
     );
@@ -197,97 +452,6 @@ class _DotsIndicator extends StatelessWidget {
           ),
         );
       }),
-    );
-  }
-}
-
-class _MedallionStack extends StatelessWidget {
-  const _MedallionStack({required this.sign});
-  final ZodiacSign sign;
-
-  @override
-  Widget build(BuildContext context) {
-    const all = ZodiacSign.values;
-    final idx = all.indexOf(sign);
-    final prev = all[(idx - 1 + 12) % 12];
-    final next = all[(idx + 1) % 12];
-
-    return Stack(
-      clipBehavior: Clip.none,
-      alignment: Alignment.center,
-      children: [
-        _ZodiacMedallion(sign: prev, rotation: -0.3, offsetX: -52, diameter: 68, isPrimary: false),
-        _ZodiacMedallion(sign: next, rotation: 0.3, offsetX: 52, diameter: 68, isPrimary: false),
-        _ZodiacMedallion(sign: sign, rotation: 0, offsetX: 0, diameter: 96, isPrimary: true),
-      ],
-    );
-  }
-}
-
-class _ZodiacMedallion extends StatelessWidget {
-  const _ZodiacMedallion({
-    required this.sign,
-    required this.rotation,
-    required this.offsetX,
-    required this.diameter,
-    required this.isPrimary,
-  });
-
-  final ZodiacSign sign;
-  final double rotation;
-  final double offsetX;
-  final double diameter;
-  final bool isPrimary;
-
-  @override
-  Widget build(BuildContext context) {
-    final colors = context.colors;
-    final d = diameter.r;
-    final cardDark = Color.lerp(colors.primary, Colors.black, 0.72)!;
-    final cardMid = Color.lerp(colors.primary, Colors.black, 0.42)!;
-
-    return Transform.translate(
-      offset: Offset(offsetX, 0),
-      child: Transform.rotate(
-        angle: rotation,
-        child: Container(
-          width: d,
-          height: d,
-          decoration: BoxDecoration(
-            shape: BoxShape.circle,
-            gradient: LinearGradient(
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-              colors:
-                  isPrimary
-                      ? [colors.accent, colors.accent.withValues(alpha: 0.75)]
-                      : [cardDark, cardMid],
-            ),
-            border: Border.all(
-              color: colors.primary.withValues(alpha: isPrimary ? 0.65 : 0.35),
-              width: isPrimary ? 1.2 : 0.8,
-            ),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black.withValues(alpha: isPrimary ? 0.45 : 0.30),
-                blurRadius: isPrimary ? 14 : 8,
-                offset: const Offset(0, 4),
-              ),
-            ],
-          ),
-          child: Center(
-            child: SvgPicture.asset(
-              sign.svgPath,
-              height: d * 0.45,
-              width: d * 0.45,
-              colorFilter: ColorFilter.mode(
-                isPrimary ? colors.primary : colors.primary.withValues(alpha: 0.50),
-                BlendMode.srcIn,
-              ),
-            ),
-          ),
-        ),
-      ),
     );
   }
 }

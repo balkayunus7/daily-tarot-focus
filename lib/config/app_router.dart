@@ -1,5 +1,6 @@
 import 'package:daily_tarot_focus/config/app_routes.dart';
 import 'package:daily_tarot_focus/features/auth/domain/models/tarot_user.dart';
+import 'package:daily_tarot_focus/features/auth/domain/models/tarot_user_zodiac_enum.dart';
 import 'package:daily_tarot_focus/features/auth/presentation/pages/register_account_setup_page.dart';
 import 'package:daily_tarot_focus/features/auth/presentation/pages/register_step_career_page.dart';
 import 'package:daily_tarot_focus/features/auth/presentation/pages/register_step_relationship_page.dart';
@@ -320,10 +321,15 @@ final appRouter = GoRouter(
       path: AppRoutes.zodiacHoroscope,
       name: AppRoutes.zodiacHoroscope,
       pageBuilder: (context, state) {
-        final args = state.extra! as ZodiacHoroscopeArgs;
+        final signValue = state.uri.queryParameters['sign'] ?? '';
+        final sign = ZodiacSign.values.firstWhere(
+          (e) => e.value == signValue,
+          orElse: () => ZodiacSign.aries,
+        );
+        final initialIndex = int.tryParse(state.uri.queryParameters['initialIndex'] ?? '') ?? 0;
         return MaterialPage(
           key: state.pageKey,
-          child: ZodiacHoroscopePage(sign: args.sign, initialIndex: args.initialIndex),
+          child: ZodiacHoroscopePage(sign: sign, initialIndex: initialIndex),
         );
       },
     ),

@@ -8,38 +8,6 @@ class ExploreHoroscopeCard extends StatefulWidget {
 }
 
 class _ExploreHoroscopeCardState extends State<ExploreHoroscopeCard> {
-  late final PageController _controller;
-  int _currentPage = 0;
-
-  static const List<HoroscopePeriod> _periods = HoroscopePeriod.values;
-
-  @override
-  void initState() {
-    super.initState();
-    _controller = PageController();
-    _controller.addListener(_onScroll);
-  }
-
-  void _onScroll() {
-    final page = _controller.page?.round() ?? 0;
-    if (page != _currentPage) setState(() => _currentPage = page);
-  }
-
-  @override
-  void dispose() {
-    _controller
-      ..removeListener(_onScroll)
-      ..dispose();
-    super.dispose();
-  }
-
-  Future<void> _navigate(BuildContext context, ZodiacSign sign) async {
-    await context.pushNamed<void>(
-      AppRoutes.zodiacHoroscope,
-      extra: ZodiacHoroscopeArgs(sign: sign, initialIndex: _currentPage),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<AuthCubit, AuthState>(
@@ -48,13 +16,19 @@ class _ExploreHoroscopeCardState extends State<ExploreHoroscopeCard> {
         final user = state.userOrCrash as TarotUser;
         final sign = user.zodiac;
         if (sign == null) return const SizedBox.shrink();
+        final scope = ExplorePageScope.of(context).state;
 
-        return _HoroscopeCardBody(
-          sign: sign,
-          controller: _controller,
-          currentPage: _currentPage,
-          periods: _periods,
-          onTap: () => _navigate(context, sign),
+        return ExplorePageScope(
+          state: scope,
+          child: ValueListenableBuilder(
+            valueListenable: scope.currHoroscopeCardPage,
+            builder: (_, value, child) {
+              return _HoroscopeCardBody(
+                sign: sign,
+                onTap: () => scope.navigateToHoroscopePage(context, sign),
+              );
+            },
+          ),
         );
       },
     );
@@ -62,24 +36,16 @@ class _ExploreHoroscopeCardState extends State<ExploreHoroscopeCard> {
 }
 
 class _HoroscopeCardBody extends StatelessWidget {
-  const _HoroscopeCardBody({
-    required this.sign,
-    required this.controller,
-    required this.currentPage,
-    required this.periods,
-    required this.onTap,
-  });
-
+  const _HoroscopeCardBody({required this.sign, required this.onTap});
   final ZodiacSign sign;
-  final PageController controller;
-  final int currentPage;
-  final List<HoroscopePeriod> periods;
   final VoidCallback onTap;
 
   @override
   Widget build(BuildContext context) {
     final colors = context.colors;
     final cardHeight = context.suHeight / 6;
+    final scope = ExplorePageScope.of(context).state;
+    final periods = scope.periods;
 
     return ScalingContainer(
       onTap: onTap,
@@ -95,24 +61,28 @@ class _HoroscopeCardBody extends StatelessWidget {
           borderRadius: Sp.large.radiusR,
           border: Border.all(color: colors.border, width: 0.5),
         ),
-        child: Stack(
-          clipBehavior: Clip.none,
-          children: [
-            PageView.builder(
-              controller: controller,
-              physics: const BouncingScrollPhysics(),
-              itemCount: periods.length,
-              itemBuilder: (context, index) => _PeriodContainer(sign: sign, period: periods[index]),
-            ),
-            Positioned(
-              bottom: 10.h,
-              left: 0,
-              right: 0,
-              child: Center(
-                child: _DotsIndicator(count: periods.length, current: currentPage),
-              ),
-            ),
-          ],
+        child: ValueListenableBuilder(
+          valueListenable: scope.currHoroscopeCardPage,
+          builder: (context, value, child) {
+            return Stack(
+              clipBehavior: Clip.none,
+              children: [
+                PageView.builder(
+                  controller: scope.horoscopeCardPageController,
+                  physics: const BouncingScrollPhysics(),
+                  itemCount: scope.periods.length,
+                  itemBuilder:
+                      (context, index) => _PeriodContainer(sign: sign, period: periods[index]),
+                ),
+                Positioned(
+                  bottom: 10.h,
+                  left: 0,
+                  right: 0,
+                  child: Center(child: _DotsIndicator(count: periods.length, current: value)),
+                ),
+              ],
+            );
+          },
         ),
       ),
     );
@@ -195,7 +165,6 @@ class _PeriodVisual extends StatelessWidget {
   }
 }
 
-/// Daily: single prominent zodiac medallion with a sun-glow ring.
 class _DailyVisual extends StatelessWidget {
   const _DailyVisual({required this.sign});
   final ZodiacSign sign;
@@ -439,11 +408,11 @@ class _DotsIndicator extends StatelessWidget {
         return AnimatedContainer(
           duration: const Duration(milliseconds: 200),
           margin: EdgeInsets.symmetric(horizontal: 2.w),
-          width: isActive ? 14.w : 6.w,
-          height: 4.h,
+          width: isActive ? Sp.xlarge.w : Sp.small.w,
+          height: Sp.xsmall.h - 3,
           decoration: BoxDecoration(
             color: colors.textOnPrimary.withValues(alpha: isActive ? 0.9 : 0.35),
-            borderRadius: BorderRadius.circular(2),
+            borderRadius: Sp.tiny.radiusR,
           ),
         );
       }),

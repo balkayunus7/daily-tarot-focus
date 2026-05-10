@@ -6,6 +6,7 @@ class _BottomSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colors = context.colors;
+
     final scope = AnswerBookPageScope.of(context).state;
 
     return ValueListenableBuilder(
@@ -20,7 +21,7 @@ class _BottomSection extends StatelessWidget {
                 opacity: isAnswerShown ? 0.0 : 1.0,
                 duration: const Duration(milliseconds: 300),
                 child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 24.w),
+                  padding: Sp.xlarge.padHR,
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
@@ -29,7 +30,7 @@ class _BottomSection extends StatelessWidget {
                         style: m18w700(context),
                         textAlign: TextAlign.center,
                       ),
-                      SizedBox(height: 16.h),
+                      Sp.large.heightBox,
                       Row(
                         children: [
                           Expanded(
@@ -58,31 +59,14 @@ class _BottomSection extends StatelessWidget {
                 ),
               ),
             ),
-            IgnorePointer(
-              ignoring: !isAnswerShown,
-              child: FadeTransition(
-                opacity: scope.revealController,
-                child: ScalingContainer(
-                  onTap: scope.startCycling,
-                  child: Container(
-                    padding: EdgeInsets.symmetric(horizontal: 36.w, vertical: 14.h),
-                    decoration: BoxDecoration(
-                      gradient: LinearGradient(colors: [colors.gradientStart, colors.gradientEnd]),
-                      borderRadius: BorderRadius.circular(100),
-                      boxShadow: [
-                        BoxShadow(
-                          color: colors.primary.withValues(alpha: 0.35),
-                          blurRadius: 16,
-                          offset: const Offset(0, 6),
-                        ),
-                      ],
-                    ),
-                    child: Text(
-                      LocaleKeys.answer_book_ask_again.tr(),
-                      style: m15w600(context).copyWith(color: colors.textOnPrimary),
-                    ),
-                  ),
-                ),
+            FadeTransition(
+              opacity: scope.revealController,
+              child: FancyButton(
+                onTap: scope.startCycling,
+                text: LocaleKeys.answer_book_ask_again.tr(),
+                width: 128.w,
+                isDisabled: !isAnswerShown,
+                textStyle: m15w600(context).copyWith(color: colors.textOnPrimary),
               ),
             ),
           ],
@@ -101,18 +85,17 @@ class _BottomActionCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final colors = context.colors;
 
-    return Container(
-      padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        color: colors.surface,
-        borderRadius: BorderRadius.circular(14.r),
-        border: Border.all(color: colors.borderSecondary, width: 0.5),
-      ),
+    return FancyContainer(
+      width: double.infinity,
+      padding: Sp.medium.padAllR,
+      borderRadius: Sp.large,
+      color: colors.textSecondary.withValues(alpha: 0.05),
+      border: Border.all(color: colors.border),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Icon(icon, color: colors.primary, size: 26.r),
-          SizedBox(height: 8.h),
+          Icon(icon, color: colors.primary, size: Sp.xlarge.r),
+          Sp.xsmall.heightBox,
           Text(
             label,
             style: m13w500(context).copyWith(color: colors.textPrimary),

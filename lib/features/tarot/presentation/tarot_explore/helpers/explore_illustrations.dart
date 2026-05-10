@@ -38,7 +38,7 @@ class ZodiacIllustration extends StatelessWidget {
         gradient: LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
-          colors: [colors.secondary, colors.primary],
+          colors: [colors.gradientStart, colors.gradientEnd],
         ),
       ),
       child: Stack(
@@ -256,7 +256,7 @@ class CompatibilityIllustration extends StatelessWidget {
         gradient: LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
-          colors: [colors.secondary, colors.primary],
+          colors: [colors.gradientStart, colors.gradientEnd],
         ),
       ),
       child: Stack(
@@ -398,8 +398,6 @@ class DailyFateIllustration extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colors = context.colors;
-    final darkest = colors.primary;
-    final mid = colors.secondary;
     const moonGold = Color(0xFFE8D5A3);
 
     return Container(
@@ -407,8 +405,7 @@ class DailyFateIllustration extends StatelessWidget {
         gradient: LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
-          colors: [darkest, mid, colors.secondary],
-          stops: const [0.0, 0.5, 1.0],
+          colors: [colors.gradientStart, colors.gradientEnd],
         ),
       ),
       child: Stack(
@@ -476,17 +473,13 @@ class SacredDecksIllustration extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colors = context.colors;
-    final darkest = colors.primary;
-    final mid = colors.secondary;
-    final light = colors.primary;
 
     return Container(
       decoration: BoxDecoration(
         gradient: LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
-          colors: [darkest, mid, light],
-          stops: const [0.0, 0.55, 1.0],
+          colors: [colors.gradientStart, colors.gradientEnd],
         ),
       ),
       child: const Stack(
@@ -597,10 +590,7 @@ class BookOfAnswersIllustration extends StatelessWidget {
         gradient: LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
-          colors: [
-            Color.lerp(colors.primary, Colors.black, 0.15)!,
-            Color.lerp(colors.secondary, colors.primary, 0.4)!,
-          ],
+          colors: [colors.gradientStart, colors.gradientEnd],
         ),
       ),
       child: Stack(
@@ -631,10 +621,10 @@ class _BookCardPainter extends CustomPainter {
     final cx = size.width / 2;
     final cy = size.height / 2;
 
-    final bookW = size.shortestSide * 0.72;
-    final bookH = size.shortestSide * 0.58;
+    final bookW = size.shortestSide * 0.65;
+    final bookH = size.shortestSide * 0.5;
     final bookLeft = cx - bookW / 2;
-    final bookTop = cy - bookH / 2 + 4;
+    final bookTop = cy - bookH / 2;
 
     const radius = Radius.circular(4);
 

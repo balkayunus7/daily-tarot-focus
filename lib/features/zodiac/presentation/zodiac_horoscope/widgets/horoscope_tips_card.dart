@@ -32,10 +32,10 @@ class TipsCard extends StatelessWidget {
                   Container(
                     width: 10.w,
                     height: 10.h,
-                    margin: EdgeInsets.only(top: 3.h),
+                    margin: EdgeInsets.only(top: Sp.xsmall.h),
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
-                      color: tip.isAdvice ? const Color(0xFF4CAF50) : const Color(0xFFE05A5A),
+                      color: tip.isAdvice ? colors.success : colors.error,
                     ),
                   ),
                   Sp.xsmall.widthBox,
@@ -47,8 +47,7 @@ class TipsCard extends StatelessWidget {
                             text:
                                 '${tip.isAdvice ? LocaleKeys.horoscope_page_advice_label.tr() : LocaleKeys.horoscope_page_warning_label.tr()}: ',
                             style: m13w600(context).copyWith(
-                              color:
-                                  tip.isAdvice ? const Color(0xFF4CAF50) : const Color(0xFFE05A5A),
+                              color: tip.isAdvice ? colors.success : colors.error,
                             ),
                           ),
                           TextSpan(

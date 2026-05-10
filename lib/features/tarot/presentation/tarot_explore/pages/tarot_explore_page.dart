@@ -13,7 +13,6 @@ import 'package:daily_tarot_focus/features/tarot/bloc/tarot/tarot_bloc.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/tarot_flow_type.dart';
 import 'package:daily_tarot_focus/features/tarot/presentation/tarot_explore/helpers/explore_illustrations.dart';
 import 'package:daily_tarot_focus/features/zodiac/domain/models/horoscope_period_enum.dart';
-import 'package:daily_tarot_focus/features/zodiac/presentation/zodiac_horoscope/pages/zodiac_horoscope_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
@@ -70,7 +69,7 @@ class _TarotExplorePageState extends State<TarotExplorePage> with ExplorePageSta
                       const ExploreAskQuestionCard(),
                       Sp.medium.heightBox,
                       const ExploreSpreadCard(),
-                      Sp.large.heightBox,
+                      Sp.medium.heightBox,
                       Text(LocaleKeys.explore_page_spiritual_guide.tr(), style: m15w600(context)),
                       Sp.medium.heightBox,
                       Row(
@@ -88,9 +87,9 @@ class _TarotExplorePageState extends State<TarotExplorePage> with ExplorePageSta
                       ),
                     ] else ...[
                       const ExploreHoroscopeCard(),
-                      Sp.large.heightBox,
-                      Text(LocaleKeys.compat_page_section_label.tr(), style: m15w600(context)),
                       Sp.medium.heightBox,
+                      Text(LocaleKeys.compat_page_section_label.tr(), style: m15w600(context)),
+                      Sp.small.heightBox,
                       Row(
                         children: [
                           const Expanded(child: ExploreZodiacCard()),
@@ -99,6 +98,8 @@ class _TarotExplorePageState extends State<TarotExplorePage> with ExplorePageSta
                         ],
                       ),
                       Sp.medium.heightBox,
+                      Text('Guidance', style: m15w600(context)),
+                      Sp.small.heightBox,
                       Row(
                         children: [
                           const Expanded(child: ExploreAnswerBookCard()),

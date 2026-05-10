@@ -4,6 +4,8 @@ import 'dart:ui';
 import 'package:daily_tarot_focus/core/util/locale_keys.dart';
 import 'package:daily_tarot_focus/core/util/tarot_app_sizes.dart';
 import 'package:daily_tarot_focus/core/util/text_style_helper.dart';
+import 'package:daily_tarot_focus/core/widgets/fancy_button.dart';
+import 'package:daily_tarot_focus/core/widgets/fancy_container.dart';
 import 'package:daily_tarot_focus/core/widgets/tarot_app_bar.dart';
 import 'package:daily_tarot_focus/features/zodiac/presentation/answer_book/helpers/answer_book_page_mixin.dart';
 import 'package:daily_tarot_focus/features/zodiac/presentation/answer_book/helpers/answer_book_page_scope.dart';
@@ -11,7 +13,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mobile_boilerplate/common_dependencies.dart';
 import 'package:mobile_boilerplate/presentation/extensions/build_context_theme_ext.dart';
-import 'package:mobile_boilerplate/presentation/widgets/scaling_container.dart';
 
 part '../widgets/answer_book_illustration.dart';
 part '../widgets/answer_bottom_section.dart';
@@ -104,7 +105,6 @@ class _BookVisual extends StatelessWidget {
                       height: 1.35,
                       shadows: [
                         Shadow(color: Colors.black.withValues(alpha: 0.85), blurRadius: 16),
-                        Shadow(color: Colors.black.withValues(alpha: 0.6), blurRadius: 4),
                       ],
                     ),
                     textAlign: TextAlign.center,

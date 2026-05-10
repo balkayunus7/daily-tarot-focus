@@ -27,9 +27,9 @@ import 'package:daily_tarot_focus/features/tarot/presentation/tarot_spread/pages
 import 'package:daily_tarot_focus/features/tarot/presentation/tarot_spread/pages/tarot_spread_step5_page.dart';
 import 'package:daily_tarot_focus/features/tarot/presentation/tarot_spread/pages/tarot_spread_step6_page.dart';
 import 'package:daily_tarot_focus/features/zodiac/domain/models/generate_compatibility_request_model.dart';
+import 'package:daily_tarot_focus/features/zodiac/presentation/answer_book/pages/answer_book_page.dart';
 import 'package:daily_tarot_focus/features/zodiac/presentation/zodiac_compatibility/pages/zodiac_compatibility_input_page.dart';
 import 'package:daily_tarot_focus/features/zodiac/presentation/zodiac_compatibility/pages/zodiac_compatibility_result_page.dart';
-import 'package:daily_tarot_focus/features/zodiac/presentation/answer_book/pages/answer_book_page.dart';
 import 'package:daily_tarot_focus/features/zodiac/presentation/zodiac_horoscope/pages/zodiac_horoscope_page.dart';
 import 'package:daily_tarot_focus/features/zodiac/presentation/zodiac_learn/pages/zodiac_learn_page.dart';
 import 'package:flutter/material.dart';

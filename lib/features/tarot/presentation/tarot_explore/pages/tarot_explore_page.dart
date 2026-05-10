@@ -33,6 +33,7 @@ part '../widgets/explore_ask_question_card.dart';
 part '../widgets/explore_zodiac_card.dart';
 part '../widgets/explore_compatibility_card.dart';
 part '../widgets/explore_horoscope_card.dart';
+part '../widgets/explore_answer_book_card.dart';
 part '../helpers/explore_page_mixin.dart';
 part '../helpers/explore_page_scope.dart';
 
@@ -95,6 +96,14 @@ class _TarotExplorePageState extends State<TarotExplorePage> with ExplorePageSta
                           const Expanded(child: ExploreZodiacCard()),
                           Sp.medium.widthBox,
                           const Expanded(child: ExploreCompatibilityCard()),
+                        ],
+                      ),
+                      Sp.medium.heightBox,
+                      Row(
+                        children: [
+                          const Expanded(child: ExploreAnswerBookCard()),
+                          Sp.medium.widthBox,
+                          const Expanded(child: ExploreAnswerBookCard()),
                         ],
                       ),
                     ],

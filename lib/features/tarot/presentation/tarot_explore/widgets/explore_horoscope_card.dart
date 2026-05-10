@@ -102,11 +102,7 @@ class _HoroscopeCardBody extends StatelessWidget {
               controller: controller,
               physics: const BouncingScrollPhysics(),
               itemCount: periods.length,
-              itemBuilder:
-                  (context, index) => _PeriodContainer(
-                    sign: sign,
-                    period: periods[index],
-                  ),
+              itemBuilder: (context, index) => _PeriodContainer(sign: sign, period: periods[index]),
             ),
             Positioned(
               bottom: 10.h,
@@ -157,7 +153,7 @@ class _PeriodContainer extends StatelessWidget {
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                 ),
-                Sp.small.heightBox,
+                Sp.large.heightBox,
                 IgnorePointer(
                   child: UnconstrainedBox(
                     alignment: Alignment.centerLeft,
@@ -184,7 +180,6 @@ class _PeriodContainer extends StatelessWidget {
   }
 }
 
-/// Renders a unique visual per period instead of the same medallion stack.
 class _PeriodVisual extends StatelessWidget {
   const _PeriodVisual({required this.sign, required this.period});
   final ZodiacSign sign;

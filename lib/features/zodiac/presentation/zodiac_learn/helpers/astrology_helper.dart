@@ -165,7 +165,13 @@ class ZodiacLearnHelper {
     final latR = _rad(lat.clamp(-89.9, 89.9));
     final num = -cos(ramc);
     final den = sin(ramc) * cos(eps) + tan(latR) * sin(eps);
-    return _norm(_deg(atan2(num, den)));
+    var asc = _deg(atan2(num, den));
+    // atan2 returns one of two roots 180° apart; pick the eastern (rising) one.
+    // Derived condition: atan2 root is the descendant when cos(ε) + sin(ε)·tan(φ)·sin(RAMC) > 0.
+    if (cos(eps) + sin(eps) * tan(latR) * sin(ramc) > 0) {
+      asc += 180;
+    }
+    return _norm(asc);
   }
 
   static ZodiacSign _longitudeToSign(double lon) => ZodiacSign.values[(lon / 30).floor() % 12];

@@ -327,6 +327,13 @@ abstract class LocaleKeys {
   static const zodiac_page_success_moon = 'zodiac_page.success_moon';
   static const zodiac_page_success_rising = 'zodiac_page.success_rising';
   static const zodiac_page_city_not_found = 'zodiac_page.city_not_found';
+  static const zodiac_page_select_country = 'zodiac_page.select_country';
+  static const zodiac_page_select_state = 'zodiac_page.select_state';
+  static const zodiac_page_select_city = 'zodiac_page.select_city';
+  static const zodiac_page_search_hint = 'zodiac_page.search_hint';
+  static const zodiac_page_confirm = 'zodiac_page.confirm';
+  static const zodiac_page_no_results = 'zodiac_page.no_results';
+  static const zodiac_page_no_states = 'zodiac_page.no_states';
   static const zodiac_page_desc_aries = 'zodiac_page.desc_aries';
   static const zodiac_page_desc_taurus = 'zodiac_page.desc_taurus';
   static const zodiac_page_desc_gemini = 'zodiac_page.desc_gemini';

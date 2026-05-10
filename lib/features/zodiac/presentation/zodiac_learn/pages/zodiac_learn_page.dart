@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:country_state_city/country_state_city.dart' as csc;
 import 'package:daily_tarot_focus/config/app_routes.dart';
 import 'package:daily_tarot_focus/core/util/locale_keys.dart';
 import 'package:daily_tarot_focus/core/util/tarot_app_sizes.dart';
@@ -13,6 +14,7 @@ import 'package:daily_tarot_focus/features/auth/domain/models/tarot_user_zodiac_
 import 'package:daily_tarot_focus/features/tarot/bloc/tarot/tarot_bloc.dart';
 import 'package:daily_tarot_focus/features/tarot/bloc/tarot/tarot_state.dart';
 import 'package:daily_tarot_focus/features/zodiac/presentation/zodiac_learn/helpers/astrology_helper.dart';
+import 'package:daily_tarot_focus/features/zodiac/presentation/zodiac_learn/helpers/birth_timezone_resolver.dart';
 import 'package:daily_tarot_focus/features/zodiac/presentation/zodiac_learn/helpers/zodiac_page_mixin.dart';
 import 'package:daily_tarot_focus/features/zodiac/presentation/zodiac_learn/helpers/zodiac_page_scope.dart';
 import 'package:flutter/material.dart';

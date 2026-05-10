@@ -20,10 +20,16 @@ class ZodiacEmptyView extends StatelessWidget {
         builder: (_) {
           return BirthInputSheet(
             type: type,
-            onSubmit: (date, time, city) async {
+            onSubmit: (date, time, latitude, longitude, zoneName) async {
               Navigator.of(context).pop();
               if (type.isRising) {
-                await scope.calculateRising(birthDate: date, birthTime: time, city: city ?? '');
+                await scope.calculateRising(
+                  birthDate: date,
+                  birthTime: time,
+                  latitude: latitude!,
+                  longitude: longitude!,
+                  zoneName: zoneName,
+                );
               } else {
                 await scope.calculateMoon(birthDate: date, birthTime: time);
               }

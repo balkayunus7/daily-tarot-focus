@@ -578,6 +578,125 @@ class _MiniTarotCard extends StatelessWidget {
   }
 }
 
+class NumerologyIllustration extends StatelessWidget {
+  const NumerologyIllustration({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final colors = context.colors;
+
+    return Container(
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: [colors.gradientStart, colors.gradientEnd],
+        ),
+      ),
+      child: Stack(
+        children: [
+          const Positioned(top: 8, left: 14, child: Sparkle(size: 2, opacity: 0.7)),
+          const Positioned(top: 22, right: 14, child: Sparkle(size: 1.5, opacity: 0.55)),
+          const Positioned(bottom: 14, right: 12, child: Sparkle(size: 2, opacity: 0.7)),
+          const Positioned(bottom: 24, left: 10, child: Sparkle(size: 1.5, opacity: 0.45)),
+          const Positioned(top: 10, right: 34, child: Sparkle(size: 1, opacity: 0.55)),
+          Positioned.fill(
+            child: CustomPaint(
+              painter: _NumerologyCardPainter(
+                primaryColor: colors.primary,
+                accentColor: colors.accent,
+                textOnPrimaryColor: colors.textOnPrimary,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _NumerologyCardPainter extends CustomPainter {
+  const _NumerologyCardPainter({
+    required this.primaryColor,
+    required this.accentColor,
+    required this.textOnPrimaryColor,
+  });
+  final Color primaryColor;
+  final Color accentColor;
+  final Color textOnPrimaryColor;
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final cx = size.width / 2;
+    final cy = size.height / 2;
+    final ringRadius = size.shortestSide * 0.36;
+
+    canvas.drawCircle(
+      Offset(cx, cy),
+      ringRadius,
+      Paint()
+        ..color = Colors.white.withValues(alpha: 0.18)
+        ..style = PaintingStyle.stroke
+        ..strokeWidth = 0.75,
+    );
+
+    final dotPaint = Paint()..style = PaintingStyle.fill;
+    for (var i = 0; i < 9; i++) {
+      final angle = (i * 40 - 90) * pi / 180;
+      final isMajor = i % 3 == 0;
+      dotPaint.color = Colors.white.withValues(alpha: isMajor ? 0.7 : 0.35);
+      canvas.drawCircle(
+        Offset(cx + ringRadius * cos(angle), cy + ringRadius * sin(angle)),
+        isMajor ? 1.8 : 1.0,
+        dotPaint,
+      );
+    }
+
+    final glowPaint =
+        Paint()
+          ..shader = RadialGradient(
+            colors: [
+              accentColor.withValues(alpha: 0.55),
+              accentColor.withValues(alpha: 0),
+            ],
+          ).createShader(Rect.fromCircle(center: Offset(cx, cy), radius: ringRadius * 0.85));
+    canvas.drawCircle(Offset(cx, cy), ringRadius * 0.85, glowPaint);
+
+    final coreRadius = ringRadius * 0.42;
+    canvas.drawCircle(
+      Offset(cx, cy),
+      coreRadius,
+      Paint()
+        ..shader = LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: [
+            Color.lerp(primaryColor, Colors.white, 0.15)!,
+            primaryColor,
+          ],
+        ).createShader(Rect.fromCircle(center: Offset(cx, cy), radius: coreRadius)),
+    );
+
+    final tp = TextPainter(
+      text: TextSpan(
+        text: '7',
+        style: TextStyle(
+          color: textOnPrimaryColor,
+          fontSize: ringRadius * 0.92,
+          fontWeight: FontWeight.w700,
+          height: 1,
+        ),
+      ),
+      textDirection: TextDirection.ltr,
+    )..layout();
+    tp.paint(canvas, Offset(cx - tp.width / 2, cy - tp.height / 2));
+  }
+
+  @override
+  bool shouldRepaint(_NumerologyCardPainter old) =>
+      old.primaryColor != primaryColor || old.accentColor != accentColor;
+}
+
 class BookOfAnswersIllustration extends StatelessWidget {
   const BookOfAnswersIllustration({super.key});
 

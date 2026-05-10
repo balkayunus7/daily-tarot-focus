@@ -29,6 +29,8 @@ import 'package:daily_tarot_focus/features/tarot/presentation/tarot_spread/pages
 import 'package:daily_tarot_focus/features/tarot/presentation/tarot_spread/pages/tarot_spread_step6_page.dart';
 import 'package:daily_tarot_focus/features/zodiac/domain/models/generate_compatibility_request_model.dart';
 import 'package:daily_tarot_focus/features/zodiac/presentation/answer_book/pages/answer_book_page.dart';
+import 'package:daily_tarot_focus/features/zodiac/presentation/numerology/presentation/pages/numerology_input_page.dart';
+import 'package:daily_tarot_focus/features/zodiac/presentation/numerology/presentation/pages/numerology_result_page.dart';
 import 'package:daily_tarot_focus/features/zodiac/presentation/zodiac_compatibility/pages/zodiac_compatibility_input_page.dart';
 import 'package:daily_tarot_focus/features/zodiac/presentation/zodiac_compatibility/pages/zodiac_compatibility_result_page.dart';
 import 'package:daily_tarot_focus/features/zodiac/presentation/zodiac_horoscope/pages/zodiac_horoscope_page.dart';
@@ -361,6 +363,27 @@ final appRouter = GoRouter(
         return MaterialPage(
           key: state.pageKey,
           child: const AnswerBookPage(),
+        );
+      },
+    ),
+    GoRoute(
+      path: AppRoutes.numerologyInput,
+      name: AppRoutes.numerologyInput,
+      pageBuilder: (context, state) {
+        return MaterialPage(
+          key: state.pageKey,
+          child: const NumerologyInputPage(),
+        );
+      },
+    ),
+    GoRoute(
+      path: AppRoutes.numerologyResult,
+      name: AppRoutes.numerologyResult,
+      pageBuilder: (context, state) {
+        final extra = state.extra! as (DateTime, String);
+        return MaterialPage(
+          key: state.pageKey,
+          child: NumerologyResultPage(birthDate: extra.$1, fullName: extra.$2),
         );
       },
     ),

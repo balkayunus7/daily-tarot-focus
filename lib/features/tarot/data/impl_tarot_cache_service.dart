@@ -17,8 +17,9 @@ class ImplTarotCacheService {
       final json = prefs.getString(_cardsKey(locale));
       if (json == null) return null;
       final list = jsonDecode(json) as List;
-      return list.map((e) => TarotCardModel.fromMap(e as Map<String, dynamic>)).toList();
-    } on Exception catch (_) {
+      final cards = list.map((e) => TarotCardModel.fromMap(e as Map<String, dynamic>)).toList();
+      return cards;
+    } on Exception {
       return null;
     }
   }
@@ -27,7 +28,9 @@ class ImplTarotCacheService {
     try {
       final prefs = await SharedPreferences.getInstance();
       await prefs.setString(_cardsKey(locale), jsonEncode(cards.map((e) => e.toMap()).toList()));
-    } on Exception catch (_) {}
+    } on Exception {
+      rethrow;
+    }
   }
 
   // SPREADS
@@ -37,8 +40,10 @@ class ImplTarotCacheService {
       final json = prefs.getString(_spreadsKey(locale));
       if (json == null) return null;
       final list = jsonDecode(json) as List;
-      return list.map((e) => TarotSpreadCategoryModel.fromMap(e as Map<String, dynamic>)).toList();
-    } on Exception catch (_) {
+      final spreads =
+          list.map((e) => TarotSpreadCategoryModel.fromMap(e as Map<String, dynamic>)).toList();
+      return spreads;
+    } on Exception {
       return null;
     }
   }
@@ -46,8 +51,13 @@ class ImplTarotCacheService {
   Future<void> saveSpreads(List<TarotSpreadCategoryModel> spreads, String locale) async {
     try {
       final prefs = await SharedPreferences.getInstance();
-      await prefs.setString(_spreadsKey(locale), jsonEncode(spreads.map((e) => e.toMap()).toList()));
-    } on Exception catch (_) {}
+      await prefs.setString(
+        _spreadsKey(locale),
+        jsonEncode(spreads.map((e) => e.toMap()).toList()),
+      );
+    } on Exception {
+      rethrow;
+    }
   }
 
   // READERS
@@ -57,8 +67,9 @@ class ImplTarotCacheService {
       final json = prefs.getString(_readersKey(locale));
       if (json == null) return null;
       final list = jsonDecode(json) as List;
-      return list.map((e) => TarotReaderModel.fromMap(e as Map<String, dynamic>)).toList();
-    } on Exception catch (_) {
+      final readers = list.map((e) => TarotReaderModel.fromMap(e as Map<String, dynamic>)).toList();
+      return readers;
+    } on Exception {
       return null;
     }
   }
@@ -66,17 +77,24 @@ class ImplTarotCacheService {
   Future<void> saveReaders(List<TarotReaderModel> readers, String locale) async {
     try {
       final prefs = await SharedPreferences.getInstance();
-      await prefs.setString(_readersKey(locale), jsonEncode(readers.map((e) => e.toMap()).toList()));
-    } on Exception catch (_) {}
+      await prefs.setString(
+        _readersKey(locale),
+        jsonEncode(readers.map((e) => e.toMap()).toList()),
+      );
+    } on Exception {
+      rethrow;
+    }
   }
 
-  // CLEAR — removes all tarot_ prefixed keys across all locales
+  // CLEAR
   Future<void> clearCache() async {
     try {
       final prefs = await SharedPreferences.getInstance();
       final keys = prefs.getKeys().where((k) => k.startsWith('tarot_')).toList();
       await Future.wait(keys.map(prefs.remove));
-    } on Exception catch (_) {}
+    } on Exception {
+      rethrow;
+    }
   }
 
   Future<bool> hasCache(String locale) async {

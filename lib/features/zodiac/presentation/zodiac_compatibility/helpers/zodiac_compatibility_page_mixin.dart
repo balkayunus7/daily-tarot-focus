@@ -1,9 +1,16 @@
+import 'dart:async';
+
+import 'package:daily_tarot_focus/config/app_routes.dart';
+import 'package:daily_tarot_focus/config/restartable_app.dart';
 import 'package:daily_tarot_focus/core/util/locale_extensions.dart';
 import 'package:daily_tarot_focus/features/auth/domain/models/tarot_user.dart';
 import 'package:daily_tarot_focus/features/auth/domain/models/tarot_user_zodiac_enum.dart';
+import 'package:daily_tarot_focus/features/tarot/bloc/tarot/tarot_bloc.dart';
+import 'package:daily_tarot_focus/features/tarot/bloc/tarot/tarot_state.dart';
 import 'package:daily_tarot_focus/features/zodiac/bloc/zodiac/zodiac_bloc.dart';
 import 'package:daily_tarot_focus/features/zodiac/domain/models/generate_compatibility_request_model.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:mobile_boilerplate/application/auth/auth_cubit.dart';
 import 'package:mobile_boilerplate/common_dependencies.dart';
 
@@ -116,4 +123,19 @@ mixin ZodiacCompatibilityPageMixin<T extends StatefulWidget> on State<T>, Ticker
 
   void calculate() =>
       context.read<ZodiacBloc>().addGenerateCompatibilityRequested(request: buildRequest());
+
+  Widget wrapWithRestartListener(BuildContext context, Widget child) {
+    return BlocListener<TarotBloc, TarotState>(
+      listenWhen:
+          (p, c) => p.clearCacheFailureOrUnit.isNone() && c.clearCacheFailureOrUnit.isSome(),
+      listener: (ctx, _) async {
+        if (ctx.canPop()) ctx.pop();
+        if (!ctx.mounted) return;
+        ctx.go(AppRoutes.splash);
+        if (!ctx.mounted) return;
+        await RestartableApp.restartApp(ctx);
+      },
+      child: child,
+    );
+  }
 }

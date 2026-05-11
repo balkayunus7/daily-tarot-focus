@@ -74,7 +74,9 @@ class ImplTarotRemoteDataSource implements ITarotRemoteDataSource {
       body: {'locale': request.locale},
     );
 
-    if (responseOrFail.isLeft()) throw Exception();
+    if (responseOrFail.isLeft()) {
+      throw Exception();
+    }
 
     final response = responseOrFail.getRightOrCrash();
     return FetchAllCardsResponse.fromMap(decodeSupabaseResponse(response.data));
@@ -95,7 +97,9 @@ class ImplTarotRemoteDataSource implements ITarotRemoteDataSource {
       body: {'locale': request.locale},
     );
 
-    if (responseOrFail.isLeft()) throw Exception();
+    if (responseOrFail.isLeft()) {
+      throw Exception();
+    }
 
     final response = responseOrFail.getRightOrCrash();
     return FetchSpreadsResponse.fromMap(decodeSupabaseResponse(response.data));
@@ -111,7 +115,9 @@ class ImplTarotRemoteDataSource implements ITarotRemoteDataSource {
       body: {'locale': request.locale},
     );
 
-    if (responseOrFail.isLeft()) throw Exception();
+    if (responseOrFail.isLeft()) {
+      throw Exception();
+    }
 
     final response = responseOrFail.getRightOrCrash();
     return FetchReadersResponse.fromMap(decodeSupabaseResponse(response.data));
@@ -129,7 +135,9 @@ class ImplTarotRemoteDataSource implements ITarotRemoteDataSource {
       session: request.session,
     );
 
-    if (responseOrFail.isLeft()) throw Exception();
+    if (responseOrFail.isLeft()) {
+      throw Exception();
+    }
 
     final response = responseOrFail.getRightOrCrash();
     return GenerateReadingResponse.fromMap(decodeSupabaseResponse(response.data));

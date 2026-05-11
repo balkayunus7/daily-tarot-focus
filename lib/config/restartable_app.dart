@@ -5,7 +5,6 @@ import 'package:mobile_boilerplate/common_dependencies.dart';
 
 class RestartableApp extends StatefulWidget {
   const RestartableApp({required this.child, super.key});
-
   final Widget child;
 
   static Future<void> restartApp(BuildContext context) async {

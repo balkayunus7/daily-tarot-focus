@@ -34,49 +34,52 @@ class _TarotCompatibilityResultPageState extends State<TarotCompatibilityResultP
   Widget build(BuildContext context) {
     final colors = context.colors;
 
-    return BlocBuilder<ZodiacBloc, ZodiacState>(
-      buildWhen: (p, c) {
-        final key = widget.request.cacheKey;
-        return p.isGeneratingCompatibility != c.isGeneratingCompatibility ||
-            p.compatibilityCache[key] != c.compatibilityCache[key];
-      },
-      builder: (context, state) {
-        final response = state.compatibilityCache[widget.request.cacheKey];
+    return wrapWithRestartListener(
+      context,
+      BlocBuilder<ZodiacBloc, ZodiacState>(
+        buildWhen: (p, c) {
+          final key = widget.request.cacheKey;
+          return p.isGeneratingCompatibility != c.isGeneratingCompatibility ||
+              p.compatibilityCache[key] != c.compatibilityCache[key];
+        },
+        builder: (context, state) {
+          final response = state.compatibilityCache[widget.request.cacheKey];
 
-        return ZodiacCompatibilityPageScope(
-          state: this,
-          child: Scaffold(
-            backgroundColor: colors.background,
-            body: SafeArea(
-              bottom: false,
-              child: Column(
-                children: [
-                  TarotAppBar(
-                    title: LocaleKeys.compat_page_title.tr(),
-                    titleStyle: m18w700(context),
-                  ),
-                  Expanded(
-                    child: SingleChildScrollView(
-                      padding: EdgeInsets.fromLTRB(
-                        Sp.screen.w,
-                        Sp.large.h,
-                        Sp.screen.w,
-                        Sp.xxxlarge.h + MediaQuery.of(context).padding.bottom,
-                      ),
-                      child: Builder(
-                        builder: (context) {
-                          if (response == null) return _ShimmerContent(request: widget.request);
-                          return _ResultContent(request: widget.request, response: response);
-                        },
+          return ZodiacCompatibilityPageScope(
+            state: this,
+            child: Scaffold(
+              backgroundColor: colors.background,
+              body: SafeArea(
+                bottom: false,
+                child: Column(
+                  children: [
+                    TarotAppBar(
+                      title: LocaleKeys.compat_page_title.tr(),
+                      titleStyle: m18w700(context),
+                    ),
+                    Expanded(
+                      child: SingleChildScrollView(
+                        padding: EdgeInsets.fromLTRB(
+                          Sp.screen.w,
+                          Sp.large.h,
+                          Sp.screen.w,
+                          Sp.xxxlarge.h + MediaQuery.of(context).padding.bottom,
+                        ),
+                        child: Builder(
+                          builder: (context) {
+                            if (response == null) return _ShimmerContent(request: widget.request);
+                            return _ResultContent(request: widget.request, response: response);
+                          },
+                        ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
-          ),
-        );
-      },
+          );
+        },
+      ),
     );
   }
 }

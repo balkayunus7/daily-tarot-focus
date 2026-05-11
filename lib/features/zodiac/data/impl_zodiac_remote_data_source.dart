@@ -26,7 +26,9 @@ class ImplZodiacRemoteDataSource implements IZodiacRemoteDataSource {
       session: request.session,
     );
 
-    if (responseOrFail.isLeft()) throw Exception();
+    if (responseOrFail.isLeft()) {
+      throw Exception();
+    }
 
     final response = responseOrFail.getRightOrCrash();
     return GenerateCompatibilityResponse.fromMap(decodeSupabaseResponse(response.data));
@@ -43,7 +45,9 @@ class ImplZodiacRemoteDataSource implements IZodiacRemoteDataSource {
       session: request.session,
     );
 
-    if (responseOrFail.isLeft()) throw Exception();
+    if (responseOrFail.isLeft()) {
+      throw Exception();
+    }
 
     final response = responseOrFail.getRightOrCrash();
     return HoroscopeResponseModel.fromMap(decodeSupabaseResponse(response.data));

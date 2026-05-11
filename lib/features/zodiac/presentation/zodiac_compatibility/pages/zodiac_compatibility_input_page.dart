@@ -37,48 +37,51 @@ class _TarotCompatibilityInputPageState extends State<TarotCompatibilityInputPag
   Widget build(BuildContext context) {
     final colors = context.colors;
 
-    return Scaffold(
-      backgroundColor: colors.background,
-      body: SafeArea(
-        bottom: false,
-        child: Column(
-          children: [
-            TarotAppBar(
-              title: LocaleKeys.compat_page_title.tr(),
-              titleStyle: m18w700(context),
-            ),
-            Expanded(
-              child: SingleChildScrollView(
-                padding: Sp.large.padSymR(h: Sp.large.w, v: Sp.large.h),
-                child: Column(
-                  children: [
-                    _PersonSection(label: LocaleKeys.compat_page_you.tr(), isMe: true),
-                    Sp.xlarge.heightBox,
-                    _PersonSection(label: LocaleKeys.compat_page_partner.tr(), isMe: false),
-                  ],
+    return wrapWithRestartListener(
+      context,
+      Scaffold(
+        backgroundColor: colors.background,
+        body: SafeArea(
+          bottom: false,
+          child: Column(
+            children: [
+              TarotAppBar(
+                title: LocaleKeys.compat_page_title.tr(),
+                titleStyle: m18w700(context),
+              ),
+              Expanded(
+                child: SingleChildScrollView(
+                  padding: Sp.large.padSymR(h: Sp.large.w, v: Sp.large.h),
+                  child: Column(
+                    children: [
+                      _PersonSection(label: LocaleKeys.compat_page_you.tr(), isMe: true),
+                      Sp.xlarge.heightBox,
+                      _PersonSection(label: LocaleKeys.compat_page_partner.tr(), isMe: false),
+                    ],
+                  ),
                 ),
               ),
-            ),
-            Padding(
-              padding: EdgeInsets.fromLTRB(
-                Sp.screen.w,
-                Sp.medium.h,
-                Sp.screen.w,
-                Sp.large.h + MediaQuery.of(context).padding.bottom,
+              Padding(
+                padding: EdgeInsets.fromLTRB(
+                  Sp.screen.w,
+                  Sp.medium.h,
+                  Sp.screen.w,
+                  Sp.large.h + MediaQuery.of(context).padding.bottom,
+                ),
+                child: FancyButton(
+                  width: double.infinity,
+                  height: 52.h,
+                  text: LocaleKeys.compat_page_calculate.tr(),
+                  textStyle: m16w700(context).copyWith(color: colors.textOnPrimary),
+                  onTap: () {
+                    final request = buildRequest();
+                    context.read<ZodiacBloc>().addGenerateCompatibilityRequested(request: request);
+                    unawaited(context.push(AppRoutes.tarotCompatibilityResult, extra: request));
+                  },
+                ),
               ),
-              child: FancyButton(
-                width: double.infinity,
-                height: 52.h,
-                text: LocaleKeys.compat_page_calculate.tr(),
-                textStyle: m16w700(context).copyWith(color: colors.textOnPrimary),
-                onTap: () {
-                  final request = buildRequest();
-                  context.read<ZodiacBloc>().addGenerateCompatibilityRequested(request: request);
-                  unawaited(context.push(AppRoutes.tarotCompatibilityResult, extra: request));
-                },
-              ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

@@ -89,6 +89,14 @@ class GenerateCompatibilityResponseModel with EquatableMixin {
   final int overallScore;
   final List<CompatibilityCategoryModel> categories;
 
+  Map<String, dynamic> toMap() => {
+    'summary': summary,
+    'overall_score': overallScore,
+    'categories': categories
+        .map((c) => {'score': c.score, 'description': c.description})
+        .toList(),
+  };
+
   String get titleKey {
     if (overallScore >= 70) return LocaleKeys.compat_page_title_high;
     if (overallScore >= 50) return LocaleKeys.compat_page_title_medium;

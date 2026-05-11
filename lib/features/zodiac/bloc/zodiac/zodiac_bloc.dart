@@ -33,9 +33,19 @@ class ZodiacBloc extends Bloc<ZodiacEvent, ZodiacState> {
     ZodiacGenerateCompatibilityRequested event,
     Emitter<ZodiacState> emit,
   ) async {
+    if (!_hasLoadedCompatibilityCache) {
+      final persistentCache = await _zodiacCacheService.getCompatibilityCache();
+      if (persistentCache != null && persistentCache.isNotEmpty) {
+        emit(state.copyWith(compatibilityCache: persistentCache));
+      }
+      _hasLoadedCompatibilityCache = true;
+    }
+
     final key = event.request.cacheKey;
 
-    if (state.compatibilityCache.containsKey(key)) return;
+    if (state.compatibilityCache.containsKey(key)) {
+      return;
+    }
 
     emit(
       state.copyWith(isGeneratingCompatibility: true, fetchCompatibilityFailureOrResult: none()),
@@ -53,6 +63,10 @@ class ZodiacBloc extends Bloc<ZodiacEvent, ZodiacState> {
         compatibilityCache: updatedCache,
       ),
     );
+
+    if (result.isRight()) {
+      await _zodiacCacheService.saveCompatibilityCache(updatedCache);
+    }
   }
 
   Future<void> _onGenerateHoroscopeRequested(
@@ -63,14 +77,16 @@ class ZodiacBloc extends Bloc<ZodiacEvent, ZodiacState> {
 
     if (!_hasLoadedCache) {
       final persistentCache = await _zodiacCacheService.getHoroscopeCache();
-      if (persistentCache != null) {
+      if (persistentCache != null && persistentCache.isNotEmpty) {
         emit(state.copyWith(horoscopeCache: persistentCache));
       }
       _hasLoadedCache = true;
     }
 
     final cached = state.horoscopeCache[key];
-    if (cached != null && !cached.isExpired) return;
+    if (cached != null && !cached.isExpired) {
+      return;
+    }
 
     emit(
       state.copyWith(isGeneratingHoroscope: true, fetchHoroscopeFailureOrResult: none()),
@@ -100,4 +116,5 @@ class ZodiacBloc extends Bloc<ZodiacEvent, ZodiacState> {
   final ImplZodiacRepository _zodiacRepository;
   final ImplZodiacCacheService _zodiacCacheService;
   bool _hasLoadedCache = false;
+  bool _hasLoadedCompatibilityCache = false;
 }

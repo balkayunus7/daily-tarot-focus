@@ -22,6 +22,7 @@ class _RestartableAppState extends State<RestartableApp> {
   Future<void> restartApp() async {
     await getIt.reset();
     await setupDependencies();
+    await EasyLocalization.ensureInitialized();
     if (!mounted) return;
     setState(() => key = UniqueKey());
   }

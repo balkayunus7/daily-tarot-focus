@@ -42,7 +42,6 @@ abstract class LocaleKeys {
   static const tarot_detail_element = 'tarot_detail.element';
   static const tarot_detail_yes_no = 'tarot_detail.yes_no';
   static const tarot_detail_finance = 'tarot_detail.finance';
-  static const tarot_detail_the_essence = 'tarot_detail.the_essence';
   static const tarot_detail_upright_meaning = 'tarot_detail.upright_meaning';
   static const tarot_detail_reversed_meaning = 'tarot_detail.reversed_meaning';
   static const tarot_detail_archive_title = 'tarot_detail.archive_title';

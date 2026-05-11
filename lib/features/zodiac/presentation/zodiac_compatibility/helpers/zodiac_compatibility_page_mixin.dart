@@ -1,3 +1,4 @@
+import 'package:daily_tarot_focus/core/util/locale_extensions.dart';
 import 'package:daily_tarot_focus/features/auth/domain/models/tarot_user.dart';
 import 'package:daily_tarot_focus/features/auth/domain/models/tarot_user_zodiac_enum.dart';
 import 'package:daily_tarot_focus/features/zodiac/bloc/zodiac/zodiac_bloc.dart';
@@ -109,6 +110,7 @@ mixin ZodiacCompatibilityPageMixin<T extends StatefulWidget> on State<T>, Ticker
       myGender: myGender.value,
       partnerSign: partnerSign.value,
       partnerGender: partnerGender.value,
+      locale: context.currentLocaleLanguage.value,
     );
   }
 

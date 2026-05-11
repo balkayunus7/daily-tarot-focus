@@ -1,3 +1,4 @@
+import 'package:daily_tarot_focus/core/util/locale_extensions.dart';
 import 'package:daily_tarot_focus/core/util/locale_keys.dart';
 import 'package:daily_tarot_focus/core/util/tarot_app_sizes.dart';
 import 'package:daily_tarot_focus/core/util/text_style_helper.dart';
@@ -98,12 +99,13 @@ class _HoroscopeTabContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final cacheKey = '${sign.name}_${period.name}';
+    final cacheKey = '${sign.name}_${period.name}_${context.currentLocaleLanguage.value}';
 
     return BlocBuilder<ZodiacBloc, ZodiacState>(
       buildWhen: (p, c) {
+        final key = '${sign.name}_${period.name}_${context.currentLocaleLanguage.value}';
         return p.isGeneratingHoroscope != c.isGeneratingHoroscope ||
-            p.horoscopeCache[cacheKey] != c.horoscopeCache[cacheKey] ||
+            p.horoscopeCache[key] != c.horoscopeCache[key] ||
             p.fetchHoroscopeFailureOrResult != c.fetchHoroscopeFailureOrResult;
       },
       builder: (context, state) {

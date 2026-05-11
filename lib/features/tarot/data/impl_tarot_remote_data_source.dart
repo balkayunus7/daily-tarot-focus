@@ -69,7 +69,9 @@ class ImplTarotRemoteDataSource implements ITarotRemoteDataSource {
   Future<FetchAllCardsResponse> requestAllCards({required FetchAllCardsRequest request}) async {
     final responseOrFail = await supabaseClient.secureInvoke(
       route: GET_ALL_CARDS,
+      method: HttpMethod.post,
       session: request.session,
+      body: {'locale': request.locale},
     );
 
     if (responseOrFail.isLeft()) throw Exception();
@@ -88,7 +90,9 @@ class ImplTarotRemoteDataSource implements ITarotRemoteDataSource {
   }) async {
     final responseOrFail = await supabaseClient.secureInvoke(
       route: GET_SPREADS,
+      method: HttpMethod.post,
       session: request.session,
+      body: {'locale': request.locale},
     );
 
     if (responseOrFail.isLeft()) throw Exception();
@@ -102,7 +106,9 @@ class ImplTarotRemoteDataSource implements ITarotRemoteDataSource {
   Future<FetchReadersResponse> requestReaders({required FetchReadersRequest request}) async {
     final responseOrFail = await supabaseClient.secureInvoke(
       route: GET_READERS,
+      method: HttpMethod.post,
       session: request.session,
+      body: {'locale': request.locale},
     );
 
     if (responseOrFail.isLeft()) throw Exception();

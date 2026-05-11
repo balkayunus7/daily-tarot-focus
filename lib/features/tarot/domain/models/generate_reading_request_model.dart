@@ -9,6 +9,7 @@ class GenerateReadingRequest with EquatableMixin {
     required this.readerId,
     required this.cards,
     this.question,
+    this.locale = 'en',
   });
 
   final AuthSession session;
@@ -17,6 +18,7 @@ class GenerateReadingRequest with EquatableMixin {
   final String readerId;
   final String? question;
   final List<GenerateReadingCardRequest> cards;
+  final String locale;
 
   Map<String, dynamic> toMap() {
     return {
@@ -25,11 +27,12 @@ class GenerateReadingRequest with EquatableMixin {
       'reader_id': readerId,
       'question': question,
       'cards': cards.map((c) => c.toMap()).toList(),
+      'locale': locale,
     };
   }
 
   @override
-  List<Object?> get props => [session, spreadCategoryId, spreadId, readerId, question, cards];
+  List<Object?> get props => [session, spreadCategoryId, spreadId, readerId, question, cards, locale];
 }
 
 class GenerateReadingCardRequest with EquatableMixin {

@@ -448,6 +448,8 @@ class _CityPickerSheetState extends State<_CityPickerSheet> {
                               final item = list[i];
                               final name = _nameOf(item);
                               final isSelected = _step == 2 && _city == item;
+                              final isoCode =
+                                  _step == 0 ? (item as csc.Country).isoCode : null;
                               return GestureDetector(
                                 onTap: () {
                                   if (_step == 0) {
@@ -468,6 +470,16 @@ class _CityPickerSheetState extends State<_CityPickerSheet> {
                                         : colors.textSecondary.withValues(alpha: 0.04),
                                     child: Row(
                                       children: [
+                                        if (isoCode != null) ...[
+                                          ClipRRect(
+                                            borderRadius: BorderRadius.circular(4),
+                                            child: CountryFlag.fromCountryCode(
+                                              isoCode,
+                                              theme: const ImageTheme(height: 18, width: 26),
+                                            ),
+                                          ),
+                                          Sp.small.widthBox,
+                                        ],
                                         Expanded(child: Text(name, style: m14w400(context))),
                                         if (_step < 2)
                                           Icon(

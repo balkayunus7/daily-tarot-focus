@@ -12,6 +12,7 @@ class GenerateCompatibilityRequestModel with EquatableMixin {
     required this.myGender,
     required this.partnerSign,
     required this.partnerGender,
+    this.locale = 'en',
   });
 
   final AuthSession session;
@@ -19,19 +20,21 @@ class GenerateCompatibilityRequestModel with EquatableMixin {
   final CompatGender myGender;
   final ZodiacSign partnerSign;
   final CompatGender partnerGender;
+  final String locale;
 
   String get cacheKey =>
-      '${mySign.name}_${myGender.name}_${partnerSign.name}_${partnerGender.name}';
+      '${mySign.name}_${myGender.name}_${partnerSign.name}_${partnerGender.name}_$locale';
 
   Map<String, dynamic> toMap() => {
     'my_sign': mySign.name,
     'my_gender': myGender.value,
     'partner_sign': partnerSign.name,
     'partner_gender': partnerGender.value,
+    'locale': locale,
   };
 
   @override
-  List<Object?> get props => [session, mySign, myGender, partnerSign, partnerGender];
+  List<Object?> get props => [session, mySign, myGender, partnerSign, partnerGender, locale];
 }
 
 enum CompatGender {

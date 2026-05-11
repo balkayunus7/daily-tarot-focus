@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:country_flags/country_flags.dart';
 import 'package:country_state_city/country_state_city.dart' as csc;
 import 'package:daily_tarot_focus/config/app_routes.dart';
 import 'package:daily_tarot_focus/core/util/locale_keys.dart';

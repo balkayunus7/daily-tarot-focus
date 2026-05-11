@@ -6,15 +6,15 @@ import 'package:daily_tarot_focus/features/tarot/domain/models/fetch_spreads_res
 import 'package:mobile_boilerplate/common_dependencies.dart';
 
 class ImplTarotCacheService {
-  static const _cardsKey = 'tarot_cards_cache';
-  static const _spreadsKey = 'tarot_spreads_cache';
-  static const _readersKey = 'tarot_readers_cache';
+  static String _cardsKey(String locale) => 'tarot_cards_cache_$locale';
+  static String _spreadsKey(String locale) => 'tarot_spreads_cache_$locale';
+  static String _readersKey(String locale) => 'tarot_readers_cache_$locale';
 
   // CARDS
-  Future<List<TarotCardModel>?> getCards() async {
+  Future<List<TarotCardModel>?> getCards(String locale) async {
     try {
       final prefs = await SharedPreferences.getInstance();
-      final json = prefs.getString(_cardsKey);
+      final json = prefs.getString(_cardsKey(locale));
       if (json == null) return null;
       final list = jsonDecode(json) as List;
       return list.map((e) => TarotCardModel.fromMap(e as Map<String, dynamic>)).toList();
@@ -23,18 +23,18 @@ class ImplTarotCacheService {
     }
   }
 
-  Future<void> saveCards(List<TarotCardModel> cards) async {
+  Future<void> saveCards(List<TarotCardModel> cards, String locale) async {
     try {
       final prefs = await SharedPreferences.getInstance();
-      await prefs.setString(_cardsKey, jsonEncode(cards.map((e) => e.toMap()).toList()));
+      await prefs.setString(_cardsKey(locale), jsonEncode(cards.map((e) => e.toMap()).toList()));
     } on Exception catch (_) {}
   }
 
   // SPREADS
-  Future<List<TarotSpreadCategoryModel>?> getSpreads() async {
+  Future<List<TarotSpreadCategoryModel>?> getSpreads(String locale) async {
     try {
       final prefs = await SharedPreferences.getInstance();
-      final json = prefs.getString(_spreadsKey);
+      final json = prefs.getString(_spreadsKey(locale));
       if (json == null) return null;
       final list = jsonDecode(json) as List;
       return list.map((e) => TarotSpreadCategoryModel.fromMap(e as Map<String, dynamic>)).toList();
@@ -43,18 +43,18 @@ class ImplTarotCacheService {
     }
   }
 
-  Future<void> saveSpreads(List<TarotSpreadCategoryModel> spreads) async {
+  Future<void> saveSpreads(List<TarotSpreadCategoryModel> spreads, String locale) async {
     try {
       final prefs = await SharedPreferences.getInstance();
-      await prefs.setString(_spreadsKey, jsonEncode(spreads.map((e) => e.toMap()).toList()));
+      await prefs.setString(_spreadsKey(locale), jsonEncode(spreads.map((e) => e.toMap()).toList()));
     } on Exception catch (_) {}
   }
 
   // READERS
-  Future<List<TarotReaderModel>?> getReaders() async {
+  Future<List<TarotReaderModel>?> getReaders(String locale) async {
     try {
       final prefs = await SharedPreferences.getInstance();
-      final json = prefs.getString(_readersKey);
+      final json = prefs.getString(_readersKey(locale));
       if (json == null) return null;
       final list = jsonDecode(json) as List;
       return list.map((e) => TarotReaderModel.fromMap(e as Map<String, dynamic>)).toList();
@@ -63,31 +63,28 @@ class ImplTarotCacheService {
     }
   }
 
-  Future<void> saveReaders(List<TarotReaderModel> readers) async {
+  Future<void> saveReaders(List<TarotReaderModel> readers, String locale) async {
     try {
       final prefs = await SharedPreferences.getInstance();
-      await prefs.setString(_readersKey, jsonEncode(readers.map((e) => e.toMap()).toList()));
+      await prefs.setString(_readersKey(locale), jsonEncode(readers.map((e) => e.toMap()).toList()));
     } on Exception catch (_) {}
   }
 
-  // CLEAR
+  // CLEAR — removes all tarot_ prefixed keys across all locales
   Future<void> clearCache() async {
     try {
       final prefs = await SharedPreferences.getInstance();
-      await Future.wait([
-        prefs.remove(_cardsKey),
-        prefs.remove(_spreadsKey),
-        prefs.remove(_readersKey),
-      ]);
+      final keys = prefs.getKeys().where((k) => k.startsWith('tarot_')).toList();
+      await Future.wait(keys.map(prefs.remove));
     } on Exception catch (_) {}
   }
 
-  Future<bool> hasCache() async {
+  Future<bool> hasCache(String locale) async {
     try {
       final prefs = await SharedPreferences.getInstance();
-      return prefs.containsKey(_cardsKey) &&
-          prefs.containsKey(_spreadsKey) &&
-          prefs.containsKey(_readersKey);
+      return prefs.containsKey(_cardsKey(locale)) &&
+          prefs.containsKey(_spreadsKey(locale)) &&
+          prefs.containsKey(_readersKey(locale));
     } on Exception catch (_) {
       return false;
     }

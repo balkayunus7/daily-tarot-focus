@@ -8,6 +8,7 @@ mixin ZodiacHoroscopePageMixin on State<ZodiacHoroscopePage>, TickerProvider {
   late final Animation<double> expandAnimation;
 
   late int _currentIndex;
+  bool _horoscopeRequested = false;
 
   /// Horoscope Categories
   final List<(String, String)> cats = [
@@ -41,8 +42,15 @@ mixin ZodiacHoroscopePageMixin on State<ZodiacHoroscopePage>, TickerProvider {
     animController = AnimationController(vsync: this, duration: const Duration(milliseconds: 250));
     expandAnimation = CurvedAnimation(parent: animController, curve: Curves.easeInOut);
 
-    generateHoroscope(HoroscopePeriod.values[tabController.index]);
     tabController.addListener(onTabChanged);
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    if (_horoscopeRequested) return;
+    _horoscopeRequested = true;
+    generateHoroscope(HoroscopePeriod.values[tabController.index]);
   }
 
   void onTabChanged() {
@@ -58,6 +66,7 @@ mixin ZodiacHoroscopePageMixin on State<ZodiacHoroscopePage>, TickerProvider {
         session: session,
         sign: widget.sign,
         period: period,
+        locale: context.currentLocaleLanguage.value,
       ),
     );
   }

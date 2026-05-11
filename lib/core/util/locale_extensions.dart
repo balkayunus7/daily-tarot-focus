@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 enum LocaleLanguage {
@@ -18,13 +19,12 @@ extension LocaleExtensions on BuildContext {
     Locale(LocaleLanguage.tr.value),
   ];
 
-  Locale get currentLocale => Localizations.localeOf(this);
+  Locale get currentLocale => locale;
 
   bool get isLocaleEn => currentLocale.languageCode == LocaleLanguage.en.value;
   bool get isLocaleTr => currentLocale.languageCode == LocaleLanguage.tr.value;
 
-  LocaleLanguage get currentLocaleLanguage =>
-      LocaleLanguage.fromString(currentLocale.languageCode);
+  LocaleLanguage get currentLocaleLanguage => LocaleLanguage.fromString(currentLocale.languageCode);
 
   Locale get localeEn => Locale(LocaleLanguage.en.value);
   Locale get localeTr => Locale(LocaleLanguage.tr.value);

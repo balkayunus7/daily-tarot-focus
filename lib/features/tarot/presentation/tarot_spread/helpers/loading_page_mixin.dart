@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:daily_tarot_focus/core/util/locale_extensions.dart';
 import 'package:daily_tarot_focus/core/util/locale_keys.dart';
 import 'package:daily_tarot_focus/features/tarot/bloc/tarot/tarot_bloc.dart';
 import 'package:daily_tarot_focus/features/tarot/presentation/tarot_spread/pages/tarot_spread_loading_page.dart';
@@ -17,17 +18,27 @@ mixin LoadingPageMixin on State<TarotSpreadLoadingPage> {
 
   final ValueNotifier<int> messageIndex = ValueNotifier(0);
   Timer? _timer;
+  bool _readingRequested = false;
 
   @override
   void initState() {
     super.initState();
-    final session = context.read<AuthCubit>().state.sessionOrCrash;
-    context.read<TarotBloc>().addGenerateReadingRequested(session: session);
-
     _timer = Timer.periodic(const Duration(seconds: 2), (_) {
       if (!mounted) return;
       messageIndex.value = (messageIndex.value + 1) % loadingMessages.length;
     });
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    if (_readingRequested) return;
+    _readingRequested = true;
+    final session = context.read<AuthCubit>().state.sessionOrCrash;
+    context.read<TarotBloc>().addGenerateReadingRequested(
+      session: session,
+      locale: context.currentLocaleLanguage.value,
+    );
   }
 
   @override

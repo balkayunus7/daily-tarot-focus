@@ -138,15 +138,8 @@ class _TarotDetailContentState extends State<TarotDetailContent>
                         ),
                         Sp.xlarge.heightBox,
                         const _MeaningToggle(),
-                        Sp.xlarge.heightBox,
+                        Sp.large.heightBox,
                         if (tarot.description.isNotEmpty) ...[
-                          Text(
-                            LocaleKeys.tarot_detail_the_essence.tr(),
-                            style: m18w600(context).copyWith(
-                              color: context.colors.textPrimary,
-                            ),
-                          ),
-                          Sp.medium.heightBox,
                           Text(
                             tarot.description,
                             style: m13w400(context).copyWith(

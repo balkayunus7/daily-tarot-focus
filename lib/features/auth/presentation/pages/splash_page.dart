@@ -52,7 +52,10 @@ class _SplashPageState extends State<SplashPage>
             },
             listener: (context, state) {
               final session = context.read<AuthCubit>().state.sessionOrCrash;
-              context.read<TarotBloc>().addSetupAccountRequested(session: session);
+              context.read<TarotBloc>().addSetupAccountRequested(
+                session: session,
+                locale: context.locale.languageCode,
+              );
             },
           ),
           BlocListener<AuthCubit, AuthState>(

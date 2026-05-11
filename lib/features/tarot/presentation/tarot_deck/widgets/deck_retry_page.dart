@@ -14,7 +14,10 @@ class DeckRetryWidget extends StatelessWidget {
               onTap: () async {
                 final authState = context.read<AuthCubit>().state;
                 context.read<TarotBloc>().addFetchAllCardsRequested(
-                  request: FetchAllCardsRequest(session: authState.sessionOrCrash),
+                  request: FetchAllCardsRequest(
+                    session: authState.sessionOrCrash,
+                    locale: Localizations.localeOf(context).languageCode,
+                  ),
                 );
               },
               text: LocaleKeys.deck_page_load_cards.tr(),

@@ -10,19 +10,22 @@ class GenerateHoroscopeRequestModel with EquatableMixin {
     required this.session,
     required this.sign,
     required this.period,
+    this.locale = 'en',
   });
 
   final AuthSession session;
   final ZodiacSign sign;
   final HoroscopePeriod period;
+  final String locale;
 
-  String get cacheKey => '${sign.name}_${period.name}';
+  String get cacheKey => '${sign.name}_${period.name}_$locale';
 
   Map<String, dynamic> toMap() => {
     'sign': sign.name,
     'period': period.name,
+    'locale': locale,
   };
 
   @override
-  List<Object?> get props => [session, sign, period];
+  List<Object?> get props => [session, sign, period, locale];
 }

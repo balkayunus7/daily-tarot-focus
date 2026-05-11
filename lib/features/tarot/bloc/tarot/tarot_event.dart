@@ -85,11 +85,12 @@ final class TarotSelectReader extends TarotEvent {
 }
 
 final class TarotSetupAccountRequested extends TarotEvent {
-  const TarotSetupAccountRequested({required this.session});
+  const TarotSetupAccountRequested({required this.session, this.locale = 'en'});
   final AuthSession session;
+  final String locale;
 
   @override
-  List<Object?> get props => [session];
+  List<Object?> get props => [session, locale];
 }
 
 final class TarotSelectQuestion extends TarotEvent {
@@ -109,11 +110,12 @@ final class TarotSetReadingCards extends TarotEvent {
 }
 
 final class TarotGenerateReadingRequested extends TarotEvent {
-  const TarotGenerateReadingRequested({required this.session});
+  const TarotGenerateReadingRequested({required this.session, this.locale = 'en'});
   final AuthSession session;
+  final String locale;
 
   @override
-  List<Object?> get props => [session];
+  List<Object?> get props => [session, locale];
 }
 
 final class TarotSetFlowType extends TarotEvent {

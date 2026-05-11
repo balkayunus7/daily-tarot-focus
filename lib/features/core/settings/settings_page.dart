@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:country_flags/country_flags.dart';
 import 'package:daily_tarot_focus/config/app_routes.dart';
 import 'package:daily_tarot_focus/config/restartable_app.dart';
 import 'package:daily_tarot_focus/core/util/locale_extensions.dart';
@@ -12,7 +13,6 @@ import 'package:daily_tarot_focus/features/core/settings/display_delete_account_
 import 'package:daily_tarot_focus/features/tarot/bloc/tarot/tarot_bloc.dart';
 import 'package:daily_tarot_focus/features/tarot/bloc/tarot/tarot_state.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mobile_boilerplate/application/auth/auth_cubit.dart';
@@ -69,59 +69,63 @@ class SettingsPage extends StatelessWidget {
 
   void _showLanguageBottomSheet(BuildContext context) {
     final colors = context.colors;
-    unawaited(showModalBottomSheet<void>(
-      context: context,
-      backgroundColor: colors.background,
-      shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
-      ),
-      builder: (ctx) {
-        return SafeArea(
-          child: Padding(
-            padding: Sp.large.padSymR(h: Sp.large, v: Sp.large),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                Text(
-                  LocaleKeys.settings_page_choose_language.tr(),
-                  style: m16w600(context).copyWith(color: colors.textPrimary),
-                  textAlign: TextAlign.center,
-                ),
-                Sp.large.heightBox,
-                _LanguageOption(
-                  label: LocaleKeys.settings_page_english.tr(),
-                  locale: context.localeEn,
-                  isSelected: context.isLocaleEn,
-                  onTap: () {
-                    unawaited(context.setLocale(context.localeEn));
-                    Navigator.of(ctx).pop();
-                  },
-                ),
-                Sp.small.heightBox,
-                _LanguageOption(
-                  label: LocaleKeys.settings_page_turkish.tr(),
-                  locale: context.localeTr,
-                  isSelected: context.isLocaleTr,
-                  onTap: () {
-                    unawaited(context.setLocale(context.localeTr));
-                    Navigator.of(ctx).pop();
-                  },
-                ),
-                Sp.medium.heightBox,
-              ],
+    unawaited(
+      showModalBottomSheet<void>(
+        context: context,
+        backgroundColor: colors.background,
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+        ),
+        builder: (ctx) {
+          return SafeArea(
+            child: Padding(
+              padding: Sp.large.padSymR(h: Sp.large, v: Sp.large),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Text(
+                    LocaleKeys.settings_page_choose_language.tr(),
+                    style: m16w600(context).copyWith(color: colors.textPrimary),
+                    textAlign: TextAlign.center,
+                  ),
+                  Sp.large.heightBox,
+                  _LanguageOption(
+                    label: LocaleKeys.settings_page_english.tr(),
+                    countryCode: 'US',
+                    locale: context.localeEn,
+                    isSelected: context.isLocaleEn,
+                    onTap: () async {
+                      Navigator.of(ctx).pop();
+                      await context.setLocale(context.localeEn);
+                      if (!context.mounted) return;
+                      context.read<TarotBloc>().addClearCache();
+                    },
+                  ),
+                  Sp.small.heightBox,
+                  _LanguageOption(
+                    label: LocaleKeys.settings_page_turkish.tr(),
+                    countryCode: 'TR',
+                    locale: context.localeTr,
+                    isSelected: context.isLocaleTr,
+                    onTap: () async {
+                      Navigator.of(ctx).pop();
+                      await context.setLocale(context.localeTr);
+                      if (!context.mounted) return;
+                      context.read<TarotBloc>().addClearCache();
+                    },
+                  ),
+                  Sp.medium.heightBox,
+                ],
+              ),
             ),
-          ),
-        );
-      },
-    ));
+          );
+        },
+      ),
+    );
   }
 
   Future<void> restartApp(BuildContext context) async {
-    PaintingBinding.instance.imageCache.clear();
-    await DefaultCacheManager().emptyCache();
-
-    if (!context.mounted) return;
     if (context.canPop()) context.pop();
     if (!context.mounted) return;
     context.go(AppRoutes.splash);
@@ -269,12 +273,14 @@ class _SettingsSection extends StatelessWidget {
 class _LanguageOption extends StatelessWidget {
   const _LanguageOption({
     required this.label,
+    required this.countryCode,
     required this.locale,
     required this.isSelected,
     required this.onTap,
   });
 
   final String label;
+  final String countryCode;
   final Locale locale;
   final bool isSelected;
   final VoidCallback onTap;
@@ -286,7 +292,10 @@ class _LanguageOption extends StatelessWidget {
     return ScalingContainer(
       onTap: onTap,
       child: FancyContainer(
-        color: isSelected ? colors.primary.withValues(alpha: 0.1) : colors.primary.withValues(alpha: 0.05),
+        color:
+            isSelected
+                ? colors.primary.withValues(alpha: 0.1)
+                : colors.primary.withValues(alpha: 0.05),
         border: Border.all(
           color: isSelected ? colors.primary.withValues(alpha: 0.5) : colors.border,
         ),
@@ -294,14 +303,21 @@ class _LanguageOption extends StatelessWidget {
           padding: Sp.small.padSymR(h: Sp.large, v: Sp.small),
           child: Row(
             children: [
+              ClipRRect(
+                borderRadius: BorderRadius.circular(4),
+                child: CountryFlag.fromCountryCode(
+                  countryCode,
+                  theme: const ImageTheme(height: 20, width: 28),
+                ),
+              ),
+              Sp.medium.widthBox,
               Expanded(
                 child: Text(
                   label,
                   style: m14w500(context).copyWith(color: colors.textPrimary),
                 ),
               ),
-              if (isSelected)
-                Icon(Icons.check_circle, color: colors.primary, size: 20),
+              if (isSelected) Icon(Icons.check_circle, color: colors.primary, size: 20),
             ],
           ),
         ),

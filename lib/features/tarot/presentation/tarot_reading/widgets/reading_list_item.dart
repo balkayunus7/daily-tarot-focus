@@ -79,7 +79,9 @@ class ReadingListItem extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              '${reading.cardInterpretations.length} Card Reading',
+                              LocaleKeys.tarot_reading_card_reading.tr(
+                                args: ['${reading.cardInterpretations.length}'],
+                              ),
                               style: m13w500(context).copyWith(color: primary),
                             ),
                             Sp.xsmall.heightBox,

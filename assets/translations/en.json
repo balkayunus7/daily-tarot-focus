@@ -316,7 +316,8 @@
     "delete_desc": "Are you sure you want to delete this reading? This action cannot be undone.",
     "delete_confirm": "Delete",
     "delete_success": "Reading deleted",
-    "delete_error": "Could not delete reading, try again"
+    "delete_error": "Could not delete reading, try again",
+    "card_reading": "{} Card Reading"
   },
   "zodiac_page": {
     "title": "Celestial Map",

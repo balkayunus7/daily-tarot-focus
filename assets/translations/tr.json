@@ -317,7 +317,8 @@
     "delete_desc": "Bu okumayı silmek istediğinizden emin misiniz? Bu işlem geri alınamaz.",
     "delete_confirm": "Sil",
     "delete_success": "Okuma silindi",
-    "delete_error": "Okuma silinemedi, tekrar dene"
+    "delete_error": "Okuma silinemedi, tekrar dene",
+    "card_reading": "{} Kartlı Okuma"
   },
   "zodiac_page": {
     "title": "Göksel Harita",

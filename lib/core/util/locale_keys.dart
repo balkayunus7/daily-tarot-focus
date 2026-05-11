@@ -1,6 +1,8 @@
 // DO NOT EDIT. This is code generated via package:easy_localization/generate.dart
 
-abstract class LocaleKeys {
+// ignore_for_file: constant_identifier_names
+
+abstract class  LocaleKeys {
   static const explore_page_spiritual_guide = 'explore_page.spiritual_guide';
   static const explore_page_ask_question = 'explore_page.ask_question';
   static const explore_page_deck = 'explore_page.deck';
@@ -194,8 +196,7 @@ abstract class LocaleKeys {
   static const tarot_question_spread_step_title = 'tarot_question.spread_step_title';
   static const tarot_question_question_step_title = 'tarot_question.question_step_title';
   static const tarot_question_deck_shuffle_step_title = 'tarot_question.deck_shuffle_step_title';
-  static const tarot_question_deck_shuffle_open_step_subtitle =
-      'tarot_question.deck_shuffle_open_step_subtitle';
+  static const tarot_question_deck_shuffle_open_step_subtitle = 'tarot_question.deck_shuffle_open_step_subtitle';
   static const tarot_question_step_1_of_5 = 'tarot_question.step_1_of_5';
   static const tarot_question_step_2_of_5 = 'tarot_question.step_2_of_5';
   static const tarot_question_step_3_of_5 = 'tarot_question.step_3_of_5';
@@ -204,8 +205,7 @@ abstract class LocaleKeys {
   static const tarot_question_choose_reader_subtitle = 'tarot_question.choose_reader_subtitle';
   static const tarot_question_choose_category_subtitle = 'tarot_question.choose_category_subtitle';
   static const tarot_question_choose_spread_subtitle = 'tarot_question.choose_spread_subtitle';
-  static const tarot_question_choose_open_deck_subtitle =
-      'tarot_question.choose_open_deck_subtitle';
+  static const tarot_question_choose_open_deck_subtitle = 'tarot_question.choose_open_deck_subtitle';
   static const tarot_question_spreads_count = 'tarot_question.spreads_count';
   static const tarot_question_need_guidance = 'tarot_question.need_guidance';
   static const tarot_question_guide_subtitle = 'tarot_question.guide_subtitle';
@@ -246,20 +246,14 @@ abstract class LocaleKeys {
   static const subscription_paywall_page_title = 'subscription_paywall_page.title';
   static const subscription_paywall_page_subtitle = 'subscription_paywall_page.subtitle';
   static const subscription_paywall_page_footer_text = 'subscription_paywall_page.footer_text';
-  static const subscription_paywall_page_terms_of_service =
-      'subscription_paywall_page.terms_of_service';
-  static const subscription_paywall_page_failed_fetch_packages =
-      'subscription_paywall_page.failed_fetch_packages';
+  static const subscription_paywall_page_terms_of_service = 'subscription_paywall_page.terms_of_service';
+  static const subscription_paywall_page_failed_fetch_packages = 'subscription_paywall_page.failed_fetch_packages';
   static const subscription_paywall_page_no_packages = 'subscription_paywall_page.no_packages';
-  static const subscription_paywall_page_package_card_period =
-      'subscription_paywall_page.package_card_period';
-  static const subscription_paywall_page_subscribe_placeholder_button =
-      'subscription_paywall_page.subscribe_placeholder_button';
+  static const subscription_paywall_page_package_card_period = 'subscription_paywall_page.package_card_period';
+  static const subscription_paywall_page_subscribe_placeholder_button = 'subscription_paywall_page.subscribe_placeholder_button';
   static const subscription_paywall_page_retry_button = 'subscription_paywall_page.retry_button';
-  static const subscription_paywall_page_restore_button =
-      'subscription_paywall_page.restore_button';
-  static const subscription_paywall_page_subscribe_button =
-      'subscription_paywall_page.subscribe_button';
+  static const subscription_paywall_page_restore_button = 'subscription_paywall_page.restore_button';
+  static const subscription_paywall_page_subscribe_button = 'subscription_paywall_page.subscribe_button';
   static const subscription_paywall_page = 'subscription_paywall_page';
   static const subscription_period_month = 'subscription_period_month';
   static const subscription_period_week = 'subscription_period_week';
@@ -297,6 +291,7 @@ abstract class LocaleKeys {
   static const tarot_reading_delete_confirm = 'tarot_reading.delete_confirm';
   static const tarot_reading_delete_success = 'tarot_reading.delete_success';
   static const tarot_reading_delete_error = 'tarot_reading.delete_error';
+  static const tarot_reading_card_reading = 'tarot_reading.card_reading';
   static const tarot_reading = 'tarot_reading';
   static const zodiac_page_title = 'zodiac_page.title';
   static const zodiac_page_tab_sun = 'zodiac_page.tab_sun';
@@ -473,8 +468,7 @@ abstract class LocaleKeys {
   static const numerology_page_section_soul_urge = 'numerology_page.section_soul_urge';
   static const numerology_page_section_soul_urge_intro = 'numerology_page.section_soul_urge_intro';
   static const numerology_page_section_personality = 'numerology_page.section_personality';
-  static const numerology_page_section_personality_intro =
-      'numerology_page.section_personality_intro';
+  static const numerology_page_section_personality_intro = 'numerology_page.section_personality_intro';
   static const numerology_page_section_group_combined = 'numerology_page.section_group_combined';
   static const numerology_page_section_maturity = 'numerology_page.section_maturity';
   static const numerology_page_section_maturity_intro = 'numerology_page.section_maturity_intro';
@@ -500,4 +494,5 @@ abstract class LocaleKeys {
   static const numerology_page_info_mat_what = 'numerology_page.info_mat_what';
   static const numerology_page_info_mat_how = 'numerology_page.info_mat_how';
   static const numerology_page = 'numerology_page';
+
 }

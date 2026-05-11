@@ -13,7 +13,7 @@ class ExploreZodiacCard extends StatelessWidget {
         if (sign == null) return const SizedBox.shrink();
 
         return ExploreFeatureCard(
-          title: 'Learn Horoscope',
+          title: LocaleKeys.explore_page_learn_horoscope.tr(),
           imageWidget: ZodiacIllustration(sign: sign),
           onTap: () => context.push(AppRoutes.tarotZodiacDetail),
         );

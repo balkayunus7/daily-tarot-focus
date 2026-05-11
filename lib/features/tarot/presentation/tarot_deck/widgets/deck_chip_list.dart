@@ -28,7 +28,7 @@ class DeckChipList extends StatelessWidget {
                 return Padding(
                   padding: Sp.xsmall.padRightR,
                   child: _CategoryChip(
-                    label: cat.value,
+                    label: cat.localizedName,
                     isSelected: isSelected,
                     onTap: () => scope.state.onCategoryChanged = cat,
                   ),

@@ -175,7 +175,7 @@ class _WeekdayRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const days = DailyCalendarPageMixin.days;
+    final days = DailyCalendarPageScope.of(context).state.daysLabels;
     return Padding(
       padding: Sp.large.padHR,
       child: Row(

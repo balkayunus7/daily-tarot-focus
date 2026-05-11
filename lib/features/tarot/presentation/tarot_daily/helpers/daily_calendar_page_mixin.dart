@@ -5,9 +5,16 @@ import 'package:mobile_boilerplate/common_dependencies.dart';
 
 mixin DailyCalendarPageMixin on State<TarotDailyCalendarPage> {
   static const int initialPage = 1200;
-  static const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
 
-  String dayFormattedLabel(DateTime month) => DateFormat('MMMM yyyy').format(month);
+  String _localeCode() => Localizations.localeOf(context).languageCode;
+  String dayFormattedLabel(DateTime month) => DateFormat('MMMM yyyy', _localeCode()).format(month);
+
+  // Returns Mon-first short weekday names in the current locale.
+  List<String> get daysLabels {
+    final locale = _localeCode();
+    // 2024-01-01 is a Monday — iterate 7 days to get Mon..Sun.
+    return List.generate(7, (i) => DateFormat.E(locale).format(DateTime(2024, 1, 1 + i)));
+  }
 
   late final PageController pageController;
   final ValueNotifier<int> currentPage = ValueNotifier(initialPage);

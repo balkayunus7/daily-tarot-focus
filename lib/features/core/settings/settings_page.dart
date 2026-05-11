@@ -1,5 +1,8 @@
+import 'dart:async';
+
 import 'package:daily_tarot_focus/config/app_routes.dart';
 import 'package:daily_tarot_focus/config/restartable_app.dart';
+import 'package:daily_tarot_focus/core/util/locale_extensions.dart';
 import 'package:daily_tarot_focus/core/util/locale_keys.dart';
 import 'package:daily_tarot_focus/core/util/tarot_app_sizes.dart';
 import 'package:daily_tarot_focus/core/util/text_style_helper.dart';
@@ -64,6 +67,56 @@ class SettingsPage extends StatelessWidget {
     },
   );
 
+  void _showLanguageBottomSheet(BuildContext context) {
+    final colors = context.colors;
+    unawaited(showModalBottomSheet<void>(
+      context: context,
+      backgroundColor: colors.background,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+      ),
+      builder: (ctx) {
+        return SafeArea(
+          child: Padding(
+            padding: Sp.large.padSymR(h: Sp.large, v: Sp.large),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Text(
+                  LocaleKeys.settings_page_choose_language.tr(),
+                  style: m16w600(context).copyWith(color: colors.textPrimary),
+                  textAlign: TextAlign.center,
+                ),
+                Sp.large.heightBox,
+                _LanguageOption(
+                  label: LocaleKeys.settings_page_english.tr(),
+                  locale: context.localeEn,
+                  isSelected: context.isLocaleEn,
+                  onTap: () {
+                    unawaited(context.setLocale(context.localeEn));
+                    Navigator.of(ctx).pop();
+                  },
+                ),
+                Sp.small.heightBox,
+                _LanguageOption(
+                  label: LocaleKeys.settings_page_turkish.tr(),
+                  locale: context.localeTr,
+                  isSelected: context.isLocaleTr,
+                  onTap: () {
+                    unawaited(context.setLocale(context.localeTr));
+                    Navigator.of(ctx).pop();
+                  },
+                ),
+                Sp.medium.heightBox,
+              ],
+            ),
+          ),
+        );
+      },
+    ));
+  }
+
   Future<void> restartApp(BuildContext context) async {
     PaintingBinding.instance.imageCache.clear();
     await DefaultCacheManager().emptyCache();
@@ -103,6 +156,11 @@ class SettingsPage extends StatelessWidget {
                 _SettingsSection(
                   title: LocaleKeys.settings_page_account.tr(),
                   children: [
+                    _SettingsTile(
+                      icon: Icons.language,
+                      title: LocaleKeys.settings_page_language.tr(),
+                      onTap: () => _showLanguageBottomSheet(context),
+                    ),
                     _SettingsTile(
                       icon: Icons.star_rate,
                       title: LocaleKeys.settings_page_rate_us.tr(),
@@ -204,6 +262,50 @@ class _SettingsSection extends StatelessWidget {
           ),
         ),
       ],
+    );
+  }
+}
+
+class _LanguageOption extends StatelessWidget {
+  const _LanguageOption({
+    required this.label,
+    required this.locale,
+    required this.isSelected,
+    required this.onTap,
+  });
+
+  final String label;
+  final Locale locale;
+  final bool isSelected;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    final colors = context.colors;
+
+    return ScalingContainer(
+      onTap: onTap,
+      child: FancyContainer(
+        color: isSelected ? colors.primary.withValues(alpha: 0.1) : colors.primary.withValues(alpha: 0.05),
+        border: Border.all(
+          color: isSelected ? colors.primary.withValues(alpha: 0.5) : colors.border,
+        ),
+        child: Padding(
+          padding: Sp.small.padSymR(h: Sp.large, v: Sp.small),
+          child: Row(
+            children: [
+              Expanded(
+                child: Text(
+                  label,
+                  style: m14w500(context).copyWith(color: colors.textPrimary),
+                ),
+              ),
+              if (isSelected)
+                Icon(Icons.check_circle, color: colors.primary, size: 20),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }

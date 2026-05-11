@@ -5,8 +5,8 @@
     "deck": "Kutsal Desteler",
     "zodiac_card": "Göksel Harita",
     "discover_daily": "Günlük Kader",
-    "spread_title": "Cevaplarını bulmak için kutsal açılımını yarat",
-    "spread_button": "Kartları Keşfet",
+    "spread_title": "Cevaplarını bulmak için açılım yap",
+    "spread_button": "Kartları Aç",
     "ask_question_title": "Gerçeğini ara.",
     "ask_question_button": "Okuyucuya Sor",
     "tarot_reading_desc": "Bir soruya odaklan,kartlarını seç",
@@ -20,7 +20,9 @@
     "tab_horoscope": "Burç",
     "horoscope_card_title": "Göksel Okumanız",
     "horoscope_card_desc": "Burcunuz için kozmik içgörüleri keşfet",
-    "horoscope_card_button": "Keşfet"
+    "horoscope_card_button": "Keşfet",
+    "guidance": "Rehberlik",
+    "learn_horoscope": "Burçları Öğren"
   },
   "deck_page": {
     "title": "Desteler",
@@ -116,7 +118,7 @@
     "save": "Kaydet",
     "delete": "Sil",
     "back": "Geri",
-    "filter": "Filtre",
+    "filter": "Filtrele",
     "next": "İleri",
     "more": "Daha Fazla"
   },
@@ -197,7 +199,7 @@
     "all_time": "Tümü",
     "last_week": "Son Hafta",
     "last_month": "Son Ay",
-    "custom_date": "Özel Tarih",
+    "custom_date": "Seçtiğin Tarih",
     "calendar_title": "Günlük Geçmiş",
     "calendar_tap_hint": "Kartlara tıklayarak detaylarını görebilirsin",
     "save_failed": "Kart Kaydedilemedi",

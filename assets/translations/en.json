@@ -20,7 +20,9 @@
     "tab_horoscope": "Horoscope",
     "horoscope_card_title": "Your Celestial Reading",
     "horoscope_card_desc": "Uncover cosmic insights for your sign",
-    "horoscope_card_button": "Explore"
+    "horoscope_card_button": "Explore",
+    "guidance": "Guidance",
+    "learn_horoscope": "Learn Horoscope"
   },
   "deck_page": {
     "title": "Decks",

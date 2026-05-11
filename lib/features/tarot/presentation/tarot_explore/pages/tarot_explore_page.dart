@@ -99,7 +99,7 @@ class _TarotExplorePageState extends State<TarotExplorePage> with ExplorePageSta
                         ],
                       ),
                       Sp.medium.heightBox,
-                      Text('Guidance', style: m15w600(context)),
+                      Text(LocaleKeys.explore_page_guidance.tr(), style: m15w600(context)),
                       Sp.small.heightBox,
                       Row(
                         children: [

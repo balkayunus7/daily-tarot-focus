@@ -1,15 +1,14 @@
 import 'dart:io';
 
 import 'package:daily_tarot_focus/config/app_routes.dart';
-import 'package:daily_tarot_focus/core/util/tarot_app_assets.dart';
-import 'package:daily_tarot_focus/features/auth/presentation/widgets/splash_view.dart';
 import 'package:daily_tarot_focus/features/tarot/bloc/tarot/tarot_bloc.dart';
 import 'package:daily_tarot_focus/features/tarot/bloc/tarot/tarot_state.dart';
+import 'package:daily_tarot_focus/features/tarot/presentation/tarot_spread/widgets/tarot_cards_loading_animation.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:lottie/lottie.dart';
 import 'package:mobile_boilerplate/application/auth/auth_cubit.dart';
 import 'package:mobile_boilerplate/common_dependencies.dart';
+import 'package:mobile_boilerplate/presentation/extensions/build_context_theme_ext.dart';
 import 'package:mobile_boilerplate/presentation/routing/route_aware_analytics_mixin.dart';
 
 class SplashPage extends StatefulWidget {
@@ -68,15 +67,11 @@ class _SplashPageState extends State<SplashPage>
             },
           ),
         ],
-        child: SplashView(
-          logo: SizedBox(
-            width: 150,
-            height: 150,
-            child: Lottie.asset(
-              TarotAppAssets.tarot.path,
-              fit: BoxFit.contain,
-              repeat: true,
-              animate: true,
+        child: Scaffold(
+          body: Container(
+            decoration: BoxDecoration(color: context.colors.background),
+            child: const Center(
+              child: TarotCardsLoadingAnimation(size: 128, pulse: true),
             ),
           ),
         ),

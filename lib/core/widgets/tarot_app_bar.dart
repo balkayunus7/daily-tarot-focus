@@ -76,6 +76,8 @@ class TarotAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.onBackIconTap,
     this.title,
     this.trailingIcon,
+    this.trailingIcon2,
+    this.onIcon2Tap,
     this.subsWidget,
     this.backgroundColor,
     this.backIcon,
@@ -88,6 +90,8 @@ class TarotAppBar extends StatelessWidget implements PreferredSizeWidget {
   final Widget? titleWidget;
   final bool showBackIcon;
   final IconData? trailingIcon;
+  final IconData? trailingIcon2;
+  final VoidCallback? onIcon2Tap;
   final Widget? subsWidget;
   final VoidCallback? onIconTap;
   final VoidCallback? onBackIconTap;
@@ -129,6 +133,24 @@ class TarotAppBar extends StatelessWidget implements PreferredSizeWidget {
       ),
       actions: [
         if (subsWidget != null) ...[subsWidget!],
+        if (trailingIcon2 != null) ...[
+          ScalingContainer(
+            onTap: onIcon2Tap ?? () => context.pop(),
+            child: Center(
+              child: FancyContainer(
+                width: 32.w,
+                height: 32.h,
+                color: context.colors.primary,
+                child: Icon(
+                  trailingIcon2,
+                  size: Sp.medium,
+                  color: context.colors.textOnPrimary,
+                ),
+              ),
+            ),
+          ),
+          Sp.xsmall.widthBox,
+        ],
         if (trailingIcon != null) ...[
           ScalingContainer(
             onTap: onIconTap ?? () => context.pop(),

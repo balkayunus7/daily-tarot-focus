@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:daily_tarot_focus/config/app_routes.dart';
 import 'package:daily_tarot_focus/core/util/locale_keys.dart';
 import 'package:daily_tarot_focus/core/util/tarot_app_sizes.dart';
@@ -5,6 +7,7 @@ import 'package:daily_tarot_focus/core/util/text_style_helper.dart';
 import 'package:daily_tarot_focus/core/widgets/fancy_button.dart';
 import 'package:daily_tarot_focus/core/widgets/fancy_container.dart';
 import 'package:daily_tarot_focus/core/widgets/tarot_app_bar.dart';
+import 'package:daily_tarot_focus/features/zodiac/presentation/numerology/domain/numerology_storage.dart';
 import 'package:daily_tarot_focus/features/zodiac/presentation/numerology/presentation/helpers/numerology_input_page_mixin.dart';
 import 'package:daily_tarot_focus/features/zodiac/presentation/numerology/presentation/helpers/numerology_input_page_scope.dart';
 import 'package:daily_tarot_focus/features/zodiac/presentation/numerology/presentation/widgets/numerology_input_visual.dart';
@@ -24,6 +27,18 @@ class NumerologyInputPage extends StatefulWidget {
 }
 
 class _NumerologyInputPageState extends State<NumerologyInputPage> with NumerologyInputPageMixin {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      if (!mounted) return;
+      final saved = await NumerologyStorage.load();
+      if (!mounted || saved == null) return;
+      birthDate.value = saved.$1;
+      fullNameController.text = saved.$2;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final colors = context.colors;
@@ -90,10 +105,18 @@ class _NumerologyInputPageState extends State<NumerologyInputPage> with Numerolo
                       textStyle: m16w700(context).copyWith(color: colors.textOnPrimary),
                       onTap:
                           canCalculate
-                              ? () => context.push(
-                                AppRoutes.numerologyResult,
-                                extra: (birthDate.value!, fullName.value.trim()),
-                              )
+                              ? () async {
+                                final date = birthDate.value!;
+                                final name = fullName.value.trim();
+                                await NumerologyStorage.save(date, name);
+                                if (!context.mounted) return;
+                                unawaited(
+                                  context.push(
+                                    AppRoutes.numerologyResult,
+                                    extra: (date, name),
+                                  ),
+                                );
+                              }
                               : () {},
                     );
                   },

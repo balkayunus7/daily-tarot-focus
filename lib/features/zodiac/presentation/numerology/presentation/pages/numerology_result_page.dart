@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:math';
 
+import 'package:daily_tarot_focus/config/app_routes.dart';
 import 'package:daily_tarot_focus/core/util/locale_keys.dart';
 import 'package:daily_tarot_focus/core/util/tarot_app_sizes.dart';
 import 'package:daily_tarot_focus/core/util/text_style_helper.dart';
@@ -10,6 +11,7 @@ import 'package:daily_tarot_focus/features/zodiac/presentation/numerology/domain
 import 'package:daily_tarot_focus/features/zodiac/presentation/numerology/domain/numerology_result_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:mobile_boilerplate/common_dependencies.dart';
 import 'package:mobile_boilerplate/presentation/extensions/build_context_theme_ext.dart';
 
@@ -36,6 +38,8 @@ class NumerologyResultPage extends StatelessWidget {
             TarotAppBar(
               title: LocaleKeys.numerology_page_title.tr(),
               titleStyle: m18w700(context),
+              trailingIcon2: Icons.restart_alt,
+              onIcon2Tap: () => context.pushReplacement(AppRoutes.numerologyInput),
               trailingIcon: Icons.question_mark,
               onIconTap: () => _showNumerologyInfoSheet(context),
             ),

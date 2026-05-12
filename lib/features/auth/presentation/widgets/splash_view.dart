@@ -14,16 +14,19 @@ class SplashView extends StatefulWidget {
 
 class _SplashViewState extends State<SplashView> with TickerProviderStateMixin {
   late AnimationController _controller;
+  late Animation<double> _scaleAnim;
+
   @override
   void initState() {
     super.initState();
     _controller = AnimationController(
       vsync: this,
-      lowerBound: 0.75,
-      duration: const Duration(seconds: 1),
+      duration: const Duration(milliseconds: 1600),
     );
-    unawaited(_controller.forward());
-    unawaited(_controller.repeat(reverse: true, min: 0.85));
+    _scaleAnim = Tween<double>(begin: 0.86, end: 1).animate(
+      CurvedAnimation(parent: _controller, curve: Curves.easeInOut),
+    );
+    unawaited(_controller.repeat(reverse: true));
   }
 
   @override
@@ -43,13 +46,13 @@ class _SplashViewState extends State<SplashView> with TickerProviderStateMixin {
           decoration: BoxDecoration(color: context.colors.background),
           child: Center(
             child: AnimatedBuilder(
-              animation: _controller,
-              builder: (context, child) {
-                return Transform.scale(
-                  scale: _controller.value,
-                  child: widget.logo ?? const SizedBox(),
-                );
-              },
+              animation: _scaleAnim,
+              builder:
+                  (context, child) => Transform.scale(
+                    scale: _scaleAnim.value,
+                    child: child,
+                  ),
+              child: widget.logo ?? const SizedBox(),
             ),
           ),
         ),

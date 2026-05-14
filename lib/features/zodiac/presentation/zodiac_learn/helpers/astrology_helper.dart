@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:daily_tarot_focus/core/util/locale_keys.dart';
 import 'package:daily_tarot_focus/features/auth/domain/models/tarot_user_zodiac_enum.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:timezone/timezone.dart' as tz;
 
 enum DiscoverZodiacType { moon, rising }
 
@@ -31,6 +32,49 @@ extension DiscoverZodiacTypeExt on DiscoverZodiacType {
 
 class ZodiacLearnHelper {
   const ZodiacLearnHelper._();
+
+  static ZodiacSign sunSign(DateTime birthDate) {
+    final m = birthDate.month;
+    final d = birthDate.day;
+    if ((m == 3 && d >= 21) || (m == 4 && d <= 19)) return ZodiacSign.aries;
+    if ((m == 4 && d >= 20) || (m == 5 && d <= 20)) return ZodiacSign.taurus;
+    if ((m == 5 && d >= 21) || (m == 6 && d <= 20)) return ZodiacSign.gemini;
+    if ((m == 6 && d >= 21) || (m == 7 && d <= 22)) return ZodiacSign.cancer;
+    if ((m == 7 && d >= 23) || (m == 8 && d <= 22)) return ZodiacSign.leo;
+    if ((m == 8 && d >= 23) || (m == 9 && d <= 22)) return ZodiacSign.virgo;
+    if ((m == 9 && d >= 23) || (m == 10 && d <= 22)) return ZodiacSign.libra;
+    if ((m == 10 && d >= 23) || (m == 11 && d <= 21)) return ZodiacSign.scorpio;
+    if ((m == 11 && d >= 22) || (m == 12 && d <= 21)) return ZodiacSign.sagittarius;
+    if ((m == 12 && d >= 22) || (m == 1 && d <= 19)) return ZodiacSign.capricorn;
+    if ((m == 1 && d >= 20) || (m == 2 && d <= 18)) return ZodiacSign.aquarius;
+    return ZodiacSign.pisces;
+  }
+
+  static DateTime birthToUtc({
+    required DateTime birthDate,
+    required int birthHour,
+    required int birthMinute,
+    required double longitude,
+    String? zoneName,
+  }) {
+    if (zoneName != null) {
+      try {
+        final location = tz.getLocation(zoneName);
+        return tz.TZDateTime(
+          location,
+          birthDate.year,
+          birthDate.month,
+          birthDate.day,
+          birthHour,
+          birthMinute,
+        ).toUtc();
+      } on tz.LocationNotFoundException {
+        // fall through to LMT
+      }
+    }
+    final local = DateTime(birthDate.year, birthDate.month, birthDate.day, birthHour, birthMinute);
+    return local.subtract(Duration(minutes: (longitude / 15 * 60).round()));
+  }
 
   static ZodiacSign moonSign(DateTime birthDateTimeUtc) {
     final jd = _julianDay(birthDateTimeUtc);

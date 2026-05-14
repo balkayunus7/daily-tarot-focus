@@ -103,17 +103,19 @@ mixin ZodiacLearnPageMixin on State<ZodiacLearnPage> {
       birthTime.hour,
       birthTime.minute,
     );
-    return localDateTime
-        .subtract(Duration(minutes: (longitude / 15 * 60).round()));
+    return localDateTime.subtract(Duration(minutes: (longitude / 15 * 60).round()));
   }
 
   Future<void> _saveSign({ZodiacSign? moonSign, ZodiacSign? risingSign}) async {
     final authCubit = context.read<AuthCubit>();
     final user = authCubit.state.userOrCrash as TarotUser;
     final properties = TarotUserProperties(
-      zodiac: user.zodiac!,
+      zodiac: user.zodiac,
       relationshipStatus: user.relationshipStatus!,
       careerStatus: user.careerStatus!,
+      name: user.name ?? '',
+      birthDate: user.birthDate ?? DateTime.now(),
+      location: user.location ?? '',
       moonSign: moonSign ?? user.moonSign,
       risingSign: risingSign ?? user.risingSign,
     );

@@ -71,7 +71,12 @@ class _SplashPageState extends State<SplashPage>
           body: Container(
             decoration: BoxDecoration(color: context.colors.background),
             child: const Center(
-              child: TarotCardsLoadingAnimation(size: 128, pulse: true),
+              child: TarotCardsLoadingAnimation(
+                size: 128,
+                pulse: true,
+                drawDuration: Duration(milliseconds: 1800),
+                pulseDuration: Duration(milliseconds: 1000),
+              ),
             ),
           ),
         ),

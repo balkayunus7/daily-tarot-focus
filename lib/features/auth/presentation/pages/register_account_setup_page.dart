@@ -9,14 +9,15 @@ import 'package:flutter/material.dart';
 import 'package:mobile_boilerplate/common_dependencies.dart';
 import 'package:mobile_boilerplate/presentation/extensions/build_context_theme_ext.dart';
 
-class AccountSetupPage extends StatefulWidget {
-  const AccountSetupPage({super.key});
+class RegisterAccountSetupPage extends StatefulWidget {
+  const RegisterAccountSetupPage({super.key});
 
   @override
-  State<AccountSetupPage> createState() => _AccountSetupPageState();
+  State<RegisterAccountSetupPage> createState() => _RegisterAccountSetupPageState();
 }
 
-class _AccountSetupPageState extends State<AccountSetupPage> with AccountSetupMixin {
+class _RegisterAccountSetupPageState extends State<RegisterAccountSetupPage>
+    with AccountSetupMixin {
   @override
   void initState() {
     super.initState();

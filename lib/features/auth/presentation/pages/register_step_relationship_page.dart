@@ -38,7 +38,7 @@ class RegisterStepRelationshipPage extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    LocaleKeys.register_page_step_2_of_3.tr(),
+                    LocaleKeys.register_page_step_1_of_3.tr(),
                     style: m14w700(context).copyWith(color: colors.textSecondary),
                   ),
                   Sp.xsmall.heightBox,
@@ -53,7 +53,7 @@ class RegisterStepRelationshipPage extends StatelessWidget {
                   ),
                   Sp.small.heightBox,
                   LinearProgressIndicator(
-                    value: 0.66,
+                    value: 0.33,
                     minHeight: 6,
                     borderRadius: Sp.medium.radiusR,
                     backgroundColor: colors.accent,

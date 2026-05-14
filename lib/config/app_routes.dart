@@ -8,16 +8,16 @@ class AppRoutes {
 
   /// Auth required
   static const Set<String> registerRoutes = {
-    AppRoutes.registerStepZodiac,
     AppRoutes.registerStepRelationship,
     AppRoutes.registerStepCareer,
+    AppRoutes.registerStepPersonalInfo,
   };
 
   // Auth
   static const String splash = '/';
-  static const String registerStepZodiac = '/register-step-zodiac';
   static const String registerStepRelationship = '/register-step-relationship';
   static const String registerStepCareer = '/register-step-career';
+  static const String registerStepPersonalInfo = '/register-step-personal-info';
   static const String accountSetup = '/account-created';
 
   // Tarot Explore

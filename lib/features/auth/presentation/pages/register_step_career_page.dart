@@ -1,5 +1,4 @@
 import 'package:daily_tarot_focus/config/app_routes.dart';
-import 'package:daily_tarot_focus/core/util/build_context_toast_ext.dart';
 import 'package:daily_tarot_focus/core/util/locale_keys.dart';
 import 'package:daily_tarot_focus/core/util/tarot_app_sizes.dart';
 import 'package:daily_tarot_focus/core/util/text_style_helper.dart';
@@ -13,7 +12,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:iconify_flutter/iconify_flutter.dart';
 import 'package:iconify_flutter/icons/mdi.dart';
-import 'package:mobile_boilerplate/application/auth/auth_cubit.dart';
 import 'package:mobile_boilerplate/common_dependencies.dart';
 import 'package:mobile_boilerplate/presentation/extensions/build_context_theme_ext.dart';
 import 'package:mobile_boilerplate/presentation/widgets/scaling_container.dart';
@@ -30,70 +28,55 @@ class RegisterStepCareerPage extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: colors.background,
-      body: BlocListener<RegisterCubit, RegisterState>(
-        listener: (context, state) async {
-          if (state.registerStatus.isSuccess) {
-            await context.read<AuthCubit>().refetchUser();
-            if (!context.mounted) return;
-            context.go(AppRoutes.accountSetup);
-          } else if (state.registerStatus.isFailure) {
-            context.showErrorToastMessage(LocaleKeys.failure_unexpected_message.tr());
-          }
-        },
-        child: Stack(
-          children: [
-            const StepBackground(),
-            SafeArea(
-              child: Padding(
-                padding: Sp.screen.padAllR,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      LocaleKeys.register_page_step_3_of_3.tr(),
-                      style: m14w700(context).copyWith(color: colors.textSecondary),
-                    ),
-                    Sp.xsmall.heightBox,
-                    Text(
-                      LocaleKeys.register_page_career_title.tr(),
-                      style: m32w600(context),
-                    ),
-                    Sp.xsmall.heightBox,
-                    Text(
-                      LocaleKeys.register_page_career_subtitle.tr(),
-                      style: m14w500(context).copyWith(color: colors.textSecondary),
-                    ),
-                    Sp.small.heightBox,
-                    LinearProgressIndicator(
-                      value: 1,
-                      minHeight: 6,
-                      borderRadius: Sp.medium.radiusR,
-                      backgroundColor: colors.accent,
-                      valueColor: AlwaysStoppedAnimation<Color>(colors.primary),
-                    ),
-                    Sp.xxlarge.heightBox,
-                    const Expanded(child: CareerListView()),
-                    BlocBuilder<RegisterCubit, RegisterState>(
-                      builder: (context, state) {
-                        return FancyButton(
-                          text: LocaleKeys.register_page_complete_registration.tr(),
-                          onTap: () async {
-                            final authState = context.read<AuthCubit>().state;
-                            await context.read<RegisterCubit>().submitRegistration(
-                              authState.sessionOrCrash,
-                            );
-                          },
-                          isLoading: state.registerStatus.isLoading,
-                          isDisabled: !state.isCareerStatusSelected,
-                        );
-                      },
-                    ),
-                  ],
-                ),
+      body: Stack(
+        children: [
+          const StepBackground(),
+          SafeArea(
+            child: Padding(
+              padding: Sp.screen.padAllR,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    LocaleKeys.register_page_step_2_of_3.tr(),
+                    style: m14w700(context).copyWith(color: colors.textSecondary),
+                  ),
+                  Sp.xsmall.heightBox,
+                  Text(
+                    LocaleKeys.register_page_career_title.tr(),
+                    style: m32w600(context),
+                  ),
+                  Sp.xsmall.heightBox,
+                  Text(
+                    LocaleKeys.register_page_career_subtitle.tr(),
+                    style: m14w500(context).copyWith(color: colors.textSecondary),
+                  ),
+                  Sp.small.heightBox,
+                  LinearProgressIndicator(
+                    value: 0.66,
+                    minHeight: 6,
+                    borderRadius: Sp.medium.radiusR,
+                    backgroundColor: colors.accent,
+                    valueColor: AlwaysStoppedAnimation<Color>(colors.primary),
+                  ),
+                  Sp.xxlarge.heightBox,
+                  const Expanded(child: CareerListView()),
+                  BlocBuilder<RegisterCubit, RegisterState>(
+                    builder: (context, state) {
+                      return FancyButton(
+                        text: LocaleKeys.register_page_continue_button.tr(),
+                        onTap: () async {
+                          await context.push(AppRoutes.registerStepPersonalInfo);
+                        },
+                        isDisabled: !state.isCareerStatusSelected,
+                      );
+                    },
+                  ),
+                ],
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

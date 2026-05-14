@@ -5,11 +5,17 @@ import 'package:flutter/material.dart';
 import 'package:mobile_boilerplate/presentation/extensions/build_context_theme_ext.dart';
 
 class TarotCardsLoadingAnimation extends StatefulWidget {
-  const TarotCardsLoadingAnimation({this.size = 64, this.pulse = false, super.key});
+  const TarotCardsLoadingAnimation({
+    this.size = 64,
+    this.pulse = false,
+    this.drawDuration,
+    this.pulseDuration,
+    super.key,
+  });
   final double size;
-
-  /// Nefes alıp veren scale animasyonu — splash gibi tek başına kullanımda true yap.
   final bool pulse;
+  final Duration? drawDuration;
+  final Duration? pulseDuration;
 
   @override
   State<TarotCardsLoadingAnimation> createState() => _TarotCardsLoadingAnimationState();
@@ -26,13 +32,13 @@ class _TarotCardsLoadingAnimationState extends State<TarotCardsLoadingAnimation>
     super.initState();
     _drawController = AnimationController(
       vsync: this,
-      duration: const Duration(milliseconds: 3400),
+      duration: widget.drawDuration ?? const Duration(milliseconds: 3400),
     );
     unawaited(_drawController.repeat());
 
     _pulseController = AnimationController(
       vsync: this,
-      duration: const Duration(milliseconds: 1600),
+      duration: widget.pulseDuration ?? const Duration(milliseconds: 1600),
     );
     _pulseAnim = Tween<double>(begin: 0.86, end: 1).animate(
       CurvedAnimation(parent: _pulseController, curve: Curves.easeInOut),

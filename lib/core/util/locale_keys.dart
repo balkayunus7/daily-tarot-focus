@@ -89,12 +89,24 @@ abstract class LocaleKeys {
   static const register_page_step_1_of_3 = 'register_page.step_1_of_3';
   static const register_page_step_2_of_3 = 'register_page.step_2_of_3';
   static const register_page_step_3_of_3 = 'register_page.step_3_of_3';
-  static const register_page_zodiac_title = 'register_page.zodiac_title';
-  static const register_page_zodiac_subtitle = 'register_page.zodiac_subtitle';
+  static const register_page_step_4_of_4 = 'register_page.step_4_of_4';
+  static const register_page_display_name_title = 'register_page.display_name_title';
+  static const register_page_display_name_subtitle = 'register_page.display_name_subtitle';
   static const register_page_relationship_title = 'register_page.relationship_title';
   static const register_page_relationship_subtitle = 'register_page.relationship_subtitle';
   static const register_page_career_title = 'register_page.career_title';
   static const register_page_career_subtitle = 'register_page.career_subtitle';
+  static const register_page_name_birth_location_title = 'register_page.name_birth_location_title';
+  static const register_page_name_birth_location_subtitle =
+      'register_page.name_birth_location_subtitle';
+  static const register_page_name_label = 'register_page.name_label';
+  static const register_page_name_hint = 'register_page.name_hint';
+  static const register_page_birth_date_label = 'register_page.birth_date_label';
+  static const register_page_birth_date_hint = 'register_page.birth_date_hint';
+  static const register_page_birth_time_label = 'register_page.birth_time_label';
+  static const register_page_birth_time_hint = 'register_page.birth_time_hint';
+  static const register_page_location_label = 'register_page.location_label';
+  static const register_page_location_hint = 'register_page.location_hint';
   static const register_page_continue_button = 'register_page.continue_button';
   static const register_page_complete_registration = 'register_page.complete_registration';
   static const register_page_preparing_account = 'register_page.preparing_account';

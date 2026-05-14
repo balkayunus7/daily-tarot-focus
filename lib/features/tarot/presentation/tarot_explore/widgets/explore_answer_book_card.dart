@@ -5,10 +5,14 @@ class ExploreAnswerBookCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ExploreFeatureCard(
-      title: LocaleKeys.answer_book_explore_card_title.tr(),
-      imageWidget: const BookOfAnswersIllustration(),
-      onTap: () => context.push(AppRoutes.answerBook),
+    return BlocBuilder<AuthCubit, AuthState>(
+      builder: (context, state) {
+        return ExploreFeatureCard(
+          title: LocaleKeys.answer_book_explore_card_title.tr(),
+          imageWidget: const BookOfAnswersIllustration(),
+          onTap: () => context.push(AppRoutes.answerBook),
+        );
+      },
     );
   }
 }

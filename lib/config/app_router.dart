@@ -1,10 +1,12 @@
+import 'dart:developer';
+
 import 'package:daily_tarot_focus/config/app_routes.dart';
 import 'package:daily_tarot_focus/features/auth/domain/models/tarot_user.dart';
 import 'package:daily_tarot_focus/features/auth/domain/models/tarot_user_zodiac_enum.dart';
 import 'package:daily_tarot_focus/features/auth/presentation/pages/register_account_setup_page.dart';
 import 'package:daily_tarot_focus/features/auth/presentation/pages/register_step_career_page.dart';
+import 'package:daily_tarot_focus/features/auth/presentation/pages/register_step_personal_info_page.dart';
 import 'package:daily_tarot_focus/features/auth/presentation/pages/register_step_relationship_page.dart';
-import 'package:daily_tarot_focus/features/auth/presentation/pages/register_step_zodiac_page.dart';
 import 'package:daily_tarot_focus/features/auth/presentation/pages/splash_page.dart';
 import 'package:daily_tarot_focus/features/core/home/home_page.dart';
 import 'package:daily_tarot_focus/features/core/settings/settings_page.dart';
@@ -65,7 +67,8 @@ final appRouter = GoRouter(
     if (authState.isAuthenticated && !isPublicRoute && !isRegisterRoute) {
       final user = authState.userOrCrash;
       if (user is TarotUser && !user.isProfileComplete) {
-        return AppRoutes.registerStepZodiac;
+        log("isProfileComplete: ${user}");
+        return AppRoutes.registerStepRelationship;
       }
     }
 
@@ -90,16 +93,6 @@ final appRouter = GoRouter(
       },
     ),
     GoRoute(
-      path: AppRoutes.registerStepZodiac,
-      name: AppRoutes.registerStepZodiac,
-      pageBuilder: (context, state) {
-        return MaterialPage(
-          key: state.pageKey,
-          child: const PopScope(canPop: false, child: RegisterStepZodiacPage()),
-        );
-      },
-    ),
-    GoRoute(
       path: AppRoutes.registerStepRelationship,
       name: AppRoutes.registerStepRelationship,
       pageBuilder: (context, state) {
@@ -120,12 +113,22 @@ final appRouter = GoRouter(
       },
     ),
     GoRoute(
+      path: AppRoutes.registerStepPersonalInfo,
+      name: AppRoutes.registerStepPersonalInfo,
+      pageBuilder: (context, state) {
+        return MaterialPage(
+          key: state.pageKey,
+          child: const PopScope(canPop: false, child: RegisterStepPersonalInfoPage()),
+        );
+      },
+    ),
+    GoRoute(
       path: AppRoutes.accountSetup,
       name: AppRoutes.accountSetup,
       pageBuilder: (context, state) {
         return MaterialPage(
           key: state.pageKey,
-          child: const PopScope(canPop: false, child: AccountSetupPage()),
+          child: const PopScope(canPop: false, child: RegisterAccountSetupPage()),
         );
       },
     ),

@@ -89,7 +89,6 @@ abstract class LocaleKeys {
   static const register_page_step_1_of_3 = 'register_page.step_1_of_3';
   static const register_page_step_2_of_3 = 'register_page.step_2_of_3';
   static const register_page_step_3_of_3 = 'register_page.step_3_of_3';
-  static const register_page_step_4_of_4 = 'register_page.step_4_of_4';
   static const register_page_display_name_title = 'register_page.display_name_title';
   static const register_page_display_name_subtitle = 'register_page.display_name_subtitle';
   static const register_page_relationship_title = 'register_page.relationship_title';
@@ -177,7 +176,11 @@ abstract class LocaleKeys {
   static const career_status_student = 'career_status.student';
   static const career_status_employed = 'career_status.employed';
   static const career_status_self_employed = 'career_status.self_employed';
+  static const career_status_freelancer = 'career_status.freelancer';
+  static const career_status_entrepreneur = 'career_status.entrepreneur';
   static const career_status_unemployed = 'career_status.unemployed';
+  static const career_status_career_break = 'career_status.career_break';
+  static const career_status_homemaker = 'career_status.homemaker';
   static const career_status_retired = 'career_status.retired';
   static const career_status_prefer_not_to_say = 'career_status.prefer_not_to_say';
   static const career_status = 'career_status';
@@ -186,6 +189,12 @@ abstract class LocaleKeys {
   static const relationship_status_engaged = 'relationship_status.engaged';
   static const relationship_status_married = 'relationship_status.married';
   static const relationship_status_its_complicated = 'relationship_status.its_complicated';
+  static const relationship_status_dating = 'relationship_status.dating';
+  static const relationship_status_open_relationship = 'relationship_status.open_relationship';
+  static const relationship_status_separated = 'relationship_status.separated';
+  static const relationship_status_divorced = 'relationship_status.divorced';
+  static const relationship_status_healing = 'relationship_status.healing';
+  static const relationship_status_manifesting = 'relationship_status.manifesting';
   static const relationship_status_prefer_not_to_say = 'relationship_status.prefer_not_to_say';
   static const relationship_status = 'relationship_status';
   static const tarot_daily_title = 'tarot_daily.title';

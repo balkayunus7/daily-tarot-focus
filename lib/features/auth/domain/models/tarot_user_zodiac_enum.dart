@@ -181,8 +181,6 @@ enum ZodiacSign {
 
   String get signDescription => 'zodiac_page.desc_${value.toLowerCase()}'.tr();
 
-  // ── Ruling planet ──────────────────────────────────────────────────────────
-
   String get rulingPlanet {
     switch (this) {
       case ZodiacSign.aries:
@@ -210,7 +208,6 @@ enum ZodiacSign {
     }
   }
 
-  /// The Major Arcana card associated with the ruling planet.
   String get rulingPlanetCard {
     switch (this) {
       case ZodiacSign.aries:
@@ -257,8 +254,6 @@ enum ZodiacSign {
     ];
     return houses[index];
   }
-
-  // ── Decan Minor Arcana cards ───────────────────────────────────────────────
 
   String get dateRangeKey {
     switch (this) {
@@ -317,8 +312,6 @@ enum ZodiacSign {
         return ['8 of Cups', '9 of Cups', '10 of Cups'];
     }
   }
-
-  // ── Keywords ───────────────────────────────────────────────────────────────
 
   List<String> get strengths {
     switch (this) {

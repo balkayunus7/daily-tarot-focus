@@ -33,7 +33,7 @@ class RegisterStepRelationshipPage extends StatelessWidget {
           const StepBackground(),
           SafeArea(
             child: Padding(
-              padding: Sp.screen.padAllR,
+              padding: Sp.screen.padOnlyR(l: true, r: true, t: true),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -44,7 +44,7 @@ class RegisterStepRelationshipPage extends StatelessWidget {
                   Sp.xsmall.heightBox,
                   Text(
                     LocaleKeys.register_page_relationship_title.tr(),
-                    style: m32w600(context),
+                    style: m28w600(context),
                   ),
                   Sp.xsmall.heightBox,
                   Text(
@@ -60,7 +60,33 @@ class RegisterStepRelationshipPage extends StatelessWidget {
                     valueColor: AlwaysStoppedAnimation<Color>(colors.primary),
                   ),
                   Sp.xxlarge.heightBox,
-                  const Expanded(child: RelationshipListView()),
+                  Expanded(
+                    child: Stack(
+                      children: [
+                        const RelationshipListView(),
+                        Positioned(
+                          left: 0,
+                          right: 0,
+                          bottom: 0,
+                          height: 80.h,
+                          child: IgnorePointer(
+                            child: DecoratedBox(
+                              decoration: BoxDecoration(
+                                gradient: LinearGradient(
+                                  begin: Alignment.topCenter,
+                                  end: Alignment.bottomCenter,
+                                  colors: [
+                                    colors.background.withValues(alpha: 0),
+                                    colors.background,
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
                   BlocBuilder<RegisterCubit, RegisterState>(
                     builder: (context, state) {
                       return FancyButton(

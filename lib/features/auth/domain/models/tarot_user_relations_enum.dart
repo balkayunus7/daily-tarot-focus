@@ -8,12 +8,20 @@ enum RelationshipStatus {
   engaged('Engaged'),
   married('Married'),
   itsComplicated('Its complicated'),
+  dating('Dating'),
+  openRelationship('Open relationship'),
+  separated('Separated'),
+  divorced('Divorced'),
+  healing('Healing'),
+  manifesting('Manifesting love'),
   preferNotToSay('Prefer not to say');
 
   const RelationshipStatus(this.value);
 
-  factory RelationshipStatus.fromString(String value) =>
-      RelationshipStatus.values.firstWhere((e) => e.value == value);
+  factory RelationshipStatus.fromString(String value) => RelationshipStatus.values.firstWhere(
+    (e) => e.value == value,
+    orElse: () => RelationshipStatus.preferNotToSay,
+  );
 
   final String value;
 
@@ -36,6 +44,18 @@ enum RelationshipStatus {
         return LocaleKeys.relationship_status_married.tr();
       case RelationshipStatus.itsComplicated:
         return LocaleKeys.relationship_status_its_complicated.tr();
+      case RelationshipStatus.dating:
+        return LocaleKeys.relationship_status_dating.tr();
+      case RelationshipStatus.openRelationship:
+        return LocaleKeys.relationship_status_open_relationship.tr();
+      case RelationshipStatus.separated:
+        return LocaleKeys.relationship_status_separated.tr();
+      case RelationshipStatus.divorced:
+        return LocaleKeys.relationship_status_divorced.tr();
+      case RelationshipStatus.healing:
+        return LocaleKeys.relationship_status_healing.tr();
+      case RelationshipStatus.manifesting:
+        return LocaleKeys.relationship_status_manifesting.tr();
       case RelationshipStatus.preferNotToSay:
         return LocaleKeys.relationship_status_prefer_not_to_say.tr();
     }
@@ -47,6 +67,12 @@ enum RelationshipStatus {
     RelationshipStatus.engaged => '💍',
     RelationshipStatus.married => '💒',
     RelationshipStatus.itsComplicated => '🤔',
+    RelationshipStatus.dating => '☕', // Veya 🦋
+    RelationshipStatus.openRelationship => '♾️',
+    RelationshipStatus.separated => '🥀',
+    RelationshipStatus.divorced => '🕊️', // Özgürlük / Yeni başlangıç
+    RelationshipStatus.healing => '❤️‍🩹',
+    RelationshipStatus.manifesting => '✨',
     RelationshipStatus.preferNotToSay => '🤐',
   };
 
@@ -55,7 +81,13 @@ enum RelationshipStatus {
     RelationshipStatus.inARelationship => Mdi.heart,
     RelationshipStatus.engaged => Mdi.ring,
     RelationshipStatus.married => Mdi.account_multiple,
-    RelationshipStatus.itsComplicated => Mdi.help_circle,
-    RelationshipStatus.preferNotToSay => Mdi.eye_off,
+    RelationshipStatus.itsComplicated => Mdi.help_circle_outline,
+    RelationshipStatus.dating => Mdi.coffee_outline,
+    RelationshipStatus.openRelationship => Mdi.infinity,
+    RelationshipStatus.separated => Mdi.call_split,
+    RelationshipStatus.divorced => Mdi.leaf_maple,
+    RelationshipStatus.healing => Mdi.bandage,
+    RelationshipStatus.manifesting => Mdi.auto_fix,
+    RelationshipStatus.preferNotToSay => Mdi.eye_off_outline,
   };
 }

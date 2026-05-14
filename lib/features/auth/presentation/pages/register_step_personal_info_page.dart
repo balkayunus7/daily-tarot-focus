@@ -46,7 +46,7 @@ class _RegisterStepPersonalInfoPageState extends State<RegisterStepPersonalInfoP
             const StepBackground(),
             SafeArea(
               child: Padding(
-                padding: Sp.screen.padAllR,
+                padding: Sp.screen.padOnlyR(l: true, r: true, t: true),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [

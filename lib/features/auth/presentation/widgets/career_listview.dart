@@ -8,6 +8,7 @@ class CareerListView extends StatelessWidget {
     return BlocBuilder<RegisterCubit, RegisterState>(
       builder: (context, state) {
         return ListView.separated(
+          padding: Sp.xxxlarge.padOnlyR(b: true),
           itemCount: CareerStatus.values.length,
           separatorBuilder: (_, _) => Sp.small.heightBox,
           itemBuilder: (context, index) {

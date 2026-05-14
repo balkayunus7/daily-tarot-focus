@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:daily_tarot_focus/config/app_routes.dart';
 import 'package:daily_tarot_focus/features/auth/domain/models/tarot_user.dart';
 import 'package:daily_tarot_focus/features/auth/domain/models/tarot_user_zodiac_enum.dart';
@@ -67,7 +65,6 @@ final appRouter = GoRouter(
     if (authState.isAuthenticated && !isPublicRoute && !isRegisterRoute) {
       final user = authState.userOrCrash;
       if (user is TarotUser && !user.isProfileComplete) {
-        log("isProfileComplete: ${user}");
         return AppRoutes.registerStepRelationship;
       }
     }

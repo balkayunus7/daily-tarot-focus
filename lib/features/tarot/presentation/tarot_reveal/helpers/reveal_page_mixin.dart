@@ -135,4 +135,16 @@ mixin RevealPageStateMixin on State<TarotRevealPage>, TickerProvider {
   set cardSelected(bool value) {
     if (!value) selectedTarotCard.value = null;
   }
+
+  String formattedRevealDate(DateTime date, Locale locale) {
+    final languageCode = locale.languageCode;
+    final weekDay = DateFormat(DateFormat.WEEKDAY, languageCode).format(date);
+    final month = DateFormat(DateFormat.MONTH, languageCode).format(date);
+
+    if (languageCode == 'tr') {
+      return '${date.day} $month, $weekDay';
+    }
+
+    return '$weekDay, $month ${date.day}';
+  }
 }

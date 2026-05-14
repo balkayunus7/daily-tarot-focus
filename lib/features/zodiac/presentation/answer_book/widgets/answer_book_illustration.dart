@@ -1,8 +1,16 @@
 part of '../pages/answer_book_page.dart';
 
 class BookIllustration extends StatelessWidget {
-  const BookIllustration({required this.flipValue, required this.size, super.key});
+  const BookIllustration({
+    required this.flipValue,
+    required this.hasCompletedFlipCycle,
+    required this.settleProgress,
+    required this.size,
+    super.key,
+  });
   final double flipValue;
+  final bool hasCompletedFlipCycle;
+  final double settleProgress;
   final double size;
 
   @override
@@ -16,6 +24,8 @@ class BookIllustration extends StatelessWidget {
         secondaryColor: colors.secondary,
         accentColor: colors.accent,
         flipValue: flipValue,
+        hasCompletedFlipCycle: hasCompletedFlipCycle,
+        settleProgress: settleProgress,
       ),
     );
   }
@@ -27,12 +37,16 @@ class _BookPainter extends CustomPainter {
     required this.secondaryColor,
     required this.accentColor,
     required this.flipValue,
+    required this.hasCompletedFlipCycle,
+    required this.settleProgress,
   });
 
   final Color primaryColor;
   final Color secondaryColor;
   final Color accentColor;
   final double flipValue;
+  final bool hasCompletedFlipCycle;
+  final double settleProgress;
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -78,7 +92,12 @@ class _BookPainter extends CustomPainter {
     );
 
     // Right page (pages)
-    final rightRect = Rect.fromLTWH(bookLeft + bookW / 2, bookTop, bookW / 2, bookH);
+    final rightRect = Rect.fromLTWH(
+      bookLeft + bookW / 2,
+      bookTop,
+      bookW / 2,
+      bookH,
+    );
     final pageColor = Color.lerp(Colors.white, const Color(0xFFF5EFE6), 0.7)!;
     final rightGrad =
         Paint()
@@ -89,7 +108,11 @@ class _BookPainter extends CustomPainter {
           ).createShader(rightRect);
 
     canvas.drawRRect(
-      RRect.fromRectAndCorners(rightRect, topRight: radius, bottomRight: radius),
+      RRect.fromRectAndCorners(
+        rightRect,
+        topRight: radius,
+        bottomRight: radius,
+      ),
       rightGrad,
     );
 
@@ -104,10 +127,159 @@ class _BookPainter extends CustomPainter {
     );
 
     // Left cover ornament (star/sparkle shape)
-    _drawCoverOrnament(canvas, Offset(bookLeft + bookW / 4, bookTop + bookH / 2), bookH * 0.18);
+    _drawCoverOrnament(
+      canvas,
+      Offset(bookLeft + bookW / 4, bookTop + bookH / 2),
+      bookH * 0.18,
+    );
 
-    // Flipping pages — book is always animating
-    _drawFlippingPages(canvas, bookLeft, bookTop, bookW, bookH, radius);
+    if (settleProgress == 0) {
+      _drawFlippingPages(canvas, bookLeft, bookTop, bookW, bookH, radius);
+    } else {
+      _drawSettlingPages(
+        canvas,
+        bookLeft,
+        bookTop,
+        bookW,
+        bookH,
+        radius,
+      );
+    }
+  }
+
+  void _drawSettlingPages(
+    Canvas canvas,
+    double bookLeft,
+    double bookTop,
+    double bookW,
+    double bookH,
+    Radius radius,
+  ) {
+    _drawSettledPages(canvas, bookLeft, bookTop, bookW, bookH, radius);
+    if (settleProgress < 1) {
+      _drawClosingLeafPage(canvas, bookLeft, bookTop, bookW, bookH, radius);
+    }
+  }
+
+  void _drawSettledPages(
+    Canvas canvas,
+    double bookLeft,
+    double bookTop,
+    double bookW,
+    double bookH,
+    Radius radius,
+  ) {
+    final cx = bookLeft + bookW / 2;
+    final pageW = bookW / 2;
+    final pageRect = Rect.fromLTWH(cx, bookTop, pageW, bookH);
+
+    final pagePaint =
+        Paint()
+          ..shader = const LinearGradient(
+            colors: [
+              Color(0xFFE6D7BD),
+              Color(0xFFF8F0E3),
+              Color(0xFFF2E6D3),
+            ],
+          ).createShader(pageRect);
+
+    canvas.drawRRect(
+      RRect.fromRectAndCorners(
+        pageRect,
+        topRight: radius,
+        bottomRight: radius,
+      ),
+      pagePaint,
+    );
+
+    final creasePaint =
+        Paint()
+          ..color = Colors.black.withValues(alpha: 0.08)
+          ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 5);
+    canvas.drawRect(Rect.fromLTWH(cx, bookTop, 5, bookH), creasePaint);
+
+    final linePaint =
+        Paint()
+          ..color = Colors.grey.withValues(alpha: 0.18)
+          ..strokeWidth = 0.6;
+    for (var j = 1; j <= 5; j++) {
+      final y = bookTop + bookH * (j / 6.5);
+      final marginH = pageW * 0.12;
+      canvas.drawLine(
+        Offset(cx + marginH, y),
+        Offset(cx + pageW - marginH, y),
+        linePaint,
+      );
+    }
+  }
+
+  void _drawClosingLeafPage(
+    Canvas canvas,
+    double bookLeft,
+    double bookTop,
+    double bookW,
+    double bookH,
+    Radius radius,
+  ) {
+    final cx = bookLeft + bookW / 2;
+    final pageW = bookW / 2;
+    final pivotY = bookTop + bookH / 2;
+    final eased = Curves.easeOutCubic.transform(settleProgress);
+    final angle = (1 - eased) * pi / 2;
+
+    canvas.save();
+
+    final matrix =
+        Matrix4.identity()
+          ..setEntry(3, 2, 0.0018)
+          ..translate(cx, pivotY)
+          ..rotateY(angle)
+          ..translate(-cx, -pivotY);
+    canvas.transform(matrix.storage);
+
+    final brightness = 0.86 + eased * 0.14;
+    final leafColor =
+        Color.lerp(
+          const Color(0xFFE0CFB3),
+          const Color(0xFFF8F0E3),
+          brightness,
+        )!;
+
+    canvas.drawRRect(
+      RRect.fromRectAndCorners(
+        Rect.fromLTWH(cx, bookTop, pageW, bookH),
+        topRight: radius,
+        bottomRight: radius,
+      ),
+      Paint()..color = leafColor,
+    );
+
+    final shadowOpacity = (1 - eased) * 0.18;
+    if (shadowOpacity > 0) {
+      canvas.drawRect(
+        Rect.fromLTWH(cx, bookTop, pageW * 0.08, bookH),
+        Paint()
+          ..color = Colors.black.withValues(alpha: shadowOpacity)
+          ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 8),
+      );
+    }
+
+    final lineOpacity = 0.16 + eased * 0.08;
+    final linePaint =
+        Paint()
+          ..color = Colors.grey.withValues(alpha: lineOpacity)
+          ..strokeWidth = 0.6;
+    for (var j = 1; j <= 5; j++) {
+      final y = bookTop + bookH * (j / 6.5);
+      final marginH = pageW * 0.12;
+      canvas.drawLine(
+        Offset(cx + marginH, y),
+        Offset(cx + pageW - marginH, y),
+        linePaint,
+      );
+    }
+
+    canvas.restore();
   }
 
   void _drawCoverOrnament(Canvas canvas, Offset center, double r) {
@@ -154,6 +326,17 @@ class _BookPainter extends CustomPainter {
     final pageW = bookW / 2;
     const unreadColor = Color(0xFFF0E8D8);
 
+    if (hasCompletedFlipCycle) {
+      _drawCompletedLeftPageStack(
+        canvas,
+        bookLeft,
+        bookTop,
+        bookW,
+        bookH,
+        radius,
+      );
+    }
+
     // Sağ taraf: henüz çevrilmemiş sayfa yığını (kalınlık hissi)
     for (var i = 3; i >= 1; i--) {
       final dx = i * 0.8;
@@ -168,25 +351,97 @@ class _BookPainter extends CustomPainter {
       );
     }
 
-    // 3 sayfa farklı fazlarda Y ekseni etrafında dönüyor
-    // Geriden öne sırala: phase >= 0.5 olanlar (sol tarafta) önce, sonra sağdakiler
-    final phases = <double>[
-      flipValue,
-      (flipValue + 0.33) % 1.0,
-      (flipValue + 0.66) % 1.0,
-    ];
+    final pageProgresses =
+        <double>[0, 0.22, 0.44].map((delay) {
+          final raw = ((flipValue - delay) / 0.56).clamp(0.0, 1.0);
+          return Curves.easeInOutCubic.transform(raw);
+        }).toList();
 
     final pivotY = bookTop + bookH / 2;
 
-    // Önce sol tarafta olanları (phase >= 0.5) çiz, sonra sağda olanları üstüne
-    final leftPhases = phases.where((p) => p >= 0.5).toList()..sort((a, b) => b.compareTo(a));
-    final rightPhases = phases.where((p) => p < 0.5).toList()..sort();
+    final leftPages =
+        pageProgresses.where((p) => p >= 0.5).toList()
+          ..sort((a, b) => b.compareTo(a));
+    final rightPages =
+        pageProgresses.where((p) => p < 0.5).toList()
+          ..sort((a, b) => a.compareTo(b));
 
-    for (final p in leftPhases) {
-      _drawSingleFlipPage(canvas, cx, pivotY, bookTop, pageW, bookH, p, radius);
+    for (final progress in leftPages) {
+      _drawSingleFlipPage(
+        canvas,
+        cx,
+        pivotY,
+        bookTop,
+        pageW,
+        bookH,
+        progress,
+        radius,
+      );
     }
-    for (final p in rightPhases) {
-      _drawSingleFlipPage(canvas, cx, pivotY, bookTop, pageW, bookH, p, radius);
+    for (final progress in rightPages) {
+      _drawSingleFlipPage(
+        canvas,
+        cx,
+        pivotY,
+        bookTop,
+        pageW,
+        bookH,
+        progress,
+        radius,
+      );
+    }
+  }
+
+  void _drawCompletedLeftPageStack(
+    Canvas canvas,
+    double bookLeft,
+    double bookTop,
+    double bookW,
+    double bookH,
+    Radius radius,
+  ) {
+    final pageW = bookW / 2;
+
+    for (var i = 3; i >= 0; i--) {
+      final dx = i * 0.7;
+      final dy = i * 0.35;
+      final rect = Rect.fromLTWH(
+        bookLeft + dx,
+        bookTop + dy,
+        pageW - dx,
+        bookH - dy * 2,
+      );
+      final color =
+          Color.lerp(
+            const Color(0xFFE2D2B7),
+            const Color(0xFFF6ECDD),
+            0.55 + i * 0.08,
+          )!;
+
+      canvas.drawRRect(
+        RRect.fromRectAndCorners(
+          rect,
+          topLeft: radius,
+          bottomLeft: radius,
+        ),
+        Paint()..color = color,
+      );
+
+      if (i == 0) {
+        final linePaint =
+            Paint()
+              ..color = Colors.grey.withValues(alpha: 0.20)
+              ..strokeWidth = 0.6;
+        for (var j = 1; j <= 4; j++) {
+          final y = rect.top + rect.height * (j / 5.5);
+          final marginH = rect.width * 0.10;
+          canvas.drawLine(
+            Offset(rect.left + marginH, y),
+            Offset(rect.right - marginH, y),
+            linePaint,
+          );
+        }
+      }
     }
   }
 
@@ -216,10 +471,12 @@ class _BookPainter extends CustomPainter {
     canvas.transform(matrix.storage);
 
     // Sayfa rengi: ön yüz açık, arka yüz biraz daha koyu
-    final basePage = isFront ? const Color(0xFFF5EFE6) : const Color(0xFFE4D6BC);
+    final basePage =
+        isFront ? const Color(0xFFF5EFE6) : const Color(0xFFE4D6BC);
     // Açıyla hafif gölgelenme — düz konumda parlak, açılı konumda hafif koyu
     final brightness = 0.82 + cos(angle).abs() * 0.18;
-    final pageColor = Color.lerp(const Color(0xFF6B5840), basePage, brightness)!;
+    final pageColor =
+        Color.lerp(const Color(0xFF6B5840), basePage, brightness)!;
 
     canvas.drawRRect(
       RRect.fromRectAndCorners(
@@ -255,5 +512,8 @@ class _BookPainter extends CustomPainter {
 
   @override
   bool shouldRepaint(_BookPainter old) =>
-      old.flipValue != flipValue || old.primaryColor != primaryColor;
+      old.flipValue != flipValue ||
+      old.hasCompletedFlipCycle != hasCompletedFlipCycle ||
+      old.settleProgress != settleProgress ||
+      old.primaryColor != primaryColor;
 }

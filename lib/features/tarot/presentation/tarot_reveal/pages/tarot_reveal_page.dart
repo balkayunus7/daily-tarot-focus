@@ -18,7 +18,6 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mobile_boilerplate/common_dependencies.dart';
 import 'package:mobile_boilerplate/presentation/extensions/build_context_theme_ext.dart';
-import 'package:mobile_boilerplate/presentation/extensions/date_time_ext.dart';
 
 class TarotRevealPage extends StatefulWidget {
   const TarotRevealPage({super.key});
@@ -69,7 +68,9 @@ class _TarotRevealPageState extends State<TarotRevealPage>
                   left: 0,
                   right: 0,
                   height: MediaQuery.of(context).size.height * 0.5,
-                  child: const CustomCacheNetworkImage(imageUrl: TarotAppAssets.dailyPickBgHttp),
+                  child: const CustomCacheNetworkImage(
+                    imageUrl: TarotAppAssets.dailyPickBgHttp,
+                  ),
                 ),
                 if (onCooldown) ...[
                   const RevealCooldownView(),
@@ -90,7 +91,8 @@ class _TarotRevealPageState extends State<TarotRevealPage>
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Text(
-                                      DateTime.now().toLocal().dayMonthDay(
+                                      formattedRevealDate(
+                                        DateTime.now().toLocal(),
                                         Localizations.localeOf(context),
                                       ),
                                       style: m28w600(context),
@@ -100,7 +102,9 @@ class _TarotRevealPageState extends State<TarotRevealPage>
                                       LocaleKeys.reveal_page_tap_to_pick.tr(),
                                       style: m14w500(
                                         context,
-                                      ).copyWith(color: context.colors.textSecondary),
+                                      ).copyWith(
+                                        color: context.colors.textSecondary,
+                                      ),
                                     ),
                                   ],
                                 ),

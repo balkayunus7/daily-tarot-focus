@@ -35,11 +35,18 @@ class GenerateCompatibilityResponseModel with EquatableMixin {
     final overallScore = (map['overall_score'] as num?)?.toInt() ?? 0;
     final cats = map['categories'] as List<dynamic>? ?? [];
 
-    int scoreAt(int i) =>
-        i < cats.length ? ((cats[i] as Map<String, dynamic>)['score'] as num?)?.toInt() ?? 0 : 0;
+    int scoreAt(int i) {
+      if (i >= cats.length) return 0;
+      final score = (cats[i] as Map<String, dynamic>)['score'];
+      if (score is num) return score.toInt();
+      if (score is String) return int.tryParse(score) ?? 0;
+      return 0;
+    }
+
     String descAt(int i) =>
         i < cats.length
-            ? ((cats[i] as Map<String, dynamic>)['description'] as String?) ?? ''
+            ? ((cats[i] as Map<String, dynamic>)['description'] as String?) ??
+                ''
             : '';
 
     return GenerateCompatibilityResponseModel(
@@ -92,9 +99,10 @@ class GenerateCompatibilityResponseModel with EquatableMixin {
   Map<String, dynamic> toMap() => {
     'summary': summary,
     'overall_score': overallScore,
-    'categories': categories
-        .map((c) => {'score': c.score, 'description': c.description})
-        .toList(),
+    'categories':
+        categories
+            .map((c) => {'score': c.score, 'description': c.description})
+            .toList(),
   };
 
   String get titleKey {

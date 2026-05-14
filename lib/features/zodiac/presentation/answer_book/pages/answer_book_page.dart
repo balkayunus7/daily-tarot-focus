@@ -71,8 +71,16 @@ class _BookVisual extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final size = 260.r;
+    final shortestSide = MediaQuery.sizeOf(context).shortestSide;
+    final size = min(shortestSide * 0.86, 340.r);
     final scope = AnswerBookPageScope.of(context).state;
+    final bookW = size * 0.82;
+    final bookH = size * 0.72;
+    final bookTop = (size - bookH) / 2 + size * 0.04;
+    final pageLeft = size / 2 + bookW * 0.06;
+    final pageTop = bookTop + bookH * 0.2;
+    final pageWidth = bookW * 0.38;
+    final pageHeight = bookH * 0.56;
 
     return SizedBox(
       width: size,
@@ -81,33 +89,57 @@ class _BookVisual extends StatelessWidget {
         alignment: Alignment.center,
         children: [
           AnimatedBuilder(
-            animation: scope.flipController,
+            animation: Listenable.merge([
+              scope.flipController,
+              scope.settleController,
+              scope.hasCompletedFlipCycle,
+              scope.isAnswerShown,
+            ]),
             builder: (context, _) {
-              final blur = scope.blur;
+              final settleProgress = scope.settleController.value;
+              final blur =
+                  scope.isAnswerShown.value
+                      ? 0.0
+                      : scope.blur * (1 - settleProgress);
               return ImageFiltered(
                 imageFilter: ImageFilter.blur(sigmaX: blur, sigmaY: blur),
-                child: BookIllustration(flipValue: scope.flipController.value, size: size),
+                child: BookIllustration(
+                  flipValue: scope.flipController.value,
+                  hasCompletedFlipCycle: scope.hasCompletedFlipCycle.value,
+                  settleProgress: settleProgress,
+                  size: size,
+                ),
               );
             },
           ),
           ValueListenableBuilder(
             valueListenable: scope.currentIndex,
             builder: (context, index, child) {
-              return FadeTransition(
-                opacity: scope.revealController,
-                child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 16.w),
-                  child: Text(
-                    scope.currentAnswer,
-                    style: m18w700(context).copyWith(
-                      color: context.colors.textOnPrimary,
-                      fontSize: 24.sp,
-                      height: 1.35,
-                      shadows: [
-                        Shadow(color: Colors.black.withValues(alpha: 0.85), blurRadius: 16),
-                      ],
+              return Positioned(
+                left: pageLeft,
+                top: pageTop,
+                width: pageWidth,
+                height: pageHeight,
+                child: FadeTransition(
+                  opacity: scope.revealController,
+                  child: Center(
+                    child: FittedBox(
+                      fit: BoxFit.scaleDown,
+                      child: SizedBox(
+                        width: pageWidth,
+                        child: Text(
+                          scope.currentAnswer,
+                          style: m18w700(context).copyWith(
+                            color: const Color(0xFF5B4630),
+                            fontSize: 15.sp,
+                            height: 1.25,
+                          ),
+                          maxLines: 5,
+                          overflow: TextOverflow.ellipsis,
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
                     ),
-                    textAlign: TextAlign.center,
                   ),
                 ),
               );

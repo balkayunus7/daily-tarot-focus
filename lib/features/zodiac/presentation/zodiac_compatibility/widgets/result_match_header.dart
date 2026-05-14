@@ -8,6 +8,7 @@ class MatchHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colors = context.colors;
+    final scope = ZodiacCompatibilityPageScope.of(context).state;
 
     return Column(
       children: [
@@ -17,15 +18,35 @@ class MatchHeader extends StatelessWidget {
             _SignAvatar(sign: request.mySign),
             Padding(
               padding: Sp.large.padHR,
-              child: Icon(Icons.favorite_rounded, color: colors.error, size: 28.sp),
+              child: Icon(
+                Icons.favorite_rounded,
+                color: colors.error,
+                size: 28.sp,
+              ),
             ),
             _SignAvatar(sign: request.partnerSign),
           ],
         ),
         Sp.large.heightBox,
         Text(
-          response.titleKey.tr(),
-          style: m18w700(context).copyWith(color: colors.success),
+          scope.compatibilityTitleForScore(context, response.overallScore),
+          style: m18w700(context).copyWith(
+            color: scope.compatibilityTitleColor(
+              context,
+              response.overallScore,
+            ),
+          ),
+          textAlign: TextAlign.center,
+        ),
+        Sp.xsmall.heightBox,
+        Text(
+          scope.compatibilityDescriptionForScore(
+            context,
+            response.overallScore,
+          ),
+          style: m13w400(
+            context,
+          ).copyWith(color: colors.textSecondary, height: 1.45),
           textAlign: TextAlign.center,
         ),
         Sp.medium.heightBox,

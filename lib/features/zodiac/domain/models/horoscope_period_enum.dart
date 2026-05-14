@@ -18,11 +18,11 @@ extension HoroscopePeriodX on HoroscopePeriod {
   String get tabLabel {
     switch (this) {
       case HoroscopePeriod.daily:
-        return 'Today';
+        return LocaleKeys.horoscope_page_tab_label_daily.tr();
       case HoroscopePeriod.weekly:
-        return 'Week';
+        return LocaleKeys.horoscope_page_tab_label_weekly.tr();
       case HoroscopePeriod.monthly:
-        return 'Month';
+        return LocaleKeys.horoscope_page_tab_label_monthly.tr();
     }
   }
 

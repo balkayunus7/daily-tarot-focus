@@ -31,7 +31,10 @@ class HoroscopeTipModel with EquatableMixin {
 }
 
 class HoroscopeCriticalDaysModel with EquatableMixin {
-  const HoroscopeCriticalDaysModel({required this.challenging, required this.highlight});
+  const HoroscopeCriticalDaysModel({
+    required this.challenging,
+    required this.highlight,
+  });
 
   final String challenging;
   final String highlight;
@@ -54,11 +57,18 @@ class HoroscopeResponseModel with EquatableMixin {
     final tipsRaw = map['tips'] as List<dynamic>? ?? [];
     final criticalRaw = map['critical_days'] as Map<String, dynamic>? ?? {};
 
-    int scoreAt(int i) =>
-        i < cats.length ? ((cats[i] as Map<String, dynamic>)['score'] as num?)?.toInt() ?? 0 : 0;
+    int scoreAt(int i) {
+      if (i >= cats.length) return 0;
+      final score = (cats[i] as Map<String, dynamic>)['score'];
+      if (score is num) return score.toInt();
+      if (score is String) return int.tryParse(score) ?? 0;
+      return 0;
+    }
+
     String descAt(int i) =>
         i < cats.length
-            ? ((cats[i] as Map<String, dynamic>)['description'] as String?) ?? ''
+            ? ((cats[i] as Map<String, dynamic>)['description'] as String?) ??
+                ''
             : '';
 
     return HoroscopeResponseModel(
@@ -100,13 +110,14 @@ class HoroscopeResponseModel with EquatableMixin {
           description: descAt(4),
         ),
       ],
-      tips: tipsRaw.map((e) {
-        final t = e as Map<String, dynamic>;
-        return HoroscopeTipModel(
-          isAdvice: t['is_advice'] as bool? ?? true,
-          text: t['text'] as String? ?? '',
-        );
-      }).toList(),
+      tips:
+          tipsRaw.map((e) {
+            final t = e as Map<String, dynamic>;
+            return HoroscopeTipModel(
+              isAdvice: t['is_advice'] as bool? ?? true,
+              text: t['text'] as String? ?? '',
+            );
+          }).toList(),
       criticalDays: HoroscopeCriticalDaysModel(
         challenging: criticalRaw['challenging'] as String? ?? '',
         highlight: criticalRaw['highlight'] as String? ?? '',
@@ -117,14 +128,24 @@ class HoroscopeResponseModel with EquatableMixin {
   Map<String, dynamic> toMap() {
     return {
       'general_text': generalText,
-      'categories': categories.map((c) => {
-        'score': c.score,
-        'description': c.description,
-      }).toList(),
-      'tips': tips.map((t) => {
-        'is_advice': t.isAdvice,
-        'text': t.text,
-      }).toList(),
+      'categories':
+          categories
+              .map(
+                (c) => {
+                  'score': c.score,
+                  'description': c.description,
+                },
+              )
+              .toList(),
+      'tips':
+          tips
+              .map(
+                (t) => {
+                  'is_advice': t.isAdvice,
+                  'text': t.text,
+                },
+              )
+              .toList(),
       'critical_days': {
         'challenging': criticalDays.challenging,
         'highlight': criticalDays.highlight,

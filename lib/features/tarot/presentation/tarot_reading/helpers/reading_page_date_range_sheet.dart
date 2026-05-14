@@ -1,6 +1,7 @@
 import 'package:daily_tarot_focus/core/util/locale_keys.dart';
 import 'package:daily_tarot_focus/core/util/tarot_app_sizes.dart';
 import 'package:daily_tarot_focus/core/util/text_style_helper.dart';
+import 'package:daily_tarot_focus/core/widgets/tarot_date_picker.dart';
 import 'package:daily_tarot_focus/features/tarot/presentation/tarot_reading/helpers/reading_page_mixin.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile_boilerplate/common_dependencies.dart';
@@ -12,7 +13,8 @@ class DateRangeSheet {
     required BuildContext context,
     required ValueNotifier<TarotReadingDateFilter> selectedFilter,
     required ValueNotifier<DateTimeRange?> customDateRange,
-    required void Function(TarotReadingDateFilter filter, DateTimeRange? range) updateFilter,
+    required void Function(TarotReadingDateFilter filter, DateTimeRange? range)
+    updateFilter,
   }) async {
     TarotReadingDateFilter? result;
 
@@ -82,13 +84,16 @@ class DateRangeSheet {
                   ),
                   title: Text(
                     LocaleKeys.tarot_daily_all_time.tr(),
-                    style: m16w400(bottomSheetContext).copyWith(color: allTimeLabelColor),
+                    style: m16w400(
+                      bottomSheetContext,
+                    ).copyWith(color: allTimeLabelColor),
                   ),
                   onTap: () {
                     result = TarotReadingDateFilter.allTime;
                     Navigator.pop(bottomSheetContext);
                   },
-                  selected: selectedFilter.value == TarotReadingDateFilter.allTime,
+                  selected:
+                      selectedFilter.value == TarotReadingDateFilter.allTime,
                   selectedColor: bottomSheetContext.colors.primary,
                 ),
                 Sp.xsmall.heightBox,
@@ -103,13 +108,16 @@ class DateRangeSheet {
                   ),
                   title: Text(
                     LocaleKeys.tarot_daily_last_week.tr(),
-                    style: m16w400(bottomSheetContext).copyWith(color: lastWeekLabelColor),
+                    style: m16w400(
+                      bottomSheetContext,
+                    ).copyWith(color: lastWeekLabelColor),
                   ),
                   onTap: () {
                     result = TarotReadingDateFilter.lastWeek;
                     Navigator.pop(bottomSheetContext);
                   },
-                  selected: selectedFilter.value == TarotReadingDateFilter.lastWeek,
+                  selected:
+                      selectedFilter.value == TarotReadingDateFilter.lastWeek,
                   selectedColor: bottomSheetContext.colors.primary,
                 ),
                 Sp.xsmall.heightBox,
@@ -124,13 +132,16 @@ class DateRangeSheet {
                   ),
                   title: Text(
                     LocaleKeys.tarot_daily_last_month.tr(),
-                    style: m16w400(bottomSheetContext).copyWith(color: lastMonthLabelColor),
+                    style: m16w400(
+                      bottomSheetContext,
+                    ).copyWith(color: lastMonthLabelColor),
                   ),
                   onTap: () {
                     result = TarotReadingDateFilter.lastMonth;
                     Navigator.pop(bottomSheetContext);
                   },
-                  selected: selectedFilter.value == TarotReadingDateFilter.lastMonth,
+                  selected:
+                      selectedFilter.value == TarotReadingDateFilter.lastMonth,
                   selectedColor: bottomSheetContext.colors.primary,
                 ),
                 Sp.xsmall.heightBox,
@@ -145,13 +156,16 @@ class DateRangeSheet {
                   ),
                   title: Text(
                     LocaleKeys.tarot_daily_custom_date.tr(),
-                    style: m16w400(bottomSheetContext).copyWith(color: customDateLabelColor),
+                    style: m16w400(
+                      bottomSheetContext,
+                    ).copyWith(color: customDateLabelColor),
                   ),
                   onTap: () {
                     result = TarotReadingDateFilter.custom;
                     Navigator.pop(bottomSheetContext);
                   },
-                  selected: selectedFilter.value == TarotReadingDateFilter.custom,
+                  selected:
+                      selectedFilter.value == TarotReadingDateFilter.custom,
                   selectedColor: bottomSheetContext.colors.primary,
                 ),
               ],
@@ -165,30 +179,11 @@ class DateRangeSheet {
 
     if (result != null) {
       if (result == TarotReadingDateFilter.custom) {
-        final dateRange = await showDateRangePicker(
+        final dateRange = await TarotDatePicker.showDateRange(
           context: context,
           firstDate: DateTime(2020),
           lastDate: DateTime.now(),
           initialDateRange: customDateRange.value,
-          builder: (context, child) {
-            return Theme(
-              data: Theme.of(context).copyWith(
-                colorScheme: Theme.of(context).colorScheme.copyWith(
-                  primary: context.colors.primary,
-                  onPrimary: context.colors.textPrimary,
-                  surface: context.colors.surface,
-                  onSurface: context.colors.textPrimary,
-                  onSurfaceVariant: context.colors.textSecondary,
-                ),
-                scaffoldBackgroundColor: context.colors.surface,
-                appBarTheme: AppBarTheme(
-                  backgroundColor: context.colors.surface,
-                  foregroundColor: context.colors.textPrimary,
-                ),
-              ),
-              child: child!,
-            );
-          },
         );
         if (dateRange != null) {
           updateFilter(result!, dateRange);

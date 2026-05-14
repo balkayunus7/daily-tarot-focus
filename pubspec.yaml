@@ -12,6 +12,7 @@ dependencies:
   country_flags: ^4.1.2
   country_state_city: ^0.1.6
   cupertino_icons: ^1.0.8
+  date_picker_plus: ^7.0.0
   easy_localization: ^3.0.8
   flutter:
     sdk: flutter
@@ -32,6 +33,7 @@ dependencies:
   shared_preferences: ^2.3.5
   shimmer_animation: ^2.2.2
   supabase: ^2.10.0
+  time_picker_spinner_pop_up: ^3.0.0
   timezone: ^0.10.0
   very_good_analysis: ^10.0.0
   
@@ -50,4 +52,3 @@ flutter:
     - assets/translations/
     - assets/svg/
     - assets/json/
-

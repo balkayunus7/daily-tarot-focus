@@ -1,7 +1,11 @@
 part of '../pages/zodiac_learn_page.dart';
 
 class BirthInputSheet extends StatefulWidget {
-  const BirthInputSheet({required this.type, required this.onSubmit, super.key});
+  const BirthInputSheet({
+    required this.type,
+    required this.onSubmit,
+    super.key,
+  });
   final DiscoverZodiacType type;
   final Future<void> Function(
     DateTime date,
@@ -69,16 +73,19 @@ class _BirthInputSheetState extends State<BirthInputSheet> {
               ),
             ),
             Sp.large.heightBox,
-            Text(LocaleKeys.zodiac_page_birth_info_title.tr(), style: m18w600(context)),
+            Text(
+              LocaleKeys.zodiac_page_birth_info_title.tr(),
+              style: m18w600(context),
+            ),
             Sp.large.heightBox,
             _PickerRow(
               label: LocaleKeys.zodiac_page_birth_date.tr(),
               value: _selectedDate != null ? _formatDate(_selectedDate!) : null,
               icon: Icons.calendar_today_outlined,
               onTap: () async {
-                final picked = await showDatePicker(
+                final picked = await TarotDatePicker.showDate(
                   context: context,
-                  initialDate: DateTime(1990),
+                  initialDate: _selectedDate ?? DateTime(1990),
                   firstDate: DateTime(1900),
                   lastDate: DateTime.now(),
                 );
@@ -91,9 +98,10 @@ class _BirthInputSheetState extends State<BirthInputSheet> {
               value: _selectedTime?.format(context),
               icon: Icons.access_time_outlined,
               onTap: () async {
-                final picked = await showTimePicker(
+                final picked = await TarotDatePicker.showTime(
                   context: context,
-                  initialTime: const TimeOfDay(hour: 12, minute: 0),
+                  initialTime:
+                      _selectedTime ?? const TimeOfDay(hour: 12, minute: 0),
                 );
                 if (picked != null) setState(() => _selectedTime = picked);
               },
@@ -110,9 +118,12 @@ class _BirthInputSheetState extends State<BirthInputSheet> {
                     isScrollControlled: true,
                     backgroundColor: context.colors.background,
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.vertical(top: Radius.circular(Sp.xlarge.r)),
+                      borderRadius: BorderRadius.vertical(
+                        top: Radius.circular(Sp.xlarge.r),
+                      ),
                     ),
-                    builder: (_) => CityPickerSheet(onCitySelected: _onCitySelected),
+                    builder:
+                        (_) => CityPickerSheet(onCitySelected: _onCitySelected),
                   );
                 },
               ),
@@ -176,7 +187,9 @@ class _PickerRow extends StatelessWidget {
                 children: [
                   Text(
                     label,
-                    style: m10w500(context).copyWith(color: colors.textSecondary),
+                    style: m10w500(
+                      context,
+                    ).copyWith(color: colors.textSecondary),
                   ),
                   if (value != null) ...[
                     Sp.tiny.heightBox,

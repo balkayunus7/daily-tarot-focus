@@ -4,6 +4,7 @@ import 'package:daily_tarot_focus/core/util/locale_keys.dart';
 import 'package:daily_tarot_focus/core/util/tarot_app_sizes.dart';
 import 'package:daily_tarot_focus/core/util/text_style_helper.dart';
 import 'package:daily_tarot_focus/core/widgets/fancy_button.dart';
+import 'package:daily_tarot_focus/core/widgets/fancy_container.dart';
 import 'package:daily_tarot_focus/features/auth/bloc/register_cubit.dart';
 import 'package:daily_tarot_focus/features/auth/presentation/helpers/personal_info_mixin.dart';
 import 'package:daily_tarot_focus/features/auth/presentation/widgets/personal_info_input_field.dart';
@@ -11,9 +12,12 @@ import 'package:daily_tarot_focus/features/auth/presentation/widgets/step_backgr
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:iconify_flutter/iconify_flutter.dart';
+import 'package:iconify_flutter/icons/mdi.dart';
 import 'package:mobile_boilerplate/application/auth/auth_cubit.dart';
 import 'package:mobile_boilerplate/common_dependencies.dart';
 import 'package:mobile_boilerplate/presentation/extensions/build_context_theme_ext.dart';
+import 'package:mobile_boilerplate/presentation/widgets/scaling_container.dart';
 
 class RegisterStepPersonalInfoPage extends StatefulWidget {
   const RegisterStepPersonalInfoPage({super.key});
@@ -78,10 +82,7 @@ class _RegisterStepPersonalInfoPageState extends State<RegisterStepPersonalInfoP
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(
-                              LocaleKeys.register_page_name_label.tr(),
-                              style: m14w700(context),
-                            ),
+                            _buildLabel(context, LocaleKeys.register_page_name_label.tr()),
                             Sp.xsmall.heightBox,
                             ListenableBuilder(
                               listenable: nameController,
@@ -94,16 +95,13 @@ class _RegisterStepPersonalInfoPageState extends State<RegisterStepPersonalInfoP
                               },
                             ),
                             Sp.medium.heightBox,
-                            Text(
-                              LocaleKeys.register_page_birth_date_label.tr(),
-                              style: m14w700(context),
-                            ),
+                            _buildLabel(context, LocaleKeys.register_page_birth_date_label.tr()),
                             Sp.xsmall.heightBox,
                             ValueListenableBuilder<DateTime?>(
                               valueListenable: selectedBirthDate,
                               builder: (context, date, _) {
                                 return _InfoPickerField(
-                                  icon: Icons.calendar_today_rounded,
+                                  icon: Mdi.calendar,
                                   value: date != null ? formatDate(date) : null,
                                   hint: LocaleKeys.register_page_birth_date_hint.tr(),
                                   onTap: pickDate,
@@ -111,16 +109,13 @@ class _RegisterStepPersonalInfoPageState extends State<RegisterStepPersonalInfoP
                               },
                             ),
                             Sp.medium.heightBox,
-                            Text(
-                              LocaleKeys.register_page_birth_time_label.tr(),
-                              style: m14w700(context),
-                            ),
+                            _buildLabel(context, LocaleKeys.register_page_birth_time_label.tr()),
                             Sp.xsmall.heightBox,
                             ValueListenableBuilder<TimeOfDay?>(
                               valueListenable: selectedBirthTime,
                               builder: (context, time, _) {
                                 return _InfoPickerField(
-                                  icon: Icons.access_time_rounded,
+                                  icon: Mdi.clock_outline,
                                   value: time?.format(context),
                                   hint: LocaleKeys.register_page_birth_time_hint.tr(),
                                   onTap: pickTime,
@@ -128,22 +123,20 @@ class _RegisterStepPersonalInfoPageState extends State<RegisterStepPersonalInfoP
                               },
                             ),
                             Sp.medium.heightBox,
-                            Text(
-                              LocaleKeys.register_page_location_label.tr(),
-                              style: m14w700(context),
-                            ),
+                            _buildLabel(context, LocaleKeys.register_page_location_label.tr()),
                             Sp.xsmall.heightBox,
                             ValueListenableBuilder<String?>(
                               valueListenable: selectedCityName,
                               builder: (context, city, _) {
                                 return _InfoPickerField(
-                                  icon: Icons.location_city_rounded,
+                                  icon: Mdi.map_marker,
                                   value: city,
                                   hint: LocaleKeys.register_page_location_hint.tr(),
                                   onTap: pickCity,
                                 );
                               },
                             ),
+                            Sp.xxlarge.heightBox,
                           ],
                         ),
                       ),
@@ -178,6 +171,16 @@ class _RegisterStepPersonalInfoPageState extends State<RegisterStepPersonalInfoP
       ),
     );
   }
+
+  Widget _buildLabel(BuildContext context, String label) {
+    return Padding(
+      padding: EdgeInsets.only(left: 4.w),
+      child: Text(
+        label,
+        style: m14w700(context).copyWith(color: context.colors.textPrimary.withValues(alpha: 0.8)),
+      ),
+    );
+  }
 }
 
 class _InfoPickerField extends StatelessWidget {
@@ -188,7 +191,7 @@ class _InfoPickerField extends StatelessWidget {
     this.value,
   });
 
-  final IconData icon;
+  final String icon;
   final String? value;
   final String hint;
   final VoidCallback onTap;
@@ -196,33 +199,36 @@ class _InfoPickerField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colors = context.colors;
-    return GestureDetector(
+    final isSelected = value != null;
+
+    return ScalingContainer(
       onTap: onTap,
-      child: Container(
-        width: double.infinity,
-        padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 14.h),
-        decoration: BoxDecoration(
-          color: colors.surface,
-          borderRadius: Sp.medium.radiusR,
-          border: Border.all(
-            color: value != null ? colors.primary : colors.accent,
-            width: 1.5,
-          ),
-        ),
+      child: FancyContainer(
+        padding: EdgeInsets.symmetric(horizontal: 14.w, vertical: 14.h),
+        color:
+            isSelected
+                ? colors.primary.withValues(alpha: 0.1)
+                : colors.primary.withValues(alpha: 0.05),
         child: Row(
           children: [
-            Icon(
+            Iconify(
               icon,
-              color: value != null ? colors.primary : colors.textSecondary,
+              color: isSelected ? colors.primary : colors.textSecondary,
               size: 18.r,
             ),
-            SizedBox(width: 10.w),
-            Text(
-              value ?? hint,
-              style:
-                  value != null
-                      ? m14w500(context)
-                      : m14w500(context).copyWith(color: colors.textSecondary),
+            SizedBox(width: 14.w),
+            Expanded(
+              child: Text(
+                value ?? hint,
+                style: m14w500(context).copyWith(
+                  color: isSelected ? colors.textPrimary : colors.textSecondary,
+                ),
+              ),
+            ),
+            Icon(
+              Icons.chevron_right_rounded,
+              color: isSelected ? colors.primary : colors.textSecondary.withValues(alpha: 0.5),
+              size: 20.r,
             ),
           ],
         ),

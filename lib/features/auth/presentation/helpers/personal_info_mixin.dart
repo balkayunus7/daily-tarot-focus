@@ -1,5 +1,6 @@
 import 'package:daily_tarot_focus/core/util/tarot_app_sizes.dart';
 import 'package:daily_tarot_focus/core/widgets/city_picker_sheet.dart';
+import 'package:daily_tarot_focus/core/widgets/tarot_date_picker.dart';
 import 'package:daily_tarot_focus/features/auth/bloc/register_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile_boilerplate/application/auth/auth_cubit.dart';
@@ -41,26 +42,12 @@ mixin PersonalInfoMixin<T extends StatefulWidget> on State<T> {
   }
 
   Future<void> pickDate() async {
-    final colorScheme = Theme.of(context).colorScheme;
     final now = DateTime.now();
-    final picked = await showDatePicker(
+    final picked = await TarotDatePicker.showDate(
       context: context,
       initialDate: selectedBirthDate.value ?? DateTime(now.year - 25),
       firstDate: DateTime(1900),
       lastDate: now,
-      builder: (ctx, child) {
-        return Theme(
-          data: ThemeData.dark().copyWith(
-            colorScheme: ColorScheme.dark(
-              primary: colorScheme.primary,
-              onPrimary: colorScheme.onPrimary,
-              surface: colorScheme.surface,
-              onSurface: colorScheme.onSurface,
-            ),
-          ),
-          child: child!,
-        );
-      },
     );
     if (picked != null && mounted) {
       selectedBirthDate.value = picked;
@@ -69,9 +56,9 @@ mixin PersonalInfoMixin<T extends StatefulWidget> on State<T> {
   }
 
   Future<void> pickTime() async {
-    final picked = await showTimePicker(
+    final picked = await TarotDatePicker.showTime(
       context: context,
-      initialTime: const TimeOfDay(hour: 12, minute: 0),
+      initialTime: selectedBirthTime.value ?? const TimeOfDay(hour: 12, minute: 0),
     );
     if (picked != null && mounted) {
       selectedBirthTime.value = picked;

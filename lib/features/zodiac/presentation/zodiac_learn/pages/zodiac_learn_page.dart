@@ -9,6 +9,7 @@ import 'package:daily_tarot_focus/core/widgets/custom_cache_network_image.dart';
 import 'package:daily_tarot_focus/core/widgets/fancy_button.dart';
 import 'package:daily_tarot_focus/core/widgets/fancy_container.dart';
 import 'package:daily_tarot_focus/core/widgets/tarot_app_bar.dart';
+import 'package:daily_tarot_focus/core/widgets/tarot_date_picker.dart';
 import 'package:daily_tarot_focus/features/auth/domain/models/tarot_user.dart';
 import 'package:daily_tarot_focus/features/auth/domain/models/tarot_user_zodiac_enum.dart';
 import 'package:daily_tarot_focus/features/tarot/bloc/tarot/tarot_bloc.dart';
@@ -34,7 +35,8 @@ class ZodiacLearnPage extends StatefulWidget {
   State<ZodiacLearnPage> createState() => _ZodiacLearnPageState();
 }
 
-class _ZodiacLearnPageState extends State<ZodiacLearnPage> with ZodiacLearnPageMixin {
+class _ZodiacLearnPageState extends State<ZodiacLearnPage>
+    with ZodiacLearnPageMixin {
   @override
   Widget build(BuildContext context) {
     return ZodiacLearnPageScope(
@@ -56,7 +58,10 @@ class _ZodiacScaffold extends StatelessWidget {
         bottom: false,
         child: Column(
           children: [
-            TarotAppBar(title: LocaleKeys.zodiac_page_title.tr(), titleStyle: m18w700(context)),
+            TarotAppBar(
+              title: LocaleKeys.zodiac_page_title.tr(),
+              titleStyle: m18w700(context),
+            ),
             TabBar(
               indicatorColor: colors.primary,
               indicatorSize: TabBarIndicatorSize.label,
@@ -97,7 +102,12 @@ class _SunTab extends StatelessWidget {
         final sign = (state.userOrCrash as TarotUser).zodiac;
         if (sign == null) return const SizedBox.shrink();
         return SingleChildScrollView(
-          padding: EdgeInsets.fromLTRB(Sp.screen.w, Sp.xlarge.h, Sp.screen.w, Sp.xxxlarge.h),
+          padding: EdgeInsets.fromLTRB(
+            Sp.screen.w,
+            Sp.xlarge.h,
+            Sp.screen.w,
+            Sp.xxxlarge.h,
+          ),
           child: ZodiacCalculatedView(sign: sign),
         );
       },
@@ -116,7 +126,12 @@ class _MoonTab extends StatelessWidget {
         final sign = (state.userOrCrash as TarotUser).moonSign;
         if (sign != null) {
           return SingleChildScrollView(
-            padding: EdgeInsets.fromLTRB(Sp.screen.w, Sp.xlarge.h, Sp.screen.w, Sp.xxxlarge.h),
+            padding: EdgeInsets.fromLTRB(
+              Sp.screen.w,
+              Sp.xlarge.h,
+              Sp.screen.w,
+              Sp.xxxlarge.h,
+            ),
             child: ZodiacCalculatedView(sign: sign),
           );
         }
@@ -137,7 +152,12 @@ class _RisingTab extends StatelessWidget {
         final sign = (state.userOrCrash as TarotUser).risingSign;
         if (sign != null) {
           return SingleChildScrollView(
-            padding: EdgeInsets.fromLTRB(Sp.screen.w, Sp.xlarge.h, Sp.screen.w, Sp.xxxlarge.h),
+            padding: EdgeInsets.fromLTRB(
+              Sp.screen.w,
+              Sp.xlarge.h,
+              Sp.screen.w,
+              Sp.xxxlarge.h,
+            ),
             child: ZodiacCalculatedView(sign: sign),
           );
         }

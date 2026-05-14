@@ -1,3 +1,4 @@
+import 'package:daily_tarot_focus/core/widgets/tarot_date_picker.dart';
 import 'package:daily_tarot_focus/features/zodiac/presentation/numerology/presentation/pages/numerology_input_page.dart';
 import 'package:flutter/material.dart';
 
@@ -26,7 +27,7 @@ mixin NumerologyInputPageMixin on State<NumerologyInputPage> {
   }
 
   Future<void> pickBirthDate() async {
-    final picked = await showDatePicker(
+    final picked = await TarotDatePicker.showDate(
       context: context,
       initialDate: birthDate.value ?? DateTime(1990),
       firstDate: DateTime(1900),

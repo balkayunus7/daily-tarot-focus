@@ -88,11 +88,12 @@ class _CityPickerSheetState extends State<CityPickerSheet> {
       _searchCtrl.clear();
     });
     final all = await csc.getStateCities(_country!.isoCode, s.isoCode);
-    final withCoords = all.where((c) {
-      final lat = double.tryParse(c.latitude ?? '');
-      final lon = double.tryParse(c.longitude ?? '');
-      return lat != null && lon != null;
-    }).toList();
+    final withCoords =
+        all.where((c) {
+          final lat = double.tryParse(c.latitude ?? '');
+          final lon = double.tryParse(c.longitude ?? '');
+          return lat != null && lon != null;
+        }).toList();
     if (mounted) {
       setState(() {
         _cities = withCoords;
@@ -132,7 +133,9 @@ class _CityPickerSheetState extends State<CityPickerSheet> {
 
   String get _title {
     if (_step == 0) return LocaleKeys.zodiac_page_select_country.tr();
-    if (_step == 1) return _country?.name ?? LocaleKeys.zodiac_page_select_state.tr();
+    if (_step == 1) {
+      return _country?.name ?? LocaleKeys.zodiac_page_select_state.tr();
+    }
     return _state?.name ?? LocaleKeys.zodiac_page_select_city.tr();
   }
 
@@ -150,19 +153,18 @@ class _CityPickerSheetState extends State<CityPickerSheet> {
           : _countries.where((c) => c.name.toLowerCase().contains(q)).toList();
     }
     if (_step == 1) {
-      return q.isEmpty
-          ? _states
-          : _states.where((s) => s.name.toLowerCase().contains(q)).toList();
+      return q.isEmpty ? _states : _states.where((s) => s.name.toLowerCase().contains(q)).toList();
     }
-    return q.isEmpty
-        ? _cities
-        : _cities.where((c) => c.name.toLowerCase().contains(q)).toList();
+    return q.isEmpty ? _cities : _cities.where((c) => c.name.toLowerCase().contains(q)).toList();
   }
 
   @override
   Widget build(BuildContext context) {
     final colors = context.colors;
     final list = _filtered;
+    final bottomSafePadding = MediaQuery.of(context).padding.bottom;
+    final listBottomPadding =
+        (_step == 2 && _city != null ? Sp.large.h : Sp.xxxlarge.h) + bottomSafePadding;
 
     return SizedBox(
       height: MediaQuery.of(context).size.height * 0.78,
@@ -182,7 +184,10 @@ class _CityPickerSheetState extends State<CityPickerSheet> {
             ),
           ),
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: Sp.screen.w, vertical: Sp.medium.h),
+            padding: EdgeInsets.symmetric(
+              horizontal: Sp.screen.w,
+              vertical: Sp.medium.h,
+            ),
             child: Row(
               children: [
                 if (_step > 0)
@@ -205,7 +210,10 @@ class _CityPickerSheetState extends State<CityPickerSheet> {
             padding: EdgeInsets.symmetric(horizontal: Sp.screen.w),
             child: FancyContainer(
               width: double.infinity,
-              padding: EdgeInsets.symmetric(horizontal: Sp.medium.w, vertical: Sp.small.h),
+              padding: EdgeInsets.symmetric(
+                horizontal: Sp.medium.w,
+                vertical: Sp.small.h,
+              ),
               color: colors.textSecondary.withValues(alpha: 0.06),
               child: Row(
                 children: [
@@ -238,94 +246,120 @@ class _CityPickerSheetState extends State<CityPickerSheet> {
           ),
           Sp.small.heightBox,
           Expanded(
-            child: _loading
-                ? const Center(child: CircularProgressIndicator())
-                : list.isEmpty && _step == 1
+            child:
+                _loading
+                    ? const Center(child: CircularProgressIndicator())
+                    : list.isEmpty && _step == 1
                     ? Center(
-                        child: Padding(
-                          padding: EdgeInsets.symmetric(horizontal: Sp.screen.w),
-                          child: Text(
-                            LocaleKeys.zodiac_page_no_states.tr(),
-                            style: m13w400(context).copyWith(color: colors.textSecondary),
-                            textAlign: TextAlign.center,
-                          ),
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(horizontal: Sp.screen.w),
+                        child: Text(
+                          LocaleKeys.zodiac_page_no_states.tr(),
+                          style: m13w400(
+                            context,
+                          ).copyWith(color: colors.textSecondary),
+                          textAlign: TextAlign.center,
                         ),
-                      )
+                      ),
+                    )
                     : list.isEmpty
-                        ? Center(
-                            child: Text(
-                              LocaleKeys.zodiac_page_no_results.tr(),
-                              style: m13w400(context).copyWith(color: colors.textSecondary),
-                            ),
-                          )
-                        : ListView.builder(
-                            padding: EdgeInsets.symmetric(horizontal: Sp.screen.w),
-                            itemCount: list.length,
-                            itemBuilder: (_, i) {
-                              final item = list[i];
-                              final name = _nameOf(item);
-                              final isSelected = _step == 2 && _city == item;
-                              final isoCode =
-                                  _step == 0 ? (item as csc.Country).isoCode : null;
-                              return GestureDetector(
-                                onTap: () {
-                                  if (_step == 0) {
-                                    unawaited(_pickCountry(item as csc.Country));
-                                  } else if (_step == 1) {
-                                    unawaited(_pickState(item as csc.State));
-                                  } else {
-                                    _pickCity(item as csc.City);
-                                  }
-                                },
-                                child: Container(
-                                  margin: EdgeInsets.only(bottom: Sp.xsmall.h),
-                                  child: FancyContainer(
-                                    width: double.infinity,
-                                    padding: Sp.medium.padAllR,
-                                    color: isSelected
-                                        ? colors.primary.withValues(alpha: 0.12)
-                                        : colors.textSecondary.withValues(alpha: 0.04),
-                                    child: Row(
-                                      children: [
-                                        if (isoCode != null) ...[
-                                          ClipRRect(
-                                            borderRadius: BorderRadius.circular(4),
-                                            child: CountryFlag.fromCountryCode(
-                                              isoCode,
-                                              theme: const ImageTheme(height: 18, width: 26),
-                                            ),
-                                          ),
-                                          Sp.small.widthBox,
-                                        ],
-                                        Expanded(child: Text(name, style: m14w400(context))),
-                                        if (_step < 2)
-                                          Icon(
-                                            Icons.chevron_right,
-                                            size: 18.sp,
-                                            color: colors.textSecondary.withValues(alpha: 0.4),
-                                          ),
-                                        if (isSelected)
-                                          Icon(
-                                            Icons.check_circle,
-                                            size: 18.sp,
-                                            color: colors.primary,
-                                          ),
-                                      ],
+                    ? Center(
+                      child: Text(
+                        LocaleKeys.zodiac_page_no_results.tr(),
+                        style: m13w400(
+                          context,
+                        ).copyWith(color: colors.textSecondary),
+                      ),
+                    )
+                    : ListView.builder(
+                      padding: EdgeInsets.fromLTRB(
+                        Sp.screen.w,
+                        0,
+                        Sp.screen.w,
+                        listBottomPadding,
+                      ),
+                      itemCount: list.length,
+                      itemBuilder: (_, i) {
+                        final item = list[i];
+                        final name = _nameOf(item);
+                        final isSelected = _step == 2 && _city == item;
+                        final isoCode = _step == 0 ? (item as csc.Country).isoCode : null;
+                        return GestureDetector(
+                          onTap: () {
+                            if (_step == 0) {
+                              unawaited(_pickCountry(item as csc.Country));
+                            } else if (_step == 1) {
+                              unawaited(_pickState(item as csc.State));
+                            } else {
+                              _pickCity(item as csc.City);
+                            }
+                          },
+                          child: Container(
+                            margin: EdgeInsets.only(bottom: Sp.xsmall.h),
+                            child: FancyContainer(
+                              width: double.infinity,
+                              padding: Sp.medium.padAllR,
+                              color:
+                                  isSelected
+                                      ? colors.primary.withValues(alpha: 0.12)
+                                      : colors.textSecondary.withValues(
+                                        alpha: 0.04,
+                                      ),
+                              child: Row(
+                                children: [
+                                  if (isoCode != null) ...[
+                                    ClipRRect(
+                                      borderRadius: BorderRadius.circular(4),
+                                      child: CountryFlag.fromCountryCode(
+                                        isoCode,
+                                        theme: const ImageTheme(
+                                          height: 18,
+                                          width: 26,
+                                        ),
+                                      ),
                                     ),
+                                    Sp.small.widthBox,
+                                  ],
+                                  Expanded(
+                                    child: Text(name, style: m14w400(context)),
                                   ),
-                                ),
-                              );
-                            },
+                                  if (_step < 2)
+                                    Icon(
+                                      Icons.chevron_right,
+                                      size: 18.sp,
+                                      color: colors.textSecondary.withValues(
+                                        alpha: 0.4,
+                                      ),
+                                    ),
+                                  if (isSelected)
+                                    Icon(
+                                      Icons.check_circle,
+                                      size: 18.sp,
+                                      color: colors.primary,
+                                    ),
+                                ],
+                              ),
+                            ),
                           ),
+                        );
+                      },
+                    ),
           ),
           if (_step == 2 && _city != null)
             Padding(
-              padding: EdgeInsets.fromLTRB(Sp.screen.w, Sp.medium.h, Sp.screen.w, Sp.xxxlarge.h),
+              padding: EdgeInsets.fromLTRB(
+                Sp.screen.w,
+                Sp.medium.h,
+                Sp.screen.w,
+                Sp.xxxlarge.h,
+              ),
               child: FancyButton(
                 text: LocaleKeys.zodiac_page_confirm.tr(),
                 width: double.infinity,
                 height: 48.h,
-                textStyle: m14w700(context).copyWith(color: colors.textOnPrimary),
+                textStyle: m14w700(
+                  context,
+                ).copyWith(color: colors.textOnPrimary),
                 onTap: _confirm,
               ),
             ),

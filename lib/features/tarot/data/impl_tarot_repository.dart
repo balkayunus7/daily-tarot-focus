@@ -10,6 +10,8 @@ import 'package:daily_tarot_focus/features/tarot/domain/models/fetch_saved_readi
 import 'package:daily_tarot_focus/features/tarot/domain/models/fetch_saved_readings_response_model.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/fetch_spreads_request_model.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/fetch_spreads_response_model.dart';
+import 'package:daily_tarot_focus/features/tarot/domain/models/generate_daily_pick_request_model.dart';
+import 'package:daily_tarot_focus/features/tarot/domain/models/generate_daily_pick_response_model.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/generate_reading_request_model.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/generate_reading_response_model.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/record_daily_card_request_model.dart';
@@ -27,7 +29,9 @@ class ImplTarotRepository {
     required RecordDailyCardRequest request,
   }) async {
     try {
-      final response = await tarotRemoteDataSource.requestRecordDailyCard(request: request);
+      final response = await tarotRemoteDataSource.requestRecordDailyCard(
+        request: request,
+      );
       return right(response);
     } on Exception {
       return left(const UnknownFailure());
@@ -38,7 +42,9 @@ class ImplTarotRepository {
     required FetchDailyCardsRequest request,
   }) async {
     try {
-      final response = await tarotRemoteDataSource.requestFetchDailyCards(request: request);
+      final response = await tarotRemoteDataSource.requestFetchDailyCards(
+        request: request,
+      );
       return right(response);
     } on Exception {
       return left(const UnknownFailure());
@@ -49,7 +55,9 @@ class ImplTarotRepository {
     required FetchAllCardsRequest request,
   }) async {
     try {
-      final response = await tarotRemoteDataSource.requestAllCards(request: request);
+      final response = await tarotRemoteDataSource.requestAllCards(
+        request: request,
+      );
       return right(response);
     } on Exception {
       return left(const UnknownFailure());
@@ -60,7 +68,9 @@ class ImplTarotRepository {
     required FetchSpreadsRequest request,
   }) async {
     try {
-      final response = await tarotRemoteDataSource.requestSpreadCategories(request: request);
+      final response = await tarotRemoteDataSource.requestSpreadCategories(
+        request: request,
+      );
       return right(response);
     } on Exception {
       return left(const UnknownFailure());
@@ -71,7 +81,9 @@ class ImplTarotRepository {
     required FetchReadersRequest request,
   }) async {
     try {
-      final response = await tarotRemoteDataSource.requestReaders(request: request);
+      final response = await tarotRemoteDataSource.requestReaders(
+        request: request,
+      );
       return right(response);
     } on Exception {
       return left(const UnknownFailure());
@@ -82,7 +94,22 @@ class ImplTarotRepository {
     required GenerateReadingRequest request,
   }) async {
     try {
-      final response = await tarotRemoteDataSource.requestGenerateReading(request: request);
+      final response = await tarotRemoteDataSource.requestGenerateReading(
+        request: request,
+      );
+      return right(response);
+    } on Exception {
+      return left(const UnknownFailure());
+    }
+  }
+
+  Future<FailureOr<GenerateDailyPickResponse>> requestGenerateDailyPick({
+    required GenerateDailyPickRequest request,
+  }) async {
+    try {
+      final response = await tarotRemoteDataSource.requestGenerateDailyPick(
+        request: request,
+      );
       return right(response);
     } on Exception {
       return left(const UnknownFailure());
@@ -93,7 +120,9 @@ class ImplTarotRepository {
     required SaveReadingRequest request,
   }) async {
     try {
-      final response = await tarotRemoteDataSource.requestSaveReading(request: request);
+      final response = await tarotRemoteDataSource.requestSaveReading(
+        request: request,
+      );
       return right(response);
     } on Exception {
       return left(const UnknownFailure());
@@ -104,7 +133,9 @@ class ImplTarotRepository {
     required FetchSavedReadingsRequest request,
   }) async {
     try {
-      final response = await tarotRemoteDataSource.requestFetchSavedReadings(request: request);
+      final response = await tarotRemoteDataSource.requestFetchSavedReadings(
+        request: request,
+      );
       return right(response);
     } on Exception {
       return left(const UnknownFailure());

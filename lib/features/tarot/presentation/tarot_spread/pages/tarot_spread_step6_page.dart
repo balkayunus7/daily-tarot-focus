@@ -57,7 +57,7 @@ class _TarotSpreadStep6PageState extends State<TarotSpreadStep6Page> with Step6P
               ),
               Sp.tiny.heightBox,
               Text(
-                LocaleKeys.tarot_question_step_5_of_5.tr(),
+                LocaleKeys.tarot_question_step_6_of_6.tr(),
                 style: m10w500(context).copyWith(
                   color: colors.textSecondary,
                   letterSpacing: 1.5,

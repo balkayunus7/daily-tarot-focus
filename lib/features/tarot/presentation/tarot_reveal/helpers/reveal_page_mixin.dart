@@ -1,20 +1,26 @@
 import 'dart:async';
+import 'dart:math' as math;
 
 import 'package:daily_tarot_focus/config/app_routes.dart';
 import 'package:daily_tarot_focus/core/util/haptic_feedback_helper.dart';
+import 'package:daily_tarot_focus/core/util/locale_extensions.dart';
 import 'package:daily_tarot_focus/core/util/tarot_app_sizes.dart';
 import 'package:daily_tarot_focus/features/tarot/bloc/tarot/tarot_bloc.dart';
 import 'package:daily_tarot_focus/features/tarot/bloc/tarot/tarot_state.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/fetch_all_cards_response_model.dart';
+import 'package:daily_tarot_focus/features/tarot/domain/models/generate_daily_pick_request_model.dart';
+import 'package:daily_tarot_focus/features/tarot/presentation/tarot_reveal/pages/tarot_daily_pick_result_page.dart';
 import 'package:daily_tarot_focus/features/tarot/presentation/tarot_reveal/pages/tarot_reveal_page.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:mobile_boilerplate/application/auth/auth_cubit.dart';
 import 'package:mobile_boilerplate/common_dependencies.dart';
 
 mixin RevealPageStateMixin on State<TarotRevealPage>, TickerProvider {
   late final ValueNotifier<int> selectedCardIndex;
   int lastHapticCardIndex = -1;
   late final ValueNotifier<TarotCardModel?> selectedTarotCard;
+  late final ValueNotifier<bool> selectedTarotCardIsReversed;
   late final FixedExtentScrollController wheelScrollController;
   late final AnimationController flipAnimController;
   late final AnimationController revealAnimController;
@@ -29,9 +35,12 @@ mixin RevealPageStateMixin on State<TarotRevealPage>, TickerProvider {
     selectedCardIndex = ValueNotifier(initialCardIndex);
     lastHapticCardIndex = initialCardIndex;
     selectedTarotCard = ValueNotifier(null);
+    selectedTarotCardIsReversed = ValueNotifier(false);
     remaining = ValueNotifier(Duration.zero);
 
-    wheelScrollController = FixedExtentScrollController(initialItem: initialCardIndex);
+    wheelScrollController = FixedExtentScrollController(
+      initialItem: initialCardIndex,
+    );
 
     flipAnimController = AnimationController(
       vsync: this,
@@ -52,6 +61,7 @@ mixin RevealPageStateMixin on State<TarotRevealPage>, TickerProvider {
   void dispose() {
     selectedCardIndex.dispose();
     selectedTarotCard.dispose();
+    selectedTarotCardIsReversed.dispose();
     remaining.dispose();
     cooldownTimer?.cancel();
     wheelScrollController.dispose();
@@ -70,7 +80,9 @@ mixin RevealPageStateMixin on State<TarotRevealPage>, TickerProvider {
       DateTime.now().isBefore(lastSavedAt.add(const Duration(hours: 24)));
 
   Duration getRemainingDuration(DateTime lastSavedAt) {
-    final diff = lastSavedAt.add(const Duration(hours: 24)).difference(DateTime.now());
+    final diff = lastSavedAt
+        .add(const Duration(hours: 24))
+        .difference(DateTime.now());
     return diff.isNegative ? Duration.zero : diff;
   }
 
@@ -106,20 +118,44 @@ mixin RevealPageStateMixin on State<TarotRevealPage>, TickerProvider {
 
   Future<void> handleCardTap(int index) async {
     selectedCardIndex.value = index;
-    await flipAnimController.forward();
     if (mounted) {
       final tarotBloc = context.read<TarotBloc>();
-      selectedTarotCard.value = tarotBloc.state.randomCard;
+      final card = tarotBloc.state.randomCard;
+      if (card == null) return;
+      final isReversed = math.Random().nextBool();
+
+      selectedTarotCard.value = card;
+      selectedTarotCardIsReversed.value = isReversed;
+      unawaited(_generateDailyPick(card: card, isReversed: isReversed));
     }
+    await flipAnimController.forward();
     await revealAnimController.forward();
+  }
+
+  Future<void> _generateDailyPick({
+    required TarotCardModel card,
+    required bool isReversed,
+  }) async {
+    context.read<TarotBloc>().addGenerateDailyPickRequested(
+      request: GenerateDailyPickRequest(
+        session: context.read<AuthCubit>().state.sessionOrCrash,
+        card: card,
+        isReversed: isReversed,
+        date: DateTime.now(),
+        locale: context.currentLocaleLanguage.value,
+      ),
+    );
   }
 
   Future<void> navigateToDetail() async {
     await Future<void>.delayed(CardSp.flipCard);
     if (mounted && selectedTarotCard.value != null) {
       await context.pushNamed(
-        AppRoutes.tarotRevealDetail,
-        pathParameters: {'tarotId': selectedTarotCard.value!.id},
+        AppRoutes.tarotDailyPickResult,
+        extra: TarotDailyPickResultArgs(
+          tarot: selectedTarotCard.value!,
+          isReversed: selectedTarotCardIsReversed.value,
+        ),
       );
     }
   }

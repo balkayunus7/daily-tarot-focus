@@ -12,6 +12,8 @@ import 'package:daily_tarot_focus/features/tarot/domain/models/fetch_saved_readi
 import 'package:daily_tarot_focus/features/tarot/domain/models/fetch_saved_readings_response_model.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/fetch_spreads_request_model.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/fetch_spreads_response_model.dart';
+import 'package:daily_tarot_focus/features/tarot/domain/models/generate_daily_pick_request_model.dart';
+import 'package:daily_tarot_focus/features/tarot/domain/models/generate_daily_pick_response_model.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/generate_reading_request_model.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/generate_reading_response_model.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/record_daily_card_request_model.dart';
@@ -34,7 +36,7 @@ class ImplTarotRemoteDataSource implements ITarotRemoteDataSource {
     final responseOrFail = await supabaseClient.secureInvoke(
       route: SAVE_DAILY_CARD,
       method: HttpMethod.post,
-      body: {'card_id': request.cardId},
+      body: request.toMap(),
       session: request.session,
     );
     if (responseOrFail.isLeft()) throw Exception();
@@ -61,12 +63,16 @@ class ImplTarotRemoteDataSource implements ITarotRemoteDataSource {
     if (responseOrFail.isLeft()) throw Exception();
 
     final response = responseOrFail.getRightOrCrash();
-    return FetchDailyCardsResponse.fromMap(decodeSupabaseResponse(response.data));
+    return FetchDailyCardsResponse.fromMap(
+      decodeSupabaseResponse(response.data),
+    );
   }
 
   /// REQUEST FETCH ALL CARDS
   @override
-  Future<FetchAllCardsResponse> requestAllCards({required FetchAllCardsRequest request}) async {
+  Future<FetchAllCardsResponse> requestAllCards({
+    required FetchAllCardsRequest request,
+  }) async {
     final responseOrFail = await supabaseClient.secureInvoke(
       route: GET_ALL_CARDS,
       method: HttpMethod.post,
@@ -107,7 +113,9 @@ class ImplTarotRemoteDataSource implements ITarotRemoteDataSource {
 
   /// REQUEST FETCH READERS
   @override
-  Future<FetchReadersResponse> requestReaders({required FetchReadersRequest request}) async {
+  Future<FetchReadersResponse> requestReaders({
+    required FetchReadersRequest request,
+  }) async {
     final responseOrFail = await supabaseClient.secureInvoke(
       route: GET_READERS,
       method: HttpMethod.post,
@@ -140,7 +148,31 @@ class ImplTarotRemoteDataSource implements ITarotRemoteDataSource {
     }
 
     final response = responseOrFail.getRightOrCrash();
-    return GenerateReadingResponse.fromMap(decodeSupabaseResponse(response.data));
+    return GenerateReadingResponse.fromMap(
+      decodeSupabaseResponse(response.data),
+    );
+  }
+
+  /// REQUEST GENERATE DAILY PICK
+  @override
+  Future<GenerateDailyPickResponse> requestGenerateDailyPick({
+    required GenerateDailyPickRequest request,
+  }) async {
+    final responseOrFail = await supabaseClient.secureInvoke(
+      route: GENERATE_DAILY_PICK,
+      method: HttpMethod.post,
+      body: request.toMap(),
+      session: request.session,
+    );
+
+    if (responseOrFail.isLeft()) {
+      throw Exception();
+    }
+
+    final response = responseOrFail.getRightOrCrash();
+    return GenerateDailyPickResponse.fromMap(
+      decodeSupabaseResponse(response.data),
+    );
   }
 
   /// REQUEST SAVE READING
@@ -174,12 +206,16 @@ class ImplTarotRemoteDataSource implements ITarotRemoteDataSource {
     if (responseOrFail.isLeft()) throw Exception();
 
     final response = responseOrFail.getRightOrCrash();
-    return FetchSavedReadingsResponse.fromMap(decodeSupabaseResponse(response.data));
+    return FetchSavedReadingsResponse.fromMap(
+      decodeSupabaseResponse(response.data),
+    );
   }
 
   /// REQUEST UPDATE READING NOTE
   @override
-  Future<void> requestUpdateReadingNote({required UpdateReadingNoteRequest request}) async {
+  Future<void> requestUpdateReadingNote({
+    required UpdateReadingNoteRequest request,
+  }) async {
     final responseOrFail = await supabaseClient.secureInvoke(
       route: UPDATE_READING_NOTE,
       method: HttpMethod.patch,
@@ -192,7 +228,9 @@ class ImplTarotRemoteDataSource implements ITarotRemoteDataSource {
 
   /// REQUEST DELETE READING
   @override
-  Future<void> requestDeleteReading({required DeleteReadingRequest request}) async {
+  Future<void> requestDeleteReading({
+    required DeleteReadingRequest request,
+  }) async {
     final responseOrFail = await supabaseClient.secureInvoke(
       route: DELETE_READING,
       method: HttpMethod.delete,

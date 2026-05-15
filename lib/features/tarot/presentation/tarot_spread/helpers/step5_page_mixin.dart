@@ -40,6 +40,6 @@ mixin Step5PageMixin on State<TarotSpreadStep5Page> {
   }
 
   Future<void> onFinish() async {
-    await context.push(AppRoutes.tarotQuestionStep6);
+    await context.push(AppRoutes.tarotQuestionCardPick);
   }
 }

@@ -14,6 +14,7 @@ import 'package:daily_tarot_focus/features/tarot/domain/models/fetch_readers_res
 import 'package:daily_tarot_focus/features/tarot/domain/models/fetch_saved_readings_request_model.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/fetch_spreads_request_model.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/fetch_spreads_response_model.dart';
+import 'package:daily_tarot_focus/features/tarot/domain/models/generate_daily_pick_request_model.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/generate_reading_request_model.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/record_daily_card_request_model.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/save_reading_request_model.dart';
@@ -25,7 +26,8 @@ import 'package:mobile_boilerplate/domain/auth/auth_session.dart';
 import 'package:mobile_boilerplate/domain/common/failure.dart';
 
 class TarotBloc extends Bloc<TarotEvent, TarotState> {
-  TarotBloc(this._tarotRepository, this._cacheService) : super(TarotState.initial()) {
+  TarotBloc(this._tarotRepository, this._cacheService)
+    : super(TarotState.initial()) {
     on<TarotEvent>(
       (event, emit) async {
         if (event is TarotFetchAllCardsRequested) {
@@ -52,6 +54,8 @@ class TarotBloc extends Bloc<TarotEvent, TarotState> {
           emit(state.copyWith(selectedReadingCards: event.cards));
         } else if (event is TarotGenerateReadingRequested) {
           await _onGenerateReadingRequested(event, emit);
+        } else if (event is TarotGenerateDailyPickRequested) {
+          await _onGenerateDailyPickRequested(event, emit);
         } else if (event is TarotSetFlowType) {
           emit(state.copyWith(flowType: event.flowType));
         } else if (event is TarotReadingFlowReset) {
@@ -82,8 +86,10 @@ class TarotBloc extends Bloc<TarotEvent, TarotState> {
   void addFetchAllCardsRequested({required FetchAllCardsRequest request}) =>
       add(TarotFetchAllCardsRequested(request: request));
 
-  void addSetupAccountRequested({required AuthSession session, String locale = 'en'}) =>
-      add(TarotSetupAccountRequested(session: session, locale: locale));
+  void addSetupAccountRequested({
+    required AuthSession session,
+    String locale = 'en',
+  }) => add(TarotSetupAccountRequested(session: session, locale: locale));
 
   void addSelectSpreadCategory({required TarotSpreadCategoryModel category}) =>
       add(TarotSelectSpreadCategory(category: category));
@@ -100,8 +106,14 @@ class TarotBloc extends Bloc<TarotEvent, TarotState> {
   void addSetReadingCards({required List<TarotSelectedReadingCard> cards}) =>
       add(TarotSetReadingCards(cards: cards));
 
-  void addGenerateReadingRequested({required AuthSession session, String locale = 'en'}) =>
-      add(TarotGenerateReadingRequested(session: session, locale: locale));
+  void addGenerateReadingRequested({
+    required AuthSession session,
+    String locale = 'en',
+  }) => add(TarotGenerateReadingRequested(session: session, locale: locale));
+
+  void addGenerateDailyPickRequested({
+    required GenerateDailyPickRequest request,
+  }) => add(TarotGenerateDailyPickRequested(request: request));
 
   void addSetFlowType({required TarotFlowType flowType}) =>
       add(TarotSetFlowType(flowType: flowType));
@@ -112,13 +124,15 @@ class TarotBloc extends Bloc<TarotEvent, TarotState> {
   void addReadingFlowReset({required TarotFlowType flowType}) =>
       add(TarotReadingFlowReset(flowType: flowType));
 
-  void addFetchSavedReadingsRequested({required FetchSavedReadingsRequest request}) =>
-      add(TarotFetchSavedReadingsRequested(request: request));
+  void addFetchSavedReadingsRequested({
+    required FetchSavedReadingsRequest request,
+  }) => add(TarotFetchSavedReadingsRequested(request: request));
 
   void addClearCache() => add(const TarotCacheCleared());
 
-  void addUpdateReadingNoteRequested({required UpdateReadingNoteRequest request}) =>
-      add(TarotUpdateReadingNoteRequested(request: request));
+  void addUpdateReadingNoteRequested({
+    required UpdateReadingNoteRequest request,
+  }) => add(TarotUpdateReadingNoteRequested(request: request));
 
   void addDeleteReadingRequested({required DeleteReadingRequest request}) =>
       add(TarotDeleteReadingRequested(request: request));
@@ -189,7 +203,10 @@ class TarotBloc extends Bloc<TarotEvent, TarotState> {
   }
 
   // ── Event handlers
-  void _onReadingFlowReset(TarotReadingFlowReset event, Emitter<TarotState> emit) {
+  void _onReadingFlowReset(
+    TarotReadingFlowReset event,
+    Emitter<TarotState> emit,
+  ) {
     emit(
       TarotState(
         fetchFailureOrDailyCards: state.fetchFailureOrDailyCards,
@@ -211,11 +228,14 @@ class TarotBloc extends Bloc<TarotEvent, TarotState> {
         selectedReader: null,
         selectedQuestion: null,
         selectedReadingCards: const [],
+        isGeneratingDailyPick: false,
+        fetchFailureOrGenerateDailyPick: none(),
         isGeneratingReading: false,
         fetchFailureOrGenerateReading: none(),
         saveReadingFailureOrResponse: none(),
         isSavingReading: false,
-        fetchSavedReadingsFailureOrResponse: state.fetchSavedReadingsFailureOrResponse,
+        fetchSavedReadingsFailureOrResponse:
+            state.fetchSavedReadingsFailureOrResponse,
         isFetchingSavedReadings: state.isFetchingSavedReadings,
         isUpdatingNote: false,
         updateNoteFailureOrUnit: none(),
@@ -238,7 +258,9 @@ class TarotBloc extends Bloc<TarotEvent, TarotState> {
     TarotSetupAccountRequested event,
     Emitter<TarotState> emit,
   ) async {
-    emit(state.copyWith(isSettingUpAccount: true, hasAccountSetupCompleted: false));
+    emit(
+      state.copyWith(isSettingUpAccount: true, hasAccountSetupCompleted: false),
+    );
 
     final locale = event.locale;
     final cardsF = _fetchAndCacheAllCards(event.session, locale);
@@ -295,7 +317,10 @@ class TarotBloc extends Bloc<TarotEvent, TarotState> {
     Emitter<TarotState> emit,
   ) async {
     emit(state.copyWith(isFetchingAllCards: true));
-    final result = await _fetchAndCacheAllCards(event.request.session, event.request.locale);
+    final result = await _fetchAndCacheAllCards(
+      event.request.session,
+      event.request.locale,
+    );
     emit(
       state.copyWith(
         fetchAllCardsFailureOrCards: some(result),
@@ -308,9 +333,16 @@ class TarotBloc extends Bloc<TarotEvent, TarotState> {
     TarotFetchDailyCardsRequested event,
     Emitter<TarotState> emit,
   ) async {
-    emit(state.copyWith(isFetchingDailyCards: true, fetchFailureOrDailyCards: none()));
+    emit(
+      state.copyWith(
+        isFetchingDailyCards: true,
+        fetchFailureOrDailyCards: none(),
+      ),
+    );
 
-    final failOrRecords = await _tarotRepository.requestFetchDailyCards(request: event.request);
+    final failOrRecords = await _tarotRepository.requestFetchDailyCards(
+      request: event.request,
+    );
 
     final newState = failOrRecords.fold(
       (failure) => state.copyWith(
@@ -339,9 +371,16 @@ class TarotBloc extends Bloc<TarotEvent, TarotState> {
     TarotRecordDailyCardRequested event,
     Emitter<TarotState> emit,
   ) async {
-    emit(state.copyWith(isRecordDailyCard: true, recordDailyCardFailureOrUnit: none()));
+    emit(
+      state.copyWith(
+        isRecordDailyCard: true,
+        recordDailyCardFailureOrUnit: none(),
+      ),
+    );
 
-    final failOrUnit = await _tarotRepository.requestRecordDailyCard(request: event.request);
+    final failOrUnit = await _tarotRepository.requestRecordDailyCard(
+      request: event.request,
+    );
 
     final newState = failOrUnit.fold(
       (failure) => state.copyWith(
@@ -367,8 +406,16 @@ class TarotBloc extends Bloc<TarotEvent, TarotState> {
     TarotFetchSpreadsRequested event,
     Emitter<TarotState> emit,
   ) async {
-    emit(state.copyWith(isFetchingSpreads: true, fetchSpreadsFailureOrSpreads: none()));
-    final result = await _fetchAndCacheSpreads(event.request.session, event.request.locale);
+    emit(
+      state.copyWith(
+        isFetchingSpreads: true,
+        fetchSpreadsFailureOrSpreads: none(),
+      ),
+    );
+    final result = await _fetchAndCacheSpreads(
+      event.request.session,
+      event.request.locale,
+    );
     emit(
       state.copyWith(
         fetchSpreadsFailureOrSpreads: some(result),
@@ -381,8 +428,16 @@ class TarotBloc extends Bloc<TarotEvent, TarotState> {
     TarotFetchReadersRequested event,
     Emitter<TarotState> emit,
   ) async {
-    emit(state.copyWith(isFetchingReaders: true, fetchReadersFailureOrReaders: none()));
-    final result = await _fetchAndCacheReaders(event.request.session, event.request.locale);
+    emit(
+      state.copyWith(
+        isFetchingReaders: true,
+        fetchReadersFailureOrReaders: none(),
+      ),
+    );
+    final result = await _fetchAndCacheReaders(
+      event.request.session,
+      event.request.locale,
+    );
     emit(
       state.copyWith(
         fetchReadersFailureOrReaders: some(result),
@@ -395,7 +450,12 @@ class TarotBloc extends Bloc<TarotEvent, TarotState> {
     TarotGenerateReadingRequested event,
     Emitter<TarotState> emit,
   ) async {
-    emit(state.copyWith(isGeneratingReading: true, fetchFailureOrGenerateReading: none()));
+    emit(
+      state.copyWith(
+        isGeneratingReading: true,
+        fetchFailureOrGenerateReading: none(),
+      ),
+    );
 
     final request = GenerateReadingRequest(
       session: event.session,
@@ -407,18 +467,55 @@ class TarotBloc extends Bloc<TarotEvent, TarotState> {
       locale: event.locale,
     );
 
-    final result = await _tarotRepository.requestGenerateReading(request: request);
+    final result = await _tarotRepository.requestGenerateReading(
+      request: request,
+    );
 
-    emit(state.copyWith(isGeneratingReading: false, fetchFailureOrGenerateReading: some(result)));
+    emit(
+      state.copyWith(
+        isGeneratingReading: false,
+        fetchFailureOrGenerateReading: some(result),
+      ),
+    );
+  }
+
+  Future<void> _onGenerateDailyPickRequested(
+    TarotGenerateDailyPickRequested event,
+    Emitter<TarotState> emit,
+  ) async {
+    emit(
+      state.copyWith(
+        isGeneratingDailyPick: true,
+        fetchFailureOrGenerateDailyPick: none(),
+      ),
+    );
+
+    final result = await _tarotRepository.requestGenerateDailyPick(
+      request: event.request,
+    );
+
+    emit(
+      state.copyWith(
+        isGeneratingDailyPick: false,
+        fetchFailureOrGenerateDailyPick: some(result),
+      ),
+    );
   }
 
   Future<void> _onSaveReadingRequested(
     TarotSaveReadingRequested event,
     Emitter<TarotState> emit,
   ) async {
-    emit(state.copyWith(isSavingReading: true, saveReadingFailureOrResponse: none()));
+    emit(
+      state.copyWith(
+        isSavingReading: true,
+        saveReadingFailureOrResponse: none(),
+      ),
+    );
 
-    final result = await _tarotRepository.requestSaveReading(request: event.request);
+    final result = await _tarotRepository.requestSaveReading(
+      request: event.request,
+    );
 
     emit(
       state.copyWith(
@@ -439,10 +536,15 @@ class TarotBloc extends Bloc<TarotEvent, TarotState> {
     Emitter<TarotState> emit,
   ) async {
     emit(
-      state.copyWith(isFetchingSavedReadings: true, fetchSavedReadingsFailureOrResponse: none()),
+      state.copyWith(
+        isFetchingSavedReadings: true,
+        fetchSavedReadingsFailureOrResponse: none(),
+      ),
     );
 
-    final result = await _tarotRepository.requestFetchSavedReadings(request: event.request);
+    final result = await _tarotRepository.requestFetchSavedReadings(
+      request: event.request,
+    );
 
     emit(
       state.copyWith(
@@ -458,9 +560,16 @@ class TarotBloc extends Bloc<TarotEvent, TarotState> {
   ) async {
     emit(state.copyWith(isUpdatingNote: true, updateNoteFailureOrUnit: none()));
 
-    final result = await _tarotRepository.requestUpdateReadingNote(request: event.request);
+    final result = await _tarotRepository.requestUpdateReadingNote(
+      request: event.request,
+    );
 
-    emit(state.copyWith(isUpdatingNote: false, updateNoteFailureOrUnit: some(result)));
+    emit(
+      state.copyWith(
+        isUpdatingNote: false,
+        updateNoteFailureOrUnit: some(result),
+      ),
+    );
 
     if (result.isRight()) {
       addFetchSavedReadingsRequested(
@@ -473,11 +582,23 @@ class TarotBloc extends Bloc<TarotEvent, TarotState> {
     TarotDeleteReadingRequested event,
     Emitter<TarotState> emit,
   ) async {
-    emit(state.copyWith(isDeletingReading: true, deleteReadingFailureOrUnit: none()));
+    emit(
+      state.copyWith(
+        isDeletingReading: true,
+        deleteReadingFailureOrUnit: none(),
+      ),
+    );
 
-    final result = await _tarotRepository.requestDeleteReading(request: event.request);
+    final result = await _tarotRepository.requestDeleteReading(
+      request: event.request,
+    );
 
-    emit(state.copyWith(isDeletingReading: false, deleteReadingFailureOrUnit: some(result)));
+    emit(
+      state.copyWith(
+        isDeletingReading: false,
+        deleteReadingFailureOrUnit: some(result),
+      ),
+    );
 
     if (result.isRight()) {
       addFetchSavedReadingsRequested(

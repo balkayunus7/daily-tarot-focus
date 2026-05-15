@@ -13,3 +13,4 @@ const String UPDATE_READING_NOTE = 'update-reading-note';
 const String DELETE_READING = 'delete-reading';
 const String GENERATE_COMPATIBILITY = 'generate-compatibility';
 const String GENERATE_HOROSCOPE = 'generate-horoscope';
+const String GENERATE_DAILY_PICK = 'generate-daily-pick';

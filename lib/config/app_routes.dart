@@ -26,6 +26,7 @@ class AppRoutes {
   // Tarot Reveal
   static const String tarotReveal = '/tarot-reveal';
   static const String tarotRevealDetail = '/tarot-reveal-detail';
+  static const String tarotDailyPickResult = '/tarot-daily-pick-result';
 
   // Tarot Deck
   static const String tarotDeck = '/tarot-deck';
@@ -37,6 +38,7 @@ class AppRoutes {
   static const String tarotQuestionStep3 = '/tarot-question-step-3';
   static const String tarotQuestionStep4 = '/tarot-question-step-4';
   static const String tarotQuestionStep5 = '/tarot-question-step-5';
+  static const String tarotQuestionCardPick = '/tarot-question-card-pick';
   static const String tarotQuestionStep6 = '/tarot-question-step-6';
   static const String tarotReadingLoading = '/tarot-reading-loading';
   static const String tarotReadingAnswer = '/tarot-reading-answer';

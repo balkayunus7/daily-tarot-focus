@@ -17,9 +17,11 @@ import 'package:daily_tarot_focus/features/tarot/presentation/tarot_daily/pages/
 import 'package:daily_tarot_focus/features/tarot/presentation/tarot_deck/pages/tarot_deck_detail_page.dart';
 import 'package:daily_tarot_focus/features/tarot/presentation/tarot_deck/pages/tarot_deck_page.dart';
 import 'package:daily_tarot_focus/features/tarot/presentation/tarot_reading/pages/tarot_reading_detail_page.dart';
+import 'package:daily_tarot_focus/features/tarot/presentation/tarot_reveal/pages/tarot_daily_pick_result_page.dart';
 import 'package:daily_tarot_focus/features/tarot/presentation/tarot_reveal/pages/tarot_reveal_detail_page.dart';
 import 'package:daily_tarot_focus/features/tarot/presentation/tarot_reveal/pages/tarot_reveal_page.dart';
 import 'package:daily_tarot_focus/features/tarot/presentation/tarot_spread/pages/tarot_reading_answer_page.dart';
+import 'package:daily_tarot_focus/features/tarot/presentation/tarot_spread/pages/tarot_spread_card_pick_page.dart';
 import 'package:daily_tarot_focus/features/tarot/presentation/tarot_spread/pages/tarot_spread_loading_page.dart';
 import 'package:daily_tarot_focus/features/tarot/presentation/tarot_spread/pages/tarot_spread_step1_page.dart';
 import 'package:daily_tarot_focus/features/tarot/presentation/tarot_spread/pages/tarot_spread_step2_page.dart';
@@ -95,7 +97,10 @@ final appRouter = GoRouter(
       pageBuilder: (context, state) {
         return MaterialPage(
           key: state.pageKey,
-          child: const PopScope(canPop: false, child: RegisterStepRelationshipPage()),
+          child: const PopScope(
+            canPop: false,
+            child: RegisterStepRelationshipPage(),
+          ),
         );
       },
     ),
@@ -115,7 +120,10 @@ final appRouter = GoRouter(
       pageBuilder: (context, state) {
         return MaterialPage(
           key: state.pageKey,
-          child: const PopScope(canPop: false, child: RegisterStepPersonalInfoPage()),
+          child: const PopScope(
+            canPop: false,
+            child: RegisterStepPersonalInfoPage(),
+          ),
         );
       },
     ),
@@ -125,7 +133,10 @@ final appRouter = GoRouter(
       pageBuilder: (context, state) {
         return MaterialPage(
           key: state.pageKey,
-          child: const PopScope(canPop: false, child: RegisterAccountSetupPage()),
+          child: const PopScope(
+            canPop: false,
+            child: RegisterAccountSetupPage(),
+          ),
         );
       },
     ),
@@ -151,6 +162,17 @@ final appRouter = GoRouter(
       },
     ),
     GoRoute(
+      path: AppRoutes.tarotDailyPickResult,
+      name: AppRoutes.tarotDailyPickResult,
+      pageBuilder: (context, state) {
+        final args = state.extra! as TarotDailyPickResultArgs;
+        return MaterialPage(
+          key: state.pageKey,
+          child: TarotDailyPickResultPage(args: args),
+        );
+      },
+    ),
+    GoRoute(
       path: '${AppRoutes.tarotRevealDetail}/:tarotId',
       name: AppRoutes.tarotRevealDetail,
       pageBuilder: (context, state) {
@@ -164,7 +186,10 @@ final appRouter = GoRouter(
 
         final tarotId = state.pathParameters['tarotId'];
         final tarotState = context.read<TarotBloc>().state;
-        final tarot = tarotId != null ? tarotState.getById(tarotId) : tarotState.randomCard;
+        final tarot =
+            tarotId != null
+                ? tarotState.getById(tarotId)
+                : tarotState.randomCard;
 
         return MaterialPage(
           key: state.pageKey,
@@ -243,6 +268,16 @@ final appRouter = GoRouter(
         return MaterialPage(
           key: state.pageKey,
           child: const TarotSpreadStep5Page(),
+        );
+      },
+    ),
+    GoRoute(
+      path: AppRoutes.tarotQuestionCardPick,
+      name: AppRoutes.tarotQuestionCardPick,
+      pageBuilder: (context, state) {
+        return MaterialPage(
+          key: state.pageKey,
+          child: const TarotSpreadCardPickPage(),
         );
       },
     ),
@@ -328,7 +363,8 @@ final appRouter = GoRouter(
           (e) => e.value == signValue,
           orElse: () => ZodiacSign.aries,
         );
-        final initialIndex = int.tryParse(state.uri.queryParameters['initialIndex'] ?? '') ?? 0;
+        final initialIndex =
+            int.tryParse(state.uri.queryParameters['initialIndex'] ?? '') ?? 0;
         return MaterialPage(
           key: state.pageKey,
           child: ZodiacHoroscopePage(sign: sign, initialIndex: initialIndex),

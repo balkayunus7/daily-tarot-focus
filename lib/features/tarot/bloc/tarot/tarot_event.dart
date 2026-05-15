@@ -6,6 +6,7 @@ import 'package:daily_tarot_focus/features/tarot/domain/models/fetch_readers_res
 import 'package:daily_tarot_focus/features/tarot/domain/models/fetch_saved_readings_request_model.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/fetch_spreads_request_model.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/fetch_spreads_response_model.dart';
+import 'package:daily_tarot_focus/features/tarot/domain/models/generate_daily_pick_request_model.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/record_daily_card_request_model.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/save_reading_request_model.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/tarot_flow_type.dart';
@@ -110,12 +111,28 @@ final class TarotSetReadingCards extends TarotEvent {
 }
 
 final class TarotGenerateReadingRequested extends TarotEvent {
-  const TarotGenerateReadingRequested({required this.session, this.locale = 'en'});
+  const TarotGenerateReadingRequested({
+    required this.session,
+    this.locale = 'en',
+  });
   final AuthSession session;
   final String locale;
 
   @override
   List<Object?> get props => [session, locale];
+}
+
+final class TarotGenerateDailyPickRequested extends TarotEvent {
+  const TarotGenerateDailyPickRequested({required this.request});
+  final GenerateDailyPickRequest request;
+
+  @override
+  List<Object?> get props => [
+    request.card.id,
+    request.isReversed,
+    request.date,
+    request.session,
+  ];
 }
 
 final class TarotSetFlowType extends TarotEvent {

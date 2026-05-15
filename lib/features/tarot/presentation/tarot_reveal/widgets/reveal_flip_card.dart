@@ -19,12 +19,15 @@ class RevealFlipCard extends StatelessWidget {
     final scope = RevealPageScope.of(context);
     if (!scope.isCardSelected) return const SizedBox.shrink();
     final selectedCard = scope.selectedTarotCard.value!;
+    final isReversed = scope.selectedTarotCardIsReversed.value;
 
     return Center(
       child: AnimatedBuilder(
         animation: scope.revealAnimController,
         builder: (context, child) {
-          final curvedValue = Curves.easeInOutSine.transform(scope.revealAnimController.value);
+          final curvedValue = Curves.easeInOutSine.transform(
+            scope.revealAnimController.value,
+          );
           final rotateY = curvedValue * 6 * math.pi;
           final scale = 0.7 + (curvedValue * 1.2);
           final isFrontVisible = curvedValue >= 0.9;
@@ -47,6 +50,7 @@ class RevealFlipCard extends StatelessWidget {
                       return _TarotFrontCard(
                         title: selectedCard.name,
                         imagePath: selectedCard.imageUrl,
+                        isReversed: isReversed,
                       );
                     }
                     return const _TarotBackCard();
@@ -63,9 +67,14 @@ class RevealFlipCard extends StatelessWidget {
 }
 
 class _TarotFrontCard extends StatelessWidget {
-  const _TarotFrontCard({required this.title, required this.imagePath});
+  const _TarotFrontCard({
+    required this.title,
+    required this.imagePath,
+    required this.isReversed,
+  });
   final String title;
   final String imagePath;
+  final bool isReversed;
 
   @override
   Widget build(BuildContext context) {
@@ -85,11 +94,14 @@ class _TarotFrontCard extends StatelessWidget {
             Expanded(
               child: ClipRRect(
                 borderRadius: Sp.tiny.radiusR,
-                child: CustomCacheNetworkImage(
-                  imageUrl: imagePath,
-                  width: CardSp.flipWidth,
-                  height: CardSp.flipHeight,
-                  fit: BoxFit.fill,
+                child: Transform.rotate(
+                  angle: isReversed ? math.pi : 0,
+                  child: CustomCacheNetworkImage(
+                    imageUrl: imagePath,
+                    width: CardSp.flipWidth,
+                    height: CardSp.flipHeight,
+                    fit: BoxFit.fill,
+                  ),
                 ),
               ),
             ),
@@ -136,13 +148,17 @@ class _TarotShiningStars extends StatefulWidget {
   State<_TarotShiningStars> createState() => _TarotShiningStarsState();
 }
 
-class _TarotShiningStarsState extends State<_TarotShiningStars> with TickerProviderStateMixin {
+class _TarotShiningStarsState extends State<_TarotShiningStars>
+    with TickerProviderStateMixin {
   late final AnimationController starsController;
 
   @override
   void initState() {
     super.initState();
-    starsController = AnimationController(vsync: this, duration: const Duration(seconds: 2));
+    starsController = AnimationController(
+      vsync: this,
+      duration: const Duration(seconds: 2),
+    );
     unawaited(starsController.repeat());
   }
 

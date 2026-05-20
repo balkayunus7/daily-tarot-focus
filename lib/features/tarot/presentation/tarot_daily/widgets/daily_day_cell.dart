@@ -1,15 +1,20 @@
 part of '../pages/tarot_daily_calendar_page.dart';
 
 class DayCell extends StatelessWidget {
-  const DayCell({required this.date, required this.card, required this.isToday, super.key});
+  const DayCell({
+    required this.date,
+    required this.dailyCard,
+    required this.isToday,
+    super.key,
+  });
   final DateTime date;
-  final TarotCardModel? card;
+  final DailyCardModel? dailyCard;
   final bool isToday;
 
   @override
   Widget build(BuildContext context) {
     final colors = context.colors;
-    final hasCard = card != null;
+    final hasCard = dailyCard != null;
     final now = DateTime.now();
     final isPast = date.isBefore(DateTime(now.year, now.month, now.day)) && !isToday;
     final radius = Sp.xsmall.radiusR;
@@ -39,8 +44,24 @@ class DayCell extends StatelessWidget {
       borderWidth = 1.2;
     }
 
+    void onTap() {
+      if (!hasCard) return;
+      final tarotState = context.read<TarotBloc>().state;
+      final tarotCard = tarotState.getById(dailyCard!.cardId);
+      if (tarotCard == null) return;
+      unawaited(
+        context.push(
+          AppRoutes.tarotDailyDetail,
+          extra: TarotDailyCalendarDetailArgs(
+            tarot: tarotCard,
+            dailyCard: dailyCard!,
+          ),
+        ),
+      );
+    }
+
     return GestureDetector(
-      onTap: hasCard ? () => context.push(AppRoutes.tarotDailyDetail, extra: card) : null,
+      onTap: hasCard ? onTap : null,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
@@ -56,8 +77,10 @@ class DayCell extends StatelessWidget {
                 child: Builder(
                   builder: (context) {
                     if (hasCard) {
+                      final tarotCard = context.read<TarotBloc>().state.getById(dailyCard!.cardId);
+                      if (tarotCard == null) return const SizedBox.shrink();
                       return CustomCacheNetworkImage(
-                        imageUrl: card!.imageUrl,
+                        imageUrl: tarotCard.imageUrl,
                         fit: BoxFit.fitWidth,
                       );
                     } else {

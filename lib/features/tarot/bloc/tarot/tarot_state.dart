@@ -1,4 +1,5 @@
 import 'package:daily_tarot_focus/features/tarot/domain/models/fetch_all_cards_response_model.dart';
+import 'package:daily_tarot_focus/features/tarot/domain/models/fetch_daily_cards_response_model.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/fetch_readers_response_model.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/fetch_saved_readings_response_model.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/fetch_spreads_response_model.dart';
@@ -83,7 +84,7 @@ class TarotState extends Equatable {
     );
   }
 
-  final Option<FailureOr<KtList<TarotCardModel>>> fetchFailureOrDailyCards;
+  final Option<FailureOr<KtList<DailyCardModel>>> fetchFailureOrDailyCards;
   final Option<FailureOr<Unit>> recordDailyCardFailureOrUnit;
   final Option<FailureOr<KtList<TarotCardModel>>> fetchAllCardsFailureOrCards;
   final Option<FailureOr<KtList<TarotSpreadCategoryModel>>>
@@ -178,7 +179,7 @@ class TarotState extends Equatable {
   bool get hasFetchedDailyCardsFailed =>
       fetchFailureOrDailyCards.getOrNull()?.getLeftOrNull() != null;
 
-  KtList<TarotCardModel> get dailyCardsOrEmpty =>
+  KtList<DailyCardModel> get dailyCardsOrEmpty =>
       fetchFailureOrDailyCards.getOrNull()?.getRightOrNull() ??
       const KtList.empty();
 
@@ -273,7 +274,7 @@ class TarotState extends Equatable {
   bool get hasReadingCards => selectedReadingCards.isNotEmpty;
 
   TarotState copyWith({
-    Option<FailureOr<KtList<TarotCardModel>>>? fetchFailureOrDailyCards,
+    Option<FailureOr<KtList<DailyCardModel>>>? fetchFailureOrDailyCards,
     bool? isFetchingDailyCards,
     Option<FailureOr<Unit>>? recordDailyCardFailureOrUnit,
     bool? isRecordDailyCard,

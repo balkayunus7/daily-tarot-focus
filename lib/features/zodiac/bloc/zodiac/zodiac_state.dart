@@ -1,4 +1,3 @@
-import 'package:daily_tarot_focus/features/zodiac/domain/models/generate_compatibility_response_model.dart';
 import 'package:daily_tarot_focus/features/zodiac/domain/models/generate_horoscope_response_model.dart';
 import 'package:daily_tarot_focus/features/zodiac/domain/models/horoscope_period_enum.dart';
 import 'package:mobile_boilerplate/common_dependencies.dart';
@@ -30,7 +29,6 @@ class CachedHoroscope extends Equatable {
   @override
   List<Object?> get props => [response, validUntil];
 
-  /// Calculates the expiry timestamp for the given period.
   static DateTime expiryFor(HoroscopePeriod period) {
     final now = DateTime.now();
     switch (period) {
@@ -48,39 +46,20 @@ class CachedHoroscope extends Equatable {
 
 class ZodiacState extends Equatable {
   const ZodiacState({
-    required this.isGeneratingCompatibility,
-    required this.fetchCompatibilityFailureOrResult,
-    required this.compatibilityCache,
     required this.isGeneratingHoroscope,
     required this.fetchHoroscopeFailureOrResult,
     required this.horoscopeCache,
   });
 
   factory ZodiacState.initial() => const ZodiacState(
-    isGeneratingCompatibility: false,
-    fetchCompatibilityFailureOrResult: None(),
-    compatibilityCache: {},
     isGeneratingHoroscope: false,
     fetchHoroscopeFailureOrResult: None(),
     horoscopeCache: {},
   );
 
-  final bool isGeneratingCompatibility;
-  final Option<FailureOr<GenerateCompatibilityResponse>> fetchCompatibilityFailureOrResult;
-  final Map<String, GenerateCompatibilityResponse> compatibilityCache;
-
   final bool isGeneratingHoroscope;
   final Option<FailureOr<HoroscopeResponseModel>> fetchHoroscopeFailureOrResult;
   final Map<String, CachedHoroscope> horoscopeCache;
-
-  bool get hasGeneratedCompatibilitySucceeded =>
-      fetchCompatibilityFailureOrResult.getOrNull()?.getRightOrNull() != null;
-
-  bool get hasGeneratedCompatibilityFailed =>
-      fetchCompatibilityFailureOrResult.getOrNull()?.getLeftOrNull() != null;
-
-  GenerateCompatibilityResponse? get compatibilityResponseOrNull =>
-      fetchCompatibilityFailureOrResult.getOrNull()?.getRightOrNull();
 
   bool get hasGeneratedHoroscopeSucceeded =>
       fetchHoroscopeFailureOrResult.getOrNull()?.getRightOrNull() != null;
@@ -89,18 +68,11 @@ class ZodiacState extends Equatable {
       fetchHoroscopeFailureOrResult.getOrNull()?.getLeftOrNull() != null;
 
   ZodiacState copyWith({
-    bool? isGeneratingCompatibility,
-    Option<FailureOr<GenerateCompatibilityResponse>>? fetchCompatibilityFailureOrResult,
-    Map<String, GenerateCompatibilityResponse>? compatibilityCache,
     bool? isGeneratingHoroscope,
     Option<FailureOr<HoroscopeResponseModel>>? fetchHoroscopeFailureOrResult,
     Map<String, CachedHoroscope>? horoscopeCache,
   }) {
     return ZodiacState(
-      isGeneratingCompatibility: isGeneratingCompatibility ?? this.isGeneratingCompatibility,
-      fetchCompatibilityFailureOrResult:
-          fetchCompatibilityFailureOrResult ?? this.fetchCompatibilityFailureOrResult,
-      compatibilityCache: compatibilityCache ?? this.compatibilityCache,
       isGeneratingHoroscope: isGeneratingHoroscope ?? this.isGeneratingHoroscope,
       fetchHoroscopeFailureOrResult:
           fetchHoroscopeFailureOrResult ?? this.fetchHoroscopeFailureOrResult,
@@ -110,9 +82,6 @@ class ZodiacState extends Equatable {
 
   @override
   List<Object?> get props => [
-    isGeneratingCompatibility,
-    fetchCompatibilityFailureOrResult,
-    compatibilityCache,
     isGeneratingHoroscope,
     fetchHoroscopeFailureOrResult,
     horoscopeCache,

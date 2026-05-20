@@ -8,7 +8,6 @@ import 'package:daily_tarot_focus/features/tarot/domain/models/delete_reading_re
 import 'package:daily_tarot_focus/features/tarot/domain/models/fetch_all_cards_request_model.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/fetch_all_cards_response_model.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/fetch_daily_cards_request_model.dart';
-import 'package:daily_tarot_focus/features/tarot/domain/models/fetch_daily_cards_response_model.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/fetch_readers_request_model.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/fetch_readers_response_model.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/fetch_saved_readings_request_model.dart';
@@ -279,10 +278,7 @@ class TarotBloc extends Bloc<TarotEvent, TarotState> {
     final dailyCardsRaw = await dailyCardsF;
     final savedReadingsResult = await savedReadingsF;
 
-    final allCards = cardsResult.getOrElse(() => const KtList.empty());
-    final dailyCardsResult = dailyCardsRaw.map(
-      (response) => _mapDailyCards(response, allCards),
-    );
+    final dailyCardsResult = dailyCardsRaw.map((response) => response.records);
 
     emit(
       state.copyWith(
@@ -294,21 +290,6 @@ class TarotBloc extends Bloc<TarotEvent, TarotState> {
         fetchFailureOrDailyCards: some(dailyCardsResult),
         fetchSavedReadingsFailureOrResponse: some(savedReadingsResult),
       ),
-    );
-  }
-
-  KtList<TarotCardModel> _mapDailyCards(
-    FetchDailyCardsResponse response,
-    KtList<TarotCardModel> allCards,
-  ) {
-    return KtList.from(
-      response.records.asList().map((r) {
-        return allCards
-            .asList()
-            .where((c) => c.id == r.cardId)
-            .firstOrNull
-            ?.copyWith(savedAt: r.date);
-      }).whereType<TarotCardModel>(),
     );
   }
 
@@ -350,15 +331,8 @@ class TarotBloc extends Bloc<TarotEvent, TarotState> {
         isFetchingDailyCards: false,
       ),
       (response) {
-        final cards =
-            response.records.map((r) {
-              final card = state.getById(r.cardId);
-              if (card == null) return null;
-              return card.copyWith(savedAt: r.date);
-            }).filterNotNull();
-
         return state.copyWith(
-          fetchFailureOrDailyCards: some(right(cards)),
+          fetchFailureOrDailyCards: some(right(response.records)),
           isFetchingDailyCards: false,
         );
       },

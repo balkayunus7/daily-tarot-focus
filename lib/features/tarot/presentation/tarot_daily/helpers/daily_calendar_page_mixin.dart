@@ -1,4 +1,4 @@
-import 'package:daily_tarot_focus/features/tarot/domain/models/fetch_all_cards_response_model.dart';
+import 'package:daily_tarot_focus/features/tarot/domain/models/fetch_daily_cards_response_model.dart';
 import 'package:daily_tarot_focus/features/tarot/presentation/tarot_daily/pages/tarot_daily_calendar_page.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile_boilerplate/common_dependencies.dart';
@@ -37,13 +37,11 @@ mixin DailyCalendarPageMixin on State<TarotDailyCalendarPage> {
     return DateTime(now.year, now.month + (page - initialPage));
   }
 
-  Map<DateTime, TarotCardModel> buildCardMap(List<TarotCardModel> cards) {
-    final map = <DateTime, TarotCardModel>{};
+  Map<DateTime, DailyCardModel> buildCardMap(List<DailyCardModel> cards) {
+    final map = <DateTime, DailyCardModel>{};
     for (final card in cards) {
-      if (card.savedAt != null) {
-        final key = DateTime(card.savedAt!.year, card.savedAt!.month, card.savedAt!.day);
-        map[key] = card;
-      }
+      final key = DateTime(card.date.year, card.date.month, card.date.day);
+      map[key] = card;
     }
     return map;
   }

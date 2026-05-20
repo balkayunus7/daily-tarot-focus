@@ -326,10 +326,10 @@ final appRouter = GoRouter(
       path: AppRoutes.tarotDailyDetail,
       name: AppRoutes.tarotDailyDetail,
       pageBuilder: (context, state) {
-        final tarot = state.extra! as TarotCardModel;
+        final args = state.extra! as TarotDailyCalendarDetailArgs;
         return MaterialPage(
           key: state.pageKey,
-          child: TarotDailyCalendarDetailPage(tarot: tarot),
+          child: TarotDailyCalendarDetailPage(args: args),
         );
       },
     ),

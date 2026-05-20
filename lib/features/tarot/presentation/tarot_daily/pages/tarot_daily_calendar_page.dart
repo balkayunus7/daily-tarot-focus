@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:daily_tarot_focus/config/app_routes.dart';
 import 'package:daily_tarot_focus/core/util/locale_keys.dart';
 import 'package:daily_tarot_focus/core/util/tarot_app_sizes.dart';
@@ -7,9 +9,10 @@ import 'package:daily_tarot_focus/core/widgets/fancy_container.dart';
 import 'package:daily_tarot_focus/core/widgets/tarot_app_bar.dart';
 import 'package:daily_tarot_focus/features/tarot/bloc/tarot/tarot_bloc.dart';
 import 'package:daily_tarot_focus/features/tarot/bloc/tarot/tarot_state.dart';
-import 'package:daily_tarot_focus/features/tarot/domain/models/fetch_all_cards_response_model.dart';
+import 'package:daily_tarot_focus/features/tarot/domain/models/fetch_daily_cards_response_model.dart';
 import 'package:daily_tarot_focus/features/tarot/presentation/tarot_daily/helpers/daily_calendar_page_mixin.dart';
 import 'package:daily_tarot_focus/features/tarot/presentation/tarot_daily/helpers/daily_calendar_page_scope.dart';
+import 'package:daily_tarot_focus/features/tarot/presentation/tarot_daily/pages/tarot_daily_calendar_detail_page.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mobile_boilerplate/common_dependencies.dart';

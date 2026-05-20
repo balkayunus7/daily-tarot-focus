@@ -8,7 +8,6 @@ import 'package:daily_tarot_focus/features/auth/domain/models/tarot_user.dart';
 import 'package:daily_tarot_focus/features/auth/domain/models/tarot_user_zodiac_enum.dart';
 import 'package:daily_tarot_focus/features/tarot/bloc/tarot/tarot_bloc.dart';
 import 'package:daily_tarot_focus/features/tarot/bloc/tarot/tarot_state.dart';
-import 'package:daily_tarot_focus/features/zodiac/bloc/zodiac/zodiac_bloc.dart';
 import 'package:daily_tarot_focus/features/zodiac/domain/models/generate_compatibility_request_model.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -158,9 +157,7 @@ mixin ZodiacCompatibilityPageMixin<T extends StatefulWidget>
     );
   }
 
-  void calculate() => context
-      .read<ZodiacBloc>()
-      .addGenerateCompatibilityRequested(request: buildRequest());
+  void calculate() {}
 
   static const List<String> _compatibilityToneTitleKeys = [
     LocaleKeys.compat_page_tone_title_0,

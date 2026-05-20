@@ -3,7 +3,7 @@ part of '../pages/tarot_daily_calendar_page.dart';
 class DayGrid extends StatelessWidget {
   const DayGrid({required this.month, required this.cardMap, super.key});
   final DateTime month;
-  final Map<DateTime, TarotCardModel> cardMap;
+  final Map<DateTime, DailyCardModel> cardMap;
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +31,7 @@ class DayGrid extends StatelessWidget {
 
         return DayCell(
           date: date,
-          card: cardMap[date],
+          dailyCard: cardMap[date],
           isToday: _isToday(date),
         );
       },

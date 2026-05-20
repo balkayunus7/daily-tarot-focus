@@ -73,7 +73,7 @@ mixin RevealPageStateMixin on State<TarotRevealPage>, TickerProvider {
   DateTime? getLastSavedAt(TarotState state) {
     final cards = state.dailyCardsOrEmpty.asList();
     if (cards.isEmpty) return null;
-    return cards.first.savedAt;
+    return cards.first.date;
   }
 
   bool isOnCooldown(DateTime lastSavedAt) =>

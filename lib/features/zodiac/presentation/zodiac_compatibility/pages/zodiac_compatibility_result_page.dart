@@ -4,12 +4,11 @@ import 'package:daily_tarot_focus/core/util/text_style_helper.dart';
 import 'package:daily_tarot_focus/core/widgets/fancy_container.dart';
 import 'package:daily_tarot_focus/core/widgets/tarot_app_bar.dart';
 import 'package:daily_tarot_focus/features/auth/domain/models/tarot_user_zodiac_enum.dart';
-import 'package:daily_tarot_focus/features/zodiac/bloc/zodiac/zodiac_bloc.dart';
-import 'package:daily_tarot_focus/features/zodiac/bloc/zodiac/zodiac_state.dart';
 import 'package:daily_tarot_focus/features/zodiac/domain/models/generate_compatibility_request_model.dart';
 import 'package:daily_tarot_focus/features/zodiac/domain/models/generate_compatibility_response_model.dart';
 import 'package:daily_tarot_focus/features/zodiac/presentation/zodiac_compatibility/helpers/zodiac_compatibility_page_mixin.dart';
 import 'package:daily_tarot_focus/features/zodiac/presentation/zodiac_compatibility/helpers/zodiac_compatibility_page_scope.dart';
+import 'package:daily_tarot_focus/features/zodiac/presentation/zodiac_compatibility/helpers/zodiac_compatibility_static_data.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mobile_boilerplate/common_dependencies.dart';
@@ -18,67 +17,63 @@ import 'package:mobile_boilerplate/presentation/extensions/build_context_theme_e
 part '../widgets/result_category_tile.dart';
 part '../widgets/result_match_header.dart';
 part '../widgets/result_score_grid.dart';
-part '../widgets/result_shimmer.dart';
 
 class TarotCompatibilityResultPage extends StatefulWidget {
   const TarotCompatibilityResultPage({required this.request, super.key});
   final GenerateCompatibilityRequestModel request;
 
   @override
-  State<TarotCompatibilityResultPage> createState() => _TarotCompatibilityResultPageState();
+  State<TarotCompatibilityResultPage> createState() =>
+      _TarotCompatibilityResultPageState();
 }
 
-class _TarotCompatibilityResultPageState extends State<TarotCompatibilityResultPage>
+class _TarotCompatibilityResultPageState
+    extends State<TarotCompatibilityResultPage>
     with SingleTickerProviderStateMixin, ZodiacCompatibilityPageMixin {
+  late final GenerateCompatibilityResponse _response;
+
+  @override
+  void initState() {
+    super.initState();
+    _response = ZodiacCompatibilityStaticData.calculate(widget.request);
+  }
+
   @override
   Widget build(BuildContext context) {
     final colors = context.colors;
 
     return wrapWithRestartListener(
       context,
-      BlocBuilder<ZodiacBloc, ZodiacState>(
-        buildWhen: (p, c) {
-          final key = widget.request.cacheKey;
-          return p.isGeneratingCompatibility != c.isGeneratingCompatibility ||
-              p.compatibilityCache[key] != c.compatibilityCache[key];
-        },
-        builder: (context, state) {
-          final response = state.compatibilityCache[widget.request.cacheKey];
-
-          return ZodiacCompatibilityPageScope(
-            state: this,
-            child: Scaffold(
-              backgroundColor: colors.background,
-              body: SafeArea(
-                bottom: false,
-                child: Column(
-                  children: [
-                    TarotAppBar(
-                      title: LocaleKeys.compat_page_title.tr(),
-                      titleStyle: m18w700(context),
-                    ),
-                    Expanded(
-                      child: SingleChildScrollView(
-                        padding: EdgeInsets.fromLTRB(
-                          Sp.screen.w,
-                          Sp.large.h,
-                          Sp.screen.w,
-                          Sp.xxxlarge.h + MediaQuery.of(context).padding.bottom,
-                        ),
-                        child: Builder(
-                          builder: (context) {
-                            if (response == null) return _ShimmerContent(request: widget.request);
-                            return _ResultContent(request: widget.request, response: response);
-                          },
-                        ),
-                      ),
-                    ),
-                  ],
+      ZodiacCompatibilityPageScope(
+        state: this,
+        child: Scaffold(
+          backgroundColor: colors.background,
+          body: SafeArea(
+            bottom: false,
+            child: Column(
+              children: [
+                TarotAppBar(
+                  title: LocaleKeys.compat_page_title.tr(),
+                  titleStyle: m18w700(context),
                 ),
-              ),
+                Expanded(
+                  child: SingleChildScrollView(
+                    padding: EdgeInsets.fromLTRB(
+                      Sp.screen.w,
+                      Sp.large.h,
+                      Sp.screen.w,
+                      Sp.xxxlarge.h + MediaQuery.of(context).padding.bottom,
+                    ),
+                    child: _ResultContent(
+                      request: widget.request,
+                      response: _response,
+                    ),
+                  ),
+                ),
+              ],
             ),
-          );
-        },
+          ),
+        ),
       ),
     );
   }
@@ -121,7 +116,10 @@ class _OverallBar extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text('$score%', style: m14w700(context).copyWith(color: colors.textPrimary)),
+        Text(
+          '$score%',
+          style: m14w700(context).copyWith(color: colors.textPrimary),
+        ),
         Sp.xsmall.heightBox,
         ClipRRect(
           borderRadius: Sp.xsmall.radiusR,
@@ -144,6 +142,16 @@ class _SummarySection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colors = context.colors;
+    final scope = ZodiacCompatibilityPageScope.of(context).state;
+    final responseSummary = response.summary.trim();
+    final description =
+        responseSummary.isNotEmpty
+            ? responseSummary
+            : scope.compatibilityDescriptionForScore(
+              context,
+              response.overallScore,
+            );
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -158,8 +166,10 @@ class _SummarySection extends StatelessWidget {
         ),
         Sp.medium.heightBox,
         Text(
-          response.summary,
-          style: m13w400(context).copyWith(color: colors.textSecondary, height: 1.65),
+          description,
+          style: m13w400(
+            context,
+          ).copyWith(color: colors.textSecondary, height: 1.65),
         ),
       ],
     );

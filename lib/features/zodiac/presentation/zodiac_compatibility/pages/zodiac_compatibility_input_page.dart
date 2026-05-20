@@ -10,7 +10,6 @@ import 'package:daily_tarot_focus/core/widgets/fancy_button.dart';
 import 'package:daily_tarot_focus/core/widgets/fancy_container.dart';
 import 'package:daily_tarot_focus/core/widgets/tarot_app_bar.dart';
 import 'package:daily_tarot_focus/features/auth/domain/models/tarot_user_zodiac_enum.dart';
-import 'package:daily_tarot_focus/features/zodiac/bloc/zodiac/zodiac_bloc.dart';
 import 'package:daily_tarot_focus/features/zodiac/domain/models/generate_compatibility_request_model.dart';
 import 'package:daily_tarot_focus/features/zodiac/presentation/zodiac_compatibility/helpers/zodiac_compatibility_page_mixin.dart';
 import 'package:daily_tarot_focus/features/zodiac/presentation/zodiac_compatibility/helpers/zodiac_compatibility_page_scope.dart';
@@ -75,7 +74,6 @@ class _TarotCompatibilityInputPageState extends State<TarotCompatibilityInputPag
                   textStyle: m16w700(context).copyWith(color: colors.textOnPrimary),
                   onTap: () {
                     final request = buildRequest();
-                    context.read<ZodiacBloc>().addGenerateCompatibilityRequested(request: request);
                     unawaited(context.push(AppRoutes.tarotCompatibilityResult, extra: request));
                   },
                 ),

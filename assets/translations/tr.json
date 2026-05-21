@@ -427,6 +427,8 @@
     "title": "Burç Uyumluluğu",
     "you": "Sen",
     "partner": "O",
+    "gender_female": "Kadın",
+    "gender_male": "Erkek",
     "calculate": "Hesapla",
     "explore_card_title": "Burç Uyumluluğu",
     "section_label": "Burç Uyumluluğu",

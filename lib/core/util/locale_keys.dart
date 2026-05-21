@@ -396,6 +396,8 @@ abstract class  LocaleKeys {
   static const compat_page_title = 'compat_page.title';
   static const compat_page_you = 'compat_page.you';
   static const compat_page_partner = 'compat_page.partner';
+  static const compat_page_gender_female = 'compat_page.gender_female';
+  static const compat_page_gender_male = 'compat_page.gender_male';
   static const compat_page_calculate = 'compat_page.calculate';
   static const compat_page_explore_card_title = 'compat_page.explore_card_title';
   static const compat_page_section_label = 'compat_page.section_label';

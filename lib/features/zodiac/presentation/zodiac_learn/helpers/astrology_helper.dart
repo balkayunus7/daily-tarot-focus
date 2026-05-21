@@ -5,14 +5,17 @@ import 'package:daily_tarot_focus/features/auth/domain/models/tarot_user_zodiac_
 import 'package:easy_localization/easy_localization.dart';
 import 'package:timezone/timezone.dart' as tz;
 
-enum DiscoverZodiacType { moon, rising }
+enum DiscoverZodiacType { sun, moon, rising }
 
 extension DiscoverZodiacTypeExt on DiscoverZodiacType {
   bool get isRising => this == DiscoverZodiacType.rising;
   bool get isMoon => this == DiscoverZodiacType.moon;
+  bool get isSun => this == DiscoverZodiacType.sun;
 
   String get title {
     switch (this) {
+      case DiscoverZodiacType.sun:
+        return LocaleKeys.zodiac_page_tab_sun.tr();
       case DiscoverZodiacType.rising:
         return LocaleKeys.zodiac_page_discover_rising.tr();
       case DiscoverZodiacType.moon:
@@ -22,6 +25,8 @@ extension DiscoverZodiacTypeExt on DiscoverZodiacType {
 
   String get description {
     switch (this) {
+      case DiscoverZodiacType.sun:
+        return LocaleKeys.zodiac_page_birth_date.tr();
       case DiscoverZodiacType.rising:
         return LocaleKeys.zodiac_page_desc_rising.tr();
       case DiscoverZodiacType.moon:
@@ -44,8 +49,12 @@ class ZodiacLearnHelper {
     if ((m == 8 && d >= 23) || (m == 9 && d <= 22)) return ZodiacSign.virgo;
     if ((m == 9 && d >= 23) || (m == 10 && d <= 22)) return ZodiacSign.libra;
     if ((m == 10 && d >= 23) || (m == 11 && d <= 21)) return ZodiacSign.scorpio;
-    if ((m == 11 && d >= 22) || (m == 12 && d <= 21)) return ZodiacSign.sagittarius;
-    if ((m == 12 && d >= 22) || (m == 1 && d <= 19)) return ZodiacSign.capricorn;
+    if ((m == 11 && d >= 22) || (m == 12 && d <= 21)) {
+      return ZodiacSign.sagittarius;
+    }
+    if ((m == 12 && d >= 22) || (m == 1 && d <= 19)) {
+      return ZodiacSign.capricorn;
+    }
     if ((m == 1 && d >= 20) || (m == 2 && d <= 18)) return ZodiacSign.aquarius;
     return ZodiacSign.pisces;
   }
@@ -72,7 +81,13 @@ class ZodiacLearnHelper {
         // fall through to LMT
       }
     }
-    final local = DateTime(birthDate.year, birthDate.month, birthDate.day, birthHour, birthMinute);
+    final local = DateTime(
+      birthDate.year,
+      birthDate.month,
+      birthDate.day,
+      birthHour,
+      birthMinute,
+    );
     return local.subtract(Duration(minutes: (longitude / 15 * 60).round()));
   }
 
@@ -95,14 +110,19 @@ class ZodiacLearnHelper {
   static double _julianDay(DateTime utc) {
     var y = utc.year;
     var m = utc.month;
-    final d = utc.day + (utc.hour + (utc.minute + utc.second / 60.0) / 60.0) / 24.0;
+    final d =
+        utc.day + (utc.hour + (utc.minute + utc.second / 60.0) / 60.0) / 24.0;
     if (m <= 2) {
       y--;
       m += 12;
     }
     final a = y ~/ 100;
     final b = 2 - a + (a ~/ 4);
-    return (365.25 * (y + 4716)).floor() + (30.6001 * (m + 1)).floor() + d + b - 1524.5;
+    return (365.25 * (y + 4716)).floor() +
+        (30.6001 * (m + 1)).floor() +
+        d +
+        b -
+        1524.5;
   }
 
   static double _moonLongitude(double jd) {
@@ -126,7 +146,10 @@ class ZodiacLearnHelper {
     );
     final mSun = _rad(
       _norm(
-        357.5291092 + 35999.0502909 * t - 0.0001536 * t * t + t * t * t / 24490000.0,
+        357.5291092 +
+            35999.0502909 * t -
+            0.0001536 * t * t +
+            t * t * t / 24490000.0,
       ),
     );
     final mMoon = _rad(
@@ -185,7 +208,11 @@ class ZodiacLearnHelper {
 
     var sigmaL = 0.0;
     for (final termRow in terms) {
-      final arg = termRow[0] * d + termRow[1] * mSun + termRow[2] * mMoon + termRow[3] * f;
+      final arg =
+          termRow[0] * d +
+          termRow[1] * mSun +
+          termRow[2] * mMoon +
+          termRow[3] * f;
       var coeff = termRow[4].toDouble();
       final mAbs = termRow[1].abs();
       if (mAbs == 1) coeff *= e;
@@ -218,7 +245,8 @@ class ZodiacLearnHelper {
     return _norm(asc);
   }
 
-  static ZodiacSign _longitudeToSign(double lon) => ZodiacSign.values[(lon / 30).floor() % 12];
+  static ZodiacSign _longitudeToSign(double lon) =>
+      ZodiacSign.values[(lon / 30).floor() % 12];
 
   static double _norm(double d) {
     final normalized = d % 360;

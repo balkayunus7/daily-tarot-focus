@@ -34,24 +34,29 @@ class GenerateCompatibilityRequestModel with EquatableMixin {
   };
 
   @override
-  List<Object?> get props => [session, mySign, myGender, partnerSign, partnerGender, locale];
+  List<Object?> get props => [
+    session,
+    mySign,
+    myGender,
+    partnerSign,
+    partnerGender,
+    locale,
+  ];
 }
 
 enum CompatGender {
   female('Female'),
-  male('Male'),
-  nonBinary('Non Binary');
+  male('Male');
 
   const CompatGender(this.value);
 
-  factory CompatGender.fromString(String value) =>
-      CompatGender.values.firstWhere((e) => e.value == value);
+  factory CompatGender.fromString(String value) => CompatGender.values
+      .firstWhere((e) => e.value == value, orElse: () => CompatGender.female);
 
   String get emoji {
     return switch (this) {
       CompatGender.female => TarotAppAssets.female.path,
       CompatGender.male => TarotAppAssets.male.path,
-      CompatGender.nonBinary => TarotAppAssets.nonBinary.path,
     };
   }
 
@@ -59,5 +64,4 @@ enum CompatGender {
 
   bool get isFemale => this == CompatGender.female;
   bool get isMale => this == CompatGender.male;
-  bool get isNonBinary => this == CompatGender.nonBinary;
 }

@@ -61,6 +61,13 @@ class _ZodiacScaffold extends StatelessWidget {
             TarotAppBar(
               title: LocaleKeys.zodiac_page_title.tr(),
               titleStyle: m18w700(context),
+              trailingIcon: Icons.refresh,
+              onIconTap: () {
+                final scope = ZodiacLearnPageScope.of(context).state;
+                final tabIndex = DefaultTabController.of(context).index;
+                final type = DiscoverZodiacType.values[tabIndex];
+                unawaited(scope.showPreviewBirthSheet(context, type));
+              },
             ),
             TabBar(
               indicatorColor: colors.primary,
@@ -99,16 +106,25 @@ class _SunTab extends StatelessWidget {
     return BlocBuilder<AuthCubit, AuthState>(
       buildWhen: (_, current) => current.isAuthenticated,
       builder: (context, state) {
-        final sign = (state.userOrCrash as TarotUser).zodiac;
+        final scope = ZodiacLearnPageScope.of(context).state;
+        final userSign = (state.userOrCrash as TarotUser).zodiac;
+        final sign = userSign;
         if (sign == null) return const SizedBox.shrink();
-        return SingleChildScrollView(
-          padding: EdgeInsets.fromLTRB(
-            Sp.screen.w,
-            Sp.xlarge.h,
-            Sp.screen.w,
-            Sp.xxxlarge.h,
-          ),
-          child: ZodiacCalculatedView(sign: sign),
+        return ValueListenableBuilder<Map<DiscoverZodiacType, ZodiacSign>>(
+          valueListenable: scope.previewSigns,
+          builder: (context, previewSigns, _) {
+            return SingleChildScrollView(
+              padding: EdgeInsets.fromLTRB(
+                Sp.screen.w,
+                Sp.xlarge.h,
+                Sp.screen.w,
+                Sp.xxxlarge.h,
+              ),
+              child: ZodiacCalculatedView(
+                sign: previewSigns[DiscoverZodiacType.sun] ?? sign,
+              ),
+            );
+          },
         );
       },
     );
@@ -123,19 +139,26 @@ class _MoonTab extends StatelessWidget {
     return BlocBuilder<AuthCubit, AuthState>(
       buildWhen: (_, current) => current.isAuthenticated,
       builder: (context, state) {
+        final scope = ZodiacLearnPageScope.of(context).state;
         final sign = (state.userOrCrash as TarotUser).moonSign;
-        if (sign != null) {
-          return SingleChildScrollView(
-            padding: EdgeInsets.fromLTRB(
-              Sp.screen.w,
-              Sp.xlarge.h,
-              Sp.screen.w,
-              Sp.xxxlarge.h,
-            ),
-            child: ZodiacCalculatedView(sign: sign),
-          );
-        }
-        return const ZodiacEmptyView(type: DiscoverZodiacType.moon);
+        return ValueListenableBuilder<Map<DiscoverZodiacType, ZodiacSign>>(
+          valueListenable: scope.previewSigns,
+          builder: (context, previewSigns, _) {
+            final displaySign = previewSigns[DiscoverZodiacType.moon] ?? sign;
+            if (displaySign != null) {
+              return SingleChildScrollView(
+                padding: EdgeInsets.fromLTRB(
+                  Sp.screen.w,
+                  Sp.xlarge.h,
+                  Sp.screen.w,
+                  Sp.xxxlarge.h,
+                ),
+                child: ZodiacCalculatedView(sign: displaySign),
+              );
+            }
+            return const ZodiacEmptyView(type: DiscoverZodiacType.moon);
+          },
+        );
       },
     );
   }
@@ -149,19 +172,26 @@ class _RisingTab extends StatelessWidget {
     return BlocBuilder<AuthCubit, AuthState>(
       buildWhen: (_, current) => current.isAuthenticated,
       builder: (context, state) {
+        final scope = ZodiacLearnPageScope.of(context).state;
         final sign = (state.userOrCrash as TarotUser).risingSign;
-        if (sign != null) {
-          return SingleChildScrollView(
-            padding: EdgeInsets.fromLTRB(
-              Sp.screen.w,
-              Sp.xlarge.h,
-              Sp.screen.w,
-              Sp.xxxlarge.h,
-            ),
-            child: ZodiacCalculatedView(sign: sign),
-          );
-        }
-        return const ZodiacEmptyView(type: DiscoverZodiacType.rising);
+        return ValueListenableBuilder<Map<DiscoverZodiacType, ZodiacSign>>(
+          valueListenable: scope.previewSigns,
+          builder: (context, previewSigns, _) {
+            final displaySign = previewSigns[DiscoverZodiacType.rising] ?? sign;
+            if (displaySign != null) {
+              return SingleChildScrollView(
+                padding: EdgeInsets.fromLTRB(
+                  Sp.screen.w,
+                  Sp.xlarge.h,
+                  Sp.screen.w,
+                  Sp.xxxlarge.h,
+                ),
+                child: ZodiacCalculatedView(sign: displaySign),
+              );
+            }
+            return const ZodiacEmptyView(type: DiscoverZodiacType.rising);
+          },
+        );
       },
     );
   }

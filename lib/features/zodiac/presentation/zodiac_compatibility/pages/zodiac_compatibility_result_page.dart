@@ -53,8 +53,10 @@ class _TarotCompatibilityResultPageState
             child: Column(
               children: [
                 TarotAppBar(
-                  title: LocaleKeys.compat_page_title.tr(),
-                  titleStyle: m18w700(context),
+                  titleWidget: _CompatibilityAppBarTitle(
+                    mySign: widget.request.mySign,
+                    partnerSign: widget.request.partnerSign,
+                  ),
                 ),
                 Expanded(
                   child: SingleChildScrollView(
@@ -74,6 +76,45 @@ class _TarotCompatibilityResultPageState
             ),
           ),
         ),
+      ),
+    );
+  }
+}
+
+class _CompatibilityAppBarTitle extends StatelessWidget {
+  const _CompatibilityAppBarTitle({
+    required this.mySign,
+    required this.partnerSign,
+  });
+
+  final ZodiacSign mySign;
+  final ZodiacSign partnerSign;
+
+  @override
+  Widget build(BuildContext context) {
+    final colors = context.colors;
+
+    return FittedBox(
+      fit: BoxFit.scaleDown,
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text(
+            mySign.localizedName,
+            style: m18w700(context).copyWith(color: colors.textPrimary),
+          ),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: Sp.xsmall.w),
+            child: Text(
+              '•',
+              style: m18w700(context).copyWith(color: colors.primary),
+            ),
+          ),
+          Text(
+            partnerSign.localizedName,
+            style: m18w700(context).copyWith(color: colors.textPrimary),
+          ),
+        ],
       ),
     );
   }

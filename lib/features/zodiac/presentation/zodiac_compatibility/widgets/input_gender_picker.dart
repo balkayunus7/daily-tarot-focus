@@ -18,19 +18,15 @@ class GenderPicker extends StatelessWidget {
             _GenderButton(
               isSelected: gender.isFemale,
               genderSvgPath: TarotAppAssets.female.path,
+              label: LocaleKeys.compat_page_gender_female.tr(),
               onTap: () => notifier.value = CompatGender.female,
             ),
             Sp.small.widthBox,
             _GenderButton(
               isSelected: gender.isMale,
               genderSvgPath: TarotAppAssets.male.path,
+              label: LocaleKeys.compat_page_gender_male.tr(),
               onTap: () => notifier.value = CompatGender.male,
-            ),
-            Sp.small.widthBox,
-            _GenderButton(
-              isSelected: gender.isNonBinary,
-              genderSvgPath: TarotAppAssets.nonBinary.path,
-              onTap: () => notifier.value = CompatGender.nonBinary,
             ),
           ],
         );
@@ -40,8 +36,14 @@ class GenderPicker extends StatelessWidget {
 }
 
 class _GenderButton extends StatelessWidget {
-  const _GenderButton({required this.isSelected, required this.genderSvgPath, required this.onTap});
+  const _GenderButton({
+    required this.isSelected,
+    required this.genderSvgPath,
+    required this.label,
+    required this.onTap,
+  });
   final String genderSvgPath;
+  final String label;
   final VoidCallback onTap;
   final bool isSelected;
 
@@ -54,33 +56,50 @@ class _GenderButton extends StatelessWidget {
         await HapticFeedbackHelper.lightImpact();
         onTap();
       },
-      child: AnimatedContainer(
-        duration: const Duration(milliseconds: 200),
-        width: 48.w,
-        height: 48.h,
-        decoration: BoxDecoration(
-          shape: BoxShape.circle,
-          color:
-              isSelected
-                  ? colors.primary.withValues(alpha: 0.18)
-                  : colors.primary.withValues(alpha: 0.06),
-          border: Border.all(
-            color: isSelected ? colors.primary : colors.primary.withValues(alpha: 0.2),
-            width: isSelected ? 1.5 : 1,
-          ),
-        ),
-        alignment: Alignment.center,
-        child: Center(
-          child: SvgPicture.asset(
-            genderSvgPath,
-            width: 20.w,
-            height: 20.h,
-            colorFilter: ColorFilter.mode(
-              isSelected ? colors.primary : colors.textSecondary,
-              BlendMode.srcIn,
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          AnimatedContainer(
+            duration: const Duration(milliseconds: 200),
+            width: 48.w,
+            height: 48.h,
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              color:
+                  isSelected
+                      ? colors.primary.withValues(alpha: 0.18)
+                      : colors.primary.withValues(alpha: 0.06),
+              border: Border.all(
+                color:
+                    isSelected
+                        ? colors.primary
+                        : colors.primary.withValues(alpha: 0.2),
+                width: isSelected ? 1.5 : 1,
+              ),
+            ),
+            alignment: Alignment.center,
+            child: Center(
+              child: SvgPicture.asset(
+                genderSvgPath,
+                width: 20.w,
+                height: 20.h,
+                colorFilter: ColorFilter.mode(
+                  isSelected ? colors.primary : colors.textSecondary,
+                  BlendMode.srcIn,
+                ),
+              ),
             ),
           ),
-        ),
+          Sp.tiny.heightBox,
+          Text(
+            label,
+            style: m11w500(context).copyWith(
+              color: isSelected ? colors.primary : colors.textSecondary,
+            ),
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+          ),
+        ],
       ),
     );
   }

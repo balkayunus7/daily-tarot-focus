@@ -426,6 +426,8 @@
     "title": "Zodiac Compatibility",
     "you": "You",
     "partner": "Them",
+    "gender_female": "Woman",
+    "gender_male": "Man",
     "calculate": "Calculate",
     "explore_card_title": "Compatibility",
     "section_label": "Zodiac Compatibility",

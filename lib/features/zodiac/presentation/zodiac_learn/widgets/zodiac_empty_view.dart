@@ -9,13 +9,18 @@ class ZodiacEmptyView extends StatelessWidget {
     final colors = context.colors;
     final scope = ZodiacLearnPageScope.of(context).state;
 
-    Future<void> showBirthSheet(BuildContext context, ZodiacLearnPageMixin scope) {
+    Future<void> showBirthSheet(
+      BuildContext context,
+      ZodiacLearnPageMixin scope,
+    ) {
       return showModalBottomSheet<void>(
         context: context,
         isScrollControlled: true,
         backgroundColor: context.colors.background,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.vertical(top: Radius.circular(Sp.xlarge.r)),
+          borderRadius: BorderRadius.vertical(
+            top: Radius.circular(Sp.xlarge.r),
+          ),
         ),
         builder: (_) {
           return BirthInputSheet(
@@ -25,13 +30,13 @@ class ZodiacEmptyView extends StatelessWidget {
               if (type.isRising) {
                 await scope.calculateRising(
                   birthDate: date,
-                  birthTime: time,
+                  birthTime: time!,
                   latitude: latitude!,
                   longitude: longitude!,
                   zoneName: zoneName,
                 );
               } else {
-                await scope.calculateMoon(birthDate: date, birthTime: time);
+                await scope.calculateMoon(birthDate: date, birthTime: time!);
               }
             },
           );
@@ -57,11 +62,17 @@ class ZodiacEmptyView extends StatelessWidget {
               ),
             ),
             Sp.large.heightBox,
-            Text(type.title, style: m18w600(context), textAlign: TextAlign.center),
+            Text(
+              type.title,
+              style: m18w600(context),
+              textAlign: TextAlign.center,
+            ),
             Sp.small.heightBox,
             Text(
               type.description,
-              style: m13w400(context).copyWith(color: colors.textSecondary, height: 1.6),
+              style: m13w400(
+                context,
+              ).copyWith(color: colors.textSecondary, height: 1.6),
               textAlign: TextAlign.center,
             ),
             Sp.xlarge.heightBox,
@@ -74,7 +85,9 @@ class ZodiacEmptyView extends StatelessWidget {
                   height: 44.h,
                   isLoading: calculating,
                   isDisabled: calculating,
-                  textStyle: m14w700(context).copyWith(color: colors.textOnPrimary),
+                  textStyle: m14w700(
+                    context,
+                  ).copyWith(color: colors.textOnPrimary),
                   onTap: () => unawaited(showBirthSheet(context, scope)),
                 );
               },

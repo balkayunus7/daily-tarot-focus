@@ -9,7 +9,7 @@ class BirthInputSheet extends StatefulWidget {
   final DiscoverZodiacType type;
   final Future<void> Function(
     DateTime date,
-    TimeOfDay time,
+    TimeOfDay? time,
     double? latitude,
     double? longitude,
     String? zoneName,
@@ -29,7 +29,8 @@ class _BirthInputSheetState extends State<BirthInputSheet> {
   String? _selectedCityName;
 
   bool get _canSubmit {
-    if (_selectedDate == null || _selectedTime == null) return false;
+    if (_selectedDate == null) return false;
+    if (!widget.type.isSun && _selectedTime == null) return false;
     if (widget.type.isRising && _selectedLat == null) return false;
     return true;
   }
@@ -93,19 +94,21 @@ class _BirthInputSheetState extends State<BirthInputSheet> {
               },
             ),
             Sp.medium.heightBox,
-            _PickerRow(
-              label: LocaleKeys.zodiac_page_birth_time.tr(),
-              value: _selectedTime?.format(context),
-              icon: Icons.access_time_outlined,
-              onTap: () async {
-                final picked = await TarotDatePicker.showTime(
-                  context: context,
-                  initialTime:
-                      _selectedTime ?? const TimeOfDay(hour: 12, minute: 0),
-                );
-                if (picked != null) setState(() => _selectedTime = picked);
-              },
-            ),
+            if (!widget.type.isSun) ...[
+              _PickerRow(
+                label: LocaleKeys.zodiac_page_birth_time.tr(),
+                value: _selectedTime?.format(context),
+                icon: Icons.access_time_outlined,
+                onTap: () async {
+                  final picked = await TarotDatePicker.showTime(
+                    context: context,
+                    initialTime:
+                        _selectedTime ?? const TimeOfDay(hour: 12, minute: 0),
+                  );
+                  if (picked != null) setState(() => _selectedTime = picked);
+                },
+              ),
+            ],
             if (widget.type.isRising) ...[
               Sp.medium.heightBox,
               _PickerRow(
@@ -140,7 +143,7 @@ class _BirthInputSheetState extends State<BirthInputSheet> {
                       ? () async {
                         await widget.onSubmit(
                           _selectedDate!,
-                          _selectedTime!,
+                          _selectedTime,
                           widget.type.isRising ? _selectedLat : null,
                           widget.type.isRising ? _selectedLon : null,
                           widget.type.isRising ? _selectedZoneName : null,

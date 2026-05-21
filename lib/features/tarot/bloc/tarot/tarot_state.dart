@@ -134,8 +134,17 @@ class TarotState extends Equatable {
   bool get hasFetchAllCardsSucceeded =>
       fetchAllCardsFailureOrCards.getOrNull()?.getRightOrNull() != null;
 
-  TarotCardModel? getById(String id) =>
-      allCardsOrEmpty.asList().where((c) => c.id == id).firstOrNull;
+  TarotCardModel? getById(String id) {
+    final normalizedId = _normalizeCardId(id);
+    return allCardsOrEmpty
+        .asList()
+        .where(
+          (c) =>
+              _normalizeCardId(c.id) == normalizedId ||
+              _normalizeCardId(c.name) == normalizedId,
+        )
+        .firstOrNull;
+  }
 
   TarotCardModel? getByTitle(String title) =>
       allCardsOrEmpty
@@ -163,6 +172,15 @@ class TarotState extends Equatable {
         .asList()
         .where((c) => c.category == category)
         .toList();
+  }
+
+  static String _normalizeCardId(String value) {
+    return value
+        .trim()
+        .toLowerCase()
+        .replaceAll('&', 'and')
+        .replaceAll(RegExp('[^a-z0-9]+'), '-')
+        .replaceAll(RegExp(r'^-+|-+$'), '');
   }
 
   // RECORD DAILY CARD

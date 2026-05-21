@@ -222,3 +222,87 @@ mixin ZodiacLearnPageMixin on State<ZodiacLearnPage> {
     if (!succeeded) throw Exception('Update failed');
   }
 }
+
+extension ZodiacResultCopy on ZodiacSign {
+  String get majorArcanaMessage {
+    switch (this) {
+      case ZodiacSign.aries:
+        return LocaleKeys.zodiac_page_major_arcana_message_aries.tr();
+      case ZodiacSign.taurus:
+        return LocaleKeys.zodiac_page_major_arcana_message_taurus.tr();
+      case ZodiacSign.gemini:
+        return LocaleKeys.zodiac_page_major_arcana_message_gemini.tr();
+      case ZodiacSign.cancer:
+        return LocaleKeys.zodiac_page_major_arcana_message_cancer.tr();
+      case ZodiacSign.leo:
+        return LocaleKeys.zodiac_page_major_arcana_message_leo.tr();
+      case ZodiacSign.virgo:
+        return LocaleKeys.zodiac_page_major_arcana_message_virgo.tr();
+      case ZodiacSign.libra:
+        return LocaleKeys.zodiac_page_major_arcana_message_libra.tr();
+      case ZodiacSign.scorpio:
+        return LocaleKeys.zodiac_page_major_arcana_message_scorpio.tr();
+      case ZodiacSign.sagittarius:
+        return LocaleKeys.zodiac_page_major_arcana_message_sagittarius.tr();
+      case ZodiacSign.capricorn:
+        return LocaleKeys.zodiac_page_major_arcana_message_capricorn.tr();
+      case ZodiacSign.aquarius:
+        return LocaleKeys.zodiac_page_major_arcana_message_aquarius.tr();
+      case ZodiacSign.pisces:
+        return LocaleKeys.zodiac_page_major_arcana_message_pisces.tr();
+    }
+  }
+
+  String get energyFocus {
+    switch (element) {
+      case ZodiacElement.fire:
+        return LocaleKeys.zodiac_page_energy_focus_fire.tr();
+      case ZodiacElement.earth:
+        return LocaleKeys.zodiac_page_energy_focus_earth.tr();
+      case ZodiacElement.air:
+        return LocaleKeys.zodiac_page_energy_focus_air.tr();
+      case ZodiacElement.water:
+        return LocaleKeys.zodiac_page_energy_focus_water.tr();
+    }
+  }
+
+  String get growthKey {
+    switch (modality) {
+      case ZodiacModality.cardinal:
+        return LocaleKeys.zodiac_page_growth_key_cardinal.tr();
+      case ZodiacModality.fixed:
+        return LocaleKeys.zodiac_page_growth_key_fixed.tr();
+      case ZodiacModality.mutable:
+        return LocaleKeys.zodiac_page_growth_key_mutable.tr();
+    }
+  }
+
+  String get dailyIntention {
+    switch (this) {
+      case ZodiacSign.aries:
+        return LocaleKeys.zodiac_page_daily_intention_aries.tr();
+      case ZodiacSign.taurus:
+        return LocaleKeys.zodiac_page_daily_intention_taurus.tr();
+      case ZodiacSign.gemini:
+        return LocaleKeys.zodiac_page_daily_intention_gemini.tr();
+      case ZodiacSign.cancer:
+        return LocaleKeys.zodiac_page_daily_intention_cancer.tr();
+      case ZodiacSign.leo:
+        return LocaleKeys.zodiac_page_daily_intention_leo.tr();
+      case ZodiacSign.virgo:
+        return LocaleKeys.zodiac_page_daily_intention_virgo.tr();
+      case ZodiacSign.libra:
+        return LocaleKeys.zodiac_page_daily_intention_libra.tr();
+      case ZodiacSign.scorpio:
+        return LocaleKeys.zodiac_page_daily_intention_scorpio.tr();
+      case ZodiacSign.sagittarius:
+        return LocaleKeys.zodiac_page_daily_intention_sagittarius.tr();
+      case ZodiacSign.capricorn:
+        return LocaleKeys.zodiac_page_daily_intention_capricorn.tr();
+      case ZodiacSign.aquarius:
+        return LocaleKeys.zodiac_page_daily_intention_aquarius.tr();
+      case ZodiacSign.pisces:
+        return LocaleKeys.zodiac_page_daily_intention_pisces.tr();
+    }
+  }
+}

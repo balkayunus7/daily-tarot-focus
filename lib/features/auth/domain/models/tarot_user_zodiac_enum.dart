@@ -182,30 +182,20 @@ enum ZodiacSign {
   String get signDescription => 'zodiac_page.desc_${value.toLowerCase()}'.tr();
 
   String get rulingPlanet {
-    switch (this) {
-      case ZodiacSign.aries:
-        return 'Mars';
-      case ZodiacSign.taurus:
-      case ZodiacSign.libra:
-        return 'Venus';
-      case ZodiacSign.gemini:
-      case ZodiacSign.virgo:
-        return 'Mercury';
-      case ZodiacSign.cancer:
-        return 'Moon';
-      case ZodiacSign.leo:
-        return 'Sun';
-      case ZodiacSign.scorpio:
-        return 'Pluto';
-      case ZodiacSign.sagittarius:
-        return 'Jupiter';
-      case ZodiacSign.capricorn:
-        return 'Saturn';
-      case ZodiacSign.aquarius:
-        return 'Uranus';
-      case ZodiacSign.pisces:
-        return 'Neptune';
-    }
+    return switch (this) {
+      ZodiacSign.aries => LocaleKeys.zodiac_page_planet_mars.tr(),
+      ZodiacSign.taurus ||
+      ZodiacSign.libra => LocaleKeys.zodiac_page_planet_venus.tr(),
+      ZodiacSign.gemini ||
+      ZodiacSign.virgo => LocaleKeys.zodiac_page_planet_mercury.tr(),
+      ZodiacSign.cancer => LocaleKeys.zodiac_page_planet_moon.tr(),
+      ZodiacSign.leo => LocaleKeys.zodiac_page_planet_sun.tr(),
+      ZodiacSign.scorpio => LocaleKeys.zodiac_page_planet_pluto.tr(),
+      ZodiacSign.sagittarius => LocaleKeys.zodiac_page_planet_jupiter.tr(),
+      ZodiacSign.capricorn => LocaleKeys.zodiac_page_planet_saturn.tr(),
+      ZodiacSign.aquarius => LocaleKeys.zodiac_page_planet_uranus.tr(),
+      ZodiacSign.pisces => LocaleKeys.zodiac_page_planet_neptune.tr(),
+    };
   }
 
   String get rulingPlanetCard {
@@ -238,21 +228,7 @@ enum ZodiacSign {
   // ── Ruling house ───────────────────────────────────────────────────────────
 
   String get rulingHouse {
-    const houses = [
-      '1st · House of Self',
-      '2nd · House of Values',
-      '3rd · House of Communication',
-      '4th · House of Home',
-      '5th · House of Creativity',
-      '6th · House of Health',
-      '7th · House of Partnerships',
-      '8th · House of Transformation',
-      '9th · House of Philosophy',
-      '10th · House of Career',
-      '11th · House of Community',
-      '12th · House of the Unconscious',
-    ];
-    return houses[index];
+    return 'zodiac_page.ruling_house_${index + 1}'.tr();
   }
 
   String get dateRangeKey {
@@ -285,89 +261,26 @@ enum ZodiacSign {
   }
 
   List<String> get minorArcanaCards {
-    switch (this) {
-      case ZodiacSign.aries:
-        return ['2 of Wands', '3 of Wands', '4 of Wands'];
-      case ZodiacSign.taurus:
-        return ['5 of Pentacles', '6 of Pentacles', '7 of Pentacles'];
-      case ZodiacSign.gemini:
-        return ['8 of Swords', '9 of Swords', '10 of Swords'];
-      case ZodiacSign.cancer:
-        return ['2 of Cups', '3 of Cups', '4 of Cups'];
-      case ZodiacSign.leo:
-        return ['5 of Wands', '6 of Wands', '7 of Wands'];
-      case ZodiacSign.virgo:
-        return ['8 of Pentacles', '9 of Pentacles', '10 of Pentacles'];
-      case ZodiacSign.libra:
-        return ['2 of Swords', '3 of Swords', '4 of Swords'];
-      case ZodiacSign.scorpio:
-        return ['5 of Cups', '6 of Cups', '7 of Cups'];
-      case ZodiacSign.sagittarius:
-        return ['8 of Wands', '9 of Wands', '10 of Wands'];
-      case ZodiacSign.capricorn:
-        return ['2 of Pentacles', '3 of Pentacles', '4 of Pentacles'];
-      case ZodiacSign.aquarius:
-        return ['5 of Swords', '6 of Swords', '7 of Swords'];
-      case ZodiacSign.pisces:
-        return ['8 of Cups', '9 of Cups', '10 of Cups'];
-    }
+    final signKey = value.toLowerCase();
+    return List.generate(
+      3,
+      (index) => 'zodiac_page.minor_arcana_${signKey}_${index + 1}'.tr(),
+    );
   }
 
   List<String> get strengths {
-    switch (this) {
-      case ZodiacSign.aries:
-        return ['Bold', 'Courageous', 'Pioneering'];
-      case ZodiacSign.taurus:
-        return ['Patient', 'Reliable', 'Sensual'];
-      case ZodiacSign.gemini:
-        return ['Adaptable', 'Witty', 'Curious'];
-      case ZodiacSign.cancer:
-        return ['Nurturing', 'Intuitive', 'Empathic'];
-      case ZodiacSign.leo:
-        return ['Generous', 'Confident', 'Creative'];
-      case ZodiacSign.virgo:
-        return ['Analytical', 'Precise', 'Devoted'];
-      case ZodiacSign.libra:
-        return ['Diplomatic', 'Charming', 'Fair'];
-      case ZodiacSign.scorpio:
-        return ['Passionate', 'Resourceful', 'Perceptive'];
-      case ZodiacSign.sagittarius:
-        return ['Optimistic', 'Adventurous', 'Visionary'];
-      case ZodiacSign.capricorn:
-        return ['Disciplined', 'Ambitious', 'Patient'];
-      case ZodiacSign.aquarius:
-        return ['Innovative', 'Humanitarian', 'Independent'];
-      case ZodiacSign.pisces:
-        return ['Compassionate', 'Intuitive', 'Dreamy'];
-    }
+    final signKey = value.toLowerCase();
+    return List.generate(
+      3,
+      (index) => 'zodiac_page.strength_${signKey}_${index + 1}'.tr(),
+    );
   }
 
   List<String> get shadows {
-    switch (this) {
-      case ZodiacSign.aries:
-        return ['Impulsive', 'Reckless', 'Impatient'];
-      case ZodiacSign.taurus:
-        return ['Stubborn', 'Possessive', 'Indulgent'];
-      case ZodiacSign.gemini:
-        return ['Scattered', 'Inconsistent', 'Anxious'];
-      case ZodiacSign.cancer:
-        return ['Moody', 'Clingy', 'Oversensitive'];
-      case ZodiacSign.leo:
-        return ['Arrogant', 'Dramatic', 'Attention-seeking'];
-      case ZodiacSign.virgo:
-        return ['Critical', 'Perfectionist', 'Anxious'];
-      case ZodiacSign.libra:
-        return ['Indecisive', 'People-pleasing', 'Vain'];
-      case ZodiacSign.scorpio:
-        return ['Secretive', 'Jealous', 'Vengeful'];
-      case ZodiacSign.sagittarius:
-        return ['Restless', 'Tactless', 'Overconfident'];
-      case ZodiacSign.capricorn:
-        return ['Cold', 'Rigid', 'Pessimistic'];
-      case ZodiacSign.aquarius:
-        return ['Detached', 'Rebellious', 'Aloof'];
-      case ZodiacSign.pisces:
-        return ['Escapist', 'Overidealistic', 'Naive'];
-    }
+    final signKey = value.toLowerCase();
+    return List.generate(
+      3,
+      (index) => 'zodiac_page.shadow_${signKey}_${index + 1}'.tr(),
+    );
   }
 }

@@ -23,7 +23,10 @@ class ZodiacCalculatedView extends StatelessWidget {
                     sign.svgPath,
                     width: 52.w,
                     height: 52.h,
-                    colorFilter: ColorFilter.mode(colors.primary, BlendMode.srcIn),
+                    colorFilter: ColorFilter.mode(
+                      colors.primary,
+                      BlendMode.srcIn,
+                    ),
                   ),
                 ),
               ),
@@ -35,31 +38,6 @@ class ZodiacCalculatedView extends StatelessWidget {
             ],
           ),
         ),
-        Sp.medium.heightBox,
-        Center(
-          child: FittedBox(
-            fit: BoxFit.scaleDown,
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                _Badge(
-                  label: LocaleKeys.zodiac_page_element_label.tr(),
-                  value: sign.elementLocalized,
-                ),
-                SizedBox(width: Sp.small.w),
-                _Badge(
-                  label: LocaleKeys.zodiac_page_modality_label.tr(),
-                  value: sign.modalityLocalized,
-                ),
-                SizedBox(width: Sp.small.w),
-                _Badge(
-                  label: LocaleKeys.zodiac_page_ruling_house.tr(),
-                  value: sign.rulingHouse,
-                ),
-              ],
-            ),
-          ),
-        ),
         Sp.large.heightBox,
         FancyContainer(
           width: double.infinity,
@@ -68,10 +46,14 @@ class ZodiacCalculatedView extends StatelessWidget {
           color: colors.primary.withValues(alpha: 0.06),
           child: Text(
             sign.signDescription,
-            style: m13w500(context).copyWith(color: colors.textSecondary, height: 1.6),
+            style: m13w500(
+              context,
+            ).copyWith(color: colors.textSecondary, height: 1.6),
             textAlign: TextAlign.center,
           ),
         ),
+        Sp.xxlarge.heightBox,
+        _SignatureSection(sign: sign),
         Sp.xxlarge.heightBox,
         _KeywordsSection(sign: sign),
         Sp.xxlarge.heightBox,
@@ -79,35 +61,6 @@ class ZodiacCalculatedView extends StatelessWidget {
         Sp.xxlarge.heightBox,
         _MajorArcanaSection(sign: sign),
       ],
-    );
-  }
-}
-
-class _Badge extends StatelessWidget {
-  const _Badge({required this.label, required this.value});
-  final String label;
-  final String value;
-
-  @override
-  Widget build(BuildContext context) {
-    final color = context.colors.primary;
-    final colors = context.colors;
-
-    return FancyContainer(
-      padding: Sp.small.padHVR(Sp.xsmall),
-      borderRadius: Sp.xlarge,
-      color: color.withValues(alpha: 0.1),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Text(
-            label.toUpperCase(),
-            style: m9w700(context).copyWith(color: colors.secondary.withValues(alpha: 0.7)),
-          ),
-          Sp.tiny.heightBox,
-          Text(value, style: m11w500(context).copyWith(color: color)),
-        ],
-      ),
     );
   }
 }
@@ -166,7 +119,11 @@ class _KeywordsSection extends StatelessWidget {
 }
 
 class _KeywordColumn extends StatelessWidget {
-  const _KeywordColumn({required this.title, required this.keywords, required this.accentColor});
+  const _KeywordColumn({
+    required this.title,
+    required this.keywords,
+    required this.accentColor,
+  });
   final String title;
   final List<String> keywords;
   final Color accentColor;
@@ -207,7 +164,9 @@ class _KeywordColumn extends StatelessWidget {
                   Expanded(
                     child: Text(
                       kw,
-                      style: m12w400(context).copyWith(color: colors.textPrimary),
+                      style: m12w400(
+                        context,
+                      ).copyWith(color: colors.textPrimary),
                     ),
                   ),
                 ],
@@ -229,7 +188,7 @@ class _RulingPlanetSection extends StatelessWidget {
     final colors = context.colors;
     return BlocBuilder<TarotBloc, TarotState>(
       builder: (context, state) {
-        final card = state.getByTitle(sign.rulingPlanetCard);
+        final card = state.getById(sign.rulingPlanetCard);
         if (card == null) return const SizedBox.shrink();
 
         return Column(
@@ -332,7 +291,7 @@ class _MajorArcanaSection extends StatelessWidget {
     final colors = context.colors;
     return BlocBuilder<TarotBloc, TarotState>(
       builder: (context, state) {
-        final card = state.getByTitle(sign.majorArcanaName);
+        final card = state.getById(sign.majorArcanaName);
         if (card == null) return const SizedBox.shrink();
 
         return Column(
@@ -343,7 +302,10 @@ class _MajorArcanaSection extends StatelessWidget {
                 Container(
                   width: Sp.tiny,
                   height: Sp.large,
-                  decoration: BoxDecoration(color: colors.primary, borderRadius: Sp.tiny.radiusR),
+                  decoration: BoxDecoration(
+                    color: colors.primary,
+                    borderRadius: Sp.tiny.radiusR,
+                  ),
                 ),
                 Sp.xsmall.widthBox,
                 Text(
@@ -367,14 +329,26 @@ class _MajorArcanaSection extends StatelessWidget {
                 color: colors.textSecondary.withValues(alpha: 0.06),
                 child: Row(
                   children: [
-                    ClipRRect(
-                      borderRadius: Sp.small.radiusR,
-                      child: CustomCacheNetworkImage(
-                        imageUrl: card.imageUrl,
-                        width: 64.w,
-                        height: 106.h,
-                        fit: BoxFit.cover,
-                      ),
+                    Column(
+                      children: [
+                        Text(
+                          sign.localizedName,
+                          style: m14w700(context).copyWith(
+                            color: colors.primary,
+                            letterSpacing: 0.5,
+                          ),
+                        ),
+                        Sp.xsmall.heightBox,
+                        ClipRRect(
+                          borderRadius: Sp.xsmall.radiusR,
+                          child: CustomCacheNetworkImage(
+                            imageUrl: card.imageUrl,
+                            width: 64.w,
+                            height: 106.h,
+                            fit: BoxFit.fill,
+                          ),
+                        ),
+                      ],
                     ),
                     Sp.medium.widthBox,
                     Expanded(
@@ -384,7 +358,7 @@ class _MajorArcanaSection extends StatelessWidget {
                           Text(card.name, style: m14w700(context)),
                           Sp.xsmall.heightBox,
                           Text(
-                            card.description,
+                            sign.majorArcanaMessage,
                             maxLines: 3,
                             overflow: TextOverflow.ellipsis,
                             style: m12w400(context).copyWith(
@@ -407,6 +381,226 @@ class _MajorArcanaSection extends StatelessWidget {
           ],
         );
       },
+    );
+  }
+}
+
+class _SignatureSection extends StatelessWidget {
+  const _SignatureSection({required this.sign});
+  final ZodiacSign sign;
+
+  @override
+  Widget build(BuildContext context) {
+    final colors = context.colors;
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(
+          children: [
+            Container(
+              width: Sp.tiny,
+              height: Sp.large,
+              decoration: BoxDecoration(
+                color: colors.primary,
+                borderRadius: Sp.tiny.radiusR,
+              ),
+            ),
+            Sp.xsmall.widthBox,
+            Text('Burç Özeti', style: m16w700(context)),
+          ],
+        ),
+        Sp.medium.heightBox,
+        FancyContainer(
+          width: double.infinity,
+          padding: Sp.medium.padAllR,
+          borderRadius: Sp.large,
+          color: colors.textSecondary.withValues(alpha: 0.06),
+          child: Column(
+            children: [
+              Row(
+                children: [
+                  Expanded(
+                    child: _InsightTile(
+                      title: 'Element',
+                      value: sign.elementLocalized,
+                      icon: Icons.auto_awesome,
+                    ),
+                  ),
+                  Sp.small.widthBox,
+                  Expanded(
+                    child: _InsightTile(
+                      title: 'Ritim',
+                      value: sign.modalityLocalized,
+                      icon: Icons.sync_alt,
+                    ),
+                  ),
+                ],
+              ),
+              Sp.small.heightBox,
+              Row(
+                children: [
+                  Expanded(
+                    child: _InsightTile(
+                      title: 'Gezegen',
+                      value: sign.rulingPlanet,
+                      icon: Icons.public,
+                    ),
+                  ),
+                  Sp.small.widthBox,
+                  Expanded(
+                    child: _InsightTile(
+                      title: 'Ev',
+                      value: sign.rulingHouse,
+                      icon: Icons.foundation,
+                    ),
+                  ),
+                ],
+              ),
+              Sp.large.heightBox,
+              _GuidanceCard(
+                title: 'Enerji Alanı',
+                text: sign.energyFocus,
+                icon: Icons.bolt_outlined,
+              ),
+              Sp.medium.heightBox,
+              _GuidanceCard(
+                title: 'Gelişim Anahtarı',
+                text: sign.growthKey,
+                icon: Icons.key_outlined,
+              ),
+              Sp.medium.heightBox,
+              _GuidanceCard(
+                title: 'Günlük Niyet',
+                text: sign.dailyIntention,
+                icon: Icons.wb_twilight_outlined,
+              ),
+              Sp.medium.heightBox,
+              Align(
+                alignment: Alignment.centerLeft,
+                child: Wrap(
+                  spacing: Sp.xsmall.w,
+                  runSpacing: Sp.xsmall.h,
+                  children: [
+                    ...sign.minorArcanaCards.map(
+                      (card) => _DecanChip(label: card),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class _InsightTile extends StatelessWidget {
+  const _InsightTile({
+    required this.title,
+    required this.value,
+    required this.icon,
+  });
+
+  final String title;
+  final String value;
+  final IconData icon;
+
+  @override
+  Widget build(BuildContext context) {
+    final colors = context.colors;
+    return FancyContainer(
+      height: 86.h,
+      padding: Sp.small.padAllR,
+      color: colors.background.withValues(alpha: 0.55),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Icon(icon, color: colors.primary, size: 18.sp),
+          const Spacer(),
+          Text(
+            title.toUpperCase(),
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+            style: m9w700(context).copyWith(
+              color: colors.textSecondary,
+              letterSpacing: 0.8,
+            ),
+          ),
+          Sp.tiny.heightBox,
+          Text(
+            value,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+            style: m12w600(context).copyWith(color: colors.textPrimary),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _GuidanceCard extends StatelessWidget {
+  const _GuidanceCard({
+    required this.title,
+    required this.text,
+    required this.icon,
+  });
+
+  final String title;
+  final String text;
+  final IconData icon;
+
+  @override
+  Widget build(BuildContext context) {
+    final colors = context.colors;
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        FancyContainer(
+          width: 34.w,
+          height: 34.h,
+          borderRadius: 100,
+          color: colors.primary.withValues(alpha: 0.12),
+          child: Icon(icon, color: colors.primary, size: 18.sp),
+        ),
+        Sp.small.widthBox,
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(title, style: m13w700(context)),
+              Sp.tiny.heightBox,
+              Text(
+                text,
+                style: m12w400(context).copyWith(
+                  color: colors.textSecondary,
+                  height: 1.45,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class _DecanChip extends StatelessWidget {
+  const _DecanChip({required this.label});
+  final String label;
+
+  @override
+  Widget build(BuildContext context) {
+    final colors = context.colors;
+    return FancyContainer(
+      padding: Sp.small.padHVR(Sp.xsmall),
+      borderRadius: Sp.xlarge,
+      color: colors.primary.withValues(alpha: 0.1),
+      child: Text(
+        label,
+        style: m11w500(context).copyWith(color: colors.primary),
+      ),
     );
   }
 }

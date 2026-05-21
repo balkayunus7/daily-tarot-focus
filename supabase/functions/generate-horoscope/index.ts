@@ -35,12 +35,84 @@ interface ParsedHoroscope {
 }
 
 const LANGUAGE_INSTRUCTIONS: Record<string, string> = {
-  tr: "IMPORTANT: You MUST write ALL text content entirely in Turkish (Türkçe). Every description, tip, and interpretation must be in Turkish. Do not use any other language.",
+  tr:
+    "IMPORTANT: You MUST write ALL user-visible text entirely in Turkish (Turkiye Turkish). " +
+    "Do not copy English words from the input into the output. Translate relationship, career, " +
+    "period, category, weekday, astrology, and planet terms into Turkish. Use conventional Turkish " +
+    "spellings for astrology names, for example Saturn = Satürn and Pluto = Plüton. Only preserve " +
+    "true personal names if a person's name is explicitly provided.",
   en: "Write all text content in English.",
 };
 
 const CATEGORY_COUNT = 5;
 const CATEGORY_NAMES = ["Love", "Finance", "Career", "Health", "Family"] as const;
+const CATEGORY_LABELS = {
+  tr: ["Aşk", "Finans", "Kariyer", "Sağlık", "Aile"],
+  en: [...CATEGORY_NAMES],
+};
+
+const PERIOD_LABELS = {
+  tr: {
+    daily: "bugün",
+    weekly: "bu hafta",
+    monthly: "bu ay",
+  },
+  en: {
+    daily: "today",
+    weekly: "this week",
+    monthly: "this month",
+  },
+};
+
+const RELATIONSHIP_LABELS = {
+  tr: {
+    single: "Bekar",
+    "in a relationship": "İlişkisi var",
+    engaged: "Nişanlı",
+    married: "Evli",
+    "its complicated": "Karışık",
+    "it's complicated": "Karışık",
+    dating: "Flört ediyor",
+    "open relationship": "Açık ilişki",
+    separated: "Ayrı",
+    divorced: "Boşanmış",
+    healing: "İyileşme sürecinde",
+    "manifesting love": "Aşkı hayatına çekmeye odaklı",
+    "prefer not to say": "Belirtmek istemiyor",
+  },
+};
+
+const CAREER_LABELS = {
+  tr: {
+    student: "Öğrenci",
+    employed: "Çalışan",
+    "self-employed": "Serbest çalışan",
+    freelancer: "Bağımsız çalışan",
+    entrepreneur: "Girişimci",
+    looking: "İş arıyor",
+    "career break": "Kariyer molasında",
+    homemaker: "Ev işleriyle ilgileniyor",
+    retired: "Emekli",
+    skip: "Belirtmek istemiyor",
+  },
+};
+
+const ZODIAC_LABELS = {
+  tr: {
+    aries: "Koç",
+    taurus: "Boğa",
+    gemini: "İkizler",
+    cancer: "Yengeç",
+    leo: "Aslan",
+    virgo: "Başak",
+    libra: "Terazi",
+    scorpio: "Akrep",
+    sagittarius: "Yay",
+    capricorn: "Oğlak",
+    aquarius: "Kova",
+    pisces: "Balık",
+  },
+};
 
 serve(async (req) => {
   if (req.method === "OPTIONS") {
@@ -76,36 +148,83 @@ serve(async (req) => {
       .eq("id", user.id)
       .maybeSingle();
 
-    const periodLabel =
-      period === "daily" ? "today" : period === "weekly" ? "this week" : "this month";
+    const criticalDaysInstruction = localizedCriticalDaysInstruction(
+      period,
+      normalizedLocale,
+    );
 
-    const criticalDaysInstruction =
-      period === "daily"
-        ? '"challenging" and "highlight" should each be a single short sentence about today.'
-        : period === "weekly"
-        ? '"challenging" should list specific day names (e.g. "Monday, Tuesday, Saturday"). "highlight" should also list specific day names.'
-        : '"challenging" should list specific day numbers (e.g. "1, 2, 3, 8"). "highlight" should also list specific day numbers.';
-
+    const profileSign = localizeKnownValue(
+      profile?.zodiac_sign ?? sign,
+      normalizedLocale,
+      ZODIAC_LABELS,
+    );
     const profileParts = [
-      profile?.zodiac_sign ? `Zodiac Sign: ${profile.zodiac_sign}` : `Zodiac Sign: ${sign}`,
-      profile?.relationship_status ? `Relationship Status: ${profile.relationship_status}` : null,
-      profile?.career_status ? `Career Status: ${profile.career_status}` : null,
+      localizedProfileLine("zodiac", profileSign, normalizedLocale),
+      profile?.relationship_status
+        ? localizedProfileLine(
+          "relationship",
+          localizeKnownValue(
+            profile.relationship_status,
+            normalizedLocale,
+            RELATIONSHIP_LABELS,
+          ),
+          normalizedLocale,
+        )
+        : null,
+      profile?.career_status
+        ? localizedProfileLine(
+          "career",
+          localizeKnownValue(profile.career_status, normalizedLocale, CAREER_LABELS),
+          normalizedLocale,
+        )
+        : null,
     ].filter(Boolean).join("\n");
 
+    const categoryLabels = localizedCategoryLabels(normalizedLocale);
     const expectedSchema = JSON.stringify(
       {
-        general_text: "<3-4 sentence general horoscope reading for this period>",
-        categories: CATEGORY_NAMES.map((name) => ({
+        general_text: placeholder(
+          normalizedLocale,
+          "Bu dönem için 3-4 cümlelik genel burç yorumu",
+          "3-4 sentence general horoscope reading for this period",
+        ),
+        categories: categoryLabels.map((name) => ({
           score: 0,
-          description: `<1-2 sentence description for ${name}>`,
+          description: placeholder(
+            normalizedLocale,
+            `${name} için 1-2 cümlelik Türkçe açıklama`,
+            `1-2 sentence description for ${name}`,
+          ),
         })),
         tips: [
-          { is_advice: true, text: "<practical advice for this period>" },
-          { is_advice: false, text: "<a warning to be cautious about for this period>" },
+          {
+            is_advice: true,
+            text: placeholder(
+              normalizedLocale,
+              "Bu dönem için uygulanabilir Türkçe öneri",
+              "practical advice for this period",
+            ),
+          },
+          {
+            is_advice: false,
+            text: placeholder(
+              normalizedLocale,
+              "Bu dönem dikkat edilmesi gereken Türkçe uyarı",
+              "a warning to be cautious about for this period",
+            ),
+          },
         ],
         critical_days: {
-          challenging: "<see instructions>",
-          highlight: "<see instructions>",
+          challenging: placeholder(
+            normalizedLocale,
+            "Talimatlara göre Türkçe zorlu gün bilgisi",
+            "see instructions",
+          ),
+          highlight: placeholder(
+            normalizedLocale,
+            "Talimatlara göre Türkçe öne çıkan gün bilgisi",
+            "see instructions",
+          ),
         },
       },
       null,
@@ -115,23 +234,16 @@ serve(async (req) => {
     const languageInstruction =
       LANGUAGE_INSTRUCTIONS[normalizedLocale] ?? LANGUAGE_INSTRUCTIONS.en;
 
-    const systemPrompt =
-      `You are a professional astrologer providing personalized horoscope readings. ` +
-      `Your readings should be insightful, empathetic, and practical. ` +
-      `Tailor your interpretation to the person's life context (relationship, career) when available.\n\n` +
-      `${languageInstruction}\n\n` +
-      `CRITICAL: Your entire response must be raw JSON only. No markdown, no code fences, no preamble, no explanation. ` +
-      `The response must be directly parseable by JSON.parse(). ` +
-      `All score fields must be JSON numbers, never strings.`;
+    const systemPrompt = localizedSystemPrompt(normalizedLocale, languageInstruction);
 
     const userPrompt = [
-      `The person's profile:\n${profileParts}`,
-      `Generate a personalized ${period} horoscope for ${sign} for ${periodLabel}.`,
-      `For the critical_days field: ${criticalDaysInstruction}`,
-      `Categories must be exactly 5 items in this order: ${CATEGORY_NAMES.join(", ")}.`,
-      `Each category score must be a JSON number between 0 and 100, not a quoted string.`,
-      `Tips must have exactly 2 items: one advice (is_advice: true) and one warning (is_advice: false).`,
-      `Respond with ONLY the following JSON. Do not add any text before or after it. Replace every <...> placeholder:\n${expectedSchema}`,
+      localizedPromptLine("profile", normalizedLocale, profileParts),
+      localizedPromptLine("generate", normalizedLocale, `${period}|${profileSign}`),
+      localizedPromptLine("critical_days", normalizedLocale, criticalDaysInstruction),
+      localizedPromptLine("categories", normalizedLocale, categoryLabels.join(", ")),
+      localizedPromptLine("scores", normalizedLocale),
+      localizedPromptLine("tips", normalizedLocale),
+      localizedPromptLine("json", normalizedLocale, expectedSchema),
     ].join("\n\n");
 
     const replicateToken = Deno.env.get("REPLICATE_API_TOKEN");
@@ -186,6 +298,160 @@ serve(async (req) => {
     );
   }
 });
+
+function localizedCategoryLabels(locale: string): string[] {
+  return locale === "tr" ? CATEGORY_LABELS.tr : CATEGORY_LABELS.en;
+}
+
+function localizedSystemPrompt(locale: string, languageInstruction: string): string {
+  if (locale === "tr") {
+    return [
+      "Kişiselleştirilmiş burç yorumları sunan profesyonel bir astrologsun.",
+      "Yorumların sezgili, empatik, uygulanabilir ve doğal Türkçe olmalı.",
+      "Varsa kişinin ilişki ve kariyer bağlamını yoruma yedir.",
+      languageInstruction,
+      "KRİTİK: Yanıtın yalnızca ham JSON olmalı. Markdown, kod bloğu, giriş cümlesi veya açıklama ekleme.",
+      "Yanıt doğrudan JSON.parse() ile okunabilir olmalı.",
+      "Tüm score alanları string değil JSON sayısı olmalı.",
+    ].join("\n\n");
+  }
+
+  return (
+    `You are a professional astrologer providing personalized horoscope readings. ` +
+    `Your readings should be insightful, empathetic, and practical. ` +
+    `Tailor your interpretation to the person's life context (relationship, career) when available.\n\n` +
+    `${languageInstruction}\n\n` +
+    `CRITICAL: Your entire response must be raw JSON only. No markdown, no code fences, no preamble, no explanation. ` +
+    `The response must be directly parseable by JSON.parse(). ` +
+    `All score fields must be JSON numbers, never strings.`
+  );
+}
+
+function localizedPeriod(period: HoroscopeRequest["period"], locale: string): string {
+  return locale === "tr" ? PERIOD_LABELS.tr[period] : PERIOD_LABELS.en[period];
+}
+
+function localizedCriticalDaysInstruction(
+  period: HoroscopeRequest["period"],
+  locale: string,
+): string {
+  if (locale === "tr") {
+    if (period === "daily") {
+      return '"challenging" ve "highlight" alanlarının her biri bugünle ilgili ' +
+        "kısa birer Türkçe cümle olmalı.";
+    }
+    if (period === "weekly") {
+      return '"challenging" belirli Türkçe gün adlarını listelemeli ' +
+        '(örn. "Pazartesi, Salı, Cumartesi"). "highlight" da belirli Türkçe ' +
+        "gün adlarını listelemeli.";
+    }
+    return '"challenging" belirli gün numaralarını listelemeli ' +
+      '(örn. "1, 2, 3, 8"). "highlight" da belirli gün numaralarını listelemeli.';
+  }
+
+  if (period === "daily") {
+    return '"challenging" and "highlight" should each be a single short sentence about today.';
+  }
+  if (period === "weekly") {
+    return '"challenging" should list specific day names ' +
+      '(e.g. "Monday, Tuesday, Saturday"). "highlight" should also list ' +
+      "specific day names.";
+  }
+  return '"challenging" should list specific day numbers ' +
+    '(e.g. "1, 2, 3, 8"). "highlight" should also list specific day numbers.';
+}
+
+function localizedProfileLine(
+  field: "zodiac" | "relationship" | "career",
+  value: string,
+  locale: string,
+): string {
+  if (locale === "tr") {
+    const labels = {
+      zodiac: "Burç",
+      relationship: "İlişki durumu",
+      career: "Kariyer durumu",
+    };
+    return `${labels[field]}: ${value}`;
+  }
+
+  const labels = {
+    zodiac: "Zodiac Sign",
+    relationship: "Relationship Status",
+    career: "Career Status",
+  };
+  return `${labels[field]}: ${value}`;
+}
+
+function localizedPromptLine(key: string, locale: string, value = ""): string {
+  if (locale === "tr") {
+    switch (key) {
+      case "profile":
+        return `Kişinin profili:\n${value}`;
+      case "generate": {
+        const [period, sign] = value.split("|") as [HoroscopeRequest["period"], string];
+        const periodPhrase = period === "daily"
+          ? "bugün için"
+          : period === "weekly"
+          ? "bu hafta için"
+          : "bu ay için";
+        return `${sign} burcu için ${periodPhrase} kişiselleştirilmiş bir burç yorumu üret.`;
+      }
+      case "critical_days":
+        return `critical_days alanı için: ${value}`;
+      case "categories":
+        return `categories tam olarak 5 öğe içermeli ve açıklamalar şu sıraya göre yazılmalı: ${value}.`;
+      case "scores":
+        return "Her kategori puanı 0 ile 100 arasında JSON sayısı olmalı, " +
+          "tırnak içinde string olmamalı.";
+      case "tips":
+        return "tips tam olarak 2 öğe içermeli: biri öneri (is_advice: true), biri uyarı (is_advice: false).";
+      case "json":
+        return "Yalnızca aşağıdaki JSON ile yanıt ver. Öncesine veya sonrasına " +
+          "hiçbir metin ekleme. Her <...> yer tutucusunu Türkçe içerikle " +
+          `değiştir:\n${value}`;
+    }
+  }
+
+  switch (key) {
+    case "profile":
+      return `The person's profile:\n${value}`;
+    case "generate": {
+      const [period, sign] = value.split("|") as [HoroscopeRequest["period"], string];
+      const periodLabel = localizedPeriod(period, locale);
+      return `Generate a personalized horoscope for ${sign} for ${periodLabel}.`;
+    }
+    case "critical_days":
+      return `For the critical_days field: ${value}`;
+    case "categories":
+      return `Categories must be exactly 5 items in this order: ${value}.`;
+    case "scores":
+      return "Each category score must be a JSON number between 0 and 100, not a quoted string.";
+    case "tips":
+      return "Tips must have exactly 2 items: one advice (is_advice: true) " +
+        "and one warning (is_advice: false).";
+    case "json":
+      return `Respond with ONLY the following JSON. Do not add any text before or after it. Replace every <...> placeholder:\n${value}`;
+    default:
+      return value;
+  }
+}
+
+function placeholder(locale: string, tr: string, en: string): string {
+  return `<${locale === "tr" ? tr : en}>`;
+}
+
+function localizeKnownValue(
+  value: string,
+  locale: string,
+  dictionaries: Record<string, Record<string, string>>,
+): string {
+  return dictionaries[locale]?.[normalizeLookupKey(value)] ?? value;
+}
+
+function normalizeLookupKey(value: string): string {
+  return value.trim().toLowerCase();
+}
 
 async function pollPrediction(url: string, token: string, maxAttempts = 30): Promise<string> {
   for (let attempt = 0; attempt < maxAttempts; attempt++) {

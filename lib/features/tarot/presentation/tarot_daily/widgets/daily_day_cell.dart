@@ -5,97 +5,76 @@ class DayCell extends StatelessWidget {
     required this.date,
     required this.dailyCard,
     required this.isToday,
+    required this.isSelected,
     super.key,
   });
   final DateTime date;
   final DailyCardModel? dailyCard;
   final bool isToday;
+  final bool isSelected;
 
   @override
   Widget build(BuildContext context) {
     final colors = context.colors;
     final hasCard = dailyCard != null;
     final now = DateTime.now();
-    final isPast = date.isBefore(DateTime(now.year, now.month, now.day)) && !isToday;
+    final today = DateTime(now.year, now.month, now.day);
+    final isPast = date.isBefore(today) && !isToday;
+    final isFuture = date.isAfter(today);
     final radius = Sp.xsmall.radiusR;
 
-    Color? backgroundColor = Colors.transparent;
-    if (hasCard) {
-      backgroundColor = null;
-    } else if (isToday) {
-      backgroundColor = colors.primary.withValues(alpha: 0.10);
-    } else if (isPast) {
-      backgroundColor = colors.primary.withValues(alpha: 0.04);
-    }
-
-    var borderColor = colors.borderSecondary.withValues(alpha: 0.22);
-    if (isToday) {
-      borderColor = colors.primary;
-    } else if (hasCard) {
-      borderColor = colors.primary.withValues(alpha: 0.55);
-    } else if (isPast) {
-      borderColor = colors.primary.withValues(alpha: 0.18);
-    }
-
-    var borderWidth = 0.7;
-    if (isToday) {
-      borderWidth = 1.8;
-    } else if (hasCard) {
-      borderWidth = 1.2;
-    }
-
-    void onTap() {
-      if (!hasCard) return;
-      final tarotState = context.read<TarotBloc>().state;
-      final tarotCard = tarotState.getById(dailyCard!.cardId);
-      if (tarotCard == null) return;
-      unawaited(
-        context.push(
-          AppRoutes.tarotDailyDetail,
-          extra: TarotDailyCalendarDetailArgs(
-            tarot: tarotCard,
-            dailyCard: dailyCard!,
-          ),
-        ),
-      );
-    }
+    final style = _resolveStyle(
+      colors: colors,
+      hasCard: hasCard,
+      isToday: isToday,
+      isPast: isPast,
+      isFuture: isFuture,
+    );
 
     return GestureDetector(
-      onTap: hasCard ? onTap : null,
+      onTap: () => DailyCalendarPageScope.of(context).state.selectDate(date),
+      behavior: HitTestBehavior.opaque,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Expanded(
-            child: Container(
-              decoration: BoxDecoration(
-                borderRadius: radius,
-                color: backgroundColor,
-                border: Border.all(color: borderColor, width: borderWidth),
-              ),
-              child: ClipRRect(
-                borderRadius: radius,
-                child: Builder(
-                  builder: (context) {
-                    if (hasCard) {
-                      final tarotCard = context.read<TarotBloc>().state.getById(dailyCard!.cardId);
-                      if (tarotCard == null) return const SizedBox.shrink();
-                      return CustomCacheNetworkImage(
-                        imageUrl: tarotCard.imageUrl,
-                        fit: BoxFit.fitWidth,
-                      );
-                    } else {
-                      return Center(
-                        child: Text(
-                          '✦',
-                          style: m11w500(context).copyWith(
-                            color: colors.primary.withValues(alpha: isToday ? 0.38 : 0.16),
+            child: Stack(
+              children: [
+                Container(
+                  decoration: BoxDecoration(
+                    borderRadius: radius,
+                    color: style.background,
+                    gradient: style.gradient,
+                    border: Border.all(
+                      color: style.borderColor,
+                      width: style.borderWidth,
+                    ),
+                  ),
+                  child: ClipRRect(
+                    borderRadius: radius,
+                    child:
+                        hasCard
+                            ? _CellCardImage(cardId: dailyCard!.cardId)
+                            : Center(
+                              child: style.emptyContent ?? const SizedBox.shrink(),
+                            ),
+                  ),
+                ),
+                if (isSelected )
+                  Positioned.fill(
+                    child: IgnorePointer(
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: radius,
+                          border: Border.all(
+                            color: colors.secondary.withValues(alpha: 0.6),
+                            width: 2,
                           ),
                         ),
-                      );
-                    }
-                  },
-                ),
-              ),
+                      ),
+                    ),
+                  ),
+              ],
             ),
           ),
           Sp.tiny.heightBox,
@@ -103,8 +82,9 @@ class DayCell extends StatelessWidget {
             '${date.day}',
             textAlign: TextAlign.center,
             style: m10w600(context).copyWith(
-              color: isToday ? colors.primary : colors.textSecondary,
-              fontWeight: isToday ? FontWeight.w700 : FontWeight.w500,
+              color: isSelected && !isToday ? colors.secondary : style.dayNumberColor,
+              fontWeight: isSelected || isToday ? FontWeight.w700 : style.dayNumberWeight,
+              fontSize: isToday || isSelected ? 11 : 10,
             ),
           ),
           const SizedBox(height: Sp.tiny),
@@ -112,4 +92,143 @@ class DayCell extends StatelessWidget {
       ),
     );
   }
+}
+
+class _CellCardImage extends StatelessWidget {
+  const _CellCardImage({required this.cardId});
+  final String cardId;
+
+  @override
+  Widget build(BuildContext context) {
+    final tarotCard = context.read<TarotBloc>().state.getById(cardId);
+    if (tarotCard == null) return const SizedBox.shrink();
+    return SizedBox.expand(
+      child: CustomCacheNetworkImage(
+        imageUrl: tarotCard.imageUrl,
+        width: double.infinity,
+        height: double.infinity,
+        fit: BoxFit.fitWidth,
+      ),
+    );
+  }
+}
+
+class _CellStyle {
+  const _CellStyle({
+    required this.background,
+    required this.gradient,
+    required this.borderColor,
+    required this.borderWidth,
+    required this.emptyContent,
+    required this.dayNumberColor,
+    required this.dayNumberWeight,
+  });
+
+  final Color? background;
+  final Gradient? gradient;
+  final Color borderColor;
+  final double borderWidth;
+  final Widget? emptyContent;
+  final Color dayNumberColor;
+  final FontWeight dayNumberWeight;
+}
+
+_CellStyle _resolveStyle({
+  required AppColors colors,
+  required bool hasCard,
+  required bool isToday,
+  required bool isPast,
+  required bool isFuture,
+}) {
+  const double uniformBorder = 1;
+
+  if (isToday && hasCard) {
+    return _CellStyle(
+      background: null,
+      gradient: null,
+      borderColor: colors.primary.withValues(alpha: 0.50),
+      borderWidth: uniformBorder,
+      emptyContent: null,
+      dayNumberColor: colors.primary,
+      dayNumberWeight: FontWeight.w700,
+    );
+  }
+
+  // Today empty — invitation/CTA feel
+  if (isToday) {
+    return _CellStyle(
+      background: null,
+      gradient: LinearGradient(
+        begin: Alignment.topLeft,
+        end: Alignment.bottomRight,
+        colors: [
+          colors.primary.withValues(alpha: 0.18),
+          colors.primary.withValues(alpha: 0.06),
+        ],
+      ),
+      borderColor: colors.primary.withValues(alpha: 0.50),
+      borderWidth: uniformBorder,
+      emptyContent: Icon(
+        Icons.auto_awesome,
+        size: 20,
+        color: colors.primary,
+      ),
+      dayNumberColor: colors.primary,
+      dayNumberWeight: FontWeight.w700,
+    );
+  }
+
+  // Past with card — clean
+  if (hasCard && isPast) {
+    return _CellStyle(
+      background: null,
+      gradient: null,
+      borderColor: colors.primary.withValues(alpha: 0.50),
+      borderWidth: uniformBorder,
+      emptyContent: null,
+      dayNumberColor: colors.textSecondary,
+      dayNumberWeight: FontWeight.w600,
+    );
+  }
+
+  // Future with card — rare, treat like past
+  if (hasCard) {
+    return _CellStyle(
+      background: null,
+      gradient: null,
+      borderColor: colors.primary.withValues(alpha: 0.50),
+      borderWidth: uniformBorder,
+      emptyContent: null,
+      dayNumberColor: colors.textSecondary,
+      dayNumberWeight: FontWeight.w600,
+    );
+  }
+
+  // Past empty — visible but quiet
+  if (isPast) {
+    return _CellStyle(
+      background: Colors.transparent,
+      gradient: null,
+      borderColor: colors.primary.withValues(alpha: 0.25),
+      borderWidth: uniformBorder,
+      emptyContent: null,
+      dayNumberColor: colors.textDisabled,
+      dayNumberWeight: FontWeight.w500,
+    );
+  }
+
+  // Future empty — anticipation
+  return _CellStyle(
+    background: colors.surfaceSecondary.withValues(alpha: 0.55),
+    gradient: null,
+    borderColor: colors.primary.withValues(alpha: 0.25),
+    borderWidth: uniformBorder,
+    emptyContent: Icon(
+      Icons.auto_awesome_outlined,
+      size: 12,
+      color: colors.primary.withValues(alpha: 0.25),
+    ),
+    dayNumberColor: colors.textSecondary,
+    dayNumberWeight: FontWeight.w500,
+  );
 }

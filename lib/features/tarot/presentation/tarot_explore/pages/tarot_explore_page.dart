@@ -12,6 +12,7 @@ import 'package:daily_tarot_focus/core/widgets/fancy_container.dart';
 import 'package:daily_tarot_focus/features/auth/domain/models/tarot_user.dart';
 import 'package:daily_tarot_focus/features/auth/domain/models/tarot_user_zodiac_enum.dart';
 import 'package:daily_tarot_focus/features/tarot/bloc/tarot/tarot_bloc.dart';
+import 'package:daily_tarot_focus/features/tarot/bloc/tarot/tarot_state.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/tarot_flow_type.dart';
 import 'package:daily_tarot_focus/features/tarot/presentation/tarot_explore/helpers/explore_illustrations.dart';
 import 'package:daily_tarot_focus/features/zodiac/domain/models/horoscope_period_enum.dart';
@@ -37,6 +38,7 @@ part '../widgets/explore_compatibility_card.dart';
 part '../widgets/explore_horoscope_card.dart';
 part '../widgets/explore_answer_book_card.dart';
 part '../widgets/explore_numerology_card.dart';
+part '../widgets/explore_daily_calendar_strip.dart';
 part '../helpers/explore_page_mixin.dart';
 part '../helpers/explore_page_scope.dart';
 
@@ -89,6 +91,8 @@ class _TarotExplorePageState extends State<TarotExplorePage> with ExplorePageSta
                           ),
                         ],
                       ),
+                      Sp.medium.heightBox,
+                      const ExploreDailyCalendarStrip(),
                     ] else ...[
                       const ExploreHoroscopeCard(),
                       Sp.medium.heightBox,

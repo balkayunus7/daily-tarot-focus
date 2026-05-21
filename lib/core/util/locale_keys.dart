@@ -214,6 +214,14 @@ abstract class  LocaleKeys {
   static const tarot_daily_custom_date = 'tarot_daily.custom_date';
   static const tarot_daily_calendar_title = 'tarot_daily.calendar_title';
   static const tarot_daily_calendar_tap_hint = 'tarot_daily.calendar_tap_hint';
+  static const tarot_daily_calendar_cards_count = 'tarot_daily.calendar_cards_count';
+  static const tarot_daily_calendar_streak = 'tarot_daily.calendar_streak';
+  static const tarot_daily_calendar_no_card_today = 'tarot_daily.calendar_no_card_today';
+  static const tarot_daily_calendar_draw_card = 'tarot_daily.calendar_draw_card';
+  static const tarot_daily_calendar_no_card_past = 'tarot_daily.calendar_no_card_past';
+  static const tarot_daily_calendar_future_day = 'tarot_daily.calendar_future_day';
+  static const tarot_daily_calendar_view_detail = 'tarot_daily.calendar_view_detail';
+  static const tarot_daily_calendar_selected_day_today = 'tarot_daily.calendar_selected_day_today';
   static const tarot_daily_save_failed = 'tarot_daily.save_failed';
   static const tarot_daily_save_success = 'tarot_daily.save_success';
   static const tarot_daily = 'tarot_daily';

@@ -5,6 +5,7 @@ import 'package:daily_tarot_focus/core/util/text_style_helper.dart';
 import 'package:daily_tarot_focus/core/widgets/fancy_button.dart';
 import 'package:daily_tarot_focus/core/widgets/fancy_container.dart';
 import 'package:daily_tarot_focus/features/auth/domain/models/tarot_user.dart';
+import 'package:daily_tarot_focus/features/core/subscription/premium_override_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -24,7 +25,10 @@ class TarotsProAppBar extends StatelessWidget implements PreferredSizeWidget {
     final authState = context.read<AuthCubit>().state;
     final user = authState.userOrCrash as TarotUser;
     final now = context.networkNow();
-    final isPremium = user.isSubscribed(networkTime: now);
+    final isPremium = PremiumOverrideService.isPremium(
+      user: user,
+      networkTime: now,
+    );
 
     return TarotAppBar(
       title: title,
@@ -174,7 +178,9 @@ class TarotAppBar extends StatelessWidget implements PreferredSizeWidget {
         ],
         Sp.medium.widthBox,
       ],
-      title: titleWidget ?? Text(title ?? '', style: titleStyle ?? m21w600(context)),
+      title:
+          titleWidget ??
+          Text(title ?? '', style: titleStyle ?? m21w600(context)),
     );
   }
 

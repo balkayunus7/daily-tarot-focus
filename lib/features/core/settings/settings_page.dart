@@ -18,8 +18,10 @@ import 'package:daily_tarot_focus/features/auth/domain/models/tarot_user_career_
 import 'package:daily_tarot_focus/features/auth/domain/models/tarot_user_relations_enum.dart';
 import 'package:daily_tarot_focus/features/auth/presentation/widgets/personal_info_input_field.dart';
 import 'package:daily_tarot_focus/features/core/settings/display_delete_account_popup.dart';
+import 'package:daily_tarot_focus/features/core/subscription/premium_override_service.dart';
 import 'package:daily_tarot_focus/features/tarot/bloc/tarot/tarot_bloc.dart';
 import 'package:daily_tarot_focus/features/tarot/bloc/tarot/tarot_state.dart';
+import 'package:daily_tarot_focus/features/tarot/data/daily_spread_usage_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
@@ -33,6 +35,7 @@ import 'package:mobile_boilerplate/core_app.dart';
 import 'package:mobile_boilerplate/presentation/common/loading_page.dart';
 import 'package:mobile_boilerplate/presentation/extensions/build_context_failure_ext.dart';
 import 'package:mobile_boilerplate/presentation/extensions/build_context_theme_ext.dart';
+import 'package:mobile_boilerplate/presentation/extensions/build_context_time_ext.dart';
 import 'package:mobile_boilerplate/presentation/widgets/scaling_container.dart';
 
 class SettingsPage extends StatelessWidget {
@@ -52,7 +55,8 @@ class SettingsPage extends StatelessWidget {
 
   BlocListener<PurchasesBloc, PurchasesState> _restoredListener() =>
       BlocListener<PurchasesBloc, PurchasesState>(
-        listenWhen: (p, c) => p.failureOrRestoredOption != c.failureOrRestoredOption,
+        listenWhen:
+            (p, c) => p.failureOrRestoredOption != c.failureOrRestoredOption,
         listener: (context, state) async {
           if (state.hasRestoredSuccessfully) {
             await context.read<AuthCubit>().refetchUser();
@@ -62,20 +66,25 @@ class SettingsPage extends StatelessWidget {
         },
       );
 
-  BlocListener<AuthCubit, AuthState> _deleteAccountListener() => BlocListener<AuthCubit, AuthState>(
-    listenWhen: (p, c) => p.failOrUserOption.isSome() != c.failOrUserOption.isNone(),
-    listener: (context, state) async {
-      context.read<TarotBloc>().addClearCache();
-    },
-  );
-  BlocListener<TarotBloc, TarotState> _restartAppListener() => BlocListener<TarotBloc, TarotState>(
-    listenWhen: (previous, current) {
-      return previous.clearCacheFailureOrUnit.isNone() && current.clearCacheFailureOrUnit.isSome();
-    },
-    listener: (context, state) async {
-      await restartApp(context);
-    },
-  );
+  BlocListener<AuthCubit, AuthState> _deleteAccountListener() =>
+      BlocListener<AuthCubit, AuthState>(
+        listenWhen:
+            (p, c) =>
+                p.failOrUserOption.isSome() != c.failOrUserOption.isNone(),
+        listener: (context, state) async {
+          context.read<TarotBloc>().addClearCache();
+        },
+      );
+  BlocListener<TarotBloc, TarotState> _restartAppListener() =>
+      BlocListener<TarotBloc, TarotState>(
+        listenWhen: (previous, current) {
+          return previous.clearCacheFailureOrUnit.isNone() &&
+              current.clearCacheFailureOrUnit.isSome();
+        },
+        listener: (context, state) async {
+          await restartApp(context);
+        },
+      );
 
   void _showLanguageBottomSheet(BuildContext context) {
     final colors = context.colors;
@@ -188,7 +197,10 @@ class SettingsPage extends StatelessWidget {
             padding: Sp.screen.padHR,
             child: BlocBuilder<AuthCubit, AuthState>(
               builder: (context, authState) {
-                final user = authState.isAuthenticated ? authState.userOrCrash as TarotUser : null;
+                final user =
+                    authState.isAuthenticated
+                        ? authState.userOrCrash as TarotUser
+                        : null;
 
                 return Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -219,21 +231,57 @@ class SettingsPage extends StatelessWidget {
                           icon: Icons.star_rate,
                           title: LocaleKeys.settings_page_rate_us.tr(),
                           onTap: () async {
-                            await context.read<Launcher>().launchUrl(url: appConfig.appStoreUrl);
+                            await context.read<Launcher>().launchUrl(
+                              url: appConfig.appStoreUrl,
+                            );
                           },
                         ),
                         _SettingsTile(
                           icon: Icons.restore,
-                          title: LocaleKeys.settings_page_restore_purchases.tr(),
+                          title:
+                              LocaleKeys.settings_page_restore_purchases.tr(),
                           onTap: () {
                             final authState = context.read<AuthCubit>().state;
                             if (authState.isAuthenticated) {
                               final purchaser = authState.userOrCrash.purchaser;
-                              context.read<PurchasesBloc>().addPurchasesRestored(
-                                purchaser: purchaser,
-                                trackingIds: authState.trackingIdsOrNull,
-                              );
+                              context
+                                  .read<PurchasesBloc>()
+                                  .addPurchasesRestored(
+                                    purchaser: purchaser,
+                                    trackingIds: authState.trackingIdsOrNull,
+                                  );
                             }
+                          },
+                        ),
+                        ValueListenableBuilder<bool>(
+                          valueListenable: PremiumOverrideService.forcePremium,
+                          builder: (context, forcePremium, _) {
+                            return Column(
+                              children: [
+                                _SettingsSwitchTile(
+                                  icon: Icons.workspace_premium_outlined,
+                                  title:
+                                      LocaleKeys.settings_page_test_premium
+                                          .tr(),
+                                  value: forcePremium,
+                                  onChanged: (value) async {
+                                    PremiumOverrideService.isForcePremium =
+                                        value;
+                                    if (value && user != null) {
+                                      await DailySpreadUsageService.reset(
+                                        userId: user.userId,
+                                        date: context.networkNow(),
+                                      );
+                                    }
+                                  },
+                                ),
+                                if (user != null)
+                                  _DailySpreadUsageTile(
+                                    user: user,
+                                    refreshKey: forcePremium,
+                                  ),
+                              ],
+                            );
                           },
                         ),
                       ],
@@ -363,33 +411,48 @@ class _ProfileSection extends StatelessWidget {
                         if (name.isNotEmpty) ...[
                           Text(
                             name,
-                            style: m16w600(context).copyWith(color: colors.textPrimary),
+                            style: m16w600(
+                              context,
+                            ).copyWith(color: colors.textPrimary),
                           ),
                         ],
                         if (user.birthDate != null) ...[
                           Sp.tiny.heightBox,
                           Row(
                             children: [
-                              Icon(Icons.cake_outlined, size: 13.r, color: colors.textSecondary),
+                              Icon(
+                                Icons.cake_outlined,
+                                size: 13.r,
+                                color: colors.textSecondary,
+                              ),
                               SizedBox(width: 4.w),
                               Text(
                                 _formatDate(user.birthDate!),
-                                style: m12w500(context).copyWith(color: colors.textSecondary),
+                                style: m12w500(
+                                  context,
+                                ).copyWith(color: colors.textSecondary),
                               ),
                               if (_formatTime(user.birthDate!).isNotEmpty) ...[
                                 SizedBox(width: 8.w),
-                                Icon(Icons.access_time, size: 13.r, color: colors.textSecondary),
+                                Icon(
+                                  Icons.access_time,
+                                  size: 13.r,
+                                  color: colors.textSecondary,
+                                ),
                                 SizedBox(width: 4.w),
                                 Text(
                                   _formatTime(user.birthDate!),
-                                  style: m12w500(context).copyWith(color: colors.textSecondary),
+                                  style: m12w500(
+                                    context,
+                                  ).copyWith(color: colors.textSecondary),
                                 ),
                               ],
                             ],
                           ),
                         ],
                         Sp.tiny.heightBox,
-                        if (user.relationshipStatus != null || user.careerStatus != null) ...[
+                        if (user.relationshipStatus != null ||
+                            user.careerStatus != null) ...[
                           Sp.xsmall.heightBox,
                           Wrap(
                             spacing: 8.w,
@@ -528,24 +591,38 @@ class _EditProfileSheetState extends State<_EditProfileSheet> {
                       child: Column(
                         children: [
                           Padding(
-                            padding: Sp.large.padSymR(h: Sp.large, v: Sp.medium),
+                            padding: Sp.large.padSymR(
+                              h: Sp.large,
+                              v: Sp.medium,
+                            ),
                             child: Text(
                               LocaleKeys.settings_page_relationship_label.tr(),
-                              style: m16w600(ctx).copyWith(color: colors.textPrimary),
+                              style: m16w600(
+                                ctx,
+                              ).copyWith(color: colors.textPrimary),
                               textAlign: TextAlign.center,
                             ),
                           ),
                           Expanded(
-                            child: BlocBuilder<EditProfileCubit, EditProfileState>(
+                            child: BlocBuilder<
+                              EditProfileCubit,
+                              EditProfileState
+                            >(
                               builder:
                                   (ctx2, state) => ListView.separated(
                                     controller: scrollController,
-                                    padding: Sp.large.padSymR(h: Sp.large, v: Sp.small),
+                                    padding: Sp.large.padSymR(
+                                      h: Sp.large,
+                                      v: Sp.small,
+                                    ),
                                     itemCount: RelationshipStatus.values.length,
-                                    separatorBuilder: (context, index) => Sp.xsmall.heightBox,
+                                    separatorBuilder:
+                                        (context, index) => Sp.xsmall.heightBox,
                                     itemBuilder: (_, index) {
-                                      final status = RelationshipStatus.values[index];
-                                      final isSelected = state.relationship == status;
+                                      final status =
+                                          RelationshipStatus.values[index];
+                                      final isSelected =
+                                          state.relationship == status;
                                       return ScalingContainer(
                                         onTap: () {
                                           cubit.setRelationship(status);
@@ -554,21 +631,33 @@ class _EditProfileSheetState extends State<_EditProfileSheet> {
                                         child: FancyContainer(
                                           color:
                                               isSelected
-                                                  ? colors.primary.withValues(alpha: 0.15)
-                                                  : colors.primary.withValues(alpha: 0.05),
+                                                  ? colors.primary.withValues(
+                                                    alpha: 0.15,
+                                                  )
+                                                  : colors.primary.withValues(
+                                                    alpha: 0.05,
+                                                  ),
                                           border:
                                               isSelected
                                                   ? Border.all(
-                                                    color: colors.primary.withValues(alpha: 0.4),
+                                                    color: colors.primary
+                                                        .withValues(alpha: 0.4),
                                                   )
-                                                  : Border.all(color: colors.border),
+                                                  : Border.all(
+                                                    color: colors.border,
+                                                  ),
                                           child: Padding(
-                                            padding: Sp.small.padSymR(h: Sp.large, v: Sp.small),
+                                            padding: Sp.small.padSymR(
+                                              h: Sp.large,
+                                              v: Sp.small,
+                                            ),
                                             child: Row(
                                               children: [
                                                 Text(
                                                   status.emoji,
-                                                  style: TextStyle(fontSize: 18.r),
+                                                  style: TextStyle(
+                                                    fontSize: 18.r,
+                                                  ),
                                                 ),
                                                 Sp.medium.widthBox,
                                                 Expanded(
@@ -576,7 +665,9 @@ class _EditProfileSheetState extends State<_EditProfileSheet> {
                                                     status.localizedName,
                                                     style: m14w500(
                                                       ctx2,
-                                                    ).copyWith(color: colors.textPrimary),
+                                                    ).copyWith(
+                                                      color: colors.textPrimary,
+                                                    ),
                                                   ),
                                                 ),
                                                 if (isSelected)
@@ -626,21 +717,33 @@ class _EditProfileSheetState extends State<_EditProfileSheet> {
                       child: Column(
                         children: [
                           Padding(
-                            padding: Sp.large.padSymR(h: Sp.large, v: Sp.medium),
+                            padding: Sp.large.padSymR(
+                              h: Sp.large,
+                              v: Sp.medium,
+                            ),
                             child: Text(
                               LocaleKeys.settings_page_career_label.tr(),
-                              style: m16w600(ctx).copyWith(color: colors.textPrimary),
+                              style: m16w600(
+                                ctx,
+                              ).copyWith(color: colors.textPrimary),
                               textAlign: TextAlign.center,
                             ),
                           ),
                           Expanded(
-                            child: BlocBuilder<EditProfileCubit, EditProfileState>(
+                            child: BlocBuilder<
+                              EditProfileCubit,
+                              EditProfileState
+                            >(
                               builder:
                                   (ctx2, state) => ListView.separated(
                                     controller: scrollController,
-                                    padding: Sp.large.padSymR(h: Sp.large, v: Sp.small),
+                                    padding: Sp.large.padSymR(
+                                      h: Sp.large,
+                                      v: Sp.small,
+                                    ),
                                     itemCount: CareerStatus.values.length,
-                                    separatorBuilder: (context, index) => Sp.xsmall.heightBox,
+                                    separatorBuilder:
+                                        (context, index) => Sp.xsmall.heightBox,
                                     itemBuilder: (_, index) {
                                       final status = CareerStatus.values[index];
                                       final isSelected = state.career == status;
@@ -652,16 +755,26 @@ class _EditProfileSheetState extends State<_EditProfileSheet> {
                                         child: FancyContainer(
                                           color:
                                               isSelected
-                                                  ? colors.primary.withValues(alpha: 0.15)
-                                                  : colors.primary.withValues(alpha: 0.05),
+                                                  ? colors.primary.withValues(
+                                                    alpha: 0.15,
+                                                  )
+                                                  : colors.primary.withValues(
+                                                    alpha: 0.05,
+                                                  ),
                                           border:
                                               isSelected
                                                   ? Border.all(
-                                                    color: colors.primary.withValues(alpha: 0.4),
+                                                    color: colors.primary
+                                                        .withValues(alpha: 0.4),
                                                   )
-                                                  : Border.all(color: colors.border),
+                                                  : Border.all(
+                                                    color: colors.border,
+                                                  ),
                                           child: Padding(
-                                            padding: Sp.small.padSymR(h: Sp.large, v: Sp.small),
+                                            padding: Sp.small.padSymR(
+                                              h: Sp.large,
+                                              v: Sp.small,
+                                            ),
                                             child: Row(
                                               children: [
                                                 Container(
@@ -674,7 +787,8 @@ class _EditProfileSheetState extends State<_EditProfileSheet> {
                                                         colors.gradientEnd,
                                                       ],
                                                     ),
-                                                    borderRadius: Sp.xsmall.radiusR,
+                                                    borderRadius:
+                                                        Sp.xsmall.radiusR,
                                                   ),
                                                   alignment: Alignment.center,
                                                   child: Iconify(
@@ -689,7 +803,9 @@ class _EditProfileSheetState extends State<_EditProfileSheet> {
                                                     status.localizedName,
                                                     style: m14w500(
                                                       ctx2,
-                                                    ).copyWith(color: colors.textPrimary),
+                                                    ).copyWith(
+                                                      color: colors.textPrimary,
+                                                    ),
                                                   ),
                                                 ),
                                                 if (isSelected)
@@ -739,7 +855,9 @@ class _EditProfileSheetState extends State<_EditProfileSheet> {
       },
       builder: (context, state) {
         return Padding(
-          padding: EdgeInsets.only(bottom: MediaQuery.viewInsetsOf(context).bottom),
+          padding: EdgeInsets.only(
+            bottom: MediaQuery.viewInsetsOf(context).bottom,
+          ),
           child: SafeArea(
             child: SingleChildScrollView(
               padding: Sp.large.padSymR(h: Sp.large, v: Sp.large),
@@ -753,24 +871,37 @@ class _EditProfileSheetState extends State<_EditProfileSheet> {
                     textAlign: TextAlign.center,
                   ),
                   Sp.large.heightBox,
-                  _sheetLabel(context, LocaleKeys.register_page_name_label.tr()),
+                  _sheetLabel(
+                    context,
+                    LocaleKeys.register_page_name_label.tr(),
+                  ),
                   Sp.xsmall.heightBox,
                   PersonalInfoInputField(
                     controller: _nameController,
                     hint: LocaleKeys.register_page_name_hint.tr(),
-                    onChanged: (v) => context.read<EditProfileCubit>().setName(v),
+                    onChanged:
+                        (v) => context.read<EditProfileCubit>().setName(v),
                   ),
                   Sp.medium.heightBox,
-                  _sheetLabel(context, LocaleKeys.register_page_birth_date_label.tr()),
+                  _sheetLabel(
+                    context,
+                    LocaleKeys.register_page_birth_date_label.tr(),
+                  ),
                   Sp.xsmall.heightBox,
                   _PickerField(
                     icon: Mdi.calendar,
-                    value: state.birthDate != null ? _formatDate(state.birthDate!) : null,
+                    value:
+                        state.birthDate != null
+                            ? _formatDate(state.birthDate!)
+                            : null,
                     hint: LocaleKeys.register_page_birth_date_hint.tr(),
                     onTap: () => _pickDate(context),
                   ),
                   Sp.medium.heightBox,
-                  _sheetLabel(context, LocaleKeys.register_page_birth_time_label.tr()),
+                  _sheetLabel(
+                    context,
+                    LocaleKeys.register_page_birth_time_label.tr(),
+                  ),
                   Sp.xsmall.heightBox,
                   _PickerField(
                     icon: Mdi.clock_outline,
@@ -779,7 +910,10 @@ class _EditProfileSheetState extends State<_EditProfileSheet> {
                     onTap: () => _pickTime(context),
                   ),
                   Sp.medium.heightBox,
-                  _sheetLabel(context, LocaleKeys.settings_page_relationship_label.tr()),
+                  _sheetLabel(
+                    context,
+                    LocaleKeys.settings_page_relationship_label.tr(),
+                  ),
                   Sp.xsmall.heightBox,
                   _PickerField(
                     icon: Mdi.heart_outline,
@@ -791,7 +925,10 @@ class _EditProfileSheetState extends State<_EditProfileSheet> {
                     onTap: () => _showRelationshipPicker(context),
                   ),
                   Sp.medium.heightBox,
-                  _sheetLabel(context, LocaleKeys.settings_page_career_label.tr()),
+                  _sheetLabel(
+                    context,
+                    LocaleKeys.settings_page_career_label.tr(),
+                  ),
                   Sp.xsmall.heightBox,
                   _PickerField(
                     icon: Mdi.briefcase_outline,
@@ -872,7 +1009,10 @@ class _PickerField extends StatelessWidget {
             ),
             Icon(
               Icons.chevron_right_rounded,
-              color: isSelected ? colors.primary : colors.textSecondary.withValues(alpha: 0.5),
+              color:
+                  isSelected
+                      ? colors.primary
+                      : colors.textSecondary.withValues(alpha: 0.5),
               size: 20.r,
             ),
           ],
@@ -945,7 +1085,10 @@ class _LanguageOption extends StatelessWidget {
                 ? colors.primary.withValues(alpha: 0.1)
                 : colors.primary.withValues(alpha: 0.05),
         border: Border.all(
-          color: isSelected ? colors.primary.withValues(alpha: 0.5) : colors.border,
+          color:
+              isSelected
+                  ? colors.primary.withValues(alpha: 0.5)
+                  : colors.border,
         ),
         child: Padding(
           padding: Sp.small.padSymR(h: Sp.large, v: Sp.small),
@@ -965,7 +1108,8 @@ class _LanguageOption extends StatelessWidget {
                   style: m14w500(context).copyWith(color: colors.textPrimary),
                 ),
               ),
-              if (isSelected) Icon(Icons.check_circle, color: colors.primary, size: 20),
+              if (isSelected)
+                Icon(Icons.check_circle, color: colors.primary, size: 20),
             ],
           ),
         ),
@@ -1015,7 +1159,9 @@ class _SettingsTile extends StatelessWidget {
             Expanded(
               child: Text(
                 title,
-                style: m14w500(context).copyWith(color: color ?? colors.textPrimary),
+                style: m14w500(
+                  context,
+                ).copyWith(color: color ?? colors.textPrimary),
               ),
             ),
             Icon(
@@ -1026,6 +1172,104 @@ class _SettingsTile extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+}
+
+class _SettingsSwitchTile extends StatelessWidget {
+  const _SettingsSwitchTile({
+    required this.icon,
+    required this.title,
+    required this.value,
+    required this.onChanged,
+  });
+
+  final IconData icon;
+  final String title;
+  final bool value;
+  final ValueChanged<bool> onChanged;
+
+  @override
+  Widget build(BuildContext context) {
+    final colors = context.colors;
+
+    return Padding(
+      padding: Sp.small.padSymR(h: Sp.large, v: Sp.small),
+      child: Row(
+        children: [
+          Container(
+            width: 28.w,
+            height: 28.h,
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                colors: [colors.gradientStart, colors.gradientEnd],
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+              ),
+              borderRadius: Sp.small.radiusR,
+            ),
+            alignment: Alignment.center,
+            child: Icon(icon, color: colors.accent, size: 18),
+          ),
+          Sp.medium.widthBox,
+          Expanded(
+            child: Text(
+              title,
+              style: m14w500(context).copyWith(color: colors.textPrimary),
+            ),
+          ),
+          Switch.adaptive(
+            value: value,
+            activeThumbColor: colors.primary,
+            onChanged: onChanged,
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _DailySpreadUsageTile extends StatelessWidget {
+  const _DailySpreadUsageTile({required this.user, required this.refreshKey});
+
+  final TarotUser user;
+  final bool refreshKey;
+
+  @override
+  Widget build(BuildContext context) {
+    final colors = context.colors;
+    final now = context.networkNow();
+    final isPremium = PremiumOverrideService.isPremium(
+      user: user,
+      networkTime: now,
+    );
+    final limit = DailySpreadUsageService.limitFor(isPremium: isPremium);
+
+    return FutureBuilder<int>(
+      key: ValueKey(refreshKey),
+      future: DailySpreadUsageService.getCount(userId: user.userId, date: now),
+      builder: (context, snapshot) {
+        final used = snapshot.data ?? 0;
+        final remaining = (limit - used).clamp(0, limit);
+
+        return Padding(
+          padding: EdgeInsets.fromLTRB(Sp.large.w, 0, Sp.large.w, Sp.small.h),
+          child: Row(
+            children: [
+              SizedBox(width: 28.w),
+              Sp.medium.widthBox,
+              Expanded(
+                child: Text(
+                  LocaleKeys.settings_page_daily_spread_remaining.tr(
+                    args: ['$remaining', '$limit'],
+                  ),
+                  style: m12w500(context).copyWith(color: colors.textSecondary),
+                ),
+              ),
+            ],
+          ),
+        );
+      },
     );
   }
 }

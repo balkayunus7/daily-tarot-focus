@@ -10,6 +10,7 @@ import 'package:daily_tarot_focus/core/widgets/fancy_button.dart';
 import 'package:daily_tarot_focus/core/widgets/tarot_app_bar.dart';
 import 'package:daily_tarot_focus/features/auth/domain/models/tarot_user.dart';
 import 'package:daily_tarot_focus/features/core/home/home_page.dart';
+import 'package:daily_tarot_focus/features/core/subscription/premium_override_service.dart';
 import 'package:daily_tarot_focus/features/tarot/bloc/tarot/tarot_bloc.dart';
 import 'package:daily_tarot_focus/features/tarot/bloc/tarot/tarot_state.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/fetch_spreads_response_model.dart';
@@ -134,7 +135,8 @@ class _AnswerContent extends StatelessWidget {
                 buildWhen: (previous, current) => current.isAuthenticated,
                 builder: (context, state) {
                   final user = state.userOrCrash as TarotUser;
-                  final isPremium = user.isSubscribed(
+                  final isPremium = PremiumOverrideService.isPremium(
+                    user: user,
                     networkTime: context.networkNow(),
                   );
 

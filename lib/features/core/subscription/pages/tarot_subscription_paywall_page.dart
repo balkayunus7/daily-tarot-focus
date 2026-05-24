@@ -44,10 +44,11 @@ class TarotSubscriptionPaywallPage extends StatelessWidget {
       freeText: '1',
       proText: '10',
     ),
-    PaywallFeature(label: LocaleKeys.paywall_detailed_interpretation.tr()),
     PaywallFeature(
       label: LocaleKeys.paywall_personalized_daily_card.tr(),
+      availableInFree: true,
     ),
+    PaywallFeature(label: LocaleKeys.paywall_detailed_interpretation.tr()),
     PaywallFeature(
       label: LocaleKeys.paywall_personalized_horoscope.tr(),
     ),

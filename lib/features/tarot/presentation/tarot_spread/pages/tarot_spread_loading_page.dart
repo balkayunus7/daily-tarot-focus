@@ -6,16 +6,20 @@ import 'package:daily_tarot_focus/core/util/build_context_toast_ext.dart';
 import 'package:daily_tarot_focus/core/util/locale_keys.dart';
 import 'package:daily_tarot_focus/core/util/tarot_app_sizes.dart';
 import 'package:daily_tarot_focus/core/util/text_style_helper.dart';
+import 'package:daily_tarot_focus/features/auth/domain/models/tarot_user.dart';
 import 'package:daily_tarot_focus/features/tarot/bloc/tarot/tarot_bloc.dart';
 import 'package:daily_tarot_focus/features/tarot/bloc/tarot/tarot_state.dart';
+import 'package:daily_tarot_focus/features/tarot/data/daily_spread_usage_service.dart';
 import 'package:daily_tarot_focus/features/tarot/presentation/tarot_spread/helpers/loading_page_mixin.dart';
 import 'package:daily_tarot_focus/features/tarot/presentation/tarot_spread/helpers/loading_page_scope.dart';
 import 'package:daily_tarot_focus/features/tarot/presentation/tarot_spread/widgets/tarot_cards_loading_animation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:mobile_boilerplate/application/auth/auth_cubit.dart';
 import 'package:mobile_boilerplate/common_dependencies.dart';
 import 'package:mobile_boilerplate/presentation/extensions/build_context_theme_ext.dart';
+import 'package:mobile_boilerplate/presentation/extensions/build_context_time_ext.dart';
 
 class TarotSpreadLoadingPage extends StatefulWidget {
   const TarotSpreadLoadingPage({super.key});
@@ -55,6 +59,14 @@ class _TarotSpreadLoadingPageState extends State<TarotSpreadLoadingPage>
                     current.hasGeneratedReadingSucceeded;
               },
               listener: (context, state) {
+                final user =
+                    context.read<AuthCubit>().state.userOrCrash as TarotUser;
+                unawaited(
+                  DailySpreadUsageService.increment(
+                    userId: user.userId,
+                    date: context.networkNow(),
+                  ),
+                );
                 context.pushReplacementNamed(AppRoutes.tarotReadingAnswer);
               },
             ),

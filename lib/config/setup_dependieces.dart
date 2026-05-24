@@ -225,7 +225,10 @@ Future<void> setupDependencies() async {
       () => RegisterCubit(getIt<ImplUserRepository>()),
     )
     ..registerLazySingleton<TarotBloc>(
-      () => TarotBloc(getIt<ImplTarotRepository>(), getIt<ImplTarotCacheService>()),
+      () => TarotBloc(
+        getIt<ImplTarotRepository>(),
+        getIt<ImplTarotCacheService>(),
+      ),
     )
     ..registerSingleton<ImplZodiacRemoteDataSource>(
       ImplZodiacRemoteDataSource(getIt<SupabaseClient>()),

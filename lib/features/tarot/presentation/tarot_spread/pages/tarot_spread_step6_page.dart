@@ -39,7 +39,8 @@ class TarotSpreadStep6Page extends StatefulWidget {
   State<TarotSpreadStep6Page> createState() => _TarotSpreadStep6PageState();
 }
 
-class _TarotSpreadStep6PageState extends State<TarotSpreadStep6Page> with Step6PageMixin {
+class _TarotSpreadStep6PageState extends State<TarotSpreadStep6Page>
+    with Step6PageMixin {
   @override
   Widget build(BuildContext context) {
     final colors = context.colors;
@@ -76,19 +77,29 @@ class _TarotSpreadStep6PageState extends State<TarotSpreadStep6Page> with Step6P
               children: [
                 _SpreadTitleBar(
                   title: spread.title,
-                  onMoreTap: () => showSpreadDetailsBottomSheet(context, spread: spread),
+                  onMoreTap:
+                      () =>
+                          showSpreadDetailsBottomSheet(context, spread: spread),
                 ),
-                Divider(height: 1, color: colors.textSecondary.withValues(alpha: 0.2)),
+                Divider(
+                  height: 1,
+                  color: colors.textSecondary.withValues(alpha: 0.2),
+                ),
                 Padding(
                   padding: Sp.medium.padSymR(h: Sp.large, v: Sp.xsmall),
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Iconify(Mdi.question_mark_circle, color: colors.primary, size: 16.w),
+                      Iconify(
+                        Mdi.question_mark_circle,
+                        color: colors.primary,
+                        size: 16.w,
+                      ),
                       Sp.xsmall.widthBox,
                       Expanded(
                         child: Text(
-                          LocaleKeys.tarot_question_choose_open_deck_subtitle.tr(),
+                          LocaleKeys.tarot_question_choose_open_deck_subtitle
+                              .tr(),
                           style: m12w500(context).copyWith(
                             color: colors.textSecondary.withValues(alpha: 0.7),
                           ),
@@ -103,7 +114,9 @@ class _TarotSpreadStep6PageState extends State<TarotSpreadStep6Page> with Step6P
                       positions: spread.positions.asList(),
                       allCards: state.allCardsOrEmpty.asList(),
                       onAllCardsFlipped: (cards) {
-                        context.read<TarotBloc>().addSetReadingCards(cards: cards);
+                        context.read<TarotBloc>().addSetReadingCards(
+                          cards: cards,
+                        );
                       },
                       isReadingReadyNotifier: isReadingReady,
                     ),
@@ -120,8 +133,14 @@ class _TarotSpreadStep6PageState extends State<TarotSpreadStep6Page> with Step6P
                       valueListenable: isReadingReady,
                       builder: (context, isReady, _) {
                         return FancyButton(
-                          onTap: () => context.pushNamed(AppRoutes.tarotReadingLoading),
-                          text: LocaleKeys.tarot_question_step6_start_reading.tr(),
+                          onTap: () {
+                            unawaited(
+                              Step6PageScope.of(context).state.onStartReading(),
+                            );
+                          },
+                          text:
+                              LocaleKeys.tarot_question_step6_start_reading
+                                  .tr(),
                           isDisabled: !isReady,
                         );
                       },
@@ -147,19 +166,27 @@ class _SpreadTitleBar extends StatelessWidget {
     final colors = context.colors;
 
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: Sp.screen.w, vertical: Sp.small.h),
+      padding: EdgeInsets.symmetric(
+        horizontal: Sp.screen.w,
+        vertical: Sp.small.h,
+      ),
       child: Row(
         children: [
           Container(
             width: 6.w,
             height: 6.w,
-            decoration: BoxDecoration(color: colors.primary, shape: BoxShape.circle),
+            decoration: BoxDecoration(
+              color: colors.primary,
+              shape: BoxShape.circle,
+            ),
           ),
           Sp.xsmall.widthBox,
           Expanded(
             child: Text(
               title,
-              style: m14w600(context).copyWith(color: colors.textSecondary, letterSpacing: 0.2),
+              style: m14w600(
+                context,
+              ).copyWith(color: colors.textSecondary, letterSpacing: 0.2),
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
             ),
@@ -175,7 +202,11 @@ class _SpreadTitleBar extends StatelessWidget {
                   style: m12w500(context).copyWith(color: colors.primary),
                 ),
                 Sp.tiny.widthBox,
-                Icon(Icons.keyboard_arrow_right_rounded, color: colors.primary, size: 14.sp),
+                Icon(
+                  Icons.keyboard_arrow_right_rounded,
+                  color: colors.primary,
+                  size: 14.sp,
+                ),
               ],
             ),
           ),
@@ -199,7 +230,8 @@ class _InteractiveSpreadLayout extends StatefulWidget {
   final ValueNotifier<bool> isReadingReadyNotifier;
 
   @override
-  State<_InteractiveSpreadLayout> createState() => _InteractiveSpreadLayoutState();
+  State<_InteractiveSpreadLayout> createState() =>
+      _InteractiveSpreadLayoutState();
 }
 
 class _InteractiveSpreadLayoutState extends State<_InteractiveSpreadLayout>
@@ -216,7 +248,9 @@ class _InteractiveSpreadLayoutState extends State<_InteractiveSpreadLayout>
     final count = widget.positions.length;
     _entryController = AnimationController(
       vsync: this,
-      duration: Duration(milliseconds: 500 + (count > 0 ? (count - 1) * 150 : 0)),
+      duration: Duration(
+        milliseconds: 500 + (count > 0 ? (count - 1) * 150 : 0),
+      ),
     );
     unawaited(_entryController.forward());
 
@@ -237,13 +271,19 @@ class _InteractiveSpreadLayoutState extends State<_InteractiveSpreadLayout>
     super.dispose();
   }
 
-  Future<void> _onCardTap(int positionIndex, TarotSpreadPositionModel position) async {
+  Future<void> _onCardTap(
+    int positionIndex,
+    TarotSpreadPositionModel position,
+  ) async {
     if (widget.allCards.isEmpty) return;
 
     final currentId = _assignedCardIds[positionIndex];
     if (currentId != null) {
       if (_flipControllers[positionIndex]?.isAnimating ?? false) return;
-      await context.pushNamed(AppRoutes.tarotDeckDetail, pathParameters: {'tarotId': currentId});
+      await context.pushNamed(
+        AppRoutes.tarotDeckDetail,
+        pathParameters: {'tarotId': currentId},
+      );
       return;
     }
 
@@ -294,19 +334,32 @@ class _InteractiveSpreadLayoutState extends State<_InteractiveSpreadLayout>
     if (widget.positions.isEmpty) return const SizedBox.shrink();
 
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: Sp.small.w, vertical: Sp.medium.h),
+      padding: EdgeInsets.symmetric(
+        horizontal: Sp.small.w,
+        vertical: Sp.medium.h,
+      ),
       child: LayoutBuilder(
         builder: (context, constraints) {
-          final maxRow = widget.positions.map((p) => p.row).reduce((a, b) => a > b ? a : b).ceil();
-          final maxCol = widget.positions.map((p) => p.col).reduce((a, b) => a > b ? a : b).ceil();
+          final maxRow =
+              widget.positions
+                  .map((p) => p.row)
+                  .reduce((a, b) => a > b ? a : b)
+                  .ceil();
+          final maxCol =
+              widget.positions
+                  .map((p) => p.col)
+                  .reduce((a, b) => a > b ? a : b)
+                  .ceil();
 
           final totalWidth = (maxCol + 1) * _kCardW + maxCol * _kGap;
-          final totalHeight = (maxRow + 1) * _kCardH + maxRow * _kGap + _kBadgeOverhang;
+          final totalHeight =
+              (maxRow + 1) * _kCardH + maxRow * _kGap + _kBadgeOverhang;
 
           final sorted = List<TarotSpreadPositionModel>.from(widget.positions)
             ..sort((a, b) => a.index.compareTo(b.index));
 
-          final totalDurationMs = 500 + (sorted.isNotEmpty ? (sorted.length - 1) * 150 : 0);
+          final totalDurationMs =
+              500 + (sorted.isNotEmpty ? (sorted.length - 1) * 150 : 0);
 
           return Center(
             child: FittedBox(
@@ -323,13 +376,17 @@ class _InteractiveSpreadLayoutState extends State<_InteractiveSpreadLayout>
                         final tileW = isLandscape ? _kCardH : _kCardW;
                         final tileH = isLandscape ? _kCardW : _kCardH;
 
-                        final targetLeft = pos.col * (_kCardW + _kGap) + (_kCardW - tileW) / 2;
-                        final targetTop = pos.row * (_kCardH + _kGap) + (_kCardH - tileH) / 2;
+                        final targetLeft =
+                            pos.col * (_kCardW + _kGap) + (_kCardW - tileW) / 2;
+                        final targetTop =
+                            pos.row * (_kCardH + _kGap) + (_kCardH - tileH) / 2;
                         final startLeft = totalWidth / 2 - tileW / 2;
                         final startTop = totalHeight + 300;
 
-                        final intervalStart = (animIdx * 150.0) / totalDurationMs;
-                        final intervalEnd = (animIdx * 150.0 + 500.0) / totalDurationMs;
+                        final intervalStart =
+                            (animIdx * 150.0) / totalDurationMs;
+                        final intervalEnd =
+                            (animIdx * 150.0 + 500.0) / totalDurationMs;
 
                         final entryCurve = CurvedAnimation(
                           parent: _entryController,
@@ -343,7 +400,10 @@ class _InteractiveSpreadLayoutState extends State<_InteractiveSpreadLayout>
                         final assignedCard =
                             _assignedCardIds.containsKey(pos.index)
                                 ? widget.allCards
-                                    .where((c) => c.id == _assignedCardIds[pos.index])
+                                    .where(
+                                      (c) =>
+                                          c.id == _assignedCardIds[pos.index],
+                                    )
                                     .firstOrNull
                                 : null;
 
@@ -353,10 +413,17 @@ class _InteractiveSpreadLayoutState extends State<_InteractiveSpreadLayout>
                           animation: _entryController,
                           builder:
                               (context, child) => Positioned(
-                                left: startLeft + (targetLeft - startLeft) * entryCurve.value,
-                                top: startTop + (targetTop - startTop) * entryCurve.value,
+                                left:
+                                    startLeft +
+                                    (targetLeft - startLeft) * entryCurve.value,
+                                top:
+                                    startTop +
+                                    (targetTop - startTop) * entryCurve.value,
                                 child: Transform.rotate(
-                                  angle: (1 - entryCurve.value) * 0.2 * (animIdx.isEven ? 1 : -1),
+                                  angle:
+                                      (1 - entryCurve.value) *
+                                      0.2 *
+                                      (animIdx.isEven ? 1 : -1),
                                   child: Opacity(
                                     opacity: entryCurve.value.clamp(0.0, 1.0),
                                     child: child,
@@ -433,12 +500,17 @@ class _PlaygroundCardTile extends StatelessWidget {
                 decoration: BoxDecoration(
                   color: context.colors.secondary,
                   shape: BoxShape.circle,
-                  border: Border.all(color: context.colors.background, width: 2),
+                  border: Border.all(
+                    color: context.colors.background,
+                    width: 2,
+                  ),
                 ),
                 alignment: Alignment.center,
                 child: Text(
                   '$index',
-                  style: m14w700(context).copyWith(color: context.colors.textOnPrimary, height: 1),
+                  style: m14w700(
+                    context,
+                  ).copyWith(color: context.colors.textOnPrimary, height: 1),
                 ),
               ),
             ),
@@ -482,7 +554,10 @@ class _FlipCard extends StatelessWidget {
                 ..rotateY(angle),
           alignment: Alignment.center,
           child: _CardFace(
-            imageUrl: isShowingFront ? assignedCard!.imageUrl : TarotAppAssets.cardBgHttp,
+            imageUrl:
+                isShowingFront
+                    ? assignedCard!.imageUrl
+                    : TarotAppAssets.cardBgHttp,
             width: width,
             height: height,
             isLandscape: isLandscape,

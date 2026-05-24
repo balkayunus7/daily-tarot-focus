@@ -12,7 +12,9 @@ class _GetProChip extends StatelessWidget {
       child: Container(
         padding: Sp.medium.padSymR(h: 12, v: 8),
         decoration: BoxDecoration(
-          gradient: LinearGradient(colors: [colors.gradientStart, colors.gradientEnd]),
+          gradient: LinearGradient(
+            colors: [colors.gradientStart, colors.gradientEnd],
+          ),
           borderRadius: BorderRadius.circular(100),
           boxShadow: colors.primary.mediumShadow,
         ),
@@ -23,7 +25,10 @@ class _GetProChip extends StatelessWidget {
               TarotAppAssets.crown.path,
               height: 14,
               width: 14,
-              colorFilter: ColorFilter.mode(colors.textOnPrimary, BlendMode.srcIn),
+              colorFilter: ColorFilter.mode(
+                colors.textOnPrimary,
+                BlendMode.srcIn,
+              ),
             ),
             Sp.tiny.widthBox,
             Text(
@@ -54,7 +59,10 @@ class ExploreHeader extends StatelessWidget {
       builder: (context, state) {
         final user = state.userOrCrash as TarotUser;
         final userZodiac = user.zodiac;
-        final isPremium = state.userOrCrash.isSubscribed(networkTime: context.networkNow());
+        final isPremium = PremiumOverrideService.isPremium(
+          user: state.userOrCrash,
+          networkTime: context.networkNow(),
+        );
 
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -74,7 +82,9 @@ class ExploreHeader extends StatelessWidget {
             Sp.small.heightBox,
             if (userZodiac != null) ...[
               Text(
-                LocaleKeys.explore_page_intuition_guide.tr(args: [userZodiac.localizedName]),
+                LocaleKeys.explore_page_intuition_guide.tr(
+                  args: [userZodiac.localizedName],
+                ),
                 style: m13w500(context).copyWith(color: colors.textSecondary),
               ),
             ],

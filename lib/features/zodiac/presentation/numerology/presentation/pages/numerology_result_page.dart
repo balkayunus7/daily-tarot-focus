@@ -8,6 +8,7 @@ import 'package:daily_tarot_focus/core/util/text_style_helper.dart';
 import 'package:daily_tarot_focus/core/widgets/fancy_container.dart';
 import 'package:daily_tarot_focus/core/widgets/tarot_app_bar.dart';
 import 'package:daily_tarot_focus/features/zodiac/presentation/numerology/domain/numerology_calculator.dart';
+import 'package:daily_tarot_focus/features/zodiac/presentation/numerology/domain/numerology_navigation_args.dart';
 import 'package:daily_tarot_focus/features/zodiac/presentation/numerology/domain/numerology_result_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -20,9 +21,16 @@ part '../widgets/numerology_number_card.dart';
 part '../widgets/numerology_info_sheet.dart';
 
 class NumerologyResultPage extends StatelessWidget {
-  const NumerologyResultPage({required this.birthDate, required this.fullName, super.key});
+  const NumerologyResultPage({
+    required this.birthDate,
+    required this.fullName,
+    this.isTemporary = false,
+    super.key,
+  });
+
   final DateTime birthDate;
   final String fullName;
+  final bool isTemporary;
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +47,13 @@ class NumerologyResultPage extends StatelessWidget {
               title: LocaleKeys.numerology_page_title.tr(),
               titleStyle: m18w700(context),
               trailingIcon2: Icons.restart_alt,
-              onIcon2Tap: () => context.pushReplacement(AppRoutes.numerologyInput),
+              onIcon2Tap:
+                  () => context.pushReplacement(
+                    AppRoutes.numerologyInput,
+                    extra: const NumerologyInputArgs(
+                      prefillUserData: false,
+                    ),
+                  ),
               trailingIcon: Icons.question_mark,
               onIconTap: () => _showNumerologyInfoSheet(context),
             ),
@@ -60,42 +74,60 @@ class NumerologyResultPage extends StatelessWidget {
                     // Group 1: birth date numbers (birthday already shown as card below header)
                     NumerologyNumberCard(
                       number: result.birthday,
-                      sectionLabel: LocaleKeys.numerology_page_section_birthday.tr(),
-                      sectionIntro: LocaleKeys.numerology_page_section_birthday_intro.tr(),
+                      sectionLabel:
+                          LocaleKeys.numerology_page_section_birthday.tr(),
+                      sectionIntro:
+                          LocaleKeys.numerology_page_section_birthday_intro
+                              .tr(),
                     ),
                     Sp.xlarge.heightBox,
 
                     // Group 2: name-based numbers
-                    _SectionGroupLabel(label: LocaleKeys.numerology_page_section_group_name.tr()),
+                    _SectionGroupLabel(
+                      label: LocaleKeys.numerology_page_section_group_name.tr(),
+                    ),
                     Sp.medium.heightBox,
                     NumerologyNumberCard(
                       number: result.destiny,
-                      sectionLabel: LocaleKeys.numerology_page_section_destiny.tr(),
-                      sectionIntro: LocaleKeys.numerology_page_section_destiny_intro.tr(),
+                      sectionLabel:
+                          LocaleKeys.numerology_page_section_destiny.tr(),
+                      sectionIntro:
+                          LocaleKeys.numerology_page_section_destiny_intro.tr(),
                     ),
                     Sp.medium.heightBox,
                     NumerologyNumberCard(
                       number: result.soulUrge,
-                      sectionLabel: LocaleKeys.numerology_page_section_soul_urge.tr(),
-                      sectionIntro: LocaleKeys.numerology_page_section_soul_urge_intro.tr(),
+                      sectionLabel:
+                          LocaleKeys.numerology_page_section_soul_urge.tr(),
+                      sectionIntro:
+                          LocaleKeys.numerology_page_section_soul_urge_intro
+                              .tr(),
                     ),
                     Sp.medium.heightBox,
                     NumerologyNumberCard(
                       number: result.personality,
-                      sectionLabel: LocaleKeys.numerology_page_section_personality.tr(),
-                      sectionIntro: LocaleKeys.numerology_page_section_personality_intro.tr(),
+                      sectionLabel:
+                          LocaleKeys.numerology_page_section_personality.tr(),
+                      sectionIntro:
+                          LocaleKeys.numerology_page_section_personality_intro
+                              .tr(),
                     ),
                     Sp.xlarge.heightBox,
 
                     // Group 3: combined
                     _SectionGroupLabel(
-                      label: LocaleKeys.numerology_page_section_group_combined.tr(),
+                      label:
+                          LocaleKeys.numerology_page_section_group_combined
+                              .tr(),
                     ),
                     Sp.medium.heightBox,
                     NumerologyNumberCard(
                       number: result.maturity,
-                      sectionLabel: LocaleKeys.numerology_page_section_maturity.tr(),
-                      sectionIntro: LocaleKeys.numerology_page_section_maturity_intro.tr(),
+                      sectionLabel:
+                          LocaleKeys.numerology_page_section_maturity.tr(),
+                      sectionIntro:
+                          LocaleKeys.numerology_page_section_maturity_intro
+                              .tr(),
                     ),
                     Sp.large.heightBox,
 

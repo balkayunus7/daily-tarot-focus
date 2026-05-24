@@ -16,7 +16,7 @@ import 'package:daily_tarot_focus/features/tarot/bloc/tarot/tarot_state.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/tarot_flow_type.dart';
 import 'package:daily_tarot_focus/features/tarot/presentation/tarot_explore/helpers/explore_illustrations.dart';
 import 'package:daily_tarot_focus/features/zodiac/domain/models/horoscope_period_enum.dart';
-import 'package:daily_tarot_focus/features/zodiac/presentation/numerology/domain/numerology_storage.dart';
+import 'package:daily_tarot_focus/features/zodiac/presentation/numerology/domain/numerology_navigation_args.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
@@ -49,7 +49,8 @@ class TarotExplorePage extends StatefulWidget {
   State<TarotExplorePage> createState() => _TarotExplorePageState();
 }
 
-class _TarotExplorePageState extends State<TarotExplorePage> with ExplorePageStateMixin {
+class _TarotExplorePageState extends State<TarotExplorePage>
+    with ExplorePageStateMixin {
   @override
   Widget build(BuildContext context) {
     final colors = context.colors;
@@ -76,7 +77,10 @@ class _TarotExplorePageState extends State<TarotExplorePage> with ExplorePageSta
                       Sp.medium.heightBox,
                       const ExploreSpreadCard(),
                       Sp.medium.heightBox,
-                      Text(LocaleKeys.explore_page_spiritual_guide.tr(), style: m15w600(context)),
+                      Text(
+                        LocaleKeys.explore_page_spiritual_guide.tr(),
+                        style: m15w600(context),
+                      ),
                       Sp.medium.heightBox,
                       Row(
                         children: [
@@ -96,7 +100,10 @@ class _TarotExplorePageState extends State<TarotExplorePage> with ExplorePageSta
                     ] else ...[
                       const ExploreHoroscopeCard(),
                       Sp.medium.heightBox,
-                      Text(LocaleKeys.compat_page_section_label.tr(), style: m15w600(context)),
+                      Text(
+                        LocaleKeys.compat_page_section_label.tr(),
+                        style: m15w600(context),
+                      ),
                       Sp.small.heightBox,
                       Row(
                         children: [
@@ -106,7 +113,10 @@ class _TarotExplorePageState extends State<TarotExplorePage> with ExplorePageSta
                         ],
                       ),
                       Sp.medium.heightBox,
-                      Text(LocaleKeys.explore_page_guidance.tr(), style: m15w600(context)),
+                      Text(
+                        LocaleKeys.explore_page_guidance.tr(),
+                        style: m15w600(context),
+                      ),
                       Sp.small.heightBox,
                       Row(
                         children: [
@@ -167,7 +177,11 @@ class _ExploreTabSwitch extends StatelessWidget {
 }
 
 class _TabItem extends StatelessWidget {
-  const _TabItem({required this.label, required this.isSelected, required this.onTap});
+  const _TabItem({
+    required this.label,
+    required this.isSelected,
+    required this.onTap,
+  });
   final String label;
   final bool isSelected;
   final VoidCallback onTap;

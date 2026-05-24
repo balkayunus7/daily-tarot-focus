@@ -1,6 +1,8 @@
+import 'package:daily_tarot_focus/core/util/locale_keys.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/fetch_saved_readings_response_model.dart';
 import 'package:daily_tarot_focus/features/tarot/presentation/tarot_reading/pages/tarot_reading_page.dart';
 import 'package:flutter/material.dart';
+import 'package:mobile_boilerplate/common_dependencies.dart';
 
 enum TarotReadingDateFilter {
   allTime,
@@ -35,11 +37,11 @@ mixin ReadingPageMixin on State<TarotReadingPage> {
   String get filterLabel {
     switch (selectedFilter.value) {
       case TarotReadingDateFilter.allTime:
-        return 'All Time';
+        return LocaleKeys.tarot_reading_filter_all_time.tr();
       case TarotReadingDateFilter.lastWeek:
-        return 'Last 7 Days';
+        return LocaleKeys.tarot_reading_filter_last_7_days.tr();
       case TarotReadingDateFilter.lastMonth:
-        return 'Last Month';
+        return LocaleKeys.tarot_reading_filter_last_month.tr();
       case TarotReadingDateFilter.custom:
         final range = customDateRange.value;
         if (range != null) {
@@ -47,7 +49,7 @@ mixin ReadingPageMixin on State<TarotReadingPage> {
           final end = range.end;
           return '${start.day}/${start.month}/${start.year} - ${end.day}/${end.month}/${end.year}';
         }
-        return 'Custom';
+        return LocaleKeys.tarot_reading_filter_custom.tr();
     }
   }
 
@@ -68,7 +70,11 @@ mixin ReadingPageMixin on State<TarotReadingPage> {
       final start = range.start;
       final end = range.end.add(const Duration(days: 1));
       readings =
-          readings.where((r) => r.createdAt.isAfter(start) && r.createdAt.isBefore(end)).toList();
+          readings
+              .where(
+                (r) => r.createdAt.isAfter(start) && r.createdAt.isBefore(end),
+              )
+              .toList();
     }
     return readings;
   }

@@ -24,105 +24,116 @@ class TarotSpreadLoadingPage extends StatefulWidget {
   State<TarotSpreadLoadingPage> createState() => _TarotSpreadLoadingPageState();
 }
 
-class _TarotSpreadLoadingPageState extends State<TarotSpreadLoadingPage> with LoadingPageMixin {
+class _TarotSpreadLoadingPageState extends State<TarotSpreadLoadingPage>
+    with LoadingPageMixin {
   @override
   Widget build(BuildContext context) {
     final colors = context.colors;
 
     return LoadingPageScope(
       state: this,
-      child: MultiBlocListener(
-        listeners: [
-          BlocListener<TarotBloc, TarotState>(
-            listenWhen: (previous, current) {
-              return !previous.hasGeneratedReadingFailed && current.hasGeneratedReadingFailed;
-            },
-            listener: (context, state) {
-              context
-                ..showErrorToastMessage(LocaleKeys.tarot_question_loading_error.tr())
-                ..go(AppRoutes.tarotExplore);
-            },
-          ),
-          BlocListener<TarotBloc, TarotState>(
-            listenWhen: (previous, current) {
-              return !previous.hasGeneratedReadingSucceeded && current.hasGeneratedReadingSucceeded;
-            },
-            listener: (context, state) {
-              context.pushReplacementNamed(AppRoutes.tarotReadingAnswer);
-            },
-          ),
-        ],
-        child: Scaffold(
-          backgroundColor: colors.background,
-          body: Stack(
-            fit: StackFit.expand,
-            children: [
-              Positioned.fill(
-                child: Container(
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      begin: Alignment.topCenter,
-                      end: Alignment.bottomCenter,
-                      colors: [
-                        colors.background,
-                        colors.primary.withValues(alpha: 0.08),
-                        colors.background,
-                      ],
+      child: PopScope(
+        canPop: false,
+        child: MultiBlocListener(
+          listeners: [
+            BlocListener<TarotBloc, TarotState>(
+              listenWhen: (previous, current) {
+                return !previous.hasGeneratedReadingFailed &&
+                    current.hasGeneratedReadingFailed;
+              },
+              listener: (context, state) {
+                context
+                  ..showErrorToastMessage(
+                    LocaleKeys.tarot_question_loading_error.tr(),
+                  )
+                  ..go(AppRoutes.tarotExplore);
+              },
+            ),
+            BlocListener<TarotBloc, TarotState>(
+              listenWhen: (previous, current) {
+                return !previous.hasGeneratedReadingSucceeded &&
+                    current.hasGeneratedReadingSucceeded;
+              },
+              listener: (context, state) {
+                context.pushReplacementNamed(AppRoutes.tarotReadingAnswer);
+              },
+            ),
+          ],
+          child: Scaffold(
+            backgroundColor: colors.background,
+            body: Stack(
+              fit: StackFit.expand,
+              children: [
+                Positioned.fill(
+                  child: Container(
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        begin: Alignment.topCenter,
+                        end: Alignment.bottomCenter,
+                        colors: [
+                          colors.background,
+                          colors.primary.withValues(alpha: 0.08),
+                          colors.background,
+                        ],
+                      ),
                     ),
                   ),
                 ),
-              ),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Spacer(flex: 2),
-                  TarotCardsLoadingAnimation(size: 220.w),
-                  Sp.large.heightBox,
-                  ValueListenableBuilder<int>(
-                    valueListenable: messageIndex,
-                    builder: (context, idx, _) {
-                      final scope = LoadingPageScope.of(context).state;
-                      return AnimatedSwitcher(
-                        duration: const Duration(milliseconds: 600),
-                        transitionBuilder: (child, animation) {
-                          return FadeTransition(
-                            opacity: animation,
-                            child: SlideTransition(
-                              position: Tween<Offset>(
-                                begin: const Offset(0, 0.25),
-                                end: Offset.zero,
-                              ).animate(
-                                CurvedAnimation(parent: animation, curve: Curves.easeOut),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Spacer(flex: 2),
+                    TarotCardsLoadingAnimation(size: 220.w),
+                    Sp.large.heightBox,
+                    ValueListenableBuilder<int>(
+                      valueListenable: messageIndex,
+                      builder: (context, idx, _) {
+                        final scope = LoadingPageScope.of(context).state;
+                        return AnimatedSwitcher(
+                          duration: const Duration(milliseconds: 600),
+                          transitionBuilder: (child, animation) {
+                            return FadeTransition(
+                              opacity: animation,
+                              child: SlideTransition(
+                                position: Tween<Offset>(
+                                  begin: const Offset(0, 0.25),
+                                  end: Offset.zero,
+                                ).animate(
+                                  CurvedAnimation(
+                                    parent: animation,
+                                    curve: Curves.easeOut,
+                                  ),
+                                ),
+                                child: child,
                               ),
-                              child: child,
+                            );
+                          },
+                          child: Text(
+                            scope.loadingMessages[idx],
+                            key: ValueKey(idx),
+                            style: m18w600(context).copyWith(
+                              color: colors.primary,
+                              fontStyle: FontStyle.italic,
                             ),
-                          );
-                        },
-                        child: Text(
-                          scope.loadingMessages[idx],
-                          key: ValueKey(idx),
-                          style: m18w600(context).copyWith(
-                            color: colors.primary,
-                            fontStyle: FontStyle.italic,
+                            textAlign: TextAlign.center,
                           ),
-                          textAlign: TextAlign.center,
-                        ),
-                      );
-                    },
-                  ),
-                  Sp.small.heightBox,
-                  Text(
-                    LocaleKeys.tarot_question_loading_subtitle.tr(),
-                    style: m12w400(context).copyWith(
-                      color: colors.textSecondary.withValues(alpha: 0.7),
+                        );
+                      },
                     ),
-                  ),
-                  const Spacer(),
-                  _DotsProgressIndicator(color: colors.primary),
-                  const Spacer(),
-                ],
-              ),
-            ],
+                    Sp.small.heightBox,
+                    Text(
+                      LocaleKeys.tarot_question_loading_subtitle.tr(),
+                      style: m12w400(context).copyWith(
+                        color: colors.textSecondary.withValues(alpha: 0.7),
+                      ),
+                    ),
+                    const Spacer(),
+                    _DotsProgressIndicator(color: colors.primary),
+                    const Spacer(),
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
       ),

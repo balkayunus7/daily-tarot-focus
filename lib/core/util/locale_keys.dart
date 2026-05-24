@@ -1,8 +1,6 @@
 // DO NOT EDIT. This is code generated via package:easy_localization/generate.dart
 
-// ignore_for_file: constant_identifier_names
-
-abstract class  LocaleKeys {
+abstract class LocaleKeys {
   static const explore_page_spiritual_guide = 'explore_page.spiritual_guide';
   static const explore_page_ask_question = 'explore_page.ask_question';
   static const explore_page_deck = 'explore_page.deck';
@@ -10,20 +8,27 @@ abstract class  LocaleKeys {
   static const explore_page_discover_daily = 'explore_page.discover_daily';
   static const explore_page_spread_title = 'explore_page.spread_title';
   static const explore_page_spread_button = 'explore_page.spread_button';
-  static const explore_page_ask_question_title = 'explore_page.ask_question_title';
-  static const explore_page_ask_question_button = 'explore_page.ask_question_button';
-  static const explore_page_tarot_reading_desc = 'explore_page.tarot_reading_desc';
+  static const explore_page_ask_question_title =
+      'explore_page.ask_question_title';
+  static const explore_page_ask_question_button =
+      'explore_page.ask_question_button';
+  static const explore_page_tarot_reading_desc =
+      'explore_page.tarot_reading_desc';
   static const explore_page_go_premium = 'explore_page.go_premium';
-  static const explore_page_unlock_all_features = 'explore_page.unlock_all_features';
+  static const explore_page_unlock_all_features =
+      'explore_page.unlock_all_features';
   static const explore_page_get_pro = 'explore_page.get_pro';
   static const explore_page_day_energy = 'explore_page.day_energy';
   static const explore_page_moon_energy = 'explore_page.moon_energy';
   static const explore_page_intuition_guide = 'explore_page.intuition_guide';
   static const explore_page_tab_tarot = 'explore_page.tab_tarot';
   static const explore_page_tab_horoscope = 'explore_page.tab_horoscope';
-  static const explore_page_horoscope_card_title = 'explore_page.horoscope_card_title';
-  static const explore_page_horoscope_card_desc = 'explore_page.horoscope_card_desc';
-  static const explore_page_horoscope_card_button = 'explore_page.horoscope_card_button';
+  static const explore_page_horoscope_card_title =
+      'explore_page.horoscope_card_title';
+  static const explore_page_horoscope_card_desc =
+      'explore_page.horoscope_card_desc';
+  static const explore_page_horoscope_card_button =
+      'explore_page.horoscope_card_button';
   static const explore_page_guidance = 'explore_page.guidance';
   static const explore_page_learn_horoscope = 'explore_page.learn_horoscope';
   static const explore_page = 'explore_page';
@@ -52,7 +57,8 @@ abstract class  LocaleKeys {
   static const reveal_page_tap_to_pick = 'reveal_page.tap_to_pick';
   static const reveal_page_drag_to_move = 'reveal_page.drag_to_move';
   static const reveal_page_cooldown_subtitle = 'reveal_page.cooldown_subtitle';
-  static const reveal_page_cooldown_calendar_hint = 'reveal_page.cooldown_calendar_hint';
+  static const reveal_page_cooldown_calendar_hint =
+      'reveal_page.cooldown_calendar_hint';
   static const reveal_page = 'reveal_page';
   static const daily_pick_page_title = 'daily_pick_page.title';
   static const daily_pick_page_today_card = 'daily_pick_page.today_card';
@@ -63,59 +69,93 @@ abstract class  LocaleKeys {
   static const question_page_title = 'question_page.title';
   static const question_page_hint_text = 'question_page.hint_text';
   static const question_page_choose_topic = 'question_page.choose_topic';
-  static const question_page_choose_card_count = 'question_page.choose_card_count';
+  static const question_page_choose_card_count =
+      'question_page.choose_card_count';
   static const question_page_career_topic = 'question_page.career_topic';
   static const question_page_love_topic = 'question_page.love_topic';
   static const question_page_health_topic = 'question_page.health_topic';
   static const question_page_single_card = 'question_page.single_card';
-  static const question_page_single_card_desc = 'question_page.single_card_desc';
+  static const question_page_single_card_desc =
+      'question_page.single_card_desc';
   static const question_page_multiple_cards = 'question_page.multiple_cards';
-  static const question_page_multiple_cards_desc = 'question_page.multiple_cards_desc';
-  static const question_page_suggested_questions_title = 'question_page.suggested_questions_title';
-  static const question_page_suggested_question_1 = 'question_page.suggested_question_1';
-  static const question_page_suggested_question_2 = 'question_page.suggested_question_2';
-  static const question_page_suggested_question_3 = 'question_page.suggested_question_3';
-  static const question_page_suggested_question_4 = 'question_page.suggested_question_4';
-  static const question_page_suggested_question_5 = 'question_page.suggested_question_5';
-  static const question_page_suggested_question_6 = 'question_page.suggested_question_6';
-  static const question_page_suggested_question_7 = 'question_page.suggested_question_7';
-  static const question_page_suggested_question_8 = 'question_page.suggested_question_8';
-  static const question_page_suggested_question_9 = 'question_page.suggested_question_9';
-  static const question_page_suggested_question_10 = 'question_page.suggested_question_10';
-  static const question_page_suggested_question_11 = 'question_page.suggested_question_11';
-  static const question_page_suggested_question_12 = 'question_page.suggested_question_12';
-  static const question_page_suggested_question_13 = 'question_page.suggested_question_13';
-  static const question_page_suggested_question_14 = 'question_page.suggested_question_14';
-  static const question_page_suggested_question_15 = 'question_page.suggested_question_15';
-  static const question_page_suggested_question_16 = 'question_page.suggested_question_16';
-  static const question_page_suggested_question_17 = 'question_page.suggested_question_17';
-  static const question_page_suggested_question_18 = 'question_page.suggested_question_18';
-  static const question_page_suggested_question_19 = 'question_page.suggested_question_19';
-  static const question_page_suggested_question_20 = 'question_page.suggested_question_20';
+  static const question_page_multiple_cards_desc =
+      'question_page.multiple_cards_desc';
+  static const question_page_suggested_questions_title =
+      'question_page.suggested_questions_title';
+  static const question_page_suggested_question_1 =
+      'question_page.suggested_question_1';
+  static const question_page_suggested_question_2 =
+      'question_page.suggested_question_2';
+  static const question_page_suggested_question_3 =
+      'question_page.suggested_question_3';
+  static const question_page_suggested_question_4 =
+      'question_page.suggested_question_4';
+  static const question_page_suggested_question_5 =
+      'question_page.suggested_question_5';
+  static const question_page_suggested_question_6 =
+      'question_page.suggested_question_6';
+  static const question_page_suggested_question_7 =
+      'question_page.suggested_question_7';
+  static const question_page_suggested_question_8 =
+      'question_page.suggested_question_8';
+  static const question_page_suggested_question_9 =
+      'question_page.suggested_question_9';
+  static const question_page_suggested_question_10 =
+      'question_page.suggested_question_10';
+  static const question_page_suggested_question_11 =
+      'question_page.suggested_question_11';
+  static const question_page_suggested_question_12 =
+      'question_page.suggested_question_12';
+  static const question_page_suggested_question_13 =
+      'question_page.suggested_question_13';
+  static const question_page_suggested_question_14 =
+      'question_page.suggested_question_14';
+  static const question_page_suggested_question_15 =
+      'question_page.suggested_question_15';
+  static const question_page_suggested_question_16 =
+      'question_page.suggested_question_16';
+  static const question_page_suggested_question_17 =
+      'question_page.suggested_question_17';
+  static const question_page_suggested_question_18 =
+      'question_page.suggested_question_18';
+  static const question_page_suggested_question_19 =
+      'question_page.suggested_question_19';
+  static const question_page_suggested_question_20 =
+      'question_page.suggested_question_20';
   static const question_page_see_answer = 'question_page.see_answer';
   static const question_page = 'question_page';
   static const register_page_step_1_of_3 = 'register_page.step_1_of_3';
   static const register_page_step_2_of_3 = 'register_page.step_2_of_3';
   static const register_page_step_3_of_3 = 'register_page.step_3_of_3';
-  static const register_page_display_name_title = 'register_page.display_name_title';
-  static const register_page_display_name_subtitle = 'register_page.display_name_subtitle';
-  static const register_page_relationship_title = 'register_page.relationship_title';
-  static const register_page_relationship_subtitle = 'register_page.relationship_subtitle';
+  static const register_page_display_name_title =
+      'register_page.display_name_title';
+  static const register_page_display_name_subtitle =
+      'register_page.display_name_subtitle';
+  static const register_page_relationship_title =
+      'register_page.relationship_title';
+  static const register_page_relationship_subtitle =
+      'register_page.relationship_subtitle';
   static const register_page_career_title = 'register_page.career_title';
   static const register_page_career_subtitle = 'register_page.career_subtitle';
-  static const register_page_name_birth_location_title = 'register_page.name_birth_location_title';
-  static const register_page_name_birth_location_subtitle = 'register_page.name_birth_location_subtitle';
+  static const register_page_name_birth_location_title =
+      'register_page.name_birth_location_title';
+  static const register_page_name_birth_location_subtitle =
+      'register_page.name_birth_location_subtitle';
   static const register_page_name_label = 'register_page.name_label';
   static const register_page_name_hint = 'register_page.name_hint';
-  static const register_page_birth_date_label = 'register_page.birth_date_label';
+  static const register_page_birth_date_label =
+      'register_page.birth_date_label';
   static const register_page_birth_date_hint = 'register_page.birth_date_hint';
-  static const register_page_birth_time_label = 'register_page.birth_time_label';
+  static const register_page_birth_time_label =
+      'register_page.birth_time_label';
   static const register_page_birth_time_hint = 'register_page.birth_time_hint';
   static const register_page_location_label = 'register_page.location_label';
   static const register_page_location_hint = 'register_page.location_hint';
   static const register_page_continue_button = 'register_page.continue_button';
-  static const register_page_complete_registration = 'register_page.complete_registration';
-  static const register_page_preparing_account = 'register_page.preparing_account';
+  static const register_page_complete_registration =
+      'register_page.complete_registration';
+  static const register_page_preparing_account =
+      'register_page.preparing_account';
   static const register_page_loading_images = 'register_page.loading_images';
   static const register_page_loading_data = 'register_page.loading_data';
   static const register_page_progress_format = 'register_page.progress_format';
@@ -138,8 +178,10 @@ abstract class  LocaleKeys {
   static const settings_page_profile = 'settings_page.profile';
   static const settings_page_language = 'settings_page.language';
   static const settings_page_rate_us = 'settings_page.rate_us';
-  static const settings_page_restore_purchases = 'settings_page.restore_purchases';
-  static const settings_page_terms_of_service = 'settings_page.terms_of_service';
+  static const settings_page_restore_purchases =
+      'settings_page.restore_purchases';
+  static const settings_page_terms_of_service =
+      'settings_page.terms_of_service';
   static const settings_page_privacy_policy = 'settings_page.privacy_policy';
   static const settings_page_signout = 'settings_page.signout';
   static const settings_page_delete_account = 'settings_page.delete_account';
@@ -151,7 +193,8 @@ abstract class  LocaleKeys {
   static const settings_page = 'settings_page';
   static const delete_account_popup_title = 'delete_account_popup.title';
   static const delete_account_popup_desc = 'delete_account_popup.desc';
-  static const delete_account_popup_delete_button = 'delete_account_popup.delete_button';
+  static const delete_account_popup_delete_button =
+      'delete_account_popup.delete_button';
   static const delete_account_popup = 'delete_account_popup';
   static const popup_cancel_button = 'popup.cancel_button';
   static const popup_confirm_button = 'popup.confirm_button';
@@ -189,20 +232,26 @@ abstract class  LocaleKeys {
   static const career_status_career_break = 'career_status.career_break';
   static const career_status_homemaker = 'career_status.homemaker';
   static const career_status_retired = 'career_status.retired';
-  static const career_status_prefer_not_to_say = 'career_status.prefer_not_to_say';
+  static const career_status_prefer_not_to_say =
+      'career_status.prefer_not_to_say';
   static const career_status = 'career_status';
   static const relationship_status_single = 'relationship_status.single';
-  static const relationship_status_in_a_relationship = 'relationship_status.in_a_relationship';
+  static const relationship_status_in_a_relationship =
+      'relationship_status.in_a_relationship';
   static const relationship_status_engaged = 'relationship_status.engaged';
   static const relationship_status_married = 'relationship_status.married';
-  static const relationship_status_its_complicated = 'relationship_status.its_complicated';
+  static const relationship_status_its_complicated =
+      'relationship_status.its_complicated';
   static const relationship_status_dating = 'relationship_status.dating';
-  static const relationship_status_open_relationship = 'relationship_status.open_relationship';
+  static const relationship_status_open_relationship =
+      'relationship_status.open_relationship';
   static const relationship_status_separated = 'relationship_status.separated';
   static const relationship_status_divorced = 'relationship_status.divorced';
   static const relationship_status_healing = 'relationship_status.healing';
-  static const relationship_status_manifesting = 'relationship_status.manifesting';
-  static const relationship_status_prefer_not_to_say = 'relationship_status.prefer_not_to_say';
+  static const relationship_status_manifesting =
+      'relationship_status.manifesting';
+  static const relationship_status_prefer_not_to_say =
+      'relationship_status.prefer_not_to_say';
   static const relationship_status = 'relationship_status';
   static const tarot_daily_title = 'tarot_daily.title';
   static const tarot_daily_subtitle = 'tarot_daily.subtitle';
@@ -214,24 +263,38 @@ abstract class  LocaleKeys {
   static const tarot_daily_custom_date = 'tarot_daily.custom_date';
   static const tarot_daily_calendar_title = 'tarot_daily.calendar_title';
   static const tarot_daily_calendar_tap_hint = 'tarot_daily.calendar_tap_hint';
-  static const tarot_daily_calendar_cards_count = 'tarot_daily.calendar_cards_count';
+  static const tarot_daily_calendar_cards_count =
+      'tarot_daily.calendar_cards_count';
   static const tarot_daily_calendar_streak = 'tarot_daily.calendar_streak';
-  static const tarot_daily_calendar_no_card_today = 'tarot_daily.calendar_no_card_today';
-  static const tarot_daily_calendar_draw_card = 'tarot_daily.calendar_draw_card';
-  static const tarot_daily_calendar_no_card_past = 'tarot_daily.calendar_no_card_past';
-  static const tarot_daily_calendar_future_day = 'tarot_daily.calendar_future_day';
-  static const tarot_daily_calendar_view_detail = 'tarot_daily.calendar_view_detail';
-  static const tarot_daily_calendar_selected_day_today = 'tarot_daily.calendar_selected_day_today';
+  static const tarot_daily_calendar_no_card_today =
+      'tarot_daily.calendar_no_card_today';
+  static const tarot_daily_calendar_draw_card =
+      'tarot_daily.calendar_draw_card';
+  static const tarot_daily_calendar_no_card_past =
+      'tarot_daily.calendar_no_card_past';
+  static const tarot_daily_calendar_future_day =
+      'tarot_daily.calendar_future_day';
+  static const tarot_daily_calendar_view_detail =
+      'tarot_daily.calendar_view_detail';
+  static const tarot_daily_calendar_selected_day_today =
+      'tarot_daily.calendar_selected_day_today';
   static const tarot_daily_save_failed = 'tarot_daily.save_failed';
   static const tarot_daily_save_success = 'tarot_daily.save_success';
   static const tarot_daily = 'tarot_daily';
-  static const tarot_question_reader_step_title = 'tarot_question.reader_step_title';
-  static const tarot_question_category_step_title = 'tarot_question.category_step_title';
-  static const tarot_question_spread_step_title = 'tarot_question.spread_step_title';
-  static const tarot_question_question_step_title = 'tarot_question.question_step_title';
-  static const tarot_question_deck_shuffle_step_title = 'tarot_question.deck_shuffle_step_title';
-  static const tarot_question_deck_shuffle_open_step_subtitle = 'tarot_question.deck_shuffle_open_step_subtitle';
-  static const tarot_question_card_pick_step_title = 'tarot_question.card_pick_step_title';
+  static const tarot_question_reader_step_title =
+      'tarot_question.reader_step_title';
+  static const tarot_question_category_step_title =
+      'tarot_question.category_step_title';
+  static const tarot_question_spread_step_title =
+      'tarot_question.spread_step_title';
+  static const tarot_question_question_step_title =
+      'tarot_question.question_step_title';
+  static const tarot_question_deck_shuffle_step_title =
+      'tarot_question.deck_shuffle_step_title';
+  static const tarot_question_deck_shuffle_open_step_subtitle =
+      'tarot_question.deck_shuffle_open_step_subtitle';
+  static const tarot_question_card_pick_step_title =
+      'tarot_question.card_pick_step_title';
   static const tarot_question_step_1_of_5 = 'tarot_question.step_1_of_5';
   static const tarot_question_step_2_of_5 = 'tarot_question.step_2_of_5';
   static const tarot_question_step_3_of_5 = 'tarot_question.step_3_of_5';
@@ -240,12 +303,18 @@ abstract class  LocaleKeys {
   static const tarot_question_step_4_of_6 = 'tarot_question.step_4_of_6';
   static const tarot_question_step_5_of_6 = 'tarot_question.step_5_of_6';
   static const tarot_question_step_6_of_6 = 'tarot_question.step_6_of_6';
-  static const tarot_question_choose_reader_subtitle = 'tarot_question.choose_reader_subtitle';
-  static const tarot_question_choose_category_subtitle = 'tarot_question.choose_category_subtitle';
-  static const tarot_question_choose_spread_subtitle = 'tarot_question.choose_spread_subtitle';
-  static const tarot_question_choose_open_deck_subtitle = 'tarot_question.choose_open_deck_subtitle';
-  static const tarot_question_choose_cards_subtitle = 'tarot_question.choose_cards_subtitle';
-  static const tarot_question_scroll_and_tap_cards = 'tarot_question.scroll_and_tap_cards';
+  static const tarot_question_choose_reader_subtitle =
+      'tarot_question.choose_reader_subtitle';
+  static const tarot_question_choose_category_subtitle =
+      'tarot_question.choose_category_subtitle';
+  static const tarot_question_choose_spread_subtitle =
+      'tarot_question.choose_spread_subtitle';
+  static const tarot_question_choose_open_deck_subtitle =
+      'tarot_question.choose_open_deck_subtitle';
+  static const tarot_question_choose_cards_subtitle =
+      'tarot_question.choose_cards_subtitle';
+  static const tarot_question_scroll_and_tap_cards =
+      'tarot_question.scroll_and_tap_cards';
   static const tarot_question_spreads_count = 'tarot_question.spreads_count';
   static const tarot_question_need_guidance = 'tarot_question.need_guidance';
   static const tarot_question_guide_subtitle = 'tarot_question.guide_subtitle';
@@ -258,17 +327,27 @@ abstract class  LocaleKeys {
   static const tarot_question_tip_3_title = 'tarot_question.tip_3_title';
   static const tarot_question_tip_3_desc = 'tarot_question.tip_3_desc';
   static const tarot_question_question_hint = 'tarot_question.question_hint';
-  static const tarot_question_step6_ready_to_open = 'tarot_question.step6_ready_to_open';
-  static const tarot_question_step6_start_reading = 'tarot_question.step6_start_reading';
-  static const tarot_question_loading_subtitle = 'tarot_question.loading_subtitle';
+  static const tarot_question_step6_ready_to_open =
+      'tarot_question.step6_ready_to_open';
+  static const tarot_question_step6_start_reading =
+      'tarot_question.step6_start_reading';
+  static const tarot_question_loading_subtitle =
+      'tarot_question.loading_subtitle';
   static const tarot_question_loading_error = 'tarot_question.loading_error';
-  static const tarot_question_spread_card_journey = 'tarot_question.spread_card_journey';
-  static const tarot_question_tap_to_draw_cards = 'tarot_question.tap_to_draw_cards';
-  static const tarot_question_spread_position_card = 'tarot_question.spread_position_card';
-  static const tarot_question_loading_message_1 = 'tarot_question.loading_message_1';
-  static const tarot_question_loading_message_2 = 'tarot_question.loading_message_2';
-  static const tarot_question_loading_message_3 = 'tarot_question.loading_message_3';
-  static const tarot_question_loading_message_4 = 'tarot_question.loading_message_4';
+  static const tarot_question_spread_card_journey =
+      'tarot_question.spread_card_journey';
+  static const tarot_question_tap_to_draw_cards =
+      'tarot_question.tap_to_draw_cards';
+  static const tarot_question_spread_position_card =
+      'tarot_question.spread_position_card';
+  static const tarot_question_loading_message_1 =
+      'tarot_question.loading_message_1';
+  static const tarot_question_loading_message_2 =
+      'tarot_question.loading_message_2';
+  static const tarot_question_loading_message_3 =
+      'tarot_question.loading_message_3';
+  static const tarot_question_loading_message_4 =
+      'tarot_question.loading_message_4';
   static const tarot_question = 'tarot_question';
   static const paywall_unlimited_readings = 'paywall.unlimited_readings';
   static const paywall_limited_question = 'paywall.limited_question';
@@ -277,30 +356,46 @@ abstract class  LocaleKeys {
   static const paywall_daily_draw = 'paywall.daily_draw';
   static const paywall_daily_questions = 'paywall.daily_questions';
   static const paywall_monthly_summary = 'paywall.monthly_summary';
-  static const paywall_detailed_interpretation = 'paywall.detailed_interpretation';
+  static const paywall_detailed_interpretation =
+      'paywall.detailed_interpretation';
   static const paywall_popular = 'paywall.popular';
   static const paywall_exclusive_experience = 'paywall.exclusive_experience';
   static const paywall_unlock_destiny = 'paywall.unlock_destiny';
   static const paywall = 'paywall';
-  static const subscription_paywall_page_app_bar = 'subscription_paywall_page.app_bar';
-  static const subscription_paywall_page_title = 'subscription_paywall_page.title';
-  static const subscription_paywall_page_subtitle = 'subscription_paywall_page.subtitle';
-  static const subscription_paywall_page_footer_text = 'subscription_paywall_page.footer_text';
-  static const subscription_paywall_page_terms_of_service = 'subscription_paywall_page.terms_of_service';
-  static const subscription_paywall_page_failed_fetch_packages = 'subscription_paywall_page.failed_fetch_packages';
-  static const subscription_paywall_page_no_packages = 'subscription_paywall_page.no_packages';
-  static const subscription_paywall_page_package_card_period = 'subscription_paywall_page.package_card_period';
-  static const subscription_paywall_page_subscribe_placeholder_button = 'subscription_paywall_page.subscribe_placeholder_button';
-  static const subscription_paywall_page_retry_button = 'subscription_paywall_page.retry_button';
-  static const subscription_paywall_page_restore_button = 'subscription_paywall_page.restore_button';
-  static const subscription_paywall_page_subscribe_button = 'subscription_paywall_page.subscribe_button';
+  static const subscription_paywall_page_app_bar =
+      'subscription_paywall_page.app_bar';
+  static const subscription_paywall_page_title =
+      'subscription_paywall_page.title';
+  static const subscription_paywall_page_subtitle =
+      'subscription_paywall_page.subtitle';
+  static const subscription_paywall_page_footer_text =
+      'subscription_paywall_page.footer_text';
+  static const subscription_paywall_page_terms_of_service =
+      'subscription_paywall_page.terms_of_service';
+  static const subscription_paywall_page_failed_fetch_packages =
+      'subscription_paywall_page.failed_fetch_packages';
+  static const subscription_paywall_page_no_packages =
+      'subscription_paywall_page.no_packages';
+  static const subscription_paywall_page_package_card_period =
+      'subscription_paywall_page.package_card_period';
+  static const subscription_paywall_page_subscribe_placeholder_button =
+      'subscription_paywall_page.subscribe_placeholder_button';
+  static const subscription_paywall_page_retry_button =
+      'subscription_paywall_page.retry_button';
+  static const subscription_paywall_page_restore_button =
+      'subscription_paywall_page.restore_button';
+  static const subscription_paywall_page_subscribe_button =
+      'subscription_paywall_page.subscribe_button';
   static const subscription_paywall_page = 'subscription_paywall_page';
   static const subscription_period_month = 'subscription_period_month';
   static const subscription_period_week = 'subscription_period_week';
   static const subscription_period_year = 'subscription_period_year';
-  static const subscription_period_price_month = 'subscription_period_price.month';
-  static const subscription_period_price_week = 'subscription_period_price.week';
-  static const subscription_period_price_year = 'subscription_period_price.year';
+  static const subscription_period_price_month =
+      'subscription_period_price.month';
+  static const subscription_period_price_week =
+      'subscription_period_price.week';
+  static const subscription_period_price_year =
+      'subscription_period_price.year';
   static const subscription_period_price = 'subscription_period_price';
   static const tarot_reading_title = 'tarot_reading.title';
   static const tarot_reading_tab_spread = 'tarot_reading.tab_spread';
@@ -313,7 +408,8 @@ abstract class  LocaleKeys {
   static const tarot_reading_save_error = 'tarot_reading.save_error';
   static const tarot_reading_saved = 'tarot_reading.saved';
   static const tarot_reading_notes_title = 'tarot_reading.notes_title';
-  static const tarot_reading_notes_placeholder = 'tarot_reading.notes_placeholder';
+  static const tarot_reading_notes_placeholder =
+      'tarot_reading.notes_placeholder';
   static const tarot_reading_upright = 'tarot_reading.upright';
   static const tarot_reading_reversed = 'tarot_reading.reversed';
   static const tarot_reading_spread_label = 'tarot_reading.spread_label';
@@ -321,6 +417,12 @@ abstract class  LocaleKeys {
   static const tarot_reading_no_notes = 'tarot_reading.no_notes';
   static const tarot_reading_date_today = 'tarot_reading.date_today';
   static const tarot_reading_date_yesterday = 'tarot_reading.date_yesterday';
+  static const tarot_reading_filter_all_time = 'tarot_reading.filter_all_time';
+  static const tarot_reading_filter_last_7_days =
+      'tarot_reading.filter_last_7_days';
+  static const tarot_reading_filter_last_month =
+      'tarot_reading.filter_last_month';
+  static const tarot_reading_filter_custom = 'tarot_reading.filter_custom';
   static const tarot_reading_update_success = 'tarot_reading.update_success';
   static const tarot_reading_update_error = 'tarot_reading.update_error';
   static const tarot_reading_unsaved_title = 'tarot_reading.unsaved_title';
@@ -410,42 +512,78 @@ abstract class  LocaleKeys {
   static const zodiac_page_ruling_house_10 = 'zodiac_page.ruling_house_10';
   static const zodiac_page_ruling_house_11 = 'zodiac_page.ruling_house_11';
   static const zodiac_page_ruling_house_12 = 'zodiac_page.ruling_house_12';
-  static const zodiac_page_minor_arcana_aries_1 = 'zodiac_page.minor_arcana_aries_1';
-  static const zodiac_page_minor_arcana_aries_2 = 'zodiac_page.minor_arcana_aries_2';
-  static const zodiac_page_minor_arcana_aries_3 = 'zodiac_page.minor_arcana_aries_3';
-  static const zodiac_page_minor_arcana_taurus_1 = 'zodiac_page.minor_arcana_taurus_1';
-  static const zodiac_page_minor_arcana_taurus_2 = 'zodiac_page.minor_arcana_taurus_2';
-  static const zodiac_page_minor_arcana_taurus_3 = 'zodiac_page.minor_arcana_taurus_3';
-  static const zodiac_page_minor_arcana_gemini_1 = 'zodiac_page.minor_arcana_gemini_1';
-  static const zodiac_page_minor_arcana_gemini_2 = 'zodiac_page.minor_arcana_gemini_2';
-  static const zodiac_page_minor_arcana_gemini_3 = 'zodiac_page.minor_arcana_gemini_3';
-  static const zodiac_page_minor_arcana_cancer_1 = 'zodiac_page.minor_arcana_cancer_1';
-  static const zodiac_page_minor_arcana_cancer_2 = 'zodiac_page.minor_arcana_cancer_2';
-  static const zodiac_page_minor_arcana_cancer_3 = 'zodiac_page.minor_arcana_cancer_3';
-  static const zodiac_page_minor_arcana_leo_1 = 'zodiac_page.minor_arcana_leo_1';
-  static const zodiac_page_minor_arcana_leo_2 = 'zodiac_page.minor_arcana_leo_2';
-  static const zodiac_page_minor_arcana_leo_3 = 'zodiac_page.minor_arcana_leo_3';
-  static const zodiac_page_minor_arcana_virgo_1 = 'zodiac_page.minor_arcana_virgo_1';
-  static const zodiac_page_minor_arcana_virgo_2 = 'zodiac_page.minor_arcana_virgo_2';
-  static const zodiac_page_minor_arcana_virgo_3 = 'zodiac_page.minor_arcana_virgo_3';
-  static const zodiac_page_minor_arcana_libra_1 = 'zodiac_page.minor_arcana_libra_1';
-  static const zodiac_page_minor_arcana_libra_2 = 'zodiac_page.minor_arcana_libra_2';
-  static const zodiac_page_minor_arcana_libra_3 = 'zodiac_page.minor_arcana_libra_3';
-  static const zodiac_page_minor_arcana_scorpio_1 = 'zodiac_page.minor_arcana_scorpio_1';
-  static const zodiac_page_minor_arcana_scorpio_2 = 'zodiac_page.minor_arcana_scorpio_2';
-  static const zodiac_page_minor_arcana_scorpio_3 = 'zodiac_page.minor_arcana_scorpio_3';
-  static const zodiac_page_minor_arcana_sagittarius_1 = 'zodiac_page.minor_arcana_sagittarius_1';
-  static const zodiac_page_minor_arcana_sagittarius_2 = 'zodiac_page.minor_arcana_sagittarius_2';
-  static const zodiac_page_minor_arcana_sagittarius_3 = 'zodiac_page.minor_arcana_sagittarius_3';
-  static const zodiac_page_minor_arcana_capricorn_1 = 'zodiac_page.minor_arcana_capricorn_1';
-  static const zodiac_page_minor_arcana_capricorn_2 = 'zodiac_page.minor_arcana_capricorn_2';
-  static const zodiac_page_minor_arcana_capricorn_3 = 'zodiac_page.minor_arcana_capricorn_3';
-  static const zodiac_page_minor_arcana_aquarius_1 = 'zodiac_page.minor_arcana_aquarius_1';
-  static const zodiac_page_minor_arcana_aquarius_2 = 'zodiac_page.minor_arcana_aquarius_2';
-  static const zodiac_page_minor_arcana_aquarius_3 = 'zodiac_page.minor_arcana_aquarius_3';
-  static const zodiac_page_minor_arcana_pisces_1 = 'zodiac_page.minor_arcana_pisces_1';
-  static const zodiac_page_minor_arcana_pisces_2 = 'zodiac_page.minor_arcana_pisces_2';
-  static const zodiac_page_minor_arcana_pisces_3 = 'zodiac_page.minor_arcana_pisces_3';
+  static const zodiac_page_minor_arcana_aries_1 =
+      'zodiac_page.minor_arcana_aries_1';
+  static const zodiac_page_minor_arcana_aries_2 =
+      'zodiac_page.minor_arcana_aries_2';
+  static const zodiac_page_minor_arcana_aries_3 =
+      'zodiac_page.minor_arcana_aries_3';
+  static const zodiac_page_minor_arcana_taurus_1 =
+      'zodiac_page.minor_arcana_taurus_1';
+  static const zodiac_page_minor_arcana_taurus_2 =
+      'zodiac_page.minor_arcana_taurus_2';
+  static const zodiac_page_minor_arcana_taurus_3 =
+      'zodiac_page.minor_arcana_taurus_3';
+  static const zodiac_page_minor_arcana_gemini_1 =
+      'zodiac_page.minor_arcana_gemini_1';
+  static const zodiac_page_minor_arcana_gemini_2 =
+      'zodiac_page.minor_arcana_gemini_2';
+  static const zodiac_page_minor_arcana_gemini_3 =
+      'zodiac_page.minor_arcana_gemini_3';
+  static const zodiac_page_minor_arcana_cancer_1 =
+      'zodiac_page.minor_arcana_cancer_1';
+  static const zodiac_page_minor_arcana_cancer_2 =
+      'zodiac_page.minor_arcana_cancer_2';
+  static const zodiac_page_minor_arcana_cancer_3 =
+      'zodiac_page.minor_arcana_cancer_3';
+  static const zodiac_page_minor_arcana_leo_1 =
+      'zodiac_page.minor_arcana_leo_1';
+  static const zodiac_page_minor_arcana_leo_2 =
+      'zodiac_page.minor_arcana_leo_2';
+  static const zodiac_page_minor_arcana_leo_3 =
+      'zodiac_page.minor_arcana_leo_3';
+  static const zodiac_page_minor_arcana_virgo_1 =
+      'zodiac_page.minor_arcana_virgo_1';
+  static const zodiac_page_minor_arcana_virgo_2 =
+      'zodiac_page.minor_arcana_virgo_2';
+  static const zodiac_page_minor_arcana_virgo_3 =
+      'zodiac_page.minor_arcana_virgo_3';
+  static const zodiac_page_minor_arcana_libra_1 =
+      'zodiac_page.minor_arcana_libra_1';
+  static const zodiac_page_minor_arcana_libra_2 =
+      'zodiac_page.minor_arcana_libra_2';
+  static const zodiac_page_minor_arcana_libra_3 =
+      'zodiac_page.minor_arcana_libra_3';
+  static const zodiac_page_minor_arcana_scorpio_1 =
+      'zodiac_page.minor_arcana_scorpio_1';
+  static const zodiac_page_minor_arcana_scorpio_2 =
+      'zodiac_page.minor_arcana_scorpio_2';
+  static const zodiac_page_minor_arcana_scorpio_3 =
+      'zodiac_page.minor_arcana_scorpio_3';
+  static const zodiac_page_minor_arcana_sagittarius_1 =
+      'zodiac_page.minor_arcana_sagittarius_1';
+  static const zodiac_page_minor_arcana_sagittarius_2 =
+      'zodiac_page.minor_arcana_sagittarius_2';
+  static const zodiac_page_minor_arcana_sagittarius_3 =
+      'zodiac_page.minor_arcana_sagittarius_3';
+  static const zodiac_page_minor_arcana_capricorn_1 =
+      'zodiac_page.minor_arcana_capricorn_1';
+  static const zodiac_page_minor_arcana_capricorn_2 =
+      'zodiac_page.minor_arcana_capricorn_2';
+  static const zodiac_page_minor_arcana_capricorn_3 =
+      'zodiac_page.minor_arcana_capricorn_3';
+  static const zodiac_page_minor_arcana_aquarius_1 =
+      'zodiac_page.minor_arcana_aquarius_1';
+  static const zodiac_page_minor_arcana_aquarius_2 =
+      'zodiac_page.minor_arcana_aquarius_2';
+  static const zodiac_page_minor_arcana_aquarius_3 =
+      'zodiac_page.minor_arcana_aquarius_3';
+  static const zodiac_page_minor_arcana_pisces_1 =
+      'zodiac_page.minor_arcana_pisces_1';
+  static const zodiac_page_minor_arcana_pisces_2 =
+      'zodiac_page.minor_arcana_pisces_2';
+  static const zodiac_page_minor_arcana_pisces_3 =
+      'zodiac_page.minor_arcana_pisces_3';
   static const zodiac_page_strength_aries_1 = 'zodiac_page.strength_aries_1';
   static const zodiac_page_strength_aries_2 = 'zodiac_page.strength_aries_2';
   static const zodiac_page_strength_aries_3 = 'zodiac_page.strength_aries_3';
@@ -467,18 +605,30 @@ abstract class  LocaleKeys {
   static const zodiac_page_strength_libra_1 = 'zodiac_page.strength_libra_1';
   static const zodiac_page_strength_libra_2 = 'zodiac_page.strength_libra_2';
   static const zodiac_page_strength_libra_3 = 'zodiac_page.strength_libra_3';
-  static const zodiac_page_strength_scorpio_1 = 'zodiac_page.strength_scorpio_1';
-  static const zodiac_page_strength_scorpio_2 = 'zodiac_page.strength_scorpio_2';
-  static const zodiac_page_strength_scorpio_3 = 'zodiac_page.strength_scorpio_3';
-  static const zodiac_page_strength_sagittarius_1 = 'zodiac_page.strength_sagittarius_1';
-  static const zodiac_page_strength_sagittarius_2 = 'zodiac_page.strength_sagittarius_2';
-  static const zodiac_page_strength_sagittarius_3 = 'zodiac_page.strength_sagittarius_3';
-  static const zodiac_page_strength_capricorn_1 = 'zodiac_page.strength_capricorn_1';
-  static const zodiac_page_strength_capricorn_2 = 'zodiac_page.strength_capricorn_2';
-  static const zodiac_page_strength_capricorn_3 = 'zodiac_page.strength_capricorn_3';
-  static const zodiac_page_strength_aquarius_1 = 'zodiac_page.strength_aquarius_1';
-  static const zodiac_page_strength_aquarius_2 = 'zodiac_page.strength_aquarius_2';
-  static const zodiac_page_strength_aquarius_3 = 'zodiac_page.strength_aquarius_3';
+  static const zodiac_page_strength_scorpio_1 =
+      'zodiac_page.strength_scorpio_1';
+  static const zodiac_page_strength_scorpio_2 =
+      'zodiac_page.strength_scorpio_2';
+  static const zodiac_page_strength_scorpio_3 =
+      'zodiac_page.strength_scorpio_3';
+  static const zodiac_page_strength_sagittarius_1 =
+      'zodiac_page.strength_sagittarius_1';
+  static const zodiac_page_strength_sagittarius_2 =
+      'zodiac_page.strength_sagittarius_2';
+  static const zodiac_page_strength_sagittarius_3 =
+      'zodiac_page.strength_sagittarius_3';
+  static const zodiac_page_strength_capricorn_1 =
+      'zodiac_page.strength_capricorn_1';
+  static const zodiac_page_strength_capricorn_2 =
+      'zodiac_page.strength_capricorn_2';
+  static const zodiac_page_strength_capricorn_3 =
+      'zodiac_page.strength_capricorn_3';
+  static const zodiac_page_strength_aquarius_1 =
+      'zodiac_page.strength_aquarius_1';
+  static const zodiac_page_strength_aquarius_2 =
+      'zodiac_page.strength_aquarius_2';
+  static const zodiac_page_strength_aquarius_3 =
+      'zodiac_page.strength_aquarius_3';
   static const zodiac_page_strength_pisces_1 = 'zodiac_page.strength_pisces_1';
   static const zodiac_page_strength_pisces_2 = 'zodiac_page.strength_pisces_2';
   static const zodiac_page_strength_pisces_3 = 'zodiac_page.strength_pisces_3';
@@ -506,49 +656,83 @@ abstract class  LocaleKeys {
   static const zodiac_page_shadow_scorpio_1 = 'zodiac_page.shadow_scorpio_1';
   static const zodiac_page_shadow_scorpio_2 = 'zodiac_page.shadow_scorpio_2';
   static const zodiac_page_shadow_scorpio_3 = 'zodiac_page.shadow_scorpio_3';
-  static const zodiac_page_shadow_sagittarius_1 = 'zodiac_page.shadow_sagittarius_1';
-  static const zodiac_page_shadow_sagittarius_2 = 'zodiac_page.shadow_sagittarius_2';
-  static const zodiac_page_shadow_sagittarius_3 = 'zodiac_page.shadow_sagittarius_3';
-  static const zodiac_page_shadow_capricorn_1 = 'zodiac_page.shadow_capricorn_1';
-  static const zodiac_page_shadow_capricorn_2 = 'zodiac_page.shadow_capricorn_2';
-  static const zodiac_page_shadow_capricorn_3 = 'zodiac_page.shadow_capricorn_3';
+  static const zodiac_page_shadow_sagittarius_1 =
+      'zodiac_page.shadow_sagittarius_1';
+  static const zodiac_page_shadow_sagittarius_2 =
+      'zodiac_page.shadow_sagittarius_2';
+  static const zodiac_page_shadow_sagittarius_3 =
+      'zodiac_page.shadow_sagittarius_3';
+  static const zodiac_page_shadow_capricorn_1 =
+      'zodiac_page.shadow_capricorn_1';
+  static const zodiac_page_shadow_capricorn_2 =
+      'zodiac_page.shadow_capricorn_2';
+  static const zodiac_page_shadow_capricorn_3 =
+      'zodiac_page.shadow_capricorn_3';
   static const zodiac_page_shadow_aquarius_1 = 'zodiac_page.shadow_aquarius_1';
   static const zodiac_page_shadow_aquarius_2 = 'zodiac_page.shadow_aquarius_2';
   static const zodiac_page_shadow_aquarius_3 = 'zodiac_page.shadow_aquarius_3';
   static const zodiac_page_shadow_pisces_1 = 'zodiac_page.shadow_pisces_1';
   static const zodiac_page_shadow_pisces_2 = 'zodiac_page.shadow_pisces_2';
   static const zodiac_page_shadow_pisces_3 = 'zodiac_page.shadow_pisces_3';
-  static const zodiac_page_major_arcana_message_aries = 'zodiac_page.major_arcana_message_aries';
-  static const zodiac_page_major_arcana_message_taurus = 'zodiac_page.major_arcana_message_taurus';
-  static const zodiac_page_major_arcana_message_gemini = 'zodiac_page.major_arcana_message_gemini';
-  static const zodiac_page_major_arcana_message_cancer = 'zodiac_page.major_arcana_message_cancer';
-  static const zodiac_page_major_arcana_message_leo = 'zodiac_page.major_arcana_message_leo';
-  static const zodiac_page_major_arcana_message_virgo = 'zodiac_page.major_arcana_message_virgo';
-  static const zodiac_page_major_arcana_message_libra = 'zodiac_page.major_arcana_message_libra';
-  static const zodiac_page_major_arcana_message_scorpio = 'zodiac_page.major_arcana_message_scorpio';
-  static const zodiac_page_major_arcana_message_sagittarius = 'zodiac_page.major_arcana_message_sagittarius';
-  static const zodiac_page_major_arcana_message_capricorn = 'zodiac_page.major_arcana_message_capricorn';
-  static const zodiac_page_major_arcana_message_aquarius = 'zodiac_page.major_arcana_message_aquarius';
-  static const zodiac_page_major_arcana_message_pisces = 'zodiac_page.major_arcana_message_pisces';
+  static const zodiac_page_major_arcana_message_aries =
+      'zodiac_page.major_arcana_message_aries';
+  static const zodiac_page_major_arcana_message_taurus =
+      'zodiac_page.major_arcana_message_taurus';
+  static const zodiac_page_major_arcana_message_gemini =
+      'zodiac_page.major_arcana_message_gemini';
+  static const zodiac_page_major_arcana_message_cancer =
+      'zodiac_page.major_arcana_message_cancer';
+  static const zodiac_page_major_arcana_message_leo =
+      'zodiac_page.major_arcana_message_leo';
+  static const zodiac_page_major_arcana_message_virgo =
+      'zodiac_page.major_arcana_message_virgo';
+  static const zodiac_page_major_arcana_message_libra =
+      'zodiac_page.major_arcana_message_libra';
+  static const zodiac_page_major_arcana_message_scorpio =
+      'zodiac_page.major_arcana_message_scorpio';
+  static const zodiac_page_major_arcana_message_sagittarius =
+      'zodiac_page.major_arcana_message_sagittarius';
+  static const zodiac_page_major_arcana_message_capricorn =
+      'zodiac_page.major_arcana_message_capricorn';
+  static const zodiac_page_major_arcana_message_aquarius =
+      'zodiac_page.major_arcana_message_aquarius';
+  static const zodiac_page_major_arcana_message_pisces =
+      'zodiac_page.major_arcana_message_pisces';
   static const zodiac_page_energy_focus_fire = 'zodiac_page.energy_focus_fire';
-  static const zodiac_page_energy_focus_earth = 'zodiac_page.energy_focus_earth';
+  static const zodiac_page_energy_focus_earth =
+      'zodiac_page.energy_focus_earth';
   static const zodiac_page_energy_focus_air = 'zodiac_page.energy_focus_air';
-  static const zodiac_page_energy_focus_water = 'zodiac_page.energy_focus_water';
-  static const zodiac_page_growth_key_cardinal = 'zodiac_page.growth_key_cardinal';
+  static const zodiac_page_energy_focus_water =
+      'zodiac_page.energy_focus_water';
+  static const zodiac_page_growth_key_cardinal =
+      'zodiac_page.growth_key_cardinal';
   static const zodiac_page_growth_key_fixed = 'zodiac_page.growth_key_fixed';
-  static const zodiac_page_growth_key_mutable = 'zodiac_page.growth_key_mutable';
-  static const zodiac_page_daily_intention_aries = 'zodiac_page.daily_intention_aries';
-  static const zodiac_page_daily_intention_taurus = 'zodiac_page.daily_intention_taurus';
-  static const zodiac_page_daily_intention_gemini = 'zodiac_page.daily_intention_gemini';
-  static const zodiac_page_daily_intention_cancer = 'zodiac_page.daily_intention_cancer';
-  static const zodiac_page_daily_intention_leo = 'zodiac_page.daily_intention_leo';
-  static const zodiac_page_daily_intention_virgo = 'zodiac_page.daily_intention_virgo';
-  static const zodiac_page_daily_intention_libra = 'zodiac_page.daily_intention_libra';
-  static const zodiac_page_daily_intention_scorpio = 'zodiac_page.daily_intention_scorpio';
-  static const zodiac_page_daily_intention_sagittarius = 'zodiac_page.daily_intention_sagittarius';
-  static const zodiac_page_daily_intention_capricorn = 'zodiac_page.daily_intention_capricorn';
-  static const zodiac_page_daily_intention_aquarius = 'zodiac_page.daily_intention_aquarius';
-  static const zodiac_page_daily_intention_pisces = 'zodiac_page.daily_intention_pisces';
+  static const zodiac_page_growth_key_mutable =
+      'zodiac_page.growth_key_mutable';
+  static const zodiac_page_daily_intention_aries =
+      'zodiac_page.daily_intention_aries';
+  static const zodiac_page_daily_intention_taurus =
+      'zodiac_page.daily_intention_taurus';
+  static const zodiac_page_daily_intention_gemini =
+      'zodiac_page.daily_intention_gemini';
+  static const zodiac_page_daily_intention_cancer =
+      'zodiac_page.daily_intention_cancer';
+  static const zodiac_page_daily_intention_leo =
+      'zodiac_page.daily_intention_leo';
+  static const zodiac_page_daily_intention_virgo =
+      'zodiac_page.daily_intention_virgo';
+  static const zodiac_page_daily_intention_libra =
+      'zodiac_page.daily_intention_libra';
+  static const zodiac_page_daily_intention_scorpio =
+      'zodiac_page.daily_intention_scorpio';
+  static const zodiac_page_daily_intention_sagittarius =
+      'zodiac_page.daily_intention_sagittarius';
+  static const zodiac_page_daily_intention_capricorn =
+      'zodiac_page.daily_intention_capricorn';
+  static const zodiac_page_daily_intention_aquarius =
+      'zodiac_page.daily_intention_aquarius';
+  static const zodiac_page_daily_intention_pisces =
+      'zodiac_page.daily_intention_pisces';
   static const zodiac_page = 'zodiac_page';
   static const tarot_shuffle_step_5_of_5 = 'tarot_shuffle.step_5_of_5';
   static const tarot_shuffle_tip_1_title = 'tarot_shuffle.tip_1_title';
@@ -568,11 +752,14 @@ abstract class  LocaleKeys {
   static const compat_page_gender_female = 'compat_page.gender_female';
   static const compat_page_gender_male = 'compat_page.gender_male';
   static const compat_page_calculate = 'compat_page.calculate';
-  static const compat_page_explore_card_title = 'compat_page.explore_card_title';
+  static const compat_page_explore_card_title =
+      'compat_page.explore_card_title';
   static const compat_page_section_label = 'compat_page.section_label';
-  static const compat_page_category_sexuality = 'compat_page.category_sexuality';
+  static const compat_page_category_sexuality =
+      'compat_page.category_sexuality';
   static const compat_page_category_trust = 'compat_page.category_trust';
-  static const compat_page_category_communication = 'compat_page.category_communication';
+  static const compat_page_category_communication =
+      'compat_page.category_communication';
   static const compat_page_category_emotions = 'compat_page.category_emotions';
   static const compat_page_category_values = 'compat_page.category_values';
   static const compat_page_title_high = 'compat_page.title_high';
@@ -601,37 +788,61 @@ abstract class  LocaleKeys {
   static const compat_page_tone_desc_9 = 'compat_page.tone_desc_9';
   static const compat_page_summary_label = 'compat_page.summary_label';
   static const compat_page_summary_template = 'compat_page.summary_template';
-  static const compat_page_summary_tone_very_high = 'compat_page.summary_tone_very_high';
+  static const compat_page_summary_tone_very_high =
+      'compat_page.summary_tone_very_high';
   static const compat_page_summary_tone_high = 'compat_page.summary_tone_high';
   static const compat_page_summary_tone_mid = 'compat_page.summary_tone_mid';
   static const compat_page_summary_tone_low = 'compat_page.summary_tone_low';
-  static const compat_page_summary_tone_very_low = 'compat_page.summary_tone_very_low';
-  static const compat_page_summary_element_same = 'compat_page.summary_element_same';
-  static const compat_page_summary_element_compatible = 'compat_page.summary_element_compatible';
-  static const compat_page_summary_element_neutral = 'compat_page.summary_element_neutral';
-  static const compat_page_summary_element_tense = 'compat_page.summary_element_tense';
-  static const compat_page_summary_aspect_same = 'compat_page.summary_aspect_same';
-  static const compat_page_summary_aspect_supportive = 'compat_page.summary_aspect_supportive';
-  static const compat_page_summary_aspect_square = 'compat_page.summary_aspect_square';
-  static const compat_page_summary_aspect_trine = 'compat_page.summary_aspect_trine';
-  static const compat_page_summary_aspect_adjust = 'compat_page.summary_aspect_adjust';
-  static const compat_page_summary_aspect_opposite = 'compat_page.summary_aspect_opposite';
-  static const compat_page_summary_aspect_mixed = 'compat_page.summary_aspect_mixed';
-  static const compat_page_summary_balance_template = 'compat_page.summary_balance_template';
-  static const compat_page_summary_gender_female_male = 'compat_page.summary_gender_female_male';
-  static const compat_page_summary_gender_male_female = 'compat_page.summary_gender_male_female';
+  static const compat_page_summary_tone_very_low =
+      'compat_page.summary_tone_very_low';
+  static const compat_page_summary_element_same =
+      'compat_page.summary_element_same';
+  static const compat_page_summary_element_compatible =
+      'compat_page.summary_element_compatible';
+  static const compat_page_summary_element_neutral =
+      'compat_page.summary_element_neutral';
+  static const compat_page_summary_element_tense =
+      'compat_page.summary_element_tense';
+  static const compat_page_summary_aspect_same =
+      'compat_page.summary_aspect_same';
+  static const compat_page_summary_aspect_supportive =
+      'compat_page.summary_aspect_supportive';
+  static const compat_page_summary_aspect_square =
+      'compat_page.summary_aspect_square';
+  static const compat_page_summary_aspect_trine =
+      'compat_page.summary_aspect_trine';
+  static const compat_page_summary_aspect_adjust =
+      'compat_page.summary_aspect_adjust';
+  static const compat_page_summary_aspect_opposite =
+      'compat_page.summary_aspect_opposite';
+  static const compat_page_summary_aspect_mixed =
+      'compat_page.summary_aspect_mixed';
+  static const compat_page_summary_balance_template =
+      'compat_page.summary_balance_template';
+  static const compat_page_summary_gender_female_male =
+      'compat_page.summary_gender_female_male';
+  static const compat_page_summary_gender_male_female =
+      'compat_page.summary_gender_male_female';
   static const compat_page_role_female_aries = 'compat_page.role_female_aries';
-  static const compat_page_role_female_taurus = 'compat_page.role_female_taurus';
-  static const compat_page_role_female_gemini = 'compat_page.role_female_gemini';
-  static const compat_page_role_female_cancer = 'compat_page.role_female_cancer';
+  static const compat_page_role_female_taurus =
+      'compat_page.role_female_taurus';
+  static const compat_page_role_female_gemini =
+      'compat_page.role_female_gemini';
+  static const compat_page_role_female_cancer =
+      'compat_page.role_female_cancer';
   static const compat_page_role_female_leo = 'compat_page.role_female_leo';
   static const compat_page_role_female_virgo = 'compat_page.role_female_virgo';
   static const compat_page_role_female_libra = 'compat_page.role_female_libra';
-  static const compat_page_role_female_scorpio = 'compat_page.role_female_scorpio';
-  static const compat_page_role_female_sagittarius = 'compat_page.role_female_sagittarius';
-  static const compat_page_role_female_capricorn = 'compat_page.role_female_capricorn';
-  static const compat_page_role_female_aquarius = 'compat_page.role_female_aquarius';
-  static const compat_page_role_female_pisces = 'compat_page.role_female_pisces';
+  static const compat_page_role_female_scorpio =
+      'compat_page.role_female_scorpio';
+  static const compat_page_role_female_sagittarius =
+      'compat_page.role_female_sagittarius';
+  static const compat_page_role_female_capricorn =
+      'compat_page.role_female_capricorn';
+  static const compat_page_role_female_aquarius =
+      'compat_page.role_female_aquarius';
+  static const compat_page_role_female_pisces =
+      'compat_page.role_female_pisces';
   static const compat_page_role_male_aries = 'compat_page.role_male_aries';
   static const compat_page_role_male_taurus = 'compat_page.role_male_taurus';
   static const compat_page_role_male_gemini = 'compat_page.role_male_gemini';
@@ -640,9 +851,12 @@ abstract class  LocaleKeys {
   static const compat_page_role_male_virgo = 'compat_page.role_male_virgo';
   static const compat_page_role_male_libra = 'compat_page.role_male_libra';
   static const compat_page_role_male_scorpio = 'compat_page.role_male_scorpio';
-  static const compat_page_role_male_sagittarius = 'compat_page.role_male_sagittarius';
-  static const compat_page_role_male_capricorn = 'compat_page.role_male_capricorn';
-  static const compat_page_role_male_aquarius = 'compat_page.role_male_aquarius';
+  static const compat_page_role_male_sagittarius =
+      'compat_page.role_male_sagittarius';
+  static const compat_page_role_male_capricorn =
+      'compat_page.role_male_capricorn';
+  static const compat_page_role_male_aquarius =
+      'compat_page.role_male_aquarius';
   static const compat_page_role_male_pisces = 'compat_page.role_male_pisces';
   static const compat_page_need_aries = 'compat_page.need_aries';
   static const compat_page_need_taurus = 'compat_page.need_taurus';
@@ -656,70 +870,121 @@ abstract class  LocaleKeys {
   static const compat_page_need_capricorn = 'compat_page.need_capricorn';
   static const compat_page_need_aquarius = 'compat_page.need_aquarius';
   static const compat_page_need_pisces = 'compat_page.need_pisces';
-  static const compat_page_category_desc_sexuality_high = 'compat_page.category_desc_sexuality_high';
-  static const compat_page_category_desc_sexuality_mid = 'compat_page.category_desc_sexuality_mid';
-  static const compat_page_category_desc_sexuality_low = 'compat_page.category_desc_sexuality_low';
-  static const compat_page_category_desc_trust_high = 'compat_page.category_desc_trust_high';
-  static const compat_page_category_desc_trust_mid = 'compat_page.category_desc_trust_mid';
-  static const compat_page_category_desc_trust_low = 'compat_page.category_desc_trust_low';
-  static const compat_page_category_desc_communication_high = 'compat_page.category_desc_communication_high';
-  static const compat_page_category_desc_communication_mid = 'compat_page.category_desc_communication_mid';
-  static const compat_page_category_desc_communication_low = 'compat_page.category_desc_communication_low';
-  static const compat_page_category_desc_emotions_high = 'compat_page.category_desc_emotions_high';
-  static const compat_page_category_desc_emotions_mid = 'compat_page.category_desc_emotions_mid';
-  static const compat_page_category_desc_emotions_low = 'compat_page.category_desc_emotions_low';
-  static const compat_page_category_desc_values_high = 'compat_page.category_desc_values_high';
-  static const compat_page_category_desc_values_mid = 'compat_page.category_desc_values_mid';
-  static const compat_page_category_desc_values_low = 'compat_page.category_desc_values_low';
-  static const compat_page_reason_sexuality_same = 'compat_page.reason_sexuality_same';
-  static const compat_page_reason_sexuality_compatible = 'compat_page.reason_sexuality_compatible';
-  static const compat_page_reason_sexuality_tense = 'compat_page.reason_sexuality_tense';
-  static const compat_page_reason_sexuality_neutral = 'compat_page.reason_sexuality_neutral';
-  static const compat_page_reason_trust_square = 'compat_page.reason_trust_square';
-  static const compat_page_reason_trust_adjust = 'compat_page.reason_trust_adjust';
-  static const compat_page_reason_trust_stable = 'compat_page.reason_trust_stable';
-  static const compat_page_reason_trust_default = 'compat_page.reason_trust_default';
-  static const compat_page_reason_communication_air = 'compat_page.reason_communication_air';
-  static const compat_page_reason_communication_supportive = 'compat_page.reason_communication_supportive';
-  static const compat_page_reason_communication_square = 'compat_page.reason_communication_square';
-  static const compat_page_reason_communication_default = 'compat_page.reason_communication_default';
-  static const compat_page_reason_emotions_water = 'compat_page.reason_emotions_water';
-  static const compat_page_reason_emotions_earth_water = 'compat_page.reason_emotions_earth_water';
-  static const compat_page_reason_emotions_tense = 'compat_page.reason_emotions_tense';
-  static const compat_page_reason_emotions_default = 'compat_page.reason_emotions_default';
-  static const compat_page_reason_values_same = 'compat_page.reason_values_same';
-  static const compat_page_reason_values_earth = 'compat_page.reason_values_earth';
-  static const compat_page_reason_values_trine = 'compat_page.reason_values_trine';
-  static const compat_page_reason_values_default = 'compat_page.reason_values_default';
-  static const compat_page_gender_note_sexuality = 'compat_page.gender_note_sexuality';
+  static const compat_page_category_desc_sexuality_high =
+      'compat_page.category_desc_sexuality_high';
+  static const compat_page_category_desc_sexuality_mid =
+      'compat_page.category_desc_sexuality_mid';
+  static const compat_page_category_desc_sexuality_low =
+      'compat_page.category_desc_sexuality_low';
+  static const compat_page_category_desc_trust_high =
+      'compat_page.category_desc_trust_high';
+  static const compat_page_category_desc_trust_mid =
+      'compat_page.category_desc_trust_mid';
+  static const compat_page_category_desc_trust_low =
+      'compat_page.category_desc_trust_low';
+  static const compat_page_category_desc_communication_high =
+      'compat_page.category_desc_communication_high';
+  static const compat_page_category_desc_communication_mid =
+      'compat_page.category_desc_communication_mid';
+  static const compat_page_category_desc_communication_low =
+      'compat_page.category_desc_communication_low';
+  static const compat_page_category_desc_emotions_high =
+      'compat_page.category_desc_emotions_high';
+  static const compat_page_category_desc_emotions_mid =
+      'compat_page.category_desc_emotions_mid';
+  static const compat_page_category_desc_emotions_low =
+      'compat_page.category_desc_emotions_low';
+  static const compat_page_category_desc_values_high =
+      'compat_page.category_desc_values_high';
+  static const compat_page_category_desc_values_mid =
+      'compat_page.category_desc_values_mid';
+  static const compat_page_category_desc_values_low =
+      'compat_page.category_desc_values_low';
+  static const compat_page_reason_sexuality_same =
+      'compat_page.reason_sexuality_same';
+  static const compat_page_reason_sexuality_compatible =
+      'compat_page.reason_sexuality_compatible';
+  static const compat_page_reason_sexuality_tense =
+      'compat_page.reason_sexuality_tense';
+  static const compat_page_reason_sexuality_neutral =
+      'compat_page.reason_sexuality_neutral';
+  static const compat_page_reason_trust_square =
+      'compat_page.reason_trust_square';
+  static const compat_page_reason_trust_adjust =
+      'compat_page.reason_trust_adjust';
+  static const compat_page_reason_trust_stable =
+      'compat_page.reason_trust_stable';
+  static const compat_page_reason_trust_default =
+      'compat_page.reason_trust_default';
+  static const compat_page_reason_communication_air =
+      'compat_page.reason_communication_air';
+  static const compat_page_reason_communication_supportive =
+      'compat_page.reason_communication_supportive';
+  static const compat_page_reason_communication_square =
+      'compat_page.reason_communication_square';
+  static const compat_page_reason_communication_default =
+      'compat_page.reason_communication_default';
+  static const compat_page_reason_emotions_water =
+      'compat_page.reason_emotions_water';
+  static const compat_page_reason_emotions_earth_water =
+      'compat_page.reason_emotions_earth_water';
+  static const compat_page_reason_emotions_tense =
+      'compat_page.reason_emotions_tense';
+  static const compat_page_reason_emotions_default =
+      'compat_page.reason_emotions_default';
+  static const compat_page_reason_values_same =
+      'compat_page.reason_values_same';
+  static const compat_page_reason_values_earth =
+      'compat_page.reason_values_earth';
+  static const compat_page_reason_values_trine =
+      'compat_page.reason_values_trine';
+  static const compat_page_reason_values_default =
+      'compat_page.reason_values_default';
+  static const compat_page_gender_note_sexuality =
+      'compat_page.gender_note_sexuality';
   static const compat_page_gender_note_trust = 'compat_page.gender_note_trust';
-  static const compat_page_gender_note_communication = 'compat_page.gender_note_communication';
-  static const compat_page_gender_note_emotions = 'compat_page.gender_note_emotions';
-  static const compat_page_gender_note_values = 'compat_page.gender_note_values';
+  static const compat_page_gender_note_communication =
+      'compat_page.gender_note_communication';
+  static const compat_page_gender_note_emotions =
+      'compat_page.gender_note_emotions';
+  static const compat_page_gender_note_values =
+      'compat_page.gender_note_values';
   static const compat_page = 'compat_page';
   static const horoscope_page_title = 'horoscope_page.title';
   static const horoscope_page_tab_daily = 'horoscope_page.tab_daily';
   static const horoscope_page_tab_weekly = 'horoscope_page.tab_weekly';
   static const horoscope_page_tab_monthly = 'horoscope_page.tab_monthly';
-  static const horoscope_page_tab_label_daily = 'horoscope_page.tab_label_daily';
-  static const horoscope_page_tab_label_weekly = 'horoscope_page.tab_label_weekly';
-  static const horoscope_page_tab_label_monthly = 'horoscope_page.tab_label_monthly';
+  static const horoscope_page_tab_label_daily =
+      'horoscope_page.tab_label_daily';
+  static const horoscope_page_tab_label_weekly =
+      'horoscope_page.tab_label_weekly';
+  static const horoscope_page_tab_label_monthly =
+      'horoscope_page.tab_label_monthly';
   static const horoscope_page_general_label = 'horoscope_page.general_label';
   static const horoscope_page_category_love = 'horoscope_page.category_love';
-  static const horoscope_page_category_finance = 'horoscope_page.category_finance';
-  static const horoscope_page_category_career = 'horoscope_page.category_career';
-  static const horoscope_page_category_health = 'horoscope_page.category_health';
-  static const horoscope_page_category_family = 'horoscope_page.category_family';
+  static const horoscope_page_category_finance =
+      'horoscope_page.category_finance';
+  static const horoscope_page_category_career =
+      'horoscope_page.category_career';
+  static const horoscope_page_category_health =
+      'horoscope_page.category_health';
+  static const horoscope_page_category_family =
+      'horoscope_page.category_family';
   static const horoscope_page_ai_card_title = 'horoscope_page.ai_card_title';
-  static const horoscope_page_ai_button_label = 'horoscope_page.ai_button_label';
+  static const horoscope_page_ai_button_label =
+      'horoscope_page.ai_button_label';
   static const horoscope_page_tips_title = 'horoscope_page.tips_title';
   static const horoscope_page_advice_label = 'horoscope_page.advice_label';
   static const horoscope_page_warning_label = 'horoscope_page.warning_label';
-  static const horoscope_page_critical_days_title = 'horoscope_page.critical_days_title';
-  static const horoscope_page_challenging_label = 'horoscope_page.challenging_label';
-  static const horoscope_page_highlight_label = 'horoscope_page.highlight_label';
+  static const horoscope_page_critical_days_title =
+      'horoscope_page.critical_days_title';
+  static const horoscope_page_challenging_label =
+      'horoscope_page.challenging_label';
+  static const horoscope_page_highlight_label =
+      'horoscope_page.highlight_label';
   static const horoscope_page_reminder_title = 'horoscope_page.reminder_title';
-  static const horoscope_page_reminder_button = 'horoscope_page.reminder_button';
+  static const horoscope_page_reminder_button =
+      'horoscope_page.reminder_button';
   static const horoscope_page_period_daily = 'horoscope_page.period_daily';
   static const horoscope_page_period_weekly = 'horoscope_page.period_weekly';
   static const horoscope_page_period_monthly = 'horoscope_page.period_monthly';
@@ -731,12 +996,14 @@ abstract class  LocaleKeys {
   static const horoscope_page_date_virgo = 'horoscope_page.date_virgo';
   static const horoscope_page_date_libra = 'horoscope_page.date_libra';
   static const horoscope_page_date_scorpio = 'horoscope_page.date_scorpio';
-  static const horoscope_page_date_sagittarius = 'horoscope_page.date_sagittarius';
+  static const horoscope_page_date_sagittarius =
+      'horoscope_page.date_sagittarius';
   static const horoscope_page_date_capricorn = 'horoscope_page.date_capricorn';
   static const horoscope_page_date_aquarius = 'horoscope_page.date_aquarius';
   static const horoscope_page_date_pisces = 'horoscope_page.date_pisces';
   static const horoscope_page = 'horoscope_page';
-  static const answer_book_explore_card_title = 'answer_book.explore_card_title';
+  static const answer_book_explore_card_title =
+      'answer_book.explore_card_title';
   static const answer_book_page_title = 'answer_book.page_title';
   static const answer_book_subtitle = 'answer_book.subtitle';
   static const answer_book_tap_instruction = 'answer_book.tap_instruction';
@@ -745,17 +1012,25 @@ abstract class  LocaleKeys {
   static const answer_book_ask_again = 'answer_book.ask_again';
   static const answer_book = 'answer_book';
   static const numerology_page_title = 'numerology_page.title';
-  static const numerology_page_explore_card_title = 'numerology_page.explore_card_title';
-  static const numerology_page_input_subtitle = 'numerology_page.input_subtitle';
+  static const numerology_page_explore_card_title =
+      'numerology_page.explore_card_title';
+  static const numerology_page_input_subtitle =
+      'numerology_page.input_subtitle';
   static const numerology_page_input_hint = 'numerology_page.input_hint';
-  static const numerology_page_birth_date_label = 'numerology_page.birth_date_label';
-  static const numerology_page_pick_date_hint = 'numerology_page.pick_date_hint';
+  static const numerology_page_birth_date_label =
+      'numerology_page.birth_date_label';
+  static const numerology_page_pick_date_hint =
+      'numerology_page.pick_date_hint';
   static const numerology_page_calculate = 'numerology_page.calculate';
   static const numerology_page_header_label = 'numerology_page.header_label';
-  static const numerology_page_section_life_path = 'numerology_page.section_life_path';
-  static const numerology_page_section_life_path_intro = 'numerology_page.section_life_path_intro';
-  static const numerology_page_section_birthday = 'numerology_page.section_birthday';
-  static const numerology_page_section_birthday_intro = 'numerology_page.section_birthday_intro';
+  static const numerology_page_section_life_path =
+      'numerology_page.section_life_path';
+  static const numerology_page_section_life_path_intro =
+      'numerology_page.section_life_path_intro';
+  static const numerology_page_section_birthday =
+      'numerology_page.section_birthday';
+  static const numerology_page_section_birthday_intro =
+      'numerology_page.section_birthday_intro';
   static const numerology_page_master_badge = 'numerology_page.master_badge';
   static const numerology_page_footer_note = 'numerology_page.footer_note';
   static const numerology_page_title_1 = 'numerology_page.title_1';
@@ -782,21 +1057,36 @@ abstract class  LocaleKeys {
   static const numerology_page_desc_22 = 'numerology_page.desc_22';
   static const numerology_page_title_33 = 'numerology_page.title_33';
   static const numerology_page_desc_33 = 'numerology_page.desc_33';
-  static const numerology_page_full_name_label = 'numerology_page.full_name_label';
-  static const numerology_page_full_name_hint = 'numerology_page.full_name_hint';
-  static const numerology_page_section_group_name = 'numerology_page.section_group_name';
-  static const numerology_page_section_destiny = 'numerology_page.section_destiny';
-  static const numerology_page_section_destiny_intro = 'numerology_page.section_destiny_intro';
-  static const numerology_page_section_soul_urge = 'numerology_page.section_soul_urge';
-  static const numerology_page_section_soul_urge_intro = 'numerology_page.section_soul_urge_intro';
-  static const numerology_page_section_personality = 'numerology_page.section_personality';
-  static const numerology_page_section_personality_intro = 'numerology_page.section_personality_intro';
-  static const numerology_page_section_group_combined = 'numerology_page.section_group_combined';
-  static const numerology_page_section_maturity = 'numerology_page.section_maturity';
-  static const numerology_page_section_maturity_intro = 'numerology_page.section_maturity_intro';
-  static const numerology_page_info_sheet_title = 'numerology_page.info_sheet_title';
-  static const numerology_page_info_what_label = 'numerology_page.info_what_label';
-  static const numerology_page_info_how_label = 'numerology_page.info_how_label';
+  static const numerology_page_full_name_label =
+      'numerology_page.full_name_label';
+  static const numerology_page_full_name_hint =
+      'numerology_page.full_name_hint';
+  static const numerology_page_section_group_name =
+      'numerology_page.section_group_name';
+  static const numerology_page_section_destiny =
+      'numerology_page.section_destiny';
+  static const numerology_page_section_destiny_intro =
+      'numerology_page.section_destiny_intro';
+  static const numerology_page_section_soul_urge =
+      'numerology_page.section_soul_urge';
+  static const numerology_page_section_soul_urge_intro =
+      'numerology_page.section_soul_urge_intro';
+  static const numerology_page_section_personality =
+      'numerology_page.section_personality';
+  static const numerology_page_section_personality_intro =
+      'numerology_page.section_personality_intro';
+  static const numerology_page_section_group_combined =
+      'numerology_page.section_group_combined';
+  static const numerology_page_section_maturity =
+      'numerology_page.section_maturity';
+  static const numerology_page_section_maturity_intro =
+      'numerology_page.section_maturity_intro';
+  static const numerology_page_info_sheet_title =
+      'numerology_page.info_sheet_title';
+  static const numerology_page_info_what_label =
+      'numerology_page.info_what_label';
+  static const numerology_page_info_how_label =
+      'numerology_page.info_how_label';
   static const numerology_page_info_lp_name = 'numerology_page.info_lp_name';
   static const numerology_page_info_lp_what = 'numerology_page.info_lp_what';
   static const numerology_page_info_lp_how = 'numerology_page.info_lp_how';
@@ -816,5 +1106,4 @@ abstract class  LocaleKeys {
   static const numerology_page_info_mat_what = 'numerology_page.info_mat_what';
   static const numerology_page_info_mat_how = 'numerology_page.info_mat_how';
   static const numerology_page = 'numerology_page';
-
 }

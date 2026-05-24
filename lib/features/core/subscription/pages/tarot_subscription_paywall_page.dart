@@ -39,10 +39,19 @@ class TarotSubscriptionPaywallPage extends StatelessWidget {
   }
 
   List<PaywallFeature> _features() => [
-    PaywallFeature(label: LocaleKeys.paywall_daily_draw.tr(), availableInFree: true),
-    PaywallFeature(label: LocaleKeys.paywall_daily_questions.tr(), freeText: '2', proText: '10'),
-    PaywallFeature(label: LocaleKeys.paywall_monthly_summary.tr()),
+    PaywallFeature(
+      label: LocaleKeys.paywall_daily_questions.tr(),
+      freeText: '1',
+      proText: '10',
+    ),
     PaywallFeature(label: LocaleKeys.paywall_detailed_interpretation.tr()),
+    PaywallFeature(
+      label: LocaleKeys.paywall_personalized_daily_card.tr(),
+    ),
+    PaywallFeature(
+      label: LocaleKeys.paywall_personalized_horoscope.tr(),
+    ),
+    PaywallFeature(label: LocaleKeys.paywall_unlimited_spread_journal.tr()),
   ];
 
   List<PaywallPackageBadge> _badges() => [
@@ -62,7 +71,9 @@ class TarotSubscriptionPaywallPage extends StatelessWidget {
       packageBadges: _badges(),
       theme: buildTheme(context),
       dismissDelay: const Duration(seconds: 3),
-      headerImage: const CustomCacheNetworkImage(imageUrl: TarotAppAssets.paywallHttp),
+      headerImage: const CustomCacheNetworkImage(
+        imageUrl: TarotAppAssets.paywallHttp,
+      ),
     );
   }
 }

@@ -141,7 +141,7 @@
   "settings_page": {
     "app_bar": "Ayarlar",
     "account": "Hesap",
-    "profile": "Profil",
+    "profile": "PROFİL",
     "language": "Dil",
     "rate_us": "Bizi Puanla",
     "restore_purchases": "Satın Alımları Yükle",
@@ -153,7 +153,10 @@
     "english": "English",
     "turkish": "Türkçe",
     "legal": "Yasal",
-    "danger_zone": "Tehlikeli Alan"
+    "danger_zone": "Hesap İşlemleri",
+    "edit_profile": "Profili Düzenle",
+    "relationship_label": "İlişki Durumu",
+    "career_label": "Kariyer"
   },
   "delete_account_popup": {
     "title": "Hesabı Sil",
@@ -290,10 +293,13 @@
     "limited_question": "Haftalık 10 Soru",
     "no_ads": "Aylık İçgörüler",
     "free": "ÜCRETSİZ",
-    "daily_draw": "Günlük Çekim",
-    "daily_questions": "Günlük Sorular",
+    "daily_draw": "Günlük Kart Yorumu",
+    "daily_questions": "Günlük Açılım Hakkı",
     "monthly_summary": "Aylık Grafikler",
-    "detailed_interpretation": "Derin İçgörüler",
+    "detailed_interpretation": "Detaylı Tarot Yorumu",
+    "personalized_daily_card": "Kişiselleştirilmiş Günlük Kart",
+    "personalized_horoscope": "Kişiselleştirilmiş Burç Yorumu",
+    "unlimited_spread_journal": "Sınırsız Açılım Günlüğü",
     "popular": "Popüler",
     "exclusive_experience": "Ruhunu Yücelt",
     "unlock_destiny": "Kaderinin kilidini aç"

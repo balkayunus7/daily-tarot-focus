@@ -153,7 +153,10 @@
     "english": "English",
     "turkish": "Türkçe",
     "legal": "Legal",
-    "danger_zone": "Danger Zone"
+    "danger_zone": "Account Actions",
+    "edit_profile": "Edit Profile",
+    "relationship_label": "Relationship Status",
+    "career_label": "Career"
   },
   "delete_account_popup": {
     "title": "Delete Account",
@@ -289,10 +292,13 @@
     "limited_question": "10 Questions / Week",
     "no_ads": "Monthly Insights",
     "free": "FREE",
-    "daily_draw": "Daily Draw",
-    "daily_questions": "Daily Questions",
+    "daily_draw": "Daily Card Reading",
+    "daily_questions": "Daily Spread Limit",
     "monthly_summary": "Monthly Charts",
-    "detailed_interpretation": "Deep Insights",
+    "detailed_interpretation": "Detailed Tarot Interpretation",
+    "personalized_daily_card": "Personalized Daily Card",
+    "personalized_horoscope": "Personalized Horoscope Reading",
+    "unlimited_spread_journal": "Unlimited Spread Journal",
     "popular": "Popular",
     "exclusive_experience": "Elevate Spirit",
     "unlock_destiny": "Unlock your destiny"

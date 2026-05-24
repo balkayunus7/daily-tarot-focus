@@ -190,6 +190,10 @@ abstract class LocaleKeys {
   static const settings_page_turkish = 'settings_page.turkish';
   static const settings_page_legal = 'settings_page.legal';
   static const settings_page_danger_zone = 'settings_page.danger_zone';
+  static const settings_page_edit_profile = 'settings_page.edit_profile';
+  static const settings_page_relationship_label =
+      'settings_page.relationship_label';
+  static const settings_page_career_label = 'settings_page.career_label';
   static const settings_page = 'settings_page';
   static const delete_account_popup_title = 'delete_account_popup.title';
   static const delete_account_popup_desc = 'delete_account_popup.desc';
@@ -358,6 +362,12 @@ abstract class LocaleKeys {
   static const paywall_monthly_summary = 'paywall.monthly_summary';
   static const paywall_detailed_interpretation =
       'paywall.detailed_interpretation';
+  static const paywall_personalized_daily_card =
+      'paywall.personalized_daily_card';
+  static const paywall_personalized_horoscope =
+      'paywall.personalized_horoscope';
+  static const paywall_unlimited_spread_journal =
+      'paywall.unlimited_spread_journal';
   static const paywall_popular = 'paywall.popular';
   static const paywall_exclusive_experience = 'paywall.exclusive_experience';
   static const paywall_unlock_destiny = 'paywall.unlock_destiny';

@@ -55,8 +55,7 @@ class SettingsPage extends StatelessWidget {
 
   BlocListener<PurchasesBloc, PurchasesState> _restoredListener() =>
       BlocListener<PurchasesBloc, PurchasesState>(
-        listenWhen:
-            (p, c) => p.failureOrRestoredOption != c.failureOrRestoredOption,
+        listenWhen: (p, c) => p.failureOrRestoredOption != c.failureOrRestoredOption,
         listener: (context, state) async {
           if (state.hasRestoredSuccessfully) {
             await context.read<AuthCubit>().refetchUser();
@@ -66,25 +65,20 @@ class SettingsPage extends StatelessWidget {
         },
       );
 
-  BlocListener<AuthCubit, AuthState> _deleteAccountListener() =>
-      BlocListener<AuthCubit, AuthState>(
-        listenWhen:
-            (p, c) =>
-                p.failOrUserOption.isSome() != c.failOrUserOption.isNone(),
-        listener: (context, state) async {
-          context.read<TarotBloc>().addClearCache();
-        },
-      );
-  BlocListener<TarotBloc, TarotState> _restartAppListener() =>
-      BlocListener<TarotBloc, TarotState>(
-        listenWhen: (previous, current) {
-          return previous.clearCacheFailureOrUnit.isNone() &&
-              current.clearCacheFailureOrUnit.isSome();
-        },
-        listener: (context, state) async {
-          await restartApp(context);
-        },
-      );
+  BlocListener<AuthCubit, AuthState> _deleteAccountListener() => BlocListener<AuthCubit, AuthState>(
+    listenWhen: (p, c) => p.failOrUserOption.isSome() != c.failOrUserOption.isNone(),
+    listener: (context, state) async {
+      context.read<TarotBloc>().addClearCache();
+    },
+  );
+  BlocListener<TarotBloc, TarotState> _restartAppListener() => BlocListener<TarotBloc, TarotState>(
+    listenWhen: (previous, current) {
+      return previous.clearCacheFailureOrUnit.isNone() && current.clearCacheFailureOrUnit.isSome();
+    },
+    listener: (context, state) async {
+      await restartApp(context);
+    },
+  );
 
   void _showLanguageBottomSheet(BuildContext context) {
     final colors = context.colors;
@@ -197,10 +191,7 @@ class SettingsPage extends StatelessWidget {
             padding: Sp.screen.padHR,
             child: BlocBuilder<AuthCubit, AuthState>(
               builder: (context, authState) {
-                final user =
-                    authState.isAuthenticated
-                        ? authState.userOrCrash as TarotUser
-                        : null;
+                final user = authState.isAuthenticated ? authState.userOrCrash as TarotUser : null;
 
                 return Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -216,12 +207,6 @@ class SettingsPage extends StatelessWidget {
                     _SettingsSection(
                       title: LocaleKeys.settings_page_account.tr(),
                       children: [
-                        if (user != null)
-                          _SettingsTile(
-                            icon: Icons.person_outline,
-                            title: LocaleKeys.settings_page_edit_profile.tr(),
-                            onTap: () => _showEditProfileSheet(context, user),
-                          ),
                         _SettingsTile(
                           icon: Icons.language,
                           title: LocaleKeys.settings_page_language.tr(),
@@ -238,18 +223,15 @@ class SettingsPage extends StatelessWidget {
                         ),
                         _SettingsTile(
                           icon: Icons.restore,
-                          title:
-                              LocaleKeys.settings_page_restore_purchases.tr(),
+                          title: LocaleKeys.settings_page_restore_purchases.tr(),
                           onTap: () {
                             final authState = context.read<AuthCubit>().state;
                             if (authState.isAuthenticated) {
                               final purchaser = authState.userOrCrash.purchaser;
-                              context
-                                  .read<PurchasesBloc>()
-                                  .addPurchasesRestored(
-                                    purchaser: purchaser,
-                                    trackingIds: authState.trackingIdsOrNull,
-                                  );
+                              context.read<PurchasesBloc>().addPurchasesRestored(
+                                purchaser: purchaser,
+                                trackingIds: authState.trackingIdsOrNull,
+                              );
                             }
                           },
                         ),
@@ -260,13 +242,10 @@ class SettingsPage extends StatelessWidget {
                               children: [
                                 _SettingsSwitchTile(
                                   icon: Icons.workspace_premium_outlined,
-                                  title:
-                                      LocaleKeys.settings_page_test_premium
-                                          .tr(),
+                                  title: LocaleKeys.settings_page_test_premium.tr(),
                                   value: forcePremium,
                                   onChanged: (value) async {
-                                    PremiumOverrideService.isForcePremium =
-                                        value;
+                                    PremiumOverrideService.isForcePremium = value;
                                     if (value && user != null) {
                                       await DailySpreadUsageService.reset(
                                         userId: user.userId,
@@ -275,11 +254,12 @@ class SettingsPage extends StatelessWidget {
                                     }
                                   },
                                 ),
-                                if (user != null)
+                                if (user != null) ...[
                                   _DailySpreadUsageTile(
                                     user: user,
                                     refreshKey: forcePremium,
                                   ),
+                                ],
                               ],
                             );
                           },
@@ -308,12 +288,6 @@ class SettingsPage extends StatelessWidget {
                             );
                           },
                         ),
-                      ],
-                    ),
-                    Sp.large.heightBox,
-                    _SettingsSection(
-                      title: LocaleKeys.settings_page_danger_zone.tr(),
-                      children: [
                         _SettingsTile(
                           icon: Icons.delete_forever,
                           title: LocaleKeys.settings_page_delete_account.tr(),
@@ -451,8 +425,7 @@ class _ProfileSection extends StatelessWidget {
                           ),
                         ],
                         Sp.tiny.heightBox,
-                        if (user.relationshipStatus != null ||
-                            user.careerStatus != null) ...[
+                        if (user.relationshipStatus != null || user.careerStatus != null) ...[
                           Sp.xsmall.heightBox,
                           Wrap(
                             spacing: 8.w,
@@ -604,10 +577,7 @@ class _EditProfileSheetState extends State<_EditProfileSheet> {
                             ),
                           ),
                           Expanded(
-                            child: BlocBuilder<
-                              EditProfileCubit,
-                              EditProfileState
-                            >(
+                            child: BlocBuilder<EditProfileCubit, EditProfileState>(
                               builder:
                                   (ctx2, state) => ListView.separated(
                                     controller: scrollController,
@@ -616,13 +586,10 @@ class _EditProfileSheetState extends State<_EditProfileSheet> {
                                       v: Sp.small,
                                     ),
                                     itemCount: RelationshipStatus.values.length,
-                                    separatorBuilder:
-                                        (context, index) => Sp.xsmall.heightBox,
+                                    separatorBuilder: (context, index) => Sp.xsmall.heightBox,
                                     itemBuilder: (_, index) {
-                                      final status =
-                                          RelationshipStatus.values[index];
-                                      final isSelected =
-                                          state.relationship == status;
+                                      final status = RelationshipStatus.values[index];
+                                      final isSelected = state.relationship == status;
                                       return ScalingContainer(
                                         onTap: () {
                                           cubit.setRelationship(status);
@@ -640,8 +607,7 @@ class _EditProfileSheetState extends State<_EditProfileSheet> {
                                           border:
                                               isSelected
                                                   ? Border.all(
-                                                    color: colors.primary
-                                                        .withValues(alpha: 0.4),
+                                                    color: colors.primary.withValues(alpha: 0.4),
                                                   )
                                                   : Border.all(
                                                     color: colors.border,
@@ -730,10 +696,7 @@ class _EditProfileSheetState extends State<_EditProfileSheet> {
                             ),
                           ),
                           Expanded(
-                            child: BlocBuilder<
-                              EditProfileCubit,
-                              EditProfileState
-                            >(
+                            child: BlocBuilder<EditProfileCubit, EditProfileState>(
                               builder:
                                   (ctx2, state) => ListView.separated(
                                     controller: scrollController,
@@ -742,8 +705,7 @@ class _EditProfileSheetState extends State<_EditProfileSheet> {
                                       v: Sp.small,
                                     ),
                                     itemCount: CareerStatus.values.length,
-                                    separatorBuilder:
-                                        (context, index) => Sp.xsmall.heightBox,
+                                    separatorBuilder: (context, index) => Sp.xsmall.heightBox,
                                     itemBuilder: (_, index) {
                                       final status = CareerStatus.values[index];
                                       final isSelected = state.career == status;
@@ -764,8 +726,7 @@ class _EditProfileSheetState extends State<_EditProfileSheet> {
                                           border:
                                               isSelected
                                                   ? Border.all(
-                                                    color: colors.primary
-                                                        .withValues(alpha: 0.4),
+                                                    color: colors.primary.withValues(alpha: 0.4),
                                                   )
                                                   : Border.all(
                                                     color: colors.border,
@@ -787,8 +748,7 @@ class _EditProfileSheetState extends State<_EditProfileSheet> {
                                                         colors.gradientEnd,
                                                       ],
                                                     ),
-                                                    borderRadius:
-                                                        Sp.xsmall.radiusR,
+                                                    borderRadius: Sp.xsmall.radiusR,
                                                   ),
                                                   alignment: Alignment.center,
                                                   child: Iconify(
@@ -879,8 +839,7 @@ class _EditProfileSheetState extends State<_EditProfileSheet> {
                   PersonalInfoInputField(
                     controller: _nameController,
                     hint: LocaleKeys.register_page_name_hint.tr(),
-                    onChanged:
-                        (v) => context.read<EditProfileCubit>().setName(v),
+                    onChanged: (v) => context.read<EditProfileCubit>().setName(v),
                   ),
                   Sp.medium.heightBox,
                   _sheetLabel(
@@ -890,10 +849,7 @@ class _EditProfileSheetState extends State<_EditProfileSheet> {
                   Sp.xsmall.heightBox,
                   _PickerField(
                     icon: Mdi.calendar,
-                    value:
-                        state.birthDate != null
-                            ? _formatDate(state.birthDate!)
-                            : null,
+                    value: state.birthDate != null ? _formatDate(state.birthDate!) : null,
                     hint: LocaleKeys.register_page_birth_date_hint.tr(),
                     onTap: () => _pickDate(context),
                   ),
@@ -1009,10 +965,7 @@ class _PickerField extends StatelessWidget {
             ),
             Icon(
               Icons.chevron_right_rounded,
-              color:
-                  isSelected
-                      ? colors.primary
-                      : colors.textSecondary.withValues(alpha: 0.5),
+              color: isSelected ? colors.primary : colors.textSecondary.withValues(alpha: 0.5),
               size: 20.r,
             ),
           ],
@@ -1085,10 +1038,7 @@ class _LanguageOption extends StatelessWidget {
                 ? colors.primary.withValues(alpha: 0.1)
                 : colors.primary.withValues(alpha: 0.05),
         border: Border.all(
-          color:
-              isSelected
-                  ? colors.primary.withValues(alpha: 0.5)
-                  : colors.border,
+          color: isSelected ? colors.primary.withValues(alpha: 0.5) : colors.border,
         ),
         child: Padding(
           padding: Sp.small.padSymR(h: Sp.large, v: Sp.small),
@@ -1108,8 +1058,7 @@ class _LanguageOption extends StatelessWidget {
                   style: m14w500(context).copyWith(color: colors.textPrimary),
                 ),
               ),
-              if (isSelected)
-                Icon(Icons.check_circle, color: colors.primary, size: 20),
+              if (isSelected) Icon(Icons.check_circle, color: colors.primary, size: 20),
             ],
           ),
         ),

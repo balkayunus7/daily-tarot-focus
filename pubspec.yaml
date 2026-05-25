@@ -49,6 +49,7 @@ flutter:
 
   assets:
     - .env.keys
+    - assets/
     - assets/translations/
     - assets/svg/
     - assets/json/

@@ -1,6 +1,7 @@
 import 'package:daily_tarot_focus/config/app_routes.dart';
 import 'package:daily_tarot_focus/features/auth/domain/models/tarot_user.dart';
 import 'package:daily_tarot_focus/features/auth/domain/models/tarot_user_zodiac_enum.dart';
+import 'package:daily_tarot_focus/features/auth/presentation/pages/onboarding_page.dart';
 import 'package:daily_tarot_focus/features/auth/presentation/pages/register_account_setup_page.dart';
 import 'package:daily_tarot_focus/features/auth/presentation/pages/register_step_career_page.dart';
 import 'package:daily_tarot_focus/features/auth/presentation/pages/register_step_personal_info_page.dart';
@@ -68,7 +69,7 @@ final appRouter = GoRouter(
     if (authState.isAuthenticated && !isPublicRoute && !isRegisterRoute) {
       final user = authState.userOrCrash;
       if (user is TarotUser && !user.isProfileComplete) {
-        return AppRoutes.registerStepRelationship;
+        return AppRoutes.onboarding;
       }
     }
 
@@ -89,6 +90,16 @@ final appRouter = GoRouter(
         return MaterialPage(
           key: state.pageKey,
           child: const SplashPage(),
+        );
+      },
+    ),
+    GoRoute(
+      path: AppRoutes.onboarding,
+      name: AppRoutes.onboarding,
+      pageBuilder: (context, state) {
+        return MaterialPage(
+          key: state.pageKey,
+          child: const OnboardingPage(),
         );
       },
     ),

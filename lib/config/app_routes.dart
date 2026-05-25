@@ -8,6 +8,7 @@ class AppRoutes {
 
   /// Auth required
   static const Set<String> registerRoutes = {
+    AppRoutes.onboarding,
     AppRoutes.registerStepRelationship,
     AppRoutes.registerStepCareer,
     AppRoutes.registerStepPersonalInfo,
@@ -15,6 +16,7 @@ class AppRoutes {
 
   // Auth
   static const String splash = '/';
+  static const String onboarding = '/onboarding';
   static const String registerStepRelationship = '/register-step-relationship';
   static const String registerStepCareer = '/register-step-career';
   static const String registerStepPersonalInfo = '/register-step-personal-info';

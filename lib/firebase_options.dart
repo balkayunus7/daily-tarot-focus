@@ -62,6 +62,6 @@ class DefaultFirebaseOptions {
     messagingSenderId: '26139440350',
     projectId: 'tarot-app-4049c',
     storageBucket: 'tarot-app-4049c.firebasestorage.app',
-    iosBundleId: 'com.example.dailyTarotFocus',
+    iosBundleId: 'com.yunusbalka.dailyTarotFocus',
   );
 }

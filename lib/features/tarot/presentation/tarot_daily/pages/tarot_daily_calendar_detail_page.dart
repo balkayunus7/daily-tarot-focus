@@ -29,7 +29,8 @@ class TarotDailyCalendarDetailPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final colors = context.colors;
     final dailyCard = args.dailyCard;
-    final hasContent = dailyCard.dailyAdvice != null || dailyCard.categories.isNotEmpty;
+    final hasContent =
+        dailyCard.dailyAdvice != null || dailyCard.categories.isNotEmpty;
 
     return Scaffold(
       backgroundColor: colors.background,
@@ -71,7 +72,9 @@ class TarotDailyCalendarDetailPage extends StatelessWidget {
                               ...dailyCard.categories.map(
                                 (category) => Padding(
                                   padding: EdgeInsets.only(bottom: Sp.medium.h),
-                                  child: DailyPickCategoryTile(category: category),
+                                  child: DailyPickCategoryTile(
+                                    category: category,
+                                  ),
                                 ),
                               ),
                             ],

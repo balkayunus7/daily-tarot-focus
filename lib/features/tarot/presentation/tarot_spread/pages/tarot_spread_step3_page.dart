@@ -29,7 +29,10 @@ class TarotSpreadStep3Page extends StatelessWidget {
           appBar: TarotAppBar(
             titleWidget: Column(
               children: [
-                Text(LocaleKeys.tarot_question_spread_step_title.tr(), style: m16w700(context)),
+                Text(
+                  LocaleKeys.tarot_question_spread_step_title.tr(),
+                  style: m18w700(context),
+                ),
                 Sp.tiny.heightBox,
                 Text(
                   (state.flowType == TarotFlowType.threeCard
@@ -53,7 +56,9 @@ class TarotSpreadStep3Page extends StatelessWidget {
                   Sp.small.heightBox,
                   Text(
                     LocaleKeys.tarot_question_choose_spread_subtitle.tr(),
-                    style: m14w400(context).copyWith(color: colors.textSecondary),
+                    style: m14w400(
+                      context,
+                    ).copyWith(color: colors.textSecondary),
                     textAlign: TextAlign.center,
                   ),
                   Sp.xlarge.heightBox,
@@ -67,7 +72,9 @@ class TarotSpreadStep3Page extends StatelessWidget {
                       return SpreadLayoutCard(
                         spread: spread,
                         onTap: () async {
-                          context.read<TarotBloc>().addSelectSpread(spread: spread);
+                          context.read<TarotBloc>().addSelectSpread(
+                            spread: spread,
+                          );
                           if (state.flowType == TarotFlowType.threeCard) {
                             await context.push(AppRoutes.tarotQuestionStep4);
                           } else {

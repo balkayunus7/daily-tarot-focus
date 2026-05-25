@@ -255,6 +255,15 @@ abstract class  LocaleKeys {
   static const tarot_question_need_guidance = 'tarot_question.need_guidance';
   static const tarot_question_guide_subtitle = 'tarot_question.guide_subtitle';
   static const tarot_question_guide_button = 'tarot_question.guide_button';
+  static const tarot_question_guide_sheet_title = 'tarot_question.guide_sheet_title';
+  static const tarot_question_guide_sheet_subtitle = 'tarot_question.guide_sheet_subtitle';
+  static const tarot_question_guide_cat_relationship = 'tarot_question.guide_cat_relationship';
+  static const tarot_question_guide_cat_career = 'tarot_question.guide_cat_career';
+  static const tarot_question_guide_cat_finance = 'tarot_question.guide_cat_finance';
+  static const tarot_question_guide_cat_health = 'tarot_question.guide_cat_health';
+  static const tarot_question_guide_cat_moon_week = 'tarot_question.guide_cat_moon_week';
+  static const tarot_question_guide_cat_default = 'tarot_question.guide_cat_default';
+  static const tarot_question_guide_recommended = 'tarot_question.guide_recommended';
   static const tarot_question_quote_future = 'tarot_question.quote_future';
   static const tarot_question_tip_1_title = 'tarot_question.tip_1_title';
   static const tarot_question_tip_1_desc = 'tarot_question.tip_1_desc';

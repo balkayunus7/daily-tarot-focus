@@ -28,7 +28,10 @@ class TarotSpreadStep1Page extends StatelessWidget {
           appBar: TarotAppBar(
             titleWidget: Column(
               children: [
-                Text(LocaleKeys.tarot_question_reader_step_title.tr(), style: m16w700(context)),
+                Text(
+                  LocaleKeys.tarot_question_reader_step_title.tr(),
+                  style: m18w700(context),
+                ),
                 Sp.tiny.heightBox,
                 Text(
                   LocaleKeys.tarot_question_step_1_of_5.tr(),
@@ -52,7 +55,9 @@ class TarotSpreadStep1Page extends StatelessWidget {
                         Sp.small.heightBox,
                         Text(
                           LocaleKeys.tarot_question_choose_reader_subtitle.tr(),
-                          style: m14w400(context).copyWith(color: colors.textSecondary),
+                          style: m14w400(
+                            context,
+                          ).copyWith(color: colors.textSecondary),
                           textAlign: TextAlign.center,
                         ),
                         Sp.xlarge.heightBox,
@@ -68,7 +73,8 @@ class TarotSpreadStep1Page extends StatelessWidget {
                               reader: reader,
                               onTap: () async {
                                 final bloc =
-                                    context.read<TarotBloc>()..addSelectReader(reader: reader);
+                                    context.read<TarotBloc>()
+                                      ..addSelectReader(reader: reader);
                                 if (state.flowType == TarotFlowType.threeCard) {
                                   final threeCardCat =
                                       state.spreadsOrEmpty
@@ -76,11 +82,17 @@ class TarotSpreadStep1Page extends StatelessWidget {
                                           .where((c) => c.id == 'cat_3_cards')
                                           .firstOrNull;
                                   if (threeCardCat != null) {
-                                    bloc.addSelectSpreadCategory(category: threeCardCat);
+                                    bloc.addSelectSpreadCategory(
+                                      category: threeCardCat,
+                                    );
                                   }
-                                  await context.push(AppRoutes.tarotQuestionStep3);
+                                  await context.push(
+                                    AppRoutes.tarotQuestionStep3,
+                                  );
                                 } else {
-                                  await context.push(AppRoutes.tarotQuestionStep2);
+                                  await context.push(
+                                    AppRoutes.tarotQuestionStep2,
+                                  );
                                 }
                               },
                             );

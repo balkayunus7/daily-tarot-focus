@@ -20,19 +20,24 @@ class TarotRevealDetailPage extends StatefulWidget {
   State<TarotRevealDetailPage> createState() => _TarotRevealDetailPageState();
 }
 
-class _TarotRevealDetailPageState extends State<TarotRevealDetailPage> with RevealDetailPageMixin {
+class _TarotRevealDetailPageState extends State<TarotRevealDetailPage>
+    with RevealDetailPageMixin {
   @override
   Widget build(BuildContext context) {
     return RevealDetailPageScope(
       state: this,
       child: BlocConsumer<TarotBloc, TarotState>(
         listenWhen: (previous, current) {
-          return previous.hasRecordDailyCardSucceeded != current.hasRecordDailyCardSucceeded ||
-              previous.hasRecordDailyCardFailed != current.hasRecordDailyCardFailed;
+          return previous.hasRecordDailyCardSucceeded !=
+                  current.hasRecordDailyCardSucceeded ||
+              previous.hasRecordDailyCardFailed !=
+                  current.hasRecordDailyCardFailed;
         },
         listener: (context, state) {
           if (state.hasRecordDailyCardFailed) {
-            context.showErrorToastMessage(LocaleKeys.tarot_daily_save_failed.tr());
+            context.showErrorToastMessage(
+              LocaleKeys.tarot_daily_save_failed.tr(),
+            );
           }
           if (state.hasRecordDailyCardSucceeded) {
             context.showToastMessage(LocaleKeys.tarot_daily_save_success.tr());
@@ -44,13 +49,16 @@ class _TarotRevealDetailPageState extends State<TarotRevealDetailPage> with Reve
           return Scaffold(
             appBar: TarotAppBar(
               title: LocaleKeys.tarot_detail_archive_title.tr(),
-              titleStyle: m18w600(context).copyWith(
+              titleStyle: m18w700(context).copyWith(
                 fontStyle: FontStyle.italic,
                 color: context.colors.primary,
               ),
               onBackIconTap: onBack,
               backIcon: Icons.close,
-              trailingIcon: isSaving ? FontAwesomeIcons.spinner : FontAwesomeIcons.floppyDisk,
+              trailingIcon:
+                  isSaving
+                      ? FontAwesomeIcons.spinner
+                      : FontAwesomeIcons.floppyDisk,
               onIconTap: saveDailyCard,
             ),
             body: TarotDetailContent(tarot: widget.tarot),

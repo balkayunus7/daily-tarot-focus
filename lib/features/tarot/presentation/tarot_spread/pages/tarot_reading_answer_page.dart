@@ -127,7 +127,7 @@ class _AnswerContent extends StatelessWidget {
                 children: [
                   Text(
                     LocaleKeys.tarot_reading_title.tr(),
-                    style: m16w700(context),
+                    style: m18w700(context),
                   ),
                 ],
               ),

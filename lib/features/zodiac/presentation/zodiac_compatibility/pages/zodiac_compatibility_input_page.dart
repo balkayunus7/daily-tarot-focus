@@ -27,10 +27,12 @@ class TarotCompatibilityInputPage extends StatefulWidget {
   const TarotCompatibilityInputPage({super.key});
 
   @override
-  State<TarotCompatibilityInputPage> createState() => _TarotCompatibilityInputPageState();
+  State<TarotCompatibilityInputPage> createState() =>
+      _TarotCompatibilityInputPageState();
 }
 
-class _TarotCompatibilityInputPageState extends State<TarotCompatibilityInputPage>
+class _TarotCompatibilityInputPageState
+    extends State<TarotCompatibilityInputPage>
     with SingleTickerProviderStateMixin, ZodiacCompatibilityPageMixin {
   @override
   Widget build(BuildContext context) {
@@ -53,9 +55,15 @@ class _TarotCompatibilityInputPageState extends State<TarotCompatibilityInputPag
                   padding: Sp.large.padSymR(h: Sp.large.w, v: Sp.large.h),
                   child: Column(
                     children: [
-                      _PersonSection(label: LocaleKeys.compat_page_you.tr(), isMe: true),
+                      _PersonSection(
+                        label: LocaleKeys.compat_page_you.tr(),
+                        isMe: true,
+                      ),
                       Sp.xlarge.heightBox,
-                      _PersonSection(label: LocaleKeys.compat_page_partner.tr(), isMe: false),
+                      _PersonSection(
+                        label: LocaleKeys.compat_page_partner.tr(),
+                        isMe: false,
+                      ),
                     ],
                   ),
                 ),
@@ -71,10 +79,17 @@ class _TarotCompatibilityInputPageState extends State<TarotCompatibilityInputPag
                   width: double.infinity,
                   height: 52.h,
                   text: LocaleKeys.compat_page_calculate.tr(),
-                  textStyle: m16w700(context).copyWith(color: colors.textOnPrimary),
+                  textStyle: m16w700(
+                    context,
+                  ).copyWith(color: colors.textOnPrimary),
                   onTap: () {
                     final request = buildRequest();
-                    unawaited(context.push(AppRoutes.tarotCompatibilityResult, extra: request));
+                    unawaited(
+                      context.push(
+                        AppRoutes.tarotCompatibilityResult,
+                        extra: request,
+                      ),
+                    );
                   },
                 ),
               ),
@@ -95,7 +110,8 @@ class _PersonSection extends StatelessWidget {
   Widget build(BuildContext context) {
     final colors = context.colors;
     return ZodiacCompatibilityPageScope(
-      state: context.findAncestorStateOfType<_TarotCompatibilityInputPageState>()!,
+      state:
+          context.findAncestorStateOfType<_TarotCompatibilityInputPageState>()!,
       child: Container(
         decoration: BoxDecoration(
           color: colors.surface,

@@ -54,7 +54,7 @@ class _TarotSpreadStep6PageState extends State<TarotSpreadStep6Page>
             children: [
               Text(
                 LocaleKeys.tarot_question_deck_shuffle_open_step_subtitle.tr(),
-                style: m16w700(context),
+                style: m18w700(context),
               ),
               Sp.tiny.heightBox,
               Text(

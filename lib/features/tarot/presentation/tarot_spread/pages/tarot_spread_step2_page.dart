@@ -6,7 +6,6 @@ import 'package:daily_tarot_focus/core/widgets/tarot_app_bar.dart';
 import 'package:daily_tarot_focus/features/tarot/bloc/tarot/tarot_bloc.dart';
 import 'package:daily_tarot_focus/features/tarot/bloc/tarot/tarot_state.dart';
 import 'package:daily_tarot_focus/features/tarot/presentation/tarot_spread/widgets/spread_category_card.dart';
-import 'package:daily_tarot_focus/features/tarot/presentation/tarot_spread/widgets/spread_category_guide.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mobile_boilerplate/common_dependencies.dart';
@@ -24,7 +23,10 @@ class TarotSpreadStep2Page extends StatelessWidget {
       appBar: TarotAppBar(
         titleWidget: Column(
           children: [
-            Text(LocaleKeys.tarot_question_category_step_title.tr(), style: m16w700(context)),
+            Text(
+              LocaleKeys.tarot_question_category_step_title.tr(),
+              style: m18w700(context),
+            ),
             Sp.tiny.heightBox,
             Text(
               LocaleKeys.tarot_question_step_2_of_5.tr(),
@@ -39,7 +41,10 @@ class TarotSpreadStep2Page extends StatelessWidget {
       body: BlocBuilder<TarotBloc, TarotState>(
         builder: (context, state) {
           final categories =
-              state.spreadsOrEmpty.asList().where((c) => c.id != 'cat_3_cards').toList();
+              state.spreadsOrEmpty
+                  .asList()
+                  .where((c) => c.id != 'cat_3_cards')
+                  .toList();
 
           return SafeArea(
             child: SingleChildScrollView(
@@ -50,7 +55,9 @@ class TarotSpreadStep2Page extends StatelessWidget {
                   Sp.small.heightBox,
                   Text(
                     LocaleKeys.tarot_question_choose_category_subtitle.tr(),
-                    style: m14w400(context).copyWith(color: colors.textSecondary),
+                    style: m14w400(
+                      context,
+                    ).copyWith(color: colors.textSecondary),
                     textAlign: TextAlign.center,
                   ),
                   Sp.xlarge.heightBox,
@@ -65,15 +72,15 @@ class TarotSpreadStep2Page extends StatelessWidget {
                       return SpreadCategoryCard(
                         categoryData: categoryData,
                         onTap: () async {
-                          context.read<TarotBloc>().addSelectSpreadCategory(category: categoryData);
+                          context.read<TarotBloc>().addSelectSpreadCategory(
+                            category: categoryData,
+                          );
                           await context.push(AppRoutes.tarotQuestionStep3);
                         },
                       );
                     },
                   ),
                   Sp.xlarge.heightBox,
-                  SpreadCategoryGuide(onTap: () {}),
-                  Sp.xxlarge.heightBox,
                 ],
               ),
             ),

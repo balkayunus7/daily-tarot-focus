@@ -22,7 +22,8 @@ class TarotSpreadStep5Page extends StatefulWidget {
   State<TarotSpreadStep5Page> createState() => _TarotSpreadStep5PageState();
 }
 
-class _TarotSpreadStep5PageState extends State<TarotSpreadStep5Page> with Step5PageMixin {
+class _TarotSpreadStep5PageState extends State<TarotSpreadStep5Page>
+    with Step5PageMixin {
   @override
   Widget build(BuildContext context) {
     final colors = context.colors;
@@ -34,7 +35,10 @@ class _TarotSpreadStep5PageState extends State<TarotSpreadStep5Page> with Step5P
         appBar: TarotAppBar(
           titleWidget: Column(
             children: [
-              Text(LocaleKeys.tarot_question_deck_shuffle_step_title.tr(), style: m16w700(context)),
+              Text(
+                LocaleKeys.tarot_question_deck_shuffle_step_title.tr(),
+                style: m18w700(context),
+              ),
               Sp.tiny.heightBox,
               Text(
                 LocaleKeys.tarot_question_step_4_of_6.tr(),
@@ -55,7 +59,9 @@ class _TarotSpreadStep5PageState extends State<TarotSpreadStep5Page> with Step5P
               children: [
                 _SpreadTitleBar(
                   title: spread.title,
-                  onMoreTap: () => showSpreadDetailsBottomSheet(context, spread: spread),
+                  onMoreTap:
+                      () =>
+                          showSpreadDetailsBottomSheet(context, spread: spread),
                 ),
                 Expanded(
                   child: SingleChildScrollView(
@@ -109,19 +115,27 @@ class _SpreadTitleBar extends StatelessWidget {
     final colors = context.colors;
 
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: Sp.screen.w, vertical: Sp.small.h),
+      padding: EdgeInsets.symmetric(
+        horizontal: Sp.screen.w,
+        vertical: Sp.small.h,
+      ),
       child: Row(
         children: [
           Container(
             width: 6.w,
             height: 6.w,
-            decoration: BoxDecoration(color: colors.primary, shape: BoxShape.circle),
+            decoration: BoxDecoration(
+              color: colors.primary,
+              shape: BoxShape.circle,
+            ),
           ),
           Sp.xsmall.widthBox,
           Expanded(
             child: Text(
               title,
-              style: m14w600(context).copyWith(color: colors.textSecondary, letterSpacing: 0.2),
+              style: m14w600(
+                context,
+              ).copyWith(color: colors.textSecondary, letterSpacing: 0.2),
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
             ),
@@ -137,7 +151,11 @@ class _SpreadTitleBar extends StatelessWidget {
                   style: m12w500(context).copyWith(color: colors.primary),
                 ),
                 Sp.tiny.widthBox,
-                Icon(Icons.keyboard_arrow_right_rounded, color: colors.primary, size: 14.sp),
+                Icon(
+                  Icons.keyboard_arrow_right_rounded,
+                  color: colors.primary,
+                  size: 14.sp,
+                ),
               ],
             ),
           ),
@@ -148,7 +166,11 @@ class _SpreadTitleBar extends StatelessWidget {
 }
 
 class _TipItem extends StatelessWidget {
-  const _TipItem({required this.emoji, required this.title, required this.description});
+  const _TipItem({
+    required this.emoji,
+    required this.title,
+    required this.description,
+  });
   final String emoji;
   final String title;
   final String description;
@@ -172,7 +194,9 @@ class _TipItem extends StatelessWidget {
                 ),
                 TextSpan(
                   text: description,
-                  style: m13w400(context).copyWith(color: colors.textSecondary, height: 1.5),
+                  style: m13w400(
+                    context,
+                  ).copyWith(color: colors.textSecondary, height: 1.5),
                 ),
               ],
             ),
@@ -194,7 +218,10 @@ class _BottomButtons extends StatelessWidget {
     return SafeArea(
       top: false,
       child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: Sp.screen.w, vertical: Sp.medium.h),
+        padding: EdgeInsets.symmetric(
+          horizontal: Sp.screen.w,
+          vertical: Sp.medium.h,
+        ),
         child: Row(
           children: [
             Expanded(
@@ -208,7 +235,9 @@ class _BottomButtons extends StatelessWidget {
                         height: 48.h,
                         decoration: BoxDecoration(
                           color:
-                              isAuto ? colors.primary.withValues(alpha: 0.10) : Colors.transparent,
+                              isAuto
+                                  ? colors.primary.withValues(alpha: 0.10)
+                                  : Colors.transparent,
                           borderRadius: BorderRadius.circular(100.r),
                           border: Border.all(
                             color: isAuto ? colors.primary : colors.border,
@@ -222,19 +251,26 @@ class _BottomButtons extends StatelessWidget {
                             Text(
                               LocaleKeys.tarot_shuffle_auto_toggle.tr(),
                               style: m12w600(context).copyWith(
-                                color: isAuto ? colors.primary : colors.textSecondary,
+                                color:
+                                    isAuto
+                                        ? colors.primary
+                                        : colors.textSecondary,
                               ),
                             ),
                             ValueListenableBuilder<int>(
                               valueListenable: scope.shuffleTimeLeft,
                               builder: (_, timeLeft, _) {
-                                final timeText = timeLeft > 0 ? ' ($timeLeft s)' : '';
+                                final timeText =
+                                    timeLeft > 0 ? ' ($timeLeft s)' : '';
                                 return Text(
                                   isAuto
                                       ? '${LocaleKeys.tarot_shuffle_auto_on.tr()}$timeText'
                                       : LocaleKeys.tarot_shuffle_auto_off.tr(),
                                   style: m10w400(context).copyWith(
-                                    color: isAuto ? colors.primary : colors.textDisabled,
+                                    color:
+                                        isAuto
+                                            ? colors.primary
+                                            : colors.textDisabled,
                                   ),
                                 );
                               },

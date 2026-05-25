@@ -180,7 +180,7 @@ class TarotAppBar extends StatelessWidget implements PreferredSizeWidget {
       ],
       title:
           titleWidget ??
-          Text(title ?? '', style: titleStyle ?? m21w600(context)),
+          Text(title ?? '', style: titleStyle ?? m18w700(context)),
     );
   }
 

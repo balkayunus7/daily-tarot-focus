@@ -21,7 +21,8 @@ class TarotSpreadStep4Page extends StatefulWidget {
   State<TarotSpreadStep4Page> createState() => _TarotSpreadStep4PageState();
 }
 
-class _TarotSpreadStep4PageState extends State<TarotSpreadStep4Page> with Step4PageMixin {
+class _TarotSpreadStep4PageState extends State<TarotSpreadStep4Page>
+    with Step4PageMixin {
   @override
   Widget build(BuildContext context) {
     final colors = context.colors;
@@ -34,7 +35,10 @@ class _TarotSpreadStep4PageState extends State<TarotSpreadStep4Page> with Step4P
         appBar: TarotAppBar(
           titleWidget: Column(
             children: [
-              Text(LocaleKeys.tarot_question_question_step_title.tr(), style: m16w700(context)),
+              Text(
+                LocaleKeys.tarot_question_question_step_title.tr(),
+                style: m18w700(context),
+              ),
               Sp.tiny.heightBox,
               Text(
                 LocaleKeys.tarot_question_step_3_of_5.tr(),
@@ -58,7 +62,11 @@ class _TarotSpreadStep4PageState extends State<TarotSpreadStep4Page> with Step4P
                 children: [
                   _SpreadTitleBar(
                     title: spread.title,
-                    onMoreTap: () => showSpreadDetailsBottomSheet(context, spread: spread),
+                    onMoreTap:
+                        () => showSpreadDetailsBottomSheet(
+                          context,
+                          spread: spread,
+                        ),
                   ),
                   Expanded(
                     child: SingleChildScrollView(
@@ -73,21 +81,24 @@ class _TarotSpreadStep4PageState extends State<TarotSpreadStep4Page> with Step4P
                             index: 1,
                             emoji: '🔍',
                             title: LocaleKeys.tarot_question_tip_1_title.tr(),
-                            description: LocaleKeys.tarot_question_tip_1_desc.tr(),
+                            description:
+                                LocaleKeys.tarot_question_tip_1_desc.tr(),
                           ),
                           Sp.small.heightBox,
                           _TipItem(
                             index: 2,
                             emoji: '🧭',
                             title: LocaleKeys.tarot_question_tip_2_title.tr(),
-                            description: LocaleKeys.tarot_question_tip_2_desc.tr(),
+                            description:
+                                LocaleKeys.tarot_question_tip_2_desc.tr(),
                           ),
                           Sp.small.heightBox,
                           _TipItem(
                             index: 3,
                             emoji: '🎯',
                             title: LocaleKeys.tarot_question_tip_3_title.tr(),
-                            description: LocaleKeys.tarot_question_tip_3_desc.tr(),
+                            description:
+                                LocaleKeys.tarot_question_tip_3_desc.tr(),
                           ),
                           Sp.xxlarge.heightBox,
                           const _QuestionTextField(),
@@ -116,19 +127,27 @@ class _SpreadTitleBar extends StatelessWidget {
     final colors = context.colors;
 
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: Sp.screen.w, vertical: Sp.small.h),
+      padding: EdgeInsets.symmetric(
+        horizontal: Sp.screen.w,
+        vertical: Sp.small.h,
+      ),
       child: Row(
         children: [
           Container(
             width: 6.w,
             height: 6.w,
-            decoration: BoxDecoration(color: colors.primary, shape: BoxShape.circle),
+            decoration: BoxDecoration(
+              color: colors.primary,
+              shape: BoxShape.circle,
+            ),
           ),
           Sp.xsmall.widthBox,
           Expanded(
             child: Text(
               title,
-              style: m14w600(context).copyWith(color: colors.textSecondary, letterSpacing: 0.2),
+              style: m14w600(
+                context,
+              ).copyWith(color: colors.textSecondary, letterSpacing: 0.2),
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
             ),
@@ -144,7 +163,11 @@ class _SpreadTitleBar extends StatelessWidget {
                   style: m12w500(context).copyWith(color: colors.primary),
                 ),
                 Sp.tiny.widthBox,
-                Icon(Icons.keyboard_arrow_right_rounded, color: colors.primary, size: 14.sp),
+                Icon(
+                  Icons.keyboard_arrow_right_rounded,
+                  color: colors.primary,
+                  size: 14.sp,
+                ),
               ],
             ),
           ),
@@ -188,7 +211,10 @@ class _TipItem extends StatelessWidget {
               shape: BoxShape.circle,
             ),
             alignment: Alignment.center,
-            child: Text('$index', style: m10w700(context).copyWith(color: colors.primary)),
+            child: Text(
+              '$index',
+              style: m10w700(context).copyWith(color: colors.primary),
+            ),
           ),
           Sp.small.widthBox,
           Expanded(
@@ -203,7 +229,9 @@ class _TipItem extends StatelessWidget {
                     Expanded(
                       child: Text(
                         title,
-                        style: m13w500(context).copyWith(color: colors.textPrimary),
+                        style: m13w500(
+                          context,
+                        ).copyWith(color: colors.textPrimary),
                       ),
                     ),
                   ],
@@ -211,7 +239,9 @@ class _TipItem extends StatelessWidget {
                 Sp.tiny.heightBox,
                 Text(
                   description,
-                  style: m12w400(context).copyWith(color: colors.textSecondary, height: 1.5),
+                  style: m12w400(
+                    context,
+                  ).copyWith(color: colors.textSecondary, height: 1.5),
                 ),
               ],
             ),
@@ -237,7 +267,9 @@ class _QuestionTextField extends StatelessWidget {
           padding: EdgeInsets.only(left: 2.w, bottom: Sp.xsmall.h),
           child: Text(
             LocaleKeys.tarot_question_question_hint.tr(),
-            style: m11w500(context).copyWith(color: colors.textSecondary, letterSpacing: 0.3),
+            style: m11w500(
+              context,
+            ).copyWith(color: colors.textSecondary, letterSpacing: 0.3),
           ),
         ),
         ValueListenableBuilder<bool>(
@@ -249,11 +281,19 @@ class _QuestionTextField extends StatelessWidget {
                   color: colors.surfaceSecondary,
                   borderRadius: BorderRadius.circular(16.r),
                   border: Border.all(
-                    color: focused ? colors.primary.withValues(alpha: 0.6) : Colors.transparent,
+                    color:
+                        focused
+                            ? colors.primary.withValues(alpha: 0.6)
+                            : Colors.transparent,
                     width: 1.5,
                   ),
                 ),
-                padding: EdgeInsets.fromLTRB(Sp.medium.w, Sp.medium.h, Sp.medium.w, Sp.xsmall.h),
+                padding: EdgeInsets.fromLTRB(
+                  Sp.medium.w,
+                  Sp.medium.h,
+                  Sp.medium.w,
+                  Sp.xsmall.h,
+                ),
                 child: child,
               ),
           child: Column(
@@ -267,12 +307,16 @@ class _QuestionTextField extends StatelessWidget {
                 maxLength: Step4PageMixin.maxChars,
                 keyboardType: TextInputType.multiline,
                 textInputAction: TextInputAction.newline,
-                style: m14w400(context).copyWith(color: colors.textPrimary, height: 1.55),
+                style: m14w400(
+                  context,
+                ).copyWith(color: colors.textPrimary, height: 1.55),
                 decoration: InputDecoration(
                   border: InputBorder.none,
                   counterText: '',
                   hintText: LocaleKeys.tarot_question_question_hint.tr(),
-                  hintStyle: m14w400(context).copyWith(color: colors.textDisabled, height: 1.6),
+                  hintStyle: m14w400(
+                    context,
+                  ).copyWith(color: colors.textDisabled, height: 1.6),
                   isDense: true,
                   contentPadding: EdgeInsets.zero,
                 ),
@@ -281,7 +325,8 @@ class _QuestionTextField extends StatelessWidget {
               ValueListenableBuilder<int>(
                 valueListenable: scope.charCount,
                 builder: (_, count, _) {
-                  final isNearLimit = count > (Step4PageMixin.maxChars * 0.8).toInt();
+                  final isNearLimit =
+                      count > (Step4PageMixin.maxChars * 0.8).toInt();
                   return Text(
                     '$count / ${Step4PageMixin.maxChars}',
                     style: m10w400(context).copyWith(

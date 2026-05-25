@@ -35,7 +35,11 @@ class ZodiacHoroscopeArgs {
 }
 
 class ZodiacHoroscopePage extends StatefulWidget {
-  const ZodiacHoroscopePage({required this.sign, this.initialIndex = 0, super.key});
+  const ZodiacHoroscopePage({
+    required this.sign,
+    this.initialIndex = 0,
+    super.key,
+  });
   final ZodiacSign sign;
   final int initialIndex;
 
@@ -69,18 +73,26 @@ class _ZodiacHoroscopePageState extends State<ZodiacHoroscopePage>
                 indicatorWeight: 2.5,
                 indicatorSize: TabBarIndicatorSize.label,
                 labelColor: colors.textPrimary,
-                unselectedLabelColor: colors.textSecondary.withValues(alpha: 0.45),
+                unselectedLabelColor: colors.textSecondary.withValues(
+                  alpha: 0.45,
+                ),
                 labelStyle: m15w700(context),
                 unselectedLabelStyle: m13w500(context),
                 dividerColor: colors.border,
-                tabs: HoroscopePeriod.values.map((p) => Tab(text: p.tabLabel)).toList(),
+                tabs:
+                    HoroscopePeriod.values
+                        .map((p) => Tab(text: p.tabLabel))
+                        .toList(),
               ),
               Expanded(
                 child: TabBarView(
                   controller: tabController,
                   children:
                       HoroscopePeriod.values.map((period) {
-                        return _HoroscopeTabContent(sign: widget.sign, period: period);
+                        return _HoroscopeTabContent(
+                          sign: widget.sign,
+                          period: period,
+                        );
                       }).toList(),
                 ),
               ),
@@ -99,11 +111,13 @@ class _HoroscopeTabContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final cacheKey = '${sign.name}_${period.name}_${context.currentLocaleLanguage.value}';
+    final cacheKey =
+        '${sign.name}_${period.name}_${context.currentLocaleLanguage.value}';
 
     return BlocBuilder<ZodiacBloc, ZodiacState>(
       buildWhen: (p, c) {
-        final key = '${sign.name}_${period.name}_${context.currentLocaleLanguage.value}';
+        final key =
+            '${sign.name}_${period.name}_${context.currentLocaleLanguage.value}';
         return p.isGeneratingHoroscope != c.isGeneratingHoroscope ||
             p.horoscopeCache[key] != c.horoscopeCache[key] ||
             p.fetchHoroscopeFailureOrResult != c.fetchHoroscopeFailureOrResult;
@@ -112,7 +126,9 @@ class _HoroscopeTabContent extends StatelessWidget {
         final cached = state.horoscopeCache[cacheKey];
         final response = cached?.response;
 
-        if (response == null && !state.isGeneratingHoroscope && state.hasGeneratedHoroscopeFailed) {
+        if (response == null &&
+            !state.isGeneratingHoroscope &&
+            state.hasGeneratedHoroscopeFailed) {
           return Center(child: HoroscopeErrorCard(period: period));
         }
 
@@ -126,7 +142,11 @@ class _HoroscopeTabContent extends StatelessWidget {
           child: Builder(
             builder: (context) {
               if (response == null) return HoroscopeShimmer(period: period);
-              return _HoroscopeContent(sign: sign, period: period, response: response);
+              return _HoroscopeContent(
+                sign: sign,
+                period: period,
+                response: response,
+              );
             },
           ),
         );
@@ -136,7 +156,11 @@ class _HoroscopeTabContent extends StatelessWidget {
 }
 
 class _HoroscopeContent extends StatelessWidget {
-  const _HoroscopeContent({required this.sign, required this.period, required this.response});
+  const _HoroscopeContent({
+    required this.sign,
+    required this.period,
+    required this.response,
+  });
   final ZodiacSign sign;
   final HoroscopePeriod period;
   final HoroscopeResponseModel response;

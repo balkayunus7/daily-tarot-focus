@@ -24,12 +24,17 @@ class TarotDeckDetailPage extends StatelessWidget {
           return Scaffold(
             appBar: TarotAppBar(
               title: LocaleKeys.tarot_detail_archive_title.tr(),
-              titleStyle: m18w600(context).copyWith(
+              titleStyle: m18w700(context).copyWith(
                 fontStyle: FontStyle.italic,
                 color: context.colors.primary,
               ),
             ),
-            body: Center(child: SpinKitFadingCircle(color: context.colors.primary, size: 32)),
+            body: Center(
+              child: SpinKitFadingCircle(
+                color: context.colors.primary,
+                size: 32,
+              ),
+            ),
           );
         }
 
@@ -48,7 +53,7 @@ class _TarotDetailContent extends StatelessWidget {
     return Scaffold(
       appBar: TarotAppBar(
         title: LocaleKeys.tarot_detail_archive_title.tr(),
-        titleStyle: m18w600(context).copyWith(
+        titleStyle: m18w700(context).copyWith(
           fontStyle: FontStyle.italic,
           color: context.colors.primary,
         ),

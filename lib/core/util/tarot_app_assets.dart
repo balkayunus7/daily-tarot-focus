@@ -3,26 +3,21 @@ enum TarotAppAssets {
   card._('assets/svg/card.svg'),
   crown._('assets/svg/crown.svg'),
   explore._('assets/svg/explore.svg'),
-  doubleArrow._('assets/svg/double_arrow.svg'),
   settings._('assets/svg/settings.svg'),
   tarotIcon._('assets/svg/tarot.svg'),
   shiningStars._('assets/json/shining_stars.json'),
-  tarot._('assets/json/tarot.json'),
   cardsThree._('assets/svg/cards-three.svg'),
   moonStars._('assets/svg/moon-stars.svg'),
   heartHalf._('assets/svg/heart-half.svg'),
   handCoins._('assets/svg/hand-coins.svg'),
   chartLine._('assets/svg/chart-line.svg'),
   asclepius._('assets/svg/asclepius.svg'),
+  graduationCap._('assets/svg/graduation-cap.svg'),
+  movingTruck._('assets/svg/moving-truck.svg'),
+  sparkles._('assets/svg/sparkles.svg'),
   babyIcon._('assets/svg/baby.svg'),
   male._('assets/svg/male.svg'),
-  female._('assets/svg/female.svg'),
-  readerAmara._('assets/svg/amara.webp'),
-  readerAnya._('assets/svg/anya.webp'),
-  readerElara._('assets/svg/elara.webp'),
-  readerSilas._('assets/svg/silas.webp'),
-  readerVesper._('assets/svg/vesper.webp'),
-  readerZephyr._('assets/svg/zephyr.webp');
+  female._('assets/svg/female.svg');
 
   const TarotAppAssets._(this.path);
   final String path;

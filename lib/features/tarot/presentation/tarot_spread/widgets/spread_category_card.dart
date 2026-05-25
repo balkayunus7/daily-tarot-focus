@@ -11,7 +11,11 @@ import 'package:mobile_boilerplate/presentation/extensions/build_context_theme_e
 import 'package:mobile_boilerplate/presentation/widgets/scaling_container.dart';
 
 class SpreadCategoryCard extends StatelessWidget {
-  const SpreadCategoryCard({required this.categoryData, required this.onTap, super.key});
+  const SpreadCategoryCard({
+    required this.categoryData,
+    required this.onTap,
+    super.key,
+  });
   final TarotSpreadCategoryModel categoryData;
   final VoidCallback onTap;
 
@@ -29,6 +33,14 @@ class SpreadCategoryCard extends StatelessWidget {
         return TarotAppAssets.moonStars.path;
       case 'cat_relationship':
         return TarotAppAssets.heartHalf.path;
+      case 'cat_education':
+        return TarotAppAssets.graduationCap.path;
+      case 'cat_moving_travel':
+        return TarotAppAssets.movingTruck.path;
+      case 'cat_child_pregnancy_motherhood':
+        return TarotAppAssets.babyIcon.path;
+      case 'cat_other_spreads':
+        return TarotAppAssets.sparkles.path;
       default:
         return TarotAppAssets.cardsThree.path;
     }

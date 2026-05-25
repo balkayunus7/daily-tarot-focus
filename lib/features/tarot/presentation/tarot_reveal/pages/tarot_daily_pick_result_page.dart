@@ -129,8 +129,7 @@ class _TarotDailyPickResultPageState extends State<TarotDailyPickResultPage> {
                           0,
                           Sp.large.h,
                           0,
-                          Sp.xxxlarge.h +
-                              MediaQuery.of(context).padding.bottom,
+                          Sp.xxxlarge.h + MediaQuery.of(context).padding.bottom,
                         ),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,

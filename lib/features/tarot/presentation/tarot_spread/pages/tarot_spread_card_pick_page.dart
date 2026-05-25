@@ -94,7 +94,7 @@ class _TarotSpreadCardPickPageState extends State<TarotSpreadCardPickPage> {
           children: [
             Text(
               LocaleKeys.tarot_question_card_pick_step_title.tr(),
-              style: m16w700(context),
+              style: m18w700(context),
             ),
             Sp.tiny.heightBox,
             Text(

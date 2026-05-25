@@ -8,7 +8,7 @@
 PRODUCT_NAME = daily_tarot_focus
 
 // The application's bundle identifier
-PRODUCT_BUNDLE_IDENTIFIER = com.example.dailyTarotFocus
+PRODUCT_BUNDLE_IDENTIFIER = com.blkstudio.tarotly
 
 // The copyright displayed in application information
-PRODUCT_COPYRIGHT = Copyright © 2025 com.example. All rights reserved.
+PRODUCT_COPYRIGHT = Copyright © 2025 blkstudio. All rights reserved.

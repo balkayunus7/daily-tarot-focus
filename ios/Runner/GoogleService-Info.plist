@@ -9,7 +9,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.yunusbalka.dailyTarotFocus</string>
+	<string>com.blkstudio.tarotly</string>
 	<key>PROJECT_ID</key>
 	<string>tarot-app-4049c</string>
 	<key>STORAGE_BUCKET</key>

@@ -21,7 +21,6 @@ import 'package:daily_tarot_focus/features/core/settings/display_delete_account_
 import 'package:daily_tarot_focus/features/core/subscription/premium_override_service.dart';
 import 'package:daily_tarot_focus/features/tarot/bloc/tarot/tarot_bloc.dart';
 import 'package:daily_tarot_focus/features/tarot/bloc/tarot/tarot_state.dart';
-import 'package:daily_tarot_focus/features/tarot/data/daily_spread_usage_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
@@ -200,6 +199,10 @@ class SettingsPage extends StatelessWidget {
                     if (user != null) ...[
                       _ProfileSection(
                         user: user,
+                        isPremium: PremiumOverrideService.isPremium(
+                          user: user,
+                          networkTime: context.networkNow(),
+                        ),
                         onEditTap: () => _showEditProfileSheet(context, user),
                       ),
                       Sp.large.heightBox,
@@ -233,35 +236,6 @@ class SettingsPage extends StatelessWidget {
                                 trackingIds: authState.trackingIdsOrNull,
                               );
                             }
-                          },
-                        ),
-                        ValueListenableBuilder<bool>(
-                          valueListenable: PremiumOverrideService.forcePremium,
-                          builder: (context, forcePremium, _) {
-                            return Column(
-                              children: [
-                                _SettingsSwitchTile(
-                                  icon: Icons.workspace_premium_outlined,
-                                  title: LocaleKeys.settings_page_test_premium.tr(),
-                                  value: forcePremium,
-                                  onChanged: (value) async {
-                                    PremiumOverrideService.isForcePremium = value;
-                                    if (value && user != null) {
-                                      await DailySpreadUsageService.reset(
-                                        userId: user.userId,
-                                        date: context.networkNow(),
-                                      );
-                                    }
-                                  },
-                                ),
-                                if (user != null) ...[
-                                  _DailySpreadUsageTile(
-                                    user: user,
-                                    refreshKey: forcePremium,
-                                  ),
-                                ],
-                              ],
-                            );
                           },
                         ),
                       ],
@@ -309,9 +283,13 @@ class SettingsPage extends StatelessWidget {
 }
 
 class _ProfileSection extends StatelessWidget {
-  const _ProfileSection({required this.user, required this.onEditTap});
-
+  const _ProfileSection({
+    required this.user,
+    required this.isPremium,
+    required this.onEditTap,
+  });
   final TarotUser user;
+  final bool isPremium;
   final VoidCallback onEditTap;
 
   String _formatDate(DateTime date) {
@@ -383,11 +361,54 @@ class _ProfileSection extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         if (name.isNotEmpty) ...[
-                          Text(
-                            name,
-                            style: m16w600(
-                              context,
-                            ).copyWith(color: colors.textPrimary),
+                          Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Flexible(
+                                child: Text(
+                                  name,
+                                  style: m16w600(
+                                    context,
+                                  ).copyWith(color: colors.textPrimary),
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                              ),
+                              if (isPremium) ...[
+                                SizedBox(width: 8.w),
+                                Container(
+                                  padding: EdgeInsets.symmetric(
+                                    horizontal: 7.w,
+                                    vertical: 3.h,
+                                  ),
+                                  decoration: BoxDecoration(
+                                    gradient: LinearGradient(
+                                      colors: [
+                                         context.colors.primary.withValues(alpha: 0.5),
+                                          context.colors.primary,
+                                      ],
+                                    ),
+                                    borderRadius: BorderRadius.circular(20.r),
+                                  ),
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      Icon(
+                                        Icons.star_rounded,
+                                        size: 10.r,
+                                        color: Colors.white,
+                                      ),
+                                      SizedBox(width: 3.w),
+                                      Text(
+                                        'Premium',
+                                        style: m10w600(context).copyWith(
+                                          color: Colors.white,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ],
                           ),
                         ],
                         if (user.birthDate != null) ...[
@@ -1125,100 +1146,3 @@ class _SettingsTile extends StatelessWidget {
   }
 }
 
-class _SettingsSwitchTile extends StatelessWidget {
-  const _SettingsSwitchTile({
-    required this.icon,
-    required this.title,
-    required this.value,
-    required this.onChanged,
-  });
-
-  final IconData icon;
-  final String title;
-  final bool value;
-  final ValueChanged<bool> onChanged;
-
-  @override
-  Widget build(BuildContext context) {
-    final colors = context.colors;
-
-    return Padding(
-      padding: Sp.small.padSymR(h: Sp.large, v: Sp.small),
-      child: Row(
-        children: [
-          Container(
-            width: 28.w,
-            height: 28.h,
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                colors: [colors.gradientStart, colors.gradientEnd],
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-              ),
-              borderRadius: Sp.small.radiusR,
-            ),
-            alignment: Alignment.center,
-            child: Icon(icon, color: colors.accent, size: 18),
-          ),
-          Sp.medium.widthBox,
-          Expanded(
-            child: Text(
-              title,
-              style: m14w500(context).copyWith(color: colors.textPrimary),
-            ),
-          ),
-          Switch.adaptive(
-            value: value,
-            activeThumbColor: colors.primary,
-            onChanged: onChanged,
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class _DailySpreadUsageTile extends StatelessWidget {
-  const _DailySpreadUsageTile({required this.user, required this.refreshKey});
-
-  final TarotUser user;
-  final bool refreshKey;
-
-  @override
-  Widget build(BuildContext context) {
-    final colors = context.colors;
-    final now = context.networkNow();
-    final isPremium = PremiumOverrideService.isPremium(
-      user: user,
-      networkTime: now,
-    );
-    final limit = DailySpreadUsageService.limitFor(isPremium: isPremium);
-
-    return FutureBuilder<int>(
-      key: ValueKey(refreshKey),
-      future: DailySpreadUsageService.getCount(userId: user.userId, date: now),
-      builder: (context, snapshot) {
-        final used = snapshot.data ?? 0;
-        final remaining = (limit - used).clamp(0, limit);
-
-        return Padding(
-          padding: EdgeInsets.fromLTRB(Sp.large.w, 0, Sp.large.w, Sp.small.h),
-          child: Row(
-            children: [
-              SizedBox(width: 28.w),
-              Sp.medium.widthBox,
-              Expanded(
-                child: Text(
-                  LocaleKeys.settings_page_daily_spread_remaining.tr(
-                    args: ['$remaining', '$limit'],
-                  ),
-                  style: m12w500(context).copyWith(color: colors.textSecondary),
-                ),
-              ),
-            ],
-          ),
-        );
-      },
-    );
-  }
-}

@@ -41,7 +41,12 @@ mixin PersonalInfoMixin<T extends StatefulWidget> on State<T> {
     context.read<RegisterCubit>().setName(value);
   }
 
+  void dismissKeyboard() {
+    FocusManager.instance.primaryFocus?.unfocus();
+  }
+
   Future<void> pickDate() async {
+    dismissKeyboard();
     final now = DateTime.now();
     final picked = await TarotDatePicker.showDate(
       context: context,
@@ -56,9 +61,11 @@ mixin PersonalInfoMixin<T extends StatefulWidget> on State<T> {
   }
 
   Future<void> pickTime() async {
+    dismissKeyboard();
     final picked = await TarotDatePicker.showTime(
       context: context,
-      initialTime: selectedBirthTime.value ?? const TimeOfDay(hour: 12, minute: 0),
+      initialTime:
+          selectedBirthTime.value ?? const TimeOfDay(hour: 12, minute: 0),
     );
     if (picked != null && mounted) {
       selectedBirthTime.value = picked;
@@ -67,6 +74,7 @@ mixin PersonalInfoMixin<T extends StatefulWidget> on State<T> {
   }
 
   Future<void> pickCity() async {
+    dismissKeyboard();
     final colors = context.colors;
     await showModalBottomSheet<void>(
       context: context,
@@ -85,6 +93,7 @@ mixin PersonalInfoMixin<T extends StatefulWidget> on State<T> {
   }
 
   Future<void> submitRegistration() async {
+    dismissKeyboard();
     final authState = context.read<AuthCubit>().state;
     await context.read<RegisterCubit>().submitRegistration(
       authState.sessionOrCrash,

@@ -55,7 +55,7 @@ class _RegisterAccountSetupPageState extends State<RegisterAccountSetupPage>
                           children: [
                             Text(
                               LocaleKeys.register_page_preparing_account.tr(),
-                              style: m26w600(context),
+                              style: m20w600(context),
                             ),
                             Sp.xsmall.heightBox,
                             Text(

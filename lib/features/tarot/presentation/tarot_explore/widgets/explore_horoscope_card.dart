@@ -112,12 +112,12 @@ class _PeriodContainer extends StatelessWidget {
               children: [
                 Text(
                   period.labelKey.tr(),
-                  style: m16w600(context).copyWith(color: colors.textOnPrimary),
+                  style: m18w700(context).copyWith(color: colors.textOnPrimary),
                 ),
                 Sp.tiny.heightBox,
                 Text(
                   period.exploreSubtitle,
-                  style: m11w500(context).copyWith(
+                  style: m12w500(context).copyWith(
                     color: colors.textOnPrimary.withValues(alpha: 0.7),
                   ),
                   maxLines: 2,

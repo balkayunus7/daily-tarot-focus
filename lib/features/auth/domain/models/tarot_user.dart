@@ -101,8 +101,10 @@ class TarotUser extends User {
     };
   }
 
+
   TarotUser copyWith({
     Purchaser? purchaser,
+    Subscription? subscription,
     RelationshipStatus? relationshipStatus,
     CareerStatus? careerStatus,
     String? name,
@@ -115,7 +117,7 @@ class TarotUser extends User {
     return TarotUser(
       userId: userId,
       purchaser: purchaser ?? this.purchaser,
-      subscription: subscription,
+      subscription: subscription ?? this.subscription,
       relationshipStatus: relationshipStatus ?? this.relationshipStatus,
       careerStatus: careerStatus ?? this.careerStatus,
       name: name ?? this.name,
@@ -125,6 +127,10 @@ class TarotUser extends User {
       moonSign: moonSign ?? this.moonSign,
       risingSign: risingSign ?? this.risingSign,
     );
+  }
+
+  TarotUser withSubscription(Subscription subscription) {
+    return copyWith(subscription: subscription);
   }
 
   @override

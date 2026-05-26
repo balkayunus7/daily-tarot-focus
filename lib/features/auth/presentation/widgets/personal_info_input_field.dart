@@ -27,6 +27,9 @@ class PersonalInfoInputField extends StatelessWidget {
       child: TextField(
         controller: controller,
         onChanged: onChanged,
+        onTapOutside: (_) => FocusManager.instance.primaryFocus?.unfocus(),
+        textInputAction: TextInputAction.done,
+        onSubmitted: (_) => FocusManager.instance.primaryFocus?.unfocus(),
         style: m14w500(context),
         decoration: InputDecoration(
           prefixIcon: Padding(
@@ -41,7 +44,10 @@ class PersonalInfoInputField extends StatelessWidget {
           hintText: hint,
           hintStyle: m14w500(context).copyWith(color: colors.textSecondary),
           filled: false,
-          contentPadding: EdgeInsets.symmetric(vertical: 14.h, horizontal: 16.w),
+          contentPadding: EdgeInsets.symmetric(
+            vertical: 14.h,
+            horizontal: 16.w,
+          ),
           border: InputBorder.none,
           enabledBorder: InputBorder.none,
           focusedBorder: InputBorder.none,

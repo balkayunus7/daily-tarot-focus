@@ -68,7 +68,6 @@ class ExploreHeader extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Icon(timeIcon, color: colors.primary, size: 28),
                 Sp.xsmall.widthBox,

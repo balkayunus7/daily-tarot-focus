@@ -1,4 +1,5 @@
 import 'package:daily_tarot_focus/config/app_router.dart';
+import 'package:daily_tarot_focus/core/util/locale_extensions.dart';
 import 'package:daily_tarot_focus/core/util/tarot_app_colors.dart';
 import 'package:daily_tarot_focus/features/auth/bloc/register_cubit.dart';
 import 'package:daily_tarot_focus/features/tarot/bloc/tarot/tarot_bloc.dart';
@@ -34,14 +35,16 @@ class TarotApp extends StatelessWidget {
         BlocProvider(create: (_) => getIt<TarotBloc>()),
         BlocProvider(create: (_) => getIt<ZodiacBloc>()),
         Provider<Launcher>(create: (_) => getIt<Launcher>()),
-        Provider<NetworkTimeProvider>(create: (_) => getIt<NetworkTimeProvider>()),
+        Provider<NetworkTimeProvider>(
+          create: (_) => getIt<NetworkTimeProvider>(),
+        ),
       ],
       child: CoreApp(
         darkColors: TarotAppColorsDark(),
         lightColors: TarotAppColorsLight(),
         routerConfig: appRouter,
         fontFamily: 'Montserrat',
-        supportedLocales: const [Locale('en'), Locale('tr')],
+        supportedLocales: LocaleLanguage.values.map((e) => e.locale).toList(),
       ),
     );
   }

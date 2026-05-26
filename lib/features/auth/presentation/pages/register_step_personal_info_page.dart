@@ -23,10 +23,12 @@ class RegisterStepPersonalInfoPage extends StatefulWidget {
   const RegisterStepPersonalInfoPage({super.key});
 
   @override
-  State<RegisterStepPersonalInfoPage> createState() => _RegisterStepPersonalInfoPageState();
+  State<RegisterStepPersonalInfoPage> createState() =>
+      _RegisterStepPersonalInfoPageState();
 }
 
-class _RegisterStepPersonalInfoPageState extends State<RegisterStepPersonalInfoPage>
+class _RegisterStepPersonalInfoPageState
+    extends State<RegisterStepPersonalInfoPage>
     with PersonalInfoMixin {
   @override
   Widget build(BuildContext context) {
@@ -42,131 +44,167 @@ class _RegisterStepPersonalInfoPageState extends State<RegisterStepPersonalInfoP
             if (!ctx.mounted) return;
             ctx.go(AppRoutes.accountSetup);
           } else if (state.registerStatus.isFailure) {
-            ctx.showErrorToastMessage(LocaleKeys.failure_unexpected_message.tr());
+            ctx.showErrorToastMessage(
+              LocaleKeys.failure_unexpected_message.tr(),
+            );
           }
         },
-        child: Stack(
-          children: [
-            const StepBackground(),
-            SafeArea(
-              child: Padding(
-                padding: Sp.screen.padOnlyR(l: true, r: true, t: true),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      LocaleKeys.register_page_step_3_of_3.tr(),
-                      style: m14w700(context).copyWith(color: colors.textSecondary),
-                    ),
-                    Sp.xsmall.heightBox,
-                    Text(
-                      LocaleKeys.register_page_name_birth_location_title.tr(),
-                      style: m32w600(context),
-                    ),
-                    Sp.xsmall.heightBox,
-                    Text(
-                      LocaleKeys.register_page_name_birth_location_subtitle.tr(),
-                      style: m14w500(context).copyWith(color: colors.textSecondary),
-                    ),
-                    Sp.small.heightBox,
-                    LinearProgressIndicator(
-                      value: 1,
-                      minHeight: 6,
-                      borderRadius: Sp.medium.radiusR,
-                      backgroundColor: colors.accent,
-                      valueColor: AlwaysStoppedAnimation<Color>(colors.primary),
-                    ),
-                    Sp.xxlarge.heightBox,
-                    Expanded(
-                      child: SingleChildScrollView(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            _buildLabel(context, LocaleKeys.register_page_name_label.tr()),
-                            Sp.xsmall.heightBox,
-                            ListenableBuilder(
-                              listenable: nameController,
-                              builder: (context, _) {
-                                return PersonalInfoInputField(
-                                  controller: nameController,
-                                  hint: LocaleKeys.register_page_name_hint.tr(),
-                                  onChanged: onNameChanged,
-                                );
-                              },
-                            ),
-                            Sp.medium.heightBox,
-                            _buildLabel(context, LocaleKeys.register_page_birth_date_label.tr()),
-                            Sp.xsmall.heightBox,
-                            ValueListenableBuilder<DateTime?>(
-                              valueListenable: selectedBirthDate,
-                              builder: (context, date, _) {
-                                return _InfoPickerField(
-                                  icon: Mdi.calendar,
-                                  value: date != null ? formatDate(date) : null,
-                                  hint: LocaleKeys.register_page_birth_date_hint.tr(),
-                                  onTap: pickDate,
-                                );
-                              },
-                            ),
-                            Sp.medium.heightBox,
-                            _buildLabel(context, LocaleKeys.register_page_birth_time_label.tr()),
-                            Sp.xsmall.heightBox,
-                            ValueListenableBuilder<TimeOfDay?>(
-                              valueListenable: selectedBirthTime,
-                              builder: (context, time, _) {
-                                return _InfoPickerField(
-                                  icon: Mdi.clock_outline,
-                                  value: time?.format(context),
-                                  hint: LocaleKeys.register_page_birth_time_hint.tr(),
-                                  onTap: pickTime,
-                                );
-                              },
-                            ),
-                            Sp.medium.heightBox,
-                            _buildLabel(context, LocaleKeys.register_page_location_label.tr()),
-                            Sp.xsmall.heightBox,
-                            ValueListenableBuilder<String?>(
-                              valueListenable: selectedCityName,
-                              builder: (context, city, _) {
-                                return _InfoPickerField(
-                                  icon: Mdi.map_marker,
-                                  value: city,
-                                  hint: LocaleKeys.register_page_location_hint.tr(),
-                                  onTap: pickCity,
-                                );
-                              },
-                            ),
-                            Sp.xxlarge.heightBox,
-                          ],
+        child: GestureDetector(
+          behavior: HitTestBehavior.translucent,
+          onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+          child: Stack(
+            children: [
+              const StepBackground(),
+              SafeArea(
+                child: Padding(
+                  padding: Sp.screen.padOnlyR(l: true, r: true, t: true),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        LocaleKeys.register_page_step_3_of_3.tr(),
+                        style: m14w700(
+                          context,
+                        ).copyWith(color: colors.textSecondary),
+                      ),
+                      Sp.xsmall.heightBox,
+                      Text(
+                        LocaleKeys.register_page_name_birth_location_title.tr(),
+                        style: m32w600(context),
+                      ),
+                      Sp.xsmall.heightBox,
+                      Text(
+                        LocaleKeys.register_page_name_birth_location_subtitle
+                            .tr(),
+                        style: m14w500(
+                          context,
+                        ).copyWith(color: colors.textSecondary),
+                      ),
+                      Sp.small.heightBox,
+                      LinearProgressIndicator(
+                        value: 1,
+                        minHeight: 6,
+                        borderRadius: Sp.medium.radiusR,
+                        backgroundColor: colors.accent,
+                        valueColor: AlwaysStoppedAnimation<Color>(
+                          colors.primary,
                         ),
                       ),
-                    ),
-                    Sp.medium.heightBox,
-                    ListenableBuilder(
-                      listenable: Listenable.merge([
-                        nameController,
-                        selectedBirthDate,
-                        selectedBirthTime,
-                        selectedCityName,
-                      ]),
-                      builder: (context, _) {
-                        return BlocBuilder<RegisterCubit, RegisterState>(
-                          builder: (context, state) {
-                            return FancyButton(
-                              text: LocaleKeys.register_page_complete_registration.tr(),
-                              onTap: submitRegistration,
-                              isLoading: state.registerStatus.isLoading,
-                              isDisabled: !isFormValid,
-                            );
-                          },
-                        );
-                      },
-                    ),
-                  ],
+                      Sp.xxlarge.heightBox,
+                      Expanded(
+                        child: SingleChildScrollView(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              _buildLabel(
+                                context,
+                                LocaleKeys.register_page_name_label.tr(),
+                              ),
+                              Sp.xsmall.heightBox,
+                              ListenableBuilder(
+                                listenable: nameController,
+                                builder: (context, _) {
+                                  return PersonalInfoInputField(
+                                    controller: nameController,
+                                    hint:
+                                        LocaleKeys.register_page_name_hint.tr(),
+                                    onChanged: onNameChanged,
+                                  );
+                                },
+                              ),
+                              Sp.medium.heightBox,
+                              _buildLabel(
+                                context,
+                                LocaleKeys.register_page_birth_date_label.tr(),
+                              ),
+                              Sp.xsmall.heightBox,
+                              ValueListenableBuilder<DateTime?>(
+                                valueListenable: selectedBirthDate,
+                                builder: (context, date, _) {
+                                  return _InfoPickerField(
+                                    icon: Mdi.calendar,
+                                    value:
+                                        date != null ? formatDate(date) : null,
+                                    hint:
+                                        LocaleKeys.register_page_birth_date_hint
+                                            .tr(),
+                                    onTap: pickDate,
+                                  );
+                                },
+                              ),
+                              Sp.medium.heightBox,
+                              _buildLabel(
+                                context,
+                                LocaleKeys.register_page_birth_time_label.tr(),
+                              ),
+                              Sp.xsmall.heightBox,
+                              ValueListenableBuilder<TimeOfDay?>(
+                                valueListenable: selectedBirthTime,
+                                builder: (context, time, _) {
+                                  return _InfoPickerField(
+                                    icon: Mdi.clock_outline,
+                                    value: time?.format(context),
+                                    hint:
+                                        LocaleKeys.register_page_birth_time_hint
+                                            .tr(),
+                                    onTap: pickTime,
+                                  );
+                                },
+                              ),
+                              Sp.medium.heightBox,
+                              _buildLabel(
+                                context,
+                                LocaleKeys.register_page_location_label.tr(),
+                              ),
+                              Sp.xsmall.heightBox,
+                              ValueListenableBuilder<String?>(
+                                valueListenable: selectedCityName,
+                                builder: (context, city, _) {
+                                  return _InfoPickerField(
+                                    icon: Mdi.map_marker,
+                                    value: city,
+                                    hint:
+                                        LocaleKeys.register_page_location_hint
+                                            .tr(),
+                                    onTap: pickCity,
+                                  );
+                                },
+                              ),
+                              Sp.xxlarge.heightBox,
+                            ],
+                          ),
+                        ),
+                      ),
+                      Sp.medium.heightBox,
+                      ListenableBuilder(
+                        listenable: Listenable.merge([
+                          nameController,
+                          selectedBirthDate,
+                          selectedBirthTime,
+                          selectedCityName,
+                        ]),
+                        builder: (context, _) {
+                          return BlocBuilder<RegisterCubit, RegisterState>(
+                            builder: (context, state) {
+                              return FancyButton(
+                                text:
+                                    LocaleKeys
+                                        .register_page_complete_registration
+                                        .tr(),
+                                onTap: submitRegistration,
+                                isLoading: state.registerStatus.isLoading,
+                                isDisabled: !isFormValid,
+                              );
+                            },
+                          );
+                        },
+                      ),
+                    ],
+                  ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
@@ -177,7 +215,9 @@ class _RegisterStepPersonalInfoPageState extends State<RegisterStepPersonalInfoP
       padding: EdgeInsets.only(left: 4.w),
       child: Text(
         label,
-        style: m14w700(context).copyWith(color: context.colors.textPrimary.withValues(alpha: 0.8)),
+        style: m14w700(
+          context,
+        ).copyWith(color: context.colors.textPrimary.withValues(alpha: 0.8)),
       ),
     );
   }
@@ -227,7 +267,10 @@ class _InfoPickerField extends StatelessWidget {
             ),
             Icon(
               Icons.chevron_right_rounded,
-              color: isSelected ? colors.primary : colors.textSecondary.withValues(alpha: 0.5),
+              color:
+                  isSelected
+                      ? colors.primary
+                      : colors.textSecondary.withValues(alpha: 0.5),
               size: 20.r,
             ),
           ],

@@ -15,7 +15,8 @@ import 'package:mobile_boilerplate/presentation/extensions/build_context_theme_e
 
 class CityPickerSheet extends StatefulWidget {
   const CityPickerSheet({required this.onCitySelected, super.key});
-  final void Function(String name, double lat, double lon, String? zoneName) onCitySelected;
+  final void Function(String name, double lat, double lon, String? zoneName)
+  onCitySelected;
 
   @override
   State<CityPickerSheet> createState() => _CityPickerSheetState();
@@ -94,6 +95,10 @@ class _CityPickerSheetState extends State<CityPickerSheet> {
           final lon = double.tryParse(c.longitude ?? '');
           return lat != null && lon != null;
         }).toList();
+    if (withCoords.isEmpty && mounted && _stateHasCoords(s)) {
+      _selectState(s);
+      return;
+    }
     if (mounted) {
       setState(() {
         _cities = withCoords;
@@ -104,6 +109,23 @@ class _CityPickerSheetState extends State<CityPickerSheet> {
 
   void _pickCity(csc.City c) => setState(() => _city = c);
 
+  bool _stateHasCoords(csc.State s) {
+    final lat = double.tryParse(s.latitude ?? '');
+    final lon = double.tryParse(s.longitude ?? '');
+    return lat != null && lon != null;
+  }
+
+  void _selectState(csc.State s) {
+    final lat = double.parse(s.latitude!);
+    final lon = double.parse(s.longitude!);
+    final zoneName = BirthTimezoneResolver.zoneName(
+      countryIsoCode: _country!.isoCode,
+      longitude: lon,
+    );
+    widget.onCitySelected(_cleanPlaceName(s.name), lat, lon, zoneName);
+    Navigator.of(context).pop();
+  }
+
   void _confirm() {
     final city = _city!;
     final lat = double.parse(city.latitude!);
@@ -112,7 +134,7 @@ class _CityPickerSheetState extends State<CityPickerSheet> {
       countryIsoCode: _country!.isoCode,
       longitude: lon,
     );
-    widget.onCitySelected(city.name, lat, lon, zoneName);
+    widget.onCitySelected(_cleanPlaceName(city.name), lat, lon, zoneName);
     Navigator.of(context).pop();
   }
 
@@ -136,13 +158,27 @@ class _CityPickerSheetState extends State<CityPickerSheet> {
     if (_step == 1) {
       return _country?.name ?? LocaleKeys.zodiac_page_select_state.tr();
     }
-    return _state?.name ?? LocaleKeys.zodiac_page_select_city.tr();
+    return _state != null
+        ? _cleanPlaceName(_state!.name)
+        : LocaleKeys.zodiac_page_select_city.tr();
   }
 
   String _nameOf(dynamic item) {
     if (item is csc.Country) return item.name;
-    if (item is csc.State) return item.name;
-    return (item as csc.City).name;
+    if (item is csc.State) return _cleanPlaceName(item.name);
+    return _cleanPlaceName((item as csc.City).name);
+  }
+
+  String _cleanPlaceName(String name) {
+    return name
+        .replaceFirst(
+          RegExp(
+            r'\s+(Province|Region|District|State|Governorate|Prefecture|County|Department|Municipality)$',
+            caseSensitive: false,
+          ),
+          '',
+        )
+        .trim();
   }
 
   List<dynamic> get _filtered {
@@ -153,9 +189,17 @@ class _CityPickerSheetState extends State<CityPickerSheet> {
           : _countries.where((c) => c.name.toLowerCase().contains(q)).toList();
     }
     if (_step == 1) {
-      return q.isEmpty ? _states : _states.where((s) => s.name.toLowerCase().contains(q)).toList();
+      return q.isEmpty
+          ? _states
+          : _states
+              .where((s) => _cleanPlaceName(s.name).toLowerCase().contains(q))
+              .toList();
     }
-    return q.isEmpty ? _cities : _cities.where((c) => c.name.toLowerCase().contains(q)).toList();
+    return q.isEmpty
+        ? _cities
+        : _cities
+            .where((c) => _cleanPlaceName(c.name).toLowerCase().contains(q))
+            .toList();
   }
 
   @override
@@ -164,7 +208,8 @@ class _CityPickerSheetState extends State<CityPickerSheet> {
     final list = _filtered;
     final bottomSafePadding = MediaQuery.of(context).padding.bottom;
     final listBottomPadding =
-        (_step == 2 && _city != null ? Sp.large.h : Sp.xxxlarge.h) + bottomSafePadding;
+        (_step == 2 && _city != null ? Sp.large.h : Sp.xxxlarge.h) +
+        bottomSafePadding;
 
     return SizedBox(
       height: MediaQuery.of(context).size.height * 0.78,
@@ -283,7 +328,8 @@ class _CityPickerSheetState extends State<CityPickerSheet> {
                         final item = list[i];
                         final name = _nameOf(item);
                         final isSelected = _step == 2 && _city == item;
-                        final isoCode = _step == 0 ? (item as csc.Country).isoCode : null;
+                        final isoCode =
+                            _step == 0 ? (item as csc.Country).isoCode : null;
                         return GestureDetector(
                           onTap: () {
                             if (_step == 0) {

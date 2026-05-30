@@ -97,50 +97,48 @@ class SettingsPage extends StatelessWidget {
           borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
         ),
         builder: (ctx) {
-          return SafeArea(
-            child: ConstrainedBox(
-              constraints: BoxConstraints(
-                maxHeight: MediaQuery.sizeOf(ctx).height * 0.75,
-              ),
-              child: Padding(
-                padding: Sp.large.padSymR(h: Sp.large, v: Sp.large),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    Text(
-                      LocaleKeys.settings_page_choose_language.tr(),
-                      style: m16w600(
-                        context,
-                      ).copyWith(color: colors.textPrimary),
-                      textAlign: TextAlign.center,
+          return ConstrainedBox(
+            constraints: BoxConstraints(
+              maxHeight: MediaQuery.sizeOf(ctx).height * 0.75,
+            ),
+            child: Padding(
+              padding: Sp.large.padSymR(h: Sp.large, v: Sp.large),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Text(
+                    LocaleKeys.settings_page_choose_language.tr(),
+                    style: m16w600(
+                      context,
+                    ).copyWith(color: colors.textPrimary),
+                    textAlign: TextAlign.center,
+                  ),
+                  Sp.large.heightBox,
+                  Flexible(
+                    child: ListView.separated(
+                      shrinkWrap: true,
+                      itemCount: _languageOptions.length,
+                      separatorBuilder: (_, _) => Sp.small.heightBox,
+                      itemBuilder: (_, index) {
+                        final option = _languageOptions[index];
+                        return _LanguageOption(
+                          label: option.label,
+                          countryCode: option.countryCode,
+                          locale: option.language.locale,
+                          isSelected: currentLocale == option.language.locale,
+                          onTap: () async {
+                            Navigator.of(ctx).pop();
+                            await context.setLocale(option.language.locale);
+                            if (!context.mounted) return;
+                            context.read<TarotBloc>().addClearCache();
+                          },
+                        );
+                      },
                     ),
-                    Sp.large.heightBox,
-                    Flexible(
-                      child: ListView.separated(
-                        shrinkWrap: true,
-                        itemCount: _languageOptions.length,
-                        separatorBuilder: (_, _) => Sp.small.heightBox,
-                        itemBuilder: (_, index) {
-                          final option = _languageOptions[index];
-                          return _LanguageOption(
-                            label: option.label,
-                            countryCode: option.countryCode,
-                            locale: option.language.locale,
-                            isSelected: currentLocale == option.language.locale,
-                            onTap: () async {
-                              Navigator.of(ctx).pop();
-                              await context.setLocale(option.language.locale);
-                              if (!context.mounted) return;
-                              context.read<TarotBloc>().addClearCache();
-                            },
-                          );
-                        },
-                      ),
-                    ),
-                    Sp.medium.heightBox,
-                  ],
-                ),
+                  ),
+                  Sp.medium.heightBox,
+                ],
               ),
             ),
           );

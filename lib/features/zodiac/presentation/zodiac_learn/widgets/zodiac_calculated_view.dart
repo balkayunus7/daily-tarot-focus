@@ -406,7 +406,10 @@ class _SignatureSection extends StatelessWidget {
               ),
             ),
             Sp.xsmall.widthBox,
-            Text('Burç Özeti', style: m16w700(context)),
+            Text(
+              LocaleKeys.zodiac_page_sign_summary.tr(),
+              style: m16w700(context),
+            ),
           ],
         ),
         Sp.medium.heightBox,
@@ -421,7 +424,7 @@ class _SignatureSection extends StatelessWidget {
                 children: [
                   Expanded(
                     child: _InsightTile(
-                      title: 'Element',
+                      title: LocaleKeys.zodiac_page_element_label.tr(),
                       value: sign.elementLocalized,
                       icon: Icons.auto_awesome,
                     ),
@@ -429,7 +432,7 @@ class _SignatureSection extends StatelessWidget {
                   Sp.small.widthBox,
                   Expanded(
                     child: _InsightTile(
-                      title: 'Ritim',
+                      title: LocaleKeys.zodiac_page_rhythm_label.tr(),
                       value: sign.modalityLocalized,
                       icon: Icons.sync_alt,
                     ),
@@ -441,7 +444,7 @@ class _SignatureSection extends StatelessWidget {
                 children: [
                   Expanded(
                     child: _InsightTile(
-                      title: 'Gezegen',
+                      title: LocaleKeys.zodiac_page_planet_label.tr(),
                       value: sign.rulingPlanet,
                       icon: Icons.public,
                     ),
@@ -449,7 +452,7 @@ class _SignatureSection extends StatelessWidget {
                   Sp.small.widthBox,
                   Expanded(
                     child: _InsightTile(
-                      title: 'Ev',
+                      title: LocaleKeys.zodiac_page_house_label.tr(),
                       value: sign.rulingHouse,
                       icon: Icons.foundation,
                     ),
@@ -458,19 +461,19 @@ class _SignatureSection extends StatelessWidget {
               ),
               Sp.large.heightBox,
               _GuidanceCard(
-                title: 'Enerji Alanı',
+                title: LocaleKeys.zodiac_page_energy_area.tr(),
                 text: sign.energyFocus,
                 icon: Icons.bolt_outlined,
               ),
               Sp.medium.heightBox,
               _GuidanceCard(
-                title: 'Gelişim Anahtarı',
+                title: LocaleKeys.zodiac_page_growth_key_label.tr(),
                 text: sign.growthKey,
                 icon: Icons.key_outlined,
               ),
               Sp.medium.heightBox,
               _GuidanceCard(
-                title: 'Günlük Niyet',
+                title: LocaleKeys.zodiac_page_daily_intention_label.tr(),
                 text: sign.dailyIntention,
                 icon: Icons.wb_twilight_outlined,
               ),

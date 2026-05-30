@@ -364,6 +364,13 @@ abstract class  LocaleKeys {
   static const zodiac_page_element_label = 'zodiac_page.element_label';
   static const zodiac_page_modality_label = 'zodiac_page.modality_label';
   static const zodiac_page_arcana_card = 'zodiac_page.arcana_card';
+  static const zodiac_page_sign_summary = 'zodiac_page.sign_summary';
+  static const zodiac_page_rhythm_label = 'zodiac_page.rhythm_label';
+  static const zodiac_page_planet_label = 'zodiac_page.planet_label';
+  static const zodiac_page_house_label = 'zodiac_page.house_label';
+  static const zodiac_page_energy_area = 'zodiac_page.energy_area';
+  static const zodiac_page_growth_key_label = 'zodiac_page.growth_key_label';
+  static const zodiac_page_daily_intention_label = 'zodiac_page.daily_intention_label';
   static const zodiac_page_element_fire = 'zodiac_page.element_fire';
   static const zodiac_page_element_earth = 'zodiac_page.element_earth';
   static const zodiac_page_element_air = 'zodiac_page.element_air';
@@ -744,6 +751,7 @@ abstract class  LocaleKeys {
   static const horoscope_page_highlight_label = 'horoscope_page.highlight_label';
   static const horoscope_page_reminder_title = 'horoscope_page.reminder_title';
   static const horoscope_page_reminder_button = 'horoscope_page.reminder_button';
+  static const horoscope_page_generation_error = 'horoscope_page.generation_error';
   static const horoscope_page_period_daily = 'horoscope_page.period_daily';
   static const horoscope_page_period_weekly = 'horoscope_page.period_weekly';
   static const horoscope_page_period_monthly = 'horoscope_page.period_monthly';

@@ -31,7 +31,7 @@ class HoroscopeErrorCard extends StatelessWidget {
           ),
           Sp.large.heightBox,
           Text(
-            'Failed to generate horoscope, tap to try again',
+            LocaleKeys.horoscope_page_generation_error.tr(),
             style: m16w600(context),
             textAlign: TextAlign.center,
             maxLines: 2,

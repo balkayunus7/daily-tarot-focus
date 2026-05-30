@@ -9,6 +9,7 @@ mixin ZodiacHoroscopePageMixin on State<ZodiacHoroscopePage>, TickerProvider {
 
   late int _currentIndex;
   bool _horoscopeRequested = false;
+  String? _lastRequestedLocale;
 
   /// Horoscope Categories
   final List<(String, String)> cats = [
@@ -39,8 +40,14 @@ mixin ZodiacHoroscopePageMixin on State<ZodiacHoroscopePage>, TickerProvider {
     );
 
     isExpanded = ValueNotifier(false);
-    animController = AnimationController(vsync: this, duration: const Duration(milliseconds: 250));
-    expandAnimation = CurvedAnimation(parent: animController, curve: Curves.easeInOut);
+    animController = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 250),
+    );
+    expandAnimation = CurvedAnimation(
+      parent: animController,
+      curve: Curves.easeInOut,
+    );
 
     tabController.addListener(onTabChanged);
   }
@@ -48,8 +55,10 @@ mixin ZodiacHoroscopePageMixin on State<ZodiacHoroscopePage>, TickerProvider {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    if (_horoscopeRequested) return;
+    final locale = context.currentLocaleLanguage.value;
+    if (_horoscopeRequested && _lastRequestedLocale == locale) return;
     _horoscopeRequested = true;
+    _lastRequestedLocale = locale;
     generateHoroscope(HoroscopePeriod.values[tabController.index]);
   }
 

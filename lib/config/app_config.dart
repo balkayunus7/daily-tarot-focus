@@ -13,7 +13,7 @@ class TarotAppConfig extends AppConfig {
         appName: 'Daily Tarot Focus',
         adjustSDK: envConfig.adjustSdkKey,
         androidRevenuecatKey: envConfig.revenuecatApiKey,
-        mailToUrl: 'https://sites.google.com/view/contactinfoside/',
+        mailToUrl: 'https://sites.google.com/view/tarotdailyfocussuppor/',
         termsOfServiceUrl: 'https://sites.google.com/view/tarotdailyfocustermsconditions',
         iosRevenuecatKey: envConfig.revenuecatApiKey,
         privacyPolicyUrl: 'https://sites.google.com/view/tarot-daily-privacy-policy',

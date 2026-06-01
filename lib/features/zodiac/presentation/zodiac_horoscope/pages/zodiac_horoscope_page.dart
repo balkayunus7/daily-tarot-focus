@@ -20,7 +20,6 @@ part '../widgets/horoscope_category_tile.dart';
 part '../widgets/horoscope_critical_days_card.dart';
 part '../widgets/horoscope_general_card.dart';
 part '../widgets/horoscope_header.dart';
-part '../widgets/horoscope_reminder_card.dart';
 part '../widgets/horoscope_shimmer.dart';
 part '../widgets/horoscope_stats_grid.dart';
 part '../widgets/horoscope_tips_card.dart';
@@ -184,8 +183,6 @@ class _HoroscopeContent extends StatelessWidget {
         TipsCard(period: period, tips: response.tips),
         Sp.medium.heightBox,
         CriticalDaysCard(criticalDays: response.criticalDays),
-        Sp.medium.heightBox,
-        const ReminderCard(),
       ],
     );
   }

@@ -4,7 +4,7 @@ class DailySpreadUsageService {
   const DailySpreadUsageService._();
 
   static const freeDailyLimit = 1;
-  static const premiumDailyLimit = 2;
+  static const premiumDailyLimit = 10;
 
   static Future<int> getCount({
     required String userId,

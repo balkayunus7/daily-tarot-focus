@@ -44,7 +44,14 @@ mixin AccountSetupMixin<T extends StatefulWidget> on State<T> {
           final router = GoRouter.of(context);
           Future.delayed(
             const Duration(milliseconds: 400),
-            () => router.go(AppRoutes.tarotExplore),
+            () {
+              router.go(AppRoutes.tarotExplore);
+              WidgetsBinding.instance.addPostFrameCallback((_) async {
+                if (context.mounted) {
+                  await router.push(AppRoutes.subscriptionPaywall);
+                }
+              });
+            },
           );
         }
       } else if (isDone && !minTimeReached) {

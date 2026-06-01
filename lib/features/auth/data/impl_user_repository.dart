@@ -7,8 +7,8 @@ import 'package:mobile_boilerplate/domain/auth/auth_session.dart';
 import 'package:mobile_boilerplate/domain/auth/i_user_repository.dart';
 import 'package:mobile_boilerplate/domain/auth/user.dart';
 import 'package:mobile_boilerplate/domain/common/failure.dart';
-import 'package:mobile_boilerplate/domain/purchases/subscription.dart';
 import 'package:mobile_boilerplate/domain/common/http_utilities.dart';
+import 'package:mobile_boilerplate/domain/purchases/subscription.dart';
 import 'package:mobile_boilerplate/extensions.dart';
 import 'package:mobile_boilerplate/infrastructure/http/http_failure_handler.dart';
 import 'package:supabase/supabase.dart' hide Session, User;
@@ -77,6 +77,7 @@ class ImplUserRepository extends IUserRepository with HttpFailureHandlerMixin {
     }
   }
 
+  @override
   Future<FailureOr<Unit>> syncSubscription({
     required AuthSession session,
     required Subscription subscription,

@@ -250,6 +250,7 @@ class _BottomButtons extends StatelessWidget {
                           children: [
                             Text(
                               LocaleKeys.tarot_shuffle_auto_toggle.tr(),
+                              textAlign: TextAlign.center,
                               style: m12w600(context).copyWith(
                                 color:
                                     isAuto

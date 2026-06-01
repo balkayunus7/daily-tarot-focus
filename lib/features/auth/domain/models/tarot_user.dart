@@ -129,6 +129,7 @@ class TarotUser extends User {
     );
   }
 
+  @override
   TarotUser withSubscription(Subscription subscription) {
     return copyWith(subscription: subscription);
   }

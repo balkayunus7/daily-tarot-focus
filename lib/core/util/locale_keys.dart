@@ -1,7 +1,6 @@
 // DO NOT EDIT. This is code generated via package:easy_localization/generate.dart
 
-
-abstract class  LocaleKeys {
+abstract class LocaleKeys {
   static const explore_page_spiritual_guide = 'explore_page.spiritual_guide';
   static const explore_page_ask_question = 'explore_page.ask_question';
   static const explore_page_deck = 'explore_page.deck';
@@ -103,7 +102,8 @@ abstract class  LocaleKeys {
   static const register_page_career_title = 'register_page.career_title';
   static const register_page_career_subtitle = 'register_page.career_subtitle';
   static const register_page_name_birth_location_title = 'register_page.name_birth_location_title';
-  static const register_page_name_birth_location_subtitle = 'register_page.name_birth_location_subtitle';
+  static const register_page_name_birth_location_subtitle =
+      'register_page.name_birth_location_subtitle';
   static const register_page_name_label = 'register_page.name_label';
   static const register_page_name_hint = 'register_page.name_hint';
   static const register_page_birth_date_label = 'register_page.birth_date_label';
@@ -234,7 +234,8 @@ abstract class  LocaleKeys {
   static const tarot_question_spread_step_title = 'tarot_question.spread_step_title';
   static const tarot_question_question_step_title = 'tarot_question.question_step_title';
   static const tarot_question_deck_shuffle_step_title = 'tarot_question.deck_shuffle_step_title';
-  static const tarot_question_deck_shuffle_open_step_subtitle = 'tarot_question.deck_shuffle_open_step_subtitle';
+  static const tarot_question_deck_shuffle_open_step_subtitle =
+      'tarot_question.deck_shuffle_open_step_subtitle';
   static const tarot_question_card_pick_step_title = 'tarot_question.card_pick_step_title';
   static const tarot_question_step_1_of_5 = 'tarot_question.step_1_of_5';
   static const tarot_question_step_2_of_5 = 'tarot_question.step_2_of_5';
@@ -247,7 +248,8 @@ abstract class  LocaleKeys {
   static const tarot_question_choose_reader_subtitle = 'tarot_question.choose_reader_subtitle';
   static const tarot_question_choose_category_subtitle = 'tarot_question.choose_category_subtitle';
   static const tarot_question_choose_spread_subtitle = 'tarot_question.choose_spread_subtitle';
-  static const tarot_question_choose_open_deck_subtitle = 'tarot_question.choose_open_deck_subtitle';
+  static const tarot_question_choose_open_deck_subtitle =
+      'tarot_question.choose_open_deck_subtitle';
   static const tarot_question_choose_cards_subtitle = 'tarot_question.choose_cards_subtitle';
   static const tarot_question_scroll_and_tap_cards = 'tarot_question.scroll_and_tap_cards';
   static const tarot_question_spreads_count = 'tarot_question.spreads_count';
@@ -305,14 +307,20 @@ abstract class  LocaleKeys {
   static const subscription_paywall_page_title = 'subscription_paywall_page.title';
   static const subscription_paywall_page_subtitle = 'subscription_paywall_page.subtitle';
   static const subscription_paywall_page_footer_text = 'subscription_paywall_page.footer_text';
-  static const subscription_paywall_page_terms_of_service = 'subscription_paywall_page.terms_of_service';
-  static const subscription_paywall_page_failed_fetch_packages = 'subscription_paywall_page.failed_fetch_packages';
+  static const subscription_paywall_page_terms_of_service =
+      'subscription_paywall_page.terms_of_service';
+  static const subscription_paywall_page_failed_fetch_packages =
+      'subscription_paywall_page.failed_fetch_packages';
   static const subscription_paywall_page_no_packages = 'subscription_paywall_page.no_packages';
-  static const subscription_paywall_page_package_card_period = 'subscription_paywall_page.package_card_period';
-  static const subscription_paywall_page_subscribe_placeholder_button = 'subscription_paywall_page.subscribe_placeholder_button';
+  static const subscription_paywall_page_package_card_period =
+      'subscription_paywall_page.package_card_period';
+  static const subscription_paywall_page_subscribe_placeholder_button =
+      'subscription_paywall_page.subscribe_placeholder_button';
   static const subscription_paywall_page_retry_button = 'subscription_paywall_page.retry_button';
-  static const subscription_paywall_page_restore_button = 'subscription_paywall_page.restore_button';
-  static const subscription_paywall_page_subscribe_button = 'subscription_paywall_page.subscribe_button';
+  static const subscription_paywall_page_restore_button =
+      'subscription_paywall_page.restore_button';
+  static const subscription_paywall_page_subscribe_button =
+      'subscription_paywall_page.subscribe_button';
   static const subscription_paywall_page = 'subscription_paywall_page';
   static const subscription_period_month = 'subscription_period_month';
   static const subscription_period_week = 'subscription_period_week';
@@ -555,10 +563,14 @@ abstract class  LocaleKeys {
   static const zodiac_page_major_arcana_message_leo = 'zodiac_page.major_arcana_message_leo';
   static const zodiac_page_major_arcana_message_virgo = 'zodiac_page.major_arcana_message_virgo';
   static const zodiac_page_major_arcana_message_libra = 'zodiac_page.major_arcana_message_libra';
-  static const zodiac_page_major_arcana_message_scorpio = 'zodiac_page.major_arcana_message_scorpio';
-  static const zodiac_page_major_arcana_message_sagittarius = 'zodiac_page.major_arcana_message_sagittarius';
-  static const zodiac_page_major_arcana_message_capricorn = 'zodiac_page.major_arcana_message_capricorn';
-  static const zodiac_page_major_arcana_message_aquarius = 'zodiac_page.major_arcana_message_aquarius';
+  static const zodiac_page_major_arcana_message_scorpio =
+      'zodiac_page.major_arcana_message_scorpio';
+  static const zodiac_page_major_arcana_message_sagittarius =
+      'zodiac_page.major_arcana_message_sagittarius';
+  static const zodiac_page_major_arcana_message_capricorn =
+      'zodiac_page.major_arcana_message_capricorn';
+  static const zodiac_page_major_arcana_message_aquarius =
+      'zodiac_page.major_arcana_message_aquarius';
   static const zodiac_page_major_arcana_message_pisces = 'zodiac_page.major_arcana_message_pisces';
   static const zodiac_page_energy_focus_fire = 'zodiac_page.energy_focus_fire';
   static const zodiac_page_energy_focus_earth = 'zodiac_page.energy_focus_earth';
@@ -686,15 +698,19 @@ abstract class  LocaleKeys {
   static const compat_page_need_capricorn = 'compat_page.need_capricorn';
   static const compat_page_need_aquarius = 'compat_page.need_aquarius';
   static const compat_page_need_pisces = 'compat_page.need_pisces';
-  static const compat_page_category_desc_sexuality_high = 'compat_page.category_desc_sexuality_high';
+  static const compat_page_category_desc_sexuality_high =
+      'compat_page.category_desc_sexuality_high';
   static const compat_page_category_desc_sexuality_mid = 'compat_page.category_desc_sexuality_mid';
   static const compat_page_category_desc_sexuality_low = 'compat_page.category_desc_sexuality_low';
   static const compat_page_category_desc_trust_high = 'compat_page.category_desc_trust_high';
   static const compat_page_category_desc_trust_mid = 'compat_page.category_desc_trust_mid';
   static const compat_page_category_desc_trust_low = 'compat_page.category_desc_trust_low';
-  static const compat_page_category_desc_communication_high = 'compat_page.category_desc_communication_high';
-  static const compat_page_category_desc_communication_mid = 'compat_page.category_desc_communication_mid';
-  static const compat_page_category_desc_communication_low = 'compat_page.category_desc_communication_low';
+  static const compat_page_category_desc_communication_high =
+      'compat_page.category_desc_communication_high';
+  static const compat_page_category_desc_communication_mid =
+      'compat_page.category_desc_communication_mid';
+  static const compat_page_category_desc_communication_low =
+      'compat_page.category_desc_communication_low';
   static const compat_page_category_desc_emotions_high = 'compat_page.category_desc_emotions_high';
   static const compat_page_category_desc_emotions_mid = 'compat_page.category_desc_emotions_mid';
   static const compat_page_category_desc_emotions_low = 'compat_page.category_desc_emotions_low';
@@ -710,9 +726,11 @@ abstract class  LocaleKeys {
   static const compat_page_reason_trust_stable = 'compat_page.reason_trust_stable';
   static const compat_page_reason_trust_default = 'compat_page.reason_trust_default';
   static const compat_page_reason_communication_air = 'compat_page.reason_communication_air';
-  static const compat_page_reason_communication_supportive = 'compat_page.reason_communication_supportive';
+  static const compat_page_reason_communication_supportive =
+      'compat_page.reason_communication_supportive';
   static const compat_page_reason_communication_square = 'compat_page.reason_communication_square';
-  static const compat_page_reason_communication_default = 'compat_page.reason_communication_default';
+  static const compat_page_reason_communication_default =
+      'compat_page.reason_communication_default';
   static const compat_page_reason_emotions_water = 'compat_page.reason_emotions_water';
   static const compat_page_reason_emotions_earth_water = 'compat_page.reason_emotions_earth_water';
   static const compat_page_reason_emotions_tense = 'compat_page.reason_emotions_tense';
@@ -790,125 +808,4 @@ abstract class  LocaleKeys {
   static const onboarding_page_next_button = 'onboarding_page.next_button';
   static const onboarding_page_start_button = 'onboarding_page.start_button';
   static const onboarding_page = 'onboarding_page';
-  static const answer_book_explore_card_title = 'answer_book.explore_card_title';
-  static const answer_book_page_title = 'answer_book.page_title';
-  static const answer_book_subtitle = 'answer_book.subtitle';
-  static const answer_book_tap_instruction = 'answer_book.tap_instruction';
-  static const answer_book_shake_label = 'answer_book.shake_label';
-  static const answer_book_or = 'answer_book.or';
-  static const answer_book_ask_again = 'answer_book.ask_again';
-  static const answer_book_answer_1 = 'answer_book.answer_1';
-  static const answer_book_answer_2 = 'answer_book.answer_2';
-  static const answer_book_answer_3 = 'answer_book.answer_3';
-  static const answer_book_answer_4 = 'answer_book.answer_4';
-  static const answer_book_answer_5 = 'answer_book.answer_5';
-  static const answer_book_answer_6 = 'answer_book.answer_6';
-  static const answer_book_answer_7 = 'answer_book.answer_7';
-  static const answer_book_answer_8 = 'answer_book.answer_8';
-  static const answer_book_answer_9 = 'answer_book.answer_9';
-  static const answer_book_answer_10 = 'answer_book.answer_10';
-  static const answer_book_answer_11 = 'answer_book.answer_11';
-  static const answer_book_answer_12 = 'answer_book.answer_12';
-  static const answer_book_answer_13 = 'answer_book.answer_13';
-  static const answer_book_answer_14 = 'answer_book.answer_14';
-  static const answer_book_answer_15 = 'answer_book.answer_15';
-  static const answer_book_answer_16 = 'answer_book.answer_16';
-  static const answer_book_answer_17 = 'answer_book.answer_17';
-  static const answer_book_answer_18 = 'answer_book.answer_18';
-  static const answer_book_answer_19 = 'answer_book.answer_19';
-  static const answer_book_answer_20 = 'answer_book.answer_20';
-  static const answer_book_answer_21 = 'answer_book.answer_21';
-  static const answer_book_answer_22 = 'answer_book.answer_22';
-  static const answer_book_answer_23 = 'answer_book.answer_23';
-  static const answer_book_answer_24 = 'answer_book.answer_24';
-  static const answer_book_answer_25 = 'answer_book.answer_25';
-  static const answer_book_answer_26 = 'answer_book.answer_26';
-  static const answer_book_answer_27 = 'answer_book.answer_27';
-  static const answer_book_answer_28 = 'answer_book.answer_28';
-  static const answer_book_answer_29 = 'answer_book.answer_29';
-  static const answer_book_answer_30 = 'answer_book.answer_30';
-  static const answer_book_answer_31 = 'answer_book.answer_31';
-  static const answer_book_answer_32 = 'answer_book.answer_32';
-  static const answer_book_answer_33 = 'answer_book.answer_33';
-  static const answer_book_answer_34 = 'answer_book.answer_34';
-  static const answer_book_answer_35 = 'answer_book.answer_35';
-  static const answer_book_answer_36 = 'answer_book.answer_36';
-  static const answer_book_answer_37 = 'answer_book.answer_37';
-  static const answer_book_answer_38 = 'answer_book.answer_38';
-  static const answer_book_answer_39 = 'answer_book.answer_39';
-  static const answer_book_answer_40 = 'answer_book.answer_40';
-  static const answer_book = 'answer_book';
-  static const numerology_page_title = 'numerology_page.title';
-  static const numerology_page_explore_card_title = 'numerology_page.explore_card_title';
-  static const numerology_page_input_subtitle = 'numerology_page.input_subtitle';
-  static const numerology_page_input_hint = 'numerology_page.input_hint';
-  static const numerology_page_birth_date_label = 'numerology_page.birth_date_label';
-  static const numerology_page_pick_date_hint = 'numerology_page.pick_date_hint';
-  static const numerology_page_calculate = 'numerology_page.calculate';
-  static const numerology_page_header_label = 'numerology_page.header_label';
-  static const numerology_page_section_life_path = 'numerology_page.section_life_path';
-  static const numerology_page_section_life_path_intro = 'numerology_page.section_life_path_intro';
-  static const numerology_page_section_birthday = 'numerology_page.section_birthday';
-  static const numerology_page_section_birthday_intro = 'numerology_page.section_birthday_intro';
-  static const numerology_page_master_badge = 'numerology_page.master_badge';
-  static const numerology_page_footer_note = 'numerology_page.footer_note';
-  static const numerology_page_title_1 = 'numerology_page.title_1';
-  static const numerology_page_desc_1 = 'numerology_page.desc_1';
-  static const numerology_page_title_2 = 'numerology_page.title_2';
-  static const numerology_page_desc_2 = 'numerology_page.desc_2';
-  static const numerology_page_title_3 = 'numerology_page.title_3';
-  static const numerology_page_desc_3 = 'numerology_page.desc_3';
-  static const numerology_page_title_4 = 'numerology_page.title_4';
-  static const numerology_page_desc_4 = 'numerology_page.desc_4';
-  static const numerology_page_title_5 = 'numerology_page.title_5';
-  static const numerology_page_desc_5 = 'numerology_page.desc_5';
-  static const numerology_page_title_6 = 'numerology_page.title_6';
-  static const numerology_page_desc_6 = 'numerology_page.desc_6';
-  static const numerology_page_title_7 = 'numerology_page.title_7';
-  static const numerology_page_desc_7 = 'numerology_page.desc_7';
-  static const numerology_page_title_8 = 'numerology_page.title_8';
-  static const numerology_page_desc_8 = 'numerology_page.desc_8';
-  static const numerology_page_title_9 = 'numerology_page.title_9';
-  static const numerology_page_desc_9 = 'numerology_page.desc_9';
-  static const numerology_page_title_11 = 'numerology_page.title_11';
-  static const numerology_page_desc_11 = 'numerology_page.desc_11';
-  static const numerology_page_title_22 = 'numerology_page.title_22';
-  static const numerology_page_desc_22 = 'numerology_page.desc_22';
-  static const numerology_page_title_33 = 'numerology_page.title_33';
-  static const numerology_page_desc_33 = 'numerology_page.desc_33';
-  static const numerology_page_full_name_label = 'numerology_page.full_name_label';
-  static const numerology_page_full_name_hint = 'numerology_page.full_name_hint';
-  static const numerology_page_section_group_name = 'numerology_page.section_group_name';
-  static const numerology_page_section_destiny = 'numerology_page.section_destiny';
-  static const numerology_page_section_destiny_intro = 'numerology_page.section_destiny_intro';
-  static const numerology_page_section_soul_urge = 'numerology_page.section_soul_urge';
-  static const numerology_page_section_soul_urge_intro = 'numerology_page.section_soul_urge_intro';
-  static const numerology_page_section_personality = 'numerology_page.section_personality';
-  static const numerology_page_section_personality_intro = 'numerology_page.section_personality_intro';
-  static const numerology_page_section_group_combined = 'numerology_page.section_group_combined';
-  static const numerology_page_section_maturity = 'numerology_page.section_maturity';
-  static const numerology_page_section_maturity_intro = 'numerology_page.section_maturity_intro';
-  static const numerology_page_info_sheet_title = 'numerology_page.info_sheet_title';
-  static const numerology_page_info_what_label = 'numerology_page.info_what_label';
-  static const numerology_page_info_how_label = 'numerology_page.info_how_label';
-  static const numerology_page_info_lp_name = 'numerology_page.info_lp_name';
-  static const numerology_page_info_lp_what = 'numerology_page.info_lp_what';
-  static const numerology_page_info_lp_how = 'numerology_page.info_lp_how';
-  static const numerology_page_info_bd_name = 'numerology_page.info_bd_name';
-  static const numerology_page_info_bd_what = 'numerology_page.info_bd_what';
-  static const numerology_page_info_bd_how = 'numerology_page.info_bd_how';
-  static const numerology_page_info_dst_name = 'numerology_page.info_dst_name';
-  static const numerology_page_info_dst_what = 'numerology_page.info_dst_what';
-  static const numerology_page_info_dst_how = 'numerology_page.info_dst_how';
-  static const numerology_page_info_su_name = 'numerology_page.info_su_name';
-  static const numerology_page_info_su_what = 'numerology_page.info_su_what';
-  static const numerology_page_info_su_how = 'numerology_page.info_su_how';
-  static const numerology_page_info_per_name = 'numerology_page.info_per_name';
-  static const numerology_page_info_per_what = 'numerology_page.info_per_what';
-  static const numerology_page_info_per_how = 'numerology_page.info_per_how';
-  static const numerology_page_info_mat_name = 'numerology_page.info_mat_name';
-  static const numerology_page_info_mat_what = 'numerology_page.info_mat_what';
-  static const numerology_page_info_mat_how = 'numerology_page.info_mat_how';
-  static const numerology_page = 'numerology_page';
-
 }

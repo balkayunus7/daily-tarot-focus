@@ -60,13 +60,6 @@ class AppRoutes {
   static const String tarotCompatibilityInput = '/tarot-compatibility-input';
   static const String tarotCompatibilityResult = '/tarot-compatibility-result';
 
-  // Answer Book
-  static const String answerBook = '/answer-book';
-
-  // Numerology
-  static const String numerologyInput = '/numerology-input';
-  static const String numerologyResult = '/numerology-result';
-
   // Subscription
   static const String subscriptionPaywall = '/subscription-paywall';
 

@@ -17,7 +17,6 @@ import 'package:daily_tarot_focus/features/tarot/bloc/tarot/tarot_state.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/tarot_flow_type.dart';
 import 'package:daily_tarot_focus/features/tarot/presentation/tarot_explore/helpers/explore_illustrations.dart';
 import 'package:daily_tarot_focus/features/zodiac/domain/models/horoscope_period_enum.dart';
-import 'package:daily_tarot_focus/features/zodiac/presentation/numerology/domain/numerology_navigation_args.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
@@ -37,8 +36,6 @@ part '../widgets/explore_ask_question_card.dart';
 part '../widgets/explore_zodiac_card.dart';
 part '../widgets/explore_compatibility_card.dart';
 part '../widgets/explore_horoscope_card.dart';
-part '../widgets/explore_answer_book_card.dart';
-part '../widgets/explore_numerology_card.dart';
 part '../widgets/explore_daily_calendar_strip.dart';
 part '../helpers/explore_page_mixin.dart';
 part '../helpers/explore_page_scope.dart';
@@ -111,19 +108,6 @@ class _TarotExplorePageState extends State<TarotExplorePage>
                           const Expanded(child: ExploreZodiacCard()),
                           Sp.medium.widthBox,
                           const Expanded(child: ExploreCompatibilityCard()),
-                        ],
-                      ),
-                      Sp.medium.heightBox,
-                      Text(
-                        LocaleKeys.explore_page_guidance.tr(),
-                        style: m15w600(context),
-                      ),
-                      Sp.small.heightBox,
-                      Row(
-                        children: [
-                          const Expanded(child: ExploreAnswerBookCard()),
-                          Sp.medium.widthBox,
-                          const Expanded(child: ExploreNumerologyCard()),
                         ],
                       ),
                     ],

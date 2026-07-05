@@ -60,6 +60,9 @@ class AppRoutes {
   static const String tarotCompatibilityInput = '/tarot-compatibility-input';
   static const String tarotCompatibilityResult = '/tarot-compatibility-result';
 
+  // Planetary Hours
+  static const String planetaryHours = '/planetary-hours';
+
   // Subscription
   static const String subscriptionPaywall = '/subscription-paywall';
 

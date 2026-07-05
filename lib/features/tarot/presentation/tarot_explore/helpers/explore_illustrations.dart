@@ -577,3 +577,130 @@ class _MiniTarotCard extends StatelessWidget {
     );
   }
 }
+
+class PlanetaryHoursIllustration extends StatelessWidget {
+  const PlanetaryHoursIllustration({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final colors = context.colors;
+
+    return Container(
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: [colors.gradientStart, colors.gradientEnd],
+        ),
+      ),
+      child: Stack(
+        children: [
+          const Positioned(top: 10, left: 16, child: Sparkle(size: 2.5, opacity: 0.75)),
+          const Positioned(top: 20, right: 20, child: Sparkle(size: 1.5, opacity: 0.55)),
+          const Positioned(bottom: 16, right: 12, child: Sparkle(size: 2, opacity: 0.7)),
+          const Positioned(bottom: 24, left: 12, child: Sparkle(size: 1.5, opacity: 0.45)),
+          const Positioned(top: 8, right: 44, child: Sparkle(size: 1.5, opacity: 0.6)),
+          Positioned.fill(child: CustomPaint(painter: _PlanetaryHoursPainter())),
+        ],
+      ),
+    );
+  }
+}
+
+class _PlanetaryHoursPainter extends CustomPainter {
+  @override
+  void paint(Canvas canvas, Size size) {
+    final cx = size.width / 2;
+    final horizonY = size.height * 0.72;
+    // Fill the card: as large as fits between the top edge and the horizon.
+    final arcRadius = min(size.height * 0.60, size.width * 0.36);
+
+    // Horizon line
+    final horizonPaint =
+        Paint()
+          ..color = Colors.white.withValues(alpha: 0.35)
+          ..style = PaintingStyle.stroke
+          ..strokeWidth = 1;
+    canvas.drawLine(
+      Offset(cx - arcRadius * 1.35, horizonY),
+      Offset(cx + arcRadius * 1.35, horizonY),
+      horizonPaint,
+    );
+
+    // Sun path arc above the horizon
+    final arcRect = Rect.fromCircle(center: Offset(cx, horizonY), radius: arcRadius);
+    final arcPaint =
+        Paint()
+          ..color = const Color(0xFFE8D5A3).withValues(alpha: 0.55)
+          ..style = PaintingStyle.stroke
+          ..strokeWidth = 1.2;
+    canvas.drawArc(arcRect, pi, pi, false, arcPaint);
+
+    // Hour ticks along the arc (12 daylight divisions)
+    final tickPaint =
+        Paint()
+          ..color = Colors.white.withValues(alpha: 0.5)
+          ..strokeWidth = 1
+          ..strokeCap = StrokeCap.round;
+    final tickLength = arcRadius * 0.07;
+    for (var i = 0; i <= 12; i++) {
+      final angle = pi + (pi * i / 12);
+      final outer = Offset(
+        cx + arcRadius * cos(angle),
+        horizonY + arcRadius * sin(angle),
+      );
+      final inner = Offset(
+        cx + (arcRadius - tickLength) * cos(angle),
+        horizonY + (arcRadius - tickLength) * sin(angle),
+      );
+      canvas.drawLine(inner, outer, tickPaint);
+    }
+
+    // Sun on the arc
+    const sunAngle = pi + pi * 0.38;
+    final sunCenter = Offset(
+      cx + arcRadius * cos(sunAngle),
+      horizonY + arcRadius * sin(sunAngle),
+    );
+    final sunRadius = arcRadius * 0.06;
+    final sunGlow =
+        Paint()
+          ..color = const Color(0xFFE8B85A).withValues(alpha: 0.35)
+          ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 6);
+    final sunPaint = Paint()..color = const Color(0xFFE8D5A3);
+    canvas
+      ..drawCircle(sunCenter, sunRadius * 1.7, sunGlow)
+      ..drawCircle(sunCenter, sunRadius, sunPaint);
+
+    // Crescent moon in the sky, clear of the title area at the bottom
+    final moonCenter = Offset(cx + arcRadius * 1.22, horizonY - arcRadius * 0.55);
+    final moonRadius = arcRadius * 0.09;
+    final moonPaint = Paint()..color = Colors.white.withValues(alpha: 0.75);
+    final moonCut = Paint()..blendMode = BlendMode.clear;
+    canvas
+      ..saveLayer(
+        Rect.fromCircle(center: moonCenter, radius: moonRadius * 1.7),
+        Paint(),
+      )
+      ..drawCircle(moonCenter, moonRadius, moonPaint)
+      ..drawCircle(
+        Offset(
+          moonCenter.dx + moonRadius * 0.5,
+          moonCenter.dy - moonRadius * 0.3,
+        ),
+        moonRadius * 0.84,
+        moonCut,
+      )
+      ..restore();
+
+    // Planet dots near the horizon edges, away from the centered title
+    final dotPaint = Paint()..color = Colors.white.withValues(alpha: 0.4);
+    canvas
+      ..drawCircle(Offset(cx - arcRadius * 1.15, horizonY - arcRadius * 0.35), 1.6, dotPaint)
+      ..drawCircle(Offset(cx - arcRadius * 1.0, horizonY + size.height * 0.08), 1.2, dotPaint)
+      ..drawCircle(Offset(cx + arcRadius * 1.05, horizonY + size.height * 0.07), 1.4, dotPaint);
+  }
+
+  @override
+  bool shouldRepaint(_PlanetaryHoursPainter _) => false;
+}

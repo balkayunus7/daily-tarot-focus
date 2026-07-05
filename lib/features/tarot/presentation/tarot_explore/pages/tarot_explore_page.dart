@@ -35,6 +35,7 @@ part '../widgets/explore_paywall_card.dart';
 part '../widgets/explore_ask_question_card.dart';
 part '../widgets/explore_zodiac_card.dart';
 part '../widgets/explore_compatibility_card.dart';
+part '../widgets/explore_planetary_hours_card.dart';
 part '../widgets/explore_horoscope_card.dart';
 part '../widgets/explore_daily_calendar_strip.dart';
 part '../helpers/explore_page_mixin.dart';
@@ -110,6 +111,13 @@ class _TarotExplorePageState extends State<TarotExplorePage>
                           const Expanded(child: ExploreCompatibilityCard()),
                         ],
                       ),
+                      Sp.medium.heightBox,
+                      Text(
+                        LocaleKeys.planetary_page_section_label.tr(),
+                        style: m15w600(context),
+                      ),
+                      Sp.small.heightBox,
+                      const ExplorePlanetaryHoursCard(),
                     ],
                     Sp.large.heightBox,
                   ],

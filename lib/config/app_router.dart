@@ -10,6 +10,7 @@ import 'package:daily_tarot_focus/features/auth/presentation/pages/splash_page.d
 import 'package:daily_tarot_focus/features/core/home/home_page.dart';
 import 'package:daily_tarot_focus/features/core/settings/settings_page.dart';
 import 'package:daily_tarot_focus/features/core/subscription/pages/tarot_subscription_paywall_page.dart';
+import 'package:daily_tarot_focus/features/planetary_hours/presentation/pages/planetary_hours_page.dart';
 import 'package:daily_tarot_focus/features/tarot/bloc/tarot/tarot_bloc.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/fetch_all_cards_response_model.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/fetch_saved_readings_response_model.dart';
@@ -397,6 +398,16 @@ final appRouter = GoRouter(
         return MaterialPage(
           key: state.pageKey,
           child: TarotCompatibilityResultPage(request: extra),
+        );
+      },
+    ),
+    GoRoute(
+      path: AppRoutes.planetaryHours,
+      name: AppRoutes.planetaryHours,
+      pageBuilder: (context, state) {
+        return MaterialPage(
+          key: state.pageKey,
+          child: const PlanetaryHoursPage(),
         );
       },
     ),

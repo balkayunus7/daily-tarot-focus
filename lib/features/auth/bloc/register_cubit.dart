@@ -1,3 +1,4 @@
+import 'package:daily_tarot_focus/core/util/user_location_codec.dart';
 import 'package:daily_tarot_focus/features/auth/domain/models/register_enum.dart';
 import 'package:daily_tarot_focus/features/auth/domain/models/tarot_user_career_enum.dart';
 import 'package:daily_tarot_focus/features/auth/domain/models/tarot_user_properties.dart';
@@ -71,7 +72,12 @@ class RegisterCubit extends Cubit<RegisterState> {
       careerStatus: state.careerStatus!,
       name: state.name!.trim(),
       birthDate: birthDate,
-      location: state.location!.trim(),
+      location: UserLocationCodec.encode(
+        name: state.location!.trim(),
+        latitude: state.latitude!,
+        longitude: state.longitude!,
+        zoneName: state.zoneName,
+      ),
       zodiac: sunSign,
       moonSign: moonSign,
       risingSign: risingSign,

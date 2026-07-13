@@ -31,6 +31,7 @@ import 'package:mobile_boilerplate/application/launcher/launcher.dart';
 import 'package:mobile_boilerplate/application/purchases/purchases_bloc.dart';
 import 'package:mobile_boilerplate/common_dependencies.dart';
 import 'package:mobile_boilerplate/core_app.dart';
+import 'package:mobile_boilerplate/extensions.dart';
 import 'package:mobile_boilerplate/presentation/common/loading_page.dart';
 import 'package:mobile_boilerplate/presentation/extensions/build_context_failure_ext.dart';
 import 'package:mobile_boilerplate/presentation/extensions/build_context_theme_ext.dart';
@@ -69,8 +70,15 @@ class SettingsPage extends StatelessWidget {
       BlocListener<AuthCubit, AuthState>(
         listenWhen:
             (p, c) =>
-                p.failOrUserOption.isSome() != c.failOrUserOption.isNone(),
+                p.failOrDeletedOption.isNone() &&
+                c.failOrDeletedOption.isSome(),
         listener: (context, state) async {
+          final failOrDeleted = state.failOrDeletedOption.getOrNull();
+          if (failOrDeleted == null) return;
+          if (failOrDeleted.isLeft()) {
+            await context.handleFailure(failOrDeleted.getLeftOrCrash());
+            return;
+          }
           context.read<TarotBloc>().addClearCache();
         },
       );

@@ -833,6 +833,8 @@
     "date_pisces": "2월 19일~3월 20일"
   },
   "onboarding_page": {
+    "slide_planetary_title": "행성 시간",
+    "slide_planetary_subtitle": "하루의 매 시간을 다스리는 행성을 확인하세요. 실제 일출·일몰 시간을 기준으로 계산됩니다.",
     "slide1_title": "타로 매일",
     "slide1_subtitle": "매일 카드를 뽑고 그 메시지를 찾아보세요.",
     "slide1_chip": "타로, 매일",

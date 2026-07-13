@@ -833,6 +833,8 @@
     "date_pisces": "2月19日～3月20日"
   },
   "onboarding_page": {
+    "slide_planetary_title": "プラネタリーアワー",
+    "slide_planetary_subtitle": "1日の各時間を司る惑星をチェック。実際の日の出・日の入り時刻から計算されます。",
     "slide1_title": "毎日のタロット",
     "slide1_subtitle": "毎日カードを引いて、そのメッセージを見つけてください。",
     "slide1_chip": "タロット、毎日",

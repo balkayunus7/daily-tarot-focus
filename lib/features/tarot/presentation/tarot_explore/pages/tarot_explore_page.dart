@@ -6,12 +6,16 @@ import 'package:daily_tarot_focus/core/util/shadow_extensions.dart';
 import 'package:daily_tarot_focus/core/util/tarot_app_assets.dart';
 import 'package:daily_tarot_focus/core/util/tarot_app_sizes.dart';
 import 'package:daily_tarot_focus/core/util/text_style_helper.dart';
+import 'package:daily_tarot_focus/core/util/user_location_codec.dart';
 import 'package:daily_tarot_focus/core/widgets/custom_cache_network_image.dart';
 import 'package:daily_tarot_focus/core/widgets/fancy_button.dart';
 import 'package:daily_tarot_focus/core/widgets/fancy_container.dart';
 import 'package:daily_tarot_focus/features/auth/domain/models/tarot_user.dart';
 import 'package:daily_tarot_focus/features/auth/domain/models/tarot_user_zodiac_enum.dart';
 import 'package:daily_tarot_focus/features/core/subscription/premium_override_service.dart';
+import 'package:daily_tarot_focus/features/planetary_hours/data/planetary_location_service.dart';
+import 'package:daily_tarot_focus/features/planetary_hours/domain/planetary_hour_calculator.dart';
+import 'package:daily_tarot_focus/features/planetary_hours/presentation/helpers/planetary_ruler_ui.dart';
 import 'package:daily_tarot_focus/features/tarot/bloc/tarot/tarot_bloc.dart';
 import 'package:daily_tarot_focus/features/tarot/bloc/tarot/tarot_state.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/tarot_flow_type.dart';
@@ -69,6 +73,8 @@ class _TarotExplorePageState extends State<TarotExplorePage>
                   children: [
                     const ExploreHeader(),
                     Sp.large.heightBox,
+                    const ExplorePlanetaryHoursCard(),
+                    Sp.medium.heightBox,
                     const _ExploreTabSwitch(),
                     Sp.large.heightBox,
                     if (isTarotTab) ...[
@@ -111,13 +117,6 @@ class _TarotExplorePageState extends State<TarotExplorePage>
                           const Expanded(child: ExploreCompatibilityCard()),
                         ],
                       ),
-                      Sp.medium.heightBox,
-                      Text(
-                        LocaleKeys.planetary_page_section_label.tr(),
-                        style: m15w600(context),
-                      ),
-                      Sp.small.heightBox,
-                      const ExplorePlanetaryHoursCard(),
                     ],
                     Sp.large.heightBox,
                   ],

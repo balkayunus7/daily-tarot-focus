@@ -833,6 +833,8 @@
     "date_pisces": "19 de fevereiro a 20 de março"
   },
   "onboarding_page": {
+    "slide_planetary_title": "Horas Planetárias",
+    "slide_planetary_subtitle": "Veja qual planeta rege cada hora do seu dia, com base nos horários reais do nascer e do pôr do sol.",
     "slide1_title": "Tarô todos os dias",
     "slide1_subtitle": "Tire uma carta todos os dias e descubra sua mensagem.",
     "slide1_chip": "Tarô, todos os dias",

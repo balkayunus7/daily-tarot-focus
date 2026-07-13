@@ -25,6 +25,12 @@ class _OnboardingPageState extends State<OnboardingPage> {
 
   static const _slides = <_OnboardingSlide>[
     _OnboardingSlide(
+      titleKey: 'onboarding_page.slide_planetary_title',
+      subtitleKey: 'onboarding_page.slide_planetary_subtitle',
+      primaryAsset: 'assets/svg/moon-stars.svg',
+      supportAssets: [],
+    ),
+    _OnboardingSlide(
       titleKey: 'onboarding_page.slide1_title',
       subtitleKey: 'onboarding_page.slide1_subtitle',
       primaryAsset: 'assets/strength.webp',
@@ -43,17 +49,6 @@ class _OnboardingPageState extends State<OnboardingPage> {
       supportAssets: [
         'assets/svg/zodiac-leo.svg',
         'assets/svg/zodiac-pisces.svg',
-        'assets/svg/zodiac-libra.svg',
-        'assets/svg/zodiac-scorpio.svg',
-      ],
-    ),
-    _OnboardingSlide(
-      titleKey: 'onboarding_page.slide3_title',
-      subtitleKey: 'onboarding_page.slide3_subtitle',
-      primaryAsset: 'assets/svg/zodiac-leo.svg',
-      supportAssets: [
-        'assets/svg/zodiac-pisces.svg',
-        'assets/svg/zodiac-aries.svg',
         'assets/svg/zodiac-libra.svg',
         'assets/svg/zodiac-scorpio.svg',
       ],
@@ -275,13 +270,13 @@ class _SceneFrame extends StatelessWidget {
           child: Stack(
             clipBehavior: Clip.none,
             children: [
-              Positioned.fill(child: _SparkleField(enhanced: index <= 1)),
+              Positioned.fill(child: _SparkleField(enhanced: index >= 1)),
               if (index == 0)
-                _OrbitScene(slide: slide)
+                const _PlanetaryScene()
               else if (index == 1)
-                _PlannerScene(slide: slide)
+                _OrbitScene(slide: slide)
               else
-                _ConnectedScene(slide: slide),
+                _PlannerScene(slide: slide),
             ],
           ),
         );
@@ -426,161 +421,216 @@ class _PlannerScene extends StatelessWidget {
   }
 }
 
-class _ConnectedScene extends StatelessWidget {
-  const _ConnectedScene({required this.slide});
+class _PlanetSpec {
+  const _PlanetSpec(this.glyph, this.color, this.nameKey, this.meaningKey);
 
-  final _OnboardingSlide slide;
-
-  @override
-  Widget build(BuildContext context) {
-    return LayoutBuilder(
-      builder: (context, constraints) {
-        return Stack(
-          clipBehavior: Clip.none,
-          children: [
-            Align(
-              alignment: const Alignment(0, -0.02),
-              child: _HoroscopeFeaturePanel(slide: slide),
-            ),
-            Align(
-              alignment: const Alignment(-0.94, -0.46),
-              child: _MiniZodiacMark(asset: slide.supportAssets[0], size: 42),
-            ),
-            Align(
-              alignment: const Alignment(0.92, -0.5),
-              child: _MiniZodiacMark(asset: slide.supportAssets[1], size: 38),
-            ),
-            Align(
-              alignment: const Alignment(-0.98, 0.48),
-              child: _MiniZodiacMark(asset: slide.supportAssets[2], size: 36),
-            ),
-            Align(
-              alignment: const Alignment(0.94, 0.46),
-              child: _MiniZodiacMark(asset: slide.supportAssets[3], size: 40),
-            ),
-          ],
-        );
-      },
-    );
-  }
+  final String glyph;
+  final Color color;
+  final String nameKey;
+  final String meaningKey;
 }
 
-class _HoroscopeFeaturePanel extends StatelessWidget {
-  const _HoroscopeFeaturePanel({required this.slide});
+class _PlanetaryScene extends StatelessWidget {
+  const _PlanetaryScene();
 
-  final _OnboardingSlide slide;
+  static const _venus = _PlanetSpec(
+    '♀',
+    Color(0xFFE05A82),
+    'planetary_page.planet_venus',
+    'planetary_page.meaning_venus',
+  );
+  static const _sun = _PlanetSpec(
+    '☉',
+    Color(0xFFE8B85A),
+    'planetary_page.planet_sun',
+    'planetary_page.meaning_sun',
+  );
+  static const _mercury = _PlanetSpec(
+    '☿',
+    Color(0xFF82C4E8),
+    'planetary_page.planet_mercury',
+    'planetary_page.meaning_mercury',
+  );
+  static const _moon = _PlanetSpec(
+    '☽',
+    Color(0xFFB8C4D8),
+    'planetary_page.planet_moon',
+    'planetary_page.meaning_moon',
+  );
+  static const _jupiter = _PlanetSpec(
+    '♃',
+    Color(0xFF7BC67A),
+    'planetary_page.planet_jupiter',
+    'planetary_page.meaning_jupiter',
+  );
+  static const _saturn = _PlanetSpec(
+    '♄',
+    Color(0xFF9B8AC4),
+    'planetary_page.planet_saturn',
+    'planetary_page.meaning_saturn',
+  );
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: 318.w,
-      padding: EdgeInsets.fromLTRB(16.w, 16.h, 16.w, 14.h),
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-          colors: [
-            context.colors.surface,
-            context.colors.surfaceSecondary,
-          ],
-        ),
-        borderRadius: BorderRadius.circular(28.r),
-        border: Border.all(color: Colors.white, width: 2),
-        boxShadow: [
-          BoxShadow(
-            color: const Color(0xFF9086DA).withValues(alpha: 0.22),
-            blurRadius: 28,
-            offset: const Offset(0, 16),
-          ),
-        ],
-      ),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          _DailyHoroscopePreview(asset: slide.primaryAsset),
-          SizedBox(height: 12.h),
-          Row(
-            children: [
-              Expanded(
-                child: _FeatureActionCard(
-                  asset: 'assets/svg/explore.svg',
-                  title: 'onboarding_page.slide3_learn_title'.tr(),
-                  subtitle: 'onboarding_page.slide3_learn_subtitle'.tr(),
-                ),
+    return Stack(
+      children: [
+        Align(
+          alignment: const Alignment(0, -0.04),
+          child: Container(
+            width: 248.w,
+            height: 250.h,
+            decoration: BoxDecoration(
+              border: Border.all(
+                color: const Color(0xFFD0CCF0),
+                width: 2.5,
               ),
-              SizedBox(width: 10.w),
-              Expanded(
-                child: _FeatureActionCard(
-                  asset: 'assets/svg/heart-half.svg',
-                  title: 'onboarding_page.slide3_compat_title'.tr(),
-                  subtitle: 'onboarding_page.slide3_compat_subtitle'.tr(),
-                ),
+              borderRadius: BorderRadius.circular(34.r),
+              color: Colors.white,
+            ),
+          ),
+        ),
+        Positioned(
+          top: 62.h,
+          left: 2.w,
+          right: 2.w,
+          child: Column(
+            children: [
+              const _CurrentHourTile(planet: _venus),
+              Transform.translate(
+                offset: Offset(10.w, -8.h),
+                child: const _PlanetHourTile(planet: _sun),
+              ),
+              Transform.translate(
+                offset: Offset(-6.w, -16.h),
+                child: const _PlanetHourTile(planet: _mercury),
               ),
             ],
           ),
-        ],
-      ),
+        ),
+        const _GlyphBubble(
+          planet: _jupiter,
+          alignment: Alignment(-0.42, 0.62),
+          size: 50,
+        ),
+        const _GlyphBubble(
+          planet: _moon,
+          alignment: Alignment(0, 0.72),
+          size: 74,
+        ),
+        const _GlyphBubble(
+          planet: _saturn,
+          alignment: Alignment(0.55, 0.56),
+          size: 50,
+        ),
+      ],
     );
   }
 }
 
-class _DailyHoroscopePreview extends StatelessWidget {
-  const _DailyHoroscopePreview({required this.asset});
+class _CurrentHourTile extends StatelessWidget {
+  const _CurrentHourTile({required this.planet});
 
-  final String asset;
+  final _PlanetSpec planet;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(14.r),
+      width: 330.w,
+      padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 14.h),
       decoration: BoxDecoration(
         gradient: LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
           colors: [context.colors.gradientStart, context.colors.gradientEnd],
         ),
-        borderRadius: BorderRadius.circular(22.r),
+        borderRadius: BorderRadius.circular(14.r),
       ),
       child: Row(
         children: [
-          Container(
-            width: 58.r,
-            height: 58.r,
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              gradient: LinearGradient(
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-                colors: [context.colors.surface, context.colors.accent],
-              ),
-              border: Border.all(color: Colors.white, width: 1.5),
-            ),
-            padding: EdgeInsets.all(14.r),
-            child: _OnboardingAsset(asset: asset),
-          ),
-          SizedBox(width: 12.w),
+          _GlyphCircle(planet: planet, size: 42, filled: true),
+          Sp.small.widthBox,
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'onboarding_page.slide3_daily_title'.tr(),
+                  'planetary_page.hour_of'.tr(args: [planet.nameKey.tr()]),
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
-                  style: m15w700(context).copyWith(
-                    color: Colors.white,
-                    height: 1.1,
+                  style: m13w700(
+                    context,
+                  ).copyWith(color: Colors.white, height: 1.1),
+                ),
+                SizedBox(height: 3.h),
+                Text(
+                  planet.meaningKey.tr(),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: m12w400(context).copyWith(
+                    color: Colors.white.withValues(alpha: 0.78),
                   ),
                 ),
-                SizedBox(height: 5.h),
+              ],
+            ),
+          ),
+          Sp.small.widthBox,
+          Container(
+            padding: EdgeInsets.symmetric(horizontal: 9.w, vertical: 5.h),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(100),
+            ),
+            child: Text(
+              'planetary_page.now'.tr(),
+              style: m10w600(
+                context,
+              ).copyWith(color: _OnboardingPageState._ink),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _PlanetHourTile extends StatelessWidget {
+  const _PlanetHourTile({required this.planet});
+
+  final _PlanetSpec planet;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 300.w,
+      padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(14.r),
+      ),
+      child: Row(
+        children: [
+          _GlyphCircle(planet: planet, size: 36),
+          Sp.small.widthBox,
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
                 Text(
-                  'onboarding_page.slide3_daily_subtitle'.tr(),
-                  maxLines: 2,
+                  planet.nameKey.tr(),
+                  maxLines: 1,
                   overflow: TextOverflow.ellipsis,
-                  style: m11w500(context).copyWith(
-                    color: Colors.white.withValues(alpha: 0.72),
-                    height: 1.35,
-                  ),
+                  style: m13w700(
+                    context,
+                  ).copyWith(color: Colors.black, height: 1.1),
+                ),
+                SizedBox(height: 3.h),
+                Text(
+                  planet.meaningKey.tr(),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: m12w400(
+                    context,
+                  ).copyWith(color: const Color(0xFF4B4B4B)),
                 ),
               ],
             ),
@@ -591,105 +641,77 @@ class _DailyHoroscopePreview extends StatelessWidget {
   }
 }
 
-class _FeatureActionCard extends StatelessWidget {
-  const _FeatureActionCard({
-    required this.asset,
-    required this.title,
-    required this.subtitle,
+class _GlyphCircle extends StatelessWidget {
+  const _GlyphCircle({
+    required this.planet,
+    required this.size,
+    this.filled = false,
   });
 
-  final String asset;
-  final String title;
-  final String subtitle;
+  final _PlanetSpec planet;
+  final double size;
+  final bool filled;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 124.h,
-      padding: EdgeInsets.all(12.r),
+      width: size.r,
+      height: size.r,
       decoration: BoxDecoration(
-        color: Colors.white.withValues(alpha: 0.78),
-        borderRadius: BorderRadius.circular(20.r),
-        border: Border.all(color: context.colors.borderSecondary, width: 1.4),
+        shape: BoxShape.circle,
+        color: filled ? Colors.white : planet.color.withValues(alpha: 0.16),
+        border: Border.all(
+          color:
+              filled ? Colors.white : planet.color.withValues(alpha: 0.4),
+        ),
       ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Container(
-            width: 34.r,
-            height: 34.r,
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-                colors: [
-                  context.colors.gradientStart,
-                  context.colors.gradientEnd,
-                ],
-              ),
-              shape: BoxShape.circle,
-            ),
-            padding: EdgeInsets.all(8.r),
-            child: _OnboardingAsset(asset: asset, color: Colors.white),
-          ),
-          const Spacer(),
-          Text(
-            title,
-            maxLines: 2,
-            overflow: TextOverflow.ellipsis,
-            style: m13w700(context).copyWith(
-              color: _OnboardingPageState._ink,
-              height: 1.14,
-            ),
-          ),
-          SizedBox(height: 4.h),
-          Text(
-            subtitle,
-            maxLines: 2,
-            overflow: TextOverflow.ellipsis,
-            style: m10w500(context).copyWith(
-              color: const Color(0xFF6E5C50),
-              height: 1.25,
-            ),
-          ),
-        ],
+      alignment: Alignment.center,
+      child: Text(
+        planet.glyph,
+        style: TextStyle(
+          fontSize: (size * 0.5).sp,
+          height: 1,
+          color: planet.color,
+          fontWeight: FontWeight.w700,
+        ),
       ),
     );
   }
 }
 
-class _MiniZodiacMark extends StatelessWidget {
-  const _MiniZodiacMark({
-    required this.asset,
+class _GlyphBubble extends StatelessWidget {
+  const _GlyphBubble({
+    required this.planet,
+    required this.alignment,
     required this.size,
   });
 
-  final String asset;
+  final _PlanetSpec planet;
+  final Alignment alignment;
   final double size;
 
   @override
   Widget build(BuildContext context) {
-    return Transform.rotate(
-      angle: size.round().isEven ? -math.pi / 18 : math.pi / 20,
+    return Align(
+      alignment: alignment,
       child: Container(
         width: size.r,
         height: size.r,
         decoration: BoxDecoration(
-          color: Colors.white.withValues(alpha: 0.88),
           shape: BoxShape.circle,
-          border: Border.all(
-            color: const Color(0xFF9086DA).withValues(alpha: 0.18),
-          ),
-          boxShadow: [
-            BoxShadow(
-              color: const Color(0xFF2A0F02).withValues(alpha: 0.08),
-              blurRadius: 18,
-              offset: const Offset(0, 8),
-            ),
-          ],
+          color: const Color(0xFFF7F3EF),
+          border: Border.all(color: Colors.white, width: 2),
         ),
-        padding: EdgeInsets.all((size * 0.25).r),
-        child: _OnboardingAsset(asset: asset),
+        alignment: Alignment.center,
+        child: Text(
+          planet.glyph,
+          style: TextStyle(
+            fontSize: (size * 0.44).sp,
+            height: 1,
+            color: planet.color,
+            fontWeight: FontWeight.w700,
+          ),
+        ),
       ),
     );
   }

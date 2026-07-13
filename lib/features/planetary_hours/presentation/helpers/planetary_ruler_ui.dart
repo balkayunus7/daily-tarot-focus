@@ -1,4 +1,7 @@
-part of '../pages/planetary_hours_page.dart';
+import 'package:daily_tarot_focus/core/util/locale_keys.dart';
+import 'package:daily_tarot_focus/features/planetary_hours/domain/planetary_hour_calculator.dart';
+import 'package:flutter/material.dart';
+import 'package:mobile_boilerplate/common_dependencies.dart';
 
 extension PlanetaryRulerUi on PlanetaryRuler {
   String get glyph {

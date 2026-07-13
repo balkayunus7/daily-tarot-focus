@@ -833,6 +833,8 @@
     "date_pisces": "Şub 19 - Mar 20"
   },
   "onboarding_page": {
+    "slide_planetary_title": "Gezegen Saatleri",
+    "slide_planetary_subtitle": "Günün her saatini yöneten gezegeni gör; gerçek gün doğumu ve batımına göre hesaplanır.",
     "slide1_title": "Her Gün Tarot",
     "slide1_subtitle": "Her gün bir kart çek ve mesajını keşfet.",
     "slide1_chip": "Tarot, Her Gün",

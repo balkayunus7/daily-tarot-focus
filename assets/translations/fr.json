@@ -833,6 +833,8 @@
     "date_pisces": "19 février - 20 mars"
   },
   "onboarding_page": {
+    "slide_planetary_title": "Heures Planétaires",
+    "slide_planetary_subtitle": "Découvre quelle planète gouverne chaque heure de ta journée, selon les vrais levers et couchers du soleil.",
     "slide1_title": "Tarot tous les jours",
     "slide1_subtitle": "Tirez une carte chaque jour et découvrez son message.",
     "slide1_chip": "Tarot, tous les jours",

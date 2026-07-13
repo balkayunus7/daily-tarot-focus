@@ -833,6 +833,8 @@
     "date_pisces": "2月19日至3月20日"
   },
   "onboarding_page": {
+    "slide_planetary_title": "行星時",
+    "slide_planetary_subtitle": "查看主宰你一天中每個小時的行星，依據真實的日出日落時間計算。",
     "slide1_title": "每日塔羅牌",
     "slide1_subtitle": "每天抽一張卡片並發現它的訊息。",
     "slide1_chip": "塔羅牌，每一天",

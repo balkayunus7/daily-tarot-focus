@@ -833,6 +833,8 @@
     "date_pisces": "Feb 19 - Mar 20"
   },
   "onboarding_page": {
+    "slide_planetary_title": "Planetary Hours",
+    "slide_planetary_subtitle": "See which planet rules each hour of your day, from real sunrise and sunset times.",
     "slide1_title": "Tarot Every Day",
     "slide1_subtitle": "Draw a card each day and discover its message.",
     "slide1_chip": "Tarot, Every Day",

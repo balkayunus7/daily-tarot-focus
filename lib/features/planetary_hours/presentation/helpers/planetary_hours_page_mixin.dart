@@ -1,6 +1,6 @@
 part of '../pages/planetary_hours_page.dart';
 
-mixin PlanetaryHoursPageMixin on State<PlanetaryHoursPage> {
+mixin PlanetaryHoursPageMixin<T extends StatefulWidget> on State<T> {
   late ValueNotifier<PlanetaryLocationModel?> location;
   late ValueNotifier<PlanetaryHourSchedule?> schedule;
   late ValueNotifier<DateTime> now;

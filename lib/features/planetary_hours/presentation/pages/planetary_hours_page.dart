@@ -37,7 +37,7 @@ class PlanetaryHoursPage extends StatefulWidget {
 }
 
 class _PlanetaryHoursPageState extends State<PlanetaryHoursPage>
-    with PlanetaryHoursPageMixin {
+    with PlanetaryHoursPageMixin<PlanetaryHoursPage> {
   @override
   Widget build(BuildContext context) {
     final colors = context.colors;

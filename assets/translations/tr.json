@@ -794,7 +794,22 @@
     "meaning_mercury": "İletişim, öğrenme ve ticaret",
     "meaning_jupiter": "Şans, büyüme ve bolluk",
     "meaning_venus": "Aşk, güzellik ve uyum",
-    "meaning_saturn": "Disiplin, sabır ve derin odak"
+    "meaning_saturn": "Disiplin, sabır ve derin odak",
+    "planner_title": "En İyi Zaman Planlayıcı",
+    "planner_question": "Bugün ne yapmak istiyorsun?",
+    "planner_best_today": "Bugün en iyisi",
+    "planner_hours_today": "bugün {} saat",
+    "planner_no_upcoming": "Bugün başka saat yok",
+    "timeline_title": "Bugünün Zaman Çizelgesi",
+    "good_for": "Şunun için ideal",
+    "activity_study": "Çalışma",
+    "activity_workout": "Antrenman",
+    "activity_meeting": "Toplantı",
+    "activity_meditation": "Meditasyon",
+    "activity_date": "Buluşma",
+    "activity_creativity": "Yaratıcılık",
+    "activity_business": "İş",
+    "activity_travel": "Seyahat"
   },
   "horoscope_page": {
     "title": "İçgörü",

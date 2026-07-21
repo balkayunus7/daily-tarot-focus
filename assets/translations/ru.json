@@ -794,7 +794,22 @@
     "meaning_mercury": "Общение, обучение и торговля",
     "meaning_jupiter": "Удача, рост и изобилие",
     "meaning_venus": "Любовь, красота и гармония",
-    "meaning_saturn": "Дисциплина, терпение и глубокая концентрация"
+    "meaning_saturn": "Дисциплина, терпение и глубокая концентрация",
+    "planner_title": "Планировщик лучшего времени",
+    "planner_question": "Чем вы хотите заняться сегодня?",
+    "planner_best_today": "Лучшее сегодня",
+    "planner_hours_today": "{} часов сегодня",
+    "planner_no_upcoming": "На сегодня часов больше нет",
+    "timeline_title": "Расписание на сегодня",
+    "good_for": "Подходит для",
+    "activity_study": "Учёба",
+    "activity_workout": "Тренировка",
+    "activity_meeting": "Встреча",
+    "activity_meditation": "Медитация",
+    "activity_date": "Свидание",
+    "activity_creativity": "Творчество",
+    "activity_business": "Бизнес",
+    "activity_travel": "Путешествие"
   },
   "horoscope_page": {
     "title": "Инсайты",

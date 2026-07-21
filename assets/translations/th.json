@@ -794,7 +794,22 @@
     "meaning_mercury": "การสื่อสาร การเรียนรู้ และการค้า",
     "meaning_jupiter": "โชคลาภ การเติบโต และความอุดมสมบูรณ์",
     "meaning_venus": "ความรัก ความงาม และความกลมกลืน",
-    "meaning_saturn": "วินัย ความอดทน และสมาธิลึก"
+    "meaning_saturn": "วินัย ความอดทน และสมาธิลึก",
+    "planner_title": "ตัววางแผนเวลาที่ดีที่สุด",
+    "planner_question": "วันนี้คุณอยากทำอะไร?",
+    "planner_best_today": "ดีที่สุดวันนี้",
+    "planner_hours_today": "{} ชั่วโมงวันนี้",
+    "planner_no_upcoming": "ไม่มีชั่วโมงเหลือแล้ววันนี้",
+    "timeline_title": "ไทม์ไลน์วันนี้",
+    "good_for": "เหมาะสำหรับ",
+    "activity_study": "เรียน",
+    "activity_workout": "ออกกำลังกาย",
+    "activity_meeting": "ประชุม",
+    "activity_meditation": "ทำสมาธิ",
+    "activity_date": "เดท",
+    "activity_creativity": "ความคิดสร้างสรรค์",
+    "activity_business": "ธุรกิจ",
+    "activity_travel": "ท่องเที่ยว"
   },
   "horoscope_page": {
     "title": "ข้อมูลเชิงลึก",

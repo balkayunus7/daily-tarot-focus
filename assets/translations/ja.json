@@ -794,7 +794,22 @@
     "meaning_mercury": "コミュニケーション、学び、商売",
     "meaning_jupiter": "幸運、成長、豊かさ",
     "meaning_venus": "愛、美、調和",
-    "meaning_saturn": "規律、忍耐、深い集中"
+    "meaning_saturn": "規律、忍耐、深い集中",
+    "planner_title": "ベストタイム・プランナー",
+    "planner_question": "今日は何をしたいですか？",
+    "planner_best_today": "今日のベスト",
+    "planner_hours_today": "今日 {} 時間",
+    "planner_no_upcoming": "今日はもう時間がありません",
+    "timeline_title": "今日のタイムライン",
+    "good_for": "向いていること",
+    "activity_study": "勉強",
+    "activity_workout": "運動",
+    "activity_meeting": "会議",
+    "activity_meditation": "瞑想",
+    "activity_date": "デート",
+    "activity_creativity": "創作",
+    "activity_business": "ビジネス",
+    "activity_travel": "旅行"
   },
   "horoscope_page": {
     "title": "インサイト",

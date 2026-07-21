@@ -794,7 +794,22 @@
     "meaning_mercury": "Communication, apprentissage et commerce",
     "meaning_jupiter": "Chance, croissance et abondance",
     "meaning_venus": "Amour, beauté et harmonie",
-    "meaning_saturn": "Discipline, patience et concentration profonde"
+    "meaning_saturn": "Discipline, patience et concentration profonde",
+    "planner_title": "Planificateur de Meilleur Moment",
+    "planner_question": "Que veux-tu faire aujourd'hui ?",
+    "planner_best_today": "Meilleur aujourd'hui",
+    "planner_hours_today": "{} heures aujourd'hui",
+    "planner_no_upcoming": "Plus d'heures aujourd'hui",
+    "timeline_title": "Programme du Jour",
+    "good_for": "Idéal pour",
+    "activity_study": "Étudier",
+    "activity_workout": "Sport",
+    "activity_meeting": "Réunion",
+    "activity_meditation": "Méditation",
+    "activity_date": "Rendez-vous",
+    "activity_creativity": "Créativité",
+    "activity_business": "Affaires",
+    "activity_travel": "Voyage"
   },
   "horoscope_page": {
     "title": "Aperçus",

@@ -794,7 +794,22 @@
     "meaning_mercury": "소통, 배움, 거래",
     "meaning_jupiter": "행운, 성장, 풍요",
     "meaning_venus": "사랑, 아름다움, 조화",
-    "meaning_saturn": "절제, 인내, 깊은 집중"
+    "meaning_saturn": "절제, 인내, 깊은 집중",
+    "planner_title": "베스트 타임 플래너",
+    "planner_question": "오늘 무엇을 하고 싶나요?",
+    "planner_best_today": "오늘의 베스트",
+    "planner_hours_today": "오늘 {} 시간",
+    "planner_no_upcoming": "오늘 남은 시간이 없습니다",
+    "timeline_title": "오늘의 타임라인",
+    "good_for": "적합한 활동",
+    "activity_study": "공부",
+    "activity_workout": "운동",
+    "activity_meeting": "회의",
+    "activity_meditation": "명상",
+    "activity_date": "데이트",
+    "activity_creativity": "창작",
+    "activity_business": "비즈니스",
+    "activity_travel": "여행"
   },
   "horoscope_page": {
     "title": "인사이트",

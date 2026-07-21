@@ -794,7 +794,22 @@
     "meaning_mercury": "溝通、學習與交易",
     "meaning_jupiter": "幸運、成長與豐盛",
     "meaning_venus": "愛情、美麗與和諧",
-    "meaning_saturn": "自律、耐心與深度專注"
+    "meaning_saturn": "自律、耐心與深度專注",
+    "planner_title": "最佳時間規劃",
+    "planner_question": "你今天想做什麼？",
+    "planner_best_today": "今日最佳",
+    "planner_hours_today": "今日 {} 個時辰",
+    "planner_no_upcoming": "今天沒有更多時辰了",
+    "timeline_title": "今日時間線",
+    "good_for": "適合",
+    "activity_study": "學習",
+    "activity_workout": "健身",
+    "activity_meeting": "會議",
+    "activity_meditation": "冥想",
+    "activity_date": "約會",
+    "activity_creativity": "創作",
+    "activity_business": "商務",
+    "activity_travel": "旅行"
   },
   "horoscope_page": {
     "title": "洞察",

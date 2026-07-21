@@ -785,6 +785,33 @@ abstract class LocaleKeys {
   static const planetary_page_meaning_jupiter = 'planetary_page.meaning_jupiter';
   static const planetary_page_meaning_venus = 'planetary_page.meaning_venus';
   static const planetary_page_meaning_saturn = 'planetary_page.meaning_saturn';
+  static const planetary_page_planner_title = 'planetary_page.planner_title';
+  static const planetary_page_planner_question =
+      'planetary_page.planner_question';
+  static const planetary_page_planner_best_today =
+      'planetary_page.planner_best_today';
+  static const planetary_page_planner_hours_today =
+      'planetary_page.planner_hours_today';
+  static const planetary_page_planner_no_upcoming =
+      'planetary_page.planner_no_upcoming';
+  static const planetary_page_timeline_title =
+      'planetary_page.timeline_title';
+  static const planetary_page_good_for = 'planetary_page.good_for';
+  static const planetary_page_activity_study =
+      'planetary_page.activity_study';
+  static const planetary_page_activity_workout =
+      'planetary_page.activity_workout';
+  static const planetary_page_activity_meeting =
+      'planetary_page.activity_meeting';
+  static const planetary_page_activity_meditation =
+      'planetary_page.activity_meditation';
+  static const planetary_page_activity_date = 'planetary_page.activity_date';
+  static const planetary_page_activity_creativity =
+      'planetary_page.activity_creativity';
+  static const planetary_page_activity_business =
+      'planetary_page.activity_business';
+  static const planetary_page_activity_travel =
+      'planetary_page.activity_travel';
   static const planetary_page = 'planetary_page';
   static const horoscope_page_title = 'horoscope_page.title';
   static const horoscope_page_tab_daily = 'horoscope_page.tab_daily';

@@ -4,7 +4,7 @@ import 'package:daily_tarot_focus/core/util/text_style_helper.dart';
 import 'package:daily_tarot_focus/features/auth/presentation/helpers/account_setup_mixin.dart';
 import 'package:daily_tarot_focus/features/auth/presentation/helpers/account_setup_scope.dart';
 import 'package:daily_tarot_focus/features/auth/presentation/widgets/step_background.dart';
-import 'package:daily_tarot_focus/features/tarot/bloc/tarot/tarot_bloc.dart';
+import 'package:daily_tarot_focus/features/tarot/bloc/tarot_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile_boilerplate/common_dependencies.dart';
 import 'package:mobile_boilerplate/presentation/extensions/build_context_theme_ext.dart';

@@ -1,8 +1,8 @@
 import 'dart:io';
 
 import 'package:daily_tarot_focus/config/app_routes.dart';
-import 'package:daily_tarot_focus/features/tarot/bloc/tarot/tarot_bloc.dart';
-import 'package:daily_tarot_focus/features/tarot/bloc/tarot/tarot_state.dart';
+import 'package:daily_tarot_focus/features/tarot/bloc/tarot_bloc.dart';
+import 'package:daily_tarot_focus/features/tarot/bloc/tarot_state.dart';
 import 'package:daily_tarot_focus/features/tarot/presentation/tarot_spread/widgets/tarot_cards_loading_animation.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';

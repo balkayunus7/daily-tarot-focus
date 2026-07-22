@@ -11,7 +11,7 @@ import 'package:daily_tarot_focus/features/core/home/home_page.dart';
 import 'package:daily_tarot_focus/features/core/settings/settings_page.dart';
 import 'package:daily_tarot_focus/features/core/subscription/pages/tarot_subscription_paywall_page.dart';
 import 'package:daily_tarot_focus/features/planetary_hours/presentation/pages/planetary_hours_page.dart';
-import 'package:daily_tarot_focus/features/tarot/bloc/tarot/tarot_bloc.dart';
+import 'package:daily_tarot_focus/features/tarot/bloc/tarot_bloc.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/fetch_all_cards_response_model.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/fetch_saved_readings_response_model.dart';
 import 'package:daily_tarot_focus/features/tarot/presentation/tarot_daily/pages/tarot_daily_calendar_detail_page.dart';

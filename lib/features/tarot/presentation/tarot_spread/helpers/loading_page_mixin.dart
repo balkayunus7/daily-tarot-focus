@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:daily_tarot_focus/core/util/locale_extensions.dart';
 import 'package:daily_tarot_focus/core/util/locale_keys.dart';
-import 'package:daily_tarot_focus/features/tarot/bloc/tarot/tarot_bloc.dart';
+import 'package:daily_tarot_focus/features/tarot/bloc/tarot_bloc.dart';
 import 'package:daily_tarot_focus/features/tarot/presentation/tarot_spread/pages/tarot_spread_loading_page.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile_boilerplate/application/auth/auth_cubit.dart';

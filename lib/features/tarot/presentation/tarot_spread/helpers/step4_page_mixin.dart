@@ -1,5 +1,5 @@
 import 'package:daily_tarot_focus/config/app_routes.dart';
-import 'package:daily_tarot_focus/features/tarot/bloc/tarot/tarot_bloc.dart';
+import 'package:daily_tarot_focus/features/tarot/bloc/tarot_bloc.dart';
 import 'package:daily_tarot_focus/features/tarot/presentation/tarot_spread/pages/tarot_spread_step4_page.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';

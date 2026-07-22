@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:daily_tarot_focus/features/zodiac/bloc/zodiac/zodiac_state.dart';
+import 'package:daily_tarot_focus/features/zodiac/bloc/zodiac_state.dart';
 import 'package:mobile_boilerplate/common_dependencies.dart';
 
 class ImplZodiacCacheService {

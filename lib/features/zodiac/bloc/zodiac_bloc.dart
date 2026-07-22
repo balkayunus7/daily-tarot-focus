@@ -1,7 +1,7 @@
 import 'dart:async';
 
-import 'package:daily_tarot_focus/features/zodiac/bloc/zodiac/zodiac_event.dart';
-import 'package:daily_tarot_focus/features/zodiac/bloc/zodiac/zodiac_state.dart';
+import 'package:daily_tarot_focus/features/zodiac/bloc/zodiac_event.dart';
+import 'package:daily_tarot_focus/features/zodiac/bloc/zodiac_state.dart';
 import 'package:daily_tarot_focus/features/zodiac/data/impl_zodiac_cache_service.dart';
 import 'package:daily_tarot_focus/features/zodiac/data/impl_zodiac_repository.dart';
 import 'package:daily_tarot_focus/features/zodiac/domain/models/generate_horoscope_request_model.dart';

@@ -19,8 +19,8 @@ import 'package:daily_tarot_focus/features/auth/domain/models/tarot_user_relatio
 import 'package:daily_tarot_focus/features/auth/presentation/widgets/personal_info_input_field.dart';
 import 'package:daily_tarot_focus/features/core/settings/display_delete_account_popup.dart';
 import 'package:daily_tarot_focus/features/core/subscription/premium_override_service.dart';
-import 'package:daily_tarot_focus/features/tarot/bloc/tarot/tarot_bloc.dart';
-import 'package:daily_tarot_focus/features/tarot/bloc/tarot/tarot_state.dart';
+import 'package:daily_tarot_focus/features/tarot/bloc/tarot_bloc.dart';
+import 'package:daily_tarot_focus/features/tarot/bloc/tarot_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';

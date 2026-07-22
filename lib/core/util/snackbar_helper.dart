@@ -26,7 +26,6 @@ class SnackbarHelper {
           style: m14w500(context).copyWith(color: context.colors.surface),
         ),
         backgroundColor: Colors.green,
-
         duration: const Duration(seconds: 2),
         behavior: SnackBarBehavior.floating,
       ),

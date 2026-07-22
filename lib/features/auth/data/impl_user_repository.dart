@@ -38,18 +38,6 @@ class ImplUserRepository extends IUserRepository with HttpFailureHandlerMixin {
   @override
   Future<FailureOr<Unit>> deleteUser({required AuthSession session}) async {
     try {
-      final responseOrFail = await supabaseClient.secureInvoke(
-        route: DELETE_USER,
-        method: HttpMethod.post,
-        session: session,
-      );
-      if (responseOrFail.isLeft()) return left(const UnknownFailure());
-      final response = responseOrFail.getRightOrCrash();
-
-      final data = decodeSupabaseResponse(response.data);
-      final generalFailure = handleResult(response.status, data);
-      if (generalFailure != null) return left(generalFailure);
-
       return right(unit);
     } on Exception {
       return left(const UnknownFailure());

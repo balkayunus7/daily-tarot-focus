@@ -6,19 +6,12 @@ import 'package:daily_tarot_focus/core/util/shadow_extensions.dart';
 import 'package:daily_tarot_focus/core/util/tarot_app_assets.dart';
 import 'package:daily_tarot_focus/core/util/tarot_app_sizes.dart';
 import 'package:daily_tarot_focus/core/util/text_style_helper.dart';
-import 'package:daily_tarot_focus/core/util/user_location_codec.dart';
 import 'package:daily_tarot_focus/core/widgets/custom_cache_network_image.dart';
 import 'package:daily_tarot_focus/core/widgets/fancy_button.dart';
 import 'package:daily_tarot_focus/core/widgets/fancy_container.dart';
 import 'package:daily_tarot_focus/features/auth/domain/models/tarot_user.dart';
 import 'package:daily_tarot_focus/features/auth/domain/models/tarot_user_zodiac_enum.dart';
 import 'package:daily_tarot_focus/features/core/subscription/premium_override_service.dart';
-import 'package:daily_tarot_focus/features/planetary_hours/data/planetary_location_service.dart';
-import 'package:daily_tarot_focus/features/planetary_hours/domain/planetary_activity.dart';
-import 'package:daily_tarot_focus/features/planetary_hours/domain/planetary_hour_calculator.dart';
-import 'package:daily_tarot_focus/features/planetary_hours/presentation/helpers/planetary_activity_ui.dart';
-import 'package:daily_tarot_focus/features/planetary_hours/presentation/helpers/planetary_ruler_ui.dart';
-import 'package:daily_tarot_focus/features/planetary_hours/presentation/pages/planetary_hours_page.dart';
 import 'package:daily_tarot_focus/features/tarot/bloc/tarot/tarot_bloc.dart';
 import 'package:daily_tarot_focus/features/tarot/bloc/tarot/tarot_state.dart';
 import 'package:daily_tarot_focus/features/tarot/domain/models/tarot_flow_type.dart';
@@ -43,8 +36,6 @@ part '../widgets/explore_ask_question_card.dart';
 part '../widgets/explore_zodiac_card.dart';
 part '../widgets/explore_compatibility_card.dart';
 part '../widgets/explore_planetary_hours_card.dart';
-part '../widgets/explore_planetary_hours_tab.dart';
-part '../widgets/explore_flow_banner.dart';
 part '../widgets/explore_horoscope_card.dart';
 part '../widgets/explore_daily_calendar_strip.dart';
 part '../helpers/explore_page_mixin.dart';
@@ -57,7 +48,8 @@ class TarotExplorePage extends StatefulWidget {
   State<TarotExplorePage> createState() => _TarotExplorePageState();
 }
 
-class _TarotExplorePageState extends State<TarotExplorePage> with ExplorePageStateMixin {
+class _TarotExplorePageState extends State<TarotExplorePage>
+    with ExplorePageStateMixin {
   @override
   Widget build(BuildContext context) {
     final colors = context.colors;
@@ -79,9 +71,7 @@ class _TarotExplorePageState extends State<TarotExplorePage> with ExplorePageSta
                     Sp.large.heightBox,
                     const _ExploreTabSwitch(),
                     Sp.large.heightBox,
-                    if (isPlanetaryTab) ...[
-                      const ExplorePlanetaryHoursTab(),
-                    ] else ...[
+                    if (isTarotTab) ...[
                       const ExploreAskQuestionCard(),
                       Sp.medium.heightBox,
                       const ExploreSpreadCard(),
@@ -106,7 +96,7 @@ class _TarotExplorePageState extends State<TarotExplorePage> with ExplorePageSta
                       ),
                       Sp.medium.heightBox,
                       const ExploreDailyCalendarStrip(),
-                      Sp.large.heightBox,
+                    ] else ...[
                       const ExploreHoroscopeCard(),
                       Sp.medium.heightBox,
                       Text(
@@ -121,6 +111,13 @@ class _TarotExplorePageState extends State<TarotExplorePage> with ExplorePageSta
                           const Expanded(child: ExploreCompatibilityCard()),
                         ],
                       ),
+                      Sp.medium.heightBox,
+                      Text(
+                        LocaleKeys.planetary_page_section_label.tr(),
+                        style: m15w600(context),
+                      ),
+                      Sp.small.heightBox,
+                      const ExplorePlanetaryHoursCard(),
                     ],
                     Sp.large.heightBox,
                   ],
@@ -155,13 +152,13 @@ class _ExploreTabSwitch extends StatelessWidget {
           return Row(
             children: [
               _TabItem(
-                label: LocaleKeys.planetary_page_title.tr(),
-                isSelected: scope.isPlanetaryTab,
+                label: LocaleKeys.explore_page_tab_tarot.tr(),
+                isSelected: scope.isTarotTab,
                 onTap: () => scope.setIndex = 0,
               ),
               _TabItem(
-                label: LocaleKeys.explore_page_tab_cards_insights.tr(),
-                isSelected: scope.isCardsInsightsTab,
+                label: LocaleKeys.explore_page_tab_horoscope.tr(),
+                isSelected: scope.isHoroscopeTab,
                 onTap: () => scope.setIndex = 1,
               ),
             ],

@@ -4,8 +4,8 @@ mixin ExplorePageStateMixin on State<TarotExplorePage> {
   late final ValueNotifier<int> selected;
 
   int get selectedIndex => selected.value;
-  bool get isPlanetaryTab => selected.value == 0;
-  bool get isCardsInsightsTab => selected.value == 1;
+  bool get isTarotTab => selected.value == 0;
+  bool get isHoroscopeTab => selected.value == 1;
   set setIndex(int value) => selected.value = value;
 
   /// Horoscope Card

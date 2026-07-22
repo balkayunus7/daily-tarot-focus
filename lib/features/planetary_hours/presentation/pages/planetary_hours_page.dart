@@ -13,7 +13,6 @@ import 'package:daily_tarot_focus/features/auth/domain/models/tarot_user.dart';
 import 'package:daily_tarot_focus/features/auth/domain/models/tarot_user_properties.dart';
 import 'package:daily_tarot_focus/features/planetary_hours/data/planetary_location_service.dart';
 import 'package:daily_tarot_focus/features/planetary_hours/domain/planetary_hour_calculator.dart';
-import 'package:daily_tarot_focus/features/planetary_hours/presentation/helpers/planetary_ruler_ui.dart';
 import 'package:daily_tarot_focus/features/zodiac/presentation/zodiac_learn/helpers/birth_timezone_resolver.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -24,6 +23,7 @@ import 'package:mobile_boilerplate/presentation/widgets/scaling_container.dart';
 
 part '../helpers/planetary_hours_page_mixin.dart';
 part '../helpers/planetary_hours_page_scope.dart';
+part '../helpers/planetary_ruler_ui.dart';
 part '../widgets/planetary_current_hour_card.dart';
 part '../widgets/planetary_empty_view.dart';
 part '../widgets/planetary_hours_list.dart';
@@ -37,7 +37,7 @@ class PlanetaryHoursPage extends StatefulWidget {
 }
 
 class _PlanetaryHoursPageState extends State<PlanetaryHoursPage>
-    with PlanetaryHoursPageMixin<PlanetaryHoursPage> {
+    with PlanetaryHoursPageMixin {
   @override
   Widget build(BuildContext context) {
     final colors = context.colors;

@@ -17,23 +17,13 @@ abstract class LocaleKeys {
   static const explore_page_day_energy = 'explore_page.day_energy';
   static const explore_page_moon_energy = 'explore_page.moon_energy';
   static const explore_page_intuition_guide = 'explore_page.intuition_guide';
+  static const explore_page_tab_tarot = 'explore_page.tab_tarot';
+  static const explore_page_tab_horoscope = 'explore_page.tab_horoscope';
   static const explore_page_horoscope_card_title = 'explore_page.horoscope_card_title';
   static const explore_page_horoscope_card_desc = 'explore_page.horoscope_card_desc';
   static const explore_page_horoscope_card_button = 'explore_page.horoscope_card_button';
   static const explore_page_guidance = 'explore_page.guidance';
   static const explore_page_learn_horoscope = 'explore_page.learn_horoscope';
-  static const explore_page_flow_title = 'explore_page.flow_title';
-  static const explore_page_flow_step_planetary =
-      'explore_page.flow_step_planetary';
-  static const explore_page_flow_step_timing =
-      'explore_page.flow_step_timing';
-  static const explore_page_flow_step_recommendation =
-      'explore_page.flow_step_recommendation';
-  static const explore_page_flow_step_guidance =
-      'explore_page.flow_step_guidance';
-  static const explore_page_flow_step_card = 'explore_page.flow_step_card';
-  static const explore_page_tab_cards_insights =
-      'explore_page.tab_cards_insights';
   static const explore_page = 'explore_page';
   static const deck_page_title = 'deck_page.title';
   static const deck_page_meaning_for_day = 'deck_page.meaning_for_day';
@@ -785,33 +775,6 @@ abstract class LocaleKeys {
   static const planetary_page_meaning_jupiter = 'planetary_page.meaning_jupiter';
   static const planetary_page_meaning_venus = 'planetary_page.meaning_venus';
   static const planetary_page_meaning_saturn = 'planetary_page.meaning_saturn';
-  static const planetary_page_planner_title = 'planetary_page.planner_title';
-  static const planetary_page_planner_question =
-      'planetary_page.planner_question';
-  static const planetary_page_planner_best_today =
-      'planetary_page.planner_best_today';
-  static const planetary_page_planner_hours_today =
-      'planetary_page.planner_hours_today';
-  static const planetary_page_planner_no_upcoming =
-      'planetary_page.planner_no_upcoming';
-  static const planetary_page_timeline_title =
-      'planetary_page.timeline_title';
-  static const planetary_page_good_for = 'planetary_page.good_for';
-  static const planetary_page_activity_study =
-      'planetary_page.activity_study';
-  static const planetary_page_activity_workout =
-      'planetary_page.activity_workout';
-  static const planetary_page_activity_meeting =
-      'planetary_page.activity_meeting';
-  static const planetary_page_activity_meditation =
-      'planetary_page.activity_meditation';
-  static const planetary_page_activity_date = 'planetary_page.activity_date';
-  static const planetary_page_activity_creativity =
-      'planetary_page.activity_creativity';
-  static const planetary_page_activity_business =
-      'planetary_page.activity_business';
-  static const planetary_page_activity_travel =
-      'planetary_page.activity_travel';
   static const planetary_page = 'planetary_page';
   static const horoscope_page_title = 'horoscope_page.title';
   static const horoscope_page_tab_daily = 'horoscope_page.tab_daily';
@@ -864,6 +827,15 @@ abstract class LocaleKeys {
   static const onboarding_page_step_spread_title = 'onboarding_page.step_spread_title';
   static const onboarding_page_step_spread_sub = 'onboarding_page.step_spread_sub';
   static const onboarding_page_step_cards_title = 'onboarding_page.step_cards_title';
+  static const onboarding_page_slide3_title = 'onboarding_page.slide3_title';
+  static const onboarding_page_slide3_subtitle = 'onboarding_page.slide3_subtitle';
+  static const onboarding_page_slide3_chip = 'onboarding_page.slide3_chip';
+  static const onboarding_page_slide3_daily_title = 'onboarding_page.slide3_daily_title';
+  static const onboarding_page_slide3_daily_subtitle = 'onboarding_page.slide3_daily_subtitle';
+  static const onboarding_page_slide3_learn_title = 'onboarding_page.slide3_learn_title';
+  static const onboarding_page_slide3_learn_subtitle = 'onboarding_page.slide3_learn_subtitle';
+  static const onboarding_page_slide3_compat_title = 'onboarding_page.slide3_compat_title';
+  static const onboarding_page_slide3_compat_subtitle = 'onboarding_page.slide3_compat_subtitle';
   static const onboarding_page_next_button = 'onboarding_page.next_button';
   static const onboarding_page_start_button = 'onboarding_page.start_button';
   static const onboarding_page = 'onboarding_page';

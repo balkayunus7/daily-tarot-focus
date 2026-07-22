@@ -101,6 +101,12 @@ Explore your Sun / Moon / Rising signs and their traits, calculate zodiac compat
   <img src="docs/screenshots/settings_language.png" width="30%" alt="Language picker" />
 </p>
 
+### Premium
+
+<p align="center">
+  <img src="docs/screenshots/paywall.png" width="30%" alt="Paywall" />
+</p>
+
 ---
 
 ## ✨ Features

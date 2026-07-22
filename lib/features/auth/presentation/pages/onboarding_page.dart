@@ -27,13 +27,13 @@ class _OnboardingPageState extends State<OnboardingPage> {
     _OnboardingSlide(
       titleKey: 'onboarding_page.slide1_title',
       subtitleKey: 'onboarding_page.slide1_subtitle',
-      primaryAsset: 'assets/strength.webp',
+      primaryAsset: 'assets/images/tarot_cards/strength.webp',
       supportAssets: [
-        'assets/ace_of_cups.webp',
-        'assets/ace_of_wands.webp',
-        'assets/ace_of_pentacles.webp',
-        'assets/temperance.webp',
-        'assets/judgement.webp',
+        'assets/images/tarot_cards/ace_of_cups.webp',
+        'assets/images/tarot_cards/ace_of_wands.webp',
+        'assets/images/tarot_cards/ace_of_pentacles.webp',
+        'assets/images/tarot_cards/temperance.webp',
+        'assets/images/tarot_cards/judgement.webp',
       ],
     ),
     _OnboardingSlide(

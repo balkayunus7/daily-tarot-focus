@@ -52,4 +52,5 @@ flutter:
     - assets/
     - assets/translations/
     - assets/svg/
+    - assets/images/tarot_cards/
     - assets/json/

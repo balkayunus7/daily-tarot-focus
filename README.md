@@ -244,7 +244,7 @@ daily-tarot-focus/
 │   ├── svg/                          # Icons: zodiac glyphs, tarot, moon, sparkles, etc.
 │   ├── json/                         # Lottie animations (e.g. shining_stars)
 │   ├── translations/                 # 13 locale JSON files
-│   └── *.webp                        # Bundled tarot card art
+│   └── images/tarot_cards/           # Bundled tarot card art (.webp)
 │
 ├── supabase/
 │   └── functions/
@@ -371,12 +371,12 @@ Users can switch language at runtime from **Settings → Language**.
 |------|----------|
 | `assets/svg/` | Vector icons — zodiac glyphs, tarot, moon & stars, sparkles, crown, and feature icons |
 | `assets/json/` | Lottie animations (e.g. `shining_stars.json`) |
-| `assets/*.webp` | Bundled tarot card artwork |
+| `assets/images/tarot_cards/` | Bundled tarot card artwork (`.webp`) |
 | `assets/translations/` | 13 locale JSON files |
 
 Assets are declared in `pubspec.yaml` under `flutter/assets`.
 
-> **Note:** the raw screenshot PNGs (`IMG_*.PNG`) currently live in `assets/`, which is bundled into the app via the `assets/` glob. Consider moving them out of `assets/` so they aren't shipped inside the app binary. The optimized copies used by this README already live in `docs/screenshots/`.
+> **Note:** raw screenshot PNGs (`IMG_*.PNG`) previously lived in `assets/` and were bundled into the app via the `assets/` glob. They've been removed — the optimized, properly named copies used by this README live in `docs/screenshots/`.
 
 ---
 

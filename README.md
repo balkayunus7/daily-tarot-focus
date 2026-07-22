@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🔮 Daily Tarot Focus
+# 🔮 ORENIA: Tarot Focus
 
 **A cross-platform tarot & astrology companion built with Flutter and a Supabase backend.**
 
